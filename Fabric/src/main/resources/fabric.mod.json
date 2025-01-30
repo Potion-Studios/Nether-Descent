@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "netherdescent",
+  "version": "${version}",
+  "name": "Nether Descent",
+  "description": "This is an example description! Tell everyone what your mod is about!",
+  "authors": [
+    "Your Name Here"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": ""
+  },
+  "license": "All Rights Reserved",
+  "icon": "assets/examplemod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.potionstudios.netherdescent.fabric.NetherDescentFabric"
+    ]
+  },
+  "mixins": [
+    "netherdescent.mixins.json",
+    "netherdescent-common.mixins.json"
+  ],
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.21.1"
+  }
+}
