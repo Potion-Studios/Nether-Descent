@@ -1,0 +1,119 @@
+package net.potionstudios.netherdescent.forge;
+
+import com.google.auto.service.AutoService;
+import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
+import net.minecraft.Util;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.datafix.fixes.References;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.loading.FMLPaths;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+import net.potionstudios.netherdescent.NetherDescent;
+import net.potionstudios.netherdescent.PlatformHandler;
+import org.jetbrains.annotations.NotNull;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.function.Supplier;
+
+@AutoService(PlatformHandler.class)
+public final class ForgePlatformHandler implements PlatformHandler {
+	@Override
+	public Platform getPlatform() {
+		return Platform.FORGE;
+	}
+
+	@Override
+	public Path configPath() {
+		return FMLPaths.CONFIGDIR.get().resolve(NetherDescent.MOD_ID);
+	}
+
+	private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, NetherDescent.MOD_ID);
+
+	@Override
+	public <T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntity(String key, Supplier<BlockEntityType.Builder<T>> builder) {
+		return BLOCK_ENTITIES.register(key, () -> builder.get().build(Util.fetchChoiceType(References.BLOCK_ENTITY, key)));
+	}
+
+	@Override
+	public Supplier<SpawnEggItem> createSpawnEgg(Supplier<EntityType<? extends Mob>> entity, int backgroundColor, int highlightColor) {
+		return () -> new ForgeSpawnEggItem(entity, backgroundColor, highlightColor, new Item.Properties());
+	}
+
+	@Override
+	public Supplier<FlowerPotBlock> createPottedBlock(Supplier<? extends Block> block) {
+		return () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, block, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
+	}
+
+	@Override
+	public Supplier<MobBucketItem> createMobBucket(Supplier<EntityType<? extends Mob>> entity, Supplier<Fluid> fluid, Supplier<SoundEvent> sound) {
+		return () -> new MobBucketItem(entity, fluid, sound, new Item.Properties().stacksTo(1));
+	}
+
+	@Override
+	public WoodType createWoodType(String id, @NotNull BlockSetType setType) {
+		return WoodType.register(new WoodType(NetherDescent.MOD_ID + ":" + id, setType));
+	}
+
+	private static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, NetherDescent.MOD_ID);
+
+	@Override
+	public Supplier<SimpleParticleType> registerCreateParticle(String name) {
+		return PARTICLES.register(name, () -> new SimpleParticleType(false));
+	}
+
+	@SafeVarargs
+	@Override
+	public final Supplier<CreativeModeTab> createCreativeTab(String name, Supplier<ItemStack> icon, ArrayList<Supplier<? extends Item>>... items) {
+		return register(BuiltInRegistries.CREATIVE_MODE_TAB, name, () -> CreativeModeTab.builder()
+				.title(Component.translatable("itemGroup." + NetherDescent.MOD_ID + "." + name))
+				.icon(icon)
+				.displayItems((context, entries) -> {
+					for (ArrayList<Supplier<? extends Item>> item : items)
+						item.forEach((item1) -> entries.accept(item1.get()));
+				})
+				.withSearchBar()
+				.build());
+	}
+
+	private static final Map<ResourceKey<?>, DeferredRegister> CACHED = new Reference2ObjectOpenHashMap<>();
+
+	@Override
+	public <T> Supplier<T> register(Registry<? super T> registry, String name, Supplier<T> value) {
+		return CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(registry.key().location(), NetherDescent.MOD_ID)).register(name, value);
+	}
+
+	@Override
+	public <T> Supplier<Holder.Reference<T>> registerForHolder(Registry<T> registry, String name, Supplier<T> value) {
+		RegistryObject<T> registryObject = CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(registry.key().location(), NetherDescent.MOD_ID)).register(name, value);
+		return () -> (Holder.Reference<T>) registryObject.getHolder().get();
+	}
+
+	public static void register(final IEventBus bus) {
+		PARTICLES.register(bus);
+		CACHED.values().forEach(deferredRegister -> deferredRegister.register(bus));
+		BLOCK_ENTITIES.register(bus);
+	}
+}
