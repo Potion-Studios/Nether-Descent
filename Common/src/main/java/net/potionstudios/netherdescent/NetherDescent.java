@@ -4,6 +4,9 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
+import net.potionstudios.netherdescent.world.item.NetherDescentItems;
+import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import org.slf4j.Logger;
 
 public class NetherDescent {
@@ -18,7 +21,9 @@ public class NetherDescent {
      * Initializes the mod.
      */
     public static void init() {
-
+        NetherDescentItems.items();
+        NetherDescentBlocks.blocks();
+        NetherDescentCreativeTabs.tabs();
     }
 
     /**
