@@ -34,6 +34,7 @@ subprojects {
         maven("https://maven.fabricmc.net/")
         maven("https://maven.minecraftforge.net/")
         maven("https://maven.neoforged.net/releases/")
+        maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
     }
 
     @Suppress("UnstableApiUsage")
@@ -45,6 +46,8 @@ subprojects {
         })
 
         compileOnly("org.jetbrains:annotations:26.0.1")
+        compileOnly("com.google.auto.service:auto-service:1.1.1")
+        annotationProcessor("com.google.auto.service:auto-service:1.1.1")
     }
 
     java {

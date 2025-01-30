@@ -8,8 +8,9 @@
     "Your Name Here"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": ""
+    "homepage": "https://potionstudios.net/",
+    "sources": "https://github.com/Potion-Studios/Nether-Descent",
+    "issues": "https://github.com/Potion-Studios/Nether-Descent/issues"
   },
   "license": "All Rights Reserved",
   "icon": "assets/examplemod/icon.png",
@@ -25,6 +26,14 @@
   ],
   "depends": {
     "fabric": "*",
-    "minecraft": ">=1.21.1"
+    "minecraft": ">=1.21.1",
+    "terrablender": ">=4.1.0.0"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.com/invite/vP3PBGvgdW"
+      }
+    }
   }
 }

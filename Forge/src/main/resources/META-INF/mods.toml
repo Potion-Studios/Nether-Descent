@@ -1,6 +1,6 @@
 modLoader = "javafml"
 loaderVersion = "[52,)"
-issueTrackerURL = ""
+issueTrackerURL = "https://github.com/Potion-Studios/Nether-Descent/issues"
 license = "All Rights Reserved"
 
 [[mods]]
@@ -24,4 +24,11 @@ modId = "minecraft"
 mandatory = true
 versionRange = "[1.21.1]"
 ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.netherdescent]]
+modId = "terrablender"
+mandatory = true
+versionRange = "[4.1.0.0,)"
+ordering = "AFTER"
 side = "BOTH"
