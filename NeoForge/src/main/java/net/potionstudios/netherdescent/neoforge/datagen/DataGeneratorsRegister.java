@@ -11,6 +11,8 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.potionstudios.netherdescent.neoforge.datagen.generators.LangGenerator;
+import net.potionstudios.netherdescent.neoforge.datagen.generators.ModelGenerators;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 
 import java.util.Set;
@@ -28,6 +30,9 @@ class DataGeneratorsRegister {
         DatapackBuiltinEntriesProvider datapackBuiltinEntriesProvider = new DatapackBuiltinEntriesProvider(output, lookupProvider, BUILDER, Set.of(NetherDescent.MOD_ID));
         generator.addProvider(event.includeServer(), datapackBuiltinEntriesProvider);
         lookupProvider = datapackBuiltinEntriesProvider.getRegistryProvider();
+
+        ModelGenerators.init(generator, event.includeClient(), output, existingFileHelper);
+        generator.addProvider(event.includeClient(), new LangGenerator(output, "en_us"));
     }
 
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()

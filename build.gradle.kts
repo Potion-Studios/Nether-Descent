@@ -35,6 +35,7 @@ subprojects {
         maven("https://maven.minecraftforge.net/")
         maven("https://maven.neoforged.net/releases/")
         maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
+        maven("https://jitpack.io")
     }
 
     @Suppress("UnstableApiUsage")

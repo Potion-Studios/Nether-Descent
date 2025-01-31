@@ -13,6 +13,8 @@ import java.util.function.Supplier;
 
 public class NetherDescentCreativeTabs {
 
+    public static final ResourceKey<CreativeModeTab> CREATIVE_TAB = createCreativeTab("netherdescent", () -> NetherDescentItems.BLUE_NETHER_BRICK.get().getDefaultInstance(), NetherDescentItems.ITEMS);
+
     @SafeVarargs
     private static ResourceKey<CreativeModeTab> createCreativeTab(String name, Supplier<ItemStack> icon, ArrayList<Supplier<? extends Item>>... items) {
         PlatformHandler.PLATFORM_HANDLER.createCreativeTab(name, icon, items);
