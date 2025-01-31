@@ -7,13 +7,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
+import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 
 import java.util.ArrayList;
 import java.util.function.Supplier;
 
 public class NetherDescentCreativeTabs {
 
-    public static final ResourceKey<CreativeModeTab> CREATIVE_TAB = createCreativeTab("netherdescent", () -> NetherDescentItems.BLUE_NETHER_BRICK.get().getDefaultInstance(), NetherDescentItems.ITEMS);
+    public static final ResourceKey<CreativeModeTab> CREATIVE_TAB = createCreativeTab("netherdescent", () -> NetherDescentItems.BLUE_NETHER_BRICK.get().getDefaultInstance(), NetherDescentBlocks.BLOCK_ITEMS, NetherDescentItems.ITEMS);
 
     @SafeVarargs
     private static ResourceKey<CreativeModeTab> createCreativeTab(String name, Supplier<ItemStack> icon, ArrayList<Supplier<? extends Item>>... items) {

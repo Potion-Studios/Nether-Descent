@@ -10,6 +10,7 @@ import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
+import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
@@ -22,6 +23,7 @@ public class LangGenerator extends LanguageProvider {
 	@Override
 	protected void addTranslations() {
 		add("itemGroup." + NetherDescentCreativeTabs.CREATIVE_TAB.location().toLanguageKey(), "Nether Descent");
+		NetherDescentBlocks.BLOCKS.forEach(block -> add(block.get(), getBlockName(block)));
 		NetherDescentItems.ITEMS.forEach(item -> add(item.get(), getItemName(item)));
 	}
 

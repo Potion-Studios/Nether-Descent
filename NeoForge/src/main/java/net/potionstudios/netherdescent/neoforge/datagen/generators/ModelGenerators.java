@@ -1,12 +1,21 @@
 package net.potionstudios.netherdescent.neoforge.datagen.generators;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.models.model.ModelLocationUtils;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
+import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
+import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
 
 public class ModelGenerators {
 
@@ -29,13 +38,49 @@ public class ModelGenerators {
 
 	private static class BlockModelGenerators extends BlockStateProvider {
 
-		public BlockModelGenerators(PackOutput output, ExistingFileHelper exFileHelper) {
+		private BlockModelGenerators(PackOutput output, ExistingFileHelper exFileHelper) {
 			super(output, NetherDescent.MOD_ID, exFileHelper);
 		}
 
 		@Override
 		protected void registerStatesAndModels() {
+			NetherDescentBlocks.cubeAllBlocks.forEach(block -> simpleBlockWithItem(block.get(), cubeAll(block.get())));
 
+			NetherDescentBlockSet.getBlockSets().forEach(set -> {
+				registerSlab(set.getSlab(), set.getBase());
+				registerStairs(set.getStairs(), set.getBase());
+				registerWall(set.getWall(), set.getBase());
+			});
+
+		}
+
+		private void registerStairs(StairBlock stairs, Block texturedBlock) {
+			registerStairs(stairs, ModelLocationUtils.getModelLocation(texturedBlock));
+		}
+
+		private void registerStairs(StairBlock stairs, ResourceLocation texture) {
+			stairsBlock(stairs, texture);
+			simpleBlockItem(stairs, itemModels().stairs("block/" + key(stairs).getPath(), texture, texture, texture));
+		}
+
+		private void registerSlab(SlabBlock slab, Block texturedBlock) {
+			ResourceLocation texture = ModelLocationUtils.getModelLocation(texturedBlock);
+			slabBlock(slab, texture, texture);
+			simpleBlockItem(slab, itemModels().slab("block/" + key(slab).getPath(), texture, texture, texture));
+		}
+
+		private void registerWall(WallBlock wall, Block texturedBlock) {
+			ResourceLocation texture = ModelLocationUtils.getModelLocation(texturedBlock);
+			wallBlock(wall, texture);
+			simpleBlockItem(wall, itemModels().wallInventory("block/" + key(wall).getPath(), texture));
+		}
+
+		private String name(Block block) {
+			return key(block).getPath();
+		}
+
+		private ResourceLocation key(Block block) {
+			return BuiltInRegistries.BLOCK.getKey(block);
 		}
 	}
 }

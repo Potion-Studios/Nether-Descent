@@ -1,4 +1,8 @@
 {
+  "block.netherdescent.blue_nether_brick_slab": "Blue Nether Brick Slab",
+  "block.netherdescent.blue_nether_brick_stairs": "Blue Nether Brick Stairs",
+  "block.netherdescent.blue_nether_brick_wall": "Blue Nether Brick Wall",
+  "block.netherdescent.blue_nether_bricks": "Blue Nether Bricks",
   "item.netherdescent.blue_nether_brick": "Blue Nether Brick",
   "itemGroup.netherdescent.netherdescent": "Nether Descent"
 }

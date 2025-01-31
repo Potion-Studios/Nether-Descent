@@ -11,10 +11,10 @@ import org.slf4j.Logger;
 
 public class NetherDescent {
 
-    /** The mod id for  examplemod. */
+    /** The mod id for Nether Descent*/
     public static final String MOD_ID = "netherdescent";
 
-    /** The logger for examplemod. */
+    /** The logger for Nether Descent*/
     public static final Logger LOGGER = LogUtils.getLogger();
 
     /**
@@ -27,7 +27,7 @@ public class NetherDescent {
     }
 
     /**
-     * Creates a new resource location for Oh The Biomes We've Gone.
+     * Creates a new resource location for Nether Descent.
      * @param name the name of the resource
      * @return the new resource location with the Biomes We've Gone location
      */
@@ -36,7 +36,7 @@ public class NetherDescent {
     }
 
     /**
-     * Creates a new resource key for Oh The Biomes We've Gone.
+     * Creates a new resource key for Nether Descent.
      * @param registryKey the registry key for the resource
      * @param name the name of the resource
      * @return the new resource key with the Biomes We've Gone location
