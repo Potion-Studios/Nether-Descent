@@ -7,7 +7,7 @@ license = "All Rights Reserved"
 modId = "netherdescent"
 version = "${version}"
 displayName = "Nether Descent"
-authors = "Example Author"
+authors = "Joseph T. McQuigg (JT122406), AOCAWOL"
 description = '''
 '''
 #logoFile = ""

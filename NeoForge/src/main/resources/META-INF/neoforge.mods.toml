@@ -7,7 +7,7 @@ license = "All Rights Reserved"
 modId = "netherdescent"
 version = "${version}"
 displayName = "Nether Descent"
-authors = "Me!"
+authors = "Joseph T. McQuigg (JT122406), AOCAWOL"
 description = '''
 This is an example description! Tell everyone what your mod is about!
 '''

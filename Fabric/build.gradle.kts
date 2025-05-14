@@ -49,7 +49,7 @@ tasks {
     }
 
     shadowJar {
-        exclude("architectury.common.json", "com/example/examplemod/fabric/datagen/**")
+        exclude("architectury.common.json", ".cache/**")
         configurations = listOf(project.configurations.getByName("shadowBundle"))
         archiveClassifier.set("dev-shadow")
     }
