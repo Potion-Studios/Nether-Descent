@@ -21,6 +21,7 @@ public class NetherDescentBiomes {
 	public static final Map<ResourceKey<Biome>, BiomeFactory> BIOME_FACTORIES = new Reference2ObjectOpenHashMap<>();
 	public static final Multimap<TagKey<Biome>, ResourceKey<Biome>> BIOMES_BY_TAG = Multimaps.newSetMultimap(new HashMap<>(), HashSet::new);
 
+	public static final ResourceKey<Biome> WAILING_GARTH = createBiome("wailing_garth", NetherDescentBiomeBuilder::wailingGarth);
 
 	@SafeVarargs
 	private static ResourceKey<Biome> createBiome(String id, BiomeFactory biomeFactory, TagKey<Biome>... tags) {

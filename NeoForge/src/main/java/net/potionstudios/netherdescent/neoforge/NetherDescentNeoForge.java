@@ -2,8 +2,11 @@ package net.potionstudios.netherdescent.neoforge;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.potionstudios.netherdescent.NetherDescent;
+import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentSurfaceRules;
+import terrablender.api.SurfaceRuleManager;
 
 /**
  * Main class for the mod on the NeoForge platform.
@@ -14,5 +17,16 @@ public class NetherDescentNeoForge {
         IEventBus EVENT_BUS = NeoForge.EVENT_BUS;
         NetherDescent.init();
         NeoForgePlatformHandler.register(eventBus);
+        eventBus.addListener(this::onInitialize);
+    }
+
+    /**
+     * Should initialize everything where a specific event does not cover it.
+     * @see FMLCommonSetupEvent
+     */
+    private void onInitialize(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, NetherDescent.MOD_ID, NetherDescentSurfaceRules.makeRules());
+        });
     }
 }

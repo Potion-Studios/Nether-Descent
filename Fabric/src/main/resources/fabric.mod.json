@@ -19,6 +19,9 @@
   "entrypoints": {
     "main": [
       "net.potionstudios.netherdescent.fabric.NetherDescentFabric"
+    ],
+    "terrablender": [
+      "net.potionstudios.netherdescent.fabric.NetherDescentTerrablenderEntry"
     ]
   },
   "mixins": [
