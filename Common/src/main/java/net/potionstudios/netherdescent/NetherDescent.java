@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
+import net.potionstudios.netherdescent.world.level.levelgen.surfacerules.NetherDescentRuleSources;
 import org.slf4j.Logger;
 
 public class NetherDescent {
@@ -24,6 +25,7 @@ public class NetherDescent {
         NetherDescentItems.items();
         NetherDescentBlocks.blocks();
         NetherDescentCreativeTabs.tabs();
+        NetherDescentRuleSources.ruleSources();
     }
 
     /**
