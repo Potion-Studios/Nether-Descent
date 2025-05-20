@@ -20,6 +20,12 @@ public class NetherDescentSurfaceRules {
 
     public static final SurfaceRules.ConditionSource ABOVE_31 = SurfaceRules.yBlockCheck(VerticalAnchor.absolute(31), 0);
 
+    /*
+    public static final SurfaceRules.RuleSource EMBUR_BOG = makeifTrueRule(NetherDescentBiomes.EMBUR_BOG, SurfaceRules.sequence(
+            makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, makeStateRule(NetherDescentBlocks.EMBUR_NYLIUM.get()))),
+            makeStateRule(NetherDescentBlocks.BLUE_NETHERRACK.get())
+            ));*/
+
     public static final SurfaceRules.RuleSource WAILING_GARTH = makeifTrueRule(NetherDescentBiomes.WAILING_GARTH, SurfaceRules.sequence(
             NetherDescentRuleSources.weightedRuleSource(SimpleWeightedRandomList.<SurfaceRules.RuleSource>builder()
                     .add(SurfaceRules.sequence(
@@ -46,6 +52,7 @@ public class NetherDescentSurfaceRules {
 
     public static SurfaceRules.RuleSource makeRules() {
         return SurfaceRules.sequence(
+                //EMBUR_BOG,
                 WAILING_GARTH
         );
     }
