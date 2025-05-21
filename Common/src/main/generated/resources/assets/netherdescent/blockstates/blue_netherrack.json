@@ -1,0 +1,78 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "netherdescent:block/blue_netherrack"
+      },
+      {
+        "model": "netherdescent:block/blue_netherrack",
+        "x": 90
+      },
+      {
+        "model": "netherdescent:block/blue_netherrack",
+        "x": 180
+      },
+      {
+        "model": "netherdescent:block/blue_netherrack",
+        "x": 270
+      },
+      {
+        "model": "netherdescent:block/blue_netherrack",
+        "y": 90
+      },
+      {
+        "model": "netherdescent:block/blue_netherrack",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "netherdescent:block/blue_netherrack",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "netherdescent:block/blue_netherrack",
+        "x": 270,
+        "y": 90
+      },
+      {
+        "model": "netherdescent:block/blue_netherrack",
+        "y": 180
+      },
+      {
+        "model": "netherdescent:block/blue_netherrack",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "netherdescent:block/blue_netherrack",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "netherdescent:block/blue_netherrack",
+        "x": 270,
+        "y": 180
+      },
+      {
+        "model": "netherdescent:block/blue_netherrack",
+        "y": 270
+      },
+      {
+        "model": "netherdescent:block/blue_netherrack",
+        "x": 90,
+        "y": 270
+      },
+      {
+        "model": "netherdescent:block/blue_netherrack",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "netherdescent:block/blue_netherrack",
+        "x": 270,
+        "y": 270
+      }
+    ]
+  }
+}
