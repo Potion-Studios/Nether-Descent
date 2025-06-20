@@ -15,30 +15,30 @@ public class NetherDescentBlockSet {
     private static final ArrayList<NetherDescentBlockSet> blockSets = new ArrayList<>();
 
     private final Supplier<Block> base;
-    private final Supplier<SlabBlock> slab;
     private final Supplier<StairBlock> stairs;
+    private final Supplier<SlabBlock> slab;
     private final Supplier<WallBlock> wall;
 
     public NetherDescentBlockSet(String name, BlockBehaviour.Properties properties) {
         this.base = NetherDescentBlocks.registerBasicBlockWithItem(name ,properties);
-        this.slab = NetherDescentBlocks.registerBlockItem(name + "_slab", () -> new SlabBlock(properties));
         this.stairs = NetherDescentBlocks.registerBlockItem(name + "_stairs", () -> new StairBlock(base.get().defaultBlockState(), properties));
+        this.slab = NetherDescentBlocks.registerBlockItem(name + "_slab", () -> new SlabBlock(properties));
         this.wall = NetherDescentBlocks.registerBlockItem(name + "_wall", () -> new WallBlock(properties));
         blockSets.add(this);
     }
 
     public NetherDescentBlockSet(String name, String alt, BlockBehaviour.Properties properties) {
         this.base = NetherDescentBlocks.registerBasicBlockWithItem(name ,properties);
-        this.slab = NetherDescentBlocks.registerBlockItem(alt + "_slab", () -> new SlabBlock(properties));
         this.stairs = NetherDescentBlocks.registerBlockItem(alt + "_stairs", () -> new StairBlock(base.get().defaultBlockState(), properties));
+        this.slab = NetherDescentBlocks.registerBlockItem(alt + "_slab", () -> new SlabBlock(properties));
         this.wall = NetherDescentBlocks.registerBlockItem(alt + "_wall", () -> new WallBlock(properties));
         blockSets.add(this);
     }
 
     public NetherDescentBlockSet(Supplier<Block> base, Supplier<SlabBlock> slab, Supplier<StairBlock> stairs, Supplier<WallBlock> wall) {
         this.base = base;
-        this.slab = slab;
         this.stairs = stairs;
+        this.slab = slab;
         this.wall = wall;
         blockSets.add(this);
     }
@@ -46,17 +46,17 @@ public class NetherDescentBlockSet {
     public NetherDescentBlockSet(String name, MapColor color) {
         BlockBehaviour.Properties properties = BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).mapColor(color);
         this.base = NetherDescentBlocks.registerBasicBlockWithItem(name ,properties);
-        this.slab = NetherDescentBlocks.registerBlockItem(name + "_slab", () -> new SlabBlock(properties));
         this.stairs = NetherDescentBlocks.registerBlockItem(name + "_stairs", () -> new StairBlock(base.get().defaultBlockState(), properties));
+        this.slab = NetherDescentBlocks.registerBlockItem(name + "_slab", () -> new SlabBlock(properties));
         this.wall = NetherDescentBlocks.registerBlockItem(name + "_wall", () -> new WallBlock(properties));
         blockSets.add(this);
     }
 
     public NetherDescentBlockSet(String name, String alt, MapColor color) {
         BlockBehaviour.Properties properties = BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).mapColor(color);
-        this.base = NetherDescentBlocks.registerBasicBlockWithItem(name ,properties);
-        this.slab = NetherDescentBlocks.registerBlockItem(alt + "_slab", () -> new SlabBlock(properties));
+        this.base = NetherDescentBlocks.registerBasicBlockWithItem(name, properties);
         this.stairs = NetherDescentBlocks.registerBlockItem(alt + "_stairs", () -> new StairBlock(base.get().defaultBlockState(), properties));
+        this.slab = NetherDescentBlocks.registerBlockItem(alt + "_slab", () -> new SlabBlock(properties));
         this.wall = NetherDescentBlocks.registerBlockItem(alt + "_wall", () -> new WallBlock(properties));
         blockSets.add(this);
     }
@@ -65,12 +65,12 @@ public class NetherDescentBlockSet {
         return base.get();
     }
 
-    public SlabBlock getSlab() {
-        return slab.get();
-    }
-
     public StairBlock getStairs() {
         return stairs.get();
+    }
+
+    public SlabBlock getSlab() {
+        return slab.get();
     }
 
     public WallBlock getWall() {
@@ -78,7 +78,7 @@ public class NetherDescentBlockSet {
     }
 
     public BlockFamily getBlockFamily() {
-        return BlockFamilies.familyBuilder(getBase()).slab(getSlab()).stairs(getStairs()).wall(getWall()).getFamily();
+        return BlockFamilies.familyBuilder(getBase()).stairs(getStairs()).slab(getSlab()).wall(getWall()).getFamily();
     }
 
     public static ArrayList<NetherDescentBlockSet> getBlockSets() {
