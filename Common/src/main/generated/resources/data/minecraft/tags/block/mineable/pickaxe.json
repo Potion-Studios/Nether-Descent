@@ -1,8 +1,8 @@
 {
   "values": [
     "netherdescent:blue_nether_bricks",
-    "netherdescent:blue_nether_brick_slab",
     "netherdescent:blue_nether_brick_stairs",
+    "netherdescent:blue_nether_brick_slab",
     "netherdescent:blue_nether_brick_wall"
   ]
 }

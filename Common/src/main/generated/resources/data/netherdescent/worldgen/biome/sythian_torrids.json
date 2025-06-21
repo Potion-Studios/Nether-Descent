@@ -5,30 +5,30 @@
   "downfall": 0.0,
   "effects": {
     "additions_sound": {
-      "sound": "minecraft:ambient.soul_sand_valley.additions",
+      "sound": "minecraft:ambient.crimson_forest.additions",
       "tick_chance": 0.0111
     },
-    "ambient_sound": "minecraft:ambient.soul_sand_valley.loop",
-    "fog_color": 4529794,
+    "ambient_sound": "minecraft:ambient.crimson_forest.loop",
+    "fog_color": 16572546,
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
-      "sound": "minecraft:ambient.soul_sand_valley.mood",
+      "sound": "minecraft:ambient.crimson_forest.mood",
       "tick_delay": 6000
     },
     "music": {
       "max_delay": 24000,
       "min_delay": 12000,
       "replace_current_music": false,
-      "sound": "minecraft:music.nether.soul_sand_valley"
+      "sound": "minecraft:music.nether.crimson_forest"
     },
     "particle": {
       "options": {
-        "type": "minecraft:warped_spore"
+        "type": "minecraft:crimson_spore"
       },
       "probability": 0.01428
     },
-    "sky_color": 4529794,
+    "sky_color": 16572546,
     "water_color": 4159204,
     "water_fog_color": 329011
   },
@@ -49,17 +49,7 @@
       "minecraft:brown_mushroom_nether",
       "minecraft:red_mushroom_nether",
       "minecraft:ore_magma",
-      "minecraft:spring_closed",
-      "minecraft:ore_gravel_nether",
-      "minecraft:ore_blackstone",
-      "minecraft:ore_gold_nether",
-      "minecraft:ore_quartz_nether",
-      "minecraft:ore_ancient_debris_large",
-      "minecraft:ore_debris_small"
-    ],
-    [],
-    [
-      "minecraft:nether_sprouts"
+      "minecraft:spring_closed"
     ]
   ],
   "has_precipitation": false,
@@ -106,12 +96,6 @@
         "maxCount": 4,
         "minCount": 4,
         "weight": 15
-      },
-      {
-        "type": "minecraft:hoglin",
-        "maxCount": 2,
-        "minCount": 1,
-        "weight": 60
       }
     ],
     "underground_water_creature": [],
