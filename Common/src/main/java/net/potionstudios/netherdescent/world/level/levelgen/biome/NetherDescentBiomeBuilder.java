@@ -35,6 +35,7 @@ public class NetherDescentBiomeBuilder {
         addVegetal(generationSettings, NetherPlacements.WEEPING_VINES);
         addVegetal(generationSettings, TreePlacements.CRIMSON_FUNGI);
         addVegetal(generationSettings, NetherPlacements.CRIMSON_FOREST_VEGETATION);
+        BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.HOGLIN, 9, 3, 4);
@@ -48,7 +49,7 @@ public class NetherDescentBiomeBuilder {
     protected static Biome emburBog(HolderGetter<PlacedFeature> placedFeatureHolderGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         BiomeGenerationSettings.Builder generationSettings = setupDefaultNetherGeneration(placedFeatureHolderGetter, carverGetter);
         generationSettings.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, NetherPlacements.DELTA);
-        addAncientDebris(generationSettings);
+        BiomeDefaultFeatures.addAncientDebris(generationSettings);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.BLAZE, 20, 2, 4);
@@ -61,6 +62,7 @@ public class NetherDescentBiomeBuilder {
 
     protected static Biome sythianTorrids(HolderGetter<PlacedFeature> placedFeatureHolderGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         BiomeGenerationSettings.Builder generationSettings = setupDefaultNetherGeneration(placedFeatureHolderGetter, carverGetter);
+        BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.GHAST, 50, 4, 4);
@@ -104,11 +106,6 @@ public class NetherDescentBiomeBuilder {
         addUnderGroundDecoration(generationSettings, VegetationPlacements.RED_MUSHROOM_NETHER);
         addUnderGroundDecoration(generationSettings, OrePlacements.ORE_MAGMA);
         addUnderGroundDecoration(generationSettings, NetherPlacements.SPRING_CLOSED);
-    }
-
-    private static void addAncientDebris(BiomeGenerationSettings.Builder generationSettings) {
-        addUnderGroundDecoration(generationSettings, OrePlacements.ORE_ANCIENT_DEBRIS_LARGE);
-        addUnderGroundDecoration(generationSettings, OrePlacements.ORE_ANCIENT_DEBRIS_SMALL);
     }
 
     private static void addUnderGroundDecoration(BiomeGenerationSettings.Builder builder, ResourceKey<PlacedFeature> feature) {
