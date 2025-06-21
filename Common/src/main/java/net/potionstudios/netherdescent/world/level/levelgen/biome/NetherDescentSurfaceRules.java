@@ -18,15 +18,22 @@ import net.potionstudios.netherdescent.world.level.levelgen.surfacerules.NetherD
  */
 public class NetherDescentSurfaceRules {
 
-    public static final SurfaceRules.ConditionSource ABOVE_31 = SurfaceRules.yBlockCheck(VerticalAnchor.absolute(31), 0);
+    private static final SurfaceRules.ConditionSource ABOVE_31 = SurfaceRules.yBlockCheck(VerticalAnchor.absolute(31), 0);
+/*
+    private static final SurfaceRules.RuleSource CRIMSON_GARDENS = makeifTrueRule(NetherDescentBiomes.CRIMSON_GARDENS, SurfaceRules.sequence(
+            makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR,
+                    makeStateRule(NetherDescentBlocks.OVERGROWN_CRIMSON_BLACKSTONE))),
+            makeStateRule(Blocks.BLACKSTONE)));
 
-    /*
-    public static final SurfaceRules.RuleSource EMBUR_BOG = makeifTrueRule(NetherDescentBiomes.EMBUR_BOG, SurfaceRules.sequence(
+    private static final SurfaceRules.RuleSource EMBUR_BOG = makeifTrueRule(NetherDescentBiomes.EMBUR_BOG, SurfaceRules.sequence(
             makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, makeStateRule(NetherDescentBlocks.EMBUR_NYLIUM.get()))),
             makeStateRule(NetherDescentBlocks.BLUE_NETHERRACK.get())
-            ));*/
+            ));
 
-    public static final SurfaceRules.RuleSource WAILING_GARTH = makeifTrueRule(NetherDescentBiomes.WAILING_GARTH, SurfaceRules.sequence(
+    private static final SurfaceRules.RuleSource SYTHIAN_TORRIDS = makeifTrueRule(NetherDescentBiomes.SYTHIAN_TORRIDS,
+            makeifTrueRule(SurfaceRules.ON_FLOOR, makeStateRule(NetherDescentBlocks.SYTHIAN_NYLIUM)));*/
+
+    private static final SurfaceRules.RuleSource WAILING_GARTH = makeifTrueRule(NetherDescentBiomes.WAILING_GARTH, SurfaceRules.sequence(
             NetherDescentRuleSources.weightedRuleSource(SimpleWeightedRandomList.<SurfaceRules.RuleSource>builder()
                     .add(SurfaceRules.sequence(
                             makeifTrueRule(SurfaceRules.ON_FLOOR, Blocks.SOUL_SAND),
