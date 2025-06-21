@@ -16,6 +16,8 @@ import net.potionstudios.netherdescent.neoforge.datagen.generators.ModelGenerato
 import net.potionstudios.netherdescent.neoforge.datagen.generators.TagsGenerator;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.loot.LootGenerator;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
+import net.potionstudios.netherdescent.world.level.levelgen.feature.configured.ConfiguredFeaturesUtil;
+import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.PlacedFeaturesUtil;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -40,6 +42,8 @@ class DataGeneratorsRegister {
     }
 
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
+            .add(Registries.CONFIGURED_FEATURE, configuredFeatureHolderGetter -> ConfiguredFeaturesUtil.CONFIGURED_FEATURES_FACTORIES.forEach(((biomeResourceKey, biomeFactory) -> configuredFeatureHolderGetter.register(biomeResourceKey, biomeFactory.generate(configuredFeatureHolderGetter)))))
+            .add(Registries.PLACED_FEATURE, pContext -> PlacedFeaturesUtil.PLACED_FEATURE_FACTORIES.forEach((resourceKey, factory) -> pContext.register(resourceKey, factory.generate(pContext.lookup(Registries.CONFIGURED_FEATURE)))))
             .add(Registries.BIOME, biomeBootstapContext -> NetherDescentBiomes.BIOME_FACTORIES.forEach(((biomeResourceKey, biomeFactory) -> biomeBootstapContext.register(biomeResourceKey, biomeFactory.generate(biomeBootstapContext.lookup(Registries.PLACED_FEATURE), biomeBootstapContext.lookup(Registries.CONFIGURED_CARVER))))));
 
 }
