@@ -1,11 +1,14 @@
 package net.potionstudios.netherdescent.forge;
 
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.potionstudios.netherdescent.NetherDescent;
+import net.potionstudios.netherdescent.forge.client.NetherDescentClientForge;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentSurfaceRules;
 import terrablender.api.SurfaceRuleManager;
 
@@ -20,6 +23,7 @@ public class NetherDescentForge {
         NetherDescent.init();
         ForgePlatformHandler.register(MOD_BUS);
         MOD_BUS.addListener(this::onInitialize);
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> NetherDescentClientForge.init(MOD_BUS));
     }
 
     /**

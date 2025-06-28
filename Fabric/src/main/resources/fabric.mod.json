@@ -20,6 +20,9 @@
     "main": [
       "net.potionstudios.netherdescent.fabric.NetherDescentFabric"
     ],
+    "client": [
+      "net.potionstudios.netherdescent.fabric.client.NetherDescentClientFabric"
+    ],
     "terrablender": [
       "net.potionstudios.netherdescent.fabric.NetherDescentTerrablenderEntry"
     ]

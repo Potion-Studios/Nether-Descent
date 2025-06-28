@@ -1,0 +1,26 @@
+package net.potionstudios.netherdescent.neoforge.client;
+
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.potionstudios.netherdescent.NetherDescent;
+import net.potionstudios.netherdescent.client.NetherDescentClient;
+
+/**
+ * This class is used to initialize the Forge client side of the mod.
+ * @see NetherDescentClient
+ * @author Joseph T. McQuigg
+ */
+@Mod(value = NetherDescent.MOD_ID, dist = Dist.CLIENT)
+public class NetherDescentClientNeoForge {
+
+	/**
+	 * Constructor for the client side of the NeoForge mod.
+	 * @param eventBus The event bus to register the client side of the mod to.
+	 */
+	public NetherDescentClientNeoForge(final IEventBus eventBus) {
+		eventBus.addListener((FMLClientSetupEvent event) -> NetherDescentClient.onInitialize());
+	}
+
+}
