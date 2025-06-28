@@ -5,13 +5,16 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
+import net.potionstudios.netherdescent.tags.NetherDescentBiomeTags;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
+import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -83,7 +86,10 @@ public class TagsGenerator {
 
 		@Override
 		protected void addTags(HolderLookup.@NotNull Provider provider) {
+			NetherDescentBiomes.BIOME_FACTORIES.keySet().stream().sorted().toList().forEach(biome -> tag(NetherDescentBiomeTags.NETHER).add(biome));
+			NetherDescentBiomes.BIOMES_BY_TAG.forEach((tag, biome) -> tag(tag).add(biome));
 
+			tag(BiomeTags.IS_NETHER).addTag(NetherDescentBiomeTags.NETHER);
 		}
 	}
 }
