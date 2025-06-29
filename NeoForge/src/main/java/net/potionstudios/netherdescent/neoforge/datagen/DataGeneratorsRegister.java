@@ -22,7 +22,7 @@ import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.Place
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.MOD, modid = NetherDescent.MOD_ID)
+@EventBusSubscriber(modid = NetherDescent.MOD_ID)
 class DataGeneratorsRegister {
 
     @SubscribeEvent
