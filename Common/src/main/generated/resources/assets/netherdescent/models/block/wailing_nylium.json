@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "minecraft:block/soul_sand",
+    "side": "netherdescent:block/wailing_nylium_side",
+    "top": "netherdescent:block/wailing_nylium"
+  }
+}

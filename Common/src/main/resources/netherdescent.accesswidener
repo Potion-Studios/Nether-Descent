@@ -8,3 +8,5 @@ accessible class net/minecraft/world/level/levelgen/SurfaceRules$SurfaceRule
 accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context context Lnet/minecraft/world/level/levelgen/WorldGenerationContext;
 accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context system Lnet/minecraft/world/level/levelgen/SurfaceSystem;
 accessible field net/minecraft/world/level/levelgen/SurfaceSystem noiseRandom Lnet/minecraft/world/level/levelgen/PositionalRandomFactory;
+
+accessible method net/minecraft/world/level/block/NyliumBlock canBeNylium (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z

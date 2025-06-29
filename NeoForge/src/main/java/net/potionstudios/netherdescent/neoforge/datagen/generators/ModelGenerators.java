@@ -3,16 +3,9 @@ package net.potionstudios.netherdescent.neoforge.datagen.generators;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.models.blockstates.MultiVariantGenerator;
-import net.minecraft.data.models.blockstates.Variant;
-import net.minecraft.data.models.blockstates.VariantProperties;
 import net.minecraft.data.models.model.ModelLocationUtils;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.WallBlock;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.model.generators.*;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
@@ -59,16 +52,16 @@ public class ModelGenerators {
 			simpleBlockItem(NetherDescentBlocks.BLUE_NETHERRACK.get(), models().getExistingFile(blue_netherrack));
 			VariantBlockStateBuilder builder = getVariantBuilder(NetherDescentBlocks.BLUE_NETHERRACK.get());
 
-			for (int y : new int[]{0, 90, 180, 270}) {
-				for (int x : new int[]{0, 90, 180, 270}) {
+			for (int y : new int[]{0, 90, 180, 270})
+				for (int x : new int[]{0, 90, 180, 270})
 					builder.partialState()
 							.addModels(ConfiguredModel.builder()
 									.modelFile(models().getExistingFile(blue_netherrack))
 									.rotationY(y)
 									.rotationX(x)
 									.build());
-				}
-			}
+
+			simpleBlockWithItem(NetherDescentBlocks.WAILING_NYLIUM.get(), models().cubeBottomTop(name(NetherDescentBlocks.WAILING_NYLIUM.get()), blockNDTexture(NetherDescentBlocks.WAILING_NYLIUM.get(), "side"), blockTexture(Blocks.SOUL_SAND), blockTexture(NetherDescentBlocks.WAILING_NYLIUM.get())));
 		}
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {
@@ -98,6 +91,10 @@ public class ModelGenerators {
 
 		private ResourceLocation key(Block block) {
 			return BuiltInRegistries.BLOCK.getKey(block);
+		}
+
+		private ResourceLocation blockNDTexture(Block block, String end) {
+			return NetherDescent.id(ModelProvider.BLOCK_FOLDER + "/" + key(block).getPath() + "_" + end);
 		}
 	}
 }

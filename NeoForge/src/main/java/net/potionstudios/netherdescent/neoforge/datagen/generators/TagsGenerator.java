@@ -41,7 +41,7 @@ public class TagsGenerator {
 		@Override
 		protected void addTags(HolderLookup.@NotNull Provider provider) {
 			NetherDescentBlocks.BLOCKS.forEach(block -> easyBlockTags(block.get()));
-			tag(BlockTags.NETHER_CARVER_REPLACEABLES).add(NetherDescentBlocks.BLUE_NETHERRACK.get());
+			tag(BlockTags.NETHER_CARVER_REPLACEABLES).add(NetherDescentBlocks.BLUE_NETHERRACK.get(), NetherDescentBlocks.WAILING_NYLIUM.get());
 		}
 
 		private void easyBlockTags(Block object) {
@@ -59,7 +59,7 @@ public class TagsGenerator {
 				tag(BlockTags.MINEABLE_WITH_PICKAXE).add(object);
 			else if (type == SoundType.WOOD || type == SoundType.SWEET_BERRY_BUSH)
 				tag(BlockTags.MINEABLE_WITH_AXE).add(object);
-			else if (type == SoundType.GRAVEL || type == SoundType.SAND || type == SoundType.SNOW || type == SoundType.GRASS)
+			else if (type == SoundType.GRAVEL || type == SoundType.SAND || type == SoundType.SNOW || type == SoundType.GRASS || type == SoundType.NYLIUM)
 				if (object instanceof LeavesBlock) tag(BlockTags.MINEABLE_WITH_HOE).add(object);
 				else tag(BlockTags.MINEABLE_WITH_SHOVEL).add(object);
 		}
