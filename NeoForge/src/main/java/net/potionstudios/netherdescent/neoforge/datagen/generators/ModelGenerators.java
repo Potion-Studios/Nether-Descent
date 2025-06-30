@@ -5,6 +5,8 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.models.model.ModelLocationUtils;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.model.generators.*;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -29,6 +31,19 @@ public class ModelGenerators {
 		@Override
 		protected void registerModels() {
 			NetherDescentItems.SIMPLE_ITEMS.forEach(item -> basicItem(item.get()));
+			simpleItemBlockTexture(NetherDescentBlocks.WAILING_VINE.get());
+		}
+
+		private void simpleItemBlockTexture(ItemLike item) {
+			singleTexture(name(item), mcLoc("item/generated"), "layer0", NetherDescent.id(ModelProvider.BLOCK_FOLDER + "/" + name(item)));
+		}
+
+		private String name(ItemLike item) {
+			return key(item.asItem()).getPath();
+		}
+
+		private ResourceLocation key(Item item) {
+			return BuiltInRegistries.ITEM.getKey(item);
 		}
 	}
 

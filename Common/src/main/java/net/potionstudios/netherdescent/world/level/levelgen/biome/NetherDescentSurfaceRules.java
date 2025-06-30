@@ -40,19 +40,13 @@ public class NetherDescentSurfaceRules {
                             makeifTrueRule(SurfaceRules.UNDER_FLOOR, Blocks.SOUL_SAND),
                             makeifTrueRule(SurfaceRules.ON_CEILING, Blocks.SOUL_SAND),
                             makeifTrueRule(SurfaceRules.UNDER_CEILING, Blocks.SOUL_SAND)
-                    ), 4)
+                    ), 3)
                     .add(SurfaceRules.sequence(
-                            makeifTrueRule(SurfaceRules.ON_FLOOR, Blocks.SOUL_SAND),
+                            makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.WAILING_NYLIUM.get()),
                             makeifTrueRule(SurfaceRules.UNDER_FLOOR, Blocks.SOUL_SAND),
                             makeifTrueRule(SurfaceRules.ON_CEILING, Blocks.SOUL_SAND),
                             makeifTrueRule(SurfaceRules.UNDER_CEILING, Blocks.SOUL_SAND)
-                    ), 2)
-                    .add(SurfaceRules.sequence(
-                            //SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, NetherDescentBlocks.WAILING_NYLIUM.get()),
-                            makeifTrueRule(SurfaceRules.UNDER_FLOOR, Blocks.SOUL_SAND),
-                            makeifTrueRule(SurfaceRules.ON_CEILING, Blocks.SOUL_SAND),
-                            makeifTrueRule(SurfaceRules.UNDER_CEILING, Blocks.SOUL_SAND)
-                    ), 2)
+                    ))
                     .build())));
             //makeifTrueRule(ABOVE_31, NetherDescentBlocks.SCORIA_STONE.get())));
 

@@ -42,6 +42,7 @@ public class TagsGenerator {
 		protected void addTags(HolderLookup.@NotNull Provider provider) {
 			NetherDescentBlocks.BLOCKS.forEach(block -> easyBlockTags(block.get()));
 			tag(BlockTags.NETHER_CARVER_REPLACEABLES).add(NetherDescentBlocks.BLUE_NETHERRACK.get(), NetherDescentBlocks.WAILING_NYLIUM.get());
+			tag(BlockTags.CLIMBABLE).add(NetherDescentBlocks.WAILING_VINE.get());
 		}
 
 		private void easyBlockTags(Block object) {
