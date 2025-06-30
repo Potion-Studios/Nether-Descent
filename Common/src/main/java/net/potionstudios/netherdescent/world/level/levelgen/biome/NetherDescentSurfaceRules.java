@@ -23,15 +23,15 @@ public class NetherDescentSurfaceRules {
     private static final SurfaceRules.RuleSource CRIMSON_GARDENS = makeifTrueRule(NetherDescentBiomes.CRIMSON_GARDENS, SurfaceRules.sequence(
             makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR,
                     makeStateRule(NetherDescentBlocks.OVERGROWN_CRIMSON_BLACKSTONE))),
-            makeStateRule(Blocks.BLACKSTONE)));
+            makeStateRule(Blocks.BLACKSTONE))); */
 
     private static final SurfaceRules.RuleSource EMBUR_BOG = makeifTrueRule(NetherDescentBiomes.EMBUR_BOG, SurfaceRules.sequence(
-            makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, makeStateRule(NetherDescentBlocks.EMBUR_NYLIUM.get()))),
+            makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.EMBUR_NYLIUM.get())),
             makeStateRule(NetherDescentBlocks.BLUE_NETHERRACK.get())
-            ));
+    ));
 
     private static final SurfaceRules.RuleSource SYTHIAN_TORRIDS = makeifTrueRule(NetherDescentBiomes.SYTHIAN_TORRIDS,
-            makeifTrueRule(SurfaceRules.ON_FLOOR, makeStateRule(NetherDescentBlocks.SYTHIAN_NYLIUM)));*/
+            makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.SYTHIAN_NYLIUM.get()));
 
     private static final SurfaceRules.RuleSource WAILING_GARTH = makeifTrueRule(NetherDescentBiomes.WAILING_GARTH, SurfaceRules.sequence(
             NetherDescentRuleSources.weightedRuleSource(SimpleWeightedRandomList.<SurfaceRules.RuleSource>builder()
@@ -53,7 +53,8 @@ public class NetherDescentSurfaceRules {
 
     public static SurfaceRules.RuleSource makeRules() {
         return SurfaceRules.sequence(
-                //EMBUR_BOG,
+                EMBUR_BOG,
+                SYTHIAN_TORRIDS,
                 WAILING_GARTH
         );
     }

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "minecraft:block/netherrack",
+    "side": "netherdescent:block/sythian_nylium_side",
+    "top": "netherdescent:block/sythian_nylium"
+  }
+}
