@@ -13,6 +13,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.LangGenerator;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.ModelGenerators;
+import net.potionstudios.netherdescent.neoforge.datagen.generators.RecipeGenerator;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.TagsGenerator;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.loot.LootGenerator;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
@@ -37,6 +38,7 @@ class DataGeneratorsRegister {
 
         ModelGenerators.init(generator, event.includeClient(), output, existingFileHelper);
         generator.addProvider(event.includeClient(), new LangGenerator(output, "en_us"));
+        generator.addProvider(event.includeServer(), new RecipeGenerator(output, lookupProvider));
         generator.addProvider(event.includeServer(), new LootGenerator(output, lookupProvider));
         TagsGenerator.init(generator, event.includeServer(), output, lookupProvider, existingFileHelper);
     }
