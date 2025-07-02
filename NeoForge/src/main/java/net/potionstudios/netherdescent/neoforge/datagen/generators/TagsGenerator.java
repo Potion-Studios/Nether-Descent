@@ -61,13 +61,14 @@ public class TagsGenerator {
 				tag(Tags.Blocks.BOOKSHELVES).add(set.bookshelf());
 				tag(BlockTags.ENCHANTMENT_POWER_PROVIDER).add(set.bookshelf());
 				tag(set.logBlockTag()).add(set.logstem(), set.wood(), set.strippedLogStem(), set.strippedWood());
+				tag(BlockTags.LOGS).addOptionalTag(set.logBlockTag());
 				tag(Tags.Blocks.STRIPPED_LOGS).add(set.strippedLogStem());
 				tag(Tags.Blocks.STRIPPED_WOODS).add(set.strippedWood());
-				tag(BlockTags.LOGS).addTag(set.logBlockTag());
 				tag(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES).add(set.craftingTable());
 			});
 			tag(BlockTags.NETHER_CARVER_REPLACEABLES).add(NetherDescentBlocks.BLUE_NETHERRACK.get(), NetherDescentBlocks.WAILING_NYLIUM.get(), NetherDescentBlocks.EMBUR_NYLIUM.get(), NetherDescentBlocks.SYTHIAN_NYLIUM.get());
 			tag(BlockTags.CLIMBABLE).add(NetherDescentBlocks.WAILING_VINE.get());
+			tag(Tags.Blocks.NETHERRACKS).add(NetherDescentBlocks.BLUE_NETHERRACK.get());
 		}
 
 		private void easyBlockTags(Block object) {
@@ -119,6 +120,7 @@ public class TagsGenerator {
 			copy(Tags.Blocks.STRIPPED_LOGS, Tags.Items.STRIPPED_LOGS);
 			copy(Tags.Blocks.STRIPPED_WOODS, Tags.Items.STRIPPED_WOODS);
 			copy(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES, Tags.Items.PLAYER_WORKSTATIONS_CRAFTING_TABLES);
+			copy(Tags.Blocks.NETHERRACKS, Tags.Items.NETHERRACKS);
 		}
 	}
 
