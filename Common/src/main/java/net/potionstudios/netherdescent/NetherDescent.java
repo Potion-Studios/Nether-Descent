@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
+import net.potionstudios.netherdescent.world.level.block.entities.NetherDescentBlockEntityType;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configured.NetherDescentConfiguredFeatures;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.NetherDescentPlacedFeatures;
 import net.potionstudios.netherdescent.world.level.levelgen.surfacerules.NetherDescentRuleSources;
@@ -26,6 +27,7 @@ public class NetherDescent {
     public static void init() {
         NetherDescentItems.items();
         NetherDescentBlocks.blocks();
+        NetherDescentBlockEntityType.blockEntities();
         NetherDescentCreativeTabs.tabs();
         NetherDescentRuleSources.ruleSources();
         NetherDescentConfiguredFeatures.configuredFeatures();

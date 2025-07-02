@@ -3,6 +3,7 @@ package net.potionstudios.netherdescent.fabric.client;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.world.level.block.*;
 import net.potionstudios.netherdescent.client.NetherDescentClient;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
@@ -18,6 +19,7 @@ public class NetherDescentClientFabric implements ClientModInitializer {
 	public void onInitializeClient() {
 		NetherDescentClient.onInitialize();
 		registerRenderTypes();
+		NetherDescentClient.registerBlockEntityRenderers(BlockEntityRenderers::register);
 	}
 
 	/**
