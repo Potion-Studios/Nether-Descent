@@ -9,11 +9,13 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.*;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.tags.NetherDescentBiomeTags;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
+import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -41,6 +43,29 @@ public class TagsGenerator {
 		@Override
 		protected void addTags(HolderLookup.@NotNull Provider provider) {
 			NetherDescentBlocks.BLOCKS.forEach(block -> easyBlockTags(block.get()));
+			NetherDescentWoodSet.woodsets().forEach(set -> {
+				tag(BlockTags.PLANKS).add(set.planks());
+				tag(BlockTags.WOODEN_SLABS).add(set.slab());
+				tag(BlockTags.WOODEN_STAIRS).add(set.stairs());
+				tag(BlockTags.WOODEN_BUTTONS).add(set.button());
+				tag(BlockTags.WOODEN_PRESSURE_PLATES).add(set.pressurePlate());
+				tag(BlockTags.WOODEN_TRAPDOORS).add(set.trapdoor());
+				tag(BlockTags.WOODEN_DOORS).add(set.door());
+				tag(BlockTags.WOODEN_FENCES).add(set.fence());
+				tag(BlockTags.FENCE_GATES).add(set.fenceGate());
+				tag(Tags.Blocks.FENCE_GATES_WOODEN).add(set.fenceGate());
+				tag(BlockTags.STANDING_SIGNS).add(set.sign());
+				tag(BlockTags.WALL_SIGNS).add(set.wallSign());
+				tag(BlockTags.CEILING_HANGING_SIGNS).add(set.hangingSign());
+				tag(BlockTags.WALL_HANGING_SIGNS).add(set.wallHangingSign());
+				tag(Tags.Blocks.BOOKSHELVES).add(set.bookshelf());
+				tag(BlockTags.ENCHANTMENT_POWER_PROVIDER).add(set.bookshelf());
+				tag(set.logBlockTag()).add(set.logstem(), set.wood(), set.strippedLogStem(), set.strippedWood());
+				tag(Tags.Blocks.STRIPPED_LOGS).add(set.strippedLogStem());
+				tag(Tags.Blocks.STRIPPED_WOODS).add(set.strippedWood());
+				tag(BlockTags.LOGS).addTag(set.logBlockTag());
+				tag(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES).add(set.craftingTable());
+			});
 			tag(BlockTags.NETHER_CARVER_REPLACEABLES).add(NetherDescentBlocks.BLUE_NETHERRACK.get(), NetherDescentBlocks.WAILING_NYLIUM.get(), NetherDescentBlocks.EMBUR_NYLIUM.get(), NetherDescentBlocks.SYTHIAN_NYLIUM.get());
 			tag(BlockTags.CLIMBABLE).add(NetherDescentBlocks.WAILING_VINE.get());
 		}
@@ -77,6 +102,23 @@ public class TagsGenerator {
 			copy(BlockTags.SLABS, ItemTags.SLABS);
 			copy(BlockTags.STAIRS, ItemTags.STAIRS);
 			copy(BlockTags.WALLS, ItemTags.WALLS);
+			copy(BlockTags.PLANKS, ItemTags.PLANKS);
+			copy(BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
+			copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
+			copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
+			copy(BlockTags.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_PRESSURE_PLATES);
+			copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
+			copy(BlockTags.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
+			copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
+			copy(BlockTags.FENCE_GATES, ItemTags.FENCE_GATES);
+			copy(Tags.Blocks.FENCE_GATES_WOODEN, Tags.Items.FENCE_GATES_WOODEN);
+			copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
+			copy(BlockTags.CEILING_HANGING_SIGNS, ItemTags.HANGING_SIGNS);
+			copy(Tags.Blocks.BOOKSHELVES, Tags.Items.BOOKSHELVES);
+			copy(BlockTags.LOGS, ItemTags.LOGS);
+			copy(Tags.Blocks.STRIPPED_LOGS, Tags.Items.STRIPPED_LOGS);
+			copy(Tags.Blocks.STRIPPED_WOODS, Tags.Items.STRIPPED_WOODS);
+			copy(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES, Tags.Items.PLAYER_WORKSTATIONS_CRAFTING_TABLES);
 		}
 	}
 

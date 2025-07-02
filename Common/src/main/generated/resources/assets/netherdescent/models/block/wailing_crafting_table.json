@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "netherdescent:block/wailing/planks",
+    "east": "netherdescent:block/wailing/crafting_table_side",
+    "north": "netherdescent:block/wailing/crafting_table_front",
+    "particle": "netherdescent:block/wailing/crafting_table_front",
+    "south": "netherdescent:block/wailing/crafting_table_side",
+    "up": "netherdescent:block/wailing/crafting_table_top",
+    "west": "netherdescent:block/wailing/crafting_table_front"
+  }
+}

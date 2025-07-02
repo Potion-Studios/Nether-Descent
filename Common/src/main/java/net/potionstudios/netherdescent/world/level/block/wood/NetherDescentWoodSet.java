@@ -71,7 +71,7 @@ public class NetherDescentWoodSet {
      * @param blockSetType       The wood type
      * @param mapColor           The map color
      */
-    protected NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor, LogStem logstem) {
+    public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor, LogStem logstem) {
         this.woodType = PlatformHandler.PLATFORM_HANDLER.createWoodType(blockSetType.name(), blockSetType);
         this.name = blockSetType.name().replace(NetherDescent.MOD_ID + ":", "");
         this.logstemEnum = logstem;
@@ -93,24 +93,23 @@ public class NetherDescentWoodSet {
         this.sign = NetherDescentBlocks.register(name + "_sign", () ->  new NetherDescentStandingSignBlock(woodType, BlockBehaviour.Properties.of().mapColor(this.logstem.get().defaultMapColor()).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).ignitedByLava()));
         this.wallSign = NetherDescentBlocks.register(name + "_wall_sign", () -> new NetherDescentWallSignBlock(woodType, BlockBehaviour.Properties.of().mapColor(this.logstem.get().defaultMapColor()).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).dropsLike(sign.get()).ignitedByLava()));
         this.signItem = NetherDescentItems.register(name + "_sign", () -> new SignItem(new Item.Properties().stacksTo(16), sign.get(), wallSign.get()));
-        //BWGWood.WOOD_BLOCK_ITEMS.add(signItem);
+        NetherDescentItems.ITEMS.add(signItem);
         this.hangingSign = NetherDescentBlocks.register(name + "_hanging_sign", () -> new NetherDescentCeilingHangingSignBlock(woodType, BlockBehaviour.Properties.of().mapColor(this.logstem.get().defaultMapColor()).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).ignitedByLava()));
         this.wallHangingSign = NetherDescentBlocks.register(name + "_wall_hanging_sign", () -> new NetherDescentWallHangingSignBlock(woodType, BlockBehaviour.Properties.of().mapColor(mapColor).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).dropsLike(hangingSign.get()).ignitedByLava()));
         this.hangingSignItem = NetherDescentItems.register(name + "_hanging_sign", () -> new HangingSignItem(hangingSign.get(), wallHangingSign.get(), new Item.Properties().stacksTo(16)));
-        //BWGWood.WOOD_BLOCK_ITEMS.add(hangingSignItem);
+        NetherDescentItems.ITEMS.add(hangingSignItem);
         this.logBlockTag = TagKey.create(Registries.BLOCK, NetherDescent.id(name + "_logs"));
         this.logItemTag = TagKey.create(Registries.ITEM, NetherDescent.id(name + "_logs"));
         woodSets.add(this);
     }
 
-    protected NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor) {
+    public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor) {
         this(blockSetType, mapColor, LogStem.LOG);
     }
 
-    protected NetherDescentWoodSet(String name, MapColor mapColor) {
+    public NetherDescentWoodSet(String name, MapColor mapColor) {
         this(BlockSetType.register(new BlockSetType(name)), mapColor);
     }
-
 
     public String name() {
         return name;

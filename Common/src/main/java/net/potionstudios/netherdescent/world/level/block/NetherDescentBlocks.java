@@ -13,6 +13,7 @@ import net.potionstudios.netherdescent.PlatformHandler;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.custom.NetherDescentNyliumBlock;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
+import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 
 import java.util.ArrayList;
 import java.util.function.Supplier;
@@ -33,6 +34,10 @@ public class NetherDescentBlocks {
     public static final Supplier<NetherDescentNyliumBlock> EMBUR_NYLIUM = registerBlockItem("embur_nylium", () -> new NetherDescentNyliumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM).mapColor(MapColor.COLOR_ORANGE), BLUE_NETHERRACK, null));
 
     public static final Supplier<NetherDescentNyliumBlock> SYTHIAN_NYLIUM = registerBlockItem("sythian_nylium", () -> new NetherDescentNyliumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM).mapColor(MapColor.COLOR_YELLOW), Blocks.NETHERRACK, null));
+
+    public static final NetherDescentWoodSet EMBUR = new NetherDescentWoodSet("embur", MapColor.COLOR_PURPLE);
+    public static final NetherDescentWoodSet SYTHIAN = new NetherDescentWoodSet("sythian", MapColor.COLOR_YELLOW);
+    public static final NetherDescentWoodSet WAILING = new NetherDescentWoodSet("wailing", MapColor.COLOR_PURPLE);
 
     public static Supplier<Block> registerBasicBlockWithItem(String key, BlockBehaviour.Properties properties) {
         return registerCubeAllBlockItem(key, () -> new Block(properties));

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "netherdescent:item/wailing/hanging_sign"
+  }
+}

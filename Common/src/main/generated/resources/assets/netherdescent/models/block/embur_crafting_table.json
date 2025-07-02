@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "netherdescent:block/embur/planks",
+    "east": "netherdescent:block/embur/crafting_table_side",
+    "north": "netherdescent:block/embur/crafting_table_front",
+    "particle": "netherdescent:block/embur/crafting_table_front",
+    "south": "netherdescent:block/embur/crafting_table_side",
+    "up": "netherdescent:block/embur/crafting_table_top",
+    "west": "netherdescent:block/embur/crafting_table_front"
+  }
+}

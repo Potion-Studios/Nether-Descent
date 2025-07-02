@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "netherdescent:block/wailing_slab"
+    },
+    "type=double": {
+      "model": "netherdescent:block/wailing_planks"
+    },
+    "type=top": {
+      "model": "netherdescent:block/wailing_slab_top"
+    }
+  }
+}

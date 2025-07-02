@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "netherdescent:block/embur/planks",
+    "side": "netherdescent:block/embur/bookshelf"
+  }
+}

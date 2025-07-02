@@ -1,5 +1,8 @@
 {
   "values": [
-    "netherdescent:blue_nether_brick_slab"
+    "netherdescent:blue_nether_brick_slab",
+    "netherdescent:embur_slab",
+    "netherdescent:sythian_slab",
+    "netherdescent:wailing_slab"
   ]
 }

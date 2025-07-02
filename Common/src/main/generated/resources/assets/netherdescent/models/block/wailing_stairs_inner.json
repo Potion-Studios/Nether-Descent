@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "netherdescent:block/wailing/planks",
+    "side": "netherdescent:block/wailing/planks",
+    "top": "netherdescent:block/wailing/planks"
+  }
+}

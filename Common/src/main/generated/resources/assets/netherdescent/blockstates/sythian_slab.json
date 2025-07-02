@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "netherdescent:block/sythian_slab"
+    },
+    "type=double": {
+      "model": "netherdescent:block/sythian_planks"
+    },
+    "type=top": {
+      "model": "netherdescent:block/sythian_slab_top"
+    }
+  }
+}

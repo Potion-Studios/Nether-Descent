@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "planks",
+  "key": {
+    "#": {
+      "item": "netherdescent:embur_planks"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 1,
+    "id": "netherdescent:embur_crafting_table"
+  }
+}

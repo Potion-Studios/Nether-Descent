@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.neoforge.datagen.generators;
 
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -14,6 +15,7 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
+import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 
 public class ModelGenerators {
 
@@ -32,6 +34,15 @@ public class ModelGenerators {
 		protected void registerModels() {
 			NetherDescentItems.SIMPLE_ITEMS.forEach(item -> basicItem(item.get()));
 			simpleItemBlockTexture(NetherDescentBlocks.WAILING_VINE.get());
+			NetherDescentWoodSet.woodsets().forEach(set -> {
+				simpleItem(set.door(), set.name() + "/door");
+				simpleItem(set.signItem(), set.name() + "/sign");
+				simpleItem(set.hangingSignItem(), set.name() + "/hanging_sign");
+			});
+		}
+
+		private void simpleItem(ItemLike item, String texture) {
+			singleTexture(name(item), mcLoc("item/generated"), "layer0", NetherDescent.id(ModelProvider.ITEM_FOLDER + "/" + texture));
 		}
 
 		private void simpleItemBlockTexture(ItemLike item) {
@@ -61,6 +72,31 @@ public class ModelGenerators {
 				registerSlab(set.getSlab(), set.getBase());
 				registerStairs(set.getStairs(), set.getBase());
 				registerWall(set.getWall(), set.getBase());
+			});
+
+			NetherDescentWoodSet.woodsets().forEach(set -> {
+				ResourceLocation planksTexture = woodBlockTexture(set.name(), "planks");
+				simpleBlockWithItem(set.planks(), models().cubeAll(name(set.planks()), planksTexture));
+				ResourceLocation logTexture = woodBlockTexture(set.name(), set.logStemEnum().getName());
+				slabBlock(set.slab(), key(set.planks()), planksTexture);
+				itemModels().slab(name(set.slab()), planksTexture, planksTexture, planksTexture);
+				log(set);
+				ResourceLocation strippedLogTexture = woodBlockTexture(set.name(), "stripped_" + set.logStemEnum().getName());
+				log(set.strippedLogStem(), strippedLogTexture, woodBlockTexture(set.name(), "stripped_" + set.logStemEnum().getName() + "_top"));
+				woodBlock(set.wood(), logTexture);
+				woodBlock(set.strippedWood(), strippedLogTexture);
+				registerStairs(set.stairs(), planksTexture);
+				registerButton(set.button(), planksTexture);
+				registerFenceAndGate(set.fence(), set.fenceGate(), planksTexture);
+				signBlock(set.sign(), set.wallSign(), planksTexture);
+				hangingSignBlock(set.hangingSign(), set.wallHangingSign(), models().sign(name(set.hangingSign()), strippedLogTexture));
+				trapdoorBlockWithRenderType(set.trapdoor(), woodBlockTexture(set.name(), "trapdoor"), true, "cutout");
+				itemModels().trapdoorBottom(name(set.trapdoor()), woodBlockTexture(set.name(), "trapdoor")).renderType("cutout");
+				doorBlockWithRenderType(set.door(), woodBlockTexture(set.name(), "door_bottom"), woodBlockTexture(set.name(), "door_top"), "cutout");
+				pressurePlateBlock(set.pressurePlate(), planksTexture);
+				itemModels().pressurePlate(name(set.pressurePlate()), planksTexture);
+				simpleBlockWithItem(set.bookshelf(), models().cubeColumn(name(set.bookshelf()), woodBlockTexture(set.name(), "bookshelf"), planksTexture));
+				simpleBlockWithItem(set.craftingTable(), models().cube(name(set.craftingTable()), planksTexture, woodBlockTexture(set.name(), "crafting_table_top"), woodBlockTexture(set.name(), "crafting_table_front"), woodBlockTexture(set.name(), "crafting_table_side"), woodBlockTexture(set.name(), "crafting_table_side"), woodBlockTexture(set.name(), "crafting_table_front")).texture("particle", woodBlockTexture(set.name(), "crafting_table_front")));
 			});
 
 			ResourceLocation blue_netherrack = models().cubeAll(name(NetherDescentBlocks.BLUE_NETHERRACK.get()), blockTexture(NetherDescentBlocks.BLUE_NETHERRACK.get())).getLocation();
@@ -102,6 +138,39 @@ public class ModelGenerators {
 			simpleBlockItem(wall, itemModels().wallInventory("block/" + key(wall).getPath(), texture));
 		}
 
+		private void registerButton(ButtonBlock button, ResourceLocation texture) {
+			buttonBlock(button, texture);
+			itemModels().buttonInventory(key(button).getPath(), texture);
+		}
+
+		private void registerFenceAndGate(FenceBlock fence, FenceGateBlock gate, ResourceLocation texture) {
+			fenceBlock(fence, texture);
+			itemModels().fenceInventory(key(fence).getPath(), texture);
+			fenceGateBlock(gate, texture);
+			itemModels().fenceGate(key(gate).getPath(), texture);
+		}
+
+		private void log(NetherDescentWoodSet set) {
+			log(set.logstem(), woodBlockTexture(set.name(), set.logStemEnum().getName()), woodBlockTexture(set.name(), set.logStemEnum().getName() + "_top"));
+		}
+
+		private void log(RotatedPillarBlock block, ResourceLocation side, ResourceLocation top) {
+			axisBlock(block, side, top);
+			itemModels().cubeColumn(name(block), side, top);
+		}
+
+		private void woodBlock(RotatedPillarBlock block, ResourceLocation texture) {
+			getVariantBuilder(block).forAllStates(state -> {
+				if (state.getValue(RotatedPillarBlock.AXIS).equals(Direction.Axis.X))
+					return ConfiguredModel.builder().rotationX(90).rotationY(90).modelFile(models().cubeColumn(name(block), texture, texture)).build();
+				else if (state.getValue(RotatedPillarBlock.AXIS).equals(Direction.Axis.Y))
+					return ConfiguredModel.builder().modelFile(models().cubeColumn(name(block), texture, texture)).build();
+				else
+					return ConfiguredModel.builder().rotationX(90).modelFile(models().cubeColumn(name(block), texture, texture)).build();
+			});
+			simpleBlockItem(block, models().cubeColumn(name(block), texture, texture));
+		}
+
 		private String name(Block block) {
 			return key(block).getPath();
 		}
@@ -112,6 +181,10 @@ public class ModelGenerators {
 
 		private ResourceLocation blockNDTexture(Block block, String end) {
 			return NetherDescent.id(ModelProvider.BLOCK_FOLDER + "/" + key(block).getPath() + "_" + end);
+		}
+
+		private ResourceLocation woodBlockTexture(String type, String name) {
+			return NetherDescent.id(ModelProvider.BLOCK_FOLDER + "/" + type + "/" + name);
 		}
 	}
 }

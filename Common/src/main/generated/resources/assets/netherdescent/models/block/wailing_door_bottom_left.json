@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/door_bottom_left",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "netherdescent:block/wailing/door_bottom",
+    "top": "netherdescent:block/wailing/door_top"
+  }
+}

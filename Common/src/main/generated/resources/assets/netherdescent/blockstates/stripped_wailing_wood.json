@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "netherdescent:block/stripped_wailing_wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "netherdescent:block/stripped_wailing_wood"
+    },
+    "axis=z": {
+      "model": "netherdescent:block/stripped_wailing_wood",
+      "x": 90
+    }
+  }
+}

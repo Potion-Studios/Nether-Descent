@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "planks",
+  "key": {
+    "#": {
+      "item": "netherdescent:sythian_planks"
+    }
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "count": 1,
+    "id": "netherdescent:sythian_crafting_table"
+  }
+}

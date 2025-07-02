@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "netherdescent:block/stripped_embur_log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "netherdescent:block/stripped_embur_log"
+    },
+    "axis=z": {
+      "model": "netherdescent:block/stripped_embur_log_horizontal",
+      "x": 90
+    }
+  }
+}

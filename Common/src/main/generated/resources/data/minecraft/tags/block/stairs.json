@@ -1,5 +1,8 @@
 {
   "values": [
-    "netherdescent:blue_nether_brick_stairs"
+    "netherdescent:blue_nether_brick_stairs",
+    "netherdescent:embur_stairs",
+    "netherdescent:sythian_stairs",
+    "netherdescent:wailing_stairs"
   ]
 }

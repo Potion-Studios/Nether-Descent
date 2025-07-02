@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "netherdescent:block/embur/planks",
+    "side": "netherdescent:block/embur/planks",
+    "top": "netherdescent:block/embur/planks"
+  }
+}
