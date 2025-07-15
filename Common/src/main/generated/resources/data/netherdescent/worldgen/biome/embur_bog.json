@@ -54,6 +54,10 @@
       "minecraft:spring_closed",
       "minecraft:ore_ancient_debris_large",
       "minecraft:ore_debris_small"
+    ],
+    [],
+    [
+      "netherdescent:embur_sprout"
     ]
   ],
   "has_precipitation": false,

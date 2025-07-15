@@ -103,6 +103,8 @@ public class ModelGenerators {
 			simpleBlockItem(NetherDescentBlocks.BLUE_NETHERRACK.get(), models().getExistingFile(blue_netherrack));
 			VariantBlockStateBuilder builder = getVariantBuilder(NetherDescentBlocks.BLUE_NETHERRACK.get());
 
+			createCrossBlock(NetherDescentBlocks.EMBUR_SPROUTS.get(), "cutout");
+
 			for (int y : new int[]{0, 90, 180, 270})
 				for (int x : new int[]{0, 90, 180, 270})
 					builder.partialState()
@@ -169,6 +171,15 @@ public class ModelGenerators {
 					return ConfiguredModel.builder().rotationX(90).modelFile(models().cubeColumn(name(block), texture, texture)).build();
 			});
 			simpleBlockItem(block, models().cubeColumn(name(block), texture, texture));
+		}
+
+		private void createCrossBlock(Block block, String renderType) {
+			simpleBlock(block, models().cross(name(block), blockTexture(block)).renderType(renderType));
+			simpleItemBlockTexture(block, name(block));
+		}
+
+		private void simpleItemBlockTexture(Block block, String texture) {
+			itemModels().singleTexture(key(block).getPath(), mcLoc("item/generated"), "layer0", NetherDescent.id(ModelProvider.BLOCK_FOLDER + "/" + texture));
 		}
 
 		private String name(Block block) {

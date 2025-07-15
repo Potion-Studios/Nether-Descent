@@ -46,6 +46,10 @@ dependencies {
 
     modApi("com.github.glitchfiend:TerraBlender-neoforge:$minecraftVersion-${project.properties["terrablender_version"]}")
 
+    modCompileOnly("mcp.mobius.waila:wthit-api:neo-${project.properties["WTHIT"]}")
+    modLocalRuntime("mcp.mobius.waila:wthit:neo-${project.properties["WTHIT"]}")
+    modLocalRuntime("lol.bai:badpackets:neo-${project.properties["badPackets"]}")
+
     modLocalRuntime("com.github.Jab125.architectury-data-generation-fix:architectury-data-generation-fix-neoforge:21.0.3")
 }
 

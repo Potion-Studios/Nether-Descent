@@ -16,6 +16,7 @@ import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.NetherDescentPlacedFeatures;
 
 public class NetherDescentBiomeBuilder {
 
@@ -50,6 +51,8 @@ public class NetherDescentBiomeBuilder {
         BiomeGenerationSettings.Builder generationSettings = setupDefaultNetherGeneration(placedFeatureHolderGetter, carverGetter);
         generationSettings.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, NetherPlacements.DELTA);
         BiomeDefaultFeatures.addAncientDebris(generationSettings);
+
+        addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_SPROUT);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.BLAZE, 20, 2, 4);

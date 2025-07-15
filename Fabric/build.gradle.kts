@@ -37,6 +37,10 @@ dependencies {
     modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${project.properties["devauth_version"]}")
 
     modApi("com.github.glitchfiend:TerraBlender-fabric:$minecraftVersion-${project.properties["terrablender_version"]}")
+
+    modCompileOnly("mcp.mobius.waila:wthit-api:fabric-${project.properties["WTHIT"]}")
+    modLocalRuntime("mcp.mobius.waila:wthit:fabric-${project.properties["WTHIT"]}")
+    modLocalRuntime("lol.bai:badpackets:fabric-${project.properties["badPackets"]}")
 }
 
 tasks {

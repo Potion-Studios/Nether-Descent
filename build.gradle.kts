@@ -3,7 +3,7 @@ import net.fabricmc.loom.api.LoomGradleExtensionAPI
 plugins {
     id("architectury-plugin") version "3.4-SNAPSHOT"
     id("dev.architectury.loom") version "1.10-SNAPSHOT" apply false
-    id("com.gradleup.shadow") version "8.3.7" apply false
+    id("com.gradleup.shadow") version "8.3.8" apply false
     java
     idea
     `maven-publish`
@@ -36,6 +36,10 @@ subprojects {
         maven("https://maven.neoforged.net/releases/")
         maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
         maven("https://jitpack.io")
+        maven("https://maven2.bai.lol").content {
+            includeGroup("lol.bai")
+            includeGroup("mcp.mobius.waila")
+        }
     }
 
     @Suppress("UnstableApiUsage")
