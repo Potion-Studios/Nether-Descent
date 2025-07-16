@@ -39,6 +39,7 @@ public class ModelGenerators {
 				simpleItem(set.signItem(), set.name() + "/sign");
 				simpleItem(set.hangingSignItem(), set.name() + "/hanging_sign");
 			});
+			simpleItem(NetherDescentBlocks.EMBUR_SPROUTS.get(), "embur_sprouts");
 		}
 
 		private void simpleItem(ItemLike item, String texture) {
@@ -175,7 +176,6 @@ public class ModelGenerators {
 
 		private void createCrossBlock(Block block, String renderType) {
 			simpleBlock(block, models().cross(name(block), blockTexture(block)).renderType(renderType));
-			simpleItemBlockTexture(block, name(block));
 		}
 
 		private void simpleItemBlockTexture(Block block, String texture) {

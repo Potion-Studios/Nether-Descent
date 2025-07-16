@@ -51,6 +51,8 @@ class BlockLootGenerator extends BlockLootSubProvider {
                 dropPottedContents(block);
             else if (block instanceof PinkPetalsBlock)
                 add(block, createPetalsDrops(block));
+            else if (block instanceof NetherSproutsBlock)
+                add(block, itemLike -> BlockLootSubProvider.createShearsOnlyDrop(block));
             else dropSelf(block);
         });
     }
