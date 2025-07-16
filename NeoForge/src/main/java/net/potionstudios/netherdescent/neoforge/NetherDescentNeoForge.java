@@ -6,6 +6,8 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentSurfaceRules;
+import net.potionstudios.netherdescent.world.level.levelgen.regions.NetherDescentRegion;
+import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 
 /**
@@ -27,6 +29,10 @@ public class NetherDescentNeoForge {
     private void onInitialize(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, NetherDescent.MOD_ID, NetherDescentSurfaceRules.makeRules());
+            Regions.register(new NetherDescentRegion(
+                    NetherDescent.id("nether_descent"),
+                    100
+            ));
         });
     }
 }
