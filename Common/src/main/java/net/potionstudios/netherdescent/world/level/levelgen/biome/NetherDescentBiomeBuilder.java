@@ -52,6 +52,7 @@ public class NetherDescentBiomeBuilder {
         generationSettings.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, NetherPlacements.DELTA);
         BiomeDefaultFeatures.addAncientDebris(generationSettings);
 
+        addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_LILY);
         addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_SPROUT);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
