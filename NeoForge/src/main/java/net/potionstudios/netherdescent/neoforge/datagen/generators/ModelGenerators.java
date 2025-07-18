@@ -41,6 +41,7 @@ public class ModelGenerators {
 			});
 			simpleItem(NetherDescentBlocks.EMBUR_SPROUTS.get(), "embur_sprouts");
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_LILY.get());
+			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_GEL_VINES.get(), "embur_gel_vines_plant");
 		}
 
 		private void simpleItem(ItemLike item, String texture) {
@@ -49,6 +50,10 @@ public class ModelGenerators {
 
 		private void simpleItemBlockTexture(ItemLike item) {
 			singleTexture(name(item), mcLoc("item/generated"), "layer0", NetherDescent.id(ModelProvider.BLOCK_FOLDER + "/" + name(item)));
+		}
+
+		private void simpleItemBlockTexture(ItemLike item, String texture) {
+			singleTexture(name(item), mcLoc("item/generated"), "layer0", NetherDescent.id(ModelProvider.BLOCK_FOLDER + "/" + texture));
 		}
 
 		private String name(ItemLike item) {
@@ -106,6 +111,8 @@ public class ModelGenerators {
 			VariantBlockStateBuilder builder = getVariantBuilder(NetherDescentBlocks.BLUE_NETHERRACK.get());
 
 			createCrossBlock(NetherDescentBlocks.EMBUR_SPROUTS.get(), "cutout");
+			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES.get(), "translucent");
+			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(),  "translucent");
 
 			for (int y : new int[]{0, 90, 180, 270})
 				for (int x : new int[]{0, 90, 180, 270})
