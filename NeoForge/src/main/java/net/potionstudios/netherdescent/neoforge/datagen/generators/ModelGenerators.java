@@ -40,6 +40,7 @@ public class ModelGenerators {
 				simpleItem(set.hangingSignItem(), set.name() + "/hanging_sign");
 			});
 			simpleItem(NetherDescentBlocks.EMBUR_SPROUTS.get(), "embur_sprouts");
+			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_LILY.get());
 		}
 
 		private void simpleItem(ItemLike item, String texture) {
@@ -118,6 +119,8 @@ public class ModelGenerators {
 			simpleBlockWithItem(NetherDescentBlocks.WAILING_NYLIUM.get(), models().cubeBottomTop(name(NetherDescentBlocks.WAILING_NYLIUM.get()), blockNDTexture(NetherDescentBlocks.WAILING_NYLIUM.get(), "side"), blockTexture(Blocks.SOUL_SAND), blockTexture(NetherDescentBlocks.WAILING_NYLIUM.get())));
 			simpleBlockWithItem(NetherDescentBlocks.EMBUR_NYLIUM.get(), models().cubeBottomTop(name(NetherDescentBlocks.EMBUR_NYLIUM.get()), blockNDTexture(NetherDescentBlocks.EMBUR_NYLIUM.get(), "side"), blockTexture(NetherDescentBlocks.BLUE_NETHERRACK.get()), blockTexture(NetherDescentBlocks.EMBUR_NYLIUM.get())));
 			simpleBlockWithItem(NetherDescentBlocks.SYTHIAN_NYLIUM.get(), models().cubeBottomTop(name(NetherDescentBlocks.SYTHIAN_NYLIUM.get()), blockNDTexture(NetherDescentBlocks.SYTHIAN_NYLIUM.get(), "side"), blockTexture(Blocks.NETHERRACK), blockTexture(NetherDescentBlocks.SYTHIAN_NYLIUM.get())));
+
+			registerPatchBlockStates(NetherDescentBlocks.EMBUR_LILY.get(), new String[]{"embur_lily", "embur_lily2"});
 		}
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {
@@ -180,6 +183,18 @@ public class ModelGenerators {
 
 		private void simpleItemBlockTexture(Block block, String texture) {
 			itemModels().singleTexture(key(block).getPath(), mcLoc("item/generated"), "layer0", NetherDescent.id(ModelProvider.BLOCK_FOLDER + "/" + texture));
+		}
+
+		private void registerPatchBlockStates(Block block, String[] models) {
+			VariantBlockStateBuilder builder = getVariantBuilder(block);
+			int[] rotations = {0, 90, 180, 270};
+
+			for (String model : models) {
+				for (int rotation : rotations) {
+					builder.partialState()
+							.addModels(new ConfiguredModel(models().getExistingFile(modLoc("block/" + model)), 0, rotation, false));
+				}
+			}
 		}
 
 		private String name(Block block) {

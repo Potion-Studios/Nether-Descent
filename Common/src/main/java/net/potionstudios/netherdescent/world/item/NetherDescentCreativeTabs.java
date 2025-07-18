@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 
 public class NetherDescentCreativeTabs {
 
-    public static final ResourceKey<CreativeModeTab> CREATIVE_TAB = createCreativeTab("netherdescent", () -> NetherDescentItems.BLUE_NETHER_BRICK.get().getDefaultInstance(), NetherDescentBlocks.BLOCK_ITEMS, NetherDescentItems.ITEMS);
+    public static final ResourceKey<CreativeModeTab> CREATIVE_TAB = createCreativeTab("netherdescent", () -> NetherDescentItems.BLUE_NETHER_BRICK.get().getDefaultInstance(), NetherDescentBlocks.BLOCK_ITEMS, NetherDescentItems.ITEMS, NetherDescentItems.NO_LANG_ITEMS);
 
     @SafeVarargs
     private static ResourceKey<CreativeModeTab> createCreativeTab(String name, Supplier<ItemStack> icon, ArrayList<Supplier<? extends Item>>... items) {
