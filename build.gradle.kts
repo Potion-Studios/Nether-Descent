@@ -36,6 +36,8 @@ subprojects {
         maven("https://maven.neoforged.net/releases/")
         maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
         maven("https://jitpack.io")
+        maven("https://maven.jt-dev.tech/releases")
+        maven("https://maven.jt-dev.tech/snapshots")
         maven("https://maven2.bai.lol").content {
             includeGroup("lol.bai")
             includeGroup("mcp.mobius.waila")
