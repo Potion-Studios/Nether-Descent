@@ -18,5 +18,6 @@ public class NetherDescentPlacedFeatures {
 
     public static void placedFeatures() {
         NetherDescent.LOGGER.info("Registering Nether Descent Placed Features");
+        NetherDescentTreePlacedFeatures.treePlacedFeatures();
     }
 }

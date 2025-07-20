@@ -31,5 +31,6 @@ public class NetherDescentConfiguredFeatures {
 
     public static void configuredFeatures() {
         NetherDescent.LOGGER.info("Registering Nether Descent Configured Features");
+        NetherDescentTreeConfiguredFeatures.treeConfiguredFeatures();
     }
 }

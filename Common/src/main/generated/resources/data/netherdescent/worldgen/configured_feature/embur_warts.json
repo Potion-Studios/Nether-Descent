@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": {
+      "feature": "netherdescent:embur_wart1",
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.5,
+        "feature": {
+          "feature": "netherdescent:embur_wart2",
+          "placement": []
+        }
+      }
+    ]
+  }
+}

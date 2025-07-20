@@ -59,7 +59,8 @@
     [
       "netherdescent:embur_lily",
       "netherdescent:embur_sprout",
-      "netherdescent:embur_bog_vegetation"
+      "netherdescent:embur_bog_vegetation",
+      "netherdescent:embur_warts"
     ]
   ],
   "has_precipitation": false,

@@ -17,6 +17,7 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.NetherDescentPlacedFeatures;
+import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.NetherDescentTreePlacedFeatures;
 
 public class NetherDescentBiomeBuilder {
 
@@ -55,6 +56,7 @@ public class NetherDescentBiomeBuilder {
         addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_LILY);
         addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_SPROUT);
         addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_BOG_VEGETATION);
+        addVegetal(generationSettings, NetherDescentTreePlacedFeatures.EMBUR_WARTS);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.BLAZE, 20, 2, 4);
