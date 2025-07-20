@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.neoforged.neoforge.client.model.generators.*;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
@@ -42,6 +43,7 @@ public class ModelGenerators {
 			simpleItem(NetherDescentBlocks.EMBUR_SPROUTS.get(), "embur_sprouts");
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_LILY.get());
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_GEL_VINES.get(), "embur_gel_vines_plant");
+			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_ROOTS.get());
 		}
 
 		private void simpleItem(ItemLike item, String texture) {
@@ -113,6 +115,8 @@ public class ModelGenerators {
 			createCrossBlock(NetherDescentBlocks.EMBUR_SPROUTS.get(), "cutout");
 			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES.get(), "translucent");
 			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(),  "translucent");
+			createCrossBlock(NetherDescentBlocks.EMBUR_ROOTS.get(), "cutout_mipped");
+			createDoubleBlock(NetherDescentBlocks.TALL_EMBUR_ROOTS.get());
 
 			for (int y : new int[]{0, 90, 180, 270})
 				for (int x : new int[]{0, 90, 180, 270})
@@ -186,6 +190,13 @@ public class ModelGenerators {
 
 		private void createCrossBlock(Block block, String renderType) {
 			simpleBlock(block, models().cross(name(block), blockTexture(block)).renderType(renderType));
+		}
+
+		private void createDoubleBlock(DoublePlantBlock doubleBlock) {
+			getVariantBuilder(doubleBlock)
+					.partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER).addModels(new ConfiguredModel(models().cross(name(doubleBlock) + "_bottom", blockNDTexture(doubleBlock, "bottom")).texture("particle", blockNDTexture(doubleBlock, "bottom")).renderType("cutout")))
+					.partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER).addModels(new ConfiguredModel(models().cross(name(doubleBlock) + "_top", blockNDTexture(doubleBlock, "top")).texture("particle", blockNDTexture(doubleBlock, "top")).renderType("cutout")));
+			simpleItemBlockTexture(doubleBlock, name(doubleBlock) + "_top");
 		}
 
 		private void simpleItemBlockTexture(Block block, String texture) {

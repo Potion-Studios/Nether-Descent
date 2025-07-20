@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": {
+      "feature": "netherdescent:tall_embur_roots",
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.333,
+        "feature": {
+          "feature": "netherdescent:tall_embur_roots",
+          "placement": []
+        }
+      },
+      {
+        "chance": 0.333,
+        "feature": {
+          "feature": "netherdescent:embur_roots",
+          "placement": []
+        }
+      }
+    ]
+  }
+}
