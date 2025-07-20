@@ -1,0 +1,39 @@
+package net.potionstudios.netherdescent.neoforge.datagen.generators;
+
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
+import net.neoforged.neoforge.common.data.DataMapProvider;
+import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
+import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
+import net.potionstudios.netherdescent.NetherDescent;
+import net.potionstudios.netherdescent.world.BlockItemFeatures;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.concurrent.CompletableFuture;
+
+public class DataMapGenerator extends DataMapProvider {
+    /**
+     * Create a new provider.
+     *
+     * @param packOutput     the output location
+     * @param lookupProvider a {@linkplain CompletableFuture} supplying the registries
+     */
+    public DataMapGenerator(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+        super(packOutput, lookupProvider);
+    }
+
+    @Override
+    protected void gather(HolderLookup.@NotNull Provider provider) {
+        Builder<Compostable, Item> compostableItemBuilder = builder(NeoForgeDataMaps.COMPOSTABLES);
+        BlockItemFeatures.registerCompostables((item, chance) -> compostableItemBuilder.add(id(item.asItem()), new Compostable(chance, false), false));
+        compostableItemBuilder.conditions(new ModLoadedCondition(NetherDescent.MOD_ID));
+    }
+
+    private ResourceLocation id(Item item) {
+        return BuiltInRegistries.ITEM.getKey(item);
+    }
+}

@@ -112,6 +112,7 @@ public class ModelGenerators {
 			simpleBlockItem(NetherDescentBlocks.BLUE_NETHERRACK.get(), models().getExistingFile(blue_netherrack));
 			VariantBlockStateBuilder builder = getVariantBuilder(NetherDescentBlocks.BLUE_NETHERRACK.get());
 
+			simpleBlockWithItem(NetherDescentBlocks.EMBUR_GEL_BLOCK.get(), models().cubeAll(name(NetherDescentBlocks.EMBUR_GEL_BLOCK.get()), blockTexture(NetherDescentBlocks.EMBUR_GEL_BLOCK.get())).renderType("translucent"));
 			createCrossBlock(NetherDescentBlocks.EMBUR_SPROUTS.get(), "cutout");
 			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES.get(), "translucent");
 			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(),  "translucent");

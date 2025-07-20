@@ -11,10 +11,7 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
-import net.potionstudios.netherdescent.neoforge.datagen.generators.LangGenerator;
-import net.potionstudios.netherdescent.neoforge.datagen.generators.ModelGenerators;
-import net.potionstudios.netherdescent.neoforge.datagen.generators.RecipeGenerator;
-import net.potionstudios.netherdescent.neoforge.datagen.generators.TagsGenerator;
+import net.potionstudios.netherdescent.neoforge.datagen.generators.*;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.loot.LootGenerator;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configured.ConfiguredFeaturesUtil;
@@ -41,6 +38,7 @@ class DataGeneratorsRegister {
         generator.addProvider(event.includeServer(), new RecipeGenerator(output, lookupProvider));
         generator.addProvider(event.includeServer(), new LootGenerator(output, lookupProvider));
         TagsGenerator.init(generator, event.includeServer(), output, lookupProvider, existingFileHelper);
+        generator.addProvider(event.includeServer(), new DataMapGenerator(output, lookupProvider));
     }
 
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()

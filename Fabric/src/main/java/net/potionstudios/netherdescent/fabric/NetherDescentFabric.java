@@ -11,5 +11,6 @@ public class NetherDescentFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         NetherDescent.init();
+        VanillaCompatFabric.init();
     }
 }

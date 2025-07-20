@@ -32,6 +32,7 @@ public class NetherDescentForge {
      */
     private void onInitialize(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            VanillaCompatForge.init();
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, NetherDescent.MOD_ID, NetherDescentSurfaceRules.makeRules());
         });
     }
