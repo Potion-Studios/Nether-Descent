@@ -12,8 +12,8 @@
     "canopy_location": "netherdescent:features/warts/embur/wart3_canopy",
     "height": {
       "type": "minecraft:biased_to_bottom",
-      "max_inclusive": 15,
-      "min_inclusive": 5
+      "max_inclusive": 8,
+      "min_inclusive": 1
     },
     "leaves_provider": {
       "type": "minecraft:weighted_state_provider",

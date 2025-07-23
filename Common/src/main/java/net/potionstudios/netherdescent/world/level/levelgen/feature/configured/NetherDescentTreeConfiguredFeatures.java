@@ -27,7 +27,7 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/wart1_stem"),
 					NetherDescent.id("features/warts/embur/wart1_canopy"),
-					BiasedToBottomInt.of(5, 15),
+					BiasedToBottomInt.of(1, 8),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
 					Blocks.CRIMSON_STEM,
@@ -41,7 +41,7 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/wart2_stem"),
 					NetherDescent.id("features/warts/embur/wart2_canopy"),
-					BiasedToBottomInt.of(5, 15),
+					BiasedToBottomInt.of(1, 8),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
 					Blocks.CRIMSON_STEM,
@@ -55,7 +55,7 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/wart3_stem"),
 					NetherDescent.id("features/warts/embur/wart3_canopy"),
-					BiasedToBottomInt.of(5, 15),
+					BiasedToBottomInt.of(1, 8),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
 					Blocks.CRIMSON_STEM,
@@ -69,7 +69,7 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/wart4_stem"),
 					NetherDescent.id("features/warts/embur/wart4_canopy"),
-					BiasedToBottomInt.of(5, 15),
+					BiasedToBottomInt.of(1, 8),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
 					Blocks.CRIMSON_STEM,
@@ -83,7 +83,7 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/wart5_stem"),
 					NetherDescent.id("features/warts/embur/wart5_canopy"),
-					BiasedToBottomInt.of(5, 15),
+					BiasedToBottomInt.of(1, 8),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
 					Blocks.CRIMSON_STEM,
