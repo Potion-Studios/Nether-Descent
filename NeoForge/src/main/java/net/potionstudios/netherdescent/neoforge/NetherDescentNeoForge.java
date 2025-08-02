@@ -20,6 +20,7 @@ public class NetherDescentNeoForge {
         NetherDescent.init();
         NeoForgePlatformHandler.register(eventBus);
         eventBus.addListener(this::onInitialize);
+        VanillaCompatNeoForge.registerVanillaCompatEvents(EVENT_BUS);
     }
 
     /**

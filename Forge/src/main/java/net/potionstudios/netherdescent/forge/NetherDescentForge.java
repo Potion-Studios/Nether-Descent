@@ -23,6 +23,7 @@ public class NetherDescentForge {
         NetherDescent.init();
         ForgePlatformHandler.register(MOD_BUS);
         MOD_BUS.addListener(this::onInitialize);
+        VanillaCompatForge.registerVanillaCompatEvents(EVENT_BUS);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> NetherDescentClientForge.init(MOD_BUS));
     }
 

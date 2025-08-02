@@ -133,6 +133,12 @@ public class ModelGenerators {
 			simpleBlockWithItem(NetherDescentBlocks.SYTHIAN_NYLIUM.get(), models().cubeBottomTop(name(NetherDescentBlocks.SYTHIAN_NYLIUM.get()), blockNDTexture(NetherDescentBlocks.SYTHIAN_NYLIUM.get(), "side"), blockTexture(Blocks.NETHERRACK), blockTexture(NetherDescentBlocks.SYTHIAN_NYLIUM.get())));
 
 			registerPatchBlockStates(NetherDescentBlocks.EMBUR_LILY.get(), new String[]{"embur_lily", "embur_lily2"});
+
+
+			models().withExistingParent(name(NetherDescentBlocks.EMBUR_CAVE_MOSS.get()), "glow_lichen")
+					.texture("glow_lichen", blockTexture(NetherDescentBlocks.EMBUR_CAVE_MOSS.get()))
+					.texture("particle", blockTexture(NetherDescentBlocks.EMBUR_CAVE_MOSS.get())).renderType("cutout");
+			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_CAVE_MOSS.get());
 		}
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {
@@ -198,6 +204,10 @@ public class ModelGenerators {
 					.partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER).addModels(new ConfiguredModel(models().cross(name(doubleBlock) + "_bottom", blockNDTexture(doubleBlock, "bottom")).texture("particle", blockNDTexture(doubleBlock, "bottom")).renderType("cutout")))
 					.partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER).addModels(new ConfiguredModel(models().cross(name(doubleBlock) + "_top", blockNDTexture(doubleBlock, "top")).texture("particle", blockNDTexture(doubleBlock, "top")).renderType("cutout")));
 			simpleItemBlockTexture(doubleBlock, name(doubleBlock) + "_top");
+		}
+
+		private void simpleItemBlockTexture(Block block) {
+			simpleItemBlockTexture(block, name(block));
 		}
 
 		private void simpleItemBlockTexture(Block block, String texture) {

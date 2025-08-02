@@ -2,12 +2,10 @@ package net.potionstudios.netherdescent.neoforge.datagen.generators;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
+import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 import org.jetbrains.annotations.NotNull;
@@ -49,5 +47,7 @@ public class RecipeGenerator extends RecipeProvider {
                     .save(recipeOutput);
             hangingSign(recipeOutput, set.hangingSignItem(), set.strippedLogStem());
         });
+
+        oneToOneConversionRecipe(recipeOutput, Items.ORANGE_DYE, NetherDescentBlocks.EMBUR_CAVE_MOSS.get(), "orange_dye");
     }
 }

@@ -70,9 +70,10 @@ public class TagsGenerator {
 			tag(BlockTags.CLIMBABLE).add(NetherDescentBlocks.WAILING_VINE.get(), NetherDescentBlocks.EMBUR_GEL_VINES.get(), NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get());
 			tag(Tags.Blocks.NETHERRACKS).add(NetherDescentBlocks.BLUE_NETHERRACK.get());
 			tag(BlockTags.ENDERMAN_HOLDABLE).add(NetherDescentBlocks.EMBUR_NYLIUM.get(), NetherDescentBlocks.SYTHIAN_NYLIUM.get(), NetherDescentBlocks.WAILING_NYLIUM.get());
-			tag(BlockTags.SWORD_EFFICIENT).add(NetherDescentBlocks.EMBUR_SPROUTS.get());
+			tag(BlockTags.SWORD_EFFICIENT).add(NetherDescentBlocks.EMBUR_SPROUTS.get(), NetherDescentBlocks.EMBUR_CAVE_MOSS.get());
 			tag(BlockTags.REPLACEABLE_BY_TREES).add(NetherDescentBlocks.EMBUR_SPROUTS.get());
 			tag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).add(NetherDescentBlocks.EMBUR_SPROUTS.get());
+			tag(BlockTags.INSIDE_STEP_SOUND_BLOCKS).add(NetherDescentBlocks.EMBUR_CAVE_MOSS.get());
 		}
 
 		private void easyBlockTags(Block object) {
@@ -89,7 +90,7 @@ public class TagsGenerator {
 			SoundType type = object.defaultBlockState().getSoundType();
 			if (type == SoundType.STONE || type == SoundType.DEEPSLATE || type == SoundType.NETHER_BRICKS || type == SoundType.NYLIUM)
 				tag(BlockTags.MINEABLE_WITH_PICKAXE).add(object);
-			else if (type == SoundType.WOOD || type == SoundType.SWEET_BERRY_BUSH)
+			else if (type == SoundType.WOOD || type == SoundType.SWEET_BERRY_BUSH || type == SoundType.GLOW_LICHEN)
 				tag(BlockTags.MINEABLE_WITH_AXE).add(object);
 			else if (type == SoundType.GRAVEL || type == SoundType.SAND || type == SoundType.SNOW || type == SoundType.GRASS)
 				if (object instanceof LeavesBlock) tag(BlockTags.MINEABLE_WITH_HOE).add(object);

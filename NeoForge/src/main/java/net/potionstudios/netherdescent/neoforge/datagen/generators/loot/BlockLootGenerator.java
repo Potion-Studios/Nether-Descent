@@ -53,6 +53,8 @@ class BlockLootGenerator extends BlockLootSubProvider {
                 add(block, createPetalsDrops(block));
             else if (block instanceof NetherSproutsBlock)
                 add(block, itemLike -> BlockLootSubProvider.createShearsOnlyDrop(block));
+            else if (block instanceof MultifaceBlock)
+                add(block, createMultifaceBlockDrops(block, HAS_SHEARS));
             else dropSelf(block);
         });
     }
