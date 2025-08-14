@@ -35,14 +35,6 @@ loom {
         mixinConfig("netherdescent-common.mixins.json")
         mixinConfig("netherdescent.mixins.json")
     }
-
-    // Forge Datagen Gradle config.  Remove if not using Forge datagen
-    runs.create("datagen") {
-        data()
-        programArgs("--all", "--mod", "netherdescent")
-        programArgs("--output", project(":Common").file("src/main/generated/resources").absolutePath)
-        programArgs("--existing", project(":Common").file("src/main/resources").absolutePath)
-    }
 }
 
 dependencies {
@@ -71,7 +63,7 @@ tasks {
     }
 
     shadowJar {
-        exclude("architectury.common.json", "net/potionstudios/netherdescent/forge/datagen/**", ".cache/**")
+        exclude("architectury.common.json", ".cache/**")
         configurations = listOf(project.configurations.getByName("shadowBundle"))
         archiveClassifier.set("dev-shadow")
     }
