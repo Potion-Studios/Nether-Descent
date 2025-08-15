@@ -29,6 +29,8 @@ public class NetherDescentConfiguredFeatures {
             }
     );
 
+    //public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_PATCH_BONEMEAL = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock();
+
     public static void configuredFeatures() {
         NetherDescent.LOGGER.info("Registering Nether Descent Configured Features");
         NetherDescentTreeConfiguredFeatures.treeConfiguredFeatures();
