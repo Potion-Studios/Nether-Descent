@@ -14,6 +14,10 @@ public final class NetherDescentBiomeTags {
      **/
     public static final TagKey<Biome> NETHER = create("nether");
 
+	public static class StructureHasTags {
+		public static final TagKey<Biome> HAS_BLUE_FORTRESS = create("has_structure/blue_fortress");
+	}
+
     private static TagKey<Biome> create(String name) {
         return TagKey.create(Registries.BIOME, NetherDescent.id(name));
     }

@@ -139,6 +139,9 @@ public class ModelGenerators {
 					.texture("glow_lichen", blockTexture(NetherDescentBlocks.EMBUR_CAVE_MOSS.get()))
 					.texture("particle", blockTexture(NetherDescentBlocks.EMBUR_CAVE_MOSS.get())).renderType("cutout");
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_CAVE_MOSS.get());
+
+			fenceBlock(NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get(), ModelLocationUtils.getModelLocation(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()));
+			itemModels().fenceInventory(key(NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get()).getPath(), ModelLocationUtils.getModelLocation(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()));
 		}
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {

@@ -10,6 +10,8 @@ import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.entities.NetherDescentBlockEntityType;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configured.NetherDescentConfiguredFeatures;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.NetherDescentPlacedFeatures;
+import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentStructureType;
+import net.potionstudios.netherdescent.world.level.levelgen.structure.pieces.NetherDescentStructurePieceType;
 import net.potionstudios.netherdescent.world.level.levelgen.surfacerules.NetherDescentRuleSources;
 import org.slf4j.Logger;
 
@@ -32,6 +34,8 @@ public class NetherDescent {
         NetherDescentRuleSources.ruleSources();
         NetherDescentConfiguredFeatures.configuredFeatures();
         NetherDescentPlacedFeatures.placedFeatures();
+	    NetherDescentStructurePieceType.structurePieceTypes();
+	    NetherDescentStructureType.structureTypes();
     }
 
     /**

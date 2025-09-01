@@ -5,18 +5,22 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.data.tags.StructureTagsProvider;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.tags.NetherDescentBiomeTags;
+import net.potionstudios.netherdescent.tags.NetherDescentStructureTags;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
+import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentStructures;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,6 +32,7 @@ public class TagsGenerator {
 		BlockTagGenerator BlockTags = generator.addProvider(run, new BlockTagGenerator(output, lookupProvider, helper));
 		generator.addProvider(run, new ItemTagGenerator(output, lookupProvider, BlockTags, helper));
 		generator.addProvider(run, new BiomeTagGenerator(output, lookupProvider, helper));
+		generator.addProvider(run, new StructureTagGenerator(output, lookupProvider, helper));
 	}
 
 	/**
@@ -143,4 +148,18 @@ public class TagsGenerator {
 			tag(BiomeTags.IS_NETHER).addTag(NetherDescentBiomeTags.NETHER);
 		}
 	}
+
+	private static class StructureTagGenerator extends StructureTagsProvider {
+
+		private StructureTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
+			super(arg, completableFuture, NetherDescent.MOD_ID, existingFileHelper);
+		}
+
+		@Override
+		protected void addTags(HolderLookup.@NotNull Provider provider) {
+			tag(NetherDescentStructureTags.FORTRESSES)
+					.add(NetherDescentStructures.BLUE_FORTRESS, BuiltinStructures.FORTRESS);
+		}
+	}
+
 }

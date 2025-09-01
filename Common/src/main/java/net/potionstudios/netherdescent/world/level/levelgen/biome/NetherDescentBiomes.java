@@ -11,6 +11,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.potionstudios.netherdescent.NetherDescent;
+import net.potionstudios.netherdescent.tags.NetherDescentBiomeTags;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -22,7 +23,7 @@ public class NetherDescentBiomes {
 	public static final Multimap<TagKey<Biome>, ResourceKey<Biome>> BIOMES_BY_TAG = Multimaps.newSetMultimap(new HashMap<>(), HashSet::new);
 
 	public static final ResourceKey<Biome> CRIMSON_GARDENS = createBiome("crimson_gardens", NetherDescentBiomeBuilder::crimsonGardens);
-	public static final ResourceKey<Biome> EMBUR_BOG = createBiome("embur_bog", NetherDescentBiomeBuilder::emburBog);
+	public static final ResourceKey<Biome> EMBUR_BOG = createBiome("embur_bog", NetherDescentBiomeBuilder::emburBog, NetherDescentBiomeTags.StructureHasTags.HAS_BLUE_FORTRESS);
 	public static final ResourceKey<Biome> SYTHIAN_TORRIDS = createBiome("sythian_torrids", NetherDescentBiomeBuilder::sythianTorrids);
 	public static final ResourceKey<Biome> WAILING_GARTH = createBiome("wailing_garth", NetherDescentBiomeBuilder::wailingGarth);
 
