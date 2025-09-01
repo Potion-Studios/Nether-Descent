@@ -9,9 +9,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
-import net.potionstudios.netherdescent.world.level.block.custom.BonemealableFeaturePlacerBlock;
-import net.potionstudios.netherdescent.world.level.block.custom.EmburCaveMossBlock;
-import net.potionstudios.netherdescent.world.level.block.custom.NetherDescentNyliumBlock;
+import net.potionstudios.netherdescent.world.level.block.custom.*;
 import net.potionstudios.netherdescent.world.level.block.plants.*;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
@@ -44,6 +42,8 @@ public class NetherDescentBlocks {
     public static final Supplier<EmburCaveMossBlock> EMBUR_CAVE_MOSS = registerBlockItem("embur_cave_moss", () -> new EmburCaveMossBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLOW_LICHEN).lightLevel(EmburCaveMossBlock.emission(6)).mapColor(MapColor.COLOR_ORANGE)));
 
     public static final Supplier<BonemealableFeaturePlacerBlock> EMBUR_MOSS_BLOCK = registerCubeAllBlockItem("embur_moss_block", () -> new BonemealableFeaturePlacerBlock(null, BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_BLOCK).mapColor(MapColor.COLOR_ORANGE)));
+    public static final Supplier<MossyCarpetBlock> EMBUR_MOSS_CARPET = registerBlockItem("embur_moss_carpet", () -> new MossyCarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_CARPET).mapColor(MapColor.COLOR_ORANGE)));
+    public static final Supplier<HangingMossBlock> EMBUR_HANGING_MOSS = registerBlockItem("embur_hanging_moss", () -> new HangingMossBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES).mapColor(MapColor.COLOR_ORANGE).noCollission().strength(0.2F).dynamicShape()));
 
     public static final Supplier<NetherDescentNyliumBlock> SYTHIAN_NYLIUM = registerBlockItem("sythian_nylium", () -> new NetherDescentNyliumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM).mapColor(MapColor.COLOR_YELLOW), Blocks.NETHERRACK, null));
 
