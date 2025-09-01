@@ -5,6 +5,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
+import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
@@ -49,5 +50,14 @@ public class RecipeGenerator extends RecipeProvider {
         });
 
         oneToOneConversionRecipe(recipeOutput, Items.ORANGE_DYE, NetherDescentBlocks.EMBUR_CAVE_MOSS.get(), "orange_dye");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get(), 6)
+                .define('W', NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase())
+                .define('#', NetherDescentItems.BLUE_NETHER_BRICK.get())
+                .pattern("W#W")
+                .pattern("W#W")
+                .unlockedBy(getHasName(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()), has(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()))
+                .save(recipeOutput);
+
     }
 }

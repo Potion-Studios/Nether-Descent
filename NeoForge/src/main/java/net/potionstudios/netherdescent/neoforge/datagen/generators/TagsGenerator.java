@@ -71,6 +71,8 @@ public class TagsGenerator {
 				tag(Tags.Blocks.STRIPPED_WOODS).add(set.strippedWood());
 				tag(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES).add(set.craftingTable());
 			});
+            tag(BlockTags.FENCES).add(NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get());
+            tag(Tags.Blocks.FENCES_NETHER_BRICK).add(NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get());
 			tag(BlockTags.NETHER_CARVER_REPLACEABLES).add(NetherDescentBlocks.BLUE_NETHERRACK.get(), NetherDescentBlocks.WAILING_NYLIUM.get(), NetherDescentBlocks.EMBUR_NYLIUM.get(), NetherDescentBlocks.SYTHIAN_NYLIUM.get());
 			tag(BlockTags.CLIMBABLE).add(NetherDescentBlocks.WAILING_VINE.get(), NetherDescentBlocks.EMBUR_GEL_VINES.get(), NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get());
 			tag(Tags.Blocks.NETHERRACKS).add(NetherDescentBlocks.BLUE_NETHERRACK.get());
@@ -92,7 +94,7 @@ public class TagsGenerator {
 			else if (object instanceof CampfireBlock) tag(BlockTags.CAMPFIRES).add(object);
 			else if (object instanceof FlowerPotBlock) tag(BlockTags.FLOWER_POTS).add(object);
 			else if (object instanceof NyliumBlock) tag(BlockTags.NYLIUM).add(object);
-			SoundType type = object.defaultBlockState().getSoundType();
+            SoundType type = object.defaultBlockState().getSoundType();
 			if (type == SoundType.STONE || type == SoundType.DEEPSLATE || type == SoundType.NETHER_BRICKS || type == SoundType.NYLIUM)
 				tag(BlockTags.MINEABLE_WITH_PICKAXE).add(object);
 			else if (type == SoundType.WOOD || type == SoundType.SWEET_BERRY_BUSH || type == SoundType.GLOW_LICHEN)
@@ -122,6 +124,8 @@ public class TagsGenerator {
 			copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
 			copy(BlockTags.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
 			copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
+            copy(BlockTags.FENCES, ItemTags.FENCES);
+            copy(Tags.Blocks.FENCES_NETHER_BRICK, Tags.Items.FENCES_NETHER_BRICK);
 			copy(BlockTags.FENCE_GATES, ItemTags.FENCE_GATES);
 			copy(Tags.Blocks.FENCE_GATES_WOODEN, Tags.Items.FENCE_GATES_WOODEN);
 			copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
