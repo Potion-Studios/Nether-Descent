@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "netherdescent:block/mossy_blue_nether_brick_slab"
+    },
+    "type=double": {
+      "model": "netherdescent:block/mossy_blue_nether_bricks"
+    },
+    "type=top": {
+      "model": "netherdescent:block/mossy_blue_nether_brick_slab_top"
+    }
+  }
+}

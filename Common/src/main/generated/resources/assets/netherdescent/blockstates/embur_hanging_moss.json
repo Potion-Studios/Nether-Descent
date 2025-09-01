@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "tip=false": {
+      "model": "netherdescent:block/embur_hanging_moss"
+    },
+    "tip=true": {
+      "model": "netherdescent:block/embur_hanging_moss_tip"
+    }
+  }
+}

@@ -15,8 +15,10 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
+import net.potionstudios.netherdescent.world.level.block.custom.HangingMossBlock;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
+import org.checkerframework.checker.units.qual.N;
 
 public class ModelGenerators {
 
@@ -142,6 +144,15 @@ public class ModelGenerators {
 
 			fenceBlock(NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get(), ModelLocationUtils.getModelLocation(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()));
 			itemModels().fenceInventory(key(NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get()).getPath(), ModelLocationUtils.getModelLocation(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()));
+
+			models().cross(name(NetherDescentBlocks.EMBUR_HANGING_MOSS.get()), blockTexture(NetherDescentBlocks.EMBUR_HANGING_MOSS.get())).renderType("cutout");
+			models().cross(name(NetherDescentBlocks.EMBUR_HANGING_MOSS.get()) + "_tip", blockNDTexture(NetherDescentBlocks.EMBUR_HANGING_MOSS.get(), "tip")).renderType("cutout");
+			getVariantBuilder(NetherDescentBlocks.EMBUR_HANGING_MOSS.get()).forAllStates(state -> {
+				if (state.getValue(HangingMossBlock.TIP))
+					return ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("block/" + name(NetherDescentBlocks.EMBUR_HANGING_MOSS.get()) + "_tip"))).build();
+				else return ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("block/" + name(NetherDescentBlocks.EMBUR_HANGING_MOSS.get())))).build();
+			});
+			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_HANGING_MOSS.get());
 		}
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {

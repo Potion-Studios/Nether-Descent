@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "netherdescent:block/mossy_blue_nether_bricks",
+    "side": "netherdescent:block/mossy_blue_nether_bricks",
+    "top": "netherdescent:block/mossy_blue_nether_bricks"
+  }
+}

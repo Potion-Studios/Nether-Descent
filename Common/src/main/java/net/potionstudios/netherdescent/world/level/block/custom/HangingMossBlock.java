@@ -69,7 +69,7 @@ public class HangingMossBlock extends Block implements BonemealableBlock {
     private boolean canStayAtPosition(BlockGetter level, BlockPos pos) {
         BlockPos blockPos = pos.relative(Direction.UP);
         BlockState blockState = level.getBlockState(blockPos);
-        return MultifaceBlock.canAttachTo(level, Direction.UP, blockPos, blockState) || blockState.is(NetherDescentBlocks.EMBUR_MOSS_CARPET.get());
+        return MultifaceBlock.canAttachTo(level, Direction.UP, blockPos, blockState) || blockState.is(NetherDescentBlocks.EMBUR_HANGING_MOSS.get());
     }
 
     @Override

@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.function.ToIntFunction;
 
 public class EmburCaveMossBlock extends GlowLichenBlock {
-    private static final BooleanProperty GLOWING = BooleanProperty.create("glowing");
+    public static final BooleanProperty GLOWING = BooleanProperty.create("glowing");
 
     public EmburCaveMossBlock(Properties properties) {
         super(properties);
