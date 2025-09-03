@@ -10,6 +10,7 @@ import terrablender.api.TerraBlenderApi;
 public class NetherDescentTerrablenderEntry implements TerraBlenderApi {
     @Override
     public void onTerraBlenderInitialized() {
+        NetherDescentFabric.init();
         SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, NetherDescent.MOD_ID, NetherDescentSurfaceRules.makeRules());
         Regions.register(new NetherDescentRegion(
                 NetherDescent.id("nether_descent"),

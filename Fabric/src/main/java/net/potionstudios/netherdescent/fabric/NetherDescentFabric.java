@@ -10,6 +10,10 @@ public class NetherDescentFabric implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        init();
+    }
+
+    protected static void init() {
         NetherDescent.init();
         VanillaCompatFabric.init();
     }
