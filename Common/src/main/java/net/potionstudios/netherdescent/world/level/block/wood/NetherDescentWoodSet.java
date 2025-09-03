@@ -8,6 +8,7 @@ import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -18,6 +19,7 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
+import net.potionstudios.netherdescent.world.level.block.plants.PottedBlock;
 import net.potionstudios.netherdescent.world.level.block.wood.sign.NetherDescentCeilingHangingSignBlock;
 import net.potionstudios.netherdescent.world.level.block.wood.sign.NetherDescentStandingSignBlock;
 import net.potionstudios.netherdescent.world.level.block.wood.sign.NetherDescentWallHangingSignBlock;
@@ -52,7 +54,7 @@ public class NetherDescentWoodSet {
     private final Supplier<PressurePlateBlock> pressurePlate;
     private final Supplier<ButtonBlock> button;
     private final GrowerItem growerItemEnum;
-    private final Supplier<FungusBlock> growerItem;
+    private final PottedBlock growerItem;
     private final Supplier<Block> bookshelf;
     private final Supplier<CraftingTableBlock> craftingTable;
     private final Supplier<StandingSignBlock> sign;
@@ -91,7 +93,9 @@ public class NetherDescentWoodSet {
         this.trapdoor = NetherDescentBlocks.registerBlockItem(name + "_trapdoor", () -> new TrapDoorBlock(woodType.setType(), BlockBehaviour.Properties.of().mapColor(mapColor).instrument(NoteBlockInstrument.BASS).strength(3.0F).noOcclusion().isValidSpawn(Blocks::never).ignitedByLava()));
         this.pressurePlate = NetherDescentBlocks.registerBlockItem(name + "_pressure_plate", () -> new PressurePlateBlock(woodType.setType(), BlockBehaviour.Properties.of().mapColor(this.logstem.get().defaultMapColor()).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(0.5F).ignitedByLava().pushReaction(PushReaction.DESTROY)));
         this.button = NetherDescentBlocks.registerBlockItem(name + "_button", () -> (ButtonBlock) Blocks.woodenButton(woodType.setType()));
-        this.growerItem = NetherDescentBlocks.registerBlockItem(name + "_" + growerItem.getName(), () -> new FungusBlock(null, null, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_FUNGUS).mapColor(mapColor)));
+        Supplier<FungusBlock> fungus = NetherDescentBlocks.registerBlockItem(name + "_" + growerItem.getName(), () -> new FungusBlock(null, null, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_FUNGUS).mapColor(mapColor)));
+        this.growerItem = new PottedBlock(fungus, NetherDescentBlocks.register("potted_" + name + "_" + growerItem.getName(), PlatformHandler.PLATFORM_HANDLER.createPottedBlock(fungus)));
+        NetherDescentBlocks.BLOCKS.add(this.growerItem.pottedBlock());
         this.bookshelf = NetherDescentBlocks.registerBlockItem(name + "_bookshelf", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BOOKSHELF).mapColor(mapColor)));
         this.craftingTable = NetherDescentBlocks.registerBlockItem(name + "_crafting_table", () -> new NetherDescentCraftingTable(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE).mapColor(mapColor)));
         this.sign = NetherDescentBlocks.register(name + "_sign", () ->  new NetherDescentStandingSignBlock(woodType, BlockBehaviour.Properties.of().mapColor(this.logstem.get().defaultMapColor()).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).ignitedByLava()));
@@ -179,8 +183,8 @@ public class NetherDescentWoodSet {
         return button.get();
     }
 
-    public FungusBlock growerItem() {
-        return growerItem.get();
+    public PottedBlock growerItem() {
+        return growerItem;
     }
 
     public Block bookshelf() {

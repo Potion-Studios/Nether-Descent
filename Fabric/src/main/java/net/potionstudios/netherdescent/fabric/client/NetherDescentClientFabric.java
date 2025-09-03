@@ -34,10 +34,9 @@ public class NetherDescentClientFabric implements ClientModInitializer {
 
 	private void renderTypeBlock(Block block) {
 		if (block instanceof DoorBlock || block instanceof TrapDoorBlock || block instanceof BushBlock || block instanceof LanternBlock || block instanceof GlowLichenBlock
-		|| block instanceof EmburCaveMossBlock || block instanceof MossyCarpetBlock || block instanceof GrowingPlantBlock)
+		|| block instanceof EmburCaveMossBlock || block instanceof MossyCarpetBlock || block instanceof GrowingPlantBlock || block instanceof FlowerPotBlock)
 			BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.cutout());
-		else if (block instanceof LeavesBlock || block instanceof VineBlock || block instanceof MangroveRootsBlock
-				|| block instanceof FlowerPotBlock || block instanceof SporeBlossomBlock || block instanceof BaseCoralPlantTypeBlock)
+		else if (block instanceof LeavesBlock || block instanceof VineBlock || block instanceof MangroveRootsBlock || block instanceof SporeBlossomBlock || block instanceof BaseCoralPlantTypeBlock)
 			BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.cutoutMipped());
 		else if (block instanceof StainedGlassPaneBlock || block instanceof HalfTransparentBlock)
 			BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.translucent());

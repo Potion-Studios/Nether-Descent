@@ -98,8 +98,9 @@ public class ModelGenerators {
 				registerStairs(set.stairs(), planksTexture);
 				registerButton(set.button(), planksTexture);
 				registerFenceAndGate(set.fence(), set.fenceGate(), planksTexture);
-                simpleBlock(set.growerItem(), models().cross(name(set.growerItem()), woodBlockTexture(set.name(), set.growerItemEnum().getName())).renderType("cutout"));
-                simpleItemBlockTexture(set.growerItem(), set.name() + "/" + set.growerItemEnum().getName());
+                simpleBlock(set.growerItem().getBlock(), models().cross(name(set.growerItem().getBlock()), woodBlockTexture(set.name(), set.growerItemEnum().getName())).renderType("cutout"));
+                simpleItemBlockTexture(set.growerItem().getBlock(), set.name() + "/" + set.growerItemEnum().getName());
+                simpleBlock(set.growerItem().getPottedBlock(), models().withExistingParent(name(set.growerItem().getPottedBlock()), mcLoc("block/flower_pot_cross")).texture("plant", woodBlockTexture(set.name(), set.growerItemEnum().getName())).renderType("cutout"));
                 signBlock(set.sign(), set.wallSign(), planksTexture);
 				hangingSignBlock(set.hangingSign(), set.wallHangingSign(), models().sign(name(set.hangingSign()), strippedLogTexture));
 				trapdoorBlockWithRenderType(set.trapdoor(), woodBlockTexture(set.name(), "trapdoor"), true, "cutout");

@@ -31,6 +31,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
+import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Path;
@@ -103,6 +104,14 @@ public final class NeoForgePlatformHandler implements PlatformHandler {
 		DeferredHolder<?, ?> registryObject = CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(registry.key().location(), NetherDescent.MOD_ID)).register(name, value);
 		return () -> (Holder.Reference<T>) registryObject.getDelegate();
 	}
+
+    public static void registerPottedPlants() {
+        NetherDescentBlocks.BLOCKS.forEach(entry -> {
+            if (entry.get() instanceof FlowerPotBlock)
+                ((FlowerPotBlock) Blocks.FLOWER_POT)
+                        .addPlant(Objects.requireNonNull(BuiltInRegistries.BLOCK.getKey(((FlowerPotBlock) entry.get()).getPotted())), entry);
+        });
+    }
 
 	public static void register(final IEventBus bus) {
 		CACHED.values().forEach(deferredRegister -> deferredRegister.register(bus));

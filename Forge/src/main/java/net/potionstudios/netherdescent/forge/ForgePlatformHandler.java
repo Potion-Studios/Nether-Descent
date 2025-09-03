@@ -31,11 +31,13 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
+import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 @AutoService(PlatformHandler.class)
@@ -110,6 +112,14 @@ public final class ForgePlatformHandler implements PlatformHandler {
 		RegistryObject<T> registryObject = CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(registry.key().location(), NetherDescent.MOD_ID)).register(name, value);
 		return () -> (Holder.Reference<T>) registryObject.getHolder().get();
 	}
+
+    public static void registerPottedPlants() {
+        NetherDescentBlocks.BLOCKS.forEach(entry -> {
+            if (entry.get() instanceof FlowerPotBlock)
+                ((FlowerPotBlock) Blocks.FLOWER_POT)
+                        .addPlant(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(((FlowerPotBlock) entry.get()).getPotted())), entry);
+        });
+    }
 
 	public static void register(final IEventBus bus) {
 		PARTICLES.register(bus);

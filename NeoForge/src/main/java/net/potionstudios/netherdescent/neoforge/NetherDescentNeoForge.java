@@ -34,6 +34,7 @@ public class NetherDescentNeoForge {
                     NetherDescent.id("nether_descent"),
                     100
             ));
+            NeoForgePlatformHandler.registerPottedPlants();
         });
     }
 }

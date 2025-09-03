@@ -35,6 +35,7 @@ public class NetherDescentForge {
         event.enqueueWork(() -> {
             VanillaCompatForge.init();
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, NetherDescent.MOD_ID, NetherDescentSurfaceRules.makeRules());
+            ForgePlatformHandler.registerPottedPlants();
         });
     }
 }
