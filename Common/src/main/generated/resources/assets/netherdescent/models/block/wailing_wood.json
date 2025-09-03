@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "netherdescent:block/wailing/log",
-    "side": "netherdescent:block/wailing/log"
+    "end": "netherdescent:block/wailing/stem",
+    "side": "netherdescent:block/wailing/stem"
   }
 }

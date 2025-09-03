@@ -32,7 +32,7 @@
     "log_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "netherdescent:embur_log",
+        "Name": "netherdescent:embur_pedu",
         "Properties": {
           "axis": "y"
         }

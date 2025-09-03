@@ -136,6 +136,7 @@ public class TagsGenerator {
 			copy(Tags.Blocks.STRIPPED_WOODS, Tags.Items.STRIPPED_WOODS);
 			copy(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES, Tags.Items.PLAYER_WORKSTATIONS_CRAFTING_TABLES);
 			copy(Tags.Blocks.NETHERRACKS, Tags.Items.NETHERRACKS);
+            NetherDescentWoodSet.woodsets().forEach(set -> copy(set.logBlockTag(), set.logItemTag()));
 		}
 	}
 

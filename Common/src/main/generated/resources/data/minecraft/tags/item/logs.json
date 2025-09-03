@@ -1,15 +1,15 @@
 {
   "values": [
     {
-      "id": "#netherdescent:embur_logs",
+      "id": "#netherdescent:embur_pedus",
       "required": false
     },
     {
-      "id": "#netherdescent:sythian_logs",
+      "id": "#netherdescent:sythian_stems",
       "required": false
     },
     {
-      "id": "#netherdescent:wailing_logs",
+      "id": "#netherdescent:wailing_stems",
       "required": false
     }
   ]

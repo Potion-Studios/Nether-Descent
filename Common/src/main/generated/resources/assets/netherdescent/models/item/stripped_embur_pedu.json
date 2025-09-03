@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "netherdescent:block/embur/stripped_pedu_top",
+    "side": "netherdescent:block/embur/stripped_pedu"
+  }
+}

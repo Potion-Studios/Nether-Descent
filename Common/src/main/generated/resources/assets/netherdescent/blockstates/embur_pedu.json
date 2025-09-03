@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "netherdescent:block/embur_pedu_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "netherdescent:block/embur_pedu"
+    },
+    "axis=z": {
+      "model": "netherdescent:block/embur_pedu_horizontal",
+      "x": 90
+    }
+  }
+}
