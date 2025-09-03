@@ -153,6 +153,10 @@ public class ModelGenerators {
 				else return ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("block/" + name(NetherDescentBlocks.EMBUR_HANGING_MOSS.get())))).build();
 			});
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_HANGING_MOSS.get());
+
+            simpleBlockItem(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), models().carpet(name(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()), blockTexture(NetherDescentBlocks.EMBUR_MOSS_CARPET.get())).renderType("cutout"));
+            models().withExistingParent(name(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()) + "_side_small", NetherDescent.id("block/mossy_carpet_side")).texture("side", blockNDTexture(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), "side_small")).renderType("cutout");
+            models().withExistingParent(name(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()) + "_side_tall", NetherDescent.id("block/mossy_carpet_side")).texture("side", blockNDTexture(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), "side_tall")).renderType("cutout");
 		}
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {

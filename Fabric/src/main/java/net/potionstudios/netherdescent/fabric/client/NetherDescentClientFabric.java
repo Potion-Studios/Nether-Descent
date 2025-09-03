@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.*;
 import net.potionstudios.netherdescent.client.NetherDescentClient;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.custom.EmburCaveMossBlock;
+import net.potionstudios.netherdescent.world.level.block.custom.MossyCarpetBlock;
 
 /**
  * Initializes the Fabric client.
@@ -33,7 +34,7 @@ public class NetherDescentClientFabric implements ClientModInitializer {
 
 	private void renderTypeBlock(Block block) {
 		if (block instanceof DoorBlock || block instanceof TrapDoorBlock || block instanceof BushBlock || block instanceof LanternBlock || block instanceof GlowLichenBlock
-		|| block instanceof EmburCaveMossBlock)
+		|| block instanceof EmburCaveMossBlock || block instanceof MossyCarpetBlock || block instanceof GrowingPlantBlock)
 			BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.cutout());
 		else if (block instanceof LeavesBlock || block instanceof VineBlock || block instanceof MangroveRootsBlock
 				|| block instanceof FlowerPotBlock || block instanceof SporeBlossomBlock || block instanceof BaseCoralPlantTypeBlock)
