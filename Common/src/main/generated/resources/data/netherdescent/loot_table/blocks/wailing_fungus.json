@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "netherdescent:wailing_sapling"
+          "name": "netherdescent:wailing_fungus"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "netherdescent:blocks/wailing_sapling"
+  "random_sequence": "netherdescent:blocks/wailing_fungus"
 }

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "netherdescent:sythian_sapling"
+          "name": "netherdescent:embur_wart"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "netherdescent:blocks/sythian_sapling"
+  "random_sequence": "netherdescent:blocks/embur_wart"
 }

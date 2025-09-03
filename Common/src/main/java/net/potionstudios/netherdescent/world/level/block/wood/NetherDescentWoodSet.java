@@ -51,6 +51,7 @@ public class NetherDescentWoodSet {
     private final Supplier<TrapDoorBlock> trapdoor;
     private final Supplier<PressurePlateBlock> pressurePlate;
     private final Supplier<ButtonBlock> button;
+    private final GrowerItem growerItemEnum;
     private final Supplier<FungusBlock> growerItem;
     private final Supplier<Block> bookshelf;
     private final Supplier<CraftingTableBlock> craftingTable;
@@ -72,10 +73,11 @@ public class NetherDescentWoodSet {
      * @param blockSetType       The wood type
      * @param mapColor           The map color
      */
-    public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor, LogStem logstem) {
+    public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor, LogStem logstem, GrowerItem growerItem) {
         this.woodType = PlatformHandler.PLATFORM_HANDLER.createWoodType(blockSetType.name(), blockSetType);
         this.name = blockSetType.name().replace(NetherDescent.MOD_ID + ":", "");
         this.logstemEnum = logstem;
+        this.growerItemEnum = growerItem;
         this.logstem = NetherDescentBlocks.registerBlockItem(name + "_" + logstem.getName(), () -> (RotatedPillarBlock) Blocks.netherStem(mapColor));
         this.wood = NetherDescentBlocks.registerBlockItem(name + "_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(mapColor).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava()));
         this.strippedLogStem = NetherDescentBlocks.registerBlockItem("stripped_" + name + "_" + logstem.getName(), () -> (RotatedPillarBlock) Blocks.netherStem(mapColor));
@@ -89,7 +91,7 @@ public class NetherDescentWoodSet {
         this.trapdoor = NetherDescentBlocks.registerBlockItem(name + "_trapdoor", () -> new TrapDoorBlock(woodType.setType(), BlockBehaviour.Properties.of().mapColor(mapColor).instrument(NoteBlockInstrument.BASS).strength(3.0F).noOcclusion().isValidSpawn(Blocks::never).ignitedByLava()));
         this.pressurePlate = NetherDescentBlocks.registerBlockItem(name + "_pressure_plate", () -> new PressurePlateBlock(woodType.setType(), BlockBehaviour.Properties.of().mapColor(this.logstem.get().defaultMapColor()).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(0.5F).ignitedByLava().pushReaction(PushReaction.DESTROY)));
         this.button = NetherDescentBlocks.registerBlockItem(name + "_button", () -> (ButtonBlock) Blocks.woodenButton(woodType.setType()));
-        this.growerItem = NetherDescentBlocks.registerBlockItem(name + "_sapling", () -> new FungusBlock(null, null, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_FUNGUS).mapColor(mapColor)));
+        this.growerItem = NetherDescentBlocks.registerBlockItem(name + "_" + growerItem.getName(), () -> new FungusBlock(null, null, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_FUNGUS).mapColor(mapColor)));
         this.bookshelf = NetherDescentBlocks.registerBlockItem(name + "_bookshelf", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BOOKSHELF).mapColor(mapColor)));
         this.craftingTable = NetherDescentBlocks.registerBlockItem(name + "_crafting_table", () -> new NetherDescentCraftingTable(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE).mapColor(mapColor)));
         this.sign = NetherDescentBlocks.register(name + "_sign", () ->  new NetherDescentStandingSignBlock(woodType, BlockBehaviour.Properties.of().mapColor(this.logstem.get().defaultMapColor()).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).ignitedByLava()));
@@ -106,15 +108,15 @@ public class NetherDescentWoodSet {
     }
 
     public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor) {
-        this(blockSetType, mapColor, LogStem.STEM);
+        this(blockSetType, mapColor, LogStem.STEM, GrowerItem.FUNGUS);
     }
 
     public NetherDescentWoodSet(String name, MapColor mapColor) {
         this(BlockSetType.register(new BlockSetType(name)), mapColor);
     }
 
-    public NetherDescentWoodSet(String name, MapColor mapColor, LogStem logStem) {
-        this(BlockSetType.register(new BlockSetType(name)), mapColor, logStem);
+    public NetherDescentWoodSet(String name, MapColor mapColor, LogStem logStem, GrowerItem growerItem) {
+        this(BlockSetType.register(new BlockSetType(name)), mapColor, logStem, growerItem);
     }
 
     public String name() {
@@ -236,6 +238,10 @@ public class NetherDescentWoodSet {
         return logstemEnum;
     }
 
+    public GrowerItem growerItemEnum() {
+        return growerItemEnum;
+    }
+
     public enum LogStem {
         LOG("log"),
         STEM("stem"),
@@ -244,6 +250,21 @@ public class NetherDescentWoodSet {
         private final String name;
 
         LogStem(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
+
+    public enum GrowerItem {
+        FUNGUS("fungus"),
+        WART("wart");
+
+        private final String name;
+
+        GrowerItem(String name) {
             this.name = name;
         }
 

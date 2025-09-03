@@ -12,6 +12,7 @@
     "netherdescent:embur_trapdoor",
     "netherdescent:embur_pressure_plate",
     "netherdescent:embur_button",
+    "netherdescent:embur_wart",
     "netherdescent:embur_bookshelf",
     "netherdescent:embur_crafting_table",
     "netherdescent:sythian_wood",
@@ -25,6 +26,7 @@
     "netherdescent:sythian_trapdoor",
     "netherdescent:sythian_pressure_plate",
     "netherdescent:sythian_button",
+    "netherdescent:sythian_fungus",
     "netherdescent:sythian_bookshelf",
     "netherdescent:sythian_crafting_table",
     "netherdescent:wailing_wood",
@@ -38,6 +40,7 @@
     "netherdescent:wailing_trapdoor",
     "netherdescent:wailing_pressure_plate",
     "netherdescent:wailing_button",
+    "netherdescent:wailing_fungus",
     "netherdescent:wailing_bookshelf",
     "netherdescent:wailing_crafting_table"
   ]

@@ -18,7 +18,6 @@ import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.custom.HangingMossBlock;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
-import org.checkerframework.checker.units.qual.N;
 
 public class ModelGenerators {
 
@@ -99,7 +98,9 @@ public class ModelGenerators {
 				registerStairs(set.stairs(), planksTexture);
 				registerButton(set.button(), planksTexture);
 				registerFenceAndGate(set.fence(), set.fenceGate(), planksTexture);
-				signBlock(set.sign(), set.wallSign(), planksTexture);
+                simpleBlock(set.growerItem(), models().cross(name(set.growerItem()), woodBlockTexture(set.name(), set.growerItemEnum().getName())).renderType("cutout"));
+                simpleItemBlockTexture(set.growerItem(), set.name() + "/" + set.growerItemEnum().getName());
+                signBlock(set.sign(), set.wallSign(), planksTexture);
 				hangingSignBlock(set.hangingSign(), set.wallHangingSign(), models().sign(name(set.hangingSign()), strippedLogTexture));
 				trapdoorBlockWithRenderType(set.trapdoor(), woodBlockTexture(set.name(), "trapdoor"), true, "cutout");
 				itemModels().trapdoorBottom(name(set.trapdoor()), woodBlockTexture(set.name(), "trapdoor")).renderType("cutout");
