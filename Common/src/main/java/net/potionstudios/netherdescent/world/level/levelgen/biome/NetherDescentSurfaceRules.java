@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.world.level.levelgen.biome;
 
+import com.google.common.collect.ImmutableList;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.biome.Biome;
@@ -19,6 +20,14 @@ import net.potionstudios.netherdescent.world.level.levelgen.surfacerules.NetherD
 public class NetherDescentSurfaceRules {
 
     private static final SurfaceRules.ConditionSource ABOVE_31 = SurfaceRules.yBlockCheck(VerticalAnchor.absolute(31), 0);
+
+    private static final SurfaceRules.RuleSource BEDROCK_RULES = SurfaceRules.sequence(
+            SurfaceRules.ifTrue(
+                    SurfaceRules.verticalGradient("bedrock_floor", VerticalAnchor.bottom(), VerticalAnchor.aboveBottom(5)),
+                    makeStateRule(Blocks.BEDROCK)
+            ),
+            SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("bedrock_roof", VerticalAnchor.belowTop(5), VerticalAnchor.top())), makeStateRule(Blocks.BEDROCK))
+    );
 /*
     private static final SurfaceRules.RuleSource CRIMSON_GARDENS = makeifTrueRule(NetherDescentBiomes.CRIMSON_GARDENS, SurfaceRules.sequence(
             makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR,
@@ -52,11 +61,10 @@ public class NetherDescentSurfaceRules {
 
 
     public static SurfaceRules.RuleSource makeRules() {
-        return SurfaceRules.sequence(
-                EMBUR_BOG,
-                SYTHIAN_TORRIDS,
-                WAILING_GARTH
-        );
+        ImmutableList.Builder<SurfaceRules.RuleSource> builder = ImmutableList.builder();
+        builder.add(BEDROCK_RULES);
+        builder.add(EMBUR_BOG, SYTHIAN_TORRIDS, WAILING_GARTH);
+        return SurfaceRules.sequence(builder.build().toArray(SurfaceRules.RuleSource[]::new));
     }
 
     /**
