@@ -30,6 +30,7 @@ public class NetherDescentClientFabric implements ClientModInitializer {
 	 */
 	private void registerRenderTypes() {
 		NetherDescentBlocks.BLOCKS.forEach(entry -> renderTypeBlock(entry.get()));
+        BlockRenderLayerMap.INSTANCE.putBlock(NetherDescentBlocks.EMBUR_GEL_BLOCK.get(), RenderType.translucent());
 	}
 
 	private void renderTypeBlock(Block block) {

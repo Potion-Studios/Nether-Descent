@@ -15,7 +15,16 @@
     "netherdescent:embur_sprouts": {
       "chance": 0.5
     },
+    "netherdescent:embur_wart": {
+      "chance": 0.65
+    },
+    "netherdescent:sythian_fungus": {
+      "chance": 0.65
+    },
     "netherdescent:tall_embur_roots": {
+      "chance": 0.65
+    },
+    "netherdescent:wailing_fungus": {
       "chance": 0.65
     }
   }
