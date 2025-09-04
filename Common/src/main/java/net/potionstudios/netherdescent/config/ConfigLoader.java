@@ -26,10 +26,6 @@ public class ConfigLoader {
 	 */
 	public static <T> T loadConfig(@NotNull Class<T> clazz, String name) {
 		try {
-			try {
-				Files.delete(PlatformHandler.PLATFORM_HANDLER.configPath().resolve(name + ".json5"));
-			} catch (Exception ignored) {}
-
 			Path configPath = PlatformHandler.PLATFORM_HANDLER.configPath().resolve(name + ".json");
 			T value = clazz.getConstructor().newInstance();
 
@@ -42,4 +38,16 @@ public class ConfigLoader {
 			throw new RuntimeException("Failed to load config.", e);
 		}
 	}
+
+    public static <T> void saveConfig(@NotNull T config, String name) {
+        try {
+            Path path = PlatformHandler.PLATFORM_HANDLER.configPath().resolve(name + ".json");
+            if (Files.notExists(path.getParent()))
+                Files.createDirectories(path.getParent());
+
+            Files.writeString(path, GSON.toJson(config));
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to save biome config", e);
+        }
+    }
 }

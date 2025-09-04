@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.potionstudios.netherdescent.config.BiomeConfig;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
@@ -36,6 +37,13 @@ public class NetherDescent {
         NetherDescentPlacedFeatures.placedFeatures();
 	    NetherDescentStructurePieceType.structurePieceTypes();
 	    NetherDescentStructureType.structureTypes();
+    }
+
+    /**
+     * Ran later in the initialization process to set up common things.
+     */
+    public static void commonSetup() {
+        BiomeConfig.init();
     }
 
     /**

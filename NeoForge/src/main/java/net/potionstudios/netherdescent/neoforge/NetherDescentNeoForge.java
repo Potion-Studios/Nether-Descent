@@ -29,6 +29,7 @@ public class NetherDescentNeoForge {
      */
     private void onInitialize(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            NetherDescent.commonSetup();
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, NetherDescent.MOD_ID, NetherDescentSurfaceRules.makeRules());
             Regions.register(new NetherDescentRegion(
                     NetherDescent.id("nether_descent"),

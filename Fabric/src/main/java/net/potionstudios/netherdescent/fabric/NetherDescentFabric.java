@@ -16,5 +16,6 @@ public class NetherDescentFabric implements ModInitializer {
     protected static void init() {
         NetherDescent.init();
         VanillaCompatFabric.init();
+        NetherDescent.commonSetup();
     }
 }
