@@ -57,6 +57,7 @@ public class NetherDescentBiomeBuilder {
         addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_SPROUT);
         addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_BOG_VEGETATION);
         addVegetal(generationSettings, NetherDescentTreePlacedFeatures.EMBUR_WARTS);
+        addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_CAVE_MOSS);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.BLAZE, 20, 2, 4);

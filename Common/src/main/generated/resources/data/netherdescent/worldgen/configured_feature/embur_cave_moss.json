@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:multiface_growth",
+  "config": {
+    "block": "netherdescent:embur_cave_moss",
+    "can_be_placed_on": [
+      "netherdescent:blue_netherrack",
+      "netherdescent:embur_nylium"
+    ],
+    "can_place_on_ceiling": true,
+    "can_place_on_floor": false,
+    "can_place_on_wall": true,
+    "chance_of_spreading": 0.8,
+    "search_range": 20
+  }
+}
