@@ -3,14 +3,19 @@ package net.potionstudios.netherdescent.neoforge.datagen.generators;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
+import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 public class RecipeGenerator extends RecipeProvider {
@@ -59,6 +64,45 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy(getHasName(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()), has(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()))
                 .save(recipeOutput);
 
-        nineBlockStorageRecipes(recipeOutput, RecipeCategory.MISC, NetherDescentItems.EMBUR_GEL_BALL.get(), RecipeCategory.MISC, NetherDescentBlocks.EMBUR_GEL_BLOCK.get().asItem());
+		ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CHISELED_BLUE_NETHER_BRICKS.get())
+						.define('#', NetherDescentBlocks.BLUE_NETHER_BRICKS.getSlab())
+						.pattern("#")
+						.pattern("#")
+						.unlockedBy(getHasName(NetherDescentBlocks.BLUE_NETHER_BRICKS.getSlab()), has(NetherDescentBlocks.BLUE_NETHER_BRICKS.getSlab()))
+						.save(recipeOutput);
+
+		stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CHISELED_BLUE_NETHER_BRICKS.get(), NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase());
+
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()), RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CRACKED_BLUE_NETHER_BRICKS.get().asItem(), 0.1F, 200)
+						.unlockedBy(getHasName(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()), has(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()))
+						.save(recipeOutput);
+
+        NDNineBlockStorageRecipes(recipeOutput, RecipeCategory.MISC, NetherDescentItems.EMBUR_GEL_BALL.get(), RecipeCategory.MISC, NetherDescentBlocks.EMBUR_GEL_BLOCK.get(), getSimpleRecipeName(NetherDescentBlocks.EMBUR_GEL_BLOCK.get()), null, getSimpleRecipeName(NetherDescentItems.EMBUR_GEL_BALL.get()), null);
     }
+
+	private static void NDNineBlockStorageRecipes(
+			RecipeOutput recipeOutput,
+			RecipeCategory unpackedCategory,
+			ItemLike unpacked,
+			RecipeCategory packedCategory,
+			ItemLike packed,
+			String packedName,
+			@Nullable String packedGroup,
+			String unpackedName,
+			@Nullable String unpackedGroup
+	) {
+		ShapelessRecipeBuilder.shapeless(unpackedCategory, unpacked, 9)
+				.requires(packed)
+				.group(unpackedGroup)
+				.unlockedBy(getHasName(packed), has(packed))
+				.save(recipeOutput, NetherDescent.id(unpackedName));
+		ShapedRecipeBuilder.shaped(packedCategory, packed)
+				.define('#', unpacked)
+				.pattern("###")
+				.pattern("###")
+				.pattern("###")
+				.group(packedGroup)
+				.unlockedBy(getHasName(unpacked), has(unpacked))
+				.save(recipeOutput, NetherDescent.id(packedName));
+	}
 }

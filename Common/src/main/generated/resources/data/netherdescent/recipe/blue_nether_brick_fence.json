@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "#": {
-      "item": "netherdescent:blue_nether_brick"
+      "item": "minecraft:stick"
     },
     "W": {
       "item": "netherdescent:blue_nether_bricks"
@@ -14,7 +14,7 @@
     "W#W"
   ],
   "result": {
-    "count": 6,
+    "count": 3,
     "id": "netherdescent:blue_nether_brick_fence"
   }
 }
