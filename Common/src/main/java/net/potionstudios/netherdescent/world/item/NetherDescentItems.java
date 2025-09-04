@@ -17,6 +17,7 @@ public class NetherDescentItems {
     public static final ArrayList<Supplier<? extends Item>> SIMPLE_ITEMS = new ArrayList<>();
 
     public static final Supplier<Item> BLUE_NETHER_BRICK = registerSimpleItem("blue_nether_brick", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> EMBUR_GEL_BALL = registerSimpleItem("embur_gel_ball", () -> new Item(new Item.Properties()));
 
     public static final Supplier<PlaceOnWaterBlockItem> EMBUR_LILY = registerItemNoLang("embur_lily", () -> new PlaceOnWaterBlockItem(NetherDescentBlocks.EMBUR_LILY.get(), new Item.Properties()));
     //public static final Supplier<Item> CRIMSON_BERRIES = registerSimpleItem()
