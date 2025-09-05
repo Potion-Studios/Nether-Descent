@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_blue_nether_bricks": {
+    "has_blue_nether_brick": {
       "conditions": {
         "items": [
           {
-            "items": "netherdescent:blue_nether_bricks"
+            "items": "netherdescent:blue_nether_brick"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:chiseled_blue_nether_bricks_from_blue_nether_bricks_stonecutting"
+        "recipe": "netherdescent:blue_nether_bricks"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_blue_nether_bricks"
+      "has_blue_nether_brick"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:chiseled_blue_nether_bricks_from_blue_nether_bricks_stonecutting"
+      "netherdescent:blue_nether_bricks"
     ]
   }
 }
