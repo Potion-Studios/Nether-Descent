@@ -1,9 +1,11 @@
 package net.potionstudios.netherdescent.neoforge.datagen.generators;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
+import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.StructureTagsProvider;
 import net.minecraft.tags.BiomeTags;
@@ -74,7 +76,7 @@ public class TagsGenerator {
 			});
             tag(BlockTags.FENCES).add(NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get());
             tag(Tags.Blocks.FENCES_NETHER_BRICK).add(NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get());
-			tag(BlockTags.NETHER_CARVER_REPLACEABLES).add(NetherDescentBlocks.BLUE_NETHERRACK.get(), NetherDescentBlocks.WAILING_NYLIUM.get(), NetherDescentBlocks.EMBUR_NYLIUM.get(), NetherDescentBlocks.SYTHIAN_NYLIUM.get());
+			tag(BlockTags.BASE_STONE_NETHER).add(NetherDescentBlocks.BLUE_NETHERRACK.get());
 			tag(BlockTags.CLIMBABLE).add(NetherDescentBlocks.WAILING_VINE.get(), NetherDescentBlocks.EMBUR_GEL_VINES.get(), NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get());
 			tag(Tags.Blocks.NETHERRACKS).add(NetherDescentBlocks.BLUE_NETHERRACK.get());
 			tag(BlockTags.ENDERMAN_HOLDABLE).add(NetherDescentBlocks.EMBUR_NYLIUM.get(), NetherDescentBlocks.SYTHIAN_NYLIUM.get(), NetherDescentBlocks.WAILING_NYLIUM.get());
@@ -82,6 +84,13 @@ public class TagsGenerator {
 			tag(BlockTags.REPLACEABLE_BY_TREES).add(NetherDescentBlocks.EMBUR_SPROUTS.get());
 			tag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).add(NetherDescentBlocks.EMBUR_SPROUTS.get());
 			tag(BlockTags.INSIDE_STEP_SOUND_BLOCKS).add(NetherDescentBlocks.EMBUR_CAVE_MOSS.get());
+
+			IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> intrinsicTagAppender = this.tag(BlockTags.REPLACEABLE);
+			provider.lookupOrThrow(Registries.BLOCK)
+					.filterElements(block -> block.defaultBlockState().canBeReplaced())
+					.filterElements(block -> block.getDescriptionId().contains(NetherDescent.MOD_ID))
+					.listElementIds()
+					.forEach(intrinsicTagAppender::add);
 		}
 
 		private void easyBlockTags(Block object) {

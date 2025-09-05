@@ -8,7 +8,6 @@ import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.grower.TreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -72,10 +71,11 @@ public class NetherDescentWoodSet {
     /**
      * Creates a new wood set
      *
-     * @param blockSetType       The wood type
-     * @param mapColor           The map color
+     * @param blockSetType The wood type
+     * @param mapColor     The map color
+     * @param requiredBlock
      */
-    public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor, LogStem logstem, GrowerItem growerItem) {
+    public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor, LogStem logstem, GrowerItem growerItem, Supplier<? extends Block> requiredBlock) {
         this.woodType = PlatformHandler.PLATFORM_HANDLER.createWoodType(blockSetType.name(), blockSetType);
         this.name = blockSetType.name().replace(NetherDescent.MOD_ID + ":", "");
         this.logstemEnum = logstem;
@@ -93,7 +93,7 @@ public class NetherDescentWoodSet {
         this.trapdoor = NetherDescentBlocks.registerBlockItem(name + "_trapdoor", () -> new TrapDoorBlock(woodType.setType(), BlockBehaviour.Properties.of().mapColor(mapColor).instrument(NoteBlockInstrument.BASS).strength(3.0F).noOcclusion().isValidSpawn(Blocks::never).ignitedByLava()));
         this.pressurePlate = NetherDescentBlocks.registerBlockItem(name + "_pressure_plate", () -> new PressurePlateBlock(woodType.setType(), BlockBehaviour.Properties.of().mapColor(this.logstem.get().defaultMapColor()).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(0.5F).ignitedByLava().pushReaction(PushReaction.DESTROY)));
         this.button = NetherDescentBlocks.registerBlockItem(name + "_button", () -> (ButtonBlock) Blocks.woodenButton(woodType.setType()));
-        Supplier<FungusBlock> fungus = NetherDescentBlocks.registerBlockItem(name + "_" + growerItem.getName(), () -> new FungusBlock(null, null, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_FUNGUS).mapColor(mapColor)));
+        Supplier<FungusBlock> fungus = NetherDescentBlocks.registerBlockItem(name + "_" + growerItem.getName(), () -> new FungusBlock(null, requiredBlock.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_FUNGUS).mapColor(mapColor)));
         this.growerItem = new PottedBlock(fungus, NetherDescentBlocks.register("potted_" + name + "_" + growerItem.getName(), PlatformHandler.PLATFORM_HANDLER.createPottedBlock(fungus)));
         NetherDescentBlocks.BLOCKS.add(this.growerItem.pottedBlock());
         this.bookshelf = NetherDescentBlocks.registerBlockItem(name + "_bookshelf", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BOOKSHELF).mapColor(mapColor)));
@@ -111,16 +111,16 @@ public class NetherDescentWoodSet {
         woodSets.add(this);
     }
 
-    public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor) {
-        this(blockSetType, mapColor, LogStem.STEM, GrowerItem.FUNGUS);
+    public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor, Supplier<? extends Block> requiredBlock) {
+        this(blockSetType, mapColor, LogStem.STEM, GrowerItem.FUNGUS, requiredBlock);
     }
 
-    public NetherDescentWoodSet(String name, MapColor mapColor) {
-        this(BlockSetType.register(new BlockSetType(name)), mapColor);
+    public NetherDescentWoodSet(String name, MapColor mapColor, Supplier<? extends Block> requiredBlock) {
+        this(BlockSetType.register(new BlockSetType(name)), mapColor, requiredBlock);
     }
 
-    public NetherDescentWoodSet(String name, MapColor mapColor, LogStem logStem, GrowerItem growerItem) {
-        this(BlockSetType.register(new BlockSetType(name)), mapColor, logStem, growerItem);
+    public NetherDescentWoodSet(String name, MapColor mapColor, LogStem logStem, GrowerItem growerItem, Supplier<? extends Block> requiredBlock) {
+        this(BlockSetType.register(new BlockSetType(name)), mapColor, logStem, growerItem, requiredBlock);
     }
 
     public String name() {
