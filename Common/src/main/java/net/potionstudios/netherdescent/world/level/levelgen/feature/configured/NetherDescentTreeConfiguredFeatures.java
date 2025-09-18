@@ -22,12 +22,53 @@ import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.Place
 
 public class NetherDescentTreeConfiguredFeatures {
 
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_FUNGI_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_fungi_tree1",
+			TYGFeatures.TREE_FROM_NBT_V1,
+			() -> new TreeFromStructureNBTConfig(
+					NetherDescent.id("features/trees/sythian/sythian_fungi_trunk1"),
+					NetherDescent.id("features/trees/sythian/sythian_fungi_canopy1"),
+					BiasedToBottomInt.of(2, 4),
+					BlockStateProvider.simple(Blocks.DARK_OAK_LOG.defaultBlockState()),
+					new WeightedStateProvider(SimpleWeightedRandomList.single(Blocks.DARK_OAK_LEAVES.defaultBlockState())),
+					Blocks.OAK_LOG,
+					Blocks.OAK_LEAVES,
+					BlockTags.NYLIUM, 5
+			)
+	);
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_FUNGI_TREE2 = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_fungi_tree2",
+			TYGFeatures.TREE_FROM_NBT_V1,
+			() -> new TreeFromStructureNBTConfig(
+					NetherDescent.id("features/trees/sythian/sythian_fungi_trunk2"),
+					NetherDescent.id("features/trees/sythian/sythian_fungi_canopy2"),
+					BiasedToBottomInt.of(2, 4),
+					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()),
+					new WeightedStateProvider(SimpleWeightedRandomList.single(Blocks.NETHER_WART_BLOCK.defaultBlockState())),
+					Blocks.OAK_LOG,
+					Blocks.OAK_LEAVES,
+					BlockTags.NYLIUM, 4
+			)
+	);
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_FUNGI_TREES = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_fungi_trees",
+			Feature.RANDOM_SELECTOR,
+			(configuredFeatureBootstrapContext) -> {
+				HolderGetter<ConfiguredFeature<?, ?>> lookup = configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE);
+				return new RandomFeatureConfiguration(ImmutableList.of(
+						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(SYTHIAN_FUNGI_TREE1)), 0.25F),
+						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(SYTHIAN_FUNGI_TREE2)), 0.25F),
+						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(SYTHIAN_FUNGI_TREE1)), 0.25F)),
+						PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(SYTHIAN_FUNGI_TREE1)));
+			}
+	);
+
+	//EMBUR WART TREES ------------------------------------------------------------------------------------------------------------------------
 	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART1 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart1",
 			TYGFeatures.TREE_FROM_NBT_V1,
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/wart1_stem"),
 					NetherDescent.id("features/warts/embur/wart1_canopy"),
-					BiasedToBottomInt.of(1, 8),
+					BiasedToBottomInt.of(1, 2),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
 					Blocks.CRIMSON_STEM,
@@ -41,7 +82,7 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/wart2_stem"),
 					NetherDescent.id("features/warts/embur/wart2_canopy"),
-					BiasedToBottomInt.of(1, 8),
+					BiasedToBottomInt.of(1, 4),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
 					Blocks.CRIMSON_STEM,
@@ -55,7 +96,7 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/wart3_stem"),
 					NetherDescent.id("features/warts/embur/wart3_canopy"),
-					BiasedToBottomInt.of(1, 8),
+					BiasedToBottomInt.of(1, 4),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
 					Blocks.CRIMSON_STEM,
@@ -67,9 +108,9 @@ public class NetherDescentTreeConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART4 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart4",
 			TYGFeatures.TREE_FROM_NBT_V1,
 			() -> new TreeFromStructureNBTConfig(
-					NetherDescent.id("features/warts/embur/wart4_stem"),
-					NetherDescent.id("features/warts/embur/wart4_canopy"),
-					BiasedToBottomInt.of(1, 8),
+					NetherDescent.id("features/warts/embur/embur_trunk4"),
+					NetherDescent.id("features/warts/embur/embur_canopy4"),
+					BiasedToBottomInt.of(1, 4),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
 					Blocks.CRIMSON_STEM,
@@ -83,7 +124,35 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/wart5_stem"),
 					NetherDescent.id("features/warts/embur/wart5_canopy"),
-					BiasedToBottomInt.of(1, 8),
+					BiasedToBottomInt.of(1, 4),
+					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
+					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
+					Blocks.CRIMSON_STEM,
+					Blocks.NETHER_WART_BLOCK,
+					BlockTags.NYLIUM, 4
+			)
+	);
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART6 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart6",
+			TYGFeatures.TREE_FROM_NBT_V1,
+			() -> new TreeFromStructureNBTConfig(
+					NetherDescent.id("features/warts/embur/wart6_stem"),
+					NetherDescent.id("features/warts/embur/wart6_canopy"),
+					BiasedToBottomInt.of(1, 4),
+					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
+					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
+					Blocks.CRIMSON_STEM,
+					Blocks.NETHER_WART_BLOCK,
+					BlockTags.NYLIUM, 4
+			)
+	);
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART7 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart7",
+			TYGFeatures.TREE_FROM_NBT_V1,
+			() -> new TreeFromStructureNBTConfig(
+					NetherDescent.id("features/warts/embur/wart7_stem"),
+					NetherDescent.id("features/warts/embur/wart7_canopy"),
+					BiasedToBottomInt.of(1, 4),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
 					Blocks.CRIMSON_STEM,
@@ -97,11 +166,13 @@ public class NetherDescentTreeConfiguredFeatures {
 			(configuredFeatureBootstrapContext) -> {
 				HolderGetter<ConfiguredFeature<?, ?>> lookup = configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE);
 				return new RandomFeatureConfiguration(ImmutableList.of(
-						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_WART1)), 0.18F),
-						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_WART2)), 0.18F),
+						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_WART1)), 0.1F),
+						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_WART2)), 0.1F),
 						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_WART3)), 0.18F),
-						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_WART4)), 0.18F)),
-						PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_WART5)));
+						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_WART4)), 0.1F),
+						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_WART5)), 0.1F),
+						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_WART6)), 0.1F)),
+						PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_WART7)));
 			}
 	);
 

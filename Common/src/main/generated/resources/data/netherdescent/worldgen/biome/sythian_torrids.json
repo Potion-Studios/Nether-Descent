@@ -56,6 +56,10 @@
       "minecraft:ore_quartz_nether",
       "minecraft:ore_ancient_debris_large",
       "minecraft:ore_debris_small"
+    ],
+    [],
+    [
+      "netherdescent:sythian_fungi_trees"
     ]
   ],
   "has_precipitation": false,

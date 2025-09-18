@@ -2,19 +2,19 @@
   "type": "minecraft:random_selector",
   "config": {
     "default": {
-      "feature": "netherdescent:embur_wart5",
+      "feature": "netherdescent:embur_wart7",
       "placement": []
     },
     "features": [
       {
-        "chance": 0.18,
+        "chance": 0.1,
         "feature": {
           "feature": "netherdescent:embur_wart1",
           "placement": []
         }
       },
       {
-        "chance": 0.18,
+        "chance": 0.1,
         "feature": {
           "feature": "netherdescent:embur_wart2",
           "placement": []
@@ -28,9 +28,23 @@
         }
       },
       {
-        "chance": 0.18,
+        "chance": 0.1,
         "feature": {
           "feature": "netherdescent:embur_wart4",
+          "placement": []
+        }
+      },
+      {
+        "chance": 0.1,
+        "feature": {
+          "feature": "netherdescent:embur_wart5",
+          "placement": []
+        }
+      },
+      {
+        "chance": 0.1,
+        "feature": {
+          "feature": "netherdescent:embur_wart6",
           "placement": []
         }
       }
