@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.world.level.levelgen.feature.placed;
 
-import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.placement.BiomeFilter;
 import net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement;

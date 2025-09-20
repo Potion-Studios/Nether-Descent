@@ -16,15 +16,10 @@
       "min_inclusive": 1
     },
     "leaves_provider": {
-      "type": "minecraft:weighted_state_provider",
-      "entries": [
-        {
-          "data": {
-            "Name": "netherdescent:embur_gel_block"
-          },
-          "weight": 1
-        }
-      ]
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "netherdescent:embur_gel_block"
+      }
     },
     "leaves_target": [
       "minecraft:nether_wart_block"

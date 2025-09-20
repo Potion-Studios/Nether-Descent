@@ -29,7 +29,7 @@ public class NetherDescentTreeConfiguredFeatures {
 					NetherDescent.id("features/trees/sythian/sythian_fungi_canopy1"),
 					BiasedToBottomInt.of(2, 4),
 					BlockStateProvider.simple(Blocks.DARK_OAK_LOG.defaultBlockState()),
-					new WeightedStateProvider(SimpleWeightedRandomList.single(Blocks.DARK_OAK_LEAVES.defaultBlockState())),
+					BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK.defaultBlockState()),
 					Blocks.OAK_LOG,
 					Blocks.OAK_LEAVES,
 					BlockTags.NYLIUM, 5
@@ -43,7 +43,7 @@ public class NetherDescentTreeConfiguredFeatures {
 					NetherDescent.id("features/trees/sythian/sythian_fungi_canopy2"),
 					BiasedToBottomInt.of(2, 4),
 					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()),
-					new WeightedStateProvider(SimpleWeightedRandomList.single(Blocks.NETHER_WART_BLOCK.defaultBlockState())),
+					BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK.defaultBlockState()),
 					Blocks.OAK_LOG,
 					Blocks.OAK_LEAVES,
 					BlockTags.NYLIUM, 4
@@ -70,7 +70,7 @@ public class NetherDescentTreeConfiguredFeatures {
 					NetherDescent.id("features/warts/embur/wart1_canopy"),
 					BiasedToBottomInt.of(1, 2),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
-					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
+					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
 					Blocks.NETHER_WART_BLOCK,
 					BlockTags.NYLIUM, 4
@@ -84,7 +84,7 @@ public class NetherDescentTreeConfiguredFeatures {
 					NetherDescent.id("features/warts/embur/wart2_canopy"),
 					BiasedToBottomInt.of(1, 4),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
-					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
+					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
 					Blocks.NETHER_WART_BLOCK,
 					BlockTags.NYLIUM, 4
@@ -98,7 +98,7 @@ public class NetherDescentTreeConfiguredFeatures {
 					NetherDescent.id("features/warts/embur/wart3_canopy"),
 					BiasedToBottomInt.of(1, 4),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
-					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
+					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
 					Blocks.NETHER_WART_BLOCK,
 					BlockTags.NYLIUM, 4
@@ -112,7 +112,7 @@ public class NetherDescentTreeConfiguredFeatures {
 					NetherDescent.id("features/warts/embur/embur_canopy4"),
 					BiasedToBottomInt.of(1, 4),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
-					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
+					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
 					Blocks.NETHER_WART_BLOCK,
 					BlockTags.NYLIUM, 4
@@ -126,7 +126,7 @@ public class NetherDescentTreeConfiguredFeatures {
 					NetherDescent.id("features/warts/embur/wart5_canopy"),
 					BiasedToBottomInt.of(1, 4),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
-					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
+					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
 					Blocks.NETHER_WART_BLOCK,
 					BlockTags.NYLIUM, 4
@@ -140,7 +140,7 @@ public class NetherDescentTreeConfiguredFeatures {
 					NetherDescent.id("features/warts/embur/wart6_canopy"),
 					BiasedToBottomInt.of(1, 4),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
-					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
+					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
 					Blocks.NETHER_WART_BLOCK,
 					BlockTags.NYLIUM, 4
@@ -154,7 +154,7 @@ public class NetherDescentTreeConfiguredFeatures {
 					NetherDescent.id("features/warts/embur/wart7_canopy"),
 					BiasedToBottomInt.of(1, 4),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
-					new WeightedStateProvider(SimpleWeightedRandomList.single(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState())),
+					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
 					Blocks.NETHER_WART_BLOCK,
 					BlockTags.NYLIUM, 4
