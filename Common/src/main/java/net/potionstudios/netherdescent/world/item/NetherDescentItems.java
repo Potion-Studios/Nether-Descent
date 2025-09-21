@@ -5,6 +5,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PlaceOnWaterBlockItem;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
+import net.potionstudios.netherdescent.world.item.custom.SythianScaffoldingBlockItem;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ public class NetherDescentItems {
 
     public static final Supplier<PlaceOnWaterBlockItem> EMBUR_LILY = registerItemNoLang("embur_lily", () -> new PlaceOnWaterBlockItem(NetherDescentBlocks.EMBUR_LILY.get(), new Item.Properties()));
     //public static final Supplier<Item> CRIMSON_BERRIES = registerSimpleItem()
+
+    public static final Supplier<SythianScaffoldingBlockItem> SYTHIAN_SCAFFOLDING = registerItemNoLang("sythian_scaffolding", () -> new SythianScaffoldingBlockItem(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), new Item.Properties()));
 
     public static <I extends Item> Supplier<I> registerSimpleItem(String id, Supplier<I> item) {
         Supplier<I> supplier = registerItem(id, item);

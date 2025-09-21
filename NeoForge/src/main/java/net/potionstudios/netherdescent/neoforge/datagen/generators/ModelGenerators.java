@@ -159,6 +159,30 @@ public class ModelGenerators {
             simpleBlockItem(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), models().carpet(name(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()), blockTexture(NetherDescentBlocks.EMBUR_MOSS_CARPET.get())).renderType("cutout"));
             models().withExistingParent(name(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()) + "_side_small", NetherDescent.id("block/mossy_carpet_side")).texture("side", blockNDTexture(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), "side_small")).renderType("cutout");
             models().withExistingParent(name(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()) + "_side_tall", NetherDescent.id("block/mossy_carpet_side")).texture("side", blockNDTexture(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), "side_tall")).renderType("cutout");
+
+            var stableScaffolding = models().withExistingParent(name(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get()) + "_stable", mcLoc("block/scaffolding_stable"))
+                    .texture("particle", blockNDTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "top"))
+                    .texture("top", blockNDTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "top"))
+                    .texture("bottom", blockNDTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "bottom"))
+                    .texture("side", blockNDTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "side"))
+                    .renderType("cutout");
+
+            var unstableScaffolding = models().withExistingParent(name(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get()) + "_unstable", mcLoc("block/scaffolding_unstable"))
+                    .texture("particle", blockNDTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "top"))
+                    .texture("top", blockNDTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "top"))
+                    .texture("bottom", blockNDTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "bottom"))
+                    .texture("side", blockNDTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "side"))
+                    .renderType("cutout");
+
+            getVariantBuilder(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get())
+                    .forAllStatesExcept(state -> {
+                        if (state.getValue(ScaffoldingBlock.BOTTOM))
+                            return ConfiguredModel.builder().modelFile(unstableScaffolding).build();
+                        else return ConfiguredModel.builder().modelFile(stableScaffolding).build();
+                    }, ScaffoldingBlock.WATERLOGGED, ScaffoldingBlock.DISTANCE);
+
+
+            itemModels().getBuilder(name(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get())).parent(stableScaffolding);
 		}
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {

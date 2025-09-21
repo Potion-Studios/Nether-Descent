@@ -82,6 +82,15 @@ public class RecipeGenerator extends RecipeProvider {
 						.save(recipeOutput);
 
         NDNineBlockStorageRecipes(recipeOutput, RecipeCategory.MISC, NetherDescentItems.EMBUR_GEL_BALL.get(), RecipeCategory.MISC, NetherDescentBlocks.EMBUR_GEL_BLOCK.get(), getSimpleRecipeName(NetherDescentBlocks.EMBUR_GEL_BLOCK.get()), null, getSimpleRecipeName(NetherDescentItems.EMBUR_GEL_BALL.get()), null);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentItems.SYTHIAN_SCAFFOLDING.get(), 6)
+                .define('~', Items.STRING)
+                .define('I', NetherDescentBlocks.SYTHIAN.planks())
+                .pattern("I~I")
+                .pattern("I I")
+                .pattern("I I")
+                .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN.planks()), has(NetherDescentBlocks.SYTHIAN.planks()))
+                .save(recipeOutput);
     }
 
 	private static void NDNineBlockStorageRecipes(RecipeOutput recipeOutput, RecipeCategory unpackedCategory, ItemLike unpacked, RecipeCategory packedCategory, ItemLike packed, String packedName, @Nullable String packedGroup, String unpackedName, @Nullable String unpackedGroup) {
@@ -98,7 +107,7 @@ public class RecipeGenerator extends RecipeProvider {
 				.group(packedGroup)
 				.unlockedBy(getHasName(unpacked), has(unpacked))
 				.save(recipeOutput, NetherDescent.id(packedName));
-	}
+    }
 
 	protected static void stonecutterResultFromBase(RecipeOutput recipeOutput, RecipeCategory category, ItemLike result, ItemLike material, int resultCount) {
 		SingleItemRecipeBuilder.stonecutting(Ingredient.of(material), category, result, resultCount)
