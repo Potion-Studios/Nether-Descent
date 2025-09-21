@@ -84,6 +84,7 @@ public class TagsGenerator {
 			tag(BlockTags.REPLACEABLE_BY_TREES).add(NetherDescentBlocks.EMBUR_SPROUTS.get());
 			tag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).add(NetherDescentBlocks.EMBUR_SPROUTS.get());
 			tag(BlockTags.INSIDE_STEP_SOUND_BLOCKS).add(NetherDescentBlocks.EMBUR_CAVE_MOSS.get());
+            tag(BlockTags.NYLIUM).add(NetherDescentBlocks.SYTHIAN_SOIL.get(), NetherDescentBlocks.EMBUR_MOSS_BLOCK.get());
 
 			IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> intrinsicTagAppender = this.tag(BlockTags.REPLACEABLE);
 			provider.lookupOrThrow(Registries.BLOCK)

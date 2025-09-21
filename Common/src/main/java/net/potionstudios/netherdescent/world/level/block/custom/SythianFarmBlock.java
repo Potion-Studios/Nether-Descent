@@ -79,11 +79,6 @@ public class SythianFarmBlock extends Block {
     }
 
     @Override
-    protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-
-    }
-
-    @Override
     public void fallOn(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos pos, @NotNull Entity entity, float fallDistance) {
         if (!level.isClientSide()
                 && level.random.nextFloat() < fallDistance - 0.5F
@@ -114,7 +109,7 @@ public class SythianFarmBlock extends Block {
 
     @Override
     protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
-        if (!state.getValue(MOSSY) && stack.is(NetherDescentBlocks.EMBUR_MOSS_BLOCK.get().asItem())) {
+        if (!state.getValue(MOSSY) && stack.is(NetherDescentBlocks.EMBUR_CAVE_MOSS.get().asItem())) {
             level.setBlockAndUpdate(pos, state.setValue(MOSSY, true));
             if (!player.isCreative())
                 stack.shrink(1);

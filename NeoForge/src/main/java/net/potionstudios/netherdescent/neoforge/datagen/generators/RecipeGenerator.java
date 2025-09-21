@@ -91,6 +91,8 @@ public class RecipeGenerator extends RecipeProvider {
                 .pattern("I I")
                 .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN.planks()), has(NetherDescentBlocks.SYTHIAN.planks()))
                 .save(recipeOutput);
+
+        twoByTwoPacker(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.EMBUR_MOSS_BLOCK.get(), NetherDescentBlocks.EMBUR_CAVE_MOSS.get());
     }
 
 	private static void NDNineBlockStorageRecipes(RecipeOutput recipeOutput, RecipeCategory unpackedCategory, ItemLike unpacked, RecipeCategory packedCategory, ItemLike packed, String packedName, @Nullable String packedGroup, String unpackedName, @Nullable String unpackedGroup) {
