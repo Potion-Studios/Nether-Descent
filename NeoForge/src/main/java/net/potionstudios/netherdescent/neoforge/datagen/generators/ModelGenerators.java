@@ -16,6 +16,7 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.custom.HangingMossBlock;
+import net.potionstudios.netherdescent.world.level.block.custom.SythianFarmBlock;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 
@@ -183,6 +184,18 @@ public class ModelGenerators {
 
 
             itemModels().getBuilder(name(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get())).parent(stableScaffolding);
+
+            getVariantBuilder(NetherDescentBlocks.SYTHIAN_FARMLAND.get()).forAllStates(state -> {
+                if (state.getValue(SythianFarmBlock.MOSSY)) return ConfiguredModel.builder()
+                        .modelFile(models().withExistingParent(name(NetherDescentBlocks.SYTHIAN_FARMLAND.get()) + "_mossy", "template_farmland")
+                                .texture("dirt", blockTexture(NetherDescentBlocks.SYTHIAN_SOIL.get()))
+                                .texture("top", blockNDTexture(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), "mossy"))).build();
+                else return ConfiguredModel.builder()
+                        .modelFile(models().withExistingParent(name(NetherDescentBlocks.SYTHIAN_FARMLAND.get()), "template_farmland")
+                                .texture("dirt", blockTexture(NetherDescentBlocks.SYTHIAN_SOIL.get()))
+                                .texture("top", blockTexture(NetherDescentBlocks.SYTHIAN_FARMLAND.get()))).build();
+            });
+            simpleBlockItemExistingModel(NetherDescentBlocks.SYTHIAN_FARMLAND.get());
 		}
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {
@@ -285,5 +298,9 @@ public class ModelGenerators {
 		private ResourceLocation woodBlockTexture(String type, String name) {
 			return NetherDescent.id(ModelProvider.BLOCK_FOLDER + "/" + type + "/" + name);
 		}
+
+        private void simpleBlockItemExistingModel(Block block) {
+            simpleBlockItem(block, models().getExistingFile(blockTexture(block)));
+        }
 	}
 }

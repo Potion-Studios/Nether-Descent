@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_farmland",
+  "textures": {
+    "dirt": "netherdescent:block/sythian_soil",
+    "top": "netherdescent:block/sythian_farmland_mossy"
+  }
+}

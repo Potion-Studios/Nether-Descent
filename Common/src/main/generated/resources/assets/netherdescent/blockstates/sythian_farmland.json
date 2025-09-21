@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "mossy=false": {
+      "model": "netherdescent:block/sythian_farmland"
+    },
+    "mossy=true": {
+      "model": "netherdescent:block/sythian_farmland_mossy"
+    }
+  }
+}

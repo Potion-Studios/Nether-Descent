@@ -57,6 +57,7 @@ class BlockLootGenerator extends BlockLootSubProvider {
                 add(block, createMultifaceBlockDrops(block, HAS_SHEARS));
             else dropSelf(block);
         });
+        dropOther(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), NetherDescentBlocks.SYTHIAN_SOIL.get());
     }
 
     @Override

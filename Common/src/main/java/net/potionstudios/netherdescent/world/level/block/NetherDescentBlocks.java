@@ -49,6 +49,8 @@ public class NetherDescentBlocks {
     public static final Supplier<HangingMossBlock> EMBUR_HANGING_MOSS = registerBlockItem("embur_hanging_moss", () -> new HangingMossBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES).mapColor(MapColor.COLOR_ORANGE).noCollission().strength(0.2F).dynamicShape()));
 
     public static final Supplier<NetherDescentNyliumBlock> SYTHIAN_NYLIUM = registerBlockItem("sythian_nylium", () -> new NetherDescentNyliumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM).mapColor(MapColor.COLOR_YELLOW), Blocks.NETHERRACK, null));
+    public static final Supplier<Block> SYTHIAN_SOIL = registerBasicBlockWithItem("sythian_soil", BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT));
+    public static final Supplier<SythianFarmBlock> SYTHIAN_FARMLAND = registerBlockItem("sythian_farmland", () -> new SythianFarmBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND), SYTHIAN_SOIL));
 
     public static final Supplier<ScaffoldingBlock> SYTHIAN_SCAFFOLDING = registerBlock("sythian_scaffolding", () -> new SythianScaffoldingBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SCAFFOLDING).mapColor(MapColor.COLOR_YELLOW).lightLevel((blockState) -> 14)));
 
