@@ -1,11 +1,12 @@
 {
   "required": true,
-  "package": "com.example.examplemod.mixin",
+  "package": "net.potionstudios.netherdescent.mixin",
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "client": [
   ],
   "mixins": [
+    "NaturalSpawnerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
