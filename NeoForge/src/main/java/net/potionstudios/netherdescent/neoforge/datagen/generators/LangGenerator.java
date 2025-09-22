@@ -3,6 +3,7 @@ package net.potionstudios.netherdescent.neoforge.datagen.generators;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
@@ -27,6 +28,8 @@ public class LangGenerator extends LanguageProvider {
 		NetherDescentBlocks.BLOCKS.forEach(block -> add(block.get(), getBlockName(block)));
 		NetherDescentItems.ITEMS.forEach(item -> add(item.get(), getItemName(item)));
 		NetherDescentBiomes.BIOME_FACTORIES.forEach((key, factory) -> add("biome." + NetherDescent.MOD_ID + "." + key.location().getPath(), getBiomeName(key)));
+        add(death("crimsonBerryBush"), "%1$s was poked to death by a crimson berry bush");
+        add(death("crimsonBerryBush.player"), "%1$s was poked to death by a crimson berry bush while trying to escape %2$s");
 	}
 
 	private String getBlockName(Supplier<? extends Block> item) {
@@ -40,6 +43,10 @@ public class LangGenerator extends LanguageProvider {
 	private String getBiomeName(ResourceKey<Biome> biome) {
 		return getId(biome.location().getPath());
 	}
+
+    private static String death(String key) {
+        return "death.attack." + NetherDescent.MOD_ID + "." + key;
+    }
 
 	@NotNull
 	private String getId(String name) {
