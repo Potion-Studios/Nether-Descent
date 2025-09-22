@@ -17,6 +17,7 @@ import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.custom.HangingMossBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.SythianFarmBlock;
+import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 
@@ -196,6 +197,10 @@ public class ModelGenerators {
                                 .texture("top", blockTexture(NetherDescentBlocks.SYTHIAN_FARMLAND.get()))).build();
             });
             simpleBlockItemExistingModel(NetherDescentBlocks.SYTHIAN_FARMLAND.get());
+
+            getVariantBuilder(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get()).forAllStates(state -> ConfiguredModel.builder()
+                    .modelFile(models().cross(name(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get()) + "_stage" + state.getValue(CrimsonBerryBushBlock.AGE), blockNDTexture(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get(), "stage" + state.getValue(CrimsonBerryBushBlock.AGE))).renderType("cutout"))
+                    .build());
 		}
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {

@@ -1,7 +1,11 @@
 package net.potionstudios.netherdescent.world.item;
 
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.PlaceOnWaterBlockItem;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
@@ -21,9 +25,11 @@ public class NetherDescentItems {
     public static final Supplier<Item> EMBUR_GEL_BALL = registerSimpleItem("embur_gel_ball", () -> new Item(new Item.Properties()));
 
     public static final Supplier<PlaceOnWaterBlockItem> EMBUR_LILY = registerItemNoLang("embur_lily", () -> new PlaceOnWaterBlockItem(NetherDescentBlocks.EMBUR_LILY.get(), new Item.Properties()));
-    //public static final Supplier<Item> CRIMSON_BERRIES = registerSimpleItem()
 
     public static final Supplier<SythianScaffoldingBlockItem> SYTHIAN_SCAFFOLDING = registerItemNoLang("sythian_scaffolding", () -> new SythianScaffoldingBlockItem(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), new Item.Properties()));
+
+    public static final Supplier<Item> CRIMSON_BERRIES = registerSimpleItem("crimson_berries", () -> new ItemNameBlockItem(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 1), 1.0F).build())));
+    public static final Supplier<Item> CRIMSON_BERRY_PIE = registerSimpleItem("crimson_berry_pie", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.3F).effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 600, 1), 1.0F).build())));
 
     public static <I extends Item> Supplier<I> registerSimpleItem(String id, Supplier<I> item) {
         Supplier<I> supplier = registerItem(id, item);
