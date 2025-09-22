@@ -31,7 +31,7 @@ public class NetherDescentClientFabric implements ClientModInitializer {
 	 */
 	private void registerRenderTypes() {
 		NetherDescentBlocks.BLOCKS.forEach(entry -> renderTypeBlock(entry.get()));
-        BlockRenderLayerMap.INSTANCE.putBlock(NetherDescentBlocks.EMBUR_GEL_BLOCK.get(), RenderType.translucent());
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.translucent(), NetherDescentBlocks.EMBUR_GEL_BLOCK.get(), NetherDescentBlocks.EMBUR.door(), NetherDescentBlocks.EMBUR.trapdoor());
 	}
 
 	private void renderTypeBlock(Block block) {

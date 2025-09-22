@@ -105,9 +105,9 @@ public class ModelGenerators {
                 simpleBlock(set.growerItem().getPottedBlock(), models().withExistingParent(name(set.growerItem().getPottedBlock()), mcLoc("block/flower_pot_cross")).texture("plant", woodBlockTexture(set.name(), set.growerItemEnum().getName())).renderType("cutout"));
                 signBlock(set.sign(), set.wallSign(), planksTexture);
 				hangingSignBlock(set.hangingSign(), set.wallHangingSign(), models().sign(name(set.hangingSign()), strippedLogTexture));
-				trapdoorBlockWithRenderType(set.trapdoor(), woodBlockTexture(set.name(), "trapdoor"), true, "cutout");
-				itemModels().trapdoorBottom(name(set.trapdoor()), woodBlockTexture(set.name(), "trapdoor")).renderType("cutout");
-				doorBlockWithRenderType(set.door(), woodBlockTexture(set.name(), "door_bottom"), woodBlockTexture(set.name(), "door_top"), "cutout");
+				trapdoorBlockWithRenderType(set.trapdoor(), woodBlockTexture(set.name(), "trapdoor"), true, set != NetherDescentBlocks.EMBUR ? "cutout" : "translucent");
+				itemModels().trapdoorBottom(name(set.trapdoor()), woodBlockTexture(set.name(), "trapdoor")).renderType(set != NetherDescentBlocks.EMBUR ? "cutout" : "translucent");
+				doorBlockWithRenderType(set.door(), woodBlockTexture(set.name(), "door_bottom"), woodBlockTexture(set.name(), "door_top"), set != NetherDescentBlocks.EMBUR ? "cutout" : "translucent");
 				pressurePlateBlock(set.pressurePlate(), planksTexture);
 				itemModels().pressurePlate(name(set.pressurePlate()), planksTexture);
 				simpleBlockWithItem(set.bookshelf(), models().cubeColumn(name(set.bookshelf()), woodBlockTexture(set.name(), "bookshelf"), planksTexture));
