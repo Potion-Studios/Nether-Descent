@@ -39,8 +39,9 @@ public class NetherDescentSurfaceRules {
             makeStateRule(NetherDescentBlocks.BLUE_NETHERRACK.get())
     ));
 
-    private static final SurfaceRules.RuleSource SYTHIAN_TORRIDS = makeifTrueRule(NetherDescentBiomes.SYTHIAN_TORRIDS,
-            makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.SYTHIAN_NYLIUM.get()));
+    private static final SurfaceRules.RuleSource SYTHIAN_TORRIDS = makeifTrueRule(NetherDescentBiomes.SYTHIAN_TORRIDS, SurfaceRules.sequence(
+            makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.SYTHIAN_NYLIUM.get()))
+    ));
 
     private static final SurfaceRules.RuleSource WAILING_GARTH = makeifTrueRule(NetherDescentBiomes.WAILING_GARTH, SurfaceRules.sequence(
             NetherDescentRuleSources.weightedRuleSource(SimpleWeightedRandomList.<SurfaceRules.RuleSource>builder()

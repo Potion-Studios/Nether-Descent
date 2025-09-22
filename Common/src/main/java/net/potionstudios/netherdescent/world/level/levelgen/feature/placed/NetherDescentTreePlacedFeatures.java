@@ -10,8 +10,8 @@ import java.util.List;
 
 public class NetherDescentTreePlacedFeatures {
 
-	public static final ResourceKey<PlacedFeature> EMBUR_WARTS = PlacedFeaturesUtil.createPlacedFeature("embur_warts", NetherDescentTreeConfiguredFeatures.EMBUR_WARTS, () -> List.of(CountOnEveryLayerPlacement.of(6), BiomeFilter.biome()));
-	public static final ResourceKey<PlacedFeature> SYTHIAN_FUNGI_TREES = PlacedFeaturesUtil.createPlacedFeature("sythian_fungi_trees", NetherDescentTreeConfiguredFeatures.SYTHIAN_FUNGI_TREES, () -> List.of(CountOnEveryLayerPlacement.of(6), BiomeFilter.biome()));
+	public static final ResourceKey<PlacedFeature> EMBUR_WARTS = PlacedFeaturesUtil.createPlacedFeature("embur_warts", NetherDescentTreeConfiguredFeatures.EMBUR_WARTS, () -> List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome()));
+	public static final ResourceKey<PlacedFeature> SYTHIAN_FUNGI_TREES = PlacedFeaturesUtil.createPlacedFeature("sythian_fungi_trees", NetherDescentTreeConfiguredFeatures.SYTHIAN_FUNGI_TREES, () -> List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome()));
 
 	public static void treePlacedFeatures() {
 		NetherDescentTreeConfiguredFeatures.treeConfiguredFeatures();

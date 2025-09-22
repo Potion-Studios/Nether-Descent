@@ -1,7 +1,7 @@
 {
   "type": "ohthetreesyoullgrow:tree_from_nbt_v1",
   "config": {
-    "base_location": "netherdescent:features/warts/embur/wart2_stem",
+    "base_location": "netherdescent:features/trees/sythian/sythian_fungi_trunk4",
     "can_grow_on_filter": {
       "type": "minecraft:matching_block_tag",
       "tag": "minecraft:nylium"
@@ -9,32 +9,32 @@
     "can_leaves_place_filter": {
       "type": "minecraft:replaceable"
     },
-    "canopy_location": "netherdescent:features/warts/embur/wart2_canopy",
+    "canopy_location": "netherdescent:features/trees/sythian/sythian_fungi_canopy4",
     "height": {
       "type": "minecraft:biased_to_bottom",
-      "max_inclusive": 8,
-      "min_inclusive": 4
+      "max_inclusive": 25,
+      "min_inclusive": 18
     },
     "leaves_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "netherdescent:embur_gel_block"
+        "Name": "minecraft:nether_wart_block"
       }
     },
     "leaves_target": [
-      "minecraft:nether_wart_block"
+      "minecraft:oak_leaves"
     ],
     "log_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "netherdescent:embur_pedu",
+        "Name": "netherdescent:sythian_stem",
         "Properties": {
           "axis": "y"
         }
       }
     },
     "log_target": [
-      "minecraft:crimson_stem"
+      "minecraft:oak_log"
     ],
     "max_log_depth": 4,
     "place_from_nbt": []

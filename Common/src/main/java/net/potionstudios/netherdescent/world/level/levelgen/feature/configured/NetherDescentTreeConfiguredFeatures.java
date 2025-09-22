@@ -27,8 +27,8 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/trees/sythian/sythian_fungi_trunk1"),
 					NetherDescent.id("features/trees/sythian/sythian_fungi_canopy1"),
-					BiasedToBottomInt.of(2, 4),
-					BlockStateProvider.simple(Blocks.DARK_OAK_LOG.defaultBlockState()),
+					BiasedToBottomInt.of(9, 12),
+					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()),
 					BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK.defaultBlockState()),
 					Blocks.OAK_LOG,
 					Blocks.OAK_LEAVES,
@@ -41,7 +41,49 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/trees/sythian/sythian_fungi_trunk2"),
 					NetherDescent.id("features/trees/sythian/sythian_fungi_canopy2"),
-					BiasedToBottomInt.of(2, 4),
+					BiasedToBottomInt.of(10, 14),
+					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()),
+					BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK.defaultBlockState()),
+					Blocks.OAK_LOG,
+					Blocks.OAK_LEAVES,
+					BlockTags.NYLIUM, 4
+			)
+	);
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_FUNGI_TREE3 = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_fungi_tree3",
+			TYGFeatures.TREE_FROM_NBT_V1,
+			() -> new TreeFromStructureNBTConfig(
+					NetherDescent.id("features/trees/sythian/sythian_fungi_trunk3"),
+					NetherDescent.id("features/trees/sythian/sythian_fungi_canopy3"),
+					BiasedToBottomInt.of(15, 20),
+					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()),
+					BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK.defaultBlockState()),
+					Blocks.OAK_LOG,
+					Blocks.OAK_LEAVES,
+					BlockTags.NYLIUM, 4
+			)
+	);
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_FUNGI_TREE4 = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_fungi_tree4",
+			TYGFeatures.TREE_FROM_NBT_V1,
+			() -> new TreeFromStructureNBTConfig(
+					NetherDescent.id("features/trees/sythian/sythian_fungi_trunk4"),
+					NetherDescent.id("features/trees/sythian/sythian_fungi_canopy4"),
+					BiasedToBottomInt.of(18, 25),
+					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()),
+					BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK.defaultBlockState()),
+					Blocks.OAK_LOG,
+					Blocks.OAK_LEAVES,
+					BlockTags.NYLIUM, 4
+			)
+	);
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_FUNGI_TREE5 = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_fungi_tree5",
+			TYGFeatures.TREE_FROM_NBT_V1,
+			() -> new TreeFromStructureNBTConfig(
+					NetherDescent.id("features/trees/sythian/sythian_fungi_trunk5"),
+					NetherDescent.id("features/trees/sythian/sythian_fungi_canopy5"),
+					BiasedToBottomInt.of(20, 40),
 					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()),
 					BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK.defaultBlockState()),
 					Blocks.OAK_LOG,
@@ -55,10 +97,11 @@ public class NetherDescentTreeConfiguredFeatures {
 			(configuredFeatureBootstrapContext) -> {
 				HolderGetter<ConfiguredFeature<?, ?>> lookup = configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE);
 				return new RandomFeatureConfiguration(ImmutableList.of(
-						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(SYTHIAN_FUNGI_TREE1)), 0.25F),
-						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(SYTHIAN_FUNGI_TREE2)), 0.25F),
-						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(SYTHIAN_FUNGI_TREE1)), 0.25F)),
-						PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(SYTHIAN_FUNGI_TREE1)));
+						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(SYTHIAN_FUNGI_TREE1)), 0.2F),
+						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(SYTHIAN_FUNGI_TREE2)), 0.2F),
+						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(SYTHIAN_FUNGI_TREE3)), 0.2F),
+						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(SYTHIAN_FUNGI_TREE4)), 0.2F)),
+						PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(SYTHIAN_FUNGI_TREE5)));
 			}
 	);
 
@@ -68,7 +111,7 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/wart1_stem"),
 					NetherDescent.id("features/warts/embur/wart1_canopy"),
-					BiasedToBottomInt.of(1, 2),
+					BiasedToBottomInt.of(2, 4),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
@@ -82,7 +125,7 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/wart2_stem"),
 					NetherDescent.id("features/warts/embur/wart2_canopy"),
-					BiasedToBottomInt.of(1, 4),
+					BiasedToBottomInt.of(4, 8),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
@@ -96,7 +139,7 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/wart3_stem"),
 					NetherDescent.id("features/warts/embur/wart3_canopy"),
-					BiasedToBottomInt.of(1, 4),
+					BiasedToBottomInt.of(6, 10),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
@@ -110,7 +153,7 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/embur_trunk4"),
 					NetherDescent.id("features/warts/embur/embur_canopy4"),
-					BiasedToBottomInt.of(1, 4),
+					BiasedToBottomInt.of(10, 14),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
@@ -124,7 +167,7 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/wart5_stem"),
 					NetherDescent.id("features/warts/embur/wart5_canopy"),
-					BiasedToBottomInt.of(1, 4),
+					BiasedToBottomInt.of(14, 18),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
@@ -138,7 +181,7 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/wart6_stem"),
 					NetherDescent.id("features/warts/embur/wart6_canopy"),
-					BiasedToBottomInt.of(1, 4),
+					BiasedToBottomInt.of(11, 15),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
@@ -152,7 +195,7 @@ public class NetherDescentTreeConfiguredFeatures {
 			() -> new TreeFromStructureNBTConfig(
 					NetherDescent.id("features/warts/embur/wart7_stem"),
 					NetherDescent.id("features/warts/embur/wart7_canopy"),
-					BiasedToBottomInt.of(1, 4),
+					BiasedToBottomInt.of(11, 15),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
