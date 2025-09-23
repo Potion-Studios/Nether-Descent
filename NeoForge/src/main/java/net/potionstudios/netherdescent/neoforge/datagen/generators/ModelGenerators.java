@@ -126,7 +126,7 @@ public class ModelGenerators {
 			createDoubleBlock(NetherDescentBlocks.TALL_EMBUR_ROOTS.get());
 
             createCrossBlock(NetherDescentBlocks.SYTHIAN_SPROUTS.get(), "cutout");
-            simpleBlockItem(NetherDescentBlocks.SYTHIAN_SPROUTS.get(), models().getExistingFile(modLoc("block/" + name(NetherDescentBlocks.SYTHIAN_SPROUTS.get()))));
+            simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_SPROUTS.get());
 
 			for (int y : new int[]{0, 90, 180, 270})
 				for (int x : new int[]{0, 90, 180, 270})
