@@ -36,6 +36,9 @@ public class NetherDescentConfiguredFeatures {
 
     //public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_PATCH_BONEMEAL = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock();
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_SPROUT = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("sythian_sprout", NetherDescentBlocks.SYTHIAN_SPROUTS, 15);
+
+
     public static void configuredFeatures() {
         NetherDescent.LOGGER.info("Registering Nether Descent Configured Features");
         NetherDescentTreeConfiguredFeatures.treeConfiguredFeatures();

@@ -72,6 +72,7 @@ public class NetherDescentBiomeBuilder {
         BiomeGenerationSettings.Builder generationSettings = setupDefaultNetherGeneration(placedFeatureHolderGetter, carverGetter);
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 
+        addVegetal(generationSettings, NetherDescentPlacedFeatures.SYTHIAN_SPROUT);
         addVegetal(generationSettings, NetherDescentTreePlacedFeatures.SYTHIAN_FUNGI_TREES);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
