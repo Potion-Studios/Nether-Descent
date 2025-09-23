@@ -40,7 +40,11 @@ public class NetherDescentSurfaceRules {
     ));
 
     private static final SurfaceRules.RuleSource SYTHIAN_TORRIDS = makeifTrueRule(NetherDescentBiomes.SYTHIAN_TORRIDS, SurfaceRules.sequence(
-            makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.SYTHIAN_NYLIUM.get()))
+            NetherDescentRuleSources.weightedRuleSource(SimpleWeightedRandomList.<SurfaceRules.RuleSource>builder()
+                    .add(makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.SYTHIAN_NYLIUM.get())), 4)
+                    .add(makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, Blocks.NETHERRACK)))
+                    .add(makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.SYTHIAN_SOIL.get())))
+                    .build())
     ));
 
     private static final SurfaceRules.RuleSource WAILING_GARTH = makeifTrueRule(NetherDescentBiomes.WAILING_GARTH, SurfaceRules.sequence(
