@@ -7,7 +7,6 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.BiasedToBottomInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -15,7 +14,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.PlacedFeaturesUtil;
@@ -29,7 +27,7 @@ public class NetherDescentTreeConfiguredFeatures {
 					NetherDescent.id("features/trees/sythian/sythian_fungi_canopy1"),
 					BiasedToBottomInt.of(9, 12),
 					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()),
-					BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK.defaultBlockState()),
+					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN_WART_BLOCK.get()),
 					Blocks.OAK_LOG,
 					Blocks.OAK_LEAVES,
 					BlockTags.NYLIUM, 5
@@ -43,7 +41,7 @@ public class NetherDescentTreeConfiguredFeatures {
 					NetherDescent.id("features/trees/sythian/sythian_fungi_canopy2"),
 					BiasedToBottomInt.of(10, 14),
 					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()),
-					BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK.defaultBlockState()),
+					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN_WART_BLOCK.get()),
 					Blocks.OAK_LOG,
 					Blocks.OAK_LEAVES,
 					BlockTags.NYLIUM, 4
@@ -57,7 +55,7 @@ public class NetherDescentTreeConfiguredFeatures {
 					NetherDescent.id("features/trees/sythian/sythian_fungi_canopy3"),
 					BiasedToBottomInt.of(15, 20),
 					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()),
-					BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK.defaultBlockState()),
+					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN_WART_BLOCK.get()),
 					Blocks.OAK_LOG,
 					Blocks.OAK_LEAVES,
 					BlockTags.NYLIUM, 4
@@ -71,7 +69,7 @@ public class NetherDescentTreeConfiguredFeatures {
 					NetherDescent.id("features/trees/sythian/sythian_fungi_canopy4"),
 					BiasedToBottomInt.of(18, 25),
 					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()),
-					BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK.defaultBlockState()),
+					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN_WART_BLOCK.get()),
 					Blocks.OAK_LOG,
 					Blocks.OAK_LEAVES,
 					BlockTags.NYLIUM, 4
@@ -85,7 +83,7 @@ public class NetherDescentTreeConfiguredFeatures {
 					NetherDescent.id("features/trees/sythian/sythian_fungi_canopy5"),
 					BiasedToBottomInt.of(20, 40),
 					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()),
-					BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK.defaultBlockState()),
+					BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN_WART_BLOCK.get()),
 					Blocks.OAK_LOG,
 					Blocks.OAK_LEAVES,
 					BlockTags.NYLIUM, 4

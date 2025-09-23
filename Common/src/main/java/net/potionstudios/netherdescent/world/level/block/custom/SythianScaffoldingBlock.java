@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -76,5 +77,14 @@ public class SythianScaffoldingBlock extends ScaffoldingBlock {
         }
 
         return i;
+    }
+
+    /**
+     * Override from IForgeBlock and IBlock
+     * @see net.minecraftforge.common.extensions.IForgeBlock
+     * @see net.neoforged.neoforge.common.extensions.IBlockExtension
+     */
+    public boolean isScaffolding(BlockState state, LevelReader level, BlockPos pos, LivingEntity entity) {
+        return true;
     }
 }

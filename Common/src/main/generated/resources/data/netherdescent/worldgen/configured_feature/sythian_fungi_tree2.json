@@ -18,7 +18,7 @@
     "leaves_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:nether_wart_block"
+        "Name": "netherdescent:sythian_wart_block"
       }
     },
     "leaves_target": [
