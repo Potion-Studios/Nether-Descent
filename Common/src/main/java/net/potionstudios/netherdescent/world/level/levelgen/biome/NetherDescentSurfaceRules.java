@@ -28,11 +28,11 @@ public class NetherDescentSurfaceRules {
             ),
             SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.verticalGradient("bedrock_roof", VerticalAnchor.belowTop(5), VerticalAnchor.top())), makeStateRule(Blocks.BEDROCK))
     );
-/*
+
     private static final SurfaceRules.RuleSource CRIMSON_GARDENS = makeifTrueRule(NetherDescentBiomes.CRIMSON_GARDENS, SurfaceRules.sequence(
             makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR,
-                    makeStateRule(NetherDescentBlocks.OVERGROWN_CRIMSON_BLACKSTONE))),
-            makeStateRule(Blocks.BLACKSTONE))); */
+                    makeStateRule(NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get()))),
+            makeStateRule(Blocks.BLACKSTONE)));
 
     private static final SurfaceRules.RuleSource EMBUR_BOG = makeifTrueRule(NetherDescentBiomes.EMBUR_BOG, SurfaceRules.sequence(
             makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.EMBUR_NYLIUM.get())),
@@ -64,7 +64,7 @@ public class NetherDescentSurfaceRules {
     public static SurfaceRules.RuleSource makeRules() {
         ImmutableList.Builder<SurfaceRules.RuleSource> builder = ImmutableList.builder();
         builder.add(BEDROCK_RULES);
-        builder.add(EMBUR_BOG, SYTHIAN_TORRIDS, WAILING_GARTH);
+        builder.add(CRIMSON_GARDENS, EMBUR_BOG, SYTHIAN_TORRIDS, WAILING_GARTH);
         return SurfaceRules.sequence(builder.build().toArray(SurfaceRules.RuleSource[]::new));
     }
 

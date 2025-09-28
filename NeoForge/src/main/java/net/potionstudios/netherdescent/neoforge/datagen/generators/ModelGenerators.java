@@ -124,6 +124,7 @@ public class ModelGenerators {
 			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(),  "translucent");
 			createCrossBlock(NetherDescentBlocks.EMBUR_ROOTS.get(), "cutout_mipped");
 			createDoubleBlock(NetherDescentBlocks.TALL_EMBUR_ROOTS.get());
+            createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get());
 
             createCrossBlock(NetherDescentBlocks.SYTHIAN_SPROUTS.get(), "cutout");
             simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_SPROUTS.get());
@@ -140,6 +141,7 @@ public class ModelGenerators {
 			simpleBlockWithItem(NetherDescentBlocks.WAILING_NYLIUM.get(), models().cubeBottomTop(name(NetherDescentBlocks.WAILING_NYLIUM.get()), blockNDTexture(NetherDescentBlocks.WAILING_NYLIUM.get(), "side"), blockTexture(Blocks.SOUL_SAND), blockTexture(NetherDescentBlocks.WAILING_NYLIUM.get())));
 			simpleBlockWithItem(NetherDescentBlocks.EMBUR_NYLIUM.get(), models().cubeBottomTop(name(NetherDescentBlocks.EMBUR_NYLIUM.get()), blockNDTexture(NetherDescentBlocks.EMBUR_NYLIUM.get(), "side"), blockTexture(NetherDescentBlocks.BLUE_NETHERRACK.get()), blockTexture(NetherDescentBlocks.EMBUR_NYLIUM.get())));
 			simpleBlockWithItem(NetherDescentBlocks.SYTHIAN_NYLIUM.get(), models().cubeBottomTop(name(NetherDescentBlocks.SYTHIAN_NYLIUM.get()), blockNDTexture(NetherDescentBlocks.SYTHIAN_NYLIUM.get(), "side"), blockTexture(Blocks.NETHERRACK), blockTexture(NetherDescentBlocks.SYTHIAN_NYLIUM.get())));
+            simpleBlockWithItem(NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get(), models().cubeBottomTop(name(NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get()), blockNDTexture(NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get(), "side"), mcLoc("block/blackstone_top"), blockTexture(Blocks.CRIMSON_NYLIUM)));
 
 			registerPatchBlockStates(NetherDescentBlocks.EMBUR_LILY.get(), new String[]{"embur_lily", "embur_lily2"});
 

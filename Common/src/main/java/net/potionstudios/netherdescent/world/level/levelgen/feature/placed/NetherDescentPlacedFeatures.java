@@ -18,6 +18,10 @@ public class NetherDescentPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> SYTHIAN_SPROUT = PlacedFeaturesUtil.createPlacedFeature("sythian_sprout", NetherDescentConfiguredFeatures.SYTHIAN_SPROUT, () -> List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome()));
 
+    public static final ResourceKey<PlacedFeature> TALL_CRIMSON_ROOTS = PlacedFeaturesUtil.createPlacedFeature("tall_crimson_roots", NetherDescentConfiguredFeatures.TALL_CRIMSON_ROOTS, () -> List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome()));
+    public static final ResourceKey<PlacedFeature> CRIMSON_BERRY_BUSH = PlacedFeaturesUtil.createPlacedFeature("crimson_berry_bush", NetherDescentConfiguredFeatures.CRIMSON_BERRY_BUSH, () -> List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome()));
+
+    public static final ResourceKey<PlacedFeature> CRIMSON_GARDEN_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("crimson_garden_vegetation", NetherDescentConfiguredFeatures.CRIMSON_GARDEN_VEGETATION, () -> List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome()));
 
 
     public static void placedFeatures() {

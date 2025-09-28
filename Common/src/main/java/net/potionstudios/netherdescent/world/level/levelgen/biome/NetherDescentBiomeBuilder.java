@@ -39,6 +39,8 @@ public class NetherDescentBiomeBuilder {
         addVegetal(generationSettings, NetherPlacements.CRIMSON_FOREST_VEGETATION);
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 
+        addVegetal(generationSettings, NetherDescentPlacedFeatures.CRIMSON_GARDEN_VEGETATION);
+
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.HOGLIN, 9, 3, 4);
         addSpawn(spawnSettings, EntityType.ZOMBIFIED_PIGLIN, 80, 4, 4);
