@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": {
+      "feature": "netherdescent:crimson_berry_bush",
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.45,
+        "feature": {
+          "feature": "minecraft:patch_crimson_roots",
+          "placement": []
+        }
+      },
+      {
+        "chance": 0.8,
+        "feature": {
+          "feature": "netherdescent:tall_crimson_roots",
+          "placement": []
+        }
+      }
+    ]
+  }
+}

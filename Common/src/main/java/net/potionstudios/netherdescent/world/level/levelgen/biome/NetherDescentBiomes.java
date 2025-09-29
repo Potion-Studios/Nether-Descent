@@ -6,6 +6,7 @@ import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
@@ -22,7 +23,7 @@ public class NetherDescentBiomes {
 	public static final Map<ResourceKey<Biome>, BiomeFactory> BIOME_FACTORIES = new Reference2ObjectOpenHashMap<>();
 	public static final Multimap<TagKey<Biome>, ResourceKey<Biome>> BIOMES_BY_TAG = Multimaps.newSetMultimap(new HashMap<>(), HashSet::new);
 
-	public static final ResourceKey<Biome> CRIMSON_GARDENS = createBiome("crimson_gardens", NetherDescentBiomeBuilder::crimsonGardens);
+	public static final ResourceKey<Biome> CRIMSON_GARDENS = createBiome("crimson_gardens", NetherDescentBiomeBuilder::crimsonGardens, BiomeTags.HAS_NETHER_FOSSIL, BiomeTags.HAS_BASTION_REMNANT, BiomeTags.HAS_NETHER_FORTRESS);
 	public static final ResourceKey<Biome> EMBUR_BOG = createBiome("embur_bog", NetherDescentBiomeBuilder::emburBog, NetherDescentBiomeTags.StructureHasTags.HAS_BLUE_FORTRESS);
 	public static final ResourceKey<Biome> SYTHIAN_TORRIDS = createBiome("sythian_torrids", NetherDescentBiomeBuilder::sythianTorrids);
 	public static final ResourceKey<Biome> WAILING_GARTH = createBiome("wailing_garth", NetherDescentBiomeBuilder::wailingGarth);

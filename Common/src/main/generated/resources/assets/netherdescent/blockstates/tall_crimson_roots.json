@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "netherdescent:block/tall_crimson_roots_bottom"
+    },
+    "half=upper": {
+      "model": "netherdescent:block/tall_crimson_roots_top"
+    }
+  }
+}

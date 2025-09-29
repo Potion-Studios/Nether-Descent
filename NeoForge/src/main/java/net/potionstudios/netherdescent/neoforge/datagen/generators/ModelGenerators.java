@@ -38,6 +38,7 @@ public class ModelGenerators {
 		protected void registerModels() {
 			NetherDescentItems.SIMPLE_ITEMS.forEach(item -> basicItem(item.get()));
 			simpleItemBlockTexture(NetherDescentBlocks.WAILING_VINE.get());
+            simpleItemBlockTexture(NetherDescentBlocks.FUNGAL_BULBS.get());
 			NetherDescentWoodSet.woodsets().forEach(set -> {
 				simpleItem(set.door(), set.name() + "/door");
 				simpleItem(set.signItem(), set.name() + "/sign");
@@ -124,6 +125,7 @@ public class ModelGenerators {
 			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(),  "translucent");
 			createCrossBlock(NetherDescentBlocks.EMBUR_ROOTS.get(), "cutout_mipped");
 			createDoubleBlock(NetherDescentBlocks.TALL_EMBUR_ROOTS.get());
+            createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get());
 
             createCrossBlock(NetherDescentBlocks.SYTHIAN_SPROUTS.get(), "cutout");
             simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_SPROUTS.get());
@@ -140,6 +142,7 @@ public class ModelGenerators {
 			simpleBlockWithItem(NetherDescentBlocks.WAILING_NYLIUM.get(), models().cubeBottomTop(name(NetherDescentBlocks.WAILING_NYLIUM.get()), blockNDTexture(NetherDescentBlocks.WAILING_NYLIUM.get(), "side"), blockTexture(Blocks.SOUL_SAND), blockTexture(NetherDescentBlocks.WAILING_NYLIUM.get())));
 			simpleBlockWithItem(NetherDescentBlocks.EMBUR_NYLIUM.get(), models().cubeBottomTop(name(NetherDescentBlocks.EMBUR_NYLIUM.get()), blockNDTexture(NetherDescentBlocks.EMBUR_NYLIUM.get(), "side"), blockTexture(NetherDescentBlocks.BLUE_NETHERRACK.get()), blockTexture(NetherDescentBlocks.EMBUR_NYLIUM.get())));
 			simpleBlockWithItem(NetherDescentBlocks.SYTHIAN_NYLIUM.get(), models().cubeBottomTop(name(NetherDescentBlocks.SYTHIAN_NYLIUM.get()), blockNDTexture(NetherDescentBlocks.SYTHIAN_NYLIUM.get(), "side"), blockTexture(Blocks.NETHERRACK), blockTexture(NetherDescentBlocks.SYTHIAN_NYLIUM.get())));
+            simpleBlockWithItem(NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get(), models().cubeBottomTop(name(NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get()), blockNDTexture(NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get(), "side"), mcLoc("block/blackstone_top"), blockTexture(Blocks.CRIMSON_NYLIUM)));
 
 			registerPatchBlockStates(NetherDescentBlocks.EMBUR_LILY.get(), new String[]{"embur_lily", "embur_lily2"});
 
@@ -204,7 +207,9 @@ public class ModelGenerators {
             getVariantBuilder(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get()).forAllStates(state -> ConfiguredModel.builder()
                     .modelFile(models().cross(name(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get()) + "_stage" + state.getValue(CrimsonBerryBushBlock.AGE), blockNDTexture(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get(), "stage" + state.getValue(CrimsonBerryBushBlock.AGE))).renderType("cutout"))
                     .build());
-		}
+
+            rotatableBlock(NetherDescentBlocks.FUNGAL_BULBS.get());
+        }
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {
 			registerStairs(stairs, ModelLocationUtils.getModelLocation(texturedBlock));
@@ -290,6 +295,28 @@ public class ModelGenerators {
 				}
 			}
 		}
+
+        private void rotatableBlock(Block block) {
+            getVariantBuilder(block).partialState().addModels(createRotatedModels(models().getExistingFile(blockTexture(block))));
+        }
+
+        private void rotatableBlockWithItem(Block block, ModelFile modelFile) {
+            getVariantBuilder(block).partialState().addModels(createRotatedModels(modelFile));
+            simpleBlockItem(block, modelFile);
+        }
+
+        private void rotatableBlock(Block block, ModelFile modelFile) {
+            getVariantBuilder(block).partialState().addModels(createRotatedModels(modelFile));
+        }
+
+        private ConfiguredModel[] createRotatedModels(ModelFile model) {
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .nextModel().modelFile(model).rotationY(90)
+                    .nextModel().modelFile(model).rotationY(180)
+                    .nextModel().modelFile(model).rotationY(270)
+                    .build();
+        }
 
 		private String name(Block block) {
 			return key(block).getPath();
