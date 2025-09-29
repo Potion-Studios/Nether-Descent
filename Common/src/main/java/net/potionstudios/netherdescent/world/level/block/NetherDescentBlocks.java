@@ -59,6 +59,8 @@ public class NetherDescentBlocks {
     public static final Supplier<NetherDescentDoublePlantBlock> TALL_CRIMSON_ROOTS = registerBlockItem("tall_crimson_roots", () -> new NetherDescentDoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS).mapColor(MapColor.COLOR_RED)));
     public static final Supplier<CrimsonBerryBushBlock> CRIMSON_BERRY_BUSH = registerBlock("crimson_berry_bush", () -> new CrimsonBerryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH).mapColor(MapColor.COLOR_RED)));
 
+    public static final Supplier<FungalBulbsBlock> FUNGAL_BULBS = registerBlockItem("fungal_bulbs", () -> new FungalBulbsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.AMETHYST_CLUSTER).lightLevel((state) -> 13)));
+
     public static final NetherDescentWoodSet EMBUR = new NetherDescentWoodSet("embur", MapColor.COLOR_BROWN, NetherDescentWoodSet.LogStem.PEDU, NetherDescentWoodSet.GrowerItem.WART, EMBUR_NYLIUM);
     public static final NetherDescentWoodSet SYTHIAN = new NetherDescentWoodSet("sythian", MapColor.COLOR_YELLOW, NetherDescentWoodSet.LogStem.STEM, NetherDescentWoodSet.GrowerItem.FUNGUS, SYTHIAN_NYLIUM);
     public static final Supplier<Block> SYTHIAN_WART_BLOCK = registerBasicBlockWithItem("sythian_wart_block", BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WART_BLOCK).mapColor(MapColor.COLOR_YELLOW));

@@ -38,6 +38,7 @@ public class ModelGenerators {
 		protected void registerModels() {
 			NetherDescentItems.SIMPLE_ITEMS.forEach(item -> basicItem(item.get()));
 			simpleItemBlockTexture(NetherDescentBlocks.WAILING_VINE.get());
+            simpleItemBlockTexture(NetherDescentBlocks.FUNGAL_BULBS.get());
 			NetherDescentWoodSet.woodsets().forEach(set -> {
 				simpleItem(set.door(), set.name() + "/door");
 				simpleItem(set.signItem(), set.name() + "/sign");
@@ -206,7 +207,9 @@ public class ModelGenerators {
             getVariantBuilder(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get()).forAllStates(state -> ConfiguredModel.builder()
                     .modelFile(models().cross(name(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get()) + "_stage" + state.getValue(CrimsonBerryBushBlock.AGE), blockNDTexture(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get(), "stage" + state.getValue(CrimsonBerryBushBlock.AGE))).renderType("cutout"))
                     .build());
-		}
+
+            rotatableBlock(NetherDescentBlocks.FUNGAL_BULBS.get());
+        }
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {
 			registerStairs(stairs, ModelLocationUtils.getModelLocation(texturedBlock));
@@ -292,6 +295,28 @@ public class ModelGenerators {
 				}
 			}
 		}
+
+        private void rotatableBlock(Block block) {
+            getVariantBuilder(block).partialState().addModels(createRotatedModels(models().getExistingFile(blockTexture(block))));
+        }
+
+        private void rotatableBlockWithItem(Block block, ModelFile modelFile) {
+            getVariantBuilder(block).partialState().addModels(createRotatedModels(modelFile));
+            simpleBlockItem(block, modelFile);
+        }
+
+        private void rotatableBlock(Block block, ModelFile modelFile) {
+            getVariantBuilder(block).partialState().addModels(createRotatedModels(modelFile));
+        }
+
+        private ConfiguredModel[] createRotatedModels(ModelFile model) {
+            return ConfiguredModel.builder()
+                    .modelFile(model)
+                    .nextModel().modelFile(model).rotationY(90)
+                    .nextModel().modelFile(model).rotationY(180)
+                    .nextModel().modelFile(model).rotationY(270)
+                    .build();
+        }
 
 		private String name(Block block) {
 			return key(block).getPath();
