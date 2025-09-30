@@ -61,7 +61,8 @@
       "netherdescent:embur_sprout",
       "netherdescent:embur_bog_vegetation",
       "netherdescent:embur_warts",
-      "netherdescent:embur_cave_moss"
+      "netherdescent:embur_cave_moss",
+      "netherdescent:hanging_embur_moss"
     ]
   ],
   "has_precipitation": false,

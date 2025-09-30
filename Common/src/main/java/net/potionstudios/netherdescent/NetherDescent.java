@@ -9,6 +9,7 @@ import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.entities.NetherDescentBlockEntityType;
+import net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeatures;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configured.NetherDescentConfiguredFeatures;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.NetherDescentPlacedFeatures;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentStructureType;
@@ -33,6 +34,7 @@ public class NetherDescent {
         NetherDescentBlockEntityType.blockEntities();
         NetherDescentCreativeTabs.tabs();
         NetherDescentRuleSources.ruleSources();
+		NetherDescentFeatures.features();
         NetherDescentConfiguredFeatures.configuredFeatures();
         NetherDescentPlacedFeatures.placedFeatures();
 	    NetherDescentStructurePieceType.structurePieceTypes();

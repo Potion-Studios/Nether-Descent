@@ -1,0 +1,16 @@
+{
+  "type": "netherdescent:ceiling_hanging_vines",
+  "config": {
+    "base": {
+      "Name": "netherdescent:embur_moss_block"
+    },
+    "ceiling": "netherdescent:blue_netherrack",
+    "growth": 0.75,
+    "vine": {
+      "Name": "netherdescent:embur_hanging_moss",
+      "Properties": {
+        "tip": "true"
+      }
+    }
+  }
+}

@@ -38,7 +38,6 @@ public class ModelGenerators {
 		protected void registerModels() {
 			NetherDescentItems.SIMPLE_ITEMS.forEach(item -> basicItem(item.get()));
 			simpleItemBlockTexture(NetherDescentBlocks.WAILING_VINE.get());
-            simpleItemBlockTexture(NetherDescentBlocks.FUNGAL_BULBS.get());
 			NetherDescentWoodSet.woodsets().forEach(set -> {
 				simpleItem(set.door(), set.name() + "/door");
 				simpleItem(set.signItem(), set.name() + "/sign");
@@ -48,6 +47,7 @@ public class ModelGenerators {
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_LILY.get());
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_GEL_VINES.get(), "embur_gel_vines_plant");
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_ROOTS.get());
+			simpleItem(NetherDescentBlocks.FUNGAL_BULBS.get(), "fungal_bulbs");
 		}
 
 		private void simpleItem(ItemLike item, String texture) {
