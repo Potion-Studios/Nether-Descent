@@ -14,7 +14,7 @@
     "issues": "https://github.com/Potion-Studios/Nether-Descent/issues"
   },
   "license": "All Rights Reserved",
-  "icon": "assets/examplemod/icon.png",
+  "icon": "small_icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [

@@ -7,11 +7,11 @@ license = "All Rights Reserved"
 modId = "netherdescent"
 version = "${version}"
 displayName = "Nether Descent"
+logoFile = "netherdescent.png"
 authors = "Joseph T. McQuigg (JT122406), AOCAWOL"
 description = '''
-This is an example description! Tell everyone what your mod is about!
 '''
-#logoFile = ""
+displayURL="https://potionstudios.net/"
 
 [[dependencies.netherdescent]]
 modId = "neoforge"

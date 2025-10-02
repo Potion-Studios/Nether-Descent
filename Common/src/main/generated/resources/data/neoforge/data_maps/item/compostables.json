@@ -6,6 +6,12 @@
     }
   ],
   "values": {
+    "netherdescent:crimson_berries": {
+      "chance": 0.3
+    },
+    "netherdescent:crimson_berry_pie": {
+      "chance": 1.0
+    },
     "netherdescent:embur_gel_vines": {
       "chance": 0.6
     },
@@ -16,6 +22,9 @@
       "chance": 0.5
     },
     "netherdescent:embur_wart": {
+      "chance": 0.65
+    },
+    "netherdescent:fungal_bulbs": {
       "chance": 0.65
     },
     "netherdescent:sythian_fungus": {

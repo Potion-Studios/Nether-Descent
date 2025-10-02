@@ -7,10 +7,11 @@ license = "All Rights Reserved"
 modId = "netherdescent"
 version = "${version}"
 displayName = "Nether Descent"
+logoFile = "netherdescent.png"
 authors = "Joseph T. McQuigg (JT122406), AOCAWOL"
 description = '''
 '''
-#logoFile = ""
+displayURL="https://potionstudios.net/"
 
 [[dependencies.netherdescent]]
 modId = "forge"
