@@ -100,6 +100,16 @@ public class RecipeGenerator extends RecipeProvider {
                 .requires(Tags.Items.EGGS)
                 .unlockedBy(getHasName(NetherDescentItems.CRIMSON_BERRIES.get()), has(NetherDescentItems.CRIMSON_BERRIES.get()))
                 .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, NetherDescentBlocks.TALL_CRIMSON_FUNGI.get())
+                .requires(Items.CRIMSON_FUNGUS, 2)
+                .unlockedBy(getHasName(Items.CRIMSON_FUNGUS), has(Items.CRIMSON_FUNGUS))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, Items.CRIMSON_FUNGUS, 2)
+                .requires(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get())
+                .unlockedBy(getHasName(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get()), has(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get()))
+                .save(recipeOutput);
     }
 
 	private static void NDNineBlockStorageRecipes(RecipeOutput recipeOutput, RecipeCategory unpackedCategory, ItemLike unpacked, RecipeCategory packedCategory, ItemLike packed, String packedName, @Nullable String packedGroup, String unpackedName, @Nullable String unpackedGroup) {

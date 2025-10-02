@@ -27,6 +27,8 @@ import org.jetbrains.annotations.NotNull;
 public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock implements BonemealableBlock {
 	public static final MapCodec<FungalBulbsBlock> CODEC = simpleCodec(FungalBulbsBlock::new);
     private static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 4.0D, 15.0D);
+    private static final VoxelShape SHAPE_SOUTH = Block.box(1.0D, 1.0D, 0.0D, 15.0D, 15.0D, 4.0D);
+    private static final VoxelShape SHAPE_EAST = Block.box(0.0D, 1.0D, 1.0D, 4.0D, 15.0D, 15.0D);
 
     public FungalBulbsBlock(Properties properties) {
         super(properties);
@@ -55,11 +57,11 @@ public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock imp
 		    return SHAPE;
 	    else if (face == AttachFace.CEILING)
 		    return SHAPE.move(0, 0.75D, 0);
-	    else return switch (state.getValue(FACING)) { //TODO: Need to do these
-			    case SOUTH -> SHAPE.move(0, 0, 12.0D);
-			    case WEST -> SHAPE.move(0, 0, 0).move(0, 0, 0);
-			    case EAST -> SHAPE.move(12.0D, 0, 0);
-			    default -> SHAPE;
+	    else return switch (state.getValue(FACING)) {
+			    case SOUTH -> SHAPE_SOUTH;
+			    case WEST -> SHAPE_EAST.move(0.75D, 0, 0);
+			    case EAST -> SHAPE_EAST;
+			    default -> SHAPE_SOUTH.move(0, 0, 0.75D);
 		    };
     }
 

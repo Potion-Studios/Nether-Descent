@@ -126,6 +126,7 @@ public class ModelGenerators {
 			createCrossBlock(NetherDescentBlocks.EMBUR_ROOTS.get(), "cutout_mipped");
 			createDoubleBlock(NetherDescentBlocks.TALL_EMBUR_ROOTS.get());
             createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get());
+            createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get());
 
             createCrossBlock(NetherDescentBlocks.SYTHIAN_SPROUTS.get(), "cutout");
             simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_SPROUTS.get());

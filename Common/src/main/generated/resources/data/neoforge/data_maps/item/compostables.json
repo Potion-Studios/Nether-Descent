@@ -33,6 +33,9 @@
     "netherdescent:sythian_sprouts": {
       "chance": 0.5
     },
+    "netherdescent:tall_crimson_fungi": {
+      "chance": 0.65
+    },
     "netherdescent:tall_crimson_roots": {
       "chance": 0.65
     },
