@@ -5,6 +5,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.potionstudios.netherdescent.config.BiomeConfig;
+import net.potionstudios.netherdescent.sounds.NetherDescentSounds;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
@@ -33,6 +34,7 @@ public class NetherDescent {
         NetherDescentBlocks.blocks();
         NetherDescentBlockEntityType.blockEntities();
         NetherDescentCreativeTabs.tabs();
+	    NetherDescentSounds.sounds();
         NetherDescentRuleSources.ruleSources();
 		NetherDescentFeatures.features();
         NetherDescentConfiguredFeatures.configuredFeatures();
