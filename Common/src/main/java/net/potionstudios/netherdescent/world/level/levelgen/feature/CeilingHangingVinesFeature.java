@@ -2,10 +2,12 @@ package net.potionstudios.netherdescent.world.level.levelgen.feature;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.potionstudios.netherdescent.world.level.block.custom.HangingMossBlock;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CeilingHangingVinesFeatureConfiguration;
 
 public class CeilingHangingVinesFeature extends Feature<CeilingHangingVinesFeatureConfiguration> {
@@ -23,10 +25,12 @@ public class CeilingHangingVinesFeature extends Feature<CeilingHangingVinesFeatu
 			if (worldGenLevel.getBlockState(blockPos).is(config.ceiling())) {
 				BlockPos.MutableBlockPos mutableBlockPos = blockPos.below().mutable();
 				worldGenLevel.setBlock(mutableBlockPos, config.base(), 2);
-				mutableBlockPos.move(0, -1, 0);
-				worldGenLevel.setBlock(mutableBlockPos, config.vine(), 2);
+				mutableBlockPos.move(Direction.DOWN);
+				worldGenLevel.setBlock(mutableBlockPos, config.vine().setValue(HangingMossBlock.TIP, true), 2);
 				while (worldGenLevel.isEmptyBlock(mutableBlockPos.below()) && randomSource.nextFloat() < config.growth()) {
-					worldGenLevel.setBlock(mutableBlockPos.move(0, -1, 0), config.vine(), 2);
+					worldGenLevel.setBlock(mutableBlockPos, config.vine().setValue(HangingMossBlock.TIP, false), 2);
+                    mutableBlockPos.move(Direction.DOWN);
+                    worldGenLevel.setBlock(mutableBlockPos, config.vine().setValue(HangingMossBlock.TIP, true), 2);
 				}
 				return true;
 			}
