@@ -35,7 +35,6 @@ public class NetherDescentBiomeBuilder {
     protected static Biome crimsonGardens(HolderGetter<PlacedFeature> placedFeatureHolderGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         BiomeGenerationSettings.Builder generationSettings = setupDefaultNetherGeneration(placedFeatureHolderGetter, carverGetter);
         addVegetal(generationSettings, NetherPlacements.WEEPING_VINES);
-        addVegetal(generationSettings, TreePlacements.CRIMSON_FUNGI);
         addVegetal(generationSettings, NetherPlacements.CRIMSON_FOREST_VEGETATION);
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 

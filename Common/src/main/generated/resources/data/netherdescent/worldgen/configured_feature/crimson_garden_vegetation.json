@@ -2,7 +2,7 @@
   "type": "minecraft:random_selector",
   "config": {
     "default": {
-      "feature": "netherdescent:crimson_berry_bush",
+      "feature": "netherdescent:crimson_berry",
       "placement": []
     },
     "features": [
