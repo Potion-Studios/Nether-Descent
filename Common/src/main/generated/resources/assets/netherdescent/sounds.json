@@ -1,0 +1,52 @@
+{
+  "ambient.embur_bog.additions": {
+    "sounds": [
+      {
+        "name": "netherdescent:ambient/nether/embur_bog/addition1",
+        "volume": 0.5
+      },
+      {
+        "name": "netherdescent:ambient/nether/embur_bog/addition2",
+        "volume": 0.5
+      },
+      {
+        "name": "netherdescent:ambient/nether/embur_bog/addition3",
+        "volume": 0.5
+      },
+      {
+        "name": "netherdescent:ambient/nether/embur_bog/addition4",
+        "volume": 0.5
+      },
+      {
+        "name": "netherdescent:ambient/nether/embur_bog/addition5",
+        "volume": 0.5
+      },
+      {
+        "name": "netherdescent:ambient/nether/embur_bog/addition6",
+        "volume": 0.5
+      },
+      {
+        "name": "netherdescent:ambient/nether/embur_bog/addition7",
+        "volume": 0.5
+      }
+    ]
+  },
+  "ambient.embur_bog.loop": {
+    "sounds": [
+      {
+        "name": "netherdescent:ambient/nether/embur_bog/ambience",
+        "stream": true,
+        "volume": 0.5
+      }
+    ]
+  },
+  "music.nether.embur_bog": {
+    "sounds": [
+      {
+        "name": "netherdescent:music/game/nether/embur_bog/haunting_adrenaline",
+        "stream": true,
+        "volume": 0.5
+      }
+    ]
+  }
+}

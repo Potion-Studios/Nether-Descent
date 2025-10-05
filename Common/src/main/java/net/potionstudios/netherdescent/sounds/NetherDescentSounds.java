@@ -10,6 +10,10 @@ import java.util.function.Supplier;
 
 public class NetherDescentSounds {
 
+	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_EMBUR_BOG_LOOP = registerSoundEventHolder("ambient.embur_bog.loop");
+	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_EMBUR_BOG_ADDITIONS = registerSoundEventHolder("ambient.embur_bog.additions");
+	public static final Supplier<Holder.Reference<SoundEvent>> MUSIC_BIOME_EMBUR_BOG = registerSoundEventHolder("music.nether.embur_bog");
+
 	private static Supplier<SoundEvent> createFixedRangeEvent(String id, float range) {
 		return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.SOUND_EVENT, id, () -> SoundEvent.createFixedRangeEvent(NetherDescent.id(id), range));
 	}

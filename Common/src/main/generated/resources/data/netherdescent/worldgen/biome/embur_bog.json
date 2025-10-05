@@ -5,10 +5,10 @@
   "downfall": 0.0,
   "effects": {
     "additions_sound": {
-      "sound": "minecraft:ambient.basalt_deltas.additions",
+      "sound": "netherdescent:ambient.embur_bog.additions",
       "tick_chance": 0.0111
     },
-    "ambient_sound": "minecraft:ambient.basalt_deltas.loop",
+    "ambient_sound": "netherdescent:ambient.embur_bog.loop",
     "fog_color": 15110510,
     "mood_sound": {
       "block_search_extent": 8,
@@ -20,7 +20,7 @@
       "max_delay": 24000,
       "min_delay": 12000,
       "replace_current_music": false,
-      "sound": "minecraft:music.nether.basalt_deltas"
+      "sound": "netherdescent:music.nether.embur_bog"
     },
     "particle": {
       "options": {

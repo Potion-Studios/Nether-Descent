@@ -4,6 +4,7 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.data.SoundDefinitionsProvider;
 import net.potionstudios.netherdescent.NetherDescent;
+import net.potionstudios.netherdescent.sounds.NetherDescentSounds;
 
 /**
  * Generates the Sounds.json file
@@ -23,7 +24,17 @@ public class SoundDefinitionsGenerator extends SoundDefinitionsProvider {
 
 	@Override
 	public void registerSounds() {
-
+		add(NetherDescentSounds.MUSIC_BIOME_EMBUR_BOG.get().value(), definition().with(sound(NetherDescent.id("music/game/nether/embur_bog/haunting_adrenaline")).stream().volume(0.5)));
+		add(NetherDescentSounds.AMBIENT_EMBUR_BOG_LOOP.get().value(), definition().with(sound(NetherDescent.id("ambient/nether/embur_bog/ambience")).stream().volume(0.5)));
+		add(NetherDescentSounds.AMBIENT_EMBUR_BOG_ADDITIONS.get().value(), definition().with(
+				sound(NetherDescent.id("ambient/nether/embur_bog/addition1")).volume(0.5),
+				sound(NetherDescent.id("ambient/nether/embur_bog/addition2")).volume(0.5),
+				sound(NetherDescent.id("ambient/nether/embur_bog/addition3")).volume(0.5),
+				sound(NetherDescent.id("ambient/nether/embur_bog/addition4")).volume(0.5),
+				sound(NetherDescent.id("ambient/nether/embur_bog/addition5")).volume(0.5),
+				sound(NetherDescent.id("ambient/nether/embur_bog/addition6")).volume(0.5),
+				sound(NetherDescent.id("ambient/nether/embur_bog/addition7")).volume(0.5)
+		));
 	}
 
 	private String subtitle(String subtitle) {
