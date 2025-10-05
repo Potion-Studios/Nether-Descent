@@ -45,7 +45,7 @@ public class NetherDescentConfiguredFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_CAVE_MOSS = ConfiguredFeaturesUtil.createConfiguredFeature("embur_cave_moss", Feature.MULTIFACE_GROWTH, (configuredFeatureBootstrapContext) -> new MultifaceGrowthConfiguration(NetherDescentBlocks.EMBUR_CAVE_MOSS.get(), 16, true, true, true, 1F, HolderSet.direct(Block::builtInRegistryHolder, NetherDescentBlocks.BLUE_NETHERRACK.get(), NetherDescentBlocks.EMBUR_NYLIUM.get(), NetherDescentBlocks.EMBUR.logstem())));
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_EMBUR_MOSS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_vines_feature", NetherDescentFeatures.CEILING_HANGING_VINES, () -> new CeilingHangingVinesFeatureConfiguration(NetherDescentBlocks.BLUE_NETHERRACK.get(), NetherDescentBlocks.EMBUR_MOSS_BLOCK.get().defaultBlockState(), NetherDescentBlocks.EMBUR_HANGING_MOSS.get().defaultBlockState(), 0.75F, 25, 100));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_EMBUR_MOSS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_vines_feature", NetherDescentFeatures.CEILING_HANGING_VINES, () -> new CeilingHangingVinesFeatureConfiguration(NetherDescentBlocks.BLUE_NETHERRACK.get(), NetherDescentBlocks.EMBUR_MOSS_BLOCK.get().defaultBlockState(), NetherDescentBlocks.EMBUR_HANGING_MOSS.get().defaultBlockState(), 0.75F, 10, 90));
 
     //public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_PATCH_BONEMEAL = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock();
 

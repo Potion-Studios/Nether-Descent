@@ -6,13 +6,13 @@
     },
     "ceiling": "netherdescent:blue_netherrack",
     "growth": 0.75,
-    "tries": 100,
+    "tries": 80,
     "vine": {
       "Name": "netherdescent:embur_hanging_moss",
       "Properties": {
         "tip": "true"
       }
     },
-    "xz_spread": 25
+    "xz_spread": 10
   }
 }

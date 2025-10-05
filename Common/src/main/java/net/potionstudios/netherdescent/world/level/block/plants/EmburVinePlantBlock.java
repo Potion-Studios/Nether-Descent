@@ -31,9 +31,4 @@ public class EmburVinePlantBlock extends GrowingPlantBodyBlock {
 	protected @NotNull GrowingPlantHeadBlock getHeadBlock() {
 		return NetherDescentBlocks.EMBUR_GEL_VINES.get();
 	}
-
-	@Override
-	protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
-		entity.makeStuckInBlock(state, new Vec3(0.8F, 0.75D, 0.8F));
-	}
 }
