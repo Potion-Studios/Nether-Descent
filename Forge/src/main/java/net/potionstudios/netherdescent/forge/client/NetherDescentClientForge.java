@@ -3,6 +3,7 @@ package net.potionstudios.netherdescent.forge.client;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.potionstudios.netherdescent.client.NetherDescentClient;
@@ -22,5 +23,6 @@ public class NetherDescentClientForge {
 	public static void init(final IEventBus eventBus) {
 		eventBus.addListener((FMLClientSetupEvent event) -> NetherDescentClient.onInitialize());
 		eventBus.addListener((EntityRenderersEvent.RegisterRenderers event) -> NetherDescentClient.registerBlockEntityRenderers(event::registerBlockEntityRenderer));
-	}
+        eventBus.addListener((RegisterParticleProvidersEvent event) -> NetherDescentClient.registerParticles((type, spriteProviderFactory) -> event.registerSpriteSet(type, spriteProviderFactory::apply)));
+    }
 }

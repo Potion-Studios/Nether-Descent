@@ -2,6 +2,7 @@ package net.potionstudios.netherdescent.fabric.client;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.world.level.block.*;
@@ -23,7 +24,8 @@ public class NetherDescentClientFabric implements ClientModInitializer {
 		NetherDescentClient.onInitialize();
 		registerRenderTypes();
 		NetherDescentClient.registerBlockEntityRenderers(BlockEntityRenderers::register);
-	}
+        NetherDescentClient.registerParticles((type, spriteProviderFactory) -> ParticleFactoryRegistry.getInstance().register(type, spriteProviderFactory::apply));
+    }
 
 	/**
 	 * Registers the render types for the blocks.

@@ -43,6 +43,7 @@ class DataGeneratorsRegister {
         TagsGenerator.init(generator, event.includeServer(), output, lookupProvider, existingFileHelper);
         generator.addProvider(event.includeServer(), new DataMapGenerator(output, lookupProvider));
 	    generator.addProvider(event.includeClient(), new SoundDefinitionsGenerator(output, existingFileHelper));
+        generator.addProvider(event.includeClient(), new ParticleDescriptionGenerator(output, existingFileHelper));
     }
 
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()

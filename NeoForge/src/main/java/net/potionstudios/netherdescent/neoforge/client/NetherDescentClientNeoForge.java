@@ -5,6 +5,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.client.NetherDescentClient;
 
@@ -23,6 +24,7 @@ public class NetherDescentClientNeoForge {
 	public NetherDescentClientNeoForge(final IEventBus eventBus) {
 		eventBus.addListener((FMLClientSetupEvent event) -> NetherDescentClient.onInitialize());
 		eventBus.addListener((EntityRenderersEvent.RegisterRenderers event) -> NetherDescentClient.registerBlockEntityRenderers(event::registerBlockEntityRenderer));
-	}
+        eventBus.addListener((RegisterParticleProvidersEvent event) -> NetherDescentClient.registerParticles((type, spriteProviderFactory) -> event.registerSpriteSet(type, spriteProviderFactory::apply)));
+    }
 
 }
