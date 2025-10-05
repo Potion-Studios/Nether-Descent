@@ -42,6 +42,7 @@ subprojects {
             includeGroup("lol.bai")
             includeGroup("mcp.mobius.waila")
         }
+        maven("https://api.modrinth.com/maven")
     }
 
     @Suppress("UnstableApiUsage")

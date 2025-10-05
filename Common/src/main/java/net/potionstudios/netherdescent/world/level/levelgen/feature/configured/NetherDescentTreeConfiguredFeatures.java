@@ -158,8 +158,8 @@ public class NetherDescentTreeConfiguredFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART4 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart4",
 			TYGFeatures.TREE_FROM_NBT_V1,
 			() -> new TreeFromStructureNBTConfig(
-					NetherDescent.id("features/warts/embur/embur_trunk4"),
-					NetherDescent.id("features/warts/embur/embur_canopy4"),
+					NetherDescent.id("features/warts/embur/wart4_stem"),
+					NetherDescent.id("features/warts/embur/wart4_canopy"),
 					BiasedToBottomInt.of(10, 14),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()),
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),

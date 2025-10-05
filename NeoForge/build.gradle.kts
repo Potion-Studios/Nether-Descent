@@ -52,6 +52,7 @@ dependencies {
     modLocalRuntime("lol.bai:badpackets:neo-${project.properties["badPackets"]}")
 
     modLocalRuntime("com.github.Jab125.architectury-data-generation-fix:architectury-data-generation-fix-neoforge:21.0.3")
+    modLocalRuntime("maven.modrinth:worldedit:7.3.8")
 }
 
 tasks {

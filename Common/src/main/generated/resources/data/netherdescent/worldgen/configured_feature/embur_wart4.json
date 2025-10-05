@@ -1,7 +1,7 @@
 {
   "type": "ohthetreesyoullgrow:tree_from_nbt_v1",
   "config": {
-    "base_location": "netherdescent:features/warts/embur/embur_trunk4",
+    "base_location": "netherdescent:features/warts/embur/wart4_stem",
     "can_grow_on_filter": {
       "type": "minecraft:matching_block_tag",
       "tag": "minecraft:nylium"
@@ -9,7 +9,7 @@
     "can_leaves_place_filter": {
       "type": "minecraft:replaceable"
     },
-    "canopy_location": "netherdescent:features/warts/embur/embur_canopy4",
+    "canopy_location": "netherdescent:features/warts/embur/wart4_canopy",
     "decorators": [
       {
         "type": "netherdescent:embur_gel_vines"
