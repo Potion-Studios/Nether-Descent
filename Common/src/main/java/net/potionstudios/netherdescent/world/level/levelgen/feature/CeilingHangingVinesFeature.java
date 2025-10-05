@@ -11,30 +11,40 @@ import net.potionstudios.netherdescent.world.level.block.custom.HangingMossBlock
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CeilingHangingVinesFeatureConfiguration;
 
 public class CeilingHangingVinesFeature extends Feature<CeilingHangingVinesFeatureConfiguration> {
-	public CeilingHangingVinesFeature(Codec<CeilingHangingVinesFeatureConfiguration> codec) {
-		super(codec);
-	}
+    public CeilingHangingVinesFeature(Codec<CeilingHangingVinesFeatureConfiguration> codec) {
+        super(codec);
+    }
 
-	@Override
-	public boolean place(FeaturePlaceContext<CeilingHangingVinesFeatureConfiguration> context) {
-		WorldGenLevel worldGenLevel = context.level();
-		BlockPos blockPos = context.origin();
-		RandomSource randomSource = context.random();
-		CeilingHangingVinesFeatureConfiguration config = context.config();
-		if (worldGenLevel.isEmptyBlock(blockPos.below())) {
-			if (worldGenLevel.getBlockState(blockPos).is(config.ceiling())) {
-				BlockPos.MutableBlockPos mutableBlockPos = blockPos.below().mutable();
-				worldGenLevel.setBlock(mutableBlockPos, config.base(), 2);
-				mutableBlockPos.move(Direction.DOWN);
-				worldGenLevel.setBlock(mutableBlockPos, config.vine().setValue(HangingMossBlock.TIP, true), 2);
-				while (worldGenLevel.isEmptyBlock(mutableBlockPos.below()) && randomSource.nextFloat() < config.growth()) {
-					worldGenLevel.setBlock(mutableBlockPos, config.vine().setValue(HangingMossBlock.TIP, false), 2);
+    @Override
+    public boolean place(FeaturePlaceContext<CeilingHangingVinesFeatureConfiguration> context) {
+        WorldGenLevel worldGenLevel = context.level();
+        BlockPos origin = context.origin();
+        RandomSource randomSource = context.random();
+        CeilingHangingVinesFeatureConfiguration config = context.config();
+
+        boolean placedAny = false;
+
+        for (int i = 0; i < config.tries(); i++) {
+            int dx = randomSource.nextInt(config.patchRadius() * 2 + 1) - config.patchRadius();
+            int dz = randomSource.nextInt(config.patchRadius() * 2 + 1) - config.patchRadius();
+            BlockPos candidate = origin.offset(dx, 0, dz);
+
+            if (worldGenLevel.isEmptyBlock(candidate.below()) && worldGenLevel.getBlockState(candidate).is(config.ceiling())) {
+                BlockPos.MutableBlockPos mutableBlockPos = candidate.below().mutable();
+                worldGenLevel.setBlock(mutableBlockPos, config.base(), 2);
+                mutableBlockPos.move(Direction.DOWN);
+                worldGenLevel.setBlock(mutableBlockPos, config.vine().setValue(HangingMossBlock.TIP, true), 2);
+
+                while (worldGenLevel.isEmptyBlock(mutableBlockPos.below()) && randomSource.nextFloat() < config.growth()) {
+                    worldGenLevel.setBlock(mutableBlockPos, config.vine().setValue(HangingMossBlock.TIP, false), 2);
                     mutableBlockPos.move(Direction.DOWN);
                     worldGenLevel.setBlock(mutableBlockPos, config.vine().setValue(HangingMossBlock.TIP, true), 2);
-				}
-				return true;
-			}
-		}
-		return false;
-	}
+                }
+
+                placedAny = true;
+            }
+        }
+
+        return placedAny;
+    }
 }
