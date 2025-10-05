@@ -10,6 +10,11 @@
       "type": "minecraft:replaceable"
     },
     "canopy_location": "netherdescent:features/warts/embur/embur_canopy4",
+    "decorators": [
+      {
+        "type": "netherdescent:embur_gel_vines"
+      }
+    ],
     "height": {
       "type": "minecraft:biased_to_bottom",
       "max_inclusive": 14,

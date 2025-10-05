@@ -14,9 +14,15 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.PlacedFeaturesUtil;
+import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.EmburGelVinesDecorator;
+import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.NetherDescentTreeDecoratorType;
+
+import java.util.List;
 
 public class NetherDescentTreeConfiguredFeatures {
 
@@ -114,7 +120,8 @@ public class NetherDescentTreeConfiguredFeatures {
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
 					Blocks.NETHER_WART_BLOCK,
-					BlockTags.NYLIUM, 4
+					BlockTags.NYLIUM, 4,
+                    ImmutableList.of(new EmburGelVinesDecorator())
 			)
 	);
 
@@ -128,7 +135,8 @@ public class NetherDescentTreeConfiguredFeatures {
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
 					Blocks.NETHER_WART_BLOCK,
-					BlockTags.NYLIUM, 4
+					BlockTags.NYLIUM, 4,
+                    ImmutableList.of(new EmburGelVinesDecorator())
 			)
 	);
 
@@ -142,7 +150,8 @@ public class NetherDescentTreeConfiguredFeatures {
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
 					Blocks.NETHER_WART_BLOCK,
-					BlockTags.NYLIUM, 4
+					BlockTags.NYLIUM, 4,
+                    ImmutableList.of(new EmburGelVinesDecorator())
 			)
 	);
 
@@ -156,7 +165,8 @@ public class NetherDescentTreeConfiguredFeatures {
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
 					Blocks.NETHER_WART_BLOCK,
-					BlockTags.NYLIUM, 4
+					BlockTags.NYLIUM, 4,
+                    ImmutableList.of(new EmburGelVinesDecorator())
 			)
 	);
 
@@ -170,7 +180,8 @@ public class NetherDescentTreeConfiguredFeatures {
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
 					Blocks.NETHER_WART_BLOCK,
-					BlockTags.NYLIUM, 4
+					BlockTags.NYLIUM, 4,
+                    ImmutableList.of(new EmburGelVinesDecorator())
 			)
 	);
 
@@ -184,7 +195,8 @@ public class NetherDescentTreeConfiguredFeatures {
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
 					Blocks.NETHER_WART_BLOCK,
-					BlockTags.NYLIUM, 4
+					BlockTags.NYLIUM, 4,
+                    ImmutableList.of(new EmburGelVinesDecorator())
 			)
 	);
 
@@ -198,7 +210,8 @@ public class NetherDescentTreeConfiguredFeatures {
 					BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()),
 					Blocks.CRIMSON_STEM,
 					Blocks.NETHER_WART_BLOCK,
-					BlockTags.NYLIUM, 4
+					BlockTags.NYLIUM, 4,
+                    ImmutableList.of(new EmburGelVinesDecorator())
 			)
 	);
 

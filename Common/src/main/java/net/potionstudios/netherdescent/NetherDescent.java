@@ -13,6 +13,7 @@ import net.potionstudios.netherdescent.world.level.block.entities.NetherDescentB
 import net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeatures;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configured.NetherDescentConfiguredFeatures;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.NetherDescentPlacedFeatures;
+import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.NetherDescentTreeDecoratorType;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentStructureType;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.pieces.NetherDescentStructurePieceType;
 import net.potionstudios.netherdescent.world.level.levelgen.surfacerules.NetherDescentRuleSources;
@@ -41,6 +42,7 @@ public class NetherDescent {
         NetherDescentPlacedFeatures.placedFeatures();
 	    NetherDescentStructurePieceType.structurePieceTypes();
 	    NetherDescentStructureType.structureTypes();
+        NetherDescentTreeDecoratorType.treeDecoratorType();
     }
 
     /**
