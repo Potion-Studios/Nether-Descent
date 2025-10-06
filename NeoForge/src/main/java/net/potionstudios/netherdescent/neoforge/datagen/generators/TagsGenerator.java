@@ -85,6 +85,10 @@ public class TagsGenerator {
 			tag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).add(NetherDescentBlocks.EMBUR_SPROUTS.get(), NetherDescentBlocks.SYTHIAN_SPROUTS.get());
 			tag(BlockTags.INSIDE_STEP_SOUND_BLOCKS).add(NetherDescentBlocks.EMBUR_CAVE_MOSS.get());
             tag(BlockTags.NYLIUM).add(NetherDescentBlocks.SYTHIAN_SOIL.get(), NetherDescentBlocks.EMBUR_MOSS_BLOCK.get());
+            tag(BlockTags.GOLD_ORES).add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get());
+            tag(Tags.Blocks.ORES_QUARTZ).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get());
+            tag(Tags.Blocks.ORE_RATES_SPARSE).add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get());
+            tag(Tags.Blocks.ORE_RATES_SINGULAR).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get());
 
 			IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> intrinsicTagAppender = this.tag(BlockTags.REPLACEABLE);
 			provider.lookupOrThrow(Registries.BLOCK)
@@ -106,7 +110,7 @@ public class TagsGenerator {
 			else if (object instanceof FlowerPotBlock) tag(BlockTags.FLOWER_POTS).add(object);
 			else if (object instanceof NyliumBlock) tag(BlockTags.NYLIUM).add(object);
             SoundType type = object.defaultBlockState().getSoundType();
-			if (type == SoundType.STONE || type == SoundType.DEEPSLATE || type == SoundType.NETHER_BRICKS || type == SoundType.NYLIUM)
+			if (type == SoundType.STONE || type == SoundType.DEEPSLATE || type == SoundType.NETHER_BRICKS || type == SoundType.NYLIUM || object instanceof DropExperienceBlock)
 				tag(BlockTags.MINEABLE_WITH_PICKAXE).add(object);
 			else if (type == SoundType.WOOD || type == SoundType.SWEET_BERRY_BUSH || type == SoundType.GLOW_LICHEN || type == SoundType.FUNGUS || type == SoundType.SCAFFOLDING)
 				tag(BlockTags.MINEABLE_WITH_AXE).add(object);
@@ -147,6 +151,8 @@ public class TagsGenerator {
 			copy(Tags.Blocks.STRIPPED_WOODS, Tags.Items.STRIPPED_WOODS);
 			copy(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES, Tags.Items.PLAYER_WORKSTATIONS_CRAFTING_TABLES);
 			copy(Tags.Blocks.NETHERRACKS, Tags.Items.NETHERRACKS);
+            copy(BlockTags.GOLD_ORES, ItemTags.GOLD_ORES);
+            copy(Tags.Blocks.ORES_QUARTZ, Tags.Items.ORES_QUARTZ);
             NetherDescentWoodSet.woodsets().forEach(set -> copy(set.logBlockTag(), set.logItemTag()));
 
 			tag(Tags.Items.BRICKS_NETHER).add(NetherDescentItems.BLUE_NETHER_BRICK.get());

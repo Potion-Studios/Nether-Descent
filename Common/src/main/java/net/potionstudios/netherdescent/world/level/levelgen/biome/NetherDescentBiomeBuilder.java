@@ -54,6 +54,8 @@ public class NetherDescentBiomeBuilder {
         BiomeGenerationSettings.Builder generationSettings = setupDefaultNetherGeneration(placedFeatureHolderGetter, carverGetter);
         generationSettings.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, NetherPlacements.DELTA);
         BiomeDefaultFeatures.addAncientDebris(generationSettings);
+        generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherDescentPlacedFeatures.ORE_BLUE_GOLD_NETHER);
+        generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherDescentPlacedFeatures.ORE_BLUE_QUARTZ_NETHER);
 
         addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_LILY);
         addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_SPROUT);

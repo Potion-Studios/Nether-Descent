@@ -23,9 +23,21 @@ public class NetherDescentPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> CRIMSON_GARDEN_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("crimson_garden_vegetation", NetherDescentConfiguredFeatures.CRIMSON_GARDEN_VEGETATION, () -> List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome()));
 
+    //public static final ResourceKey<PlacedFeature> ORE_BLUE_GOLD_DELTAS = PlacedFeaturesUtil.createPlacedFeature("ore_blue_gold_deltas", NetherDescentConfiguredFeatures.ORE_BLUE_QUARTZ, () -> commonOrePlacement(20, PlacementUtils.RANGE_10_10));
+    //public static final ResourceKey<PlacedFeature> ORE_BLUE_QUARTZ_DELTAS = PlacedFeaturesUtil.createPlacedFeature("ore_blue_quartz_deltas", NetherDescentConfiguredFeatures.ORE_BLUE_QUARTZ, () -> commonOrePlacement(32, PlacementUtils.RANGE_10_10));
+    public static final ResourceKey<PlacedFeature> ORE_BLUE_GOLD_NETHER = PlacedFeaturesUtil.createPlacedFeature("ore_blue_gold_nether", NetherDescentConfiguredFeatures.ORE_BLUE_NETHER_GOLD, () -> commonOrePlacement(10, PlacementUtils.RANGE_10_10));
+    public static final ResourceKey<PlacedFeature> ORE_BLUE_QUARTZ_NETHER = PlacedFeaturesUtil.createPlacedFeature("ore_blue_quartz_nether", NetherDescentConfiguredFeatures.ORE_BLUE_QUARTZ, () -> commonOrePlacement(16, PlacementUtils.RANGE_10_10));
 
     public static void placedFeatures() {
         NetherDescent.LOGGER.info("Registering Nether Descent Placed Features");
         NetherDescentTreePlacedFeatures.treePlacedFeatures();
+    }
+
+    private static List<PlacementModifier> orePlacement(PlacementModifier countPlacement, PlacementModifier heightRange) {
+        return List.of(countPlacement, InSquarePlacement.spread(), heightRange, BiomeFilter.biome());
+    }
+
+    private static List<PlacementModifier> commonOrePlacement(int count, PlacementModifier heightRange) {
+        return orePlacement(CountPlacement.of(count), heightRange);
     }
 }

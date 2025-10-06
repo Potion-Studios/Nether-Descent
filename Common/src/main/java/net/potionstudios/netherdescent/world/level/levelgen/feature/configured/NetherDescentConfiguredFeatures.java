@@ -13,9 +13,11 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.MultifaceGrowthConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
@@ -64,6 +66,9 @@ public class NetherDescentConfiguredFeatures {
                         PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(PATCH_CRIMSON_BERRY)));
             }
     );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_BLUE_NETHER_GOLD = ConfiguredFeaturesUtil.createConfiguredFeature("ore_blue_nether_gold", Feature.ORE, () -> new OreConfiguration(new BlockMatchTest(NetherDescentBlocks.BLUE_NETHERRACK.get()), NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get().defaultBlockState(), 10));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_BLUE_QUARTZ = ConfiguredFeaturesUtil.createConfiguredFeature("ore_blue_quartz", Feature.ORE, () -> new OreConfiguration(new BlockMatchTest(NetherDescentBlocks.BLUE_NETHERRACK.get()), NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get().defaultBlockState(), 14));
 
 	private static ResourceKey<ConfiguredFeature<?, ?>> createPatchConfiguredFeatureState(String id, Supplier<? extends BlockState> state, int tries) {
 		return ConfiguredFeaturesUtil.createConfiguredFeature(id, Feature.RANDOM_PATCH, () -> FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(state.get())), List.of(), tries));

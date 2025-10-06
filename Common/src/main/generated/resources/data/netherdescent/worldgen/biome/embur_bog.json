@@ -53,7 +53,9 @@
       "minecraft:ore_magma",
       "minecraft:spring_closed",
       "minecraft:ore_ancient_debris_large",
-      "minecraft:ore_debris_small"
+      "minecraft:ore_debris_small",
+      "netherdescent:ore_blue_gold_nether",
+      "netherdescent:ore_blue_quartz_nether"
     ],
     [],
     [
