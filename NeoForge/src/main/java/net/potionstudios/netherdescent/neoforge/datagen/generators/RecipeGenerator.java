@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.neoforge.datagen.generators;
 
+import com.google.common.collect.ImmutableList;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -7,6 +8,7 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
@@ -110,6 +112,16 @@ public class RecipeGenerator extends RecipeProvider {
                 .requires(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get())
                 .unlockedBy(getHasName(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get()), has(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get()))
                 .save(recipeOutput);
+
+        oreSmelting(recipeOutput, ImmutableList.of(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get()), RecipeCategory.MISC, Items.GOLD_INGOT, 1.0F, 200, "gold_ingot");
+        oreBlasting(recipeOutput, ImmutableList.of(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get()), RecipeCategory.MISC, Items.GOLD_INGOT, 1.0F, 100, "gold_ingot");
+
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()), RecipeCategory.MISC, Items.QUARTZ, 0.2F, 200)
+                .unlockedBy("has_blue_nether_quartz_ore", has(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()))
+                .save(recipeOutput);
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()), RecipeCategory.MISC, Items.QUARTZ, 0.2F, 100)
+                .unlockedBy("has_blue_nether_quartz_ore", has(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()))
+                .save(recipeOutput, getBlastingRecipeName(Items.QUARTZ));
     }
 
 	private static void NDNineBlockStorageRecipes(RecipeOutput recipeOutput, RecipeCategory unpackedCategory, ItemLike unpacked, RecipeCategory packedCategory, ItemLike packed, String packedName, @Nullable String packedGroup, String unpackedName, @Nullable String unpackedGroup) {

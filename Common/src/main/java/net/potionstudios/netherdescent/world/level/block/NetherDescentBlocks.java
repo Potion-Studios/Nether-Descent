@@ -1,6 +1,7 @@
 package net.potionstudios.netherdescent.world.level.block;
 
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -25,6 +26,8 @@ public class NetherDescentBlocks {
     public static final ArrayList<Supplier<? extends Block>> cubeAllBlocks = new ArrayList<>();
 
     public static final Supplier<Block> BLUE_NETHERRACK = registerBlockItem("blue_netherrack", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHERRACK)));
+    public static final Supplier<DropExperienceBlock> BLUE_NETHER_GOLD_ORE = registerCubeAllBlockItem("blue_nether_gold_ore", () -> new DropExperienceBlock(UniformInt.of(0, 1), BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_GOLD_ORE)));
+    public static final Supplier<DropExperienceBlock> BLUE_NETHER_QUARTZ_ORE = registerCubeAllBlockItem("blue_nether_quartz_ore", () -> new DropExperienceBlock(UniformInt.of(2, 5), BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_QUARTZ_ORE)));
     public static final NetherDescentBlockSet BLUE_NETHER_BRICKS = new NetherDescentBlockSet("blue_nether_bricks", "blue_nether_brick", BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS));
 	public static final Supplier<FenceBlock> BLUE_NETHER_BRICK_FENCE = registerBlockItem("blue_nether_brick_fence", () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICK_FENCE)));
 	public static final NetherDescentBlockSet MOSSY_BLUE_NETHER_BRICKS = new NetherDescentBlockSet("mossy_blue_nether_bricks", "mossy_blue_nether_brick", BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_BRICKS));
