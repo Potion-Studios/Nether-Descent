@@ -5,10 +5,10 @@
   "downfall": 0.0,
   "effects": {
     "additions_sound": {
-      "sound": "minecraft:ambient.soul_sand_valley.additions",
-      "tick_chance": 0.0111
+      "sound": "netherdescent:ambient.wailing_garth.additions",
+      "tick_chance": 0.0051
     },
-    "ambient_sound": "minecraft:ambient.soul_sand_valley.loop",
+    "ambient_sound": "netherdescent:ambient.wailing_garth.loop",
     "fog_color": 4529794,
     "mood_sound": {
       "block_search_extent": 8,
@@ -20,7 +20,7 @@
       "max_delay": 24000,
       "min_delay": 12000,
       "replace_current_music": false,
-      "sound": "minecraft:music.nether.soul_sand_valley"
+      "sound": "netherdescent:music.nether.wailing_garth"
     },
     "particle": {
       "options": {

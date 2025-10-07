@@ -1,4 +1,41 @@
 {
+  "ambient.crimson_gardens.additions": {
+    "sounds": [
+      {
+        "name": "netherdescent:ambient/nether/crimson_gardens/addition1",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/crimson_gardens/addition2",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/crimson_gardens/addition3",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/crimson_gardens/addition4",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/crimson_gardens/addition5",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/crimson_gardens/addition6",
+        "volume": 0.1
+      }
+    ]
+  },
+  "ambient.crimson_gardens.loop": {
+    "sounds": [
+      {
+        "name": "netherdescent:ambient/nether/crimson_gardens/ambience",
+        "stream": true,
+        "volume": 0.1
+      }
+    ]
+  },
   "ambient.embur_bog.additions": {
     "sounds": [
       {
@@ -40,10 +77,115 @@
       }
     ]
   },
+  "ambient.sythian_torrids.additions": {
+    "sounds": [
+      {
+        "name": "netherdescent:ambient/nether/sythian_torrids/addition1",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/sythian_torrids/addition2",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/sythian_torrids/addition3",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/sythian_torrids/addition4",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/sythian_torrids/addition5",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/sythian_torrids/addition6",
+        "volume": 0.1
+      }
+    ]
+  },
+  "ambient.sythian_torrids.loop": {
+    "sounds": [
+      {
+        "name": "netherdescent:ambient/nether/sythian_torrids/ambience",
+        "stream": true,
+        "volume": 0.1
+      }
+    ]
+  },
+  "ambient.wailing_garth.additions": {
+    "sounds": [
+      {
+        "name": "netherdescent:ambient/nether/wailing_garth/addition1",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/wailing_garth/addition2",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/wailing_garth/addition3",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/wailing_garth/addition4",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/wailing_garth/addition5",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/wailing_garth/addition6",
+        "volume": 0.1
+      },
+      {
+        "name": "netherdescent:ambient/nether/wailing_garth/addition7",
+        "volume": 0.1
+      }
+    ]
+  },
+  "ambient.wailing_garth.loop": {
+    "sounds": [
+      {
+        "name": "netherdescent:ambient/nether/wailing_garth/ambience",
+        "stream": true,
+        "volume": 0.1
+      }
+    ]
+  },
+  "music.nether.crimson_gardens": {
+    "sounds": [
+      {
+        "name": "netherdescent:music/game/nether/crimson_gardens/strings_of_fate",
+        "stream": true,
+        "volume": 0.3
+      }
+    ]
+  },
   "music.nether.embur_bog": {
     "sounds": [
       {
         "name": "netherdescent:music/game/nether/embur_bog/haunting_adrenaline",
+        "stream": true,
+        "volume": 0.3
+      }
+    ]
+  },
+  "music.nether.sythian_torrids": {
+    "sounds": [
+      {
+        "name": "netherdescent:music/game/nether/sythian_torrids/glistening_depths",
+        "stream": true,
+        "volume": 0.3
+      }
+    ]
+  },
+  "music.nether.wailing_garth": {
+    "sounds": [
+      {
+        "name": "netherdescent:music/game/nether/wailing_garth/chimes_of_the_damned",
         "stream": true,
         "volume": 0.3
       }

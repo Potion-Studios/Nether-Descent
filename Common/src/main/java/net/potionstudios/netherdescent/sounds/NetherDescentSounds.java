@@ -14,6 +14,19 @@ public class NetherDescentSounds {
 	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_EMBUR_BOG_ADDITIONS = registerSoundEventHolder("ambient.embur_bog.additions");
 	public static final Supplier<Holder.Reference<SoundEvent>> MUSIC_BIOME_EMBUR_BOG = registerSoundEventHolder("music.nether.embur_bog");
 
+	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_CRIMSON_GARDENS_LOOP = registerSoundEventHolder("ambient.crimson_gardens.loop");
+	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_CRIMSON_GARDENS_ADDITIONS = registerSoundEventHolder("ambient.crimson_gardens.additions");
+	public static final Supplier<Holder.Reference<SoundEvent>> MUSIC_BIOME_CRIMSON_GARDENS = registerSoundEventHolder("music.nether.crimson_gardens");
+
+	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_SYTHIAN_TORRIDS_LOOP = registerSoundEventHolder("ambient.sythian_torrids.loop");
+	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_SYTHIAN_TORRIDS_ADDITIONS = registerSoundEventHolder("ambient.sythian_torrids.additions");
+	public static final Supplier<Holder.Reference<SoundEvent>> MUSIC_BIOME_SYTHIAN_TORRIDS = registerSoundEventHolder("music.nether.sythian_torrids");
+
+	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_WAILING_GARTH_LOOP = registerSoundEventHolder("ambient.wailing_garth.loop");
+	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_WAILING_GARTH_ADDITIONS = registerSoundEventHolder("ambient.wailing_garth.additions");
+	public static final Supplier<Holder.Reference<SoundEvent>> MUSIC_BIOME_WAILING_GARTH = registerSoundEventHolder("music.nether.wailing_garth");
+
+
 	private static Supplier<SoundEvent> createFixedRangeEvent(String id, float range) {
 		return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.SOUND_EVENT, id, () -> SoundEvent.createFixedRangeEvent(NetherDescent.id(id), range));
 	}
