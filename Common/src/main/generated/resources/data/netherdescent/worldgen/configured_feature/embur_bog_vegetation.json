@@ -2,19 +2,19 @@
   "type": "minecraft:random_selector",
   "config": {
     "default": {
-      "feature": "netherdescent:tall_embur_roots",
+      "feature": "netherdescent:embur_wart",
       "placement": []
     },
     "features": [
       {
-        "chance": 0.333,
+        "chance": 0.35,
         "feature": {
           "feature": "netherdescent:tall_embur_roots",
           "placement": []
         }
       },
       {
-        "chance": 0.333,
+        "chance": 0.35,
         "feature": {
           "feature": "netherdescent:embur_roots",
           "placement": []

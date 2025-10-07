@@ -19,14 +19,6 @@ public record PottedBlock(Supplier<? extends Block> block, Supplier<? extends Bl
         this(block, NetherDescentBlocks.registerBlock("potted_" + id, PlatformHandler.PLATFORM_HANDLER.createPottedBlock(block)));
     }
 
-    public Supplier<? extends Block> getBlockSupplier() {
-        return block;
-    }
-
-    public Supplier<? extends Block> getPottedBlockSupplier() {
-        return pottedBlock;
-    }
-
     public Block getBlock() {
         return block.get();
     }
