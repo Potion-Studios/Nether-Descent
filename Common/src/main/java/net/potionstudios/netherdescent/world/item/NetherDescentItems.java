@@ -31,6 +31,9 @@ public class NetherDescentItems {
     public static final Supplier<Item> CRIMSON_BERRIES = registerSimpleItem("crimson_berries", () -> new ItemNameBlockItem(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 1), 1.0F).build())));
     public static final Supplier<Item> CRIMSON_BERRY_PIE = registerSimpleItem("crimson_berry_pie", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.3F).effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 600, 1), 1.0F).build())));
 
+    public static final Supplier<Item> RAW_PENDORITE = registerSimpleItem("raw_pendorite", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> PENDORITE_INGOT = registerSimpleItem("pendorite_ingot", () -> new Item(new Item.Properties()));
+
     public static <I extends Item> Supplier<I> registerSimpleItem(String id, Supplier<I> item) {
         Supplier<I> supplier = registerItem(id, item);
         SIMPLE_ITEMS.add(supplier);

@@ -70,6 +70,12 @@ public class NetherDescentBlocks {
     public static final NetherDescentWoodSet WAILING = new NetherDescentWoodSet("wailing", MapColor.COLOR_PURPLE, NetherDescentWoodSet.LogStem.STEM, NetherDescentWoodSet.GrowerItem.FUNGUS, WAILING_NYLIUM);
     public static final Supplier<Block> WAILING_WART_BLOCK = registerBasicBlockWithItem("wailing_wart_block", BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WART_BLOCK).mapColor(MapColor.COLOR_PURPLE));
 
+    public static final Supplier<Block> PENDORITE_BLOCK = registerBasicBlockWithItem("pendorite_block", BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).mapColor(MapColor.METAL));
+    public static final Supplier<DropExperienceBlock> PENDORITE_ORE = registerCubeAllBlockItem("pendorite_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_ORE).mapColor(MapColor.METAL)));
+    public static final Supplier<Block> RAW_PENDORITE_BLOCK = registerBasicBlockWithItem("raw_pendorite_block", BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_COPPER_BLOCK).mapColor(MapColor.METAL));
+    public static final Supplier<Block> CUT_PENDORITE = registerBasicBlockWithItem("cut_pendorite", BlockBehaviour.Properties.ofFullCopy(Blocks.CUT_COPPER).mapColor(MapColor.METAL));
+    public static final Supplier<Block> CHISELED_PENDORITE = registerBasicBlockWithItem("chiseled_pendorite", BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_COPPER).mapColor(MapColor.METAL));
+
     public static final Supplier<NetherDescentFeatureDoublePlantBlock> TALL_CRIMSON_FUNGI = registerBlockItem("tall_crimson_fungi", () -> new NetherDescentFeatureDoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_FUNGUS), null));
 
     public static Supplier<Block> registerBasicBlockWithItem(String key, BlockBehaviour.Properties properties) {

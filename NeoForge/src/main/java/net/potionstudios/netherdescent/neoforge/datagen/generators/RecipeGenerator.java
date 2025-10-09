@@ -8,7 +8,6 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
@@ -24,6 +23,9 @@ public class RecipeGenerator extends RecipeProvider {
     public RecipeGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);
     }
+
+    private static final ImmutableList<ItemLike> PENDORITE_SMELTABLES = ImmutableList.of(NetherDescentBlocks.PENDORITE_ORE.get(), NetherDescentItems.RAW_PENDORITE.get());
+
 
     @Override
     protected void buildRecipes(@NotNull RecipeOutput recipeOutput, HolderLookup.@NotNull Provider holderLookup) {
@@ -117,11 +119,19 @@ public class RecipeGenerator extends RecipeProvider {
         oreBlasting(recipeOutput, ImmutableList.of(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get()), RecipeCategory.MISC, Items.GOLD_INGOT, 1.0F, 100, "gold_ingot");
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()), RecipeCategory.MISC, Items.QUARTZ, 0.2F, 200)
-                .unlockedBy("has_blue_nether_quartz_ore", has(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()))
+                .unlockedBy(getHasName(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()), has(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()))
                 .save(recipeOutput);
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()), RecipeCategory.MISC, Items.QUARTZ, 0.2F, 100)
-                .unlockedBy("has_blue_nether_quartz_ore", has(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()))
+                .unlockedBy(getHasName(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()), has(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()))
                 .save(recipeOutput, getBlastingRecipeName(Items.QUARTZ));
+
+        oreSmelting(recipeOutput, PENDORITE_SMELTABLES, RecipeCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), 0.7F, 200, "pendorite_ingot");
+        oreBlasting(recipeOutput, PENDORITE_SMELTABLES, RecipeCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), 0.7F, 100, "pendorite_ingot");
+
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CHISELED_PENDORITE.get(), NetherDescentBlocks.PENDORITE_BLOCK.get(), 4);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CHISELED_PENDORITE.get(), NetherDescentBlocks.CUT_PENDORITE.get(), 1);
+
+        nineBlockStorageRecipes(recipeOutput, RecipeCategory.MISC, NetherDescentItems.RAW_PENDORITE.get(), RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.RAW_PENDORITE_BLOCK.get());
     }
 
 	private static void NDNineBlockStorageRecipes(RecipeOutput recipeOutput, RecipeCategory unpackedCategory, ItemLike unpacked, RecipeCategory packedCategory, ItemLike packed, String packedName, @Nullable String packedGroup, String unpackedName, @Nullable String unpackedGroup) {

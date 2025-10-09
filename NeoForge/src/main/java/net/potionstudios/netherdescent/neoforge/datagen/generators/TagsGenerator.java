@@ -90,6 +90,8 @@ public class TagsGenerator {
             tag(Tags.Blocks.ORE_RATES_SPARSE).add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get());
             tag(Tags.Blocks.ORE_RATES_SINGULAR).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get());
 
+            tag(BlockTags.NEEDS_DIAMOND_TOOL).add(NetherDescentBlocks.PENDORITE_ORE.get());
+
 			IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> intrinsicTagAppender = this.tag(BlockTags.REPLACEABLE);
 			provider.lookupOrThrow(Registries.BLOCK)
 					.filterElements(block -> block.defaultBlockState().canBeReplaced())
@@ -158,6 +160,8 @@ public class TagsGenerator {
 			tag(Tags.Items.BRICKS_NETHER).add(NetherDescentItems.BLUE_NETHER_BRICK.get());
             tag(Tags.Items.FOODS_BERRY).add(NetherDescentItems.CRIMSON_BERRIES.get());
             tag(Tags.Items.FOODS_PIE).add(NetherDescentItems.CRIMSON_BERRY_PIE.get());
+
+            tag(Tags.Items.INGOTS).add(NetherDescentItems.PENDORITE_INGOT.get());
 		}
 	}
 
