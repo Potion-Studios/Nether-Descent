@@ -16,6 +16,8 @@ import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.tags.NetherDescentBiomeTags;
+import net.potionstudios.netherdescent.tags.NetherDescentBlockTags;
+import net.potionstudios.netherdescent.tags.NetherDescentItemTags;
 import net.potionstudios.netherdescent.tags.NetherDescentStructureTags;
 import net.potionstudios.netherdescent.world.damagesource.NetherDescentDamageTypes;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
@@ -90,6 +92,10 @@ public class TagsGenerator {
             tag(Tags.Blocks.ORE_RATES_SPARSE).add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get());
             tag(Tags.Blocks.ORE_RATES_SINGULAR).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get());
 
+			tag(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE).add(NetherDescentBlocks.PENDORITE_BLOCK.get());
+			tag(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE).add(NetherDescentBlocks.RAW_PENDORITE_BLOCK.get());
+			tag(Tags.Blocks.STORAGE_BLOCKS).addTag(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE).addTag(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE);
+
             tag(BlockTags.NEEDS_DIAMOND_TOOL).add(NetherDescentBlocks.PENDORITE_ORE.get());
 
 			IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> intrinsicTagAppender = this.tag(BlockTags.REPLACEABLE);
@@ -161,7 +167,12 @@ public class TagsGenerator {
             tag(Tags.Items.FOODS_BERRY).add(NetherDescentItems.CRIMSON_BERRIES.get());
             tag(Tags.Items.FOODS_PIE).add(NetherDescentItems.CRIMSON_BERRY_PIE.get());
 
-            tag(Tags.Items.INGOTS).add(NetherDescentItems.PENDORITE_INGOT.get());
+			tag(NetherDescentItemTags.INGOTS_PENDORITE).add(NetherDescentItems.PENDORITE_INGOT.get());
+            tag(Tags.Items.INGOTS).addTag(NetherDescentItemTags.INGOTS_PENDORITE);
+
+			copy(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE, NetherDescentItemTags.STORAGE_BLOCKS_PENDORITE);
+			copy(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE, NetherDescentItemTags.STORAGE_BLOCKS_RAW_PENDORITE);
+			copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
 		}
 	}
 
