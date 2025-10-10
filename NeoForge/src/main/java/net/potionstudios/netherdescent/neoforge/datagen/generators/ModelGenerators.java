@@ -210,6 +210,8 @@ public class ModelGenerators {
                     .build());
 
             rotatableBlock(NetherDescentBlocks.FUNGAL_BULBS.get());
+
+            simpleBlockWithItem(NetherDescentBlocks.PENDORITE_GRATE.get(), models().cubeAll(name(NetherDescentBlocks.PENDORITE_GRATE.get()), blockTexture(NetherDescentBlocks.PENDORITE_GRATE.get())).renderType("cutout"));
         }
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {
