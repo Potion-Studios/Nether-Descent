@@ -30,6 +30,9 @@
     "netherdescent:sythian_fungus": {
       "chance": 0.65
     },
+    "netherdescent:sythian_roots": {
+      "chance": 0.65
+    },
     "netherdescent:sythian_sprouts": {
       "chance": 0.5
     },

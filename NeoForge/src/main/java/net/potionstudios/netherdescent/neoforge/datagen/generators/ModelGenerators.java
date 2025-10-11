@@ -47,6 +47,7 @@ public class ModelGenerators {
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_LILY.get());
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_GEL_VINES.get(), "embur_gel_vines_plant");
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_ROOTS.get());
+            simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get());
 			simpleItem(NetherDescentBlocks.FUNGAL_BULBS.get(), "fungal_bulbs");
 		}
 
@@ -124,6 +125,7 @@ public class ModelGenerators {
 			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES.get(), "translucent");
 			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(),  "translucent");
 			createCrossBlock(NetherDescentBlocks.EMBUR_ROOTS.get(), "cutout_mipped");
+            createCrossBlock(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "cutout_mipped");
 			createDoubleBlock(NetherDescentBlocks.TALL_EMBUR_ROOTS.get());
             createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get());
             createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get());

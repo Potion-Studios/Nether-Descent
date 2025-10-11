@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": {
+      "feature": "netherdescent:sythian_roots",
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.5,
+        "feature": {
+          "feature": "netherdescent:sythian_sprout",
+          "placement": []
+        }
+      }
+    ]
+  }
+}
