@@ -132,6 +132,9 @@ public class RecipeGenerator extends RecipeProvider {
         stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CHISELED_PENDORITE.get(), NetherDescentBlocks.CUT_PENDORITE.get(), 1);
 
         nineBlockStorageRecipes(recipeOutput, RecipeCategory.MISC, NetherDescentItems.RAW_PENDORITE.get(), RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.RAW_PENDORITE_BLOCK.get());
+
+	    doorBuilder(NetherDescentBlocks.PENDORITE_DOOR.get(), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get())).unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get())).save(recipeOutput);
+	    trapdoorBuilder(NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get())).unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get())).save(recipeOutput);
     }
 
 	private static void NDNineBlockStorageRecipes(RecipeOutput recipeOutput, RecipeCategory unpackedCategory, ItemLike unpacked, RecipeCategory packedCategory, ItemLike packed, String packedName, @Nullable String packedGroup, String unpackedName, @Nullable String unpackedGroup) {

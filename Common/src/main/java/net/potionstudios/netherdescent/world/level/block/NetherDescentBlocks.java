@@ -13,6 +13,7 @@ import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.custom.*;
 import net.potionstudios.netherdescent.world.level.block.plants.*;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
+import net.potionstudios.netherdescent.world.level.block.state.properties.NetherDescentBlockSetTypes;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 
 import java.util.ArrayList;
@@ -77,6 +78,8 @@ public class NetherDescentBlocks {
     public static final Supplier<Block> CUT_PENDORITE = registerBasicBlockWithItem("cut_pendorite", BlockBehaviour.Properties.ofFullCopy(Blocks.CUT_COPPER).mapColor(MapColor.METAL));
     public static final Supplier<Block> CHISELED_PENDORITE = registerBasicBlockWithItem("chiseled_pendorite", BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_COPPER).mapColor(MapColor.METAL));
     public static final Supplier<WaterloggedTransparentBlock> PENDORITE_GRATE = registerBlockItem("pendorite_grate", () -> new WaterloggedTransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GRATE)));
+	public static final Supplier<DoorBlock> PENDORITE_DOOR = registerBlockItem("pendorite_door", () -> new DoorBlock(NetherDescentBlockSetTypes.PENDORITE, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_DOOR)));
+	public static final Supplier<TrapDoorBlock> PENDORITE_TRAPDOOR = registerBlockItem("pendorite_trapdoor", () -> new TrapDoorBlock(NetherDescentBlockSetTypes.PENDORITE, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_TRAPDOOR)));
 
     public static final Supplier<NetherDescentFeatureDoublePlantBlock> TALL_CRIMSON_FUNGI = registerBlockItem("tall_crimson_fungi", () -> new NetherDescentFeatureDoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_FUNGUS), null));
 

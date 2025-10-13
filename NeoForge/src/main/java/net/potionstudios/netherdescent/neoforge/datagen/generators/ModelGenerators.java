@@ -49,6 +49,7 @@ public class ModelGenerators {
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_ROOTS.get());
             simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get());
 			simpleItem(NetherDescentBlocks.FUNGAL_BULBS.get(), "fungal_bulbs");
+			//simpleItem(NetherDescentBlocks.PENDORITE_DOOR.get(),  "pendorite_door");
 		}
 
 		private void simpleItem(ItemLike item, String texture) {
@@ -214,6 +215,10 @@ public class ModelGenerators {
             rotatableBlock(NetherDescentBlocks.FUNGAL_BULBS.get());
 
             simpleBlockWithItem(NetherDescentBlocks.PENDORITE_GRATE.get(), models().cubeAll(name(NetherDescentBlocks.PENDORITE_GRATE.get()), blockTexture(NetherDescentBlocks.PENDORITE_GRATE.get())).renderType("cutout"));
+
+			trapdoorBlockWithRenderType(NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), blockTexture(NetherDescentBlocks.PENDORITE_TRAPDOOR.get()), true, "translucent");
+			itemModels().trapdoorBottom(name(NetherDescentBlocks.PENDORITE_TRAPDOOR.get()), blockTexture(NetherDescentBlocks.PENDORITE_TRAPDOOR.get())).renderType("translucent");
+			doorBlockWithRenderType(NetherDescentBlocks.PENDORITE_DOOR.get(), blockNDTexture(NetherDescentBlocks.PENDORITE_DOOR.get(), "bottom"), blockNDTexture(NetherDescentBlocks.PENDORITE_DOOR.get(), "top"), "translucent");
         }
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {

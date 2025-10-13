@@ -98,6 +98,8 @@ public class TagsGenerator {
 
             tag(BlockTags.NEEDS_DIAMOND_TOOL).add(NetherDescentBlocks.PENDORITE_ORE.get());
             tag(BlockTags.NEEDS_STONE_TOOL).add(NetherDescentBlocks.PENDORITE_GRATE.get());
+			tag(BlockTags.DOORS).add(NetherDescentBlocks.PENDORITE_DOOR.get());
+			tag(BlockTags.TRAPDOORS).add(NetherDescentBlocks.PENDORITE_TRAPDOOR.get());
 
 			IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> intrinsicTagAppender = this.tag(BlockTags.REPLACEABLE);
 			provider.lookupOrThrow(Registries.BLOCK)
@@ -152,6 +154,8 @@ public class TagsGenerator {
             copy(Tags.Blocks.FENCES_NETHER_BRICK, Tags.Items.FENCES_NETHER_BRICK);
 			copy(BlockTags.FENCE_GATES, ItemTags.FENCE_GATES);
 			copy(Tags.Blocks.FENCE_GATES_WOODEN, Tags.Items.FENCE_GATES_WOODEN);
+			copy(BlockTags.DOORS, ItemTags.DOORS);
+			copy(BlockTags.TRAPDOORS, ItemTags.TRAPDOORS);
 			copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
 			copy(BlockTags.CEILING_HANGING_SIGNS, ItemTags.HANGING_SIGNS);
 			copy(Tags.Blocks.BOOKSHELVES, Tags.Items.BOOKSHELVES);
