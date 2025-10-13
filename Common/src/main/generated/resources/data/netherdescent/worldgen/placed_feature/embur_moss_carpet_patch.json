@@ -1,0 +1,28 @@
+{
+  "feature": "netherdescent:embur_moss_carpet_patch",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 3
+    },
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 2
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:environment_scan",
+      "direction_of_search": "down",
+      "max_steps": 16,
+      "target_condition": {
+        "type": "minecraft:matching_blocks",
+        "blocks": "netherdescent:embur_nylium"
+      }
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

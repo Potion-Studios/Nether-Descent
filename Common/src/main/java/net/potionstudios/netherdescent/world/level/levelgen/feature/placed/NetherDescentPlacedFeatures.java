@@ -1,10 +1,13 @@
 package net.potionstudios.netherdescent.world.level.levelgen.feature.placed;
 
+import net.minecraft.core.Direction;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.potionstudios.netherdescent.NetherDescent;
+import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configured.NetherDescentConfiguredFeatures;
 
 import java.util.List;
@@ -16,6 +19,7 @@ public class NetherDescentPlacedFeatures {
     public static final ResourceKey<PlacedFeature> EMBUR_BOG_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("embur_bog_vegetation", NetherDescentConfiguredFeatures.EMBUR_BOG_VEGETATION, () -> List.of(CountOnEveryLayerPlacement.of(8), BiomeFilter.biome()));
     public static final ResourceKey<PlacedFeature> EMBUR_CAVE_MOSS = PlacedFeaturesUtil.createPlacedFeature("embur_cave_moss", NetherDescentConfiguredFeatures.EMBUR_CAVE_MOSS, () -> List.of(CountPlacement.of(ConstantInt.of(256)), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, InSquarePlacement.spread(), BiomeFilter.biome()));
 	public static final ResourceKey<PlacedFeature> HANGING_EMBUR_MOSS = PlacedFeaturesUtil.createPlacedFeature("hanging_embur_moss", NetherDescentConfiguredFeatures.HANGING_EMBUR_MOSS, () -> List.of(CountPlacement.of(25), InSquarePlacement.spread(), PlacementUtils.FULL_RANGE, BiomeFilter.biome()));
+	public static final ResourceKey<PlacedFeature> EMBUR_MOSS_CARPET_PATCH = PlacedFeaturesUtil.createPlacedFeature("embur_moss_carpet_patch", NetherDescentConfiguredFeatures.EMBUR_MOSS_CARPET_PATCH, () -> List.of(RarityFilter.onAverageOnceEvery(3), CountOnEveryLayerPlacement.of(2), InSquarePlacement.spread(), EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.matchesBlocks(NetherDescentBlocks.EMBUR_NYLIUM.get()), 16), BiomeFilter.biome()));
     public static final ResourceKey<PlacedFeature> SYTHIAN_SPROUT = PlacedFeaturesUtil.createPlacedFeature("sythian_sprout", NetherDescentConfiguredFeatures.SYTHIAN_SPROUT, () -> List.of(CountOnEveryLayerPlacement.of(8), BiomeFilter.biome()));
     public static final ResourceKey<PlacedFeature> SYTHIAN_TORRIDS_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("sythian_torrids_vegetation", NetherDescentConfiguredFeatures.SYTHIAN_TORRIDS_VEGETATION, () -> List.of(CountOnEveryLayerPlacement.of(8), BiomeFilter.biome()));
 

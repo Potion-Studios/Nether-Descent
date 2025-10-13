@@ -1,0 +1,13 @@
+{
+  "type": "netherdescent:block_carpet_patch",
+  "config": {
+    "base": "netherdescent:embur_moss_block",
+    "carpet": "netherdescent:embur_moss_carpet",
+    "carpet_chance": 0.85,
+    "radius": {
+      "type": "minecraft:biased_to_bottom",
+      "max_inclusive": 12,
+      "min_inclusive": 6
+    }
+  }
+}
