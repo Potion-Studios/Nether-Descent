@@ -7,11 +7,14 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.GrowingPlantBlock;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
+import net.potionstudios.netherdescent.world.level.block.plants.NDGrowingPlantBodyBlock;
+import net.potionstudios.netherdescent.world.level.block.plants.NDGrowingPlantHeadBlock;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 import org.jetbrains.annotations.NotNull;
 
@@ -25,14 +28,15 @@ public class LangGenerator extends LanguageProvider {
 	@Override
 	protected void addTranslations() {
 		add("itemGroup." + NetherDescentCreativeTabs.CREATIVE_TAB.location().toLanguageKey(), "Nether Descent");
-		NetherDescentBlocks.BLOCKS.forEach(block -> add(block.get(), getBlockName(block)));
-		NetherDescentItems.ITEMS.forEach(item -> add(item.get(), getItemName(item)));
+		NetherDescentBlocks.BLOCKS.forEach(block -> addBlock(block, getBlockName(block)));
+		NetherDescentItems.ITEMS.forEach(item -> addItem(item, getItemName(item)));
 		NetherDescentBiomes.BIOME_FACTORIES.forEach((key, factory) -> add("biome." + NetherDescent.MOD_ID + "." + key.location().getPath(), getBiomeName(key)));
         add(death("crimsonBerryBush"), "%1$s was poked to death by a crimson berry bush");
         add(death("crimsonBerryBush.player"), "%1$s was poked to death by a crimson berry bush while trying to escape %2$s");
 	}
 
 	private String getBlockName(Supplier<? extends Block> item) {
+        if (item.get() instanceof NDGrowingPlantBodyBlock block) return getBlockName(block::getHeadBlock);
 		return getId((BuiltInRegistries.BLOCK.getKey(item.get()).getPath()));
 	}
 

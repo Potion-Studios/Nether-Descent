@@ -48,8 +48,9 @@ public class ModelGenerators {
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_GEL_VINES.get(), "embur_gel_vines_plant");
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_ROOTS.get());
             simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get());
+            simpleItemBlockTexture(NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), "hanging_sythian_roots_plant");
 			simpleItem(NetherDescentBlocks.FUNGAL_BULBS.get(), "fungal_bulbs");
-			//simpleItem(NetherDescentBlocks.PENDORITE_DOOR.get(),  "pendorite_door");
+			simpleItem(NetherDescentBlocks.PENDORITE_DOOR.get(),  "pendorite_door");
 		}
 
 		private void simpleItem(ItemLike item, String texture) {
@@ -127,6 +128,8 @@ public class ModelGenerators {
 			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(),  "translucent");
 			createCrossBlock(NetherDescentBlocks.EMBUR_ROOTS.get(), "cutout_mipped");
             createCrossBlock(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "cutout_mipped");
+            createCrossBlock(NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), "cutout");
+            createCrossBlock(NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get(), "cutout");
 			createDoubleBlock(NetherDescentBlocks.TALL_EMBUR_ROOTS.get());
             createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get());
             createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get());

@@ -27,6 +27,9 @@
     "netherdescent:fungal_bulbs": {
       "chance": 0.65
     },
+    "netherdescent:hanging_sythian_roots": {
+      "chance": 0.65
+    },
     "netherdescent:sythian_fungus": {
       "chance": 0.65
     },
