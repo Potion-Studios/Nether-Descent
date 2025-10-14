@@ -2,35 +2,42 @@
   "type": "minecraft:random_selector",
   "config": {
     "default": {
-      "feature": "netherdescent:sythian_fungi_tree5",
+      "feature": "netherdescent:sythian_fungi_tree6",
       "placement": []
     },
     "features": [
       {
-        "chance": 0.2,
+        "chance": 0.16,
         "feature": {
           "feature": "netherdescent:sythian_fungi_tree1",
           "placement": []
         }
       },
       {
-        "chance": 0.2,
+        "chance": 0.16,
         "feature": {
           "feature": "netherdescent:sythian_fungi_tree2",
           "placement": []
         }
       },
       {
-        "chance": 0.2,
+        "chance": 0.16,
         "feature": {
           "feature": "netherdescent:sythian_fungi_tree3",
           "placement": []
         }
       },
       {
-        "chance": 0.2,
+        "chance": 0.16,
         "feature": {
           "feature": "netherdescent:sythian_fungi_tree4",
+          "placement": []
+        }
+      },
+      {
+        "chance": 0.16,
+        "feature": {
+          "feature": "netherdescent:sythian_fungi_tree5",
           "placement": []
         }
       }

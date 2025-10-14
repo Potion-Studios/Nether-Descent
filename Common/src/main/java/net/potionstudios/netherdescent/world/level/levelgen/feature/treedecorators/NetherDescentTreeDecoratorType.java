@@ -12,6 +12,7 @@ import java.util.function.Supplier;
 public class NetherDescentTreeDecoratorType<P extends TreeDecorator> {
 
     public static final Supplier<TreeDecoratorType<EmburGelVinesDecorator>> EMBUR_GEL_VINES = register("embur_gel_vines", () -> EmburGelVinesDecorator.CODEC);
+    public static final Supplier<TreeDecoratorType<WeepingVinesDecorator>> WEEPING_VINES = register("weeping_vines", () -> WeepingVinesDecorator.CODEC);
 
     private static <P extends TreeDecorator> Supplier<TreeDecoratorType<P>> register(String id, Supplier<MapCodec<P>> codec) {
         return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.TREE_DECORATOR_TYPE, id, () -> new TreeDecoratorType<>(codec.get()));

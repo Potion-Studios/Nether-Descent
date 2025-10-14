@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": {
+      "feature": "netherdescent:crimson_fungi_tree2",
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.5,
+        "feature": {
+          "feature": "netherdescent:crimson_fungi_tree1",
+          "placement": []
+        }
+      }
+    ]
+  }
+}

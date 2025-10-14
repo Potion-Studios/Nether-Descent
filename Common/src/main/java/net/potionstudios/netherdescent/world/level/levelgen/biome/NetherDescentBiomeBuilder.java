@@ -39,6 +39,7 @@ public class NetherDescentBiomeBuilder {
         addVegetal(generationSettings, NetherPlacements.CRIMSON_FOREST_VEGETATION);
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 
+        addVegetal(generationSettings, NetherDescentTreePlacedFeatures.CRIMSON_FUNGI_TREES_HANGING);
         addVegetal(generationSettings, NetherDescentPlacedFeatures.CRIMSON_GARDEN_VEGETATION);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
