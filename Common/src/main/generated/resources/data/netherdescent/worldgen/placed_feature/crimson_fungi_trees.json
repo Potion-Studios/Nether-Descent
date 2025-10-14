@@ -1,9 +1,9 @@
 {
-  "feature": "netherdescent:crimson_fungi_trees_hanging",
+  "feature": "netherdescent:crimson_fungi_trees",
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",
-      "count": 3
+      "count": 1
     },
     {
       "type": "minecraft:biome"

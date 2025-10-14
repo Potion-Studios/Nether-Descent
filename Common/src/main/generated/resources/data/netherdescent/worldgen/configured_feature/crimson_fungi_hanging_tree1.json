@@ -1,42 +1,48 @@
 {
   "type": "ohthetreesyoullgrow:tree_from_nbt_v1",
   "config": {
-    "base_location": "netherdescent:features/trees/sythian/sythian_fungi_trunk6",
+    "base_location": "netherdescent:features/trees/crimson/crimson_fungi_trunk1",
     "can_grow_on_filter": {
       "type": "minecraft:matching_block_tag",
-      "tag": "minecraft:nylium"
+      "tag": "minecraft:base_stone_nether"
     },
     "can_leaves_place_filter": {
       "type": "minecraft:replaceable"
     },
-    "canopy_location": "netherdescent:features/trees/sythian/sythian_fungi_canopy6",
+    "canopy_location": "netherdescent:features/trees/crimson/crimson_fungi_canopy1",
+    "decorators": [
+      {
+        "type": "netherdescent:weeping_vines"
+      }
+    ],
     "height": {
       "type": "minecraft:biased_to_bottom",
-      "max_inclusive": 22,
-      "min_inclusive": 21
+      "max_inclusive": 10,
+      "min_inclusive": 8
     },
     "leaves_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "netherdescent:sythian_wart_block"
+        "Name": "minecraft:nether_wart_block"
       }
     },
     "leaves_target": [
-      "minecraft:oak_leaves"
+      "minecraft:nether_wart_block"
     ],
     "log_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "netherdescent:sythian_stem",
+        "Name": "minecraft:crimson_stem",
         "Properties": {
           "axis": "y"
         }
       }
     },
     "log_target": [
-      "minecraft:oak_log"
+      "minecraft:crimson_stem"
     ],
     "max_log_depth": 4,
+    "orientation": "UPSIDE_DOWN",
     "place_from_nbt": []
   }
 }

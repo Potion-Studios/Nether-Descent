@@ -42,7 +42,6 @@
       "minecraft:crimson_stem"
     ],
     "max_log_depth": 4,
-    "orientation": "UPSIDE_DOWN",
     "place_from_nbt": []
   }
 }

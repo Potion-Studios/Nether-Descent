@@ -35,7 +35,7 @@
         }
       },
       {
-        "chance": 0.16,
+        "chance": 0.2,
         "feature": {
           "feature": "netherdescent:sythian_fungi_tree5",
           "placement": []
