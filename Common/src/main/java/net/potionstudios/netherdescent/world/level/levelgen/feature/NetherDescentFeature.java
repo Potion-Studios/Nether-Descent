@@ -10,7 +10,7 @@ import net.potionstudios.netherdescent.world.level.levelgen.feature.configuratio
 
 import java.util.function.Supplier;
 
-public class NetherDescentFeatures {
+public class NetherDescentFeature {
 
 	public static final Supplier<Feature<CeilingHangingVinesFeatureConfiguration>> CEILING_HANGING_VINES = create("ceiling_hanging_vines", () -> new CeilingHangingVinesFeature(CeilingHangingVinesFeatureConfiguration.CODEC));
 	public static final Supplier<Feature<CarpetPatchFeatureConfiguration>> BLOCK_CARPET_PATCH = create("block_carpet_patch", () -> new CarpetPatchFeature(CarpetPatchFeatureConfiguration.CODEC));
