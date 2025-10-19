@@ -9,6 +9,7 @@ import net.minecraft.data.worldgen.features.NetherFeatures;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.BiasedToBottomInt;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -84,6 +85,7 @@ public class NetherDescentConfiguredFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_BLUE_NETHER_GOLD = ConfiguredFeaturesUtil.createConfiguredFeature("ore_blue_nether_gold", Feature.ORE, () -> new OreConfiguration(new BlockMatchTest(NetherDescentBlocks.BLUE_NETHERRACK.get()), NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get().defaultBlockState(), 10));
     public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_BLUE_QUARTZ = ConfiguredFeaturesUtil.createConfiguredFeature("ore_blue_quartz", Feature.ORE, () -> new OreConfiguration(new BlockMatchTest(NetherDescentBlocks.BLUE_NETHERRACK.get()), NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get().defaultBlockState(), 14));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_PENDORITE = ConfiguredFeaturesUtil.createConfiguredFeature("ore_pendorite", Feature.ORE, () -> new OreConfiguration(new BlockMatchTest(Blocks.BLACKSTONE), NetherDescentBlocks.PENDORITE_ORE.get().defaultBlockState(), 14));
 
 	private static ResourceKey<ConfiguredFeature<?, ?>> createPatchConfiguredFeatureState(String id, Supplier<? extends BlockState> state, int tries) {
 		return ConfiguredFeaturesUtil.createConfiguredFeature(id, Feature.RANDOM_PATCH, () -> FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(state.get())), List.of(), tries));

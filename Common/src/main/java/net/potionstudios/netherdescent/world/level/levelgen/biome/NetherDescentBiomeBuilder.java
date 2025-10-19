@@ -6,7 +6,6 @@ import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.Carvers;
 import net.minecraft.data.worldgen.placement.NetherPlacements;
 import net.minecraft.data.worldgen.placement.OrePlacements;
-import net.minecraft.data.worldgen.placement.TreePlacements;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.Musics;
@@ -38,6 +37,7 @@ public class NetherDescentBiomeBuilder {
         addVegetal(generationSettings, NetherPlacements.WEEPING_VINES);
         addVegetal(generationSettings, NetherPlacements.CRIMSON_FOREST_VEGETATION);
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
+        generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherDescentPlacedFeatures.ORE_PENDORITE);
 
         addVegetal(generationSettings, NetherDescentTreePlacedFeatures.CRIMSON_FUNGI_TREES_HANGING);
         addVegetal(generationSettings, NetherDescentPlacedFeatures.CRIMSON_GARDEN_VEGETATION);
