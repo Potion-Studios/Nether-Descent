@@ -51,6 +51,7 @@ public class ModelGenerators {
             simpleItemBlockTexture(NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), "hanging_sythian_roots_plant");
 			simpleItem(NetherDescentBlocks.FUNGAL_BULBS.get(), "fungal_bulbs");
 			simpleItem(NetherDescentBlocks.PENDORITE_DOOR.get(),  "pendorite_door");
+            simpleBlockItem(NetherDescentBlocks.CRIMSON_CARPET.get());
 		}
 
 		private void simpleItem(ItemLike item, String texture) {
@@ -222,6 +223,9 @@ public class ModelGenerators {
 			trapdoorBlockWithRenderType(NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), blockTexture(NetherDescentBlocks.PENDORITE_TRAPDOOR.get()), true, "translucent");
 			itemModels().trapdoorBottom(name(NetherDescentBlocks.PENDORITE_TRAPDOOR.get()), blockTexture(NetherDescentBlocks.PENDORITE_TRAPDOOR.get())).renderType("translucent");
 			doorBlockWithRenderType(NetherDescentBlocks.PENDORITE_DOOR.get(), blockNDTexture(NetherDescentBlocks.PENDORITE_DOOR.get(), "bottom"), blockNDTexture(NetherDescentBlocks.PENDORITE_DOOR.get(), "top"), "translucent");
+
+            getVariantBuilder(NetherDescentBlocks.CRIMSON_CARPET.get()).partialState()
+                    .setModels(new ConfiguredModel(models().getExistingFile(blockTexture(NetherDescentBlocks.CRIMSON_CARPET.get()))), new ConfiguredModel(models().getExistingFile(NetherDescent.id("block/crimson_carpet2"))));
         }
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {

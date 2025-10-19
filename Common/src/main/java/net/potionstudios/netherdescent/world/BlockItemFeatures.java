@@ -10,7 +10,7 @@ import java.util.function.BiConsumer;
 public class BlockItemFeatures {
 
     public static void registerCompostables(BiConsumer<ItemLike, Float> consumer) {
-        compostItems(consumer, 0.3F, NetherDescentItems.CRIMSON_BERRIES.get());
+        compostItems(consumer, 0.3F, NetherDescentItems.CRIMSON_BERRIES.get(), NetherDescentBlocks.CRIMSON_CARPET.get());
         compostItems(consumer, 0.5F, NetherDescentBlocks.EMBUR_SPROUTS.get(), NetherDescentBlocks.SYTHIAN_SPROUTS.get());
         compostItems(consumer, 0.6F, NetherDescentBlocks.EMBUR_GEL_VINES.get());
         compostItems(consumer, 0.65F, NetherDescentBlocks.EMBUR_ROOTS.get(), NetherDescentBlocks.TALL_EMBUR_ROOTS.get(), NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(),
