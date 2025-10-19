@@ -1,4 +1,4 @@
-package net.potionstudios.netherdescent.world.level.levelgen.feature.configured;
+package net.potionstudios.netherdescent.data.worldgen.features;
 
 import com.google.common.collect.ImmutableList;
 import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.TYGFeatures;
@@ -17,14 +17,13 @@ import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureCo
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.PlacedFeaturesUtil;
+import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.EmburGelVinesDecorator;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.WeepingVinesDecorator;
 
 import java.util.Set;
 
-public class NetherDescentTreeConfiguredFeatures {
-
+public class NetherDescentTreeFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_FUNGI_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_fungi_tree1",
             TYGFeatures.TREE_FROM_NBT_V1,
@@ -345,7 +344,7 @@ public class NetherDescentTreeConfiguredFeatures {
             }
     );
 
-    public static void treeConfiguredFeatures() {
+    protected static void treeFeatures() {
         NetherDescent.LOGGER.info("NetherDescent Tree Features");
     }
 }

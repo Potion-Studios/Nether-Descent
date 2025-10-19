@@ -1,4 +1,4 @@
-package net.potionstudios.netherdescent.world.level.levelgen.feature.configured;
+package net.potionstudios.netherdescent.data.worldgen.features;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.core.HolderGetter;
@@ -9,29 +9,25 @@ import net.minecraft.data.worldgen.features.NetherFeatures;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.BiasedToBottomInt;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.MultifaceGrowthConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
-import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeatures;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CarpetPatchFeatureConfiguration;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CeilingHangingVinesFeatureConfiguration;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.PlacedFeaturesUtil;
+import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
 
 import java.util.List;
 import java.util.function.Supplier;
 
-public class NetherDescentConfiguredFeatures {
+public class NetherDescentFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_SPROUT = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("embur_sprout", NetherDescentBlocks.EMBUR_SPROUTS, 15);
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_LILY = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("embur_lily", NetherDescentBlocks.EMBUR_LILY, 15);
@@ -51,10 +47,10 @@ public class NetherDescentConfiguredFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_CAVE_MOSS = ConfiguredFeaturesUtil.createConfiguredFeature("embur_cave_moss", Feature.MULTIFACE_GROWTH, (configuredFeatureBootstrapContext) -> new MultifaceGrowthConfiguration(NetherDescentBlocks.EMBUR_CAVE_MOSS.get(), 16, true, true, true, 1F, HolderSet.direct(Block::builtInRegistryHolder, NetherDescentBlocks.BLUE_NETHERRACK.get(), NetherDescentBlocks.EMBUR_NYLIUM.get(), NetherDescentBlocks.EMBUR.logstem())));
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_EMBUR_MOSS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_vines_feature", NetherDescentFeatures.CEILING_HANGING_VINES, () -> new CeilingHangingVinesFeatureConfiguration(NetherDescentBlocks.BLUE_NETHERRACK.get(), NetherDescentBlocks.EMBUR_MOSS_BLOCK.get().defaultBlockState(), NetherDescentBlocks.EMBUR_HANGING_MOSS.get().defaultBlockState(), 0.75F, 10, 90));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_EMBUR_MOSS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_vines_feature", net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeatures.CEILING_HANGING_VINES, () -> new CeilingHangingVinesFeatureConfiguration(NetherDescentBlocks.BLUE_NETHERRACK.get(), NetherDescentBlocks.EMBUR_MOSS_BLOCK.get().defaultBlockState(), NetherDescentBlocks.EMBUR_HANGING_MOSS.get().defaultBlockState(), 0.75F, 10, 90));
 
     //public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_PATCH_BONEMEAL = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock();
-	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_carpet_patch", NetherDescentFeatures.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.EMBUR_MOSS_BLOCK.get(), NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), BiasedToBottomInt.of(6, 12), 0.85F));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_carpet_patch", net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeatures.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.EMBUR_MOSS_BLOCK.get(), NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), BiasedToBottomInt.of(6, 12), 0.85F));
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_SPROUT = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("sythian_sprout", NetherDescentBlocks.SYTHIAN_SPROUTS, 15);
 
@@ -83,16 +79,13 @@ public class NetherDescentConfiguredFeatures {
             }
     );
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_BLUE_NETHER_GOLD = ConfiguredFeaturesUtil.createConfiguredFeature("ore_blue_nether_gold", Feature.ORE, () -> new OreConfiguration(new BlockMatchTest(NetherDescentBlocks.BLUE_NETHERRACK.get()), NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get().defaultBlockState(), 10));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_BLUE_QUARTZ = ConfiguredFeaturesUtil.createConfiguredFeature("ore_blue_quartz", Feature.ORE, () -> new OreConfiguration(new BlockMatchTest(NetherDescentBlocks.BLUE_NETHERRACK.get()), NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get().defaultBlockState(), 14));
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ORE_PENDORITE = ConfiguredFeaturesUtil.createConfiguredFeature("ore_pendorite", Feature.ORE, () -> new OreConfiguration(new BlockMatchTest(Blocks.BLACKSTONE), NetherDescentBlocks.PENDORITE_ORE.get().defaultBlockState(), 14));
-
 	private static ResourceKey<ConfiguredFeature<?, ?>> createPatchConfiguredFeatureState(String id, Supplier<? extends BlockState> state, int tries) {
 		return ConfiguredFeaturesUtil.createConfiguredFeature(id, Feature.RANDOM_PATCH, () -> FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(state.get())), List.of(), tries));
 	}
 
-    public static void configuredFeatures() {
-        NetherDescent.LOGGER.info("Registering Nether Descent Configured Features");
-        NetherDescentTreeConfiguredFeatures.treeConfiguredFeatures();
+    public static void features() {
+        NetherDescent.LOGGER.info("Registering Nether Descent Features");
+        NetherDescentTreeFeatures.treeFeatures();
+        NetherDescentOreFeatures.oreFeatures();
     }
 }

@@ -15,9 +15,10 @@ import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.potionstudios.netherdescent.data.worldgen.placement.NetherDescentOrePlacements;
 import net.potionstudios.netherdescent.sounds.NetherDescentSounds;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.NetherDescentPlacedFeatures;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.NetherDescentTreePlacedFeatures;
+import net.potionstudios.netherdescent.data.worldgen.placement.NetherDescentPlacements;
+import net.potionstudios.netherdescent.data.worldgen.placement.NetherDescentTreePlacements;
 
 public class NetherDescentBiomeBuilder {
 
@@ -37,10 +38,10 @@ public class NetherDescentBiomeBuilder {
         addVegetal(generationSettings, NetherPlacements.WEEPING_VINES);
         addVegetal(generationSettings, NetherPlacements.CRIMSON_FOREST_VEGETATION);
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
-        generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherDescentPlacedFeatures.ORE_PENDORITE);
+        generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherDescentOrePlacements.ORE_PENDORITE);
 
-        addVegetal(generationSettings, NetherDescentTreePlacedFeatures.CRIMSON_FUNGI_TREES_HANGING);
-        addVegetal(generationSettings, NetherDescentPlacedFeatures.CRIMSON_GARDEN_VEGETATION);
+        addVegetal(generationSettings, NetherDescentTreePlacements.CRIMSON_FUNGI_TREES_HANGING);
+        addVegetal(generationSettings, NetherDescentPlacements.CRIMSON_GARDEN_VEGETATION);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.HOGLIN, 9, 3, 4);
@@ -55,16 +56,16 @@ public class NetherDescentBiomeBuilder {
         BiomeGenerationSettings.Builder generationSettings = setupDefaultNetherGeneration(placedFeatureHolderGetter, carverGetter);
         generationSettings.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, NetherPlacements.DELTA);
         BiomeDefaultFeatures.addAncientDebris(generationSettings);
-        generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherDescentPlacedFeatures.ORE_BLUE_GOLD_NETHER);
-        generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherDescentPlacedFeatures.ORE_BLUE_QUARTZ_NETHER);
+        generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherDescentOrePlacements.ORE_BLUE_GOLD_NETHER);
+        generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherDescentOrePlacements.ORE_BLUE_QUARTZ_NETHER);
 
-		addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_MOSS_CARPET_PATCH);
-        addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_LILY);
-        addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_SPROUT);
-        addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_BOG_VEGETATION);
-        addVegetal(generationSettings, NetherDescentTreePlacedFeatures.EMBUR_WARTS);
-        addVegetal(generationSettings, NetherDescentPlacedFeatures.EMBUR_CAVE_MOSS);
-		addVegetal(generationSettings, NetherDescentPlacedFeatures.HANGING_EMBUR_MOSS);
+		addVegetal(generationSettings, NetherDescentPlacements.EMBUR_MOSS_CARPET_PATCH);
+        addVegetal(generationSettings, NetherDescentPlacements.EMBUR_LILY);
+        addVegetal(generationSettings, NetherDescentPlacements.EMBUR_SPROUT);
+        addVegetal(generationSettings, NetherDescentPlacements.EMBUR_BOG_VEGETATION);
+        addVegetal(generationSettings, NetherDescentTreePlacements.EMBUR_WARTS);
+        addVegetal(generationSettings, NetherDescentPlacements.EMBUR_CAVE_MOSS);
+		addVegetal(generationSettings, NetherDescentPlacements.HANGING_EMBUR_MOSS);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.BLAZE, 20, 2, 4);
@@ -79,8 +80,8 @@ public class NetherDescentBiomeBuilder {
         BiomeGenerationSettings.Builder generationSettings = setupDefaultNetherGeneration(placedFeatureHolderGetter, carverGetter);
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 
-        addVegetal(generationSettings, NetherDescentPlacedFeatures.SYTHIAN_TORRIDS_VEGETATION);
-        addVegetal(generationSettings, NetherDescentTreePlacedFeatures.SYTHIAN_FUNGI_TREES);
+        addVegetal(generationSettings, NetherDescentPlacements.SYTHIAN_TORRIDS_VEGETATION);
+        addVegetal(generationSettings, NetherDescentTreePlacements.SYTHIAN_FUNGI_TREES);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.GHAST, 50, 4, 4);

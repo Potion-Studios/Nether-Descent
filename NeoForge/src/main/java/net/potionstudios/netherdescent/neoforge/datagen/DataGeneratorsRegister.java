@@ -15,8 +15,8 @@ import net.potionstudios.netherdescent.neoforge.datagen.generators.*;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.loot.LootGenerator;
 import net.potionstudios.netherdescent.world.damagesource.NetherDescentDamageTypes;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.configured.ConfiguredFeaturesUtil;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.placed.PlacedFeaturesUtil;
+import net.potionstudios.netherdescent.data.worldgen.features.ConfiguredFeaturesUtil;
+import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentStructureSets;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentStructures;
 

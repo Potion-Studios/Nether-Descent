@@ -1,4 +1,4 @@
-package net.potionstudios.netherdescent.world.level.levelgen.feature.placed;
+package net.potionstudios.netherdescent.data.worldgen.placement;
 
 import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
 import net.minecraft.core.Holder;
@@ -29,7 +29,7 @@ public class PlacedFeaturesUtil {
         return createPlacedFeatureDirect(feature, List.of(placementModifiers));
     }
 
-    public static <FC extends FeatureConfiguration> Holder<PlacedFeature> createPlacedFeatureDirect(Holder<ConfiguredFeature<?, ?>> feature, List<PlacementModifier> placementModifiers) {
+    protected static <FC extends FeatureConfiguration> Holder<PlacedFeature> createPlacedFeatureDirect(Holder<ConfiguredFeature<?, ?>> feature, List<PlacementModifier> placementModifiers) {
         return Holder.direct(new PlacedFeature(feature, placementModifiers));
     }
 
