@@ -82,6 +82,7 @@ public class NetherDescentBiomeBuilder {
 
         addVegetal(generationSettings, NetherDescentPlacements.SYTHIAN_TORRIDS_VEGETATION);
         addVegetal(generationSettings, NetherDescentTreePlacements.SYTHIAN_FUNGI_TREES);
+		addVegetal(generationSettings, NetherDescentPlacements.HANGING_SYTHIAN_ROOTS);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.GHAST, 50, 4, 4);

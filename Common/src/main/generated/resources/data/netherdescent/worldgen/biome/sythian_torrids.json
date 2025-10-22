@@ -60,7 +60,8 @@
     [],
     [
       "netherdescent:sythian_torrids_vegetation",
-      "netherdescent:sythian_fungi_trees"
+      "netherdescent:sythian_fungi_trees",
+      "netherdescent:hanging_sythian_roots"
     ]
   ],
   "has_precipitation": false,
