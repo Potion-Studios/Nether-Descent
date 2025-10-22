@@ -1,9 +1,9 @@
 {
-  "feature": "netherdescent:hanging_sythian_roots",
+  "feature": "netherdescent:patch_hanging_sythian_roots",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": 256
+      "count": 32
     },
     {
       "type": "minecraft:in_square"
