@@ -6,7 +6,7 @@
   "effects": {
     "additions_sound": {
       "sound": "netherdescent:ambient.embur_bog.additions",
-      "tick_chance": 0.0051
+      "tick_chance": 0.0111
     },
     "ambient_sound": "netherdescent:ambient.embur_bog.loop",
     "fog_color": 15110510,

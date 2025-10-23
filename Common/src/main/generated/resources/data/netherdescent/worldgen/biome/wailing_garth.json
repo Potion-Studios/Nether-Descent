@@ -6,7 +6,7 @@
   "effects": {
     "additions_sound": {
       "sound": "netherdescent:ambient.wailing_garth.additions",
-      "tick_chance": 0.0051
+      "tick_chance": 0.0111
     },
     "ambient_sound": "netherdescent:ambient.wailing_garth.loop",
     "fog_color": 4529794,

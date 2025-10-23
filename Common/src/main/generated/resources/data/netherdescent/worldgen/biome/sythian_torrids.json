@@ -6,7 +6,7 @@
   "effects": {
     "additions_sound": {
       "sound": "netherdescent:ambient.sythian_torrids.additions",
-      "tick_chance": 0.0051
+      "tick_chance": 0.0111
     },
     "ambient_sound": "netherdescent:ambient.sythian_torrids.loop",
     "fog_color": 16572546,
