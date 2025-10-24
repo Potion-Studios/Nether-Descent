@@ -3,6 +3,8 @@ package net.potionstudios.netherdescent.neoforge.datagen.generators;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.data.ParticleDescriptionProvider;
+import net.potionstudios.netherdescent.NetherDescent;
+import net.potionstudios.netherdescent.client.particle.NetherDescentParticles;
 
 public class ParticleDescriptionGenerator extends ParticleDescriptionProvider {
     /**
@@ -17,6 +19,9 @@ public class ParticleDescriptionGenerator extends ParticleDescriptionProvider {
 
     @Override
     protected void addDescriptions() {
-
+		spriteSet(NetherDescentParticles.EMBUR_GEL_DRIP.get(), NetherDescent.id("embur_gel_drip"), 2, false);
+//		sprite(NetherDescentParticles.GILL_LEVITATE.get(), NetherDescent.id("gill_levitate"));
+//		sprite(NetherDescentParticles.GILL_LEVITATE_POWERED.get(), NetherDescent.id("gill_levitate_powered"));
+//		sprite(NetherDescentParticles.SYTHIAN_LEAF.get(), NetherDescent.id("sythian_leaf"));
     }
 }
