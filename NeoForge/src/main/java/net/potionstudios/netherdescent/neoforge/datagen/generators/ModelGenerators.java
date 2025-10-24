@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.neoforge.datagen.generators;
 
+import net.minecraft.client.model.Model;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.DataGenerator;
@@ -18,6 +19,7 @@ import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.custom.HangingMossBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.SythianFarmBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
+import net.potionstudios.netherdescent.world.level.block.plants.SythianShootBlock;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 
@@ -52,6 +54,7 @@ public class ModelGenerators {
 			simpleItem(NetherDescentBlocks.FUNGAL_BULBS.get(), "fungal_bulbs");
 			simpleItem(NetherDescentBlocks.PENDORITE_DOOR.get(),  "pendorite_door");
             simpleBlockItem(NetherDescentBlocks.CRIMSON_CARPET.get());
+            simpleItem(NetherDescentBlocks.SYTHIAN_STALK.get(),  "sythian_stalk");
 		}
 
 		private void simpleItem(ItemLike item, String texture) {
@@ -226,6 +229,27 @@ public class ModelGenerators {
 
             getVariantBuilder(NetherDescentBlocks.CRIMSON_CARPET.get()).partialState()
                     .setModels(new ConfiguredModel(models().getExistingFile(blockTexture(NetherDescentBlocks.CRIMSON_CARPET.get()))), new ConfiguredModel(models().getExistingFile(NetherDescent.id("block/crimson_carpet2"))));
+
+            var sythianShoot = models().withExistingParent(name(NetherDescentBlocks.SYTHIAN_SHOOT.get()), "block/tinted_cross").texture("cross", NetherDescent.id("block/sythian_stalk_stage0")).renderType("cutout");
+            getVariantBuilder(NetherDescentBlocks.SYTHIAN_SHOOT.get()).forAllStates(state -> {
+               if (state.getValue(SythianShootBlock.HANGING)) return ConfiguredModel.builder().modelFile(sythianShoot).rotationX(180).build();
+               else return ConfiguredModel.builder().modelFile(sythianShoot).build();
+            });
+            for (int i = 0; i < 2; i++)
+                for (int j = 1; j <= 4; j++)
+                    models().withExistingParent("sythian_stalk" + j + "_age" + i, mcLoc("block/bamboo" + j + "_age" + i))
+                            .texture("all", blockTexture(NetherDescentBlocks.SYTHIAN_STALK.get()))
+                            .texture("particle",  blockTexture(NetherDescentBlocks.SYTHIAN_STALK.get()));
+
+            models().withExistingParent("sythian_stalk_small_leaves", mcLoc("block/bamboo_small_leaves"))
+                    .texture("texture", blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "small_leaves"))
+                    .texture("particle",  blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "small_leaves"))
+                    .renderType("cutout");
+
+            models().withExistingParent("sythian_stalk_large_leaves", mcLoc("block/bamboo_large_leaves"))
+                    .texture("texture", blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "large_leaves"))
+                    .texture("particle",  blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "large_leaves"))
+                    .renderType("cutout");
         }
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {

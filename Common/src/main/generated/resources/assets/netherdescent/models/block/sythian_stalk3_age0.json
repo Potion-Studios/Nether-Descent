@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/bamboo3_age0",
+  "textures": {
+    "all": "netherdescent:block/sythian_stalk",
+    "particle": "netherdescent:block/sythian_stalk"
+  }
+}

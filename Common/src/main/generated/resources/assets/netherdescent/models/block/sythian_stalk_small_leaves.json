@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/bamboo_small_leaves",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "netherdescent:block/sythian_stalk_small_leaves",
+    "texture": "netherdescent:block/sythian_stalk_small_leaves"
+  }
+}

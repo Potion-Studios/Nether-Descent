@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "netherdescent:block/sythian_shoot"
+    },
+    "hanging=true": {
+      "model": "netherdescent:block/sythian_shoot",
+      "x": 180
+    }
+  }
+}
