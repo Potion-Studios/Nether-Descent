@@ -78,17 +78,21 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
         if (!level.getFluidState(pos).isEmpty())
             return null;
         else {
-            BlockState blockState = level.getBlockState(pos.below());
+            BlockState blockState;
+            if (context.getClickedFace() == Direction.DOWN)
+                blockState = level.getBlockState(pos.above());
+            else blockState = level.getBlockState(pos.below());
+
             if (blockState.is(NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON)) {
                 if (blockState.is(NetherDescentBlocks.SYTHIAN_SHOOT.get()))
-                    return defaultBlockState().setValue(AGE, 0);
+                    return defaultBlockState().setValue(AGE, 0).setValue(HANGING, context.getClickedFace() == Direction.DOWN);
                 else if (blockState.is(NetherDescentBlocks.SYTHIAN_STALK.get()))
-                    return defaultBlockState().setValue(AGE, blockState.getValue(AGE) > 0 ? 1 : 0);
+                    return defaultBlockState().setValue(AGE, blockState.getValue(AGE) > 0 ? 1 : 0).setValue(HANGING, context.getClickedFace() == Direction.DOWN);
                 else {
                     BlockState blockState2 = level.getBlockState(pos.above());
                     return blockState2.is(NetherDescentBlocks.SYTHIAN_STALK.get())
-                            ? defaultBlockState().setValue(AGE, blockState2.getValue(AGE))
-                            : NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState();
+                            ? defaultBlockState().setValue(AGE, blockState2.getValue(AGE)).setValue(HANGING, context.getClickedFace() == Direction.DOWN)
+                            : NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState().setValue(SythianShootBlock.HANGING, context.getClickedFace() == Direction.DOWN);
                 }
             }
         }
@@ -111,7 +115,7 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
     protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (state.getValue(STAGE) == 0)
             if (random.nextInt(3) == 0 && level.isEmptyBlock(state.getValue(HANGING) ? pos.below() : pos.above())) {
-                int i = getHeightBelowUpToMax(level, pos) + 1;
+                int i = state.getValue(HANGING)? getHeightAboveUpToMax(level, pos) + 1 : getHeightBelowUpToMax(level, pos) + 1;
                 if (i < 16)
                     growSythianStalk(state, level, pos, random, i);
             }
@@ -127,7 +131,7 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
         if (!state.canSurvive(level, pos))
             level.scheduleTick(pos, this, 1);
 
-        if ((direction == Direction.UP || direction == Direction.DOWN) && neighborState.is(NetherDescentBlocks.SYTHIAN_STALK.get()) && neighborState.getValue(AGE) > state.getValue(AGE))
+        if (((direction == Direction.UP && !state.getValue(HANGING)) || (direction == Direction.DOWN && state.getValue(HANGING))) && neighborState.is(NetherDescentBlocks.SYTHIAN_STALK.get()) && neighborState.getValue(AGE) > state.getValue(AGE))
             level.setBlock(pos, state.cycle(AGE), 2);
 
         return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
@@ -135,7 +139,9 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
 
     @Override
     public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
-        return false;
+        int i = this.getHeightAboveUpToMax(level, pos);
+        int j = this.getHeightBelowUpToMax(level, pos);
+        return i + j + 1 < 16 && level.getBlockState(state.getValue(HANGING) ? pos.below(i) : pos.above(i)).getValue(STAGE) != 1;
     }
 
     @Override
@@ -153,7 +159,7 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
         for (int m = 0; m < l; m++) {
             BlockPos blockPos = pos.above(i);
             BlockState blockState = level.getBlockState(blockPos);
-            if (k >= 16 || blockState.getValue(STAGE) == 1 || !level.isEmptyBlock(blockPos.above()))
+            if (k >= 16 || blockState.getValue(STAGE) == 1 || !level.isEmptyBlock(state.getValue(HANGING) ? blockPos.below() : blockPos.above()))
                 return;
 
             growSythianStalk(blockState, level, blockPos, random, k);
@@ -183,7 +189,7 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
     protected void growSythianStalk(BlockState state, Level level, BlockPos pos, RandomSource random, int age) {
         boolean hanging = state.getValue(HANGING);
         BlockState blockState = level.getBlockState(hanging ? pos.above() : pos.below());
-        BlockPos blockPos = hanging ? pos.below(2) : pos.above(2);
+        BlockPos blockPos = hanging ? pos.above(2) : pos.below(2);
         BlockState blockState2 = level.getBlockState(blockPos);
         BambooLeaves bambooLeaves = BambooLeaves.NONE;
         if (age >= 1)
@@ -199,6 +205,6 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
 
         int i = state.getValue(AGE) != 1 && !blockState2.is(NetherDescentBlocks.SYTHIAN_STALK.get()) ? 0 : 1;
         int j = (age < 11 || !(random.nextFloat() < 0.25F)) && age != 15 ? 0 : 1;
-        level.setBlock(hanging ? pos.below() : pos.above(), defaultBlockState().setValue(AGE, i).setValue(LEAVES, bambooLeaves).setValue(STAGE, j), 3);
+        level.setBlock(hanging ? pos.below() : pos.above(), defaultBlockState().setValue(AGE, i).setValue(LEAVES, bambooLeaves).setValue(STAGE, j).setValue(HANGING, hanging), 3);
     }
 }

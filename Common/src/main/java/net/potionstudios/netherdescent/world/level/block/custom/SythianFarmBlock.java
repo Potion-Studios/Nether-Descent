@@ -52,7 +52,7 @@ public class SythianFarmBlock extends Block {
     @Override
     protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
         BlockState blockState = level.getBlockState(pos.above());
-        return !blockState.isSolid() || blockState.getBlock() instanceof FenceGateBlock || blockState.getBlock() instanceof MovingPistonBlock;
+        return !blockState.isSolid() || blockState.getBlock() instanceof FenceGateBlock || blockState.getBlock() instanceof MovingPistonBlock || blockState.is(NetherDescentBlocks.SYTHIAN_SHOOT.get()) || blockState.is(NetherDescentBlocks.SYTHIAN_STALK.get());
     }
 
     @Override
@@ -113,7 +113,7 @@ public class SythianFarmBlock extends Block {
             level.setBlockAndUpdate(pos, state.setValue(MOSSY, true));
             if (!player.isCreative())
                 stack.shrink(1);
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+            return ItemInteractionResult.sidedSuccess(level.isClientSide());
         }
 
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);

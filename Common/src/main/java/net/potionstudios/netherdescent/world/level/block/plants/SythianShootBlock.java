@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BambooLeaves;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -44,8 +45,8 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
                 BlockState dirtState = level.getBlockState(hanging ? pos.above() : pos.below());
                 if (dirtState.getBlock() instanceof SythianFarmBlock)
                     modifier = dirtState.getValue(SythianFarmBlock.MOSSY) ? 2 : 1;
-                if (random.nextInt(modifier) == 0) {}
-                    // TODO: Grow
+                if (random.nextInt(modifier) == 0)
+                    growStalk(level, pos, state);
         }
     }
 
@@ -96,7 +97,7 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
 
     @Override
     public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
-        return level.isEmptyBlock(state.getValue(HANGING) ? pos.above() : pos.below());
+        return level.isEmptyBlock(state.getValue(HANGING) ? pos.below() : pos.above());
     }
 
     @Override
@@ -106,6 +107,10 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
 
     @Override
     public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
+        growStalk(level, pos, state);
+    }
 
+    protected void growStalk(Level level, BlockPos pos, BlockState state) {
+        level.setBlock(state.getValue(HANGING) ? pos.below() : pos.above(), NetherDescentBlocks.SYTHIAN_STALK.get().defaultBlockState().setValue(SythianStalkBlock.LEAVES, BambooLeaves.SMALL).setValue(SythianStalkBlock.HANGING, state.getValue(HANGING)), 3);
     }
 }

@@ -1,6 +1,7 @@
 package net.potionstudios.netherdescent.client.particle;
 
 import net.minecraft.core.particles.SimpleParticleType;
+import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
 
 import java.util.function.Supplier;
