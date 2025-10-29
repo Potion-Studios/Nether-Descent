@@ -35,7 +35,6 @@ public class SoundDefinitionsGenerator extends SoundDefinitionsProvider {
 				sound(NetherDescent.id("ambient/nether/wailing_garth/addition5")).volume(0.1),
 				sound(NetherDescent.id("ambient/nether/wailing_garth/addition6")).volume(0.1),
 				sound(NetherDescent.id("ambient/nether/wailing_garth/addition7")).volume(0.1)
-
 		));
 
 		add(NetherDescentSounds.MUSIC_BIOME_SYTHIAN_TORRIDS.get().value(), definition().with(sound(NetherDescent.id("music/game/nether/sythian_torrids/glistening_depths")).stream().volume(0.3)));
@@ -75,7 +74,6 @@ public class SoundDefinitionsGenerator extends SoundDefinitionsProvider {
 				sound(NetherDescent.id("ambient/nether/embur_bog/addition5")).volume(0.1),
 				sound(NetherDescent.id("ambient/nether/embur_bog/addition6")).volume(0.1),
 				sound(NetherDescent.id("ambient/nether/embur_bog/addition7")).volume(0.1)
-
 		));
 	}
 
