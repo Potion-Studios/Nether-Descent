@@ -141,7 +141,7 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
     public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
         int i = this.getHeightAboveUpToMax(level, pos);
         int j = this.getHeightBelowUpToMax(level, pos);
-        return i + j + 1 < 16 && level.getBlockState(state.getValue(HANGING) ? pos.below(i) : pos.above(i)).getValue(STAGE) != 1;
+        return i + j + 1 < 16 && level.getBlockState(state.getValue(HANGING) ? pos.below(j) : pos.above(i)).getValue(STAGE) != 1;
     }
 
     @Override
@@ -157,7 +157,7 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
         int l = 1 + random.nextInt(2);
 
         for (int m = 0; m < l; m++) {
-            BlockPos blockPos = pos.above(i);
+            BlockPos blockPos = state.getValue(HANGING) ? pos.below(j) : pos.above(i);
             BlockState blockState = level.getBlockState(blockPos);
             if (k >= 16 || blockState.getValue(STAGE) == 1 || !level.isEmptyBlock(state.getValue(HANGING) ? blockPos.below() : blockPos.above()))
                 return;
