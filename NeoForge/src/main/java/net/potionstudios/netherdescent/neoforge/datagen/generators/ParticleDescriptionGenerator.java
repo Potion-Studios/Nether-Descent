@@ -19,7 +19,7 @@ public class ParticleDescriptionGenerator extends ParticleDescriptionProvider {
 
     @Override
     protected void addDescriptions() {
-		spriteSet(NetherDescentParticles.EMBUR_GEL_DRIP.get(), NetherDescent.id("embur_gel_drip"), 2, false);
+//		spriteSet(NetherDescentParticles.EMBUR_GEL_DRIP.get(), NetherDescent.id("embur_gel_drip"), 2, false);
 //		sprite(NetherDescentParticles.GILL_LEVITATE.get(), NetherDescent.id("gill_levitate"));
 //		sprite(NetherDescentParticles.GILL_LEVITATE_POWERED.get(), NetherDescent.id("gill_levitate_powered"));
 //		sprite(NetherDescentParticles.SYTHIAN_LEAF.get(), NetherDescent.id("sythian_leaf"));

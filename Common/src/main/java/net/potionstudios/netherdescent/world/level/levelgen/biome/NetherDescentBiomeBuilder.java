@@ -84,6 +84,8 @@ public class NetherDescentBiomeBuilder {
         addVegetal(generationSettings, NetherDescentTreePlacements.SYTHIAN_FUNGI_TREES);
 		addVegetal(generationSettings, NetherDescentPlacements.HANGING_SYTHIAN_ROOTS);
 
+		addVegetal(generationSettings, NetherDescentPlacements.SYTHIAN_STALKS);
+
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.GHAST, 50, 4, 4);
         addSpawn(spawnSettings, EntityType.ZOMBIFIED_PIGLIN, 100, 4, 4);

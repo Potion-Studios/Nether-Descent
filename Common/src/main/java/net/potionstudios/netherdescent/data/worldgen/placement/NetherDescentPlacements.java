@@ -30,6 +30,8 @@ public class NetherDescentPlacements {
 
 	public static final ResourceKey<PlacedFeature> HANGING_SYTHIAN_ROOTS = PlacedFeaturesUtil.createPlacedFeature("hanging_sythian_roots", NetherDescentFeatures.HANGING_SYTHIAN_ROOTS, () -> List.of(CountPlacement.of(250), InSquarePlacement.spread(), PlacementUtils.FULL_RANGE, BiomeFilter.biome()));
 
+	public static final ResourceKey<PlacedFeature> SYTHIAN_STALKS = PlacedFeaturesUtil.createPlacedFeature("sythian_stalks", NetherDescentFeatures.SYTHIAN_STALK, () -> List.of(NoiseBasedCountPlacement.of(160, 80.0, 0.3), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
+
     public static void placements() {
         NetherDescent.LOGGER.info("Registering Nether Descent Placements");
         NetherDescentTreePlacements.treePlacements();
