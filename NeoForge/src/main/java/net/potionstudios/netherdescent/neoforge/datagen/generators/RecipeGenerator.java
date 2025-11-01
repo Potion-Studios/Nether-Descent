@@ -135,6 +135,14 @@ public class RecipeGenerator extends RecipeProvider {
 
 	    doorBuilder(NetherDescentBlocks.PENDORITE_DOOR.get(), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get())).unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get())).save(recipeOutput);
 	    trapdoorBuilder(NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get())).unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get())).save(recipeOutput);
+
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.get()), RecipeCategory.MISC, Items.GOLD_NUGGET, 0.1F, 400)
+                .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.get()), has(NetherDescentBlocks.SYTHIAN_STALK.get()))
+                .save(recipeOutput, NetherDescent.id("gold_nugget_from_smelting"));
+
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.get()), RecipeCategory.MISC, Items.GOLD_NUGGET, 0.1F, 200)
+                .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.get()), has(NetherDescentBlocks.SYTHIAN_STALK.get()))
+                .save(recipeOutput, NetherDescent.id("gold_nugget_from_blasting"));
     }
 
 	private static void NDNineBlockStorageRecipes(RecipeOutput recipeOutput, RecipeCategory unpackedCategory, ItemLike unpacked, RecipeCategory packedCategory, ItemLike packed, String packedName, @Nullable String packedGroup, String unpackedName, @Nullable String unpackedGroup) {
