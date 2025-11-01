@@ -6,6 +6,7 @@ import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Noises;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
@@ -40,11 +41,11 @@ public class NetherDescentSurfaceRules {
     ));
 
     private static final SurfaceRules.RuleSource SYTHIAN_TORRIDS = makeifTrueRule(NetherDescentBiomes.SYTHIAN_TORRIDS, SurfaceRules.sequence(
-            NetherDescentRuleSources.weightedRuleSource(SimpleWeightedRandomList.<SurfaceRules.RuleSource>builder()
-                    .add(makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.SYTHIAN_NYLIUM.get())), 4)
-                    .add(makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.SYTHIAN_NYLIUM.get())))
-                    .add(makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.SYTHIAN_NYLIUM.get())))
-                    .build())
+            makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, SurfaceRules.sequence(
+                    makeifTrueRule(SurfaceRules.noiseCondition(Noises.PATCH, 0.3D), NetherDescentBlocks.SYTHIAN_SOIL.get()),
+                    makeStateRule(NetherDescentBlocks.SYTHIAN_NYLIUM.get())
+            ))),
+            makeifTrueRule(SurfaceRules.ON_CEILING, makeifTrueRule(SurfaceRules.noiseCondition(Noises.PATCH, 0.3D), NetherDescentBlocks.SYTHIAN_SOIL.get()))
     ));
 
     private static final SurfaceRules.RuleSource WAILING_GARTH = makeifTrueRule(NetherDescentBiomes.WAILING_GARTH, SurfaceRules.sequence(
