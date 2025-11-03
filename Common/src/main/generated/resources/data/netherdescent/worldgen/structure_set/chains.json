@@ -1,0 +1,26 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 755693023,
+    "separation": 3,
+    "spacing": 10
+  },
+  "structures": [
+    {
+      "structure": "netherdescent:chain_start_1",
+      "weight": 1
+    },
+    {
+      "structure": "netherdescent:chain_start_2",
+      "weight": 1
+    },
+    {
+      "structure": "netherdescent:chain_start_3",
+      "weight": 1
+    },
+    {
+      "structure": "netherdescent:chain_start_4",
+      "weight": 1
+    }
+  ]
+}

@@ -26,3 +26,5 @@ accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context system 
 accessible field net/minecraft/world/level/levelgen/SurfaceSystem noiseRandom Lnet/minecraft/world/level/levelgen/PositionalRandomFactory;
 
 accessible method net/minecraft/world/level/block/NyliumBlock canBeNylium (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
+
+accessible field net/minecraft/data/worldgen/ProcessorLists EMPTY Lnet/minecraft/resources/ResourceKey;
