@@ -34,10 +34,15 @@ public class NetherDescentTemplatePools {
     public static final ResourceKey<StructureTemplatePool> CHAINS = register("chains", templatePoolFactoryContext ->
             createTemplatePool(getEmptyPool(templatePoolFactoryContext),
                     ImmutableList.of(
-                            Pair.of(StructurePoolElement.single(NetherDescent.id("chain_1").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
-                            Pair.of(StructurePoolElement.single(NetherDescent.id("chain_2").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
-                            Pair.of(StructurePoolElement.single(NetherDescent.id("chain_3").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1)
-                            //emptyPoolElement(2)
+                            Pair.of(StructurePoolElement.single(NetherDescent.id("chain_1").toString(), getEmptyProcessor(templatePoolFactoryContext)), 5),
+                            Pair.of(StructurePoolElement.single(NetherDescent.id("chain_2").toString(), getEmptyProcessor(templatePoolFactoryContext)), 5),
+                            Pair.of(StructurePoolElement.single(NetherDescent.id("chain_3").toString(), getEmptyProcessor(templatePoolFactoryContext)), 5),
+							Pair.of(StructurePoolElement.single(NetherDescent.id("chain_lantern_1").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
+		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chain_lantern_2").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
+		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chain_lantern_3").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
+		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chain_lantern_4").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
+		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chain_decor").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
+                            emptyPoolElement(1)
                     ),
                 StructureTemplatePool.Projection.RIGID));
 

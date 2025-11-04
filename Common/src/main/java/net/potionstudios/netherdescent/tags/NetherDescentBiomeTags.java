@@ -17,7 +17,7 @@ public final class NetherDescentBiomeTags {
 	public static class StructureHasTags {
 		public static final TagKey<Biome> HAS_BLUE_FORTRESS = create("has_structure/blue_fortress");
 
-		public static final TagKey<Biome> HAS_HANGING_CHAINS = create("has_structure/hanging_chains");
+		public static final TagKey<Biome> HAS_CHAINS = create("has_structure/chains");
 	}
 
     private static TagKey<Biome> create(String name) {

@@ -33,7 +33,7 @@ public class NetherDescentStructureSets {
 					List.of(
 							StructureSet.entry(context.getOrThrow(NetherDescentStructures.CHAINS))
 					),
-					new RandomSpreadStructurePlacement(10, 3, RandomSpreadType.LINEAR, 755693023)
+					new RandomSpreadStructurePlacement(6, 3, RandomSpreadType.LINEAR, 755693023)
 			));
 
 	private static ResourceKey<StructureSet> register(String id, StructureSetFactory factory) {

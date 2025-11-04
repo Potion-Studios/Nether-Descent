@@ -41,10 +41,10 @@ public class NetherDescentStructures {
 
 	public static final ResourceKey<Structure> CHAINS = register("chains", context ->
 			createJigsaw(
-					structure(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_HANGING_CHAINS), GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE),
+					structure(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_CHAINS), GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE),
 					context.lookup(Registries.TEMPLATE_POOL).getOrThrow(NetherDescentTemplatePools.CHAINS_START),
-					1,
-					ConstantHeight.of(VerticalAnchor.belowTop(25))
+					20,
+					ConstantHeight.of(VerticalAnchor.belowTop(17))
 			)
 	);
 
