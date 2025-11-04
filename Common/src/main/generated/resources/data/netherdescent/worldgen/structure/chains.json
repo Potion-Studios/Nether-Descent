@@ -5,7 +5,7 @@
   "size": 1,
   "spawn_overrides": {},
   "start_height": {
-    "below_top": 6
+    "below_top": 25
   },
   "start_pool": "netherdescent:chains_start",
   "step": "underground_structures",

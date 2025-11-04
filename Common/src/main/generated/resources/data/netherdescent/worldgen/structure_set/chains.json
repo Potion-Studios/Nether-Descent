@@ -7,19 +7,7 @@
   },
   "structures": [
     {
-      "structure": "netherdescent:chain_start_1",
-      "weight": 1
-    },
-    {
-      "structure": "netherdescent:chain_start_2",
-      "weight": 1
-    },
-    {
-      "structure": "netherdescent:chain_start_3",
-      "weight": 1
-    },
-    {
-      "structure": "netherdescent:chain_start_4",
+      "structure": "netherdescent:chains",
       "weight": 1
     }
   ]

@@ -15,6 +15,7 @@ import net.potionstudios.netherdescent.data.worldgen.placement.NetherDescentPlac
 import net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeature;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.NetherDescentTreeDecoratorType;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentStructureType;
+import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentTemplatePools;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.pieces.NetherDescentStructurePieceType;
 import net.potionstudios.netherdescent.world.level.levelgen.surfacerules.NetherDescentRuleSources;
 import org.slf4j.Logger;
@@ -43,6 +44,7 @@ public class NetherDescent {
 	    NetherDescentStructurePieceType.structurePieceTypes();
 	    NetherDescentStructureType.structureTypes();
         NetherDescentTreeDecoratorType.treeDecoratorType();
+        NetherDescentTemplatePools.templatePools();
     }
 
     /**

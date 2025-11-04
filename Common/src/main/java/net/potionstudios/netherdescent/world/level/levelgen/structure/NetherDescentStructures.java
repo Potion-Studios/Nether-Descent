@@ -24,7 +24,6 @@ import net.potionstudios.netherdescent.tags.NetherDescentBiomeTags;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.structures.BlueNetherFortressStructure;
 
 import java.util.Map;
-import java.util.Optional;
 
 public class NetherDescentStructures {
 	public static final Map<ResourceKey<Structure>, StructureFactory> STRUCTURE_FACTORIES = new Reference2ObjectOpenHashMap<>();
@@ -40,39 +39,12 @@ public class NetherDescentStructures {
 			)
 	);
 
-	public static final ResourceKey<Structure> CHAIN_START_1 = register("chain_start_1", context ->
+	public static final ResourceKey<Structure> CHAINS = register("chains", context ->
 			createJigsaw(
 					structure(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_HANGING_CHAINS), GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE),
 					context.lookup(Registries.TEMPLATE_POOL).getOrThrow(NetherDescentTemplatePools.CHAINS_START),
 					1,
-					ConstantHeight.of(VerticalAnchor.belowTop(6))
-			)
-	);
-
-	public static final ResourceKey<Structure> CHAIN_START_2 = register("chain_start_2", context ->
-			createJigsaw(
-					structure(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_HANGING_CHAINS), GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE),
-					context.lookup(Registries.TEMPLATE_POOL).getOrThrow(NetherDescentTemplatePools.CHAINS_START),
-					1,
-					ConstantHeight.of(VerticalAnchor.belowTop(6))
-			)
-	);
-
-	public static final ResourceKey<Structure> CHAIN_START_3 = register("chain_start_3", context ->
-			createJigsaw(
-					structure(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_HANGING_CHAINS), GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE),
-					context.lookup(Registries.TEMPLATE_POOL).getOrThrow(NetherDescentTemplatePools.CHAINS_START),
-					1,
-					ConstantHeight.of(VerticalAnchor.belowTop(6))
-			)
-	);
-
-	public static final ResourceKey<Structure> CHAIN_START_4 = register("chain_start_4", context ->
-			createJigsaw(
-					structure(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_HANGING_CHAINS), GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE),
-					context.lookup(Registries.TEMPLATE_POOL).getOrThrow(NetherDescentTemplatePools.CHAINS_START),
-					1,
-					ConstantHeight.of(VerticalAnchor.belowTop(6))
+					ConstantHeight.of(VerticalAnchor.belowTop(25))
 			)
 	);
 
