@@ -1,4 +1,4 @@
-package net.potionstudios.netherdescent.world.level.levelgen.structure;
+package net.potionstudios.netherdescent.data.worldgen;
 
 import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
 import net.minecraft.core.Holder;

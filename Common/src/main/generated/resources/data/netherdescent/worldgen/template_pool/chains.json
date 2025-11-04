@@ -4,7 +4,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "netherdescent:chain_1",
-        "processors": "minecraft:empty",
+        "processors": "netherdescent:chains",
         "projection": "rigid"
       },
       "weight": 5
@@ -13,7 +13,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "netherdescent:chain_2",
-        "processors": "minecraft:empty",
+        "processors": "netherdescent:chains",
         "projection": "rigid"
       },
       "weight": 5
@@ -22,7 +22,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "netherdescent:chain_3",
-        "processors": "minecraft:empty",
+        "processors": "netherdescent:chains",
         "projection": "rigid"
       },
       "weight": 5

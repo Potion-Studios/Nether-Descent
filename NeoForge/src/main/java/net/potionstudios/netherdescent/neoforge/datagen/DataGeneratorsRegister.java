@@ -11,15 +11,16 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.potionstudios.netherdescent.data.worldgen.NetherDescentProcessorLists;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.*;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.loot.LootGenerator;
 import net.potionstudios.netherdescent.world.damagesource.NetherDescentDamageTypes;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 import net.potionstudios.netherdescent.data.worldgen.features.ConfiguredFeaturesUtil;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
-import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentStructureSets;
-import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentStructures;
-import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentTemplatePools;
+import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructureSets;
+import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructures;
+import net.potionstudios.netherdescent.data.worldgen.NetherDescentTemplatePools;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -54,5 +55,6 @@ class DataGeneratorsRegister {
 		    .add(Registries.TEMPLATE_POOL, context -> NetherDescentTemplatePools.TEMPLATE_POOL_FACTORIES.forEach((templatePoolResourceKey, templatePoolFactory) -> context.register(templatePoolResourceKey, templatePoolFactory.generate(context))))
 		    .add(Registries.STRUCTURE, context -> NetherDescentStructures.STRUCTURE_FACTORIES.forEach((structureResourceKey, structureFactory) -> context.register(structureResourceKey, structureFactory.generate(context))))
 		    .add(Registries.STRUCTURE_SET, context -> NetherDescentStructureSets.STRUCTURE_SET_FACTORIES.forEach((structureSetResourceKey, structureSetFactory) -> context.register(structureSetResourceKey, structureSetFactory.generate(context.lookup(Registries.STRUCTURE)))))
-            .add(Registries.DAMAGE_TYPE, pContext -> NetherDescentDamageTypes.DAMAGE_TYPE_FACTORIES.forEach(((damageTypeResourceKey, damageTypeFactory) -> pContext.register(damageTypeResourceKey, damageTypeFactory.generate(pContext)))));
+		    .add(Registries.PROCESSOR_LIST, pContext -> NetherDescentProcessorLists.STRUCTURE_PROCESSOR_LIST_FACTORIES.forEach((structureProcessorListResourceKey, processorListFactory) -> pContext.register(structureProcessorListResourceKey, processorListFactory.generate(pContext.lookup(Registries.PROCESSOR_LIST)))))
+		    .add(Registries.DAMAGE_TYPE, pContext -> NetherDescentDamageTypes.DAMAGE_TYPE_FACTORIES.forEach(((damageTypeResourceKey, damageTypeFactory) -> pContext.register(damageTypeResourceKey, damageTypeFactory.generate(pContext)))));
 }

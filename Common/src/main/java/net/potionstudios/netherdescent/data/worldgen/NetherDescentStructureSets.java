@@ -1,4 +1,4 @@
-package net.potionstudios.netherdescent.world.level.levelgen.structure;
+package net.potionstudios.netherdescent.data.worldgen;
 
 import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
 import net.minecraft.core.HolderGetter;
@@ -33,7 +33,7 @@ public class NetherDescentStructureSets {
 					List.of(
 							StructureSet.entry(context.getOrThrow(NetherDescentStructures.CHAINS))
 					),
-					new RandomSpreadStructurePlacement(6, 3, RandomSpreadType.LINEAR, 755693023)
+					new RandomSpreadStructurePlacement(4, 2, RandomSpreadType.LINEAR, 755693023)
 			));
 
 	private static ResourceKey<StructureSet> register(String id, StructureSetFactory factory) {

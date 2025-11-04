@@ -24,7 +24,7 @@ import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
-import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentStructures;
+import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructures;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

@@ -1,4 +1,4 @@
-package net.potionstudios.netherdescent.world.level.levelgen.structure;
+package net.potionstudios.netherdescent.data.worldgen;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
@@ -25,18 +25,18 @@ public class NetherDescentTemplatePools {
 	public static final ResourceKey<StructureTemplatePool> CHAINS_START = register("chains_start", templatePoolFactoryContext ->
 		createTemplatePool(getEmptyPool(templatePoolFactoryContext),
 				ImmutableList.of(
-					Pair.of(StructurePoolElement.single(NetherDescent.id("chain_start_1").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
-					Pair.of(StructurePoolElement.single(NetherDescent.id("chain_start_2").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
-					Pair.of(StructurePoolElement.single(NetherDescent.id("chain_start_3").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
-					Pair.of(StructurePoolElement.single(NetherDescent.id("chain_start_4").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1)),
+					Pair.of(StructurePoolElement.single(NetherDescent.id("chain_start_1").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 1),
+					Pair.of(StructurePoolElement.single(NetherDescent.id("chain_start_2").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 1),
+					Pair.of(StructurePoolElement.single(NetherDescent.id("chain_start_3").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 1),
+					Pair.of(StructurePoolElement.single(NetherDescent.id("chain_start_4").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 1)),
 				StructureTemplatePool.Projection.RIGID));
 
     public static final ResourceKey<StructureTemplatePool> CHAINS = register("chains", templatePoolFactoryContext ->
             createTemplatePool(getEmptyPool(templatePoolFactoryContext),
                     ImmutableList.of(
-                            Pair.of(StructurePoolElement.single(NetherDescent.id("chain_1").toString(), getEmptyProcessor(templatePoolFactoryContext)), 5),
-                            Pair.of(StructurePoolElement.single(NetherDescent.id("chain_2").toString(), getEmptyProcessor(templatePoolFactoryContext)), 5),
-                            Pair.of(StructurePoolElement.single(NetherDescent.id("chain_3").toString(), getEmptyProcessor(templatePoolFactoryContext)), 5),
+                            Pair.of(StructurePoolElement.single(NetherDescent.id("chain_1").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 5),
+                            Pair.of(StructurePoolElement.single(NetherDescent.id("chain_2").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 5),
+                            Pair.of(StructurePoolElement.single(NetherDescent.id("chain_3").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 5),
 							Pair.of(StructurePoolElement.single(NetherDescent.id("chain_lantern_1").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
 		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chain_lantern_2").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
 		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chain_lantern_3").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
