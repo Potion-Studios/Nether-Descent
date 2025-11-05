@@ -45,7 +45,6 @@ public class TagsGenerator {
 	 * @see BlockTagsProvider
 	 */
 	private static class BlockTagGenerator extends BlockTagsProvider {
-
 		private BlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
 			super(output, lookupProvider, NetherDescent.MOD_ID, existingFileHelper);
 		}
@@ -135,7 +134,6 @@ public class TagsGenerator {
 	}
 
 	private static class ItemTagGenerator extends ItemTagsProvider {
-
 		private ItemTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture, BlockTagGenerator blockTagGenerator, @Nullable ExistingFileHelper existingFileHelper) {
 			super(arg, completableFuture, blockTagGenerator.contentsGetter(), NetherDescent.MOD_ID, existingFileHelper);
 		}
@@ -199,7 +197,6 @@ public class TagsGenerator {
 	}
 
 	private static class StructureTagGenerator extends StructureTagsProvider {
-
 		private StructureTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
 			super(arg, completableFuture, NetherDescent.MOD_ID, existingFileHelper);
 		}
@@ -208,11 +205,13 @@ public class TagsGenerator {
 		protected void addTags(HolderLookup.@NotNull Provider provider) {
 			tag(NetherDescentStructureTags.FORTRESSES)
 					.add(NetherDescentStructures.BLUE_FORTRESS, BuiltinStructures.FORTRESS);
+
+            tag(Tags.Structures.HIDDEN_FROM_DISPLAYERS).add(NetherDescentStructures.CHAINS);
+            tag(Tags.Structures.HIDDEN_FROM_LOCATOR_SELECTION).add(NetherDescentStructures.CHAINS);
 		}
 	}
 
     private static class DamageTypeTagGenerator extends DamageTypeTagsProvider {
-
         private DamageTypeTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
             super(arg, completableFuture, NetherDescent.MOD_ID, existingFileHelper);
         }

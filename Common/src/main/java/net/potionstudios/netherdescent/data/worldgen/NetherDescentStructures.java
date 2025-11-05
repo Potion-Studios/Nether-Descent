@@ -41,7 +41,7 @@ public class NetherDescentStructures {
 
 	public static final ResourceKey<Structure> CHAINS = register("chains", context ->
 			createJigsaw(
-					structure(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_CHAINS), GenerationStep.Decoration.UNDERGROUND_STRUCTURES, TerrainAdjustment.NONE),
+					structure(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_CHAINS), TerrainAdjustment.NONE),
 					context.lookup(Registries.TEMPLATE_POOL).getOrThrow(NetherDescentTemplatePools.CHAINS_START),
 					20,
 					ConstantHeight.of(VerticalAnchor.belowTop(17))
@@ -55,11 +55,11 @@ public class NetherDescentStructures {
 	}
 
 	private static Structure.StructureSettings structure(HolderSet<Biome> tag, TerrainAdjustment adj) {
-		return new Structure.StructureSettings(tag, Map.of(), GenerationStep.Decoration.SURFACE_STRUCTURES, adj);
+		return new Structure.StructureSettings(tag, Map.of(), GenerationStep.Decoration.UNDERGROUND_STRUCTURES, adj);
 	}
 
 	private static Structure.StructureSettings structure(HolderSet<Biome> tag, Map<MobCategory, StructureSpawnOverride> spawnOverrides, TerrainAdjustment adj) {
-		return new Structure.StructureSettings(tag, spawnOverrides, GenerationStep.Decoration.SURFACE_STRUCTURES, adj);
+		return new Structure.StructureSettings(tag, spawnOverrides, GenerationStep.Decoration.UNDERGROUND_STRUCTURES, adj);
 	}
 
 	private static Structure.StructureSettings structure(HolderSet<Biome> tag, GenerationStep.Decoration decoration, TerrainAdjustment adj) {
