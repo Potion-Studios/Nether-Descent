@@ -206,8 +206,11 @@ public class TagsGenerator {
 			tag(NetherDescentStructureTags.FORTRESSES)
 					.add(NetherDescentStructures.BLUE_FORTRESS, BuiltinStructures.FORTRESS);
 
-            tag(Tags.Structures.HIDDEN_FROM_DISPLAYERS).add(NetherDescentStructures.CHAINS);
-            tag(Tags.Structures.HIDDEN_FROM_LOCATOR_SELECTION).add(NetherDescentStructures.CHAINS);
+			tag(NetherDescentStructureTags.CHAINS)
+					.add(NetherDescentStructures.SMALL_CHAINS, NetherDescentStructures.MEDIUM_CHAINS, NetherDescentStructures.LARGE_CHAINS);
+
+            tag(Tags.Structures.HIDDEN_FROM_DISPLAYERS).addTag(NetherDescentStructureTags.CHAINS);
+            tag(Tags.Structures.HIDDEN_FROM_LOCATOR_SELECTION).addTag(NetherDescentStructureTags.CHAINS);
 		}
 	}
 

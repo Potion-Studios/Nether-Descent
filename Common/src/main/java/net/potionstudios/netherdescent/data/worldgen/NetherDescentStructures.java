@@ -39,10 +39,28 @@ public class NetherDescentStructures {
 			)
 	);
 
-	public static final ResourceKey<Structure> CHAINS = register("chains", context ->
+	public static final ResourceKey<Structure> SMALL_CHAINS = register("chains/small", context ->
 			createJigsaw(
 					structure(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_CHAINS), TerrainAdjustment.NONE),
-					context.lookup(Registries.TEMPLATE_POOL).getOrThrow(NetherDescentTemplatePools.CHAINS_START),
+					context.lookup(Registries.TEMPLATE_POOL).getOrThrow(NetherDescentTemplatePools.CHAINS_ANCHOR_SMALL),
+					20,
+					ConstantHeight.of(VerticalAnchor.belowTop(17))
+			)
+	);
+
+	public static final ResourceKey<Structure> MEDIUM_CHAINS = register("chains/medium", context ->
+			createJigsaw(
+					structure(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_CHAINS), TerrainAdjustment.NONE),
+					context.lookup(Registries.TEMPLATE_POOL).getOrThrow(NetherDescentTemplatePools.CHAINS_ANCHOR_MEDIUM),
+					20,
+					ConstantHeight.of(VerticalAnchor.belowTop(17))
+			)
+	);
+
+	public static final ResourceKey<Structure> LARGE_CHAINS = register("chains/large", context ->
+			createJigsaw(
+					structure(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_CHAINS), TerrainAdjustment.NONE),
+					context.lookup(Registries.TEMPLATE_POOL).getOrThrow(NetherDescentTemplatePools.CHAINS_ANCHOR_LARGE),
 					20,
 					ConstantHeight.of(VerticalAnchor.belowTop(17))
 			)

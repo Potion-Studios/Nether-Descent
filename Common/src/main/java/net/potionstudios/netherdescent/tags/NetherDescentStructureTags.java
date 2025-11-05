@@ -9,6 +9,8 @@ public interface NetherDescentStructureTags {
 
 	TagKey<Structure> FORTRESSES = create("fortresses");
 
+	TagKey<Structure> CHAINS = create("chains");
+
 	private static TagKey<Structure> create(String name) {
 		return TagKey.create(Registries.STRUCTURE, NetherDescent.id(name));
 	}

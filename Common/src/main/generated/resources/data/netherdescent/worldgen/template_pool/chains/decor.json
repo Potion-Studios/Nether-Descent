@@ -3,34 +3,7 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "netherdescent:chain_1",
-        "processors": "netherdescent:chains",
-        "projection": "rigid"
-      },
-      "weight": 5
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "netherdescent:chain_2",
-        "processors": "netherdescent:chains",
-        "projection": "rigid"
-      },
-      "weight": 5
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "netherdescent:chain_3",
-        "processors": "netherdescent:chains",
-        "projection": "rigid"
-      },
-      "weight": 5
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "netherdescent:chain_lantern_1",
+        "location": "netherdescent:chains/decor/lantern_1",
         "processors": "minecraft:empty",
         "projection": "rigid"
       },
@@ -39,7 +12,7 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "netherdescent:chain_lantern_2",
+        "location": "netherdescent:chains/decor/lantern_2",
         "processors": "minecraft:empty",
         "projection": "rigid"
       },
@@ -48,7 +21,7 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "netherdescent:chain_lantern_3",
+        "location": "netherdescent:chains/decor/lantern_3",
         "processors": "minecraft:empty",
         "projection": "rigid"
       },
@@ -57,7 +30,7 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "netherdescent:chain_lantern_4",
+        "location": "netherdescent:chains/decor/lantern_4",
         "processors": "minecraft:empty",
         "projection": "rigid"
       },
@@ -66,7 +39,7 @@
     {
       "element": {
         "element_type": "minecraft:single_pool_element",
-        "location": "netherdescent:chain_decor",
+        "location": "netherdescent:chains/decor/chains",
         "processors": "minecraft:empty",
         "projection": "rigid"
       },
@@ -76,7 +49,7 @@
       "element": {
         "element_type": "minecraft:empty_pool_element"
       },
-      "weight": 1
+      "weight": 3
     }
   ],
   "fallback": "minecraft:empty"

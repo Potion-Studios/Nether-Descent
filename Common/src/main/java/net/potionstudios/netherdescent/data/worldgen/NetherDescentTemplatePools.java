@@ -22,27 +22,54 @@ public class NetherDescentTemplatePools {
 
 	public static final Map<ResourceKey<StructureTemplatePool>, TemplatePoolFactory> TEMPLATE_POOL_FACTORIES = new Reference2ObjectOpenHashMap<>();
 
-	public static final ResourceKey<StructureTemplatePool> CHAINS_START = register("chains_start", templatePoolFactoryContext ->
+	public static final ResourceKey<StructureTemplatePool> CHAINS_ANCHOR_SMALL = register("chains/anchor/small", templatePoolFactoryContext ->
+			createTemplatePool(getEmptyPool(templatePoolFactoryContext),
+					ImmutableList.of(
+							Pair.of(StructurePoolElement.single(NetherDescent.id("chains/anchor/small").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 1)),
+					StructureTemplatePool.Projection.RIGID));
+
+	public static final ResourceKey<StructureTemplatePool> CHAINS_ANCHOR_MEDIUM = register("chains/anchor/medium", templatePoolFactoryContext ->
+			createTemplatePool(getEmptyPool(templatePoolFactoryContext),
+					ImmutableList.of(
+							Pair.of(StructurePoolElement.single(NetherDescent.id("chains/anchor/medium").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 1)),
+					StructureTemplatePool.Projection.RIGID));
+
+	public static final ResourceKey<StructureTemplatePool> CHAINS_ANCHOR_LARGE = register("chains/anchor/large", templatePoolFactoryContext ->
+			createTemplatePool(getEmptyPool(templatePoolFactoryContext),
+					ImmutableList.of(
+							Pair.of(StructurePoolElement.single(NetherDescent.id("chains/anchor/large").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 1)),
+					StructureTemplatePool.Projection.RIGID));
+
+	public static final ResourceKey<StructureTemplatePool> CHAINS_SMALL = register("chains/small", templatePoolFactoryContext ->
 		createTemplatePool(getEmptyPool(templatePoolFactoryContext),
 				ImmutableList.of(
-					Pair.of(StructurePoolElement.single(NetherDescent.id("chain_start_1").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 1),
-					Pair.of(StructurePoolElement.single(NetherDescent.id("chain_start_2").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 1),
-					Pair.of(StructurePoolElement.single(NetherDescent.id("chain_start_3").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 1),
-					Pair.of(StructurePoolElement.single(NetherDescent.id("chain_start_4").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 1)),
+					Pair.of(StructurePoolElement.single(NetherDescent.id("chains/small").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 6),
+						emptyPoolElement(1)),
 				StructureTemplatePool.Projection.RIGID));
 
-    public static final ResourceKey<StructureTemplatePool> CHAINS = register("chains", templatePoolFactoryContext ->
+	public static final ResourceKey<StructureTemplatePool> CHAINS_MEDIUM = register("chains/medium", templatePoolFactoryContext ->
+			createTemplatePool(getPool(templatePoolFactoryContext, CHAINS_SMALL),
+					ImmutableList.of(
+							Pair.of(StructurePoolElement.single(NetherDescent.id("chains/medium").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 6),
+							emptyPoolElement(1)),
+					StructureTemplatePool.Projection.RIGID));
+
+	public static final ResourceKey<StructureTemplatePool> CHAINS_LARGE = register("chains/large", templatePoolFactoryContext ->
+			createTemplatePool(getPool(templatePoolFactoryContext, CHAINS_MEDIUM),
+					ImmutableList.of(
+							Pair.of(StructurePoolElement.single(NetherDescent.id("chains/large").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 6),
+							emptyPoolElement(1)),
+					StructureTemplatePool.Projection.RIGID));
+
+    public static final ResourceKey<StructureTemplatePool> CHAINS_DECOR = register("chains/decor", templatePoolFactoryContext ->
             createTemplatePool(getEmptyPool(templatePoolFactoryContext),
                     ImmutableList.of(
-                            Pair.of(StructurePoolElement.single(NetherDescent.id("chain_1").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 5),
-                            Pair.of(StructurePoolElement.single(NetherDescent.id("chain_2").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 5),
-                            Pair.of(StructurePoolElement.single(NetherDescent.id("chain_3").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS)), 5),
-							Pair.of(StructurePoolElement.single(NetherDescent.id("chain_lantern_1").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
-		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chain_lantern_2").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
-		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chain_lantern_3").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
-		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chain_lantern_4").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
-		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chain_decor").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
-                            emptyPoolElement(1)
+							Pair.of(StructurePoolElement.single(NetherDescent.id("chains/decor/lantern_1").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
+		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chains/decor/lantern_2").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
+		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chains/decor/lantern_3").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
+		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chains/decor/lantern_4").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
+		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chains/decor/chains").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
+                            emptyPoolElement(3)
                     ),
                 StructureTemplatePool.Projection.RIGID));
 

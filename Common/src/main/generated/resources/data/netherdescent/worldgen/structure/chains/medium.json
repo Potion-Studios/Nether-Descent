@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:jigsaw",
+  "biomes": "#netherdescent:has_structure/chains",
+  "max_distance_from_center": 80,
+  "size": 20,
+  "spawn_overrides": {},
+  "start_height": {
+    "below_top": 17
+  },
+  "start_pool": "netherdescent:chains/anchor/medium",
+  "step": "underground_structures",
+  "use_expansion_hack": false
+}

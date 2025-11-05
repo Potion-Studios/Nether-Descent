@@ -7,7 +7,7 @@
   "start_height": {
     "below_top": 17
   },
-  "start_pool": "netherdescent:chains_start",
+  "start_pool": "netherdescent:chains/anchor/small",
   "step": "underground_structures",
   "use_expansion_hack": false
 }
