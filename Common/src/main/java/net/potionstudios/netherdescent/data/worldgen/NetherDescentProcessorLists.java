@@ -25,6 +25,15 @@ public class NetherDescentProcessorLists {
 			)
 	));
 
+    public static final ResourceKey<StructureProcessorList> CHAINS_REMOVE_LANTERN = register("chains/remove_lantern", structureProcessorListHolderGetter -> new StructureProcessorList(
+            ImmutableList.of(
+                    createRuleProcessor(
+                            createAlwaysTrueRandomBlockMatchTest(Blocks.SOUL_LANTERN, .3F, Blocks.CHAIN),
+                            createAlwaysTrueRandomBlockMatchTest(Blocks.SOUL_LANTERN, .15F, Blocks.STRUCTURE_VOID)
+                    )
+            )
+    ));
+
 	private static RuleProcessor createRuleProcessor(ProcessorRule... rules) {
 		return new RuleProcessor(ImmutableList.copyOf(rules));
 	}

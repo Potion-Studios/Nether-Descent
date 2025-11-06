@@ -38,6 +38,16 @@ public class NetherDescentStructureSets {
 					new RandomSpreadStructurePlacement(2, 1, RandomSpreadType.LINEAR, 755693023)
 			));
 
+    private static final ResourceKey<StructureSet> MORE_CHAINS = register("more_chains", context ->
+            new StructureSet(
+                    List.of(
+                            StructureSet.entry(context.getOrThrow(NetherDescentStructures.SMALL_CHAINS)),
+                            StructureSet.entry(context.getOrThrow(NetherDescentStructures.MEDIUM_CHAINS)),
+                            StructureSet.entry(context.getOrThrow(NetherDescentStructures.LARGE_CHAINS))
+                    ),
+                    new RandomSpreadStructurePlacement(2, 1, RandomSpreadType.LINEAR, 509943167)
+            ));
+
 	private static ResourceKey<StructureSet> register(String id, StructureSetFactory factory) {
 		ResourceKey<StructureSet> structureSetResourceKey = NetherDescent.key(Registries.STRUCTURE_SET, id);
 		STRUCTURE_SET_FACTORIES.put(structureSetResourceKey, factory);

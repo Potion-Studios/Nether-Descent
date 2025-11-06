@@ -4,7 +4,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "netherdescent:chains/decor/lantern_1",
-        "processors": "minecraft:empty",
+        "processors": "netherdescent:chains/remove_lantern",
         "projection": "rigid"
       },
       "weight": 1
@@ -13,7 +13,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "netherdescent:chains/decor/lantern_2",
-        "processors": "minecraft:empty",
+        "processors": "netherdescent:chains/remove_lantern",
         "projection": "rigid"
       },
       "weight": 1
@@ -22,7 +22,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "netherdescent:chains/decor/lantern_3",
-        "processors": "minecraft:empty",
+        "processors": "netherdescent:chains/remove_lantern",
         "projection": "rigid"
       },
       "weight": 1
@@ -31,16 +31,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "netherdescent:chains/decor/lantern_4",
-        "processors": "minecraft:empty",
-        "projection": "rigid"
-      },
-      "weight": 1
-    },
-    {
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "location": "netherdescent:chains/decor/chains",
-        "processors": "minecraft:empty",
+        "processors": "netherdescent:chains/remove_lantern",
         "projection": "rigid"
       },
       "weight": 1

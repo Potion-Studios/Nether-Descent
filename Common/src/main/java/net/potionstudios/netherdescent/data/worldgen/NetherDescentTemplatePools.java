@@ -64,10 +64,10 @@ public class NetherDescentTemplatePools {
     public static final ResourceKey<StructureTemplatePool> CHAINS_DECOR = register("chains/decor", templatePoolFactoryContext ->
             createTemplatePool(getEmptyPool(templatePoolFactoryContext),
                     ImmutableList.of(
-							Pair.of(StructurePoolElement.single(NetherDescent.id("chains/decor/lantern_1").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
-		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chains/decor/lantern_2").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
-		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chains/decor/lantern_3").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
-		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chains/decor/lantern_4").toString(), getEmptyProcessor(templatePoolFactoryContext)), 1),
+							Pair.of(StructurePoolElement.single(NetherDescent.id("chains/decor/lantern_1").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS_REMOVE_LANTERN)), 1),
+		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chains/decor/lantern_2").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS_REMOVE_LANTERN)), 1),
+		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chains/decor/lantern_3").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS_REMOVE_LANTERN)), 1),
+		                    Pair.of(StructurePoolElement.single(NetherDescent.id("chains/decor/lantern_4").toString(), getProcessor(templatePoolFactoryContext, NetherDescentProcessorLists.CHAINS_REMOVE_LANTERN)), 1),
                             emptyPoolElement(3)
                     ),
                 StructureTemplatePool.Projection.RIGID));
