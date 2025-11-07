@@ -49,6 +49,7 @@ public class ModelGenerators {
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_LILY.get());
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_GEL_VINES.get(), "embur_gel_vines_plant");
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_ROOTS.get());
+            simpleItemBlockTexture(NetherDescentBlocks.WAILING_GRASS.get());
             simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get());
             simpleItemBlockTexture(NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), "hanging_sythian_roots_plant");
 			simpleItem(NetherDescentBlocks.FUNGAL_BULBS.get(), "fungal_bulbs");
@@ -157,7 +158,6 @@ public class ModelGenerators {
 
 			registerPatchBlockStates(NetherDescentBlocks.EMBUR_LILY.get(), new String[]{"embur_lily", "embur_lily2"});
 
-
 			models().withExistingParent(name(NetherDescentBlocks.EMBUR_CAVE_MOSS.get()), "glow_lichen")
 					.texture("glow_lichen", blockTexture(NetherDescentBlocks.EMBUR_CAVE_MOSS.get()))
 					.texture("particle", blockTexture(NetherDescentBlocks.EMBUR_CAVE_MOSS.get())).renderType("cutout");
@@ -250,6 +250,12 @@ public class ModelGenerators {
                     .texture("texture", blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "large_leaves"))
                     .texture("particle",  blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "large_leaves"))
                     .renderType("cutout");
+
+            models().cross(name(NetherDescentBlocks.WAILING_GRASS.get()), blockTexture(NetherDescentBlocks.WAILING_GRASS.get())).renderType("cutout_mipped");
+            models().withExistingParent("wailing_grass_1", mcLoc("coral_fan")).texture("fan", blockTexture(NetherDescentBlocks.WAILING_GRASS.get())).renderType("cutout_mipped");
+
+            getVariantBuilder(NetherDescentBlocks.WAILING_GRASS.get()).partialState()
+                    .setModels(new ConfiguredModel(models().getExistingFile(blockTexture(NetherDescentBlocks.WAILING_GRASS.get()))), new ConfiguredModel(models().getExistingFile(NetherDescent.id("block/wailing_grass_1"))));
         }
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {

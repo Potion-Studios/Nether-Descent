@@ -85,6 +85,13 @@ public class NetherDescentFeatures {
             }
     );
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_GARTH_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_garth_vegetation", Feature.NETHER_FOREST_VEGETATION,  (configuredFeatureBootstrapContext) -> new NetherForestVegetationConfig(
+            new WeightedStateProvider(
+                    SimpleWeightedRandomList.<BlockState>builder()
+                            .add(NetherDescentBlocks.WAILING_GRASS.get().defaultBlockState(), 2)
+                            .add(NetherDescentBlocks.WAILING.growerItem().getBlockState())
+            ), 7, 5));
+
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_SYTHIAN_ROOTS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_sythian_roots", NetherDescentFeature.HANGING_PLANT, () -> new HangingPlantFeatureConfiguration(Blocks.NETHERRACK, NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get()));
     //public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_HANGING_SYTHIAN_ROOTS = ConfiguredFeaturesUtil.createConfiguredFeature("patch_hanging_sythian_roots", Feature.RANDOM_PATCH, () -> FeatureUtils.simplePatchConfiguration(NetherDescentFeature.HANGING_PLANT.get(), new HangingPlantFeatureConfiguration(Blocks.NETHERRACK, NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get())));
 

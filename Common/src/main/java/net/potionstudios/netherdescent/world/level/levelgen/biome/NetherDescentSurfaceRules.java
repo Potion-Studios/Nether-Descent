@@ -66,7 +66,6 @@ public class NetherDescentSurfaceRules {
                             makeifTrueRule(SurfaceRules.UNDER_CEILING, Blocks.SOUL_SAND)
                     ))
                     .build())));
-            //makeifTrueRule(ABOVE_31, NetherDescentBlocks.SCORIA_STONE.get())));
 
 
     public static SurfaceRules.RuleSource makeRules() {

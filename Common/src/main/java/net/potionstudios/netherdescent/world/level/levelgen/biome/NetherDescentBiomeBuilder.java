@@ -103,6 +103,8 @@ public class NetherDescentBiomeBuilder {
         addVegetal(generationSettings, NetherPlacements.NETHER_SPROUTS);
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 
+        addVegetal(generationSettings, NetherDescentPlacements.WAILING_GARTH_VEGETATION);
+
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.GHAST, 50, 4, 4);
         addSpawn(spawnSettings, EntityType.ZOMBIFIED_PIGLIN, 100, 4, 4);

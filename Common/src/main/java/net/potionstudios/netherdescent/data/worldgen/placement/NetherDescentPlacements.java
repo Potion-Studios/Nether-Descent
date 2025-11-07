@@ -50,6 +50,8 @@ public class NetherDescentPlacements {
 			BlockPredicate.not(BlockPredicate.solid())
 	), 12), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(NetherDescentBlocks.SYTHIAN_STALK.get().defaultBlockState().setValue(SythianStalkBlock.HANGING, true), BlockPos.ZERO)), BiomeFilter.biome()));
 
+    public static final ResourceKey<PlacedFeature> WAILING_GARTH_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("wailing_garth_vegetation", NetherDescentFeatures.WAILING_GARTH_VEGETATION, () -> List.of(CountOnEveryLayerPlacement.of(6), BiomeFilter.biome()));
+
     public static void placements() {
         NetherDescent.LOGGER.info("Registering Nether Descent Placements");
         NetherDescentTreePlacements.treePlacements();

@@ -59,7 +59,8 @@
     ],
     [],
     [
-      "minecraft:nether_sprouts"
+      "minecraft:nether_sprouts",
+      "netherdescent:wailing_garth_vegetation"
     ]
   ],
   "has_precipitation": false,
