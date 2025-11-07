@@ -7,17 +7,16 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.features.NetherFeatures;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.MultifaceGrowthConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
@@ -55,18 +54,21 @@ public class NetherDescentFeatures {
     //public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_PATCH_BONEMEAL = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock();
 	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_carpet_patch", NetherDescentFeature.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()));
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_SPROUT = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("sythian_sprout", NetherDescentBlocks.SYTHIAN_SPROUTS, 15);
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_TORRIDS_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_torrids_vegetation", Feature.NETHER_FOREST_VEGETATION,  (configuredFeatureBootstrapContext) -> new NetherForestVegetationConfig(
+			new WeightedStateProvider(
+					SimpleWeightedRandomList.<BlockState>builder()
+							.add(NetherDescentBlocks.SYTHIAN_ROOTS.get().defaultBlockState(), 2)
+							.add(NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState(), 1)
+							.add(NetherDescentBlocks.SYTHIAN_SPROUTS.get().defaultBlockState(), 2)
+			), 8, 6));
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_ROOTS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("sythian_roots", NetherDescentBlocks.SYTHIAN_ROOTS, 15);
-
-    public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_TORRIDS_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_torrids_vegetation", Feature.RANDOM_SELECTOR, (configuredFeatureBootstapContext) -> {
-                HolderGetter<ConfiguredFeature<?, ?>> lookup = configuredFeatureBootstapContext.lookup(Registries.CONFIGURED_FEATURE);
-
-                return new RandomFeatureConfiguration(ImmutableList.of(
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(SYTHIAN_SPROUT)), 0.5F)),
-                        PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(SYTHIAN_ROOTS)));
-            }
-    );
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_TORRIDS_VEGETATION_BONEMEAL = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_torrids_vegetation_bonemeal", Feature.NETHER_FOREST_VEGETATION,  (configuredFeatureBootstrapContext) -> new NetherForestVegetationConfig(
+			new WeightedStateProvider(
+					SimpleWeightedRandomList.<BlockState>builder()
+							.add(NetherDescentBlocks.SYTHIAN_ROOTS.get().defaultBlockState(), 2)
+							.add(NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState(), 1)
+							.add(NetherDescentBlocks.SYTHIAN_SPROUTS.get().defaultBlockState(), 2)
+			), 3, 1));
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_CRIMSON_ROOTS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("tall_crimson_roots", NetherDescentBlocks.TALL_CRIMSON_ROOTS, 15);
 

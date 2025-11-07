@@ -3,7 +3,6 @@ package net.potionstudios.netherdescent.data.worldgen.placement;
 import net.minecraft.core.Direction;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.potionstudios.netherdescent.NetherDescent;
@@ -29,8 +28,8 @@ public class NetherDescentPlacements {
                 BlockPredicate.not(BlockPredicate.solid())
             ), 12),
             BiomeFilter.biome()));
-    public static final ResourceKey<PlacedFeature> SYTHIAN_SPROUT = PlacedFeaturesUtil.createPlacedFeature("sythian_sprout", NetherDescentFeatures.SYTHIAN_SPROUT, () -> List.of(CountOnEveryLayerPlacement.of(8), BiomeFilter.biome()));
-    public static final ResourceKey<PlacedFeature> SYTHIAN_TORRIDS_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("sythian_torrids_vegetation", NetherDescentFeatures.SYTHIAN_TORRIDS_VEGETATION, () -> List.of(CountOnEveryLayerPlacement.of(8), BiomeFilter.biome()));
+
+	public static final ResourceKey<PlacedFeature> SYTHIAN_TORRIDS_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("sythian_torrids_vegetation", NetherDescentFeatures.SYTHIAN_TORRIDS_VEGETATION, () -> List.of(CountOnEveryLayerPlacement.of(6), BiomeFilter.biome()));
 
     public static final ResourceKey<PlacedFeature> TALL_CRIMSON_ROOTS = PlacedFeaturesUtil.createPlacedFeature("tall_crimson_roots", NetherDescentFeatures.TALL_CRIMSON_ROOTS, () -> List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome()));
     public static final ResourceKey<PlacedFeature> PATCH_CRIMSON_BERRY = PlacedFeaturesUtil.createPlacedFeature("crimson_berry", NetherDescentFeatures.PATCH_CRIMSON_BERRY, () -> List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome()));
