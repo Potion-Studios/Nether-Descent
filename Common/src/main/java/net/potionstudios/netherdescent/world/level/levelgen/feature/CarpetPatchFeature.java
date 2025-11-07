@@ -17,24 +17,14 @@ public class CarpetPatchFeature extends Feature<CarpetPatchFeatureConfiguration>
 	@Override
 	public boolean place(@NotNull FeaturePlaceContext<CarpetPatchFeatureConfiguration> context) {
 		CarpetPatchFeatureConfiguration config = context.config();
-		int radius = config.radius().sample(context.random());
 
-		boolean placed = false;
 		WorldGenLevel level = context.level();
 		BlockPos origin = context.origin();
 
-		for (int x = -radius; x <= radius; x++)
-			for (int z = -radius; z <= radius; z++) {
-				BlockPos pos = origin.offset(x, 0, z);
-				if (level.isEmptyBlock(pos)) continue;
-				setBlock(level, pos, config.base().defaultBlockState());
-				if (level.isEmptyBlock(pos.above()) && config.carpetChance() <= context.random().nextFloat())
-					if (config.carpet() instanceof MossyCarpetBlock)
-						MossyCarpetBlock.placeAt(level, pos.above(), context.random(), 2);
-					else setBlock(level, pos.above(), config.carpet().defaultBlockState());
-				placed = true;
-			}
+        if (config.carpet() instanceof MossyCarpetBlock)
+            MossyCarpetBlock.placeAt(level, origin, context.random(), 2);
+        else setBlock(level, origin, config.carpet().defaultBlockState());
 
-		return placed;
+        return true;
 	}
 }

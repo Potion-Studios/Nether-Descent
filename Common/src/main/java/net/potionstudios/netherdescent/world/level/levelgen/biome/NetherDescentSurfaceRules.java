@@ -36,7 +36,10 @@ public class NetherDescentSurfaceRules {
             makeStateRule(Blocks.BLACKSTONE)));
 
     private static final SurfaceRules.RuleSource EMBUR_BOG = makeifTrueRule(NetherDescentBiomes.EMBUR_BOG, SurfaceRules.sequence(
-            makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.EMBUR_NYLIUM.get())),
+            makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, SurfaceRules.sequence(
+                    makeifTrueRule(SurfaceRules.noiseCondition(Noises.PATCH, 0.3D), NetherDescentBlocks.EMBUR_MOSS_BLOCK.get()),
+                    makeStateRule(NetherDescentBlocks.EMBUR_NYLIUM.get())
+            ))),
             makeStateRule(NetherDescentBlocks.BLUE_NETHERRACK.get())
     ));
 
