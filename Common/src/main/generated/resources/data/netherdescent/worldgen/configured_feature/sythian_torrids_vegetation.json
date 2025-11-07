@@ -26,6 +26,12 @@
             "Name": "netherdescent:sythian_sprouts"
           },
           "weight": 2
+        },
+        {
+          "data": {
+            "Name": "netherdescent:sythian_fungus"
+          },
+          "weight": 1
         }
       ]
     }
