@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.data.worldgen.placement;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
@@ -9,6 +10,7 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.tags.NetherDescentBlockTags;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.data.worldgen.features.NetherDescentFeatures;
+import net.potionstudios.netherdescent.world.level.block.plants.SythianStalkBlock;
 
 import java.util.List;
 
@@ -42,6 +44,11 @@ public class NetherDescentPlacements {
             BlockPredicate.matchesTag(Direction.DOWN.getNormal(), NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON),
             BlockPredicate.not(BlockPredicate.solid())
     ), 12), PlacementUtils.filteredByBlockSurvival(NetherDescentBlocks.SYTHIAN_STALK.get()), BiomeFilter.biome()));
+
+	public static final ResourceKey<PlacedFeature> SYTHIAN_STALKS_DOWNWARD = PlacedFeaturesUtil.createPlacedFeature("sythian_stalks_downward", NetherDescentFeatures.SYTHIAN_STALK_DOWNWARD, () -> List.of(NoiseBasedCountPlacement.of(160, 80.0, 0.3), InSquarePlacement.spread(), PlacementUtils.RANGE_4_4, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.allOf(
+			BlockPredicate.matchesTag(Direction.UP.getNormal(), NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON),
+			BlockPredicate.not(BlockPredicate.solid())
+	), 12), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(NetherDescentBlocks.SYTHIAN_STALK.get().defaultBlockState().setValue(SythianStalkBlock.HANGING, true), BlockPos.ZERO)), BiomeFilter.biome()));
 
     public static void placements() {
         NetherDescent.LOGGER.info("Registering Nether Descent Placements");

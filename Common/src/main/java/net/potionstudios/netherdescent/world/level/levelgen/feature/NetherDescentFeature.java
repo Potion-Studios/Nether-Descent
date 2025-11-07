@@ -19,6 +19,7 @@ public class NetherDescentFeature {
 	public static final Supplier<Feature<CarpetPatchFeatureConfiguration>> BLOCK_CARPET_PATCH = create("block_carpet_patch", () -> new CarpetPatchFeature(CarpetPatchFeatureConfiguration.CODEC));
 	public static final Supplier<Feature<HangingPlantFeatureConfiguration>> HANGING_PLANT = create("hanging_plant", () -> new HangingPlantFeature(HangingPlantFeatureConfiguration.CODEC));
 	public static final Supplier<Feature<NoneFeatureConfiguration>> SYTHIAN_STALK = create("sythian_stalk", () -> new SythianStalkFeature(NoneFeatureConfiguration.CODEC));
+	public static final Supplier<Feature<NoneFeatureConfiguration>> SYTHIAN_STALK_DOWNWARD = create("sythian_stalk_downward", () -> new SythianStalkDownwardFeature(NoneFeatureConfiguration.CODEC));
 
 	private static <C extends FeatureConfiguration, F extends Feature<C>> Supplier<F> create(String id, Supplier<F> supplier) {
 		return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.FEATURE, id, supplier);
