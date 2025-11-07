@@ -59,7 +59,7 @@ public class NetherDescentBiomeBuilder {
         generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherDescentOrePlacements.ORE_BLUE_GOLD_NETHER);
         generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherDescentOrePlacements.ORE_BLUE_QUARTZ_NETHER);
 
-		addVegetal(generationSettings, NetherDescentPlacements.EMBUR_MOSS_CARPET_PATCH);
+		//addVegetal(generationSettings, NetherDescentPlacements.EMBUR_MOSS_CARPET_PATCH);
         addVegetal(generationSettings, NetherDescentPlacements.EMBUR_LILY);
         addVegetal(generationSettings, NetherDescentPlacements.EMBUR_SPROUT);
         addVegetal(generationSettings, NetherDescentPlacements.EMBUR_BOG_VEGETATION);
