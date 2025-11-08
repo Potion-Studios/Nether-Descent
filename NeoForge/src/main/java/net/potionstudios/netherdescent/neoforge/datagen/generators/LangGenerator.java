@@ -33,7 +33,17 @@ public class LangGenerator extends LanguageProvider {
 		NetherDescentBiomes.BIOME_FACTORIES.forEach((key, factory) -> add("biome." + NetherDescent.MOD_ID + "." + key.location().getPath(), getBiomeName(key)));
         add(death("crimsonBerryBush"), "%1$s was poked to death by a crimson berry bush");
         add(death("crimsonBerryBush.player"), "%1$s was poked to death by a crimson berry bush while trying to escape %2$s");
+        add(advancement("title.root"), "Nether Descent");
+        add(advancement("description.root"), "Launch a world with the Nether Descent");
+        add(advancement("adventure.root.title"), "Adventure");
+        add(advancement("adventure.root.description"), "The root of all things Nether Descent adventure");
+        add(advancement("adventure.final_descent.title"), "Final Descent");
+        add(advancement("adventure.final_descent.description"), "Explore all of the Nether Descent biomes");
 	}
+
+    private static String advancement(String key) {
+        return "advancements." + NetherDescent.MOD_ID + "." + key;
+    }
 
 	private String getBlockName(Supplier<? extends Block> item) {
         if (item.get() instanceof NDGrowingPlantBodyBlock block) return getBlockName(block::getHeadBlock);

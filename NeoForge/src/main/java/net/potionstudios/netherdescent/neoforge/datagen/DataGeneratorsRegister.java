@@ -1,10 +1,12 @@
 package net.potionstudios.netherdescent.neoforge.datagen;
 
+import com.google.common.collect.ImmutableList;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
@@ -46,6 +48,7 @@ class DataGeneratorsRegister {
         generator.addProvider(event.includeServer(), new DataMapGenerator(output, lookupProvider));
 	    generator.addProvider(event.includeClient(), new SoundDefinitionsGenerator(output, existingFileHelper));
         generator.addProvider(event.includeClient(), new ParticleDescriptionGenerator(output, existingFileHelper));
+        generator.addProvider(event.includeServer(), new AdvancementProvider(output, lookupProvider, existingFileHelper, ImmutableList.of(new AdvancementGenerator())));
     }
 
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()

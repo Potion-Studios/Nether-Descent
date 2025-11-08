@@ -1,4 +1,10 @@
 {
+  "advancements.netherdescent.adventure.final_descent.description": "Explore all of the Nether Descent biomes",
+  "advancements.netherdescent.adventure.final_descent.title": "Final Descent",
+  "advancements.netherdescent.adventure.root.description": "The root of all things Nether Descent adventure",
+  "advancements.netherdescent.adventure.root.title": "Adventure",
+  "advancements.netherdescent.description.root": "Launch a world with the Nether Descent",
+  "advancements.netherdescent.title.root": "Nether Descent",
   "biome.netherdescent.crimson_gardens": "Crimson Gardens",
   "biome.netherdescent.embur_bog": "Embur Bog",
   "biome.netherdescent.sythian_torrids": "Sythian Torrids",
