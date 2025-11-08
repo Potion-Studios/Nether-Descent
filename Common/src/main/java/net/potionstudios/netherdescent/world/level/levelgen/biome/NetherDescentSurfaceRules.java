@@ -53,19 +53,12 @@ public class NetherDescentSurfaceRules {
 
     private static final SurfaceRules.RuleSource WAILING_GARTH = makeifTrueRule(NetherDescentBiomes.WAILING_GARTH, SurfaceRules.sequence(
             NetherDescentRuleSources.weightedRuleSource(SimpleWeightedRandomList.<SurfaceRules.RuleSource>builder()
-                    .add(SurfaceRules.sequence(
-                            makeifTrueRule(SurfaceRules.ON_FLOOR, Blocks.SOUL_SAND),
-                            makeifTrueRule(SurfaceRules.UNDER_FLOOR, Blocks.SOUL_SAND),
-                            makeifTrueRule(SurfaceRules.ON_CEILING, Blocks.SOUL_SAND),
-                            makeifTrueRule(SurfaceRules.UNDER_CEILING, Blocks.SOUL_SAND)
-                    ), 3)
-                    .add(SurfaceRules.sequence(
-                            makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.WAILING_NYLIUM.get()),
-                            makeifTrueRule(SurfaceRules.UNDER_FLOOR, Blocks.SOUL_SAND),
-                            makeifTrueRule(SurfaceRules.ON_CEILING, Blocks.SOUL_SAND),
-                            makeifTrueRule(SurfaceRules.UNDER_CEILING, Blocks.SOUL_SAND)
-                    ))
-                    .build())));
+                    .add(makeifTrueRule(SurfaceRules.ON_FLOOR, Blocks.SOUL_SAND), 3)
+                    .add(makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.WAILING_NYLIUM.get()))
+                    .build()),
+            makeifTrueRule(SurfaceRules.UNDER_FLOOR, Blocks.SOUL_SOIL),
+            makeifTrueRule(SurfaceRules.ON_CEILING, Blocks.SOUL_SOIL),
+            makeifTrueRule(SurfaceRules.UNDER_CEILING, Blocks.SOUL_SOIL)));
 
 
     public static SurfaceRules.RuleSource makeRules() {
