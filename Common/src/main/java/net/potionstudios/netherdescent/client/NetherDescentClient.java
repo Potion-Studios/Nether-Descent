@@ -11,6 +11,8 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
+import net.potionstudios.netherdescent.core.particles.FallingParticle;
 import net.potionstudios.netherdescent.world.level.block.entities.NetherDescentBlockEntityType;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 
@@ -43,7 +45,7 @@ public class NetherDescentClient {
      */
     public static void registerParticles(BiConsumer<SimpleParticleType, Function<SpriteSet, ParticleProvider<SimpleParticleType>>> consumer) {
 //		consumer.accept(NetherDescentParticles.SYTHIAN_LEAF.get(), null);
-//	    consumer.accept(NetherDescentParticles.EMBUR_GEL_DRIP.get(), FallingParticle.Provider::new);
+	    consumer.accept(NetherDescentParticles.EMBUR_GEL_DRIP.get(), FallingParticle.Provider::new);
 //		consumer.accept(NetherDescentParticles.GILL_LEVITATE.get(), null);
 //		consumer.accept(NetherDescentParticles.GILL_LEVITATE_POWERED.get(), null);
     }

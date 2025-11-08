@@ -1,4 +1,4 @@
-package net.potionstudios.netherdescent.client.particle.particles;
+package net.potionstudios.netherdescent.core.particles;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;

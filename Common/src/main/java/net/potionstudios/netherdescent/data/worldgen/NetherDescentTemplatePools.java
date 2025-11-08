@@ -102,10 +102,6 @@ public class NetherDescentTemplatePools {
 		return templatePoolResourceKey;
 	}
 
-	public static void templatePools() {
-		NetherDescent.LOGGER.info("Registering Nether Descent Template Pools");
-	}
-
 	@FunctionalInterface
 	public interface TemplatePoolFactory {
 		StructureTemplatePool generate(BootstrapContext<StructureTemplatePool> templatePoolFactoryContext);

@@ -1,4 +1,4 @@
-package net.potionstudios.netherdescent.client.particle;
+package net.potionstudios.netherdescent.core.particles;
 
 import net.minecraft.core.particles.SimpleParticleType;
 import net.potionstudios.netherdescent.NetherDescent;
@@ -20,5 +20,9 @@ public class NetherDescentParticles {
 
     private static Supplier<SimpleParticleType> register(String id) {
         return PlatformHandler.PLATFORM_HANDLER.registerCreateParticle(id);
+    }
+
+    public static void particleTypes() {
+        NetherDescent.LOGGER.info("Registering Nether Descent Particle Types");
     }
 }

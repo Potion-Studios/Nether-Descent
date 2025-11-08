@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.config.BiomeConfig;
 import net.potionstudios.netherdescent.sounds.NetherDescentSounds;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
@@ -44,7 +45,7 @@ public class NetherDescent {
 	    NetherDescentStructurePieceType.structurePieceTypes();
 	    NetherDescentStructureType.structureTypes();
         NetherDescentTreeDecoratorType.treeDecoratorType();
-        NetherDescentTemplatePools.templatePools();
+        NetherDescentParticles.particleTypes();
     }
 
     /**
