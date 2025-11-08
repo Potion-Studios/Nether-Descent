@@ -40,7 +40,7 @@ public class NetherDescentBlocks {
     public static final Supplier<NetherDescentNyliumBlock> WAILING_NYLIUM = registerBlockItem("wailing_nylium", () -> new NetherDescentNyliumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM).mapColor(MapColor.COLOR_PURPLE), Blocks.SOUL_SAND, null));
     public static final Supplier<VineBlock> WAILING_VINE = registerBlockItem("wailing_vine", () -> new VineBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES).mapColor(MapColor.COLOR_PURPLE).lightLevel((state) -> 10)));
     public static final Supplier<Block> WAILING_GRASS = registerBlockItem("wailing_grass", () -> new RootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS)));
-	public static final Supplier<WailingFungalGillsBlock> WAILING_FUNGAL_GILLS = registerBlock("wailing_fungal_gills", () -> new WailingFungalGillsBlock(BlockBehaviour.Properties.of()));
+	public static final Supplier<WailingGillsBlock> WAILING_GILLS = registerCubeAllBlockItem("wailing_gills", () -> new WailingGillsBlock(BlockBehaviour.Properties.of()));
 
     public static final Supplier<NetherDescentNyliumBlock> EMBUR_NYLIUM = registerBlockItem("embur_nylium", () -> new NetherDescentNyliumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM).mapColor(MapColor.COLOR_ORANGE), BLUE_NETHERRACK, null));
     public static final Supplier<Block> EMBUR_GEL_BLOCK = registerBlockItem("embur_gel_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SLIME_BLOCK).speedFactor(1.2F)));

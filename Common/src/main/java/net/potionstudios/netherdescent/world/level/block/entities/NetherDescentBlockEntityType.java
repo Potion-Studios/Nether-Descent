@@ -28,7 +28,7 @@ public class NetherDescentBlockEntityType {
                     NetherDescentWoodSet.woodsets().stream().map(NetherDescentWoodSet::wallHangingSign)
             ).toArray(SignBlock[]::new)));
 
-	public static final Supplier<BlockEntityType<WailingFungalGillsBlockEntity>> WAILING_FUNGAL_GILLS = register("wailing_fungal_gills", () -> BlockEntityType.Builder.of(WailingFungalGillsBlockEntity::new, NetherDescentBlocks.WAILING_FUNGAL_GILLS.get()));
+	public static final Supplier<BlockEntityType<WailingGillsBlockEntity>> WAILING_GILLS = register("wailing_gills", () -> BlockEntityType.Builder.of(WailingGillsBlockEntity::new, NetherDescentBlocks.WAILING_GILLS.get()));
 
     private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String key, Supplier<BlockEntityType.Builder<T>> builder) {
         return PlatformHandler.PLATFORM_HANDLER.registerBlockEntity(key, builder);

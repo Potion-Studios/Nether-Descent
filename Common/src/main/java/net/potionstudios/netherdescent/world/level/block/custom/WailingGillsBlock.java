@@ -10,13 +10,13 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.potionstudios.netherdescent.world.level.block.entities.NetherDescentBlockEntityType;
-import net.potionstudios.netherdescent.world.level.block.entities.WailingFungalGillsBlockEntity;
+import net.potionstudios.netherdescent.world.level.block.entities.WailingGillsBlockEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class WailingFungalGillsBlock extends BaseEntityBlock {
-	private static final MapCodec<WailingFungalGillsBlock> CODEC = simpleCodec(WailingFungalGillsBlock::new);
-	public WailingFungalGillsBlock(Properties properties) {
+public class WailingGillsBlock extends BaseEntityBlock {
+	private static final MapCodec<WailingGillsBlock> CODEC = simpleCodec(WailingGillsBlock::new);
+	public WailingGillsBlock(Properties properties) {
 		super(properties);
 	}
 
@@ -27,7 +27,7 @@ public class WailingFungalGillsBlock extends BaseEntityBlock {
 
 	@Override
 	public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-		return new WailingFungalGillsBlockEntity(pos, state);
+		return new WailingGillsBlockEntity(pos, state);
 	}
 
 	@Override
@@ -37,12 +37,12 @@ public class WailingFungalGillsBlock extends BaseEntityBlock {
 
 	@Override
 	public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> blockEntityType) {
-		return createTickerHelper(level, blockEntityType, NetherDescentBlockEntityType.WAILING_FUNGAL_GILLS.get());
+		return createTickerHelper(level, blockEntityType, NetherDescentBlockEntityType.WAILING_GILLS.get());
 	}
 
 	public static <T extends BlockEntity> BlockEntityTicker<T> createTickerHelper(
-			Level level, BlockEntityType<T> serverType, BlockEntityType<? extends WailingFungalGillsBlockEntity> clientType
+			Level level, BlockEntityType<T> serverType, BlockEntityType<? extends WailingGillsBlockEntity> clientType
 	) {
-		return level.isClientSide() ? null : createTickerHelper(serverType, clientType, WailingFungalGillsBlockEntity::serverTick);
+		return level.isClientSide() ? null : createTickerHelper(serverType, clientType, WailingGillsBlockEntity::serverTick);
 	}
 }
