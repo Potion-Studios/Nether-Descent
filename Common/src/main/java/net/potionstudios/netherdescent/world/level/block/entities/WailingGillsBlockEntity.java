@@ -5,7 +5,9 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -14,6 +16,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.potionstudios.netherdescent.world.level.block.custom.WailingGillsBlock;
 
 public class WailingGillsBlockEntity extends BlockEntity {
 	public WailingGillsBlockEntity(BlockPos pos, BlockState blockState) {
@@ -22,17 +25,19 @@ public class WailingGillsBlockEntity extends BlockEntity {
 
 	public static void serverTick(Level level, BlockPos pos, BlockState state, WailingGillsBlockEntity blockEntity) {
 		ServerLevel serverLevel = (ServerLevel) level;
-		if (serverLevel.getServer().getTickCount() % 20 == 0) {
-			AABB aabb = new AABB(pos).expandTowards(0.0, 20.0, 0.0);
+		if (serverLevel.getServer().getTickCount() % 4 == 0) {
+			AABB aabb = new AABB(pos).expandTowards(0.0, -15.0 - state.getValue(WailingGillsBlock.POWER), 0.0);
 			Holder<Enchantment> soulSpeed = level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SOUL_SPEED);
-			serverLevel.getEntitiesOfClass(Entity.class, aabb).forEach(entity -> {
-				if (entity instanceof ServerPlayer player) {
-					if (player.isSpectator()) return;
-					for (ItemStack itemStack: player.getArmorSlots())
-						if (EnchantmentHelper.getItemEnchantmentLevel(soulSpeed, itemStack) > 0)
-							return;
-				}
+			serverLevel.getEntitiesOfClass(LivingEntity.class, aabb).forEach(entity -> {
+				if (entity instanceof ServerPlayer player && player.isSpectator())
+					return;
 
+                for (ItemStack itemStack: entity.getArmorSlots())
+                    if (EnchantmentHelper.getItemEnchantmentLevel(soulSpeed, itemStack) > 0)
+                        return;
+
+                entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 80));
+                entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160));
 			});
 		}
 	}
