@@ -5,6 +5,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
+import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.entities.sign.NetherDescentHangingSignBlockEntity;
 import net.potionstudios.netherdescent.world.level.block.entities.sign.NetherDescentSignBlockEntity;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
@@ -26,6 +27,8 @@ public class NetherDescentBlockEntityType {
                     NetherDescentWoodSet.woodsets().stream().map(NetherDescentWoodSet::hangingSign),
                     NetherDescentWoodSet.woodsets().stream().map(NetherDescentWoodSet::wallHangingSign)
             ).toArray(SignBlock[]::new)));
+
+	public static final Supplier<BlockEntityType<WailingFungalGillsBlockEntity>> WAILING_FUNGAL_GILLS = register("wailing_fungal_gills", () -> BlockEntityType.Builder.of(WailingFungalGillsBlockEntity::new, NetherDescentBlocks.WAILING_FUNGAL_GILLS.get()));
 
     private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String key, Supplier<BlockEntityType.Builder<T>> builder) {
         return PlatformHandler.PLATFORM_HANDLER.registerBlockEntity(key, builder);
