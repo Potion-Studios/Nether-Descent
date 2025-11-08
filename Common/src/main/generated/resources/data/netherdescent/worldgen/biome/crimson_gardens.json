@@ -67,7 +67,24 @@
     ]
   ],
   "has_precipitation": false,
-  "spawn_costs": {},
+  "spawn_costs": {
+    "minecraft:enderman": {
+      "charge": 0.7,
+      "energy_budget": 0.15
+    },
+    "minecraft:ghast": {
+      "charge": 0.7,
+      "energy_budget": 0.15
+    },
+    "minecraft:skeleton": {
+      "charge": 0.7,
+      "energy_budget": 0.15
+    },
+    "minecraft:strider": {
+      "charge": 0.7,
+      "energy_budget": 0.15
+    }
+  },
   "spawners": {
     "ambient": [],
     "axolotls": [],
@@ -82,28 +99,22 @@
     "misc": [],
     "monster": [
       {
-        "type": "minecraft:hoglin",
-        "maxCount": 4,
-        "minCount": 3,
-        "weight": 9
-      },
-      {
-        "type": "minecraft:zombified_piglin",
-        "maxCount": 4,
-        "minCount": 4,
-        "weight": 80
-      },
-      {
-        "type": "minecraft:magma_cube",
+        "type": "minecraft:skeleton",
         "maxCount": 5,
-        "minCount": 2,
-        "weight": 100
+        "minCount": 5,
+        "weight": 20
       },
       {
-        "type": "minecraft:piglin",
+        "type": "minecraft:ghast",
         "maxCount": 4,
         "minCount": 4,
-        "weight": 15
+        "weight": 50
+      },
+      {
+        "type": "minecraft:enderman",
+        "maxCount": 4,
+        "minCount": 4,
+        "weight": 1
       }
     ],
     "underground_water_creature": [],
