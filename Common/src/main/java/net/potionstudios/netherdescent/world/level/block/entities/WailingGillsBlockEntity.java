@@ -4,7 +4,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,7 +28,7 @@ public class WailingGillsBlockEntity extends BlockEntity {
 			AABB aabb = new AABB(pos).expandTowards(0.0, -15.0 - state.getValue(WailingGillsBlock.POWER), 0.0);
 			Holder<Enchantment> soulSpeed = level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SOUL_SPEED);
 			serverLevel.getEntitiesOfClass(LivingEntity.class, aabb).forEach(entity -> {
-				if (entity instanceof ServerPlayer player && player.isSpectator())
+				if (entity.isSpectator())
 					return;
 
                 for (ItemStack itemStack: entity.getArmorSlots())

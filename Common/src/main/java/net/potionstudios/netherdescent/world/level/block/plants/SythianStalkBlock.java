@@ -18,6 +18,7 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.tags.NetherDescentBlockTags;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import org.jetbrains.annotations.NotNull;
@@ -137,7 +138,22 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
         return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
     }
 
-    @Override
+	@Override
+	public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+		super.animateTick(state, level, pos, random);
+		if (state.getValue(LEAVES) != BambooLeaves.NONE && random.nextDouble() < 0.01F) {
+			BlockPos below = pos.below();
+			BlockState blockState = level.getBlockState(below);
+			if (!blockState.canOcclude() || !blockState.isFaceSturdy(level, below, Direction.UP)) {
+				double x = (double) pos.getX() + random.nextDouble();
+				double y = (double) pos.getY() - 0.05;
+				double z = (double) pos.getZ() + random.nextDouble();
+				level.addParticle(NetherDescentParticles.SYTHIAN_LEAF.get(), x, y, z, 0.0D, 0.0D, 0.0D);
+			}
+		}
+	}
+
+	@Override
     public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
         int i = this.getHeightAboveUpToMax(level, pos);
         int j = this.getHeightBelowUpToMax(level, pos);

@@ -9,6 +9,7 @@ import net.potionstudios.netherdescent.config.BiomeConfig;
 import net.potionstudios.netherdescent.sounds.NetherDescentSounds;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
+import net.potionstudios.netherdescent.world.item.alchemy.NetherDescentPotions;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.entities.NetherDescentBlockEntityType;
 import net.potionstudios.netherdescent.data.worldgen.features.NetherDescentFeatures;
@@ -46,6 +47,7 @@ public class NetherDescent {
 	    NetherDescentStructureType.structureTypes();
         NetherDescentTreeDecoratorType.treeDecoratorType();
         NetherDescentParticles.particleTypes();
+	    NetherDescentPotions.potions();
     }
 
     /**
