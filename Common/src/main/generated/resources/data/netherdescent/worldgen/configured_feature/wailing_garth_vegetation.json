@@ -1,24 +1,18 @@
 {
-  "type": "minecraft:nether_forest_vegetation",
+  "type": "minecraft:random_selector",
   "config": {
-    "spread_height": 5,
-    "spread_width": 7,
-    "state_provider": {
-      "type": "minecraft:weighted_state_provider",
-      "entries": [
-        {
-          "data": {
-            "Name": "netherdescent:wailing_grass"
-          },
-          "weight": 2
-        },
-        {
-          "data": {
-            "Name": "netherdescent:wailing_fungus"
-          },
-          "weight": 1
+    "default": {
+      "feature": "netherdescent:wailing_grass",
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.35,
+        "feature": {
+          "feature": "netherdescent:wailing_fungus",
+          "placement": []
         }
-      ]
-    }
+      }
+    ]
   }
 }

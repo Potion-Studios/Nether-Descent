@@ -25,6 +25,7 @@ import net.potionstudios.netherdescent.world.level.levelgen.feature.configuratio
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CeilingHangingVinesFeatureConfiguration;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.HangingPlantFeatureConfiguration;
+import org.checkerframework.checker.units.qual.C;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -85,12 +86,17 @@ public class NetherDescentFeatures {
             }
     );
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_GARTH_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_garth_vegetation", Feature.NETHER_FOREST_VEGETATION,  (configuredFeatureBootstrapContext) -> new NetherForestVegetationConfig(
-            new WeightedStateProvider(
-                    SimpleWeightedRandomList.<BlockState>builder()
-                            .add(NetherDescentBlocks.WAILING_GRASS.get().defaultBlockState(), 2)
-                            .add(NetherDescentBlocks.WAILING.growerItem().getBlockState())
-            ), 7, 5));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_GRASS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("wailing_grass", NetherDescentBlocks.WAILING_GRASS, 15);
+	public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_FUNGUS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("wailing_fungus", NetherDescentBlocks.WAILING.growerItem().block(), 15);
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_GARTH_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_garth_vegetation", Feature.RANDOM_SELECTOR,  (configuredFeatureBootstrapContext) -> {
+			    HolderGetter<ConfiguredFeature<?, ?>> lookup = configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE);
+
+                return new RandomFeatureConfiguration(ImmutableList.of(
+						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(WAILING_FUNGUS)), 0.35F)),
+						PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(WAILING_GRASS)));
+				}
+	);
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_SYTHIAN_ROOTS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_sythian_roots", NetherDescentFeature.HANGING_PLANT, () -> new HangingPlantFeatureConfiguration(Blocks.NETHERRACK, NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get()));
     //public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_HANGING_SYTHIAN_ROOTS = ConfiguredFeaturesUtil.createConfiguredFeature("patch_hanging_sythian_roots", Feature.RANDOM_PATCH, () -> FeatureUtils.simplePatchConfiguration(NetherDescentFeature.HANGING_PLANT.get(), new HangingPlantFeatureConfiguration(Blocks.NETHERRACK, NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get())));

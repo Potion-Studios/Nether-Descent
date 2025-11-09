@@ -53,7 +53,7 @@ public class NetherDescentSurfaceRules {
 
     private static final SurfaceRules.RuleSource WAILING_GARTH = makeifTrueRule(NetherDescentBiomes.WAILING_GARTH, SurfaceRules.sequence(
             NetherDescentRuleSources.weightedRuleSource(SimpleWeightedRandomList.<SurfaceRules.RuleSource>builder()
-                    .add(makeifTrueRule(SurfaceRules.ON_FLOOR, Blocks.SOUL_SAND), 3)
+                    .add(makeifTrueRule(SurfaceRules.ON_FLOOR, Blocks.SOUL_SOIL), 3)
                     .add(makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.WAILING_NYLIUM.get()))
                     .build()),
             makeifTrueRule(SurfaceRules.UNDER_FLOOR, Blocks.SOUL_SOIL),
