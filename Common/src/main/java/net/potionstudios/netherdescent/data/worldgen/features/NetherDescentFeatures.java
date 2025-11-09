@@ -74,6 +74,8 @@ public class NetherDescentFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_CRIMSON_ROOTS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("tall_crimson_roots", NetherDescentBlocks.TALL_CRIMSON_ROOTS, 15);
 
+	public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_CRIMSON_FUNGI = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("tall_crimson_fungi", NetherDescentBlocks.TALL_CRIMSON_FUNGI, 15);
+
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_CRIMSON_BERRY = createPatchConfiguredFeatureState("crimson_berry", () -> NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().defaultBlockState().setValue(CrimsonBerryBushBlock.AGE, 3), 32);
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_GARDEN_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_garden_vegetation", Feature.RANDOM_SELECTOR, (configuredFeatureBootstapContext) -> {
@@ -81,7 +83,8 @@ public class NetherDescentFeatures {
 
                 return new RandomFeatureConfiguration(ImmutableList.of(
                         new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(NetherFeatures.PATCH_CRIMSON_ROOTS)), 0.45F),
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(TALL_CRIMSON_ROOTS)), 0.8F)),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(TALL_CRIMSON_ROOTS)), 0.8F),
+						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(TALL_CRIMSON_FUNGI)), 0.3F)),
                         PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(PATCH_CRIMSON_BERRY)));
             }
     );
