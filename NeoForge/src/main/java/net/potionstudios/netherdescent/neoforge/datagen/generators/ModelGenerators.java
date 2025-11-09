@@ -219,7 +219,7 @@ public class ModelGenerators {
                     .modelFile(models().cross(name(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get()) + "_stage" + state.getValue(CrimsonBerryBushBlock.AGE), blockNDTexture(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get(), "stage" + state.getValue(CrimsonBerryBushBlock.AGE))).renderType("cutout"))
                     .build());
 
-            rotatableBlock(NetherDescentBlocks.FUNGAL_BULBS.get());
+            //rotatableBlock(NetherDescentBlocks.FUNGAL_BULBS.get());  TODO: Fix Model to match hardcoded one
 
             simpleBlockWithItem(NetherDescentBlocks.PENDORITE_GRATE.get(), models().cubeAll(name(NetherDescentBlocks.PENDORITE_GRATE.get()), blockTexture(NetherDescentBlocks.PENDORITE_GRATE.get())).renderType("cutout"));
 
