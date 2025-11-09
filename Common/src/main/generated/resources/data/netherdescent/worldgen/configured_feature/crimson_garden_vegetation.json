@@ -19,6 +19,13 @@
           "feature": "netherdescent:tall_crimson_roots",
           "placement": []
         }
+      },
+      {
+        "chance": 0.3,
+        "feature": {
+          "feature": "netherdescent:tall_crimson_fungi",
+          "placement": []
+        }
       }
     ]
   }
