@@ -19,8 +19,9 @@ public class NetherDescentProcessorLists {
 	public static final ResourceKey<StructureProcessorList> CHAINS = register("chains", structureProcessorListHolderGetter -> new StructureProcessorList(
 			ImmutableList.of(
 					createRuleProcessor(
-							createAlwaysTrueRandomBlockMatchTest(Blocks.BLACKSTONE, .33F, Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS),
-							createAlwaysTrueRandomBlockMatchTest(Blocks.BLACKSTONE, .5F, Blocks.POLISHED_BLACKSTONE_BRICKS)
+							createAlwaysTrueRandomBlockMatchTest(Blocks.BLACKSTONE, .25F, Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS),
+							createAlwaysTrueRandomBlockMatchTest(Blocks.BLACKSTONE, .33F, Blocks.POLISHED_BLACKSTONE_BRICKS),
+							createAlwaysTrueRandomBlockMatchTest(Blocks.BLACKSTONE, .5F, Blocks.GILDED_BLACKSTONE)
 					)
 			)
 	));

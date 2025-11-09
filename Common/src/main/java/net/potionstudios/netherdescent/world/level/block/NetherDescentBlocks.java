@@ -8,6 +8,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BambooLeaves;
 import net.minecraft.world.level.material.MapColor;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
@@ -77,8 +78,8 @@ public class NetherDescentBlocks {
     public static final NetherDescentWoodSet EMBUR = new NetherDescentWoodSet("embur", MapColor.COLOR_BROWN, NetherDescentWoodSet.LogStem.PEDU, NetherDescentWoodSet.GrowerItem.WART, EMBUR_NYLIUM);
     public static final NetherDescentWoodSet SYTHIAN = new NetherDescentWoodSet("sythian", MapColor.COLOR_YELLOW, NetherDescentWoodSet.LogStem.STEM, NetherDescentWoodSet.GrowerItem.FUNGUS, SYTHIAN_NYLIUM);
     public static final Supplier<Block> SYTHIAN_WART_BLOCK = registerBasicBlockWithItem("sythian_wart_block", BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WART_BLOCK).mapColor(MapColor.COLOR_YELLOW));
-    public static final Supplier<Block> SYTHIAN_SHOOT = registerBlock("sythian_shoot", () -> new SythianShootBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_SAPLING)));
-    public static final Supplier<SythianStalkBlock> SYTHIAN_STALK = registerBlockItem("sythian_stalk", () -> new SythianStalkBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO).lightLevel((state) -> 10)));
+    public static final Supplier<Block> SYTHIAN_SHOOT = registerBlock("sythian_shoot", () -> new SythianShootBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_SAPLING).lightLevel((state) -> 5)));
+    public static final Supplier<SythianStalkBlock> SYTHIAN_STALK = registerBlockItem("sythian_stalk", () -> new SythianStalkBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO).lightLevel((state) -> state.getValue(SythianStalkBlock.LEAVES) != BambooLeaves.NONE ? 10 : 5)));
     public static final NetherDescentWoodSet WAILING = new NetherDescentWoodSet("wailing", MapColor.COLOR_PURPLE, NetherDescentWoodSet.LogStem.STEM, NetherDescentWoodSet.GrowerItem.FUNGUS, WAILING_NYLIUM);
     public static final Supplier<Block> WAILING_WART_BLOCK = registerBasicBlockWithItem("wailing_wart_block", BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WART_BLOCK).mapColor(MapColor.COLOR_PURPLE));
 

@@ -3,6 +3,7 @@ package net.potionstudios.netherdescent.world.level.block.plants;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -141,15 +142,11 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
 	@Override
 	public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
 		super.animateTick(state, level, pos, random);
-		if (state.getValue(LEAVES) != BambooLeaves.NONE && random.nextDouble() < 0.01F) {
+		if (state.getValue(LEAVES) != BambooLeaves.NONE && random.nextInt(10) >= 3) {
 			BlockPos below = pos.below();
 			BlockState blockState = level.getBlockState(below);
-			if (!blockState.canOcclude() || !blockState.isFaceSturdy(level, below, Direction.UP)) {
-				double x = (double) pos.getX() + random.nextDouble();
-				double y = (double) pos.getY() - 0.05;
-				double z = (double) pos.getZ() + random.nextDouble();
-				level.addParticle(NetherDescentParticles.SYTHIAN_LEAF.get(), x, y, z, 0.0D, 0.0D, 0.0D);
-			}
+			if (!isFaceFull(blockState.getCollisionShape(level, pos), Direction.UP))
+				ParticleUtils.spawnParticleBelow(level, pos, random, NetherDescentParticles.SYTHIAN_LEAF.get());
 		}
 	}
 

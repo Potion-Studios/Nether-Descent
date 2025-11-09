@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.client;
 
+import net.minecraft.client.particle.CherryParticle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.Sheets;
@@ -11,7 +12,6 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.potionstudios.netherdescent.core.particles.FallingLeafParticle;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.core.particles.FallingParticle;
 import net.potionstudios.netherdescent.world.level.block.entities.NetherDescentBlockEntityType;
@@ -45,7 +45,7 @@ public class NetherDescentClient {
      * @see ParticleProvider
      */
     public static void registerParticles(BiConsumer<SimpleParticleType, Function<SpriteSet, ParticleProvider<SimpleParticleType>>> consumer) {
-		consumer.accept(NetherDescentParticles.SYTHIAN_LEAF.get(), FallingLeafParticle.Provider::new);
+		consumer.accept(NetherDescentParticles.SYTHIAN_LEAF.get(), arg -> (arg2, arg3, d, e, f, g, h, i) -> new CherryParticle(arg3, d, e, f, arg));
 	    consumer.accept(NetherDescentParticles.EMBUR_GEL_DRIP.get(), FallingParticle.Provider::new);
 //		consumer.accept(NetherDescentParticles.GILL_LEVITATE.get(), null);
 //		consumer.accept(NetherDescentParticles.GILL_LEVITATE_POWERED.get(), null);
