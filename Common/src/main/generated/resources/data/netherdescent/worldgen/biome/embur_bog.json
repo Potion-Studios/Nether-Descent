@@ -6,7 +6,7 @@
   "effects": {
     "additions_sound": {
       "sound": "netherdescent:ambient.embur_bog.additions",
-      "tick_chance": 0.0111
+      "tick_chance": 0.0011
     },
     "ambient_sound": "netherdescent:ambient.embur_bog.loop",
     "fog_color": 15110510,
@@ -87,7 +87,7 @@
         "type": "minecraft:blaze",
         "maxCount": 4,
         "minCount": 2,
-        "weight": 20
+        "weight": 10
       },
       {
         "type": "minecraft:zombified_piglin",

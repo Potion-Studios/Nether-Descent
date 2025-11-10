@@ -6,7 +6,7 @@
   "effects": {
     "additions_sound": {
       "sound": "netherdescent:ambient.crimson_gardens.additions",
-      "tick_chance": 0.0111
+      "tick_chance": 0.0011
     },
     "ambient_sound": "netherdescent:ambient.crimson_gardens.loop",
     "fog_color": 3343107,
