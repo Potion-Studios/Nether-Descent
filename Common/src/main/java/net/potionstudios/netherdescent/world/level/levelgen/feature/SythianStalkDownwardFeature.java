@@ -45,6 +45,8 @@ public class SythianStalkDownwardFeature extends Feature<NoneFeatureConfiguratio
 				}
 
 				if (blockPos.getY() - mutableBlockPos.getY() >= 3) {
+                    if (!worldGenLevel.isEmptyBlock(mutableBlockPos.offset(0, -3, 0)))
+                        mutableBlockPos.move(Direction.UP, 3);
 					worldGenLevel.setBlock(mutableBlockPos, STALK_FINAL_LARGE, 2);
 					worldGenLevel.setBlock(mutableBlockPos.move(Direction.DOWN, 1), STALK_TOP_LARGE, 2);
 					worldGenLevel.setBlock(mutableBlockPos.move(Direction.DOWN, 1), STALK_TOP_SMALL, 2);
