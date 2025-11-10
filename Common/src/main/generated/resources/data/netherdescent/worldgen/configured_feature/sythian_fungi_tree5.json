@@ -30,7 +30,7 @@
         ],
         "exclusion_radius_xz": 0,
         "exclusion_radius_y": 1,
-        "probability": 0.1,
+        "probability": 0.22,
         "required_empty_blocks": 2
       }
     ],
