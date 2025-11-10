@@ -18,6 +18,7 @@ import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.custom.HangingMossBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.SythianFarmBlock;
+import net.potionstudios.netherdescent.world.level.block.custom.SythianRootsBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.SythianShootBlock;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
@@ -132,7 +133,6 @@ public class ModelGenerators {
 			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES.get(), "translucent");
 			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(),  "translucent");
 			createCrossBlock(NetherDescentBlocks.EMBUR_ROOTS.get(), "cutout_mipped");
-            createCrossBlock(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "cutout_mipped");
             createCrossBlock(NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), "cutout");
             createCrossBlock(NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get(), "cutout");
 			createDoubleBlock(NetherDescentBlocks.TALL_EMBUR_ROOTS.get());
@@ -256,6 +256,20 @@ public class ModelGenerators {
 
             getVariantBuilder(NetherDescentBlocks.WAILING_GRASS.get()).partialState()
                     .setModels(new ConfiguredModel(models().getExistingFile(blockTexture(NetherDescentBlocks.WAILING_GRASS.get()))), new ConfiguredModel(models().getExistingFile(NetherDescent.id("block/wailing_grass_1"))));
+
+            models().cross(name(NetherDescentBlocks.SYTHIAN_ROOTS.get()), blockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get())).renderType("cutout_mipped");
+            models().withExistingParent(name(NetherDescentBlocks.SYTHIAN_ROOTS.get()) + "_wall", mcLoc("block/coral_wall_fan")).texture("fan", blockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get())).renderType("cutout_mipped");
+            getVariantBuilder(NetherDescentBlocks.SYTHIAN_ROOTS.get()).forAllStates(state -> switch (state.getValue(SythianRootsBlock.FACING)) {
+                case EAST ->
+                        ConfiguredModel.builder().rotationY(90).modelFile(models().getExistingFile(blockNDTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "wall"))).build();
+                case WEST ->
+                        ConfiguredModel.builder().rotationY(270).modelFile(models().getExistingFile(blockNDTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "wall"))).build();
+                case SOUTH ->
+                        ConfiguredModel.builder().rotationY(180).modelFile(models().getExistingFile(blockNDTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "wall"))).build();
+                case NORTH ->
+                        ConfiguredModel.builder().modelFile(models().getExistingFile(blockNDTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "wall"))).build();
+                default -> ConfiguredModel.builder().modelFile(models().getExistingFile(blockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get()))).build();
+            });
         }
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {

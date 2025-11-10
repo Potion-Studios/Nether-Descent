@@ -8,7 +8,10 @@
       "entries": [
         {
           "data": {
-            "Name": "netherdescent:sythian_roots"
+            "Name": "netherdescent:sythian_roots",
+            "Properties": {
+              "facing": "up"
+            }
           },
           "weight": 2
         },

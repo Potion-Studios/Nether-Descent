@@ -1,7 +1,25 @@
 {
   "variants": {
-    "": {
+    "facing=down": {
       "model": "netherdescent:block/sythian_roots"
+    },
+    "facing=east": {
+      "model": "netherdescent:block/sythian_roots_wall",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "netherdescent:block/sythian_roots_wall"
+    },
+    "facing=south": {
+      "model": "netherdescent:block/sythian_roots_wall",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "netherdescent:block/sythian_roots"
+    },
+    "facing=west": {
+      "model": "netherdescent:block/sythian_roots_wall",
+      "y": 270
     }
   }
 }
