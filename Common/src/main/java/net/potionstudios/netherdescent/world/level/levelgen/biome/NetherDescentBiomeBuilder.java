@@ -71,7 +71,7 @@ public class NetherDescentBiomeBuilder {
 		addVegetal(generationSettings, NetherDescentPlacements.HANGING_EMBUR_MOSS);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
-        addSpawn(spawnSettings, EntityType.BLAZE, 20, 2, 4);
+        addSpawn(spawnSettings, EntityType.BLAZE, 10, 2, 4);
         addSpawn(spawnSettings, EntityType.ZOMBIFIED_PIGLIN, 80, 4, 4);
         addSpawn(spawnSettings, EntityType.MAGMA_CUBE, 100, 2, 5);
         addSpawn(spawnSettings, EntityType.PIGLIN, 15, 4, 4);
