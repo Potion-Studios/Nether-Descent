@@ -10,6 +10,7 @@ import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
+import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,7 +22,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
         AdvancementHolder root = Advancement.Builder.advancement()
                 .addCriterion("tick", PlayerTrigger.TriggerInstance.tick())
                 .display(
-                        NetherDescentItems.SYTHIAN_SCAFFOLDING.get(),
+		                NetherDescentBlocks.EMBUR_LILY.get(),
                         translateAble("title.root"),
                         translateAble("description.root"),
                         NetherDescent.id("textures/block/blue_netherrack.png"),
@@ -36,7 +37,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .parent(root)
                 .requirements(AdvancementRequirements.Strategy.OR)
                 .display(
-                        NetherDescentItems.SYTHIAN_SCAFFOLDING.get(),
+                        NetherDescentItems.PENDORITE_INGOT.get(),
                         translateAble("adventure.root.title"),
                         translateAble("adventure.root.description"),
                         null,
@@ -47,7 +48,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .parent(adventureRoot)
                 .requirements(AdvancementRequirements.Strategy.AND)
                 .display(
-                        NetherDescentItems.SYTHIAN_SCAFFOLDING.get(),
+                        NetherDescentItems.EMBUR_GEL_BALL.get(),
                         translateAble("adventure.final_descent.title"),
                         translateAble("adventure.final_descent.description"),
                         null,
