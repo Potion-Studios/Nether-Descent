@@ -3,6 +3,8 @@ package net.potionstudios.netherdescent.data.worldgen.features;
 import com.google.common.collect.ImmutableList;
 import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.TYGFeatures;
 import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.configurations.TreeFromStructureNBTConfig;
+import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.configurations.treedecorators.AttachedToLogsDecorator;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -15,15 +17,20 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
+import net.minecraft.world.level.levelgen.feature.treedecorators.TrunkVineDecorator;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.EmburGelVinesDecorator;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.WeepingVinesDecorator;
 
+import java.util.List;
 import java.util.Set;
+import java.util.function.Supplier;
 
 public class NetherDescentTreeFeatures {
+    public static final Supplier<AttachedToLogsDecorator> SYTHIAN_WALL_ROOTS = () -> new AttachedToLogsDecorator(0.1F, 0, 1, SimpleStateProvider.simple(NetherDescentBlocks.SYTHIAN_ROOTS.get()), 2, List.of(Direction.WEST, Direction.NORTH, Direction.SOUTH, Direction.EAST));
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_FUNGI_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_fungi_tree1",
             TYGFeatures.TREE_FROM_NBT_V1,
@@ -124,6 +131,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.OAK_LEAVES))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(5)
+                    .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
                     .build()
     );
 
@@ -139,6 +147,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.OAK_LEAVES))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
                     .build()
     );
 
@@ -154,6 +163,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.OAK_LEAVES))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
                     .build()
     );
 
@@ -169,6 +179,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.OAK_LEAVES))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
                     .build()
     );
 
@@ -184,6 +195,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.OAK_LEAVES))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
                     .build()
     );
 
@@ -199,6 +211,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.OAK_LEAVES))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
                     .build()
     );
 
