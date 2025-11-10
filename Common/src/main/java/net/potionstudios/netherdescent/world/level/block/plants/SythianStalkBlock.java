@@ -142,7 +142,8 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
 	@Override
 	public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
 		super.animateTick(state, level, pos, random);
-		if (state.getValue(LEAVES) != BambooLeaves.NONE && random.nextInt(10) >= 3) {
+		BambooLeaves leaves = state.getValue(LEAVES);
+		if ((leaves == BambooLeaves.LARGE && random.nextInt(10) >= 3) || (leaves == BambooLeaves.SMALL && random.nextInt(2) >= 0)) {
 			BlockPos below = pos.below();
 			BlockState blockState = level.getBlockState(below);
 			if (!isFaceFull(blockState.getCollisionShape(level, pos), Direction.UP))
