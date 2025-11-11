@@ -10,6 +10,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 import net.potionstudios.netherdescent.NetherDescent;
+import net.potionstudios.netherdescent.tags.NetherDescentBlockTags;
+import net.potionstudios.netherdescent.tags.NetherDescentItemTags;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
@@ -160,6 +162,13 @@ public class RecipeGenerator extends RecipeProvider {
 				.group(packedGroup)
 				.unlockedBy(getHasName(unpacked), has(unpacked))
 				.save(recipeOutput, NetherDescent.id(packedName));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.PENDORITE_BARS.get(), 16)
+                .define('#', NetherDescentItemTags.INGOTS_PENDORITE)
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("has_pendorite_ingot", has(NetherDescentItemTags.INGOTS_PENDORITE))
+                .save(recipeOutput);
     }
 
 	protected static void stonecutterResultFromBase(RecipeOutput recipeOutput, RecipeCategory category, ItemLike result, ItemLike material, int resultCount) {

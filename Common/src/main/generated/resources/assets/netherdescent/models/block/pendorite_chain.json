@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/chain",
-  "render_type": "minecraft:cutout",
+  "render_type": "minecraft:cutout_mipped",
   "textures": {
     "all": "netherdescent:block/pendorite_chain",
     "particle": "netherdescent:block/pendorite_chain"

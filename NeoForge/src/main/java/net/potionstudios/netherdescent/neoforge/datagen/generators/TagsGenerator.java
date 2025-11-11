@@ -101,6 +101,7 @@ public class TagsGenerator {
             tag(BlockTags.NEEDS_STONE_TOOL).add(NetherDescentBlocks.PENDORITE_GRATE.get());
 			tag(BlockTags.DOORS).add(NetherDescentBlocks.PENDORITE_DOOR.get());
 			tag(BlockTags.TRAPDOORS).add(NetherDescentBlocks.PENDORITE_TRAPDOOR.get());
+            tag(BlockTags.DRAGON_IMMUNE).add(NetherDescentBlocks.PENDORITE_BARS.get());
 
             tag(NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON).addTag(BlockTags.NYLIUM).add(NetherDescentBlocks.SYTHIAN_SHOOT.get(), NetherDescentBlocks.SYTHIAN_STALK.get(), NetherDescentBlocks.SYTHIAN_FARMLAND.get());
 
@@ -124,7 +125,7 @@ public class TagsGenerator {
 			else if (object instanceof FlowerPotBlock) tag(BlockTags.FLOWER_POTS).add(object);
 			else if (object instanceof NyliumBlock) tag(BlockTags.NYLIUM).add(object);
             SoundType type = object.defaultBlockState().getSoundType();
-			if (type == SoundType.STONE || type == SoundType.DEEPSLATE || type == SoundType.NETHER_BRICKS || type == SoundType.NYLIUM || object instanceof DropExperienceBlock || type == SoundType.COPPER_GRATE || type == SoundType.CHAIN)
+			if (type == SoundType.STONE || type == SoundType.DEEPSLATE || type == SoundType.NETHER_BRICKS || type == SoundType.NYLIUM || object instanceof DropExperienceBlock || type == SoundType.COPPER_GRATE || type == SoundType.CHAIN || type == SoundType.METAL)
 				tag(BlockTags.MINEABLE_WITH_PICKAXE).add(object);
 			else if (type == SoundType.WOOD || type == SoundType.SWEET_BERRY_BUSH || type == SoundType.GLOW_LICHEN || type == SoundType.FUNGUS || type == SoundType.SCAFFOLDING)
 				tag(BlockTags.MINEABLE_WITH_AXE).add(object);

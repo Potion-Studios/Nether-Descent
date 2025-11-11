@@ -25,6 +25,7 @@
     "netherdescent:pendorite_ore",
     "netherdescent:raw_pendorite_block",
     "netherdescent:pendorite_grate",
-    "netherdescent:pendorite_chain"
+    "netherdescent:pendorite_chain",
+    "netherdescent:pendorite_bars"
   ]
 }
