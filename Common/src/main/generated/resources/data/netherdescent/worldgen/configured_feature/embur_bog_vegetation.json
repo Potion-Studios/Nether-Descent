@@ -1,25 +1,39 @@
 {
-  "type": "minecraft:random_selector",
+  "type": "netherdescent:nether_forest_vegetation",
   "config": {
-    "default": {
-      "feature": "netherdescent:embur_wart",
-      "placement": []
-    },
-    "features": [
-      {
-        "chance": 0.35,
-        "feature": {
-          "feature": "netherdescent:tall_embur_roots",
-          "placement": []
+    "spread_height": 6,
+    "spread_width": 8,
+    "state_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "netherdescent:embur_sprouts"
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "netherdescent:embur_roots"
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "netherdescent:tall_embur_roots",
+            "Properties": {
+              "half": "lower"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "netherdescent:embur_wart"
+          },
+          "weight": 1
         }
-      },
-      {
-        "chance": 0.35,
-        "feature": {
-          "feature": "netherdescent:embur_roots",
-          "placement": []
-        }
-      }
-    ]
+      ]
+    }
   }
 }

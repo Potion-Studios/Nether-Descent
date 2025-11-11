@@ -1,32 +1,72 @@
 {
-  "type": "minecraft:random_selector",
+  "type": "netherdescent:nether_forest_vegetation",
   "config": {
-    "default": {
-      "feature": "netherdescent:crimson_berry",
-      "placement": []
-    },
-    "features": [
-      {
-        "chance": 0.45,
-        "feature": {
-          "feature": "minecraft:patch_crimson_roots",
-          "placement": []
+    "spread_height": 6,
+    "spread_width": 8,
+    "state_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "minecraft:crimson_roots"
+          },
+          "weight": 5
+        },
+        {
+          "data": {
+            "Name": "netherdescent:tall_crimson_roots",
+            "Properties": {
+              "half": "lower"
+            }
+          },
+          "weight": 3
+        },
+        {
+          "data": {
+            "Name": "netherdescent:tall_crimson_fungi",
+            "Properties": {
+              "half": "lower"
+            }
+          },
+          "weight": 3
+        },
+        {
+          "data": {
+            "Name": "netherdescent:crimson_berry_bush",
+            "Properties": {
+              "age": "0"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "netherdescent:crimson_berry_bush",
+            "Properties": {
+              "age": "1"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "netherdescent:crimson_berry_bush",
+            "Properties": {
+              "age": "2"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "netherdescent:crimson_berry_bush",
+            "Properties": {
+              "age": "3"
+            }
+          },
+          "weight": 1
         }
-      },
-      {
-        "chance": 0.8,
-        "feature": {
-          "feature": "netherdescent:tall_crimson_roots",
-          "placement": []
-        }
-      },
-      {
-        "chance": 0.3,
-        "feature": {
-          "feature": "netherdescent:tall_crimson_fungi",
-          "placement": []
-        }
-      }
-    ]
+      ]
+    }
   }
 }

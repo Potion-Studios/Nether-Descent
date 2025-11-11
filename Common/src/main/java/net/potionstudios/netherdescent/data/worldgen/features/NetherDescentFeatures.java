@@ -25,7 +25,6 @@ import net.potionstudios.netherdescent.world.level.levelgen.feature.configuratio
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CeilingHangingVinesFeatureConfiguration;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.HangingPlantFeatureConfiguration;
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -38,14 +37,24 @@ public class NetherDescentFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_EMBUR_ROOTS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("tall_embur_roots", NetherDescentBlocks.TALL_EMBUR_ROOTS, 15);
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("embur_wart", NetherDescentBlocks.EMBUR.growerItem().block(), 15);
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_BOG_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("embur_bog_vegetation", Feature.RANDOM_SELECTOR, (configuredFeatureBootstapContext) -> {
-                HolderGetter<ConfiguredFeature<?, ?>> lookup = configuredFeatureBootstapContext.lookup(Registries.CONFIGURED_FEATURE);
+    public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_BOG_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("embur_bog_vegetation", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
+            new WeightedStateProvider(
+                    SimpleWeightedRandomList.<BlockState>builder()
+                            .add(NetherDescentBlocks.EMBUR_SPROUTS.get().defaultBlockState(), 2)
+                            .add(NetherDescentBlocks.EMBUR_ROOTS.get().defaultBlockState(), 2)
+                            .add(NetherDescentBlocks.TALL_EMBUR_ROOTS.get().defaultBlockState())
+                            .add(NetherDescentBlocks.EMBUR.growerItem().getBlockState())
+            ), 8, 6)
+    );
 
-                return new RandomFeatureConfiguration(ImmutableList.of(
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(TALL_EMBUR_ROOTS)), 0.35F),
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_ROOTS)), 0.35F)),
-                        PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_WART)));
-            }
+    public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_BOG_VEGETATION_BONEMEAL = ConfiguredFeaturesUtil.createConfiguredFeature("embur_bog_vegetation_bonemeal", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
+            new WeightedStateProvider(
+                    SimpleWeightedRandomList.<BlockState>builder()
+                            .add(NetherDescentBlocks.EMBUR_SPROUTS.get().defaultBlockState(), 2)
+                            .add(NetherDescentBlocks.EMBUR_ROOTS.get().defaultBlockState(), 2)
+                            .add(NetherDescentBlocks.TALL_EMBUR_ROOTS.get().defaultBlockState())
+                            .add(NetherDescentBlocks.EMBUR.growerItem().getBlockState())
+            ), 3, 1)
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_CAVE_MOSS = ConfiguredFeaturesUtil.createConfiguredFeature("embur_cave_moss", Feature.MULTIFACE_GROWTH, (configuredFeatureBootstrapContext) -> new MultifaceGrowthConfiguration(NetherDescentBlocks.EMBUR_CAVE_MOSS.get(), 16, true, true, true, 1F, HolderSet.direct(Block::builtInRegistryHolder, NetherDescentBlocks.BLUE_NETHERRACK.get(), NetherDescentBlocks.EMBUR_NYLIUM.get(), NetherDescentBlocks.EMBUR.logstem())));
@@ -74,20 +83,21 @@ public class NetherDescentFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_CRIMSON_ROOTS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("tall_crimson_roots", NetherDescentBlocks.TALL_CRIMSON_ROOTS, 15);
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_CRIMSON_FUNGI = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("tall_crimson_fungi", NetherDescentBlocks.TALL_CRIMSON_FUNGI, 15);
+	//public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_CRIMSON_FUNGI = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("tall_crimson_fungi", NetherDescentBlocks.TALL_CRIMSON_FUNGI, 15);
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_CRIMSON_BERRY = createPatchConfiguredFeatureState("crimson_berry", () -> NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().defaultBlockState().setValue(CrimsonBerryBushBlock.AGE, 3), 32);
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_GARDEN_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_garden_vegetation", Feature.RANDOM_SELECTOR, (configuredFeatureBootstapContext) -> {
-                HolderGetter<ConfiguredFeature<?, ?>> lookup = configuredFeatureBootstapContext.lookup(Registries.CONFIGURED_FEATURE);
-
-                return new RandomFeatureConfiguration(ImmutableList.of(
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(NetherFeatures.PATCH_CRIMSON_ROOTS)), 0.45F),
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(TALL_CRIMSON_ROOTS)), 0.8F),
-						new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(TALL_CRIMSON_FUNGI)), 0.3F)),
-                        PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(PATCH_CRIMSON_BERRY)));
-            }
-    );
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_GARDEN_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_garden_vegetation", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
+                new WeightedStateProvider(
+                        SimpleWeightedRandomList.<BlockState>builder()
+                                .add(Blocks.CRIMSON_ROOTS.defaultBlockState(), 5)
+                                .add(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get().defaultBlockState(), 3)
+                                .add(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get().defaultBlockState(), 3)
+                                .add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().defaultBlockState())
+                                .add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().defaultBlockState().setValue(CrimsonBerryBushBlock.AGE, 1))
+                                .add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().defaultBlockState().setValue(CrimsonBerryBushBlock.AGE, 2))
+                                .add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().defaultBlockState().setValue(CrimsonBerryBushBlock.AGE, 3))
+                ), 8, 6));
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_GRASS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("wailing_grass", NetherDescentBlocks.WAILING_GRASS, 15);
 	public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_FUNGUS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("wailing_fungus", NetherDescentBlocks.WAILING.growerItem().block(), 15);
