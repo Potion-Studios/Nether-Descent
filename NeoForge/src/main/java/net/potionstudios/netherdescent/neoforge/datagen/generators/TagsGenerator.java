@@ -175,6 +175,8 @@ public class TagsGenerator {
 
 			tag(NetherDescentItemTags.INGOTS_PENDORITE).add(NetherDescentItems.PENDORITE_INGOT.get());
             tag(Tags.Items.INGOTS).addTag(NetherDescentItemTags.INGOTS_PENDORITE);
+            tag(NetherDescentItemTags.NUGGETS_PENDORITE).add(NetherDescentItems.PENDORITE_NUGGET.get());
+            tag(Tags.Items.NUGGETS).addTag(NetherDescentItemTags.NUGGETS_PENDORITE);
 
 			copy(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE, NetherDescentItemTags.STORAGE_BLOCKS_PENDORITE);
 			copy(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE, NetherDescentItemTags.STORAGE_BLOCKS_RAW_PENDORITE);

@@ -33,6 +33,7 @@ public class NetherDescentItems {
 
     public static final Supplier<Item> RAW_PENDORITE = registerSimpleItem("raw_pendorite", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> PENDORITE_INGOT = registerSimpleItem("pendorite_ingot", () -> new Item(new Item.Properties()));
+    public static final Supplier<Item> PENDORITE_NUGGET = registerSimpleItem("pendorite_nugget", () -> new Item(new Item.Properties()));
 
     public static <I extends Item> Supplier<I> registerSimpleItem(String id, Supplier<I> item) {
         Supplier<I> supplier = registerItem(id, item);

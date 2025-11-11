@@ -125,6 +125,7 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy(getHasName(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()), has(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()))
                 .save(recipeOutput, getBlastingRecipeName(Items.QUARTZ));
 
+        //nineBlockStorageRecipesRecipesWithCustomUnpacking(recipeOutput, RecipeCategory.MISC, NetherDescentItems.PENDORITE_NUGGET.get(), RecipeCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), "pendorite_ingot_from_nuggets", "pendorite_ingot");
         oreSmelting(recipeOutput, PENDORITE_SMELTABLES, RecipeCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), 0.7F, 200, "pendorite_ingot");
         oreBlasting(recipeOutput, PENDORITE_SMELTABLES, RecipeCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), 0.7F, 100, "pendorite_ingot");
 
