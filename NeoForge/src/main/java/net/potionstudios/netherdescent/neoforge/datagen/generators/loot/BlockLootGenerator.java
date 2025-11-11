@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -60,6 +59,8 @@ class BlockLootGenerator extends BlockLootSubProvider {
                 add(block, itemLike -> BlockLootSubProvider.createShearsOnlyDrop(block));
             else if (block instanceof MultifaceBlock)
                 add(block, createMultifaceBlockDrops(block, HAS_SHEARS));
+            else if (block instanceof LanternBlock)
+                add(block, this::createSingleItemTable);
             else dropSelf(block);
         });
         dropOther(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), NetherDescentBlocks.SYTHIAN_SOIL.get());

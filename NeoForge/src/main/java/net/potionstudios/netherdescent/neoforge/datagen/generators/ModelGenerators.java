@@ -57,11 +57,16 @@ public class ModelGenerators {
 			simpleItem(NetherDescentBlocks.PENDORITE_DOOR.get(),  "pendorite_door");
             simpleBlockItem(NetherDescentBlocks.CRIMSON_CARPET.get());
             simpleItem(NetherDescentBlocks.SYTHIAN_STALK.get(),  "sythian_stalk");
-		}
+            simpleItem(NetherDescentBlocks.PENDORITE_LANTERN.get());
+        }
 
 		private void simpleItem(ItemLike item, String texture) {
 			singleTexture(name(item), mcLoc("item/generated"), "layer0", NetherDescent.id(ModelProvider.ITEM_FOLDER + "/" + texture));
 		}
+
+        private void simpleItem(ItemLike item) {
+            simpleItem(item, name(item));
+        }
 
 		private void simpleItemBlockTexture(ItemLike item) {
 			singleTexture(name(item), mcLoc("item/generated"), "layer0", NetherDescent.id(ModelProvider.BLOCK_FOLDER + "/" + name(item)));
@@ -270,6 +275,13 @@ public class ModelGenerators {
                         ConfiguredModel.builder().modelFile(models().getExistingFile(blockNDTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "wall"))).build();
                 default -> ConfiguredModel.builder().modelFile(models().getExistingFile(blockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get()))).build();
             });
+
+            getVariantBuilder(NetherDescentBlocks.PENDORITE_LANTERN.get()).forAllStatesExcept(state -> {
+                if (state.getValue(LanternBlock.HANGING))
+                    return ConfiguredModel.builder().modelFile(models().withExistingParent(name(NetherDescentBlocks.PENDORITE_LANTERN.get()) + "_hanging", "template_hanging_lantern").texture("lantern", blockTexture(NetherDescentBlocks.PENDORITE_LANTERN.get())).renderType("cutout")).build();
+                else
+                    return ConfiguredModel.builder().modelFile(models().withExistingParent(name(NetherDescentBlocks.PENDORITE_LANTERN.get()), "template_lantern").texture("lantern", blockTexture(NetherDescentBlocks.PENDORITE_LANTERN.get())).renderType("cutout")).build();
+            }, LanternBlock.WATERLOGGED);
         }
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {
