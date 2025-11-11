@@ -11,8 +11,9 @@ import org.jetbrains.annotations.NotNull;
 public class FallingParticle extends TextureSheetParticle {
 	FallingParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 		super(level, x, y, z, xSpeed, ySpeed, zSpeed);
+        this.lifetime = (int)((double)64.0F / (Math.random() * 0.8 + 0.2));
 		this.gravity = 0.06F;
-		this.setSize(0.02F, 0.02F);
+		this.setSize(0.01F, 0.01F);
 	}
 
 	@Override
@@ -29,6 +30,7 @@ public class FallingParticle extends TextureSheetParticle {
         if (!this.removed) {
             this.yd = this.yd - this.gravity;
             this.move(this.xd, this.yd, this.zd);
+            this.postMoveUpdate();
             if (!this.removed) {
                 this.xd *= 0.98F;
                 this.yd *= 0.98F;
@@ -43,11 +45,15 @@ public class FallingParticle extends TextureSheetParticle {
         }
     }
 
+    protected void postMoveUpdate() {
+        if (this.onGround)
+            this.remove();
+    }
+
 	public record Provider(SpriteSet spriteSet) implements ParticleProvider<SimpleParticleType> {
 		@Override
 		public @NotNull Particle createParticle(@NotNull SimpleParticleType type, @NotNull ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
 			FallingParticle particle = new FallingParticle(level, x, y, z, xSpeed, ySpeed, zSpeed);
-			//particle.setColor(1.0F, 1.0F, 1.0F);
 			particle.setSprite(this.spriteSet.get(level.getRandom()));
 			return particle;
 		}

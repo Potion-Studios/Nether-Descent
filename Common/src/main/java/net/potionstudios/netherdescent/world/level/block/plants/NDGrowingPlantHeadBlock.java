@@ -4,12 +4,17 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
@@ -40,8 +45,13 @@ public class NDGrowingPlantHeadBlock extends GrowingPlantHeadBlock {
     @Override
     public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         super.animateTick(state, level, pos, random);
-        if (state.is(NetherDescentBlocks.EMBUR_GEL_VINES.get()) && level.isEmptyBlock(pos.below()))
-            ParticleUtils.spawnParticleBelow(level, pos, random, NetherDescentParticles.EMBUR_GEL_DRIP.get());
+        if (state.is(NetherDescentBlocks.EMBUR_GEL_VINES.get()) && level.isEmptyBlock(pos.below()) && random.nextInt(10) == 0) {
+            Vec3 vec3 = state.getOffset(level, pos);
+            double e = (double)pos.getX() + (double)0.5F + vec3.x;
+            double f = (double)((float)(pos.getY() + 1) - 0.6875F) - (double)0.0625F;
+            double g = (double)pos.getZ() + (double)0.5F + vec3.z;
+            level.addParticle(NetherDescentParticles.EMBUR_GEL_DRIP.get(), e, f, g, 0.0F, 0.0F, 0.0F);
+        }
     }
 
     @Override
