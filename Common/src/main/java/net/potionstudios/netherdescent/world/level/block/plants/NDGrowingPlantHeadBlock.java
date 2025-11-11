@@ -40,7 +40,7 @@ public class NDGrowingPlantHeadBlock extends GrowingPlantHeadBlock {
     @Override
     public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         super.animateTick(state, level, pos, random);
-        if (state.is(NetherDescentBlocks.EMBUR_GEL_VINES.get())) && level.isEmptyBlock(pos.below()))
+        if (state.is(NetherDescentBlocks.EMBUR_GEL_VINES.get()) && level.isEmptyBlock(pos.below()))
             ParticleUtils.spawnParticleBelow(level, pos, random, NetherDescentParticles.EMBUR_GEL_DRIP.get());
     }
 
