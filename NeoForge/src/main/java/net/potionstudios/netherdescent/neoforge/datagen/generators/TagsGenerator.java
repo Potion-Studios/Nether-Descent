@@ -91,6 +91,7 @@ public class TagsGenerator {
             tag(Tags.Blocks.ORES_QUARTZ).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get());
             tag(Tags.Blocks.ORE_RATES_SPARSE).add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get());
             tag(Tags.Blocks.ORE_RATES_SINGULAR).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get());
+            tag(Tags.Blocks.CHAINS).add(NetherDescentBlocks.PENDORITE_CHAIN.get());
 
 			tag(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE).add(NetherDescentBlocks.PENDORITE_BLOCK.get());
 			tag(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE).add(NetherDescentBlocks.RAW_PENDORITE_BLOCK.get());
@@ -123,7 +124,7 @@ public class TagsGenerator {
 			else if (object instanceof FlowerPotBlock) tag(BlockTags.FLOWER_POTS).add(object);
 			else if (object instanceof NyliumBlock) tag(BlockTags.NYLIUM).add(object);
             SoundType type = object.defaultBlockState().getSoundType();
-			if (type == SoundType.STONE || type == SoundType.DEEPSLATE || type == SoundType.NETHER_BRICKS || type == SoundType.NYLIUM || object instanceof DropExperienceBlock || type == SoundType.COPPER_GRATE)
+			if (type == SoundType.STONE || type == SoundType.DEEPSLATE || type == SoundType.NETHER_BRICKS || type == SoundType.NYLIUM || object instanceof DropExperienceBlock || type == SoundType.COPPER_GRATE || type == SoundType.CHAIN)
 				tag(BlockTags.MINEABLE_WITH_PICKAXE).add(object);
 			else if (type == SoundType.WOOD || type == SoundType.SWEET_BERRY_BUSH || type == SoundType.GLOW_LICHEN || type == SoundType.FUNGUS || type == SoundType.SCAFFOLDING)
 				tag(BlockTags.MINEABLE_WITH_AXE).add(object);
@@ -167,6 +168,7 @@ public class TagsGenerator {
 			copy(Tags.Blocks.NETHERRACKS, Tags.Items.NETHERRACKS);
             copy(BlockTags.GOLD_ORES, ItemTags.GOLD_ORES);
             copy(Tags.Blocks.ORES_QUARTZ, Tags.Items.ORES_QUARTZ);
+            copy(Tags.Blocks.CHAINS, Tags.Items.CHAINS);
             NetherDescentWoodSet.woodsets().forEach(set -> copy(set.logBlockTag(), set.logItemTag()));
 
 			tag(Tags.Items.BRICKS_NETHER).add(NetherDescentItems.BLUE_NETHER_BRICK.get());

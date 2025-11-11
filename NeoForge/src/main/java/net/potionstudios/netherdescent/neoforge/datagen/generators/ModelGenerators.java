@@ -58,6 +58,7 @@ public class ModelGenerators {
             simpleBlockItem(NetherDescentBlocks.CRIMSON_CARPET.get());
             simpleItem(NetherDescentBlocks.SYTHIAN_STALK.get(),  "sythian_stalk");
             simpleItem(NetherDescentBlocks.PENDORITE_LANTERN.get());
+            simpleItem(NetherDescentBlocks.PENDORITE_CHAIN.get());
         }
 
 		private void simpleItem(ItemLike item, String texture) {
@@ -282,6 +283,16 @@ public class ModelGenerators {
                 else
                     return ConfiguredModel.builder().modelFile(models().withExistingParent(name(NetherDescentBlocks.PENDORITE_LANTERN.get()), "template_lantern").texture("lantern", blockTexture(NetherDescentBlocks.PENDORITE_LANTERN.get())).renderType("cutout")).build();
             }, LanternBlock.WATERLOGGED);
+
+            var chainModel = models().withExistingParent(name(NetherDescentBlocks.PENDORITE_CHAIN.get()), "chain").texture("all", blockTexture(NetherDescentBlocks.PENDORITE_CHAIN.get())).texture("particle", blockTexture(NetherDescentBlocks.PENDORITE_CHAIN.get())).renderType("cutout");
+
+            getVariantBuilder(NetherDescentBlocks.PENDORITE_CHAIN.get()).forAllStates(state -> {
+                if (state.getValue(ChainBlock.AXIS) == Direction.Axis.X)
+                    return ConfiguredModel.builder().rotationX(90).rotationY(90).modelFile(chainModel).build();
+                else if (state.getValue(ChainBlock.AXIS) == Direction.Axis.Y)
+                    return ConfiguredModel.builder().modelFile(chainModel).build();
+                else return  ConfiguredModel.builder().rotationX(90).modelFile(chainModel).build();
+            });
         }
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {
