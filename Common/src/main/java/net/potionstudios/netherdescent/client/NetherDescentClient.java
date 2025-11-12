@@ -4,10 +4,7 @@ import net.minecraft.client.particle.CherryParticle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.Sheets;
-import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
-import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -59,5 +56,6 @@ public class NetherDescentClient {
 	public static void registerBlockEntityRenderers(BiConsumer<BlockEntityType<? extends BlockEntity>, BlockEntityRendererProvider> consumer) {
 		consumer.accept(NetherDescentBlockEntityType.SIGNS.get(), SignRenderer::new);
 		consumer.accept(NetherDescentBlockEntityType.HANGING_SIGNS.get(), HangingSignRenderer::new);
+		consumer.accept(NetherDescentBlockEntityType.CAMPFIRE.get(), CampfireRenderer::new);
 	}
 }

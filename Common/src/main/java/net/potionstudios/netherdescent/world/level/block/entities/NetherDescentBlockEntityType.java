@@ -30,6 +30,8 @@ public class NetherDescentBlockEntityType {
 
 	public static final Supplier<BlockEntityType<WailingGillsBlockEntity>> WAILING_GILLS = register("wailing_gills", () -> BlockEntityType.Builder.of(WailingGillsBlockEntity::new, NetherDescentBlocks.WAILING_GILLS.get()));
 
+	public static final Supplier<BlockEntityType<NetherDescentCampfireBlockEntity>> CAMPFIRE = register("campfire", () -> BlockEntityType.Builder.of(NetherDescentCampfireBlockEntity::new, NetherDescentBlocks.PENDORITE_CAMPFIRE.get()));
+
     private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String key, Supplier<BlockEntityType.Builder<T>> builder) {
         return PlatformHandler.PLATFORM_HANDLER.registerBlockEntity(key, builder);
     }

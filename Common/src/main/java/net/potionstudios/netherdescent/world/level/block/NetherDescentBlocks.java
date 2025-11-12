@@ -94,6 +94,7 @@ public class NetherDescentBlocks {
     public static final Supplier<LanternBlock> PENDORITE_LANTERN = registerBlockItem("pendorite_lantern", () -> new LanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
     public static final Supplier<ChainBlock> PENDORITE_CHAIN = registerBlockItem("pendorite_chain", () -> new ChainBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHAIN)));
     public static final Supplier<IronBarsBlock> PENDORITE_BARS = registerBlockItem("pendorite_bars", () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BARS)));
+	public static final Supplier<NetherDescentCampfireBlock> PENDORITE_CAMPFIRE = registerBlockItem("pendorite_campfire", () -> new NetherDescentCampfireBlock(false, 2, BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_CAMPFIRE)));
 
     public static final Supplier<NetherDescentFeatureDoublePlantBlock> TALL_CRIMSON_FUNGI = registerBlockItem("tall_crimson_fungi", () -> new NetherDescentFeatureDoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_FUNGUS), null));
 

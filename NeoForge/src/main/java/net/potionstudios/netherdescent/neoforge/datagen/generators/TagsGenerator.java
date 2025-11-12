@@ -102,6 +102,7 @@ public class TagsGenerator {
 			tag(BlockTags.DOORS).add(NetherDescentBlocks.PENDORITE_DOOR.get());
 			tag(BlockTags.TRAPDOORS).add(NetherDescentBlocks.PENDORITE_TRAPDOOR.get());
             tag(BlockTags.DRAGON_IMMUNE).add(NetherDescentBlocks.PENDORITE_BARS.get());
+			tag(BlockTags.CAMPFIRES).add(NetherDescentBlocks.PENDORITE_CAMPFIRE.get());
 
             tag(NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON).addTag(BlockTags.NYLIUM).add(NetherDescentBlocks.SYTHIAN_SHOOT.get(), NetherDescentBlocks.SYTHIAN_STALK.get(), NetherDescentBlocks.SYTHIAN_FARMLAND.get());
 

@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.neoforge.datagen.generators;
 
-import net.minecraft.client.model.Model;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.DataGenerator;
@@ -60,6 +59,7 @@ public class ModelGenerators {
             simpleItem(NetherDescentBlocks.PENDORITE_LANTERN.get());
             simpleItem(NetherDescentBlocks.PENDORITE_CHAIN.get());
             simpleItemBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get());
+			simpleItem(NetherDescentBlocks.PENDORITE_CAMPFIRE.get());
         }
 
 		private void simpleItem(ItemLike item, String texture) {
@@ -302,7 +302,17 @@ public class ModelGenerators {
             models().withExistingParent(name(NetherDescentBlocks.PENDORITE_BARS.get()) + "_cap_alt", "iron_bars_cap_alt").texture("bars", blockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).texture("edge", blockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).texture("particle", blockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).renderType("cutout_mipped");
             models().withExistingParent(name(NetherDescentBlocks.PENDORITE_BARS.get()) + "_side", "iron_bars_side").texture("bars", blockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).texture("edge", blockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).texture("particle", blockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).renderType("cutout_mipped");
             models().withExistingParent(name(NetherDescentBlocks.PENDORITE_BARS.get()) + "_side_alt", "iron_bars_side_alt").texture("bars", blockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).texture("edge", blockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).texture("particle", blockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).renderType("cutout_mipped");
-        }
+
+			getVariantBuilder(NetherDescentBlocks.PENDORITE_CAMPFIRE.get()).forAllStatesExcept(blockState -> {
+				int rotation = blockState.getValue(CampfireBlock.FACING).get2DDataValue() * 90;
+				if (blockState.getValue(CampfireBlock.LIT))
+					return ConfiguredModel.builder().rotationY(rotation).modelFile(
+							models().withExistingParent(name(NetherDescentBlocks.PENDORITE_CAMPFIRE.get()), "template_campfire").texture("fire", blockNDTexture(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), "fire")).texture("lit_log", blockNDTexture(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), "log_lit")).renderType("cutout")
+					).build();
+				else
+					return ConfiguredModel.builder().modelFile(models().withExistingParent(name(NetherDescentBlocks.PENDORITE_CAMPFIRE.get()) + "_off", "campfire_off").renderType("cutout")).rotationY(rotation).build();
+			}, CampfireBlock.WATERLOGGED, CampfireBlock.SIGNAL_FIRE);
+		}
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {
 			registerStairs(stairs, ModelLocationUtils.getModelLocation(texturedBlock));

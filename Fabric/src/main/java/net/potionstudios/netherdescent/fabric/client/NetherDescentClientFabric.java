@@ -35,7 +35,7 @@ public class NetherDescentClientFabric implements ClientModInitializer {
 		NetherDescentBlocks.BLOCKS.forEach(entry -> renderTypeBlock(entry.get()));
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.translucent(), NetherDescentBlocks.EMBUR_GEL_BLOCK.get(), NetherDescentBlocks.EMBUR.door(), NetherDescentBlocks.EMBUR.trapdoor(),
 		        NetherDescentBlocks.EMBUR_GEL_VINES.get(), NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get());
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), NetherDescentBlocks.CRIMSON_CARPET.get(), NetherDescentBlocks.SYTHIAN_SHOOT.get(), NetherDescentBlocks.SYTHIAN_STALK.get());
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), NetherDescentBlocks.CRIMSON_CARPET.get(), NetherDescentBlocks.SYTHIAN_SHOOT.get(), NetherDescentBlocks.SYTHIAN_STALK.get(), NetherDescentBlocks.PENDORITE_CAMPFIRE.get());
 	}
 
 	private void renderTypeBlock(Block block) {
