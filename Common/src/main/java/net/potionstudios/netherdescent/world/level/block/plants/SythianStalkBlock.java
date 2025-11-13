@@ -116,7 +116,7 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
     @Override
     protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (state.getValue(STAGE) == 0)
-            if (random.nextInt(3) == 0 && level.isEmptyBlock(state.getValue(HANGING) ? pos.below() : pos.above())) {
+            if (random.nextInt(6) == 0 && level.isEmptyBlock(state.getValue(HANGING) ? pos.below() : pos.above())) {
                 int i = state.getValue(HANGING)? getHeightAboveUpToMax(level, pos) + 1 : getHeightBelowUpToMax(level, pos) + 1;
                 if (i < 16)
                     growSythianStalk(state, level, pos, random, i);

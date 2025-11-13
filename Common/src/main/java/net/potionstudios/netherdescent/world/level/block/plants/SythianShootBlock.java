@@ -27,7 +27,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class SythianShootBlock extends Block implements BonemealableBlock {
-
     private static final VoxelShape BOTTOM_SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D);
     private static final VoxelShape TOP_SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     public static final BooleanProperty HANGING = BooleanProperty.create("hanging");
@@ -41,10 +40,10 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
     protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         boolean hanging = state.getValue(HANGING);
         if (level.isEmptyBlock(hanging ? pos.below() : pos.above())) {
-                int modifier = 3;
+                int modifier = 6;
                 BlockState dirtState = level.getBlockState(hanging ? pos.above() : pos.below());
                 if (dirtState.getBlock() instanceof SythianFarmBlock)
-                    modifier = dirtState.getValue(SythianFarmBlock.MOSSY) ? 2 : 1;
+                    modifier = dirtState.getValue(SythianFarmBlock.MOSSY) ? 4 : 2;
                 if (random.nextInt(modifier) == 0)
                     growStalk(level, pos, state);
         }
@@ -84,10 +83,6 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
 
             return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
         }
-    }
-
-    protected static Direction getConnectedDirection(@NotNull BlockState state) {
-        return state.getValue(HANGING) ? Direction.UP : Direction.DOWN;
     }
 
     @Override
