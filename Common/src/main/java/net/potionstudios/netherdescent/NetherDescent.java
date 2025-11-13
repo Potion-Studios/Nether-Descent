@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.config.BiomeConfig;
 import net.potionstudios.netherdescent.sounds.NetherDescentSounds;
+import net.potionstudios.netherdescent.world.item.NetherDescentArmorMaterials;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.item.alchemy.NetherDescentPotions;
@@ -17,7 +18,6 @@ import net.potionstudios.netherdescent.data.worldgen.placement.NetherDescentPlac
 import net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeature;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.NetherDescentTreeDecoratorType;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentStructureType;
-import net.potionstudios.netherdescent.data.worldgen.NetherDescentTemplatePools;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.pieces.NetherDescentStructurePieceType;
 import net.potionstudios.netherdescent.world.level.levelgen.surfacerules.NetherDescentRuleSources;
 import org.slf4j.Logger;
@@ -48,6 +48,7 @@ public class NetherDescent {
         NetherDescentTreeDecoratorType.treeDecoratorType();
         NetherDescentParticles.particleTypes();
 	    NetherDescentPotions.potions();
+        NetherDescentArmorMaterials.armorMaterials();
     }
 
     /**

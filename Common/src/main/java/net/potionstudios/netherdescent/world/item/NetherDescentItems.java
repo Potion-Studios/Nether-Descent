@@ -4,6 +4,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.AnimalArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.PlaceOnWaterBlockItem;
@@ -34,6 +35,7 @@ public class NetherDescentItems {
     public static final Supplier<Item> RAW_PENDORITE = registerSimpleItem("raw_pendorite", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> PENDORITE_INGOT = registerSimpleItem("pendorite_ingot", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> PENDORITE_NUGGET = registerSimpleItem("pendorite_nugget", () -> new Item(new Item.Properties()));
+    public static final Supplier<AnimalArmorItem> PENDORITE_HORSE_ARMOR = registerSimpleItem("pendorite_horse_armor", () -> new AnimalArmorItem(NetherDescentArmorMaterials.PENDORITE.get(), AnimalArmorItem.BodyType.EQUESTRIAN, false, new Item.Properties().stacksTo(1)));
 
     public static <I extends Item> Supplier<I> registerSimpleItem(String id, Supplier<I> item) {
         Supplier<I> supplier = registerItem(id, item);

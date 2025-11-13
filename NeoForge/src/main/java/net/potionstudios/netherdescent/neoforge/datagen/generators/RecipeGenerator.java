@@ -158,6 +158,8 @@ public class RecipeGenerator extends RecipeProvider {
 			    .pattern("LLL")
 			    .unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get()))
 			    .save(recipeOutput);
+
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()), RecipeCategory.MISC, NetherDescentItems.PENDORITE_NUGGET.get(), 0.1F, 200).unlockedBy(getHasName(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()), has(NetherDescentItems.PENDORITE_HORSE_ARMOR.get())).save(recipeOutput);
     }
 
 	private static void NDNineBlockStorageRecipes(RecipeOutput recipeOutput, RecipeCategory unpackedCategory, ItemLike unpacked, RecipeCategory packedCategory, ItemLike packed, String packedName, @Nullable String packedGroup, String unpackedName, @Nullable String unpackedGroup) {
