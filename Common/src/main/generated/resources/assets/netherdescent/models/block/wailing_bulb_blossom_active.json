@@ -1,0 +1,10 @@
+{
+  "parent": "netherdescent:block/wailing_bulb_blossom",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "2": "netherdescent:block/wailing_bulb_blossom_side_active",
+    "3": "netherdescent:block/wailing_bulb_blossom_petal_active",
+    "6": "netherdescent:block/wailing_bulb_blossom_top_active",
+    "particle": "netherdescent:block/wailing_bulb_blossom_side_active"
+  }
+}

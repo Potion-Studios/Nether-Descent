@@ -1,11 +1,10 @@
 {
-	"format_version": "1.21.6",
-	"credit": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
-	"textures": {
-		"2": "wailing_bulb_blossom_side",
-		"3": "wailing_bulb_blossom_petal",
-		"6": "wailing_bulb_blossom_top",
-		"particle": "wailing_bulb_blossom_side"
+  "render_type": "minecraft:cutout",
+  	"textures": {
+		"2": "netherdescent:block/wailing_bulb_blossom_side",
+		"3": "netherdescent:block/wailing_bulb_blossom_petal",
+		"6": "netherdescent:block/wailing_bulb_blossom_top",
+		"particle": "netherdescent:block/wailing_bulb_blossom_side"
 	},
 	"elements": [
 		{

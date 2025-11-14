@@ -42,7 +42,7 @@ public class NetherDescentBlocks {
     public static final Supplier<VineBlock> WAILING_VINE = registerBlockItem("wailing_vine", () -> new VineBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES).mapColor(MapColor.COLOR_PURPLE).lightLevel((state) -> 10)));
     public static final Supplier<Block> WAILING_GRASS = registerBlockItem("wailing_grass", () -> new RootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS)));
 	public static final Supplier<WailingGillsBlock> WAILING_GILLS = registerCubeAllBlockItem("wailing_gills", () -> new WailingGillsBlock(BlockBehaviour.Properties.of().isRedstoneConductor((blockState, blockGetter, blockPos) -> true)));
-	public static final Supplier<WailingBulbBlossomBlock> WAILING_BULB_BLOSSOM = registerBlockItem("wailing_bulb_blossom", () -> new WailingBulbBlossomBlock(BlockBehaviour.Properties.of()));
+	public static final Supplier<WailingBulbBlossomBlock> WAILING_BULB_BLOSSOM = registerBlockItem("wailing_bulb_blossom", () -> new WailingBulbBlossomBlock(BlockBehaviour.Properties.of().noOcclusion().lightLevel((state) -> state.getValue(WailingBulbBlossomBlock.ACTIVE) ? 14 : 8)));
 
     public static final Supplier<NetherDescentNyliumBlock> EMBUR_NYLIUM = registerBlockItem("embur_nylium", () -> new NetherDescentNyliumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM).mapColor(MapColor.COLOR_ORANGE), BLUE_NETHERRACK, NetherDescent.key(Registries.CONFIGURED_FEATURE, "embur_bog_vegetation_bonemeal")));
     public static final Supplier<Block> EMBUR_GEL_BLOCK = registerBlockItem("embur_gel_block", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SLIME_BLOCK).speedFactor(1.2F)));

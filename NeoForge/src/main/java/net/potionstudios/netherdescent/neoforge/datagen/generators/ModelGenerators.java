@@ -18,6 +18,7 @@ import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.custom.HangingMossBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.SythianFarmBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.SythianRootsBlock;
+import net.potionstudios.netherdescent.world.level.block.custom.WailingBulbBlossomBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.SythianShootBlock;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
@@ -312,6 +313,18 @@ public class ModelGenerators {
 				else
 					return ConfiguredModel.builder().modelFile(models().withExistingParent(name(NetherDescentBlocks.PENDORITE_CAMPFIRE.get()) + "_off", "campfire_off").renderType("cutout")).rotationY(rotation).build();
 			}, CampfireBlock.WATERLOGGED, CampfireBlock.SIGNAL_FIRE);
+
+			getVariantBuilder(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get()).forAllStates(state -> {
+				if (state.getValue(WailingBulbBlossomBlock.ACTIVE))
+					return ConfiguredModel.builder().modelFile(models().withExistingParent(name(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get()) + "_active", NetherDescent.id("wailing_bulb_blossom"))
+							.texture("2", blockNDTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "side_active"))
+							.texture("3", blockNDTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "petal_active"))
+							.texture("6", blockNDTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "top_active"))
+							.texture("particle", blockNDTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "side_active"))
+							.renderType("cutout")
+					).build();
+				else return ConfiguredModel.builder().modelFile(models().getExistingFile(blockTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get()))).build();
+			});
 		}
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=false": {
+      "model": "netherdescent:block/wailing_bulb_blossom"
+    },
+    "active=true": {
+      "model": "netherdescent:block/wailing_bulb_blossom_active"
+    }
+  }
+}

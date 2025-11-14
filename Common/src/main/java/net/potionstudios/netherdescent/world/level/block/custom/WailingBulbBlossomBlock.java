@@ -15,11 +15,15 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import org.jetbrains.annotations.NotNull;
 
 public class WailingBulbBlossomBlock extends Block {
+	public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
 	public WailingBulbBlossomBlock(Properties properties) {
 		super(properties);
+		this.registerDefaultState(getStateDefinition().any().setValue(ACTIVE, false));
 	}
 
 	@Override
@@ -28,11 +32,17 @@ public class WailingBulbBlossomBlock extends Block {
 		if (!level.isClientSide() && entity instanceof LivingEntity livingEntity && !livingEntity.isSpectator()) {
 			Holder<Enchantment> soulSpeed = level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SOUL_SPEED);
 			for (ItemStack itemStack: livingEntity.getArmorSlots())
-				if (EnchantmentHelper.getItemEnchantmentLevel(soulSpeed, itemStack) > 0) {
+				if (EnchantmentHelper.getItemEnchantmentLevel(soulSpeed, itemStack) == 0) {
+					level.setBlock(pos, state.setValue(ACTIVE, true), 3);
 					livingEntity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100));
 					livingEntity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160));
 				}
 		}
+	}
+
+	@Override
+	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+		super.createBlockStateDefinition(builder.add(ACTIVE));
 	}
 
 	@Override
