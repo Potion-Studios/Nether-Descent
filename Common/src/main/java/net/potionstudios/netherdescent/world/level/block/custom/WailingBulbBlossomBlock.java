@@ -3,6 +3,7 @@ package net.potionstudios.netherdescent.world.level.block.custom;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -29,18 +30,28 @@ public class WailingBulbBlossomBlock extends Block {
 	@Override
 	public void stepOn(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Entity entity) {
 		super.stepOn(level, pos, state, entity);
-		if (!level.isClientSide() && entity instanceof LivingEntity livingEntity && !livingEntity.isSpectator()) {
-			Holder<Enchantment> soulSpeed = level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SOUL_SPEED);
-			for (ItemStack itemStack: livingEntity.getArmorSlots())
-				if (EnchantmentHelper.getItemEnchantmentLevel(soulSpeed, itemStack) == 0) {
-					level.setBlock(pos, state.setValue(ACTIVE, true), 3);
-					livingEntity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100));
-					livingEntity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160));
-				}
+		if (!level.isClientSide()) {
+            if (!state.getValue(ACTIVE) && entity instanceof LivingEntity livingEntity && !livingEntity.isSpectator()) {
+                Holder<Enchantment> soulSpeed = level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SOUL_SPEED);
+                for (ItemStack itemStack : livingEntity.getArmorSlots())
+                    if (EnchantmentHelper.getItemEnchantmentLevel(soulSpeed, itemStack) == 0) {
+                        level.setBlock(pos, state.setValue(ACTIVE, true), 3);
+                        livingEntity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100));
+                        livingEntity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160));
+                        level.scheduleTick(pos, this, 100);
+                    }
+            }
 		}
 	}
 
-	@Override
+    @Override
+    protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+        super.tick(state, level, pos, random);
+        if (state.getValue(ACTIVE))
+            level.setBlock(pos, state.setValue(ACTIVE, false), 3);
+    }
+
+    @Override
 	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder.add(ACTIVE));
 	}
