@@ -7,26 +7,27 @@ import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentB
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public final class BiomeConfig {
+public final class WorldGenerationConfig {
 
-    private static final String FILE_NAME = "biomes";
+    private static final String FILE_NAME = "world_generation";
+    private static final int DEFAULT_REGION_WEIGHT = 10;
 
-    private static BiomeConfig INSTANCE;
+    private static WorldGenerationConfig INSTANCE;
 
-    public static BiomeConfig get() {
+    public static WorldGenerationConfig get() {
         return INSTANCE;
     }
 
     public static void init() {
-        BiomeConfig cfg = ConfigLoader.loadConfig(BiomeConfig.class, FILE_NAME);
+        WorldGenerationConfig cfg = ConfigLoader.loadConfig(WorldGenerationConfig.class, FILE_NAME);
         boolean changed = cfg.ensureAllKnownBiomesPresent();
         if (changed)
             ConfigLoader.saveConfig(cfg, FILE_NAME);
         INSTANCE = cfg;
     }
 
-    // Keep order stable for nicer diffs
     public Map<String, Boolean> biomes = new LinkedHashMap<>();
+    public int regionWeight = DEFAULT_REGION_WEIGHT;
 
     public boolean isEnabled(ResourceKey<Biome> key) {
         String id = key.location().toString().replace("netherdescent:", "");
@@ -38,7 +39,7 @@ public final class BiomeConfig {
         for (ResourceKey<Biome> key : NetherDescentBiomes.BIOME_FACTORIES.keySet()) {
             String id = key.location().toString().replace("netherdescent:", "");
             if (!biomes.containsKey(id)) {
-                biomes.put(id, true); // default enabled
+                biomes.put(id, true);
                 changed = true;
             }
         }

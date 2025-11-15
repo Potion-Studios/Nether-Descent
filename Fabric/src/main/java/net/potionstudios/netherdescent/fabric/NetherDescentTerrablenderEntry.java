@@ -1,6 +1,7 @@
 package net.potionstudios.netherdescent.fabric;
 
 import net.potionstudios.netherdescent.NetherDescent;
+import net.potionstudios.netherdescent.config.WorldGenerationConfig;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentSurfaceRules;
 import net.potionstudios.netherdescent.world.level.levelgen.regions.NetherDescentRegion;
 import terrablender.api.Regions;
@@ -14,7 +15,7 @@ public class NetherDescentTerrablenderEntry implements TerraBlenderApi {
         SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, NetherDescent.MOD_ID, NetherDescentSurfaceRules.makeRules());
         Regions.register(new NetherDescentRegion(
                 NetherDescent.id("nether_descent"),
-                100
+                WorldGenerationConfig.get().regionWeight
         ));
     }
 }
