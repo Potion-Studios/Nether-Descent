@@ -17,6 +17,7 @@ public class NetherDescentParticles {
 	public static final Supplier<SimpleParticleType> GILL_LEVITATE = register("gill_levitate");
 	public static final Supplier<SimpleParticleType> GILL_LEVITATE_POWERED = register("gill_levitate_powered");
 	public static final Supplier<SimpleParticleType> SYTHIAN_LEAF = register("sythian_leaf");
+    public static final Supplier<SimpleParticleType> PENDORITE_FIRE_FLAME = register("pendorite_fire_flame");
 
     private static Supplier<SimpleParticleType> register(String id) {
         return PlatformHandler.PLATFORM_HANDLER.registerCreateParticle(id);
