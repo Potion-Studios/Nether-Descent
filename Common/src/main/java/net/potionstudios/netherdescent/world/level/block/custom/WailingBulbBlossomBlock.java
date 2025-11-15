@@ -36,8 +36,8 @@ public class WailingBulbBlossomBlock extends Block {
                 for (ItemStack itemStack : livingEntity.getArmorSlots())
                     if (EnchantmentHelper.getItemEnchantmentLevel(soulSpeed, itemStack) == 0) {
                         level.setBlock(pos, state.setValue(ACTIVE, true), 3);
-                        livingEntity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100));
-                        livingEntity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160));
+                        livingEntity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100, 0, false, false));
+                        livingEntity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160, 0, false, false));
                         level.scheduleTick(pos, this, 100);
                     }
             }

@@ -35,8 +35,8 @@ public class WailingGillsBlockEntity extends BlockEntity {
                     if (EnchantmentHelper.getItemEnchantmentLevel(soulSpeed, itemStack) > 0)
                         return;
 
-                entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 80));
-                entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160));
+                entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 80, 0, false, false));
+                entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160, 0, false, false));
 			});
 		}
 	}
