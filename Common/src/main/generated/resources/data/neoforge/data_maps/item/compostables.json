@@ -53,6 +53,9 @@
     },
     "netherdescent:wailing_fungus": {
       "chance": 0.65
+    },
+    "netherdescent:wailing_vines": {
+      "chance": 0.6
     }
   }
 }

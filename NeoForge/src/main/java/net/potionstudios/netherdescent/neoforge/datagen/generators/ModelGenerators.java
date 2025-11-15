@@ -40,7 +40,7 @@ public class ModelGenerators {
 		@Override
 		protected void registerModels() {
 			NetherDescentItems.SIMPLE_ITEMS.forEach(item -> basicItem(item.get()));
-			simpleItemBlockTexture(NetherDescentBlocks.WAILING_VINE.get());
+			simpleItemBlockTexture(NetherDescentBlocks.WAILING_VINES.get());
 			NetherDescentWoodSet.woodsets().forEach(set -> {
 				simpleItem(set.door(), set.name() + "/door");
 				simpleItem(set.signItem(), set.name() + "/sign");
@@ -49,6 +49,7 @@ public class ModelGenerators {
 			simpleItem(NetherDescentBlocks.EMBUR_SPROUTS.get(), "embur_sprouts");
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_LILY.get());
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_GEL_VINES.get(), "embur_gel_vines_plant");
+            simpleItemBlockTexture(NetherDescentBlocks.WAILING_VINES.get(), "wailing_vines_plant");
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_ROOTS.get());
             simpleItemBlockTexture(NetherDescentBlocks.WAILING_GRASS.get());
             simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get());
@@ -140,6 +141,8 @@ public class ModelGenerators {
 			createCrossBlock(NetherDescentBlocks.EMBUR_SPROUTS.get(), "cutout");
 			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES.get(), "translucent");
 			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(),  "translucent");
+            createCrossBlock(NetherDescentBlocks.WAILING_VINES.get(), "cutout");
+            createCrossBlock(NetherDescentBlocks.WAILING_VINES_PLANT.get(), "cutout");
 			createCrossBlock(NetherDescentBlocks.EMBUR_ROOTS.get(), "cutout_mipped");
             createCrossBlock(NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), "cutout");
             createCrossBlock(NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get(), "cutout");
