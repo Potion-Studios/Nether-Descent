@@ -1,144 +1,145 @@
 {
-  "render_type": "minecraft:cutout",
-  	"textures": {
-		"2": "netherdescent:block/wailing_bulb_blossom_side",
-		"3": "netherdescent:block/wailing_bulb_blossom_petal",
-		"6": "netherdescent:block/wailing_bulb_blossom_top",
-		"particle": "netherdescent:block/wailing_bulb_blossom_side"
+	"format_version": "1.21.6",
+	"textures": {
+		"0": "netherdescent:block/wailing_bulb_blossom_petal",
+		"1": "netherdescent:block/wailing_bulb_blossom_side",
+		"2": "netherdescent:block/wailing_bulb_blossom_top",
+		"particle": "netherdescent:block/wailing_bulb_blossom_petal"
 	},
 	"elements": [
 		{
 			"name": "Bulb Blossom",
-			"from": [1, 0, 1],
-			"to": [17, 16, 17],
-			"shade": false,
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"shade": true,
+			"rotation": {"angle": 0, "axis": "y", "origin": [-1, 0, -1]},
 			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#2"},
-				"east": {"uv": [0, 0, 16, 16], "texture": "#2"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#2"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#2"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#6"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#6"}
+				"north": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#2"}
 			}
 		},
 		{
 			"name": "Bulb Blossom PetalTop N",
-			"from": [1, 15.5, -10],
-			"to": [17, 15.5, 6],
-			"shade": false,
-			"rotation": {"angle": 22.5, "axis": "x", "origin": [9, 8, 9]},
+			"from": [0, 15.5, -11],
+			"to": [16, 15.5, 5],
+			"shade": true,
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 8, 8]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"east": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"south": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"west": {"uv": [0, 0, 16, 0], "texture": "#missing"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"down": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#3"}
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#0"}
 			}
 		},
 		{
 			"name": "Bulb Blossom PetalTop S",
-			"from": [1, 15.5, 12],
-			"to": [17, 15.5, 28],
-			"shade": false,
-			"rotation": {"angle": -22.5, "axis": "x", "origin": [9, 8, 9]},
+			"from": [0, 15.5, 11],
+			"to": [16, 15.5, 27],
+			"shade": true,
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 8, 8]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"east": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"south": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"west": {"uv": [0, 0, 16, 0], "texture": "#missing"},
-				"up": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#3"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#3"}
+				"up": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
 			}
 		},
 		{
 			"name": "Bulb Blossom PetalTop E",
-			"from": [12, 15.5, 1],
-			"to": [28, 15.5, 17],
-			"shade": false,
-			"rotation": {"angle": 22.5, "axis": "z", "origin": [9, 8, 9]},
+			"from": [11, 15.5, 0],
+			"to": [27, 15.5, 16],
+			"shade": true,
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [8, 8, 8]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"east": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"south": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"west": {"uv": [0, 0, 16, 0], "texture": "#missing"},
-				"up": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#3"},
-				"down": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#3"}
+				"up": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#0"}
 			}
 		},
 		{
 			"name": "Bulb Blossom PetalTop W",
-			"from": [-10, 15.5, 1],
-			"to": [6, 15.5, 17],
-			"shade": false,
-			"rotation": {"angle": -22.5, "axis": "z", "origin": [9, 8, 9]},
+			"from": [-11, 15.5, 0],
+			"to": [5, 15.5, 16],
+			"shade": true,
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [8, 8, 8]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"east": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"south": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"west": {"uv": [0, 0, 16, 0], "texture": "#missing"},
-				"up": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#3"},
-				"down": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#3"}
+				"up": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#0"}
 			}
 		},
 		{
 			"name": "Bulb Blossom PetalBottom N",
-			"from": [1, 0.5, -10],
-			"to": [17, 0.5, 6],
-			"shade": false,
-			"rotation": {"angle": -22.5, "axis": "x", "origin": [9, 8, 9]},
+			"from": [0, 0.5, -11],
+			"to": [16, 0.5, 5],
+			"shade": true,
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 8, 8]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"east": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"south": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"west": {"uv": [0, 0, 16, 0], "texture": "#missing"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"down": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#3"}
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#0"}
 			}
 		},
 		{
 			"name": "Bulb Blossom PetalBottom S",
-			"from": [1, 0.5, 12],
-			"to": [17, 0.5, 28],
-			"shade": false,
-			"rotation": {"angle": 22.5, "axis": "x", "origin": [9, 8, 9]},
+			"from": [0, 0.5, 11],
+			"to": [16, 0.5, 27],
+			"shade": true,
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 8, 8]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"east": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"south": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"west": {"uv": [0, 0, 16, 0], "texture": "#missing"},
-				"up": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#3"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#3"}
+				"up": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#0"}
 			}
 		},
 		{
 			"name": "Bulb Blossom PetalBottom E",
-			"from": [12, 0.5, 1],
-			"to": [28, 0.5, 17],
-			"shade": false,
-			"rotation": {"angle": -22.5, "axis": "z", "origin": [9, 8, 9]},
+			"from": [11, 0.5, 0],
+			"to": [27, 0.5, 16],
+			"shade": true,
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [8, 8, 8]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"east": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"south": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"west": {"uv": [0, 0, 16, 0], "texture": "#missing"},
-				"up": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#3"},
-				"down": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#3"}
+				"up": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#0"}
 			}
 		},
 		{
 			"name": "Bulb Blossom PetalBottom W",
-			"from": [-10, 0.5, 1],
-			"to": [6, 0.5, 17],
-			"shade": false,
-			"rotation": {"angle": 22.5, "axis": "z", "origin": [9, 8, 9]},
+			"from": [-11, 0.5, 0],
+			"to": [5, 0.5, 16],
+			"shade": true,
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [8, 8, 8]},
 			"faces": {
 				"north": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"east": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"south": {"uv": [0, 0, 16, 0], "texture": "#missing"},
 				"west": {"uv": [0, 0, 16, 0], "texture": "#missing"},
-				"up": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#3"},
-				"down": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#3"}
+				"up": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#0"}
 			}
 		}
 	]

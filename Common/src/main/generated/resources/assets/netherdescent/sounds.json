@@ -11,27 +11,27 @@
       },
       {
         "name": "netherdescent:ambient/nether/crimson_gardens/addition3",
-        "volume": 0.5
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/crimson_gardens/addition4",
-        "volume": 0.5
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/crimson_gardens/addition5",
-        "volume": 0.5
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/crimson_gardens/addition6",
-        "volume": 0.5
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/crimson_gardens/addition7",
-        "volume": 0.5
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/crimson_gardens/addition8",
-        "volume": 0.5
+        "volume": 0.4
       }
     ]
   },
@@ -40,7 +40,7 @@
       {
         "name": "netherdescent:ambient/nether/crimson_gardens/ambience",
         "stream": true,
-        "volume": 0.3
+        "volume": 0.1
       }
     ]
   },
@@ -89,39 +89,39 @@
     "sounds": [
       {
         "name": "netherdescent:ambient/nether/sythian_torrids/addition1",
-        "volume": 0.5
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/sythian_torrids/addition2",
-        "volume": 0.5
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/sythian_torrids/addition3",
-        "volume": 0.5
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/sythian_torrids/addition4",
-        "volume": 0.5
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/sythian_torrids/addition5",
-        "volume": 0.5
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/sythian_torrids/addition6",
-        "volume": 0.5
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/sythian_torrids/addition7",
-        "volume": 0.5
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/sythian_torrids/addition8",
-        "volume": 0.5
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/sythian_torrids/addition9",
-        "volume": 0.5
+        "volume": 0.4
       }
     ]
   },
@@ -130,7 +130,7 @@
       {
         "name": "netherdescent:ambient/nether/sythian_torrids/ambience",
         "stream": true,
-        "volume": 0.5
+        "volume": 0.1
       }
     ]
   },
