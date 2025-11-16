@@ -61,7 +61,7 @@ public interface PlatformHandler {
 	 * @param highlightColor The highlight color of the spawn egg
 	 * @return Supplier of the SpawnEggItem
 	 */
-	default Supplier<SpawnEggItem> createSpawnEgg(Supplier<EntityType<? extends Mob>> entity, int backgroundColor, int highlightColor) {
+	default <T extends Mob> Supplier<SpawnEggItem> createSpawnEgg(Supplier<EntityType<T>> entity, int backgroundColor, int highlightColor) {
 		return () -> new SpawnEggItem(entity.get(), backgroundColor, highlightColor, new Item.Properties());
 	}
 

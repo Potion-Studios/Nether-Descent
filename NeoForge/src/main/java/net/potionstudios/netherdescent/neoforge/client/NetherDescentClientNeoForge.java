@@ -23,8 +23,10 @@ public class NetherDescentClientNeoForge {
 	 */
 	public NetherDescentClientNeoForge(final IEventBus eventBus) {
 		eventBus.addListener((FMLClientSetupEvent event) -> NetherDescentClient.onInitialize());
-		eventBus.addListener((EntityRenderersEvent.RegisterRenderers event) -> NetherDescentClient.registerBlockEntityRenderers(event::registerBlockEntityRenderer));
+        eventBus.addListener((EntityRenderersEvent.RegisterRenderers event) -> {
+            NetherDescentClient.registerEntityRenderers(event::registerEntityRenderer);
+            NetherDescentClient.registerBlockEntityRenderers(event::registerBlockEntityRenderer);
+        });
         eventBus.addListener((RegisterParticleProvidersEvent event) -> NetherDescentClient.registerParticles((type, spriteProviderFactory) -> event.registerSpriteSet(type, spriteProviderFactory::apply)));
     }
-
 }

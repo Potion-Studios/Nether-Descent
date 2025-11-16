@@ -60,7 +60,7 @@ public final class ForgePlatformHandler implements PlatformHandler {
 	}
 
 	@Override
-	public Supplier<SpawnEggItem> createSpawnEgg(Supplier<EntityType<? extends Mob>> entity, int backgroundColor, int highlightColor) {
+	public <T extends Mob> Supplier<SpawnEggItem> createSpawnEgg(Supplier<EntityType<T>> entity, int backgroundColor, int highlightColor) {
 		return () -> new ForgeSpawnEggItem(entity, backgroundColor, highlightColor, new Item.Properties());
 	}
 

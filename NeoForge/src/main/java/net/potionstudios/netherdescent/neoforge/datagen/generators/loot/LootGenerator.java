@@ -12,7 +12,8 @@ import java.util.concurrent.CompletableFuture;
 public class LootGenerator extends LootTableProvider {
     public LootGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, Collections.emptySet(), ImmutableList.of(
-                new SubProviderEntry(BlockLootGenerator::new, LootContextParamSets.BLOCK)
+                new SubProviderEntry(BlockLootGenerator::new, LootContextParamSets.BLOCK),
+                new SubProviderEntry(EntityLootGenerator::new, LootContextParamSets.ENTITY)
         ), registries);
     }
 }

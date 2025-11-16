@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "netherdescent:item/soul_blaze_rod"
+  }
+}

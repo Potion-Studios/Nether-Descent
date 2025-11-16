@@ -5,12 +5,18 @@ import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.*;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.potionstudios.netherdescent.client.renderer.entity.SoulBlazeRenderer;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.core.particles.FallingParticle;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.level.block.entities.NetherDescentBlockEntityType;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 
@@ -46,6 +52,15 @@ public class NetherDescentClient {
 	    consumer.accept(NetherDescentParticles.EMBUR_GEL_DRIP.get(), FallingParticle.Provider::new);
 //		consumer.accept(NetherDescentParticles.GILL_LEVITATE.get(), null);
 //		consumer.accept(NetherDescentParticles.GILL_LEVITATE_POWERED.get(), null);
+    }
+
+    /**
+     * Registers the entity renderers.
+     * @see EntityRenderers
+     * @see NetherDescentEntityType
+     */
+    public static void registerEntityRenderers(BiConsumer<EntityType<? extends Entity>, EntityRendererProvider> consumer) {
+        consumer.accept(NetherDescentEntityType.SOUL_BLAZE.get(), SoulBlazeRenderer::new);
     }
 
 	/**

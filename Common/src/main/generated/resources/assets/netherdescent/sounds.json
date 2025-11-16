@@ -40,7 +40,7 @@
       {
         "name": "netherdescent:ambient/nether/crimson_gardens/ambience",
         "stream": true,
-        "volume": 0.1
+        "volume": 0.2
       }
     ]
   },
@@ -81,7 +81,7 @@
       {
         "name": "netherdescent:ambient/nether/embur_bog/ambience",
         "stream": true,
-        "volume": 0.1
+        "volume": 0.15
       }
     ]
   },
@@ -130,7 +130,7 @@
       {
         "name": "netherdescent:ambient/nether/sythian_torrids/ambience",
         "stream": true,
-        "volume": 0.1
+        "volume": 0.2
       }
     ]
   },

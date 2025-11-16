@@ -7,6 +7,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.models.model.ModelLocationUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -39,7 +40,10 @@ public class ModelGenerators {
 
 		@Override
 		protected void registerModels() {
-			NetherDescentItems.SIMPLE_ITEMS.forEach(item -> basicItem(item.get()));
+			NetherDescentItems.SIMPLE_ITEMS.forEach(item -> {
+                if (item.get() instanceof SpawnEggItem) spawnEggItem(item.get());
+                basicItem(item.get());
+            });
 			simpleItemBlockTexture(NetherDescentBlocks.WAILING_VINES.get());
 			NetherDescentWoodSet.woodsets().forEach(set -> {
 				simpleItem(set.door(), set.name() + "/door");
@@ -62,6 +66,8 @@ public class ModelGenerators {
             simpleItem(NetherDescentBlocks.PENDORITE_CHAIN.get());
             simpleItemBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get());
 			simpleItem(NetherDescentBlocks.PENDORITE_CAMPFIRE.get());
+            handheldItem(NetherDescentItems.SOUL_BLAZE_ROD.get());
+
         }
 
 		private void simpleItem(ItemLike item, String texture) {

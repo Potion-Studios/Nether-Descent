@@ -8,26 +8,24 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
+import net.potionstudios.netherdescent.world.entity.monster.SoulBlaze;
 
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 public class NetherDescentEntityType {
 
+    public static final Supplier<EntityType<SoulBlaze>> SOUL_BLAZE = createEntity("soul_blaze", EntityType.Builder.of(SoulBlaze::new, MobCategory.MONSTER).fireImmune().sized(0.6F, 1.8F).clientTrackingRange(8));
 
-    private static <E extends Entity> Supplier<EntityType<E>> createEntity(String id, EntityType.EntityFactory<E> factory, MobCategory category, float width, float height, float eyeHeight) {
-        return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.ENTITY_TYPE, id, ()-> EntityType.Builder.of(factory, category).sized(width, height).eyeHeight(eyeHeight).build(id));
-    }
-
-    private static <E extends Entity> Supplier<EntityType<E>> createEntity(String id, EntityType.EntityFactory<E> factory, MobCategory category, float width, float height, float eyeHeight, int trackingRange) {
-        return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.ENTITY_TYPE, id, ()-> EntityType.Builder.of(factory, category).sized(width, height).eyeHeight(eyeHeight).clientTrackingRange(trackingRange).build(id));
+    private static <E extends Entity> Supplier<EntityType<E>> createEntity(String id, EntityType.Builder<E> Builder) {
+        return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.ENTITY_TYPE, id, () -> Builder.build(id));
     }
 
     /**
      * Registers Entity Attributes
      */
     public static void registerEntityAttributes(BiConsumer<EntityType<? extends LivingEntity>, AttributeSupplier> consumer) {
-
+        consumer.accept(SOUL_BLAZE.get(), SoulBlaze.createAttributes().build());
     }
 
     public static void entityTypes() {

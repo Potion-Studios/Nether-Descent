@@ -3,18 +3,16 @@ package net.potionstudios.netherdescent.neoforge.datagen.generators;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.GrowingPlantBlock;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.potionstudios.netherdescent.NetherDescent;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.plants.NDGrowingPlantBodyBlock;
-import net.potionstudios.netherdescent.world.level.block.plants.NDGrowingPlantHeadBlock;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 import org.jetbrains.annotations.NotNull;
 
@@ -31,6 +29,7 @@ public class LangGenerator extends LanguageProvider {
 		NetherDescentBlocks.BLOCKS.forEach(block -> addBlock(block, getBlockName(block)));
 		NetherDescentItems.ITEMS.forEach(item -> addItem(item, getItemName(item)));
 		NetherDescentBiomes.BIOME_FACTORIES.forEach((key, factory) -> add("biome." + NetherDescent.MOD_ID + "." + key.location().getPath(), getBiomeName(key)));
+        add(NetherDescentEntityType.SOUL_BLAZE.get(), "Soul Blaze");
         add(death("crimsonBerryBush"), "%1$s was poked to death by a crimson berry bush");
         add(death("crimsonBerryBush.player"), "%1$s was poked to death by a crimson berry bush while trying to escape %2$s");
         add(advancement("title.root"), "Nether Descent");
