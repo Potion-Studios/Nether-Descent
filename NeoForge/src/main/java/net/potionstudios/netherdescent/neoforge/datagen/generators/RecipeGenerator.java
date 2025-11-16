@@ -160,6 +160,30 @@ public class RecipeGenerator extends RecipeProvider {
 			    .save(recipeOutput);
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()), RecipeCategory.MISC, NetherDescentItems.PENDORITE_NUGGET.get(), 0.1F, 200).unlockedBy(getHasName(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()), has(NetherDescentItems.PENDORITE_HORSE_ARMOR.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.SOUL_FIRE_ROD.get(), 4)
+                .define('X', NetherDescentItems.SOUL_BLAZE_ROD.get())
+                .define('Y', Items.BLACKSTONE)
+                .pattern("X")
+                .pattern("Y")
+                .unlockedBy(getHasName(NetherDescentItems.SOUL_BLAZE_ROD.get()), has(NetherDescentItems.SOUL_BLAZE_ROD.get()))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.BLAZE_FIRE_ROD.get(), 4)
+                .define('X', Items.BLAZE_ROD)
+                .define('Y', Items.BLACKSTONE)
+                .pattern("X")
+                .pattern("Y")
+                .unlockedBy(getHasName(Items.BLAZE_ROD), has(Items.BLAZE_ROD))
+                .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.PENDORITE_FIRE_ROD.get())
+                .define('X', NetherDescentItems.PENDORITE_NUGGET.get())
+                .define('Y', NetherDescentBlocks.SOUL_FIRE_ROD.get())
+                .pattern("X")
+                .pattern("Y")
+                .unlockedBy(getHasName(NetherDescentBlocks.SOUL_FIRE_ROD.get()), has(NetherDescentBlocks.SOUL_FIRE_ROD.get()))
+                .save(recipeOutput);
     }
 
 	private static void NDNineBlockStorageRecipes(RecipeOutput recipeOutput, RecipeCategory unpackedCategory, ItemLike unpacked, RecipeCategory packedCategory, ItemLike packed, String packedName, @Nullable String packedGroup, String unpackedName, @Nullable String unpackedGroup) {

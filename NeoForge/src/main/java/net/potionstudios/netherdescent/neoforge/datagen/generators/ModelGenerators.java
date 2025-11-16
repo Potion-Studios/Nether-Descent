@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.neoforge.datagen.generators;
 
+import net.minecraft.client.model.Model;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.DataGenerator;
@@ -334,7 +335,40 @@ public class ModelGenerators {
 					).build();
 				else return ConfiguredModel.builder().modelFile(models().getExistingFile(blockTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get()))).build();
 			});
+
+            rodBlock(NetherDescentBlocks.PENDORITE_FIRE_ROD.get(), models().withExistingParent(name(NetherDescentBlocks.PENDORITE_FIRE_ROD.get()), "end_rod")
+                    .texture("end_rod", blockTexture(NetherDescentBlocks.PENDORITE_FIRE_ROD.get()))
+                    .texture("particle", blockTexture(NetherDescentBlocks.PENDORITE_FIRE_ROD.get()))
+                    .renderType("cutout"));
+
+            rodBlock(NetherDescentBlocks.SOUL_FIRE_ROD.get(), models().withExistingParent(name(NetherDescentBlocks.SOUL_FIRE_ROD.get()), "end_rod")
+                    .texture("end_rod", blockTexture(NetherDescentBlocks.SOUL_FIRE_ROD.get()))
+                    .texture("particle", blockTexture(NetherDescentBlocks.SOUL_FIRE_ROD.get()))
+                    .renderType("cutout"));
+
+            rodBlock(NetherDescentBlocks.BLAZE_FIRE_ROD.get(), models().withExistingParent(name(NetherDescentBlocks.BLAZE_FIRE_ROD.get()), "end_rod")
+                    .texture("end_rod", blockTexture(NetherDescentBlocks.BLAZE_FIRE_ROD.get()))
+                    .texture("particle", blockTexture(NetherDescentBlocks.BLAZE_FIRE_ROD.get()))
+                    .renderType("cutout"));
 		}
+
+        private void rodBlock(RodBlock rodBlock, ModelFile modelFile) {
+            getVariantBuilder(rodBlock).forAllStates(state -> {
+                if (state.getValue(RodBlock.FACING) == Direction.DOWN)
+                    return ConfiguredModel.builder().rotationX(180).modelFile(modelFile).build();
+                else if (state.getValue(RodBlock.FACING) == Direction.NORTH)
+                    return ConfiguredModel.builder().rotationX(90).modelFile(modelFile).build();
+                else if (state.getValue(RodBlock.FACING) == Direction.SOUTH)
+                    return ConfiguredModel.builder().rotationX(90).rotationY(180).modelFile(modelFile).build();
+                else if (state.getValue(RodBlock.FACING) == Direction.WEST)
+                    return ConfiguredModel.builder().rotationX(90).rotationY(270).modelFile(modelFile).build();
+                else if (state.getValue(RodBlock.FACING) == Direction.EAST)
+                    return ConfiguredModel.builder().rotationX(90).rotationY(90).modelFile(modelFile).build();
+                else
+                    return ConfiguredModel.builder().modelFile(modelFile).build();
+            });
+            simpleBlockItem(rodBlock, modelFile);
+        }
 
 		private void registerStairs(StairBlock stairs, Block texturedBlock) {
 			registerStairs(stairs, ModelLocationUtils.getModelLocation(texturedBlock));

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/end_rod",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "end_rod": "netherdescent:block/pendorite_fire_rod",
+    "particle": "netherdescent:block/pendorite_fire_rod"
+  }
+}

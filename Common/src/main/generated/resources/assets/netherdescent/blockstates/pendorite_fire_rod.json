@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "netherdescent:block/pendorite_fire_rod",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "netherdescent:block/pendorite_fire_rod",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "netherdescent:block/pendorite_fire_rod",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "netherdescent:block/pendorite_fire_rod",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "netherdescent:block/pendorite_fire_rod"
+    },
+    "facing=west": {
+      "model": "netherdescent:block/pendorite_fire_rod",
+      "x": 90,
+      "y": 270
+    }
+  }
+}
