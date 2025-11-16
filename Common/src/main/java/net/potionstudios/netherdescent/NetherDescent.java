@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.config.WorldGenerationConfig;
 import net.potionstudios.netherdescent.sounds.NetherDescentSounds;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.item.NetherDescentArmorMaterials;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
@@ -39,6 +40,7 @@ public class NetherDescent {
         NetherDescentBlockEntityType.blockEntities();
         NetherDescentCreativeTabs.tabs();
 	    NetherDescentSounds.sounds();
+        NetherDescentEntityType.entityTypes();
         NetherDescentRuleSources.ruleSources();
 		NetherDescentFeature.features();
         NetherDescentFeatures.features();

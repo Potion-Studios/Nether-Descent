@@ -4,8 +4,10 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.config.WorldGenerationConfig;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentSurfaceRules;
 import net.potionstudios.netherdescent.world.level.levelgen.regions.NetherDescentRegion;
 import terrablender.api.Regions;
@@ -21,6 +23,7 @@ public class NetherDescentNeoForge {
         NetherDescent.init();
         NeoForgePlatformHandler.register(eventBus);
         eventBus.addListener(this::onInitialize);
+        eventBus.addListener((EntityAttributeCreationEvent event) -> NetherDescentEntityType.registerEntityAttributes(event::put));
         VanillaCompatNeoForge.registerVanillaCompatEvents(EVENT_BUS);
     }
 
