@@ -153,9 +153,7 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
 
 	@Override
     public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
-        int i = this.getHeightAboveUpToMax(level, pos);
-        int j = this.getHeightBelowUpToMax(level, pos);
-        return i + j + 1 < 16 && level.getBlockState(state.getValue(HANGING) ? pos.below(j) : pos.above(i)).getValue(STAGE) != 1;
+        return true;
     }
 
     @Override
@@ -165,38 +163,40 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
 
     @Override
     public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
-        int i = this.getHeightAboveUpToMax(level, pos);
-        int j = this.getHeightBelowUpToMax(level, pos);
-        int k = i + j + 1;
-        int l = 1 + random.nextInt(2);
+        int heightAbove = this.getHeightAboveUpToMax(level, pos);
+        int heightBelow = this.getHeightBelowUpToMax(level, pos);
+        int total = heightAbove + heightBelow + 1;
+        boolean hanging = state.getValue(HANGING);
 
-        for (int m = 0; m < l; m++) {
-            BlockPos blockPos = state.getValue(HANGING) ? pos.below(j) : pos.above(i);
-            BlockState blockState = level.getBlockState(blockPos);
-            if (k >= 16 || blockState.getValue(STAGE) == 1 || !level.isEmptyBlock(state.getValue(HANGING) ? blockPos.below() : blockPos.above()))
-                return;
+        BlockPos startPos = hanging ? pos.below(heightBelow) : pos.above(heightAbove);
+        for (int i = 0; i < total; i++) {
+            BlockPos currentPos = hanging ? startPos.above(i) : startPos.below(i);
+            BlockState s = level.getBlockState(currentPos);
+            if (!s.is(NetherDescentBlocks.SYTHIAN_STALK.get()))
+                break;
 
-            growSythianStalk(blockState, level, blockPos, random, k);
-            i++;
-            k++;
+            BambooLeaves leaves = s.getValue(LEAVES);
+            if (leaves == BambooLeaves.NONE) {
+                level.setBlock(currentPos, s.setValue(LEAVES, BambooLeaves.SMALL), 3);
+                break;
+            } else if (leaves == BambooLeaves.SMALL) {
+                level.setBlock(currentPos, s.setValue(LEAVES, BambooLeaves.LARGE), 3);
+                break;
+            }
         }
     }
 
     protected int getHeightAboveUpToMax(BlockGetter level, BlockPos pos) {
         int i = 0;
-
         while (i < 16 && level.getBlockState(pos.above(i + 1)).is(NetherDescentBlocks.SYTHIAN_STALK.get()))
             i++;
-
         return i;
     }
 
     protected int getHeightBelowUpToMax(BlockGetter level, BlockPos pos) {
         int i = 0;
-
         while (i < 16 && level.getBlockState(pos.below(i + 1)).is(NetherDescentBlocks.SYTHIAN_STALK.get()))
             i++;
-
         return i;
     }
 
