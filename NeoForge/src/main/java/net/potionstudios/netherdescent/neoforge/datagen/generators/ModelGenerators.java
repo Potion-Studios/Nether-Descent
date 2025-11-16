@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.neoforge.datagen.generators;
 
-import net.minecraft.client.model.Model;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.DataGenerator;

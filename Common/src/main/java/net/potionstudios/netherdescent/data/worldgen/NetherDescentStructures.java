@@ -18,7 +18,6 @@ import net.minecraft.world.level.levelgen.structure.StructureSpawnOverride;
 import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
-import net.minecraft.world.level.levelgen.structure.structures.NetherFortressStructure;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.tags.NetherDescentBiomeTags;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.structures.BlueNetherFortressStructure;
@@ -32,7 +31,7 @@ public class NetherDescentStructures {
 			new BlueNetherFortressStructure(
 					new Structure.StructureSettings.Builder(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_BLUE_FORTRESS))
 							.spawnOverrides(
-									Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, NetherFortressStructure.FORTRESS_ENEMIES))
+									Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE,  BlueNetherFortressStructure.BLUE_FORTRESS_ENEMIES))
 							)
 							.generationStep(GenerationStep.Decoration.UNDERGROUND_DECORATION)
 							.build()
