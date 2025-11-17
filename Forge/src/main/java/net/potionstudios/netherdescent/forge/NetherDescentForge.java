@@ -7,6 +7,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.config.WorldGenerationConfig;
@@ -28,6 +29,7 @@ public class NetherDescentForge {
         NetherDescent.init();
         ForgePlatformHandler.register(MOD_BUS);
         MOD_BUS.addListener(this::onInitialize);
+        MOD_BUS.addListener((FMLLoadCompleteEvent event) -> event.enqueueWork(NetherDescent::postInit));
         MOD_BUS.addListener((EntityAttributeCreationEvent event) -> NetherDescentEntityType.registerEntityAttributes(event::put));
         VanillaCompatForge.registerVanillaCompatEvents(EVENT_BUS);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> NetherDescentClientForge.init(MOD_BUS));

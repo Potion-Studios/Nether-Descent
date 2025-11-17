@@ -42,7 +42,7 @@ public class ModelGenerators {
 		protected void registerModels() {
 			NetherDescentItems.SIMPLE_ITEMS.forEach(item -> {
                 if (item.get() instanceof SpawnEggItem) spawnEggItem(item.get());
-                basicItem(item.get());
+                else basicItem(item.get());
             });
 			simpleItemBlockTexture(NetherDescentBlocks.WAILING_VINES.get());
 			NetherDescentWoodSet.woodsets().forEach(set -> {

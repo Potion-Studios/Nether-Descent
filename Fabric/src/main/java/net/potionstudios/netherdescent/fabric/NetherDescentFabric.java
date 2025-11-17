@@ -19,6 +19,7 @@ public class NetherDescentFabric implements ModInitializer {
         NetherDescent.init();
         VanillaCompatFabric.init();
         NetherDescent.commonSetup();
+        NetherDescent.postInit();
         NetherDescentEntityType.registerEntityAttributes(FabricDefaultAttributeRegistry::register);
     }
 }

@@ -182,6 +182,18 @@ public class RecipeGenerator extends RecipeProvider {
                 .pattern("Y")
                 .unlockedBy(getHasName(NetherDescentBlocks.SOUL_FIRE_ROD.get()), has(NetherDescentBlocks.SOUL_FIRE_ROD.get()))
                 .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BREWING, NetherDescentItems.SOUL_BLAZE_POWDER.get(), 2)
+                .requires(NetherDescentItems.SOUL_BLAZE_ROD.get())
+                .unlockedBy(getHasName(NetherDescentItems.SOUL_BLAZE_ROD.get()), has(NetherDescentItems.SOUL_BLAZE_ROD.get()))
+                .save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, NetherDescentItems.SOUL_FIRE_CHARGE.get(), 3)
+                .requires(Items.GUNPOWDER)
+                .requires(NetherDescentItems.SOUL_BLAZE_POWDER.get())
+                .requires(Ingredient.of(Items.COAL, Items.CHARCOAL))
+                .unlockedBy(getHasName(NetherDescentItems.SOUL_BLAZE_POWDER.get()), has(NetherDescentItems.SOUL_BLAZE_POWDER.get()))
+                .save(recipeOutput);
     }
 
 	private static void NDNineBlockStorageRecipes(RecipeOutput recipeOutput, RecipeCategory unpackedCategory, ItemLike unpacked, RecipeCategory packedCategory, ItemLike packed, String packedName, @Nullable String packedGroup, String unpackedName, @Nullable String unpackedGroup) {

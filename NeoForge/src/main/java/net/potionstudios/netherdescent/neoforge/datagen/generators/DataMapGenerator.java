@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
+import net.neoforged.neoforge.registries.datamaps.builtin.FurnaceFuel;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.BlockItemFeatures;
@@ -31,6 +32,10 @@ public class DataMapGenerator extends DataMapProvider {
         Builder<Compostable, Item> compostableItemBuilder = builder(NeoForgeDataMaps.COMPOSTABLES);
         BlockItemFeatures.registerCompostables((item, chance) -> compostableItemBuilder.add(id(item.asItem()), new Compostable(chance, false), false));
         compostableItemBuilder.conditions(new ModLoadedCondition(NetherDescent.MOD_ID));
+
+        Builder<FurnaceFuel, Item> fuelBuilder = builder(NeoForgeDataMaps.FURNACE_FUELS);
+        BlockItemFeatures.registerFurnaceFuels((block, burnTime) -> fuelBuilder.add(id(block.asItem()), new FurnaceFuel(burnTime), false));
+        fuelBuilder.conditions(new ModLoadedCondition(NetherDescent.MOD_ID));
     }
 
     private ResourceLocation id(Item item) {

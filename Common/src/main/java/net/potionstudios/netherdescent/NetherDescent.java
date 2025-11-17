@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.potionstudios.netherdescent.core.dispenser.DispenseItemBehavior;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.config.WorldGenerationConfig;
 import net.potionstudios.netherdescent.sounds.NetherDescentSounds;
@@ -58,6 +59,13 @@ public class NetherDescent {
      */
     public static void commonSetup() {
         WorldGenerationConfig.init();
+    }
+
+    /**
+     * Ran after the mod is fully loaded to finish setup.
+     */
+    public static void postInit() {
+        DispenseItemBehavior.registerDispenseItemBehavior();
     }
 
     /**

@@ -23,4 +23,7 @@ public class BlockItemFeatures {
         for (ItemLike item : items) consumer.accept(item, chance);
     }
 
+    public static void registerFurnaceFuels(BiConsumer<ItemLike, Integer> consumer) {
+        consumer.accept(NetherDescentItems.SOUL_BLAZE_POWDER.get(), 1200);
+    }
 }

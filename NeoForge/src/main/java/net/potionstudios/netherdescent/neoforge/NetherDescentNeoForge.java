@@ -3,6 +3,7 @@ package net.potionstudios.netherdescent.neoforge;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.potionstudios.netherdescent.NetherDescent;
@@ -23,6 +24,7 @@ public class NetherDescentNeoForge {
         NetherDescent.init();
         NeoForgePlatformHandler.register(eventBus);
         eventBus.addListener(this::onInitialize);
+        eventBus.addListener((FMLLoadCompleteEvent event) -> event.enqueueWork(NetherDescent::postInit));
         eventBus.addListener((EntityAttributeCreationEvent event) -> NetherDescentEntityType.registerEntityAttributes(event::put));
         VanillaCompatNeoForge.registerVanillaCompatEvents(EVENT_BUS);
     }
