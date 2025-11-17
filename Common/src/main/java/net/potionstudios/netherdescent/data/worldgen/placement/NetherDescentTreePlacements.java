@@ -15,6 +15,7 @@ public class NetherDescentTreePlacements {
 	public static final ResourceKey<PlacedFeature> SYTHIAN_FUNGI_TREES = PlacedFeaturesUtil.createPlacedFeature("sythian_fungi_trees", NetherDescentTreeFeatures.SYTHIAN_FUNGI_TREES, () -> List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome()));
 	public static final ResourceKey<PlacedFeature> CRIMSON_FUNGI_TREES_HANGING = PlacedFeaturesUtil.createPlacedFeature("crimson_fungi_trees_hanging", NetherDescentTreeFeatures.CRIMSON_FUNGI_TREES_HANGING, () -> List.of(CountOnEveryLayerPlacement.of(3), BiomeFilter.biome()));
 	public static final ResourceKey<PlacedFeature> CRIMSON_FUNGI_TREES = PlacedFeaturesUtil.createPlacedFeature("crimson_fungi_trees", NetherDescentTreeFeatures.CRIMSON_FUNGI_TREES, () -> List.of(CountOnEveryLayerPlacement.of(1), BiomeFilter.biome()));
+	public static final ResourceKey<PlacedFeature> BONE_TREES = PlacedFeaturesUtil.createPlacedFeature("bone_trees", NetherDescentTreeFeatures.BONE_TREES, () -> List.of(CountOnEveryLayerPlacement.of(1), BiomeFilter.biome()));
 
 	protected static void treePlacements() {
         NetherDescent.LOGGER.info("Registering Nether Descent Tree Placements");

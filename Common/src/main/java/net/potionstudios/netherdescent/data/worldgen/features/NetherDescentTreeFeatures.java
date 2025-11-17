@@ -30,7 +30,122 @@ import java.util.function.Supplier;
 
 public class NetherDescentTreeFeatures {
     public static final Supplier<AttachedToLogsDecorator> SYTHIAN_WALL_ROOTS = () -> new AttachedToLogsDecorator(0.22F, 0, 1, SimpleStateProvider.simple(NetherDescentBlocks.SYTHIAN_ROOTS.get()), 2, List.of(Direction.WEST, Direction.NORTH, Direction.SOUTH, Direction.EAST));
+    public static final Supplier<AttachedToLogsDecorator> FUNGAL_BULBS_WALL_UP_DOWN = () -> new AttachedToLogsDecorator(0.25F, 0, 1, SimpleStateProvider.simple(NetherDescentBlocks.FUNGAL_BULBS.get()), 2, List.of(Direction.WEST, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.UP, Direction.DOWN));
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BONE_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("bone_tree1",
+            TYGFeatures.TREE_FROM_NBT_V1,
+            () -> new TreeFromStructureNBTConfig.Builder()
+                    .baseLocation(NetherDescent.id("features/bones/bone_trunk1"))
+                    .canopyLocation(NetherDescent.id("features/bones/bone_canopy1"))
+                    .height(BiasedToBottomInt.of(5, 15))
+                    .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
+                    .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.CRIMSON_CARPET.get()))
+                    .logTarget(Set.of(Blocks.BONE_BLOCK))
+                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BONE_TREE2 = ConfiguredFeaturesUtil.createConfiguredFeature("bone_tree2",
+            TYGFeatures.TREE_FROM_NBT_V1,
+            () -> new TreeFromStructureNBTConfig.Builder()
+                    .baseLocation(NetherDescent.id("features/bones/bone_trunk2"))
+                    .canopyLocation(NetherDescent.id("features/bones/bone_canopy2"))
+                    .height(BiasedToBottomInt.of(7, 18))
+                    .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
+                    .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.CRIMSON_CARPET.get()))
+                    .logTarget(Set.of(Blocks.BONE_BLOCK))
+                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BONE_TREE3 = ConfiguredFeaturesUtil.createConfiguredFeature("bone_tree3",
+            TYGFeatures.TREE_FROM_NBT_V1,
+            () -> new TreeFromStructureNBTConfig.Builder()
+                    .baseLocation(NetherDescent.id("features/bones/bone_trunk3"))
+                    .canopyLocation(NetherDescent.id("features/bones/bone_canopy3"))
+                    .height(BiasedToBottomInt.of(4, 15))
+                    .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
+                    .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.CRIMSON_CARPET.get()))
+                    .logTarget(Set.of(Blocks.BONE_BLOCK))
+                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_BONE_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_bone_tree1",
+            TYGFeatures.TREE_FROM_NBT_V1,
+            () -> new TreeFromStructureNBTConfig.Builder()
+                    .baseLocation(NetherDescent.id("features/bones/bone_trunk1"))
+                    .canopyLocation(NetherDescent.id("features/bones/bone_canopy1"))
+                    .height(BiasedToBottomInt.of(5, 15))
+                    .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
+                    .leavesProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
+                    .logTarget(Set.of(Blocks.BONE_BLOCK))
+                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_BONE_TREE2 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_bone_tree2",
+            TYGFeatures.TREE_FROM_NBT_V1,
+            () -> new TreeFromStructureNBTConfig.Builder()
+                    .baseLocation(NetherDescent.id("features/bones/bone_trunk2"))
+                    .canopyLocation(NetherDescent.id("features/bones/bone_canopy2"))
+                    .height(BiasedToBottomInt.of(7, 18))
+                    .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
+                    .leavesProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
+                    .logTarget(Set.of(Blocks.BONE_BLOCK))
+                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_BONE_TREE3 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_bone_tree3",
+            TYGFeatures.TREE_FROM_NBT_V1,
+            () -> new TreeFromStructureNBTConfig.Builder()
+                    .baseLocation(NetherDescent.id("features/bones/bone_trunk3"))
+                    .canopyLocation(NetherDescent.id("features/bones/bone_canopy3"))
+                    .height(BiasedToBottomInt.of(4, 15))
+                    .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
+                    .leavesProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
+                    .logTarget(Set.of(Blocks.BONE_BLOCK))
+                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BONE_TREES = ConfiguredFeaturesUtil.createConfiguredFeature("bone_trees",
+            Feature.RANDOM_SELECTOR,
+            (configuredFeatureBootstrapContext) -> {
+                HolderGetter<ConfiguredFeature<?, ?>> lookup = configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE);
+                return new RandomFeatureConfiguration(ImmutableList.of(
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(BONE_TREE1)), 0.16F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(BONE_TREE2)), 0.16F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(BONE_TREE3)), 0.16F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_BONE_TREE1)), 0.16F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_BONE_TREE2)), 0.16F)),
+                        PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_BONE_TREE3)));
+            }
+    );
+
+    //CRIMSON TREES ----------------------------------------------------------------------------------------------------------------------------------------
     public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_FUNGI_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_fungi_tree1",
             TYGFeatures.TREE_FROM_NBT_V1,
             () -> new TreeFromStructureNBTConfig.Builder()
