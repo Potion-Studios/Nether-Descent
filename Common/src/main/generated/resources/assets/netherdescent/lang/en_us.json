@@ -133,6 +133,7 @@
   "block.netherdescent.wailing_wood": "Wailing Wood",
   "death.attack.netherdescent.crimsonBerryBush": "%1$s was poked to death by a crimson berry bush",
   "death.attack.netherdescent.crimsonBerryBush.player": "%1$s was poked to death by a crimson berry bush while trying to escape %2$s",
+  "entity.netherdescent.small_soul_fireball": "Small Soul Fireball",
   "entity.netherdescent.soul_blaze": "Soul Blaze",
   "item.netherdescent.blue_nether_brick": "Blue Nether Brick",
   "item.netherdescent.crimson_berries": "Crimson Berries",

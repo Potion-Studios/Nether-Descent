@@ -8,6 +8,7 @@ import net.minecraft.world.item.*;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.item.custom.SoulFireChargeItem;
 import net.potionstudios.netherdescent.world.item.custom.SythianScaffoldingBlockItem;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 
@@ -37,7 +38,7 @@ public class NetherDescentItems {
 
     public static final Supplier<Item> SOUL_BLAZE_ROD = registerItem("soul_blaze_rod", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> SOUL_BLAZE_POWDER = registerSimpleItem("soul_blaze_powder", () -> new Item(new Item.Properties()));
-    public static final Supplier<FireChargeItem> SOUL_FIRE_CHARGE = registerSimpleItem("soul_fire_charge", () -> new FireChargeItem(new Item.Properties()));
+    public static final Supplier<SoulFireChargeItem> SOUL_FIRE_CHARGE = registerSimpleItem("soul_fire_charge", () -> new SoulFireChargeItem(new Item.Properties()));
 
     public static final Supplier<SpawnEggItem> SOUL_BLAZE_SPAWN_EGG = registerSimpleItem("soul_blaze_spawn_egg", PlatformHandler.PLATFORM_HANDLER.createSpawnEgg(NetherDescentEntityType.SOUL_BLAZE, 2467756, 13958911));
 

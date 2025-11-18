@@ -5,10 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.*;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.DamageTypeTags;
-import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
 import net.neoforged.neoforge.common.Tags;
@@ -20,6 +17,7 @@ import net.potionstudios.netherdescent.tags.NetherDescentBlockTags;
 import net.potionstudios.netherdescent.tags.NetherDescentItemTags;
 import net.potionstudios.netherdescent.tags.NetherDescentStructureTags;
 import net.potionstudios.netherdescent.world.damagesource.NetherDescentDamageTypes;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
@@ -38,6 +36,7 @@ public class TagsGenerator {
 		generator.addProvider(run, new BiomeTagGenerator(output, lookupProvider, helper));
 		generator.addProvider(run, new StructureTagGenerator(output, lookupProvider, helper));
         generator.addProvider(run, new DamageTypeTagGenerator(output, lookupProvider, helper));
+        generator.addProvider(run, new EntityTypeTagGenerator(output, lookupProvider, helper));
 	}
 
 	/**
@@ -233,6 +232,17 @@ public class TagsGenerator {
             tag(DamageTypeTags.NO_KNOCKBACK).add(NetherDescentDamageTypes.CRIMSON_BERRY_BUSH);
             tag(Tags.DamageTypes.IS_ENVIRONMENT).add(NetherDescentDamageTypes.CRIMSON_BERRY_BUSH);
             tag(Tags.DamageTypes.IS_PHYSICAL).add(NetherDescentDamageTypes.CRIMSON_BERRY_BUSH);
+        }
+    }
+
+    private static class EntityTypeTagGenerator extends EntityTypeTagsProvider {
+        private EntityTypeTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
+            super(arg, completableFuture, NetherDescent.MOD_ID, existingFileHelper);
+        }
+
+        @Override
+        protected void addTags(HolderLookup.@NotNull Provider provider) {
+            tag(EntityTypeTags.IMPACT_PROJECTILES).add(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get());
         }
     }
 }
