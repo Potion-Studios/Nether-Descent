@@ -104,7 +104,7 @@ public class SoulBlaze extends Blaze {
                         if (this.attackStep == 1) {
                             this.attackTime = 60;
                             this.blaze.setCharged(true);
-                        } else if (this.attackStep <= 4) {
+                        } else if (this.attackStep <= 3) {
                             this.attackTime = 6;
                         } else {
                             this.attackTime = 100;

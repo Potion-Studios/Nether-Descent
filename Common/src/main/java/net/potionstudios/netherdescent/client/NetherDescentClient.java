@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -61,6 +62,7 @@ public class NetherDescentClient {
      */
     public static void registerEntityRenderers(BiConsumer<EntityType<? extends Entity>, EntityRendererProvider> consumer) {
         consumer.accept(NetherDescentEntityType.SOUL_BLAZE.get(), SoulBlazeRenderer::new);
+		consumer.accept(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), context -> new ThrownItemRenderer<>(context, 0.75F, true));
     }
 
 	/**

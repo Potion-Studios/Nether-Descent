@@ -32,3 +32,5 @@ accessible field net/minecraft/data/worldgen/ProcessorLists EMPTY Lnet/minecraft
 accessible method net/minecraft/data/advancements/packs/VanillaAdventureAdvancements addBiomes (Lnet/minecraft/advancements/Advancement$Builder;Lnet/minecraft/core/HolderLookup$Provider;Ljava/util/List;)Lnet/minecraft/advancements/Advancement$Builder;
 
 accessible method net/minecraft/client/particle/CherryParticle <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/client/particle/SpriteSet;)V
+
+accessible method net/minecraft/world/entity/monster/Blaze setCharged (Z)V
