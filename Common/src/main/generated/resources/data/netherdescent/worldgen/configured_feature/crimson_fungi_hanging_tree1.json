@@ -12,7 +12,16 @@
     "canopy_location": "netherdescent:features/trees/crimson/crimson_fungi_canopy1",
     "decorators": [
       {
-        "type": "netherdescent:weeping_vines"
+        "type": "netherdescent:growing_plant",
+        "body": {
+          "Name": "minecraft:weeping_vines_plant"
+        },
+        "head": {
+          "Name": "minecraft:weeping_vines",
+          "Properties": {
+            "age": "0"
+          }
+        }
       }
     ],
     "height": {

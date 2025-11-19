@@ -12,7 +12,16 @@
     "canopy_location": "netherdescent:features/warts/embur/wart6_canopy",
     "decorators": [
       {
-        "type": "netherdescent:embur_gel_vines"
+        "type": "netherdescent:growing_plant",
+        "body": {
+          "Name": "netherdescent:embur_gel_vines_plant"
+        },
+        "head": {
+          "Name": "netherdescent:embur_gel_vines",
+          "Properties": {
+            "age": "0"
+          }
+        }
       }
     ],
     "height": {

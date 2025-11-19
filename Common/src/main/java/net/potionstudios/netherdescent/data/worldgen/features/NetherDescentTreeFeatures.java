@@ -21,8 +21,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProv
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.EmburGelVinesDecorator;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.WeepingVinesDecorator;
+import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.GrowingPlantVinesDecorator;
 
 import java.util.List;
 import java.util.Set;
@@ -32,6 +31,8 @@ public class NetherDescentTreeFeatures {
     public static final Supplier<AttachedToLogsDecorator> SYTHIAN_WALL_ROOTS = () -> new AttachedToLogsDecorator(0.22F, 0, 1, SimpleStateProvider.simple(NetherDescentBlocks.SYTHIAN_ROOTS.get()), 2, List.of(Direction.WEST, Direction.NORTH, Direction.SOUTH, Direction.EAST));
     public static final Supplier<AttachedToLogsDecorator> FUNGAL_BULBS_WALL_UP_DOWN = () -> new AttachedToLogsDecorator(0.25F, 0, 1, SimpleStateProvider.simple(NetherDescentBlocks.FUNGAL_BULBS.get()), 2, List.of(Direction.WEST, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.UP, Direction.DOWN));
 
+    public static final GrowingPlantVinesDecorator WEEPING_VINES_DECORATOR = new GrowingPlantVinesDecorator(Blocks.WEEPING_VINES, Blocks.WEEPING_VINES_PLANT);
+    
     public static final ResourceKey<ConfiguredFeature<?, ?>> BONE_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("bone_tree1",
             TYGFeatures.TREE_FROM_NBT_V1,
             () -> new TreeFromStructureNBTConfig.Builder()
@@ -44,7 +45,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
                     .build()
     );
 
@@ -60,7 +61,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
                     .build()
     );
 
@@ -76,7 +77,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
                     .build()
     );
 
@@ -92,7 +93,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
                     .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
                     .build()
     );
@@ -109,7 +110,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
                     .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
                     .build()
     );
@@ -126,7 +127,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
                     .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
                     .build()
     );
@@ -158,7 +159,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
                     .build()
     );
 
@@ -174,7 +175,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
                     .build()
     );
 
@@ -190,7 +191,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
                     .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
                     .build()
     );
@@ -207,7 +208,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new WeepingVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
                     .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
                     .build()
     );
@@ -344,6 +345,8 @@ public class NetherDescentTreeFeatures {
     );
 
     //EMBUR WART TREES ------------------------------------------------------------------------------------------------------------------------
+    public static final Supplier<GrowingPlantVinesDecorator> EMBUR_GEL_VINES_DECORATOR = () -> new GrowingPlantVinesDecorator(NetherDescentBlocks.EMBUR_GEL_VINES.get(), NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get());
+    
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART1 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart1",
             TYGFeatures.TREE_FROM_NBT_V1,
             () -> new TreeFromStructureNBTConfig.Builder()
@@ -356,7 +359,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new EmburGelVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(EMBUR_GEL_VINES_DECORATOR.get()))
                     .build()
     );
 
@@ -372,7 +375,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new EmburGelVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(EMBUR_GEL_VINES_DECORATOR.get()))
                     .build()
     );
 
@@ -388,7 +391,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new EmburGelVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(EMBUR_GEL_VINES_DECORATOR.get()))
                     .build()
     );
 
@@ -404,7 +407,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new EmburGelVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(EMBUR_GEL_VINES_DECORATOR.get()))
                     .build()
     );
 
@@ -420,7 +423,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new EmburGelVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(EMBUR_GEL_VINES_DECORATOR.get()))
                     .build()
     );
 
@@ -436,7 +439,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new EmburGelVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(EMBUR_GEL_VINES_DECORATOR.get()))
                     .build()
     );
 
@@ -452,7 +455,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(new EmburGelVinesDecorator()))
+                    .treeDecorators(ImmutableList.of(EMBUR_GEL_VINES_DECORATOR.get()))
                     .build()
     );
 
