@@ -1,5 +1,5 @@
 {
-	"format_version": "1.21.6",
+  	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "netherdescent:block/wailing_bulb_blossom_petal",
 		"1": "netherdescent:block/wailing_bulb_blossom_side",

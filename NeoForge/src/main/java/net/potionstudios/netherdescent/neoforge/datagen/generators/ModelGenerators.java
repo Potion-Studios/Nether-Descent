@@ -326,9 +326,9 @@ public class ModelGenerators {
 			getVariantBuilder(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get()).forAllStates(state -> {
 				if (state.getValue(WailingBulbBlossomBlock.ACTIVE))
 					return ConfiguredModel.builder().modelFile(models().withExistingParent(name(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get()) + "_active", NetherDescent.id("wailing_bulb_blossom"))
-							.texture("2", blockNDTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "side_active"))
-							.texture("3", blockNDTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "petal_active"))
-							.texture("6", blockNDTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "top_active"))
+							.texture("0", blockNDTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "petal_active"))
+							.texture("1", blockNDTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "side_active"))
+							.texture("2", blockNDTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "top_active"))
 							.texture("particle", blockNDTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "side_active"))
 							.renderType("cutout")
 					).build();
