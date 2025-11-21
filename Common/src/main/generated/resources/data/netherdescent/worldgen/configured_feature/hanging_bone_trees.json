@@ -2,28 +2,28 @@
   "type": "minecraft:random_selector",
   "config": {
     "default": {
-      "feature": "netherdescent:bone_tree4",
+      "feature": "netherdescent:hanging_bone_tree4",
       "placement": []
     },
     "features": [
       {
         "chance": 0.25,
         "feature": {
-          "feature": "netherdescent:bone_tree1",
+          "feature": "netherdescent:hanging_bone_tree1",
           "placement": []
         }
       },
       {
         "chance": 0.25,
         "feature": {
-          "feature": "netherdescent:bone_tree2",
+          "feature": "netherdescent:hanging_bone_tree2",
           "placement": []
         }
       },
       {
         "chance": 0.25,
         "feature": {
-          "feature": "netherdescent:bone_tree3",
+          "feature": "netherdescent:hanging_bone_tree3",
           "placement": []
         }
       }

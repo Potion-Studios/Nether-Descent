@@ -38,7 +38,7 @@ public class NetherDescentTreeFeatures {
             () -> new TreeFromStructureNBTConfig.Builder()
                     .baseLocation(NetherDescent.id("features/bones/bone_trunk1"))
                     .canopyLocation(NetherDescent.id("features/bones/bone_canopy1"))
-                    .height(BiasedToBottomInt.of(5, 15))
+                    .height(BiasedToBottomInt.of(5, 20))
                     .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.CRIMSON_CARPET.get()))
                     .logTarget(Set.of(Blocks.BONE_BLOCK))
@@ -54,7 +54,7 @@ public class NetherDescentTreeFeatures {
             () -> new TreeFromStructureNBTConfig.Builder()
                     .baseLocation(NetherDescent.id("features/bones/bone_trunk2"))
                     .canopyLocation(NetherDescent.id("features/bones/bone_canopy2"))
-                    .height(BiasedToBottomInt.of(7, 18))
+                    .height(BiasedToBottomInt.of(7, 22))
                     .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.CRIMSON_CARPET.get()))
                     .logTarget(Set.of(Blocks.BONE_BLOCK))
@@ -70,7 +70,23 @@ public class NetherDescentTreeFeatures {
             () -> new TreeFromStructureNBTConfig.Builder()
                     .baseLocation(NetherDescent.id("features/bones/bone_trunk3"))
                     .canopyLocation(NetherDescent.id("features/bones/bone_canopy3"))
-                    .height(BiasedToBottomInt.of(4, 15))
+                    .height(BiasedToBottomInt.of(4, 20))
+                    .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
+                    .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.CRIMSON_CARPET.get()))
+                    .logTarget(Set.of(Blocks.BONE_BLOCK))
+                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BONE_TREE4 = ConfiguredFeaturesUtil.createConfiguredFeature("bone_tree4",
+            TYGFeatures.TREE_FROM_NBT_V1,
+            () -> new TreeFromStructureNBTConfig.Builder()
+                    .baseLocation(NetherDescent.id("features/bones/bone_trunk4"))
+                    .canopyLocation(NetherDescent.id("features/bones/bone_canopy4"))
+                    .height(BiasedToBottomInt.of(7, 25))
                     .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.CRIMSON_CARPET.get()))
                     .logTarget(Set.of(Blocks.BONE_BLOCK))
@@ -86,7 +102,7 @@ public class NetherDescentTreeFeatures {
             () -> new TreeFromStructureNBTConfig.Builder()
                     .baseLocation(NetherDescent.id("features/bones/bone_trunk1"))
                     .canopyLocation(NetherDescent.id("features/bones/bone_canopy1"))
-                    .height(BiasedToBottomInt.of(5, 15))
+                    .height(BiasedToBottomInt.of(5, 20))
                     .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .leavesProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .logTarget(Set.of(Blocks.BONE_BLOCK))
@@ -103,7 +119,7 @@ public class NetherDescentTreeFeatures {
             () -> new TreeFromStructureNBTConfig.Builder()
                     .baseLocation(NetherDescent.id("features/bones/bone_trunk2"))
                     .canopyLocation(NetherDescent.id("features/bones/bone_canopy2"))
-                    .height(BiasedToBottomInt.of(7, 18))
+                    .height(BiasedToBottomInt.of(7, 25))
                     .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .leavesProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .logTarget(Set.of(Blocks.BONE_BLOCK))
@@ -120,7 +136,24 @@ public class NetherDescentTreeFeatures {
             () -> new TreeFromStructureNBTConfig.Builder()
                     .baseLocation(NetherDescent.id("features/bones/bone_trunk3"))
                     .canopyLocation(NetherDescent.id("features/bones/bone_canopy3"))
-                    .height(BiasedToBottomInt.of(4, 15))
+                    .height(BiasedToBottomInt.of(4, 20))
+                    .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
+                    .leavesProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
+                    .logTarget(Set.of(Blocks.BONE_BLOCK))
+                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
+                    .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_BONE_TREE4 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_bone_tree4",
+            TYGFeatures.TREE_FROM_NBT_V1,
+            () -> new TreeFromStructureNBTConfig.Builder()
+                    .baseLocation(NetherDescent.id("features/bones/bone_trunk4"))
+                    .canopyLocation(NetherDescent.id("features/bones/bone_canopy4"))
+                    .height(BiasedToBottomInt.of(7, 25))
                     .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .leavesProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .logTarget(Set.of(Blocks.BONE_BLOCK))
@@ -137,12 +170,22 @@ public class NetherDescentTreeFeatures {
             (configuredFeatureBootstrapContext) -> {
                 HolderGetter<ConfiguredFeature<?, ?>> lookup = configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE);
                 return new RandomFeatureConfiguration(ImmutableList.of(
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(BONE_TREE1)), 0.16F),
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(BONE_TREE2)), 0.16F),
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(BONE_TREE3)), 0.16F),
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_BONE_TREE1)), 0.16F),
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_BONE_TREE2)), 0.16F)),
-                        PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_BONE_TREE3)));
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(BONE_TREE1)), 0.25F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(BONE_TREE2)), 0.25F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(BONE_TREE3)), 0.25F)),
+                        PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(BONE_TREE4)));
+            }
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_BONE_TREES = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_bone_trees",
+            Feature.RANDOM_SELECTOR,
+            (configuredFeatureBootstrapContext) -> {
+                HolderGetter<ConfiguredFeature<?, ?>> lookup = configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE);
+                return new RandomFeatureConfiguration(ImmutableList.of(
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_BONE_TREE1)), 0.25F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_BONE_TREE2)), 0.25F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_BONE_TREE3)), 0.25F)),
+                        PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_BONE_TREE4)));
             }
     );
 

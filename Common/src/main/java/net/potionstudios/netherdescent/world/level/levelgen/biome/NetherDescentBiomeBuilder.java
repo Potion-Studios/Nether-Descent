@@ -41,6 +41,7 @@ public class NetherDescentBiomeBuilder {
         generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherDescentOrePlacements.ORE_PENDORITE);
 
         addVegetal(generationSettings, NetherDescentTreePlacements.BONE_TREES);
+        addVegetal(generationSettings, NetherDescentTreePlacements.HANGING_BONE_TREES);
         addVegetal(generationSettings, NetherDescentTreePlacements.CRIMSON_FUNGI_TREES_HANGING);
         addVegetal(generationSettings, NetherDescentPlacements.CRIMSON_GARDEN_VEGETATION);
 
