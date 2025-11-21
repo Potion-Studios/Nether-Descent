@@ -6,6 +6,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EndRodBlock;
@@ -38,13 +39,17 @@ public class NDRodBlock extends EndRodBlock {
 
     }
 
+    public boolean canSpawnBlaze(LevelReader level, BlockPos pos) {
+        return getOrCreatePendoriteBlaze().find(level, pos) != null;
+    }
+
     private void trySpawnBlaze(Level level, BlockPos pos) {
         BlockPattern.BlockPatternMatch blockPatternMatch = getOrCreatePendoriteBlaze().find(level, pos);
         if (blockPatternMatch != null) {
             PendoriteBlaze pendoriteBlaze = NetherDescentEntityType.PENDORITE_BLAZE.get().create(level);
             if (pendoriteBlaze != null) {
                 pendoriteBlaze.setPlayerCreated(true);
-
+                spawnBlazeInWorld(level, blockPatternMatch, pendoriteBlaze, pos);
             }
         }
     }
