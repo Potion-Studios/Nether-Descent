@@ -27,6 +27,7 @@ public class NetherDescentClientNeoForge {
             NetherDescentClient.registerEntityRenderers(event::registerEntityRenderer);
             NetherDescentClient.registerBlockEntityRenderers(event::registerBlockEntityRenderer);
         });
+        eventBus.addListener((EntityRenderersEvent.RegisterLayerDefinitions event) -> NetherDescentClient.registerLayerDefinitions(event::registerLayerDefinition));
         eventBus.addListener((RegisterParticleProvidersEvent event) -> NetherDescentClient.registerParticles((type, spriteProviderFactory) -> event.registerSpriteSet(type, spriteProviderFactory::apply)));
     }
 }

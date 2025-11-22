@@ -1,5 +1,7 @@
 package net.potionstudios.netherdescent.client;
 
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.particle.CherryParticle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
@@ -14,6 +16,9 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.potionstudios.netherdescent.client.model.HornetModel;
+import net.potionstudios.netherdescent.client.model.geom.NetherDescentModelLayers;
+import net.potionstudios.netherdescent.client.renderer.entity.HornetRenderer;
 import net.potionstudios.netherdescent.client.renderer.entity.PendoriteBlazeRenderer;
 import net.potionstudios.netherdescent.client.renderer.entity.SoulBlazeRenderer;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
@@ -24,6 +29,7 @@ import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodS
 
 import java.util.function.BiConsumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * The common client class for Nether Descent.
@@ -65,6 +71,7 @@ public class NetherDescentClient {
         consumer.accept(NetherDescentEntityType.SOUL_BLAZE.get(), SoulBlazeRenderer::new);
 		consumer.accept(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), context -> new ThrownItemRenderer<>(context, 0.75F, true));
 		consumer.accept(NetherDescentEntityType.PENDORITE_BLAZE.get(), PendoriteBlazeRenderer::new);
+        consumer.accept(NetherDescentEntityType.HORNET.get(), HornetRenderer::new);
     }
 
 	/**
@@ -77,4 +84,12 @@ public class NetherDescentClient {
 		consumer.accept(NetherDescentBlockEntityType.HANGING_SIGNS.get(), HangingSignRenderer::new);
 		consumer.accept(NetherDescentBlockEntityType.CAMPFIRE.get(), CampfireRenderer::new);
 	}
+
+    /**
+     * Registers Model Layer Definitions
+     * @see ModelLayerLocation
+     */
+    public static void registerLayerDefinitions(BiConsumer<ModelLayerLocation, Supplier<LayerDefinition>> consumer) {
+        consumer.accept(NetherDescentModelLayers.HORNET, HornetModel::createBodyLayer);
+    }
 }
