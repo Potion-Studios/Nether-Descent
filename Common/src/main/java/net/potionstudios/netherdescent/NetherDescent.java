@@ -4,6 +4,8 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
+import net.potionstudios.netherdescent.config.configs.StructureConfig;
 import net.potionstudios.netherdescent.core.dispenser.DispenseItemBehavior;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
@@ -59,6 +61,8 @@ public class NetherDescent {
      */
     public static void commonSetup() {
         WorldGenerationConfig.init();
+        MobSpawnConfig.reload();
+        StructureConfig.reload();
     }
 
     /**

@@ -10,6 +10,7 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
+import net.potionstudios.netherdescent.config.configs.StructureConfig;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentStructureType;
 import org.jetbrains.annotations.NotNull;
@@ -17,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Optional;
 
-public class BlueNetherFortressStructure extends Structure{
+public class BlueNetherFortressStructure extends Structure {
     public static final WeightedRandomList<MobSpawnSettings.SpawnerData> BLUE_FORTRESS_ENEMIES = WeightedRandomList.create(new MobSpawnSettings.SpawnerData(NetherDescentEntityType.SOUL_BLAZE.get(), 10, 2, 3), new MobSpawnSettings.SpawnerData(EntityType.ZOMBIFIED_PIGLIN, 5, 4, 4), new MobSpawnSettings.SpawnerData(EntityType.WITHER_SKELETON, 8, 5, 5), new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 2, 5, 5), new MobSpawnSettings.SpawnerData(EntityType.MAGMA_CUBE, 3, 4, 4));
 	public static final MapCodec<BlueNetherFortressStructure> CODEC = simpleCodec(BlueNetherFortressStructure::new);
 
@@ -26,7 +27,8 @@ public class BlueNetherFortressStructure extends Structure{
 	}
 
 	@Override
-	public @NotNull Optional<Structure.GenerationStub> findGenerationPoint(Structure.GenerationContext context) {
+	public @NotNull Optional<Structure.GenerationStub> findGenerationPoint(Structure.@NotNull GenerationContext context) {
+        if (!StructureConfig.INSTANCE.config.blue_fortress) return Optional.empty();
 		ChunkPos chunkPos = context.chunkPos();
 		BlockPos blockPos = new BlockPos(chunkPos.getMinBlockX(), 64, chunkPos.getMinBlockZ());
 		return Optional.of(new Structure.GenerationStub(blockPos, structurePiecesBuilder -> generatePieces(structurePiecesBuilder, context)));
