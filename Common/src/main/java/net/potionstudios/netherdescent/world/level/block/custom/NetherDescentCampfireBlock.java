@@ -8,8 +8,8 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.CampfireBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.potionstudios.netherdescent.world.level.block.entities.NetherDescentBlockEntityType;
-import net.potionstudios.netherdescent.world.level.block.entities.NetherDescentCampfireBlockEntity;
+import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
+import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentCampfireBlockEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

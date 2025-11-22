@@ -24,7 +24,7 @@ import net.potionstudios.netherdescent.client.renderer.entity.SoulBlazeRenderer;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.core.particles.FallingParticle;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
-import net.potionstudios.netherdescent.world.level.block.entities.NetherDescentBlockEntityType;
+import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 
 import java.util.function.BiConsumer;

@@ -1,10 +1,10 @@
-package net.potionstudios.netherdescent.world.level.block.entities.sign;
+package net.potionstudios.netherdescent.world.level.block.entity.sign;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.HangingSignBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.potionstudios.netherdescent.world.level.block.entities.NetherDescentBlockEntityType;
+import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
 import org.jetbrains.annotations.NotNull;
 
 public class NetherDescentHangingSignBlockEntity extends HangingSignBlockEntity {

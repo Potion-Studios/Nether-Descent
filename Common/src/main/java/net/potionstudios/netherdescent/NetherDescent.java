@@ -14,7 +14,7 @@ import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.item.alchemy.NetherDescentPotions;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import net.potionstudios.netherdescent.world.level.block.entities.NetherDescentBlockEntityType;
+import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
 import net.potionstudios.netherdescent.data.worldgen.features.NetherDescentFeatures;
 import net.potionstudios.netherdescent.data.worldgen.placement.NetherDescentPlacements;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeature;

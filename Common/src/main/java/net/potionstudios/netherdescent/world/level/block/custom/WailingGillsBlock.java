@@ -15,8 +15,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.potionstudios.netherdescent.world.level.block.entities.NetherDescentBlockEntityType;
-import net.potionstudios.netherdescent.world.level.block.entities.WailingGillsBlockEntity;
+import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
+import net.potionstudios.netherdescent.world.level.block.entity.WailingGillsBlockEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

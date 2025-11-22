@@ -349,6 +349,8 @@ public class ModelGenerators {
                     .texture("end_rod", blockTexture(NetherDescentBlocks.BLAZE_FIRE_ROD.get()))
                     .texture("particle", blockTexture(NetherDescentBlocks.BLAZE_FIRE_ROD.get()))
                     .renderType("cutout"));
+
+			simpleBlockWithItem(NetherDescentBlocks.HORNET_NEST.get(), models().cubeBottomTop(name(NetherDescentBlocks.HORNET_NEST.get()), blockNDTexture(NetherDescentBlocks.HORNET_NEST.get(), "side"), blockNDTexture(NetherDescentBlocks.HORNET_NEST.get(), "bottom"), blockNDTexture(NetherDescentBlocks.HORNET_NEST.get(), "top")));
 		}
 
         private void rodBlock(RodBlock rodBlock, ModelFile modelFile) {

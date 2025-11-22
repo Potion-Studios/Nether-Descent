@@ -1,4 +1,4 @@
-package net.potionstudios.netherdescent.world.level.block.entities;
+package net.potionstudios.netherdescent.world.level.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
