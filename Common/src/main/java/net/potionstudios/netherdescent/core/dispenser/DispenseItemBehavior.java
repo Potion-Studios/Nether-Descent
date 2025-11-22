@@ -17,6 +17,7 @@ public interface DispenseItemBehavior {
 
     static void registerDispenseItemBehavior() {
         DispenserBlock.registerProjectileBehavior(NetherDescentItems.SOUL_FIRE_CHARGE.get());
+        DispenserBlock.registerProjectileBehavior(NetherDescentItems.PENDORITE_FIRE_CHARGE.get());
         DispenserBlock.registerBehavior(NetherDescentBlocks.SOUL_FIRE_ROD.get(), new OptionalDispenseItemBehavior() {
             @Override
             protected @NotNull ItemStack execute(@NotNull BlockSource blockSource, @NotNull ItemStack item) {
