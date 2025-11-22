@@ -1,7 +1,7 @@
 package net.potionstudios.netherdescent.fabric;
 
 import net.potionstudios.netherdescent.NetherDescent;
-import net.potionstudios.netherdescent.config.WorldGenerationConfig;
+import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentSurfaceRules;
 import net.potionstudios.netherdescent.world.level.levelgen.regions.NetherDescentRegion;
 import terrablender.api.Regions;

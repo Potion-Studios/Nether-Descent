@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.potionstudios.netherdescent.core.dispenser.DispenseItemBehavior;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
-import net.potionstudios.netherdescent.config.WorldGenerationConfig;
+import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
 import net.potionstudios.netherdescent.sounds.NetherDescentSounds;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.item.NetherDescentArmorMaterials;

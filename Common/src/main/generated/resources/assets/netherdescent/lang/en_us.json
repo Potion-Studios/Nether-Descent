@@ -153,5 +153,7 @@
   "item.netherdescent.soul_blaze_rod": "Soul Blaze Rod",
   "item.netherdescent.soul_blaze_spawn_egg": "Soul Blaze Spawn Egg",
   "item.netherdescent.soul_fire_charge": "Soul Fire Charge",
-  "itemGroup.netherdescent.netherdescent": "Nether Descent"
+  "itemGroup.netherdescent.netherdescent": "Nether Descent",
+  "netherdescent.commands.reload.spawn.success": "Successfully reloaded Mob Spawn config",
+  "netherdescent.commands.reload.success": "Successfully reloaded all configs"
 }

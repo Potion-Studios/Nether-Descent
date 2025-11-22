@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
-import net.potionstudios.netherdescent.config.WorldGenerationConfig;
+import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 import terrablender.api.Region;
 import terrablender.api.RegionType;

@@ -41,6 +41,8 @@ public class LangGenerator extends LanguageProvider {
         add(advancement("adventure.root.description"), "The root of all things Nether Descent adventure");
         add(advancement("adventure.final_descent.title"), "Final Descent");
         add(advancement("adventure.final_descent.description"), "Explore all of the Nether Descent biomes");
+        add("netherdescent.commands.reload.success", "Successfully reloaded all configs");
+        add("netherdescent.commands.reload.spawn.success", "Successfully reloaded Mob Spawn config");
 	}
 
     private static String advancement(String key) {

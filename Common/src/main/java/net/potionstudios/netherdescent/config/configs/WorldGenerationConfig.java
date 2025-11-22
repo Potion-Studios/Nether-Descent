@@ -1,7 +1,8 @@
-package net.potionstudios.netherdescent.config;
+package net.potionstudios.netherdescent.config.configs;
 
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
+import net.potionstudios.netherdescent.config.ConfigLoader;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 
 import java.util.LinkedHashMap;

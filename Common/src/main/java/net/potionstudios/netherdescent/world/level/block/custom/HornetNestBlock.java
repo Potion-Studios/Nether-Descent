@@ -22,9 +22,9 @@ public class HornetNestBlock extends BaseEntityBlock {
 		return CODEC;
 	}
 
-	private boolean nestContainsHornets(Level level, BlockPos pos) {
-		return level.getBlockEntity(pos) instanceof HornetNestBlockEntity hornetNestBlockEntity ? hornetNestBlockEntity.isEmpty() : false;
-	}
+//	private boolean nestContainsHornets(Level level, BlockPos pos) {
+//		return level.getBlockEntity(pos) instanceof HornetNestBlockEntity hornetNestBlockEntity ? hornetNestBlockEntity.isEmpty() : false;
+//	}
 
 	@Override
 	protected @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
