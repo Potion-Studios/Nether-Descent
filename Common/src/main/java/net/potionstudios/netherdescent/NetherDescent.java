@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.config.configs.StructureConfig;
+import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
 import net.potionstudios.netherdescent.core.dispenser.DispenseItemBehavior;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
@@ -38,6 +39,7 @@ public class NetherDescent {
      * Initializes the mod.
      */
     public static void init() {
+	    NetherDescentDataComponents.dataComponents();
         NetherDescentItems.items();
         NetherDescentBlocks.blocks();
         NetherDescentBlockEntityType.blockEntities();
