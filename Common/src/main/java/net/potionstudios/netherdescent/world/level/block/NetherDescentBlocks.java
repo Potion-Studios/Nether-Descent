@@ -103,7 +103,7 @@ public class NetherDescentBlocks {
 
     public static final Supplier<NetherDescentFeatureDoublePlantBlock> TALL_CRIMSON_FUNGI = registerBlockItem("tall_crimson_fungi", () -> new NetherDescentFeatureDoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_FUNGUS), null));
 
-	public static final Supplier<HornetNestBlock> HORNET_NEST = registerBlockItem("hornet_nest", () -> new HornetNestBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEE_NEST)));
+	public static final Supplier<HornetNestBlock> HORNET_NEST = registerBlock("hornet_nest", () -> new HornetNestBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEE_NEST)));
 
     public static Supplier<Block> registerBasicBlockWithItem(String key, BlockBehaviour.Properties properties) {
         return registerCubeAllBlockItem(key, () -> new Block(properties));

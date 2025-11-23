@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -19,6 +20,7 @@ import net.minecraft.util.VisibleForDebug;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BeehiveBlockEntity;
@@ -82,9 +84,20 @@ public class HornetNestBlockEntity extends BlockEntity {
 		return this.stored.size() == 3;
 	}
 
-	private List<Entity> releaseAllOccupants(BlockState state, BeehiveBlockEntity.BeeReleaseStatus releaseStatus) {
+    public void emptyAllLivingFromHive(@Nullable Player player, BlockState state, HornetReleaseStatus releaseStatus) {
+        List<Entity> list = this.releaseAllOccupants(state, releaseStatus);
+        if (player != null) {
+            for (Entity entity : list) {
+                if (entity instanceof Bee bee && player.position().distanceToSqr(entity.position()) <= 16.0) {
+                        bee.setStayOutOfHiveCountdown(400);
+                }
+            }
+        }
+    }
+
+	private List<Entity> releaseAllOccupants(BlockState state, HornetReleaseStatus releaseStatus) {
 		List<Entity> list = Lists.newArrayList();
-		//this.stored.removeIf(beeData -> releaseOccupant(this.level, this.worldPosition, state, beeData.toOccupant(), list, releaseStatus, this.savedFlowerPos));
+		this.stored.removeIf(beeData -> releaseOccupant(this.level, this.worldPosition, beeData.toOccupant(), list, releaseStatus, this.savedFlowerPos));
 		if (!list.isEmpty())
 			super.setChanged();
 
@@ -123,6 +136,48 @@ public class HornetNestBlockEntity extends BlockEntity {
 	public void storeHornet(Occupant occupant) {
 		this.stored.add(new HornetData(occupant));
 	}
+
+    private static boolean releaseOccupant(
+            Level level,
+            BlockPos pos,
+            Occupant occupant,
+            @Nullable List<Entity> storedInHives,
+            HornetReleaseStatus releaseStatus,
+            @Nullable BlockPos storedFlowerPos
+    ) {
+        if ((level.isNight() || level.isRaining()) && releaseStatus != HornetReleaseStatus.EMERGENCY) {
+            return false;
+        } else {
+            BlockPos blockPos = pos.below();
+            boolean bl = !level.getBlockState(blockPos).getCollisionShape(level, blockPos).isEmpty();
+            if (bl && releaseStatus != HornetReleaseStatus.EMERGENCY) {
+                return false;
+            } else {
+                Entity entity = occupant.createEntity(level, blockPos);
+                if (entity != null) {
+                    if (entity instanceof Hornet hornet) {
+                        if (storedFlowerPos != null && !hornet.hasSavedFlowerPos() && level.getRandom().nextFloat() < 0.9F)
+                            hornet.setSavedFlowerPos(storedFlowerPos);
+
+                        if (storedInHives != null)
+                            storedInHives.add(hornet);
+
+                        float f = entity.getBbWidth();
+                        double d = bl ? 0.0 : 0.55 + f / 2.0F;
+                        double e = pos.getX() + 0.5 + d * Direction.DOWN.getStepX();
+                        double g = pos.getY() + 0.5 - entity.getBbHeight() / 2.0F;
+                        double h = pos.getZ() + 0.5 + d * Direction.DOWN.getStepZ();
+                        entity.moveTo(e, g, h, entity.getYRot(), entity.getXRot());
+                    }
+
+                    level.playSound(null, pos, SoundEvents.BEEHIVE_EXIT, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(entity, level.getBlockState(pos)));
+                    return level.addFreshEntity(entity);
+                }
+            }
+        }
+        return false;
+    }
 
 	@Override
 	protected void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
@@ -186,6 +241,11 @@ public class HornetNestBlockEntity extends BlockEntity {
 			return new Occupant(this.occupant.entityData, this.ticksInNest, this.occupant.minTicksInNest);
 		}
 	}
+
+    public enum HornetReleaseStatus {
+        HORNET_RELEASED,
+        EMERGENCY;
+    }
 
 	public record Occupant(CustomData entityData, int ticksInNest, int minTicksInNest) {
 		public static final Codec<Occupant> CODEC = RecordCodecBuilder.create(
