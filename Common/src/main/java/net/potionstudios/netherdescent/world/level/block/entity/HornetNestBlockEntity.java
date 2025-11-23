@@ -34,6 +34,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class HornetNestBlockEntity extends BlockEntity {
@@ -178,6 +179,32 @@ public class HornetNestBlockEntity extends BlockEntity {
         }
         return false;
     }
+
+	private static void tickOccupants(Level level, BlockPos pos, BlockState state, List<HornetData> data, @Nullable BlockPos savedFlowerPos) {
+		boolean bl = false;
+		Iterator<HornetData> iterator = data.iterator();
+
+		while (iterator.hasNext()) {
+			HornetData hornetData = iterator.next();
+			if (hornetData.tick())
+				if (releaseOccupant(level, pos, hornetData.toOccupant(), null, HornetReleaseStatus.HORNET_RELEASED, savedFlowerPos)) {
+					bl = true;
+					iterator.remove();
+				}
+		}
+
+		if (bl) setChanged(level, pos, state);
+	}
+
+	public static void serverTick(Level level, BlockPos pos, BlockState state, HornetNestBlockEntity hornetNest) {
+		tickOccupants(level, pos, state, hornetNest.stored, hornetNest.savedFlowerPos);
+		if (!hornetNest.stored.isEmpty() && level.getRandom().nextDouble() < 0.005) {
+			double d = pos.getX() + 0.5;
+			double e = pos.getY();
+			double f = pos.getZ() + 0.5;
+			level.playSound(null, d, e, f, SoundEvents.BEEHIVE_WORK, SoundSource.BLOCKS, 1.0F, 1.0F);
+		}
+	}
 
 	@Override
 	protected void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {

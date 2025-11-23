@@ -27,6 +27,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
 import net.potionstudios.netherdescent.world.entity.animal.Hornet;
 import net.potionstudios.netherdescent.world.level.block.entity.HornetNestBlockEntity;
+import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -88,7 +89,7 @@ public class HornetNestBlock extends BaseEntityBlock {
 
     @Override
     public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> blockEntityType) {
-        return super.getTicker(level, state, blockEntityType);
+        return level.isClientSide() ? null : createTickerHelper(blockEntityType, NetherDescentBlockEntityType.HORNET_NEST.get(), HornetNestBlockEntity::serverTick);
     }
 
     @Override
