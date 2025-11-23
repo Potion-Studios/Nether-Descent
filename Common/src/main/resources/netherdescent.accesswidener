@@ -34,3 +34,5 @@ accessible method net/minecraft/data/advancements/packs/VanillaAdventureAdvancem
 accessible method net/minecraft/client/particle/CherryParticle <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/client/particle/SpriteSet;)V
 
 accessible method net/minecraft/world/entity/monster/Blaze setCharged (Z)V
+
+accessible method net/minecraft/world/entity/ai/village/poi/PoiTypes getBlockStates (Lnet/minecraft/world/level/block/Block;)Ljava/util/Set;

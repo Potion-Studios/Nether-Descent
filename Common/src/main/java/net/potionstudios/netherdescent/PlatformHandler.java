@@ -4,9 +4,12 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.village.poi.PoiType;
+import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -124,6 +127,18 @@ public interface PlatformHandler {
 	 * @return Supplier of the CreativeModeTab
 	 */
 	Supplier<CreativeModeTab> createCreativeTab(String name, Supplier<ItemStack> icon, ArrayList<Supplier<? extends Item>>... items);
+
+	/**
+	 * Register POI Type
+	 * @see PoiType
+	 * @param id The id/name of the POI Type
+	 * @param block The block to be used for the POI Type
+	 * @param validRange The max range of the POI Type
+	 * @return Supplier of the PoiType
+	 */
+	default Supplier<PoiType> registerPOIType(String id, Supplier<? extends Block> block, int maxTickets, int validRange) {
+		return register(BuiltInRegistries.POINT_OF_INTEREST_TYPE, id, () -> new PoiType(PoiTypes.getBlockStates(block.get()), maxTickets, validRange));
+	}
 
 	private static <T> T load(Class<T> clazz) {
 		final T loadedService = ServiceLoader.load(clazz)
