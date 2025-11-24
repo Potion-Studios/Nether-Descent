@@ -36,6 +36,10 @@
     "minecraft": ">=1.21.1",
     "terrablender": ">=4.1.0.0"
   },
+  "suggests": {
+    "WTHIT": ">=8.15.0",
+    "fabric-permissions-api-v0": "*"
+  },
   "custom": {
     "modmenu": {
       "links": {

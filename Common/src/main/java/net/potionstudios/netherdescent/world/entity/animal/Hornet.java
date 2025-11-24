@@ -1,18 +1,53 @@
 package net.potionstudios.netherdescent.world.entity.animal;
 
+import com.google.common.collect.Lists;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.PoiTypeTags;
+import net.minecraft.util.VisibleForDebug;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.village.poi.PoiManager;
+import net.minecraft.world.entity.ai.village.poi.PoiRecord;
 import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.phys.AABB;
+import net.potionstudios.netherdescent.world.entity.ai.village.poi.NetherDescentPoiTypes;
+import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
+import net.potionstudios.netherdescent.world.level.block.entity.HornetNestBlockEntity;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Comparator;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Hornet extends Bee {
     public Hornet(EntityType<? extends Bee> entityType, Level level) {
         super(entityType, level);
-	    this.setPathfindingMalus(PathType.DANGER_FIRE, 0.0F);
+        this.setPathfindingMalus(PathType.DANGER_FIRE, 0.0F);
+    }
+
+    HornetGoToNestGoal goToNestGoal;
+
+    @Override
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.removeGoal(goToHiveGoal);
+        this.goalSelector.addGoal(2, new HornetEnterNestGoal());
+        this.goalSelector.addGoal(5, new HornetLocateNestGoal());
+        goToNestGoal = new HornetGoToNestGoal();
+        this.goalSelector.addGoal(5, goToNestGoal);
     }
 
     public static AttributeSupplier.@NotNull Builder createAttributes() {
@@ -22,5 +57,220 @@ public class Hornet extends Bee {
                 .add(Attributes.MOVEMENT_SPEED, 0.3F)
                 .add(Attributes.ATTACK_DAMAGE, 3.0)
                 .add(Attributes.FOLLOW_RANGE, 48.0);
+    }
+
+    private boolean doesNestSpace(BlockPos hivePos) {
+        BlockEntity blockEntity = this.level().getBlockEntity(hivePos);
+        if (blockEntity instanceof HornetNestBlockEntity) {
+            return !((HornetNestBlockEntity)blockEntity).isFull();
+        } else {
+            return false;
+        }
+    }
+
+    abstract class BaseHornetGoal extends Goal {
+        public abstract boolean canHornetUse();
+
+        public abstract boolean canHornetContinueToUse();
+
+        @Override
+        public boolean canUse() {
+            return this.canHornetUse() && !Hornet.this.isAngry();
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return this.canHornetContinueToUse() && !Hornet.this.isAngry();
+        }
+    }
+
+    class HornetEnterNestGoal extends BaseHornetGoal {
+        @Override
+        public void start() {
+            if (Hornet.this.level().getBlockEntity(Hornet.this.getHivePos()) instanceof HornetNestBlockEntity hornetNestBlockEntity) {
+                hornetNestBlockEntity.addOccupant(Hornet.this);
+            }
+        }
+
+        @Override
+        public boolean canHornetUse() {
+            if (Hornet.this.hasHive()
+                    && Hornet.this.wantsToEnterHive()
+                    && Hornet.this.getHivePos().closerToCenterThan(Hornet.this.position(), 2.0)
+                    && Hornet.this.level().getBlockEntity(Hornet.this.getHivePos()) instanceof HornetNestBlockEntity hornetNestBlockEntity) {
+                if (!hornetNestBlockEntity.isFull()) {
+                    return true;
+                }
+
+                Hornet.this.setHivePos(null);
+            }
+
+            return false;
+        }
+
+        @Override
+        public boolean canHornetContinueToUse() {
+            return false;
+        }
+    }
+
+    boolean closerThan(BlockPos pos, int distance) {
+        return pos.closerThan(this.blockPosition(), distance);
+    }
+
+    @VisibleForDebug
+    public class HornetGoToNestGoal extends BaseHornetGoal {
+        public static final int MAX_TRAVELLING_TICKS = 600;
+        int travellingTicks = Hornet.this.level().random.nextInt(10);
+        private static final int MAX_BLACKLISTED_TARGETS = 3;
+        final List<BlockPos> blacklistedTargets = Lists.<BlockPos>newArrayList();
+        @Nullable
+        private Path lastPath;
+        private static final int TICKS_BEFORE_HIVE_DROP = 60;
+        private int ticksStuck;
+
+        HornetGoToNestGoal() {
+            this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+        }
+
+        @Override
+        public boolean canHornetUse() {
+            return Hornet.this.getHivePos() != null
+                    && !Hornet.this.hasRestriction()
+                    && Hornet.this.wantsToEnterHive()
+                    && !this.hasReachedTarget(Hornet.this.getHivePos())
+                    && Hornet.this.level().getBlockState(Hornet.this.getHivePos()).is(NetherDescentBlocks.HORNET_NEST.get());
+        }
+
+        @Override
+        public boolean canHornetContinueToUse() {
+            return this.canHornetUse();
+        }
+
+        @Override
+        public void start() {
+            this.travellingTicks = 0;
+            this.ticksStuck = 0;
+            super.start();
+        }
+
+        @Override
+        public void stop() {
+            this.travellingTicks = 0;
+            this.ticksStuck = 0;
+            Hornet.this.navigation.stop();
+            Hornet.this.navigation.resetMaxVisitedNodesMultiplier();
+        }
+
+        @Override
+        public void tick() {
+            if (Hornet.this.getHivePos() != null) {
+                this.travellingTicks++;
+                if (this.travellingTicks > this.adjustedTickDelay(600)) {
+                    this.dropAndBlacklistHive();
+                } else if (!Hornet.this.navigation.isInProgress()) {
+                    if (!Hornet.this.closerThan(Hornet.this.getHivePos(), 16)) {
+                        if (Hornet.this.isTooFarAway(Hornet.this.getHivePos())) {
+                            this.dropHive();
+                        } else {
+                            Hornet.this.pathfindRandomlyTowards(Hornet.this.getHivePos());
+                        }
+                    } else {
+                        boolean bl = this.pathfindDirectlyTowards(Hornet.this.getHivePos());
+                        if (!bl) {
+                            this.dropAndBlacklistHive();
+                        } else if (this.lastPath != null && Hornet.this.navigation.getPath().sameAs(this.lastPath)) {
+                            this.ticksStuck++;
+                            if (this.ticksStuck > 60) {
+                                this.dropHive();
+                                this.ticksStuck = 0;
+                            }
+                        } else {
+                            this.lastPath = Hornet.this.navigation.getPath();
+                        }
+                    }
+                }
+            }
+        }
+
+        private boolean pathfindDirectlyTowards(BlockPos pos) {
+            Hornet.this.navigation.setMaxVisitedNodesMultiplier(10.0F);
+            Hornet.this.navigation.moveTo(pos.getX(), pos.getY(), pos.getZ(), 2, 1.0);
+            return Hornet.this.navigation.getPath() != null && Hornet.this.navigation.getPath().canReach();
+        }
+
+        boolean isTargetBlacklisted(BlockPos pos) {
+            return this.blacklistedTargets.contains(pos);
+        }
+
+        private void blacklistTarget(BlockPos pos) {
+            this.blacklistedTargets.add(pos);
+
+            while (this.blacklistedTargets.size() > 3) {
+                this.blacklistedTargets.remove(0);
+            }
+        }
+
+        void clearBlacklist() {
+            this.blacklistedTargets.clear();
+        }
+
+        private void dropAndBlacklistHive() {
+            if (Hornet.this.getHivePos() != null) {
+                this.blacklistTarget(Hornet.this.getHivePos());
+            }
+
+            this.dropHive();
+        }
+
+        private void dropHive() {
+            Hornet.this.setHivePos(null);
+            Hornet.this.remainingCooldownBeforeLocatingNewHive = 200;
+        }
+
+        private boolean hasReachedTarget(BlockPos pos) {
+            if (Hornet.this.closerThan(pos, 2)) {
+                return true;
+            } else {
+                Path path = Hornet.this.navigation.getPath();
+                return path != null && path.getTarget().equals(pos) && path.canReach() && path.isDone();
+            }
+        }
+    }
+
+    class HornetLocateNestGoal extends BaseHornetGoal {
+        @Override
+        public boolean canHornetUse() {
+            return Hornet.this.remainingCooldownBeforeLocatingNewHive == 0 && !Hornet.this.hasHive() && Hornet.this.wantsToEnterHive();
+        }
+
+        @Override
+        public boolean canHornetContinueToUse() {
+            return false;
+        }
+
+        @Override
+        public void start() {
+            Hornet.this.remainingCooldownBeforeLocatingNewHive = 200;
+            List<BlockPos> list = this.findNearbyHivesWithSpace();
+            if (!list.isEmpty()) {
+                for (BlockPos blockPos : list) {
+                    if (!Hornet.this.goToNestGoal.isTargetBlacklisted(blockPos)) {
+                        Hornet.this.setHivePos(blockPos);
+                        return;
+                    }
+                }
+
+                Hornet.this.goToNestGoal.clearBlacklist();
+                Hornet.this.setHivePos(list.getFirst());
+            }
+        }
+
+        private List<BlockPos> findNearbyHivesWithSpace() {
+            BlockPos blockPos = Hornet.this.blockPosition();
+            PoiManager poiManager = ((ServerLevel)Hornet.this.level()).getPoiManager();
+            Stream<PoiRecord> stream = poiManager.getInRange((holder) -> holder.is(NetherDescentPoiTypes.HORNET_NEST), blockPos, 20, PoiManager.Occupancy.ANY);
+            return stream.map(PoiRecord::getPos).filter((pos) -> level().getBlockEntity(pos) instanceof HornetNestBlockEntity hornetNestBlockEntity && !hornetNestBlockEntity.isFull()).sorted(Comparator.comparingDouble((blockPos2) -> blockPos2.distSqr(blockPos))).collect(Collectors.toList());
+        }
     }
 }

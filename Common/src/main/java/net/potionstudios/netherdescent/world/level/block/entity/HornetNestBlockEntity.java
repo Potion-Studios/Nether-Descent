@@ -69,7 +69,7 @@ public class HornetNestBlockEntity extends BlockEntity {
 			"leash",
 			"UUID"
 	);
-	private final List<HornetData> stored = Lists.newArrayList();
+	public final List<HornetData> stored = Lists.newArrayList();
 	@Nullable
 	private BlockPos savedFlowerPos;
 
@@ -251,7 +251,7 @@ public class HornetNestBlockEntity extends BlockEntity {
 		return this.stored.stream().map(HornetData::toOccupant).toList();
 	}
 
-	static class HornetData {
+	public static class HornetData {
 		private final Occupant occupant;
 		private int ticksInNest;
 

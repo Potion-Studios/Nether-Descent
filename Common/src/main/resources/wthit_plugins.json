@@ -1,0 +1,8 @@
+{
+  "netherdescent:plugin": {
+	"entrypoints": {
+        "common": "net.potionstudios.netherdescent.compat.wthit.NetherDescentWTHITPlugin",
+        "client": "net.potionstudios.netherdescent.compat.wthit.NetherDescentWTHITPlugin"
+    }
+  }
+}
