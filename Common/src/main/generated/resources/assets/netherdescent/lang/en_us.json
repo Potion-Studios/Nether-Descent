@@ -138,6 +138,7 @@
   "entity.netherdescent.pendorite_blaze": "Pendorite Blaze",
   "entity.netherdescent.small_soul_fireball": "Small Soul Fireball",
   "entity.netherdescent.soul_blaze": "Soul Blaze",
+  "entity.netherdescent.soul_ghast": "Soul Ghast",
   "item.netherdescent.blue_nether_brick": "Blue Nether Brick",
   "item.netherdescent.crimson_berries": "Crimson Berries",
   "item.netherdescent.crimson_berry_pie": "Crimson Berry Pie",
@@ -153,6 +154,7 @@
   "item.netherdescent.soul_blaze_rod": "Soul Blaze Rod",
   "item.netherdescent.soul_blaze_spawn_egg": "Soul Blaze Spawn Egg",
   "item.netherdescent.soul_fire_charge": "Soul Fire Charge",
+  "item.netherdescent.soul_ghast_spawn_egg": "Soul Ghast Spawn Egg",
   "itemGroup.netherdescent.netherdescent": "Nether Descent",
   "netherdescent.commands.reload.spawn.success": "Successfully reloaded Mob Spawn config",
   "netherdescent.commands.reload.success": "Successfully reloaded all configs"

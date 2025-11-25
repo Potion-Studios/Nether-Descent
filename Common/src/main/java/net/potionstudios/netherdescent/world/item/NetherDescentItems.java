@@ -48,6 +48,7 @@ public class NetherDescentItems {
     public static final Supplier<SpawnEggItem> SOUL_BLAZE_SPAWN_EGG = registerSimpleItem("soul_blaze_spawn_egg", PlatformHandler.PLATFORM_HANDLER.createSpawnEgg(NetherDescentEntityType.SOUL_BLAZE, 2467756, 13958911));
 	public static final Supplier<SpawnEggItem> PENDORITE_BLAZE_SPAWN_EGG = registerSimpleItem("pendorite_blaze_spawn_egg", PlatformHandler.PLATFORM_HANDLER.createSpawnEgg(NetherDescentEntityType.PENDORITE_BLAZE, 3679595, 10005478));
     public static final Supplier<SpawnEggItem> HORNET_SPAWN_EGG = registerSimpleItem("hornet_spawn_egg", PlatformHandler.PLATFORM_HANDLER.createSpawnEgg(NetherDescentEntityType.HORNET, 362174354, 15965792));
+    public static final Supplier<SpawnEggItem> SOUL_GHAST_SPAWN_EGG = registerSimpleItem("soul_ghast_spawn_egg", PlatformHandler.PLATFORM_HANDLER.createSpawnEgg(NetherDescentEntityType.SOUL_GHAST, 611926,3318177));
 
     public static <I extends Item> Supplier<I> registerSimpleItem(String id, Supplier<I> item) {
         Supplier<I> supplier = registerItem(id, item);
