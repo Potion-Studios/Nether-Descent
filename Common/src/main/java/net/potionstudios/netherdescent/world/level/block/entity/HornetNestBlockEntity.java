@@ -166,7 +166,7 @@ public class HornetNestBlockEntity extends BlockEntity {
                         float f = entity.getBbWidth();
                         double d = bl ? 0.0 : 0.55 + f / 2.0F;
                         double e = pos.getX() + 0.5 + d * Direction.DOWN.getStepX();
-                        double g = pos.getY() + 0.5 - entity.getBbHeight() / 2.0F;
+                        double g = pos.getY() - 0.5 - entity.getBbHeight() / 2.0F;
                         double h = pos.getZ() + 0.5 + d * Direction.DOWN.getStepZ();
                         entity.moveTo(e, g, h, entity.getYRot(), entity.getXRot());
                     }

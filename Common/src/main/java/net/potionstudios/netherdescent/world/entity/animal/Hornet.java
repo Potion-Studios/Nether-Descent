@@ -3,23 +3,21 @@ package net.potionstudios.netherdescent.world.entity.animal;
 import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.PoiTypeTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.VisibleForDebug;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiRecord;
 import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.level.pathfinder.PathType;
-import net.minecraft.world.phys.AABB;
 import net.potionstudios.netherdescent.world.entity.ai.village.poi.NetherDescentPoiTypes;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.entity.HornetNestBlockEntity;
@@ -42,12 +40,18 @@ public class Hornet extends Bee {
 
     @Override
     protected void registerGoals() {
-        super.registerGoals();
-        this.goalSelector.removeGoal(goToHiveGoal);
+		this.goalSelector.addGoal(1, new HornetEnterHiveGoal());
         this.goalSelector.addGoal(2, new HornetEnterNestGoal());
-        this.goalSelector.addGoal(5, new HornetLocateNestGoal());
+	    this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, itemStack -> itemStack.is(ItemTags.BEE_FOOD), false));
+	    this.beePollinateGoal = new Bee.BeePollinateGoal();
+	    this.goalSelector.addGoal(4, this.beePollinateGoal);
+	    this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.25));
+	    this.goalSelector.addGoal(5, new HornetLocateNestGoal());
         goToNestGoal = new HornetGoToNestGoal();
         this.goalSelector.addGoal(5, goToNestGoal);
+	    this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.25));
+	    this.goalSelector.addGoal(9, new FloatGoal(this));
+	    this.targetSelector.addGoal(3, new ResetUniversalAngerTargetGoal<>(this, true));
     }
 
     public static AttributeSupplier.@NotNull Builder createAttributes() {
@@ -67,6 +71,13 @@ public class Hornet extends Bee {
             return false;
         }
     }
+
+	public boolean wantsToEnterNest() {
+		if (this.stayOutOfHiveCountdown <= 0 && this.getTarget() == null) {
+			return this.isTiredOfLookingForNectar() || level().isRaining() || level().isNight() || this.hasNectar();
+		}
+		return false;
+	}
 
     abstract class BaseHornetGoal extends Goal {
         public abstract boolean canHornetUse();
@@ -95,7 +106,7 @@ public class Hornet extends Bee {
         @Override
         public boolean canHornetUse() {
             if (Hornet.this.hasHive()
-                    && Hornet.this.wantsToEnterHive()
+                    && Hornet.this.wantsToEnterNest()
                     && Hornet.this.getHivePos().closerToCenterThan(Hornet.this.position(), 2.0)
                     && Hornet.this.level().getBlockEntity(Hornet.this.getHivePos()) instanceof HornetNestBlockEntity hornetNestBlockEntity) {
                 if (!hornetNestBlockEntity.isFull()) {
@@ -273,4 +284,30 @@ public class Hornet extends Bee {
             return stream.map(PoiRecord::getPos).filter((pos) -> level().getBlockEntity(pos) instanceof HornetNestBlockEntity hornetNestBlockEntity && !hornetNestBlockEntity.isFull()).sorted(Comparator.comparingDouble((blockPos2) -> blockPos2.distSqr(blockPos))).collect(Collectors.toList());
         }
     }
+
+	class HornetEnterHiveGoal extends BaseHornetGoal {
+
+		@Override
+		public boolean canHornetUse() {
+			if (Hornet.this.hasHive() && Hornet.this.wantsToEnterNest() && Hornet.this.getHivePos().closerToCenterThan(Hornet.this.position(), 2.0) && Hornet.this.level().getBlockEntity(Hornet.this.getHivePos()) instanceof HornetNestBlockEntity hornetNestBlockEntity) {
+				if (!hornetNestBlockEntity.isFull()) {
+					return true;
+				}
+
+				Hornet.this.setHivePos(null);
+			}
+			return false;
+		}
+
+		@Override
+		public boolean canHornetContinueToUse() {
+			return false;
+		}
+
+		@Override
+		public void start() {
+			if (Hornet.this.level().getBlockEntity(Hornet.this.getHivePos()) instanceof HornetNestBlockEntity hornetNestBlockEntity)
+				hornetNestBlockEntity.addOccupant(Hornet.this);
+		}
+	}
 }

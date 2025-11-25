@@ -36,10 +36,13 @@ accessible method net/minecraft/client/particle/CherryParticle <init> (Lnet/mine
 accessible method net/minecraft/world/entity/monster/Blaze setCharged (Z)V
 
 accessible method net/minecraft/world/entity/animal/Bee wantsToEnterHive ()Z
-accessible class net/minecraft/world/entity/animal/Bee$BeeEnterHiveGoal
 accessible method net/minecraft/world/entity/animal/Bee isTooFarAway (Lnet/minecraft/core/BlockPos;)Z
 accessible method net/minecraft/world/entity/animal/Bee pathfindRandomlyTowards (Lnet/minecraft/core/BlockPos;)V
 accessible field net/minecraft/world/entity/animal/Bee remainingCooldownBeforeLocatingNewHive I
-accessible field net/minecraft/world/entity/animal/Bee goToHiveGoal Lnet/minecraft/world/entity/animal/Bee$BeeGoToHiveGoal;
+accessible field net/minecraft/world/entity/animal/Bee stayOutOfHiveCountdown I
+accessible method net/minecraft/world/entity/animal/Bee isTiredOfLookingForNectar ()Z
+accessible class net/minecraft/world/entity/animal/Bee$BeePollinateGoal
+accessible method net/minecraft/world/entity/animal/Bee$BeePollinateGoal <init> (Lnet/minecraft/world/entity/animal/Bee;)V
+accessible field net/minecraft/world/entity/animal/Bee beePollinateGoal Lnet/minecraft/world/entity/animal/Bee$BeePollinateGoal;
 
 accessible method net/minecraft/world/entity/ai/village/poi/PoiTypes getBlockStates (Lnet/minecraft/world/level/block/Block;)Ljava/util/Set;
