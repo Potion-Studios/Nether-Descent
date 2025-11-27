@@ -69,15 +69,15 @@
       "charge": 0.7,
       "energy_budget": 0.15
     },
-    "minecraft:ghast": {
-      "charge": 0.7,
-      "energy_budget": 0.15
-    },
     "minecraft:skeleton": {
       "charge": 0.7,
       "energy_budget": 0.15
     },
     "minecraft:strider": {
+      "charge": 0.7,
+      "energy_budget": 0.15
+    },
+    "netherdescent:soul_ghast": {
       "charge": 0.7,
       "energy_budget": 0.15
     }
@@ -102,7 +102,7 @@
         "weight": 20
       },
       {
-        "type": "minecraft:ghast",
+        "type": "netherdescent:soul_ghast",
         "maxCount": 4,
         "minCount": 4,
         "weight": 50

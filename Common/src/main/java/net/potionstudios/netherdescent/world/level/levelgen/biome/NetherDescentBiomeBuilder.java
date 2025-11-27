@@ -19,6 +19,7 @@ import net.potionstudios.netherdescent.data.worldgen.placement.NetherDescentOreP
 import net.potionstudios.netherdescent.sounds.NetherDescentSounds;
 import net.potionstudios.netherdescent.data.worldgen.placement.NetherDescentPlacements;
 import net.potionstudios.netherdescent.data.worldgen.placement.NetherDescentTreePlacements;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 
 public class NetherDescentBiomeBuilder {
 
@@ -112,11 +113,11 @@ public class NetherDescentBiomeBuilder {
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
 	    addSpawn(spawnSettings, EntityType.SKELETON, 20, 5, 5);
-	    addSpawn(spawnSettings, EntityType.GHAST, 50, 4, 4);
+	    addSpawn(spawnSettings, NetherDescentEntityType.SOUL_GHAST.get(), 50, 4, 4);
 	    addSpawn(spawnSettings, EntityType.ENDERMAN, 1, 4, 4);
 	    addSpawn(spawnSettings, EntityType.STRIDER, 60, 1, 2);
 	    spawnSettings.addMobCharge(EntityType.SKELETON, 0.7, 0.15)
-			    .addMobCharge(EntityType.GHAST, 0.7, 0.15)
+			    .addMobCharge(NetherDescentEntityType.SOUL_GHAST.get(), 0.7, 0.15)
 			    .addMobCharge(EntityType.ENDERMAN, 0.7, 0.15)
 			    .addMobCharge(EntityType.STRIDER, 0.7, 0.15);
 
