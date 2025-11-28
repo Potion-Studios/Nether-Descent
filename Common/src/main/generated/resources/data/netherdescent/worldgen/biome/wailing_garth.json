@@ -60,7 +60,8 @@
     [],
     [
       "minecraft:nether_sprouts",
-      "netherdescent:wailing_garth_vegetation"
+      "netherdescent:wailing_garth_vegetation",
+      "netherdescent:wailing_bulb_blossom"
     ]
   ],
   "has_precipitation": false,

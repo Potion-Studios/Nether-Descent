@@ -7,6 +7,7 @@ import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
+import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.commands.NetherDescentCommands;
 import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
@@ -28,6 +29,7 @@ public class NetherDescentNeoForge {
         eventBus.addListener(this::onInitialize);
         eventBus.addListener((FMLLoadCompleteEvent event) -> event.enqueueWork(NetherDescent::postInit));
         eventBus.addListener((EntityAttributeCreationEvent event) -> NetherDescentEntityType.registerEntityAttributes(event::put));
+        eventBus.addListener((RegisterSpawnPlacementsEvent event) -> NetherDescentEntityType.registerSpawnPlacements((consumer) -> event.register(consumer.entityType(), consumer.spawnPlacementType(), consumer.heightmapType(), consumer.predicate(), RegisterSpawnPlacementsEvent.Operation.OR)));
         EVENT_BUS.addListener((RegisterCommandsEvent event) -> NetherDescentCommands.register(event.getDispatcher()::register));
         VanillaCompatNeoForge.registerVanillaCompatEvents(EVENT_BUS);
     }

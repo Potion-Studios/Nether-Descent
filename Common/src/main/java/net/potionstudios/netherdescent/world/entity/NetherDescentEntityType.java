@@ -1,11 +1,10 @@
 package net.potionstudios.netherdescent.world.entity;
 
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
 import net.potionstudios.netherdescent.world.entity.animal.Hornet;
@@ -15,6 +14,7 @@ import net.potionstudios.netherdescent.world.entity.monster.SoulGhast;
 import net.potionstudios.netherdescent.world.entity.projectile.SmallSoulFireball;
 
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class NetherDescentEntityType {
@@ -28,6 +28,15 @@ public class NetherDescentEntityType {
     private static <E extends Entity> Supplier<EntityType<E>> createEntity(String id, EntityType.Builder<E> Builder) {
         return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.ENTITY_TYPE, id, () -> Builder.build(id));
     }
+
+    @SuppressWarnings("unchecked")
+    public static <T extends Mob> void registerSpawnPlacements(Consumer<SpawnPlacement<T>> consumer) {
+        consumer.accept((SpawnPlacement<T>) new SpawnPlacement<>(SOUL_GHAST.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SoulGhast::checkSoulGhastSpawnRules));
+        consumer.accept((SpawnPlacement<T>) new SpawnPlacement<>(SOUL_BLAZE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules));
+    }
+
+    public record SpawnPlacement<T extends Mob>(EntityType<T> entityType, SpawnPlacementType spawnPlacementType, Heightmap.Types heightmapType, SpawnPlacements.SpawnPredicate<T> predicate) {}
+
 
     /**
      * Registers Entity Attributes
