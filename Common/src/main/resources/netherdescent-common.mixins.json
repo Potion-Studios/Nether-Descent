@@ -4,11 +4,12 @@
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "client": [
+	"client.EntityRenderDispatcherMixin"
   ],
   "mixins": [
-    "NaturalSpawnerMixin"
+	"NaturalSpawnerMixin"
   ],
   "injectors": {
-    "defaultRequire": 1
+	"defaultRequire": 1
   }
 }

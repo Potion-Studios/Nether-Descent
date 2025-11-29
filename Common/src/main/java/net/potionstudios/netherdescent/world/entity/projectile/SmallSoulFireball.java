@@ -6,12 +6,14 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.Fireball;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import org.jetbrains.annotations.NotNull;
 
 public class SmallSoulFireball extends Fireball {
@@ -48,4 +50,9 @@ public class SmallSoulFireball extends Fireball {
         if (!level().isClientSide())
             discard();
     }
+
+	@Override
+	public @NotNull ItemStack getItem() {
+		return NetherDescentItems.SOUL_FIRE_CHARGE.get().getDefaultInstance();
+	}
 }
