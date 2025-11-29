@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "netherdescent:block/cut_pendorite_slab"
+    },
+    "type=double": {
+      "model": "netherdescent:block/cut_pendorite"
+    },
+    "type=top": {
+      "model": "netherdescent:block/cut_pendorite_slab_top"
+    }
+  }
+}

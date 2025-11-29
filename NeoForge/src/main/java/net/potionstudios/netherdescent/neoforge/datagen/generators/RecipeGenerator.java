@@ -147,6 +147,17 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.get()), has(NetherDescentBlocks.SYTHIAN_STALK.get()))
                 .save(recipeOutput, NetherDescent.id("gold_nugget_from_blasting"));
 
+        stairBuilder(NetherDescentBlocks.CUT_PENDORITE_STAIRS.get(), Ingredient.of(NetherDescentBlocks.CUT_PENDORITE.get()))
+                .unlockedBy(getHasName(NetherDescentBlocks.CUT_PENDORITE.get()), has(NetherDescentBlocks.CUT_PENDORITE.get()))
+                        .save(recipeOutput);
+
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CUT_PENDORITE_SLAB.get(), NetherDescentBlocks.CUT_PENDORITE.get());
+
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CUT_PENDORITE_STAIRS.get(), NetherDescentBlocks.CUT_PENDORITE.get());
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CUT_PENDORITE_STAIRS.get(), NetherDescentBlocks.PENDORITE_BLOCK.get(), 4);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CUT_PENDORITE_SLAB.get(), NetherDescentBlocks.CUT_PENDORITE.get(),2);
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CUT_PENDORITE_SLAB.get(), NetherDescentBlocks.PENDORITE_BLOCK.get(), 8);
+
 	    ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.PENDORITE_CAMPFIRE.get())
 			    .define('L', ItemTags.LOGS)
 			    .define('S', Items.STICK)

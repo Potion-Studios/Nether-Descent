@@ -238,6 +238,9 @@ public class ModelGenerators {
 
             //rotatableBlock(NetherDescentBlocks.FUNGAL_BULBS.get());  TODO: Fix Model to match hardcoded one
 
+            registerStairs(NetherDescentBlocks.CUT_PENDORITE_STAIRS.get(), NetherDescentBlocks.CUT_PENDORITE.get());
+            registerSlab(NetherDescentBlocks.CUT_PENDORITE_SLAB.get(), NetherDescentBlocks.CUT_PENDORITE.get());
+
             simpleBlockWithItem(NetherDescentBlocks.PENDORITE_GRATE.get(), models().cubeAll(name(NetherDescentBlocks.PENDORITE_GRATE.get()), blockTexture(NetherDescentBlocks.PENDORITE_GRATE.get())).renderType("cutout"));
 
 			trapdoorBlockWithRenderType(NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), blockTexture(NetherDescentBlocks.PENDORITE_TRAPDOOR.get()), true, "translucent");

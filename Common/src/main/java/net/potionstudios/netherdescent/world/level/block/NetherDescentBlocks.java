@@ -88,6 +88,8 @@ public class NetherDescentBlocks {
     public static final Supplier<DropExperienceBlock> PENDORITE_ORE = registerCubeAllBlockItem("pendorite_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_ORE).mapColor(MapColor.METAL)));
     public static final Supplier<Block> RAW_PENDORITE_BLOCK = registerBasicBlockWithItem("raw_pendorite_block", BlockBehaviour.Properties.ofFullCopy(Blocks.RAW_COPPER_BLOCK).mapColor(MapColor.METAL));
     public static final Supplier<Block> CUT_PENDORITE = registerBasicBlockWithItem("cut_pendorite", BlockBehaviour.Properties.ofFullCopy(Blocks.CUT_COPPER).mapColor(MapColor.METAL));
+    public static final Supplier<StairBlock> CUT_PENDORITE_STAIRS = registerBlockItem("cut_pendorite_stairs", () -> new StairBlock(CUT_PENDORITE.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(Blocks.CUT_COPPER_STAIRS)));
+    public static final Supplier<SlabBlock> CUT_PENDORITE_SLAB = registerBlockItem("cut_pendorite_slab", () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CUT_COPPER_SLAB)));
     public static final Supplier<Block> CHISELED_PENDORITE = registerBasicBlockWithItem("chiseled_pendorite", BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_COPPER).mapColor(MapColor.METAL));
     public static final Supplier<WaterloggedTransparentBlock> PENDORITE_GRATE = registerBlockItem("pendorite_grate", () -> new WaterloggedTransparentBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GRATE)));
 	public static final Supplier<DoorBlock> PENDORITE_DOOR = registerBlockItem("pendorite_door", () -> new DoorBlock(NetherDescentBlockSetTypes.PENDORITE, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_DOOR)));
