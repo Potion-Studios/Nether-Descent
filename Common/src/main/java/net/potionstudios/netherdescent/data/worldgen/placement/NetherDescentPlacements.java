@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.potionstudios.netherdescent.NetherDescent;
@@ -51,6 +52,12 @@ public class NetherDescentPlacements {
 	), 12), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(NetherDescentBlocks.SYTHIAN_STALK.get().defaultBlockState().setValue(SythianStalkBlock.HANGING, true), BlockPos.ZERO)), BiomeFilter.biome()));
 
     public static final ResourceKey<PlacedFeature> WAILING_GARTH_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("wailing_garth_vegetation", NetherDescentFeatures.WAILING_GARTH_VEGETATION, () -> List.of(CountOnEveryLayerPlacement.of(6), BiomeFilter.biome()));
+
+    public static final ResourceKey<PlacedFeature> WAILING_BULB_BLOSSOM = PlacedFeaturesUtil.createPlacedFeature("wailing_bulb_blossom", NetherDescentFeatures.WAILING_BULB_BLOSSOM, () -> List.of(CountPlacement.of(10), InSquarePlacement.spread(), PlacementUtils.RANGE_8_8,
+            EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.allOf(
+                    BlockPredicate.matchesBlocks(Direction.UP.getNormal(), Blocks.SOUL_SOIL),
+                    BlockPredicate.ONLY_IN_AIR_PREDICATE
+            ), 12), BiomeFilter.biome()));
 
     public static void placements() {
         NetherDescent.LOGGER.info("Registering Nether Descent Placements");

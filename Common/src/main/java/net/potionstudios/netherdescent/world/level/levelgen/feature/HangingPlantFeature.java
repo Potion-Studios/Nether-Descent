@@ -1,4 +1,4 @@
-package net.potionstudios.netherdescent.world.level.levelgen.feature.configurations;
+package net.potionstudios.netherdescent.world.level.levelgen.feature;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.HangingPlantFeatureConfiguration;
 import org.jetbrains.annotations.NotNull;
 
 public class HangingPlantFeature extends Feature<HangingPlantFeatureConfiguration> {
