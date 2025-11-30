@@ -11,6 +11,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
+import net.minecraft.world.entity.ai.util.AirAndWaterRandomPos;
+import net.minecraft.world.entity.ai.util.HoverRandomPos;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.ai.village.poi.PoiRecord;
 import net.minecraft.world.entity.animal.Bee;
@@ -18,9 +20,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.world.entity.ai.village.poi.NetherDescentPoiTypes;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.entity.HornetNestBlockEntity;
+import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -50,6 +54,7 @@ public class Hornet extends Bee {
         goToNestGoal = new HornetGoToNestGoal();
         this.goalSelector.addGoal(5, goToNestGoal);
 	    this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.25));
+        this.goalSelector.addGoal(8, new HornetWanderGoal());
 	    this.goalSelector.addGoal(9, new FloatGoal(this));
 	    this.targetSelector.addGoal(3, new ResetUniversalAngerTargetGoal<>(this, true));
     }
@@ -78,6 +83,17 @@ public class Hornet extends Bee {
 		}
 		return false;
 	}
+
+    boolean isNestValid() {
+        if (!this.hasHive()) {
+            return false;
+        } else if (this.isTooFarAway(this.getHivePos())) {
+            return false;
+        } else {
+            BlockEntity blockEntity = this.level().getBlockEntity(this.getHivePos());
+            return blockEntity != null && blockEntity.getType() == NetherDescentBlockEntityType.HORNET_NEST.get();
+        }
+    }
 
     abstract class BaseHornetGoal extends Goal {
         public abstract boolean canHornetUse();
@@ -310,4 +326,45 @@ public class Hornet extends Bee {
 				hornetNestBlockEntity.addOccupant(Hornet.this);
 		}
 	}
+
+    class HornetWanderGoal extends Goal {
+        private static final int WANDER_THRESHOLD = 22;
+
+        HornetWanderGoal() {
+            this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+        }
+
+        @Override
+        public boolean canUse() {
+            return Hornet.this.navigation.isDone() && Hornet.this.random.nextInt(10) == 0;
+        }
+
+        @Override
+        public boolean canContinueToUse() {
+            return Hornet.this.navigation.isInProgress();
+        }
+
+        @Override
+        public void start() {
+            Vec3 vec3 = this.findPos();
+            if (vec3 != null) {
+                Hornet.this.navigation.moveTo(Hornet.this.navigation.createPath(BlockPos.containing(vec3), 1), 1.0);
+            }
+        }
+
+        @Nullable
+        private Vec3 findPos() {
+            Vec3 vec32;
+            if (Hornet.this.isNestValid() && !Hornet.this.closerThan(Hornet.this.getHivePos(), 22)) {
+                Vec3 vec3 = Vec3.atCenterOf(Hornet.this.getHivePos());
+                vec32 = vec3.subtract(Hornet.this.position()).normalize();
+            } else {
+                vec32 = Hornet.this.getViewVector(0.0F);
+            }
+
+            int i = 8;
+            Vec3 vec33 = HoverRandomPos.getPos(Hornet.this, 8, 7, vec32.x, vec32.z, (float) (Math.PI / 2), 3, 1);
+            return vec33 != null ? vec33 : AirAndWaterRandomPos.getPos(Hornet.this, 8, 4, -2, vec32.x, vec32.z, (float) (Math.PI / 2));
+        }
+    }
 }
