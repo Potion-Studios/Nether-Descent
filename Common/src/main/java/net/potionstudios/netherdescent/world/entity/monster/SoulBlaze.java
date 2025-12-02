@@ -1,5 +1,7 @@
 package net.potionstudios.netherdescent.world.entity.monster;
 
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -35,24 +37,18 @@ public class SoulBlaze extends Blaze {
     }
 
     public static AttributeSupplier.@NotNull Builder createAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 6.0F).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.FOLLOW_RANGE, 30.0F);
+        return Monster.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 7.0F).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.FOLLOW_RANGE, 30.0F);
     }
 
-    static class SoulBlazeAttackGoal extends Goal {
+    static class SoulBlazeAttackGoal extends Blaze.BlazeAttackGoal {
         private final SoulBlaze blaze;
         private int attackStep;
         private int attackTime;
         private int lastSeen;
 
         public SoulBlazeAttackGoal(SoulBlaze blaze) {
+            super(blaze);
             this.blaze = blaze;
-            this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
-        }
-
-        @Override
-        public boolean canUse() {
-            LivingEntity livingEntity = this.blaze.getTarget();
-            return livingEntity != null && livingEntity.isAlive() && this.blaze.canAttack(livingEntity);
         }
 
         @Override
@@ -64,11 +60,6 @@ public class SoulBlaze extends Blaze {
         public void stop() {
             this.blaze.setCharged(false);
             this.lastSeen = 0;
-        }
-
-        @Override
-        public boolean requiresUpdateEveryTick() {
-            return true;
         }
 
         @Override
@@ -92,6 +83,7 @@ public class SoulBlaze extends Blaze {
                     if (this.attackTime <= 0) {
                         this.attackTime = 20;
                         this.blaze.doHurtTarget(livingEntity);
+                        livingEntity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100));
                     }
 
                     this.blaze.getMoveControl().setWantedPosition(livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), 1.0);

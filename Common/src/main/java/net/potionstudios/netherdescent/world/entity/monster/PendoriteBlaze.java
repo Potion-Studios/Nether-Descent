@@ -141,5 +141,6 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
             return false;
         } else {
             return entityType != EntityType.CREEPER && super.canAttackType(entityType);
-        }    }
+        }
+    }
 }

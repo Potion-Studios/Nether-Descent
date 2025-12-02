@@ -34,6 +34,7 @@ accessible method net/minecraft/data/advancements/packs/VanillaAdventureAdvancem
 accessible method net/minecraft/client/particle/CherryParticle <init> (Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/client/particle/SpriteSet;)V
 
 accessible method net/minecraft/world/entity/monster/Blaze setCharged (Z)V
+accessible class net/minecraft/world/entity/monster/Blaze$BlazeAttackGoal
 
 accessible method net/minecraft/world/entity/animal/Bee wantsToEnterHive ()Z
 accessible method net/minecraft/world/entity/animal/Bee isTooFarAway (Lnet/minecraft/core/BlockPos;)Z
