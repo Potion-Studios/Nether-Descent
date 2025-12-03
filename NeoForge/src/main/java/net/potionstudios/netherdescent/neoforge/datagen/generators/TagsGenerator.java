@@ -107,6 +107,8 @@ public class TagsGenerator {
 
             tag(NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON).addTag(BlockTags.NYLIUM).add(NetherDescentBlocks.SYTHIAN_SHOOT.get(), NetherDescentBlocks.SYTHIAN_STALK.get(), NetherDescentBlocks.SYTHIAN_FARMLAND.get());
 
+            tag(BlockTags.WALL_POST_OVERRIDE).add(NetherDescentBlocks.PENDORITE_TORCH.get());
+
 			IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> intrinsicTagAppender = this.tag(BlockTags.REPLACEABLE);
 			provider.lookupOrThrow(Registries.BLOCK)
 					.filterElements(block -> block.defaultBlockState().canBeReplaced())

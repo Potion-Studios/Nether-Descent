@@ -67,7 +67,7 @@ public class ModelGenerators {
             simpleItemBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get());
 			simpleItem(NetherDescentBlocks.PENDORITE_CAMPFIRE.get());
             handheldItem(NetherDescentItems.SOUL_BLAZE_ROD.get());
-
+            simpleItemBlockTexture(NetherDescentItems.PENDORITE_TORCH.get());
         }
 
 		private void simpleItem(ItemLike item, String texture) {
@@ -354,7 +354,23 @@ public class ModelGenerators {
                     .renderType("cutout"));
 
 			simpleBlockWithItem(NetherDescentBlocks.HORNET_NEST.get(), models().cubeBottomTop(name(NetherDescentBlocks.HORNET_NEST.get()), blockNDTexture(NetherDescentBlocks.HORNET_NEST.get(), "side"), blockNDTexture(NetherDescentBlocks.HORNET_NEST.get(), "bottom"), blockNDTexture(NetherDescentBlocks.HORNET_NEST.get(), "top")));
-		}
+
+            simpleBlock(NetherDescentBlocks.PENDORITE_TORCH.get(), models().withExistingParent(name(NetherDescentBlocks.PENDORITE_TORCH.get()), "template_torch").texture("torch", blockTexture(NetherDescentBlocks.PENDORITE_TORCH.get())).renderType("cutout"));
+
+            var wallTorch = models().withExistingParent(name(NetherDescentBlocks.PENDORITE_WALL_TORCH.get()), "template_torch_wall").texture("torch", blockTexture(NetherDescentBlocks.PENDORITE_TORCH.get())).renderType("cutout");
+
+            getVariantBuilder(NetherDescentBlocks.PENDORITE_WALL_TORCH.get()).forAllStates(state -> {
+                if (state.getValue(WallTorchBlock.FACING) == Direction.EAST)
+                    return ConfiguredModel.builder().modelFile(wallTorch).build();
+                else if (state.getValue(WallTorchBlock.FACING) == Direction.NORTH)
+                    return ConfiguredModel.builder().rotationY(270).modelFile(wallTorch).build();
+                else if (state.getValue(WallTorchBlock.FACING) == Direction.SOUTH)
+                    return ConfiguredModel.builder().rotationY(90).modelFile(wallTorch).build();
+                else if (state.getValue(WallTorchBlock.FACING) == Direction.WEST)
+                    return ConfiguredModel.builder().rotationY(180).modelFile(wallTorch).build();
+                return ConfiguredModel.builder().build();
+            });
+        }
 
         private void rodBlock(RodBlock rodBlock, ModelFile modelFile) {
             getVariantBuilder(rodBlock).forAllStates(state -> {

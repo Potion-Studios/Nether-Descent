@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.state.properties.BambooLeaves;
 import net.minecraft.world.level.material.MapColor;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
+import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.custom.*;
 import net.potionstudios.netherdescent.world.level.block.plants.*;
@@ -95,6 +96,8 @@ public class NetherDescentBlocks {
 	public static final Supplier<DoorBlock> PENDORITE_DOOR = registerBlockItem("pendorite_door", () -> new DoorBlock(NetherDescentBlockSetTypes.PENDORITE, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_DOOR)));
 	public static final Supplier<TrapDoorBlock> PENDORITE_TRAPDOOR = registerBlockItem("pendorite_trapdoor", () -> new TrapDoorBlock(NetherDescentBlockSetTypes.PENDORITE, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_TRAPDOOR)));
     public static final Supplier<LanternBlock> PENDORITE_LANTERN = registerBlockItem("pendorite_lantern", () -> new LanternBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LANTERN)));
+    public static final Supplier<TorchBlock> PENDORITE_TORCH = registerBlock("pendorite_torch", () -> new NDTorchBlock(NetherDescentParticles.PENDORITE_FIRE_FLAME, BlockBehaviour.Properties.ofFullCopy(Blocks.TORCH)));
+    public static final Supplier<WallTorchBlock> PENDORITE_WALL_TORCH = register("pendorite_wall_torch", () -> new NDWallTorchBlock(NetherDescentParticles.PENDORITE_FIRE_FLAME, BlockBehaviour.Properties.ofFullCopy(Blocks.WALL_TORCH)));
     public static final Supplier<ChainBlock> PENDORITE_CHAIN = registerBlockItem("pendorite_chain", () -> new ChainBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHAIN)));
     public static final Supplier<IronBarsBlock> PENDORITE_BARS = registerBlockItem("pendorite_bars", () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BARS)));
 	public static final Supplier<NetherDescentCampfireBlock> PENDORITE_CAMPFIRE = registerBlockItem("pendorite_campfire", () -> new NetherDescentCampfireBlock(false, 2, BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_CAMPFIRE)));

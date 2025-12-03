@@ -3,6 +3,7 @@ package net.potionstudios.netherdescent.client;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.particle.CherryParticle;
+import net.minecraft.client.particle.FlameParticle;
 import net.minecraft.client.particle.ParticleProvider;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.Sheets;
@@ -61,6 +62,7 @@ public class NetherDescentClient {
 	    consumer.accept(NetherDescentParticles.EMBUR_GEL_DRIP.get(), FallingParticle.Provider::new);
 //		consumer.accept(NetherDescentParticles.GILL_LEVITATE.get(), null);
 //		consumer.accept(NetherDescentParticles.GILL_LEVITATE_POWERED.get(), null);
+        consumer.accept(NetherDescentParticles.PENDORITE_FIRE_FLAME.get(), FlameParticle.Provider::new);
     }
 
     /**
