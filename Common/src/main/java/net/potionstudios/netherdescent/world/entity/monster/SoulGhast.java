@@ -42,106 +42,53 @@ public class SoulGhast extends Ghast {
 
     static class GhastShootFireballGoal extends Ghast.GhastShootFireballGoal {
         private final Ghast ghast;
-        private int shotsFired = 0;
-        private int nextShotTick = 0;
         public GhastShootFireballGoal(Ghast ghast) {
             super(ghast);
             this.ghast = ghast;
         }
 
-        private void fireBallOnce(LivingEntity target) {
-            Level level = this.ghast.level();
-            Vec3 view = this.ghast.getViewVector(1.0F);
+	    public void tick() {
+		    LivingEntity livingEntity = this.ghast.getTarget();
+		    if (livingEntity != null) {
+			    if (livingEntity.distanceToSqr(this.ghast) < 4096.0D && this.ghast.hasLineOfSight(livingEntity)) {
+				    Level level = this.ghast.level();
+				    ++this.chargeTime;
 
-            double spawnX = this.ghast.getX() + view.x * 4.0;
-            double spawnY = this.ghast.getY(0.5) + 0.5;
-            double spawnZ = this.ghast.getZ() + view.z * 4.0;
+				    if (this.chargeTime == 10 && !this.ghast.isSilent()) {
+					    level.levelEvent(null, 1015, this.ghast.blockPosition(), 0);
+				    }
 
-            double dx = target.getX() - spawnX;
-            double dy = target.getY(0.5) - spawnY;
-            double dz = target.getZ() - spawnZ;
+				    if ((this.chargeTime == 20 || this.chargeTime == 28)) {
+					    double e = 4.0D;
+					    Vec3 view = this.ghast.getViewVector(1.0F);
+					    double f = livingEntity.getX() - (this.ghast.getX() + view.x * e);
+					    double g = livingEntity.getY(0.5D) - (this.ghast.getY(0.5D) + 0.5D);
+					    double h = livingEntity.getZ() - (this.ghast.getZ() + view.z * e);
+					    Vec3 dir = new Vec3(f, g, h).normalize();
 
-            Vec3 direction = new Vec3(dx, dy, dz).normalize();
+					    if (!this.ghast.isSilent()) {
+						    level.levelEvent(null, 1016, this.ghast.blockPosition(), 0);
+					    }
 
-            LargeFireball fireball = new LargeFireball(level, this.ghast, direction, this.ghast.getExplosionPower());
-            fireball.setPos(spawnX, spawnY, spawnZ);
+					    LargeFireball largeFireball = new LargeFireball(level, this.ghast, dir, this.ghast.getExplosionPower());
+					    largeFireball.setPos(
+							    this.ghast.getX() + view.x * e,
+							    this.ghast.getY(0.5D) + 0.5D,
+							    this.ghast.getZ() + view.z * e
+					    );
+					    level.addFreshEntity(largeFireball);
 
-            if (!this.ghast.isSilent()) {
-                level.levelEvent(null, 1016, this.ghast.blockPosition(), 0);
-            }
+					    if (this.chargeTime == 28) {
+						    this.chargeTime = -40;
+					    }
+				    }
+			    } else if (this.chargeTime > 0) {
+				    --this.chargeTime;
+			    }
 
-            level.addFreshEntity(fireball);
-        }
+			    this.ghast.setCharging(this.chargeTime > 10);
+		    }
+	    }
 
-        @Override
-        public void tick() {
-            LivingEntity target = this.ghast.getTarget();
-            if (target == null) return;
-
-            if (target.distanceToSqr(this.ghast) < 4096.0 && this.ghast.hasLineOfSight(target)) {
-                Level level = this.ghast.level();
-                this.chargeTime++;
-
-                // Charging sound
-                if (this.chargeTime == 10 && !this.ghast.isSilent()) {
-                    level.levelEvent(null, 1015, this.ghast.blockPosition(), 0);
-                }
-
-                // FIRST SHOT
-                if (this.chargeTime == 20) {
-                    fireBallOnce(target);
-                    shotsFired = 1;
-                    nextShotTick = 22;  // fire again 2 ticks later
-                }
-
-                // SECOND SHOT (tracks the player’s movement)
-                if (shotsFired == 1 && this.chargeTime == nextShotTick) {
-                    fireBallOnce(target);  // re-aims using NEW target position
-                    shotsFired = 0;
-                    this.chargeTime = -40; // cooldown
-                }
-
-            } else {
-                if (this.chargeTime > 0) this.chargeTime--;
-            }
-
-            this.ghast.setCharging(this.chargeTime > 10);
-        }
-
-//        public void tick() {
-//            LivingEntity livingEntity = this.ghast.getTarget();
-//            if (livingEntity != null) {
-//                if (livingEntity.distanceToSqr(this.ghast) < (double)4096.0F && this.ghast.hasLineOfSight(livingEntity)) {
-//                    Level level = this.ghast.level();
-//                    ++this.chargeTime;
-//                    if (this.chargeTime == 10 && !this.ghast.isSilent()) {
-//                        level.levelEvent(null, 1015, this.ghast.blockPosition(), 0);
-//                    }
-//
-//                    if (this.chargeTime == 20) {
-//                        Vec3 vec3 = this.ghast.getViewVector(1.0F);
-//                        double f = livingEntity.getX() - (this.ghast.getX() + vec3.x * (double)4.0F);
-//                        double g = livingEntity.getY(0.5F) - ((double)0.5F + this.ghast.getY((double)0.5F));
-//                        double h = livingEntity.getZ() - (this.ghast.getZ() + vec3.z * (double)4.0F);
-//                        Vec3 vec32 = new Vec3(f, g, h);
-//                        if (!this.ghast.isSilent()) {
-//                            level.levelEvent(null, 1016, this.ghast.blockPosition(), 0);
-//                        }
-//
-//                        for (int i = 0; i < 2; i++) {
-//                            LargeFireball largeFireball = new LargeFireball(level, this.ghast, vec32.normalize(), this.ghast.getExplosionPower());
-//                            largeFireball.setPos(this.ghast.getX() + vec3.x * (double) 4.0F, this.ghast.getY(0.5F) + (double) 0.5F, largeFireball.getZ() + vec3.z * (double) 4.0F);
-//                            level.addFreshEntity(largeFireball);
-//                        }
-//
-//                        this.chargeTime = -40;
-//                    }
-//                } else if (this.chargeTime > 0) {
-//                    --this.chargeTime;
-//                }
-//
-//                this.ghast.setCharging(this.chargeTime > 10);
-//            }
-//        }
     }
 }
