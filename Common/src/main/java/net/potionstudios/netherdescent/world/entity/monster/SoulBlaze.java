@@ -82,8 +82,8 @@ public class SoulBlaze extends Blaze {
 
                     if (this.attackTime <= 0) {
                         this.attackTime = 20;
-                        this.blaze.doHurtTarget(livingEntity);
-                        livingEntity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100));
+                        if (this.blaze.doHurtTarget(livingEntity))
+                            livingEntity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100));
                     }
 
                     this.blaze.getMoveControl().setWantedPosition(livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), 1.0);
@@ -123,8 +123,6 @@ public class SoulBlaze extends Blaze {
                 } else if (this.lastSeen < 5) {
                     this.blaze.getMoveControl().setWantedPosition(livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), 1.0);
                 }
-
-                super.tick();
             }
         }
 

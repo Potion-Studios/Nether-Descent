@@ -21,10 +21,10 @@ public class NetherDescentFabric implements ModInitializer {
     protected static void init() {
         NetherDescent.init();
         VanillaCompatFabric.init();
+	    NetherDescentEntityType.registerEntityAttributes(FabricDefaultAttributeRegistry::register);
+	    NetherDescentEntityType.registerSpawnPlacements((consumer) -> SpawnPlacements.register(consumer.entityType().get(), consumer.spawnPlacementType(), consumer.heightmapType(), consumer.predicate()));
         NetherDescent.commonSetup();
         NetherDescent.postInit();
-        NetherDescentEntityType.registerEntityAttributes(FabricDefaultAttributeRegistry::register);
-        NetherDescentEntityType.registerSpawnPlacements((consumer) -> SpawnPlacements.register(consumer.entityType(), consumer.spawnPlacementType(), consumer.heightmapType(), consumer.predicate()));
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> NetherDescentCommands.register(dispatcher::register));
     }
 }

@@ -31,12 +31,11 @@ public class NetherDescentEntityType {
 
     @SuppressWarnings("unchecked")
     public static <T extends Mob> void registerSpawnPlacements(Consumer<SpawnPlacement<T>> consumer) {
-        consumer.accept((SpawnPlacement<T>) new SpawnPlacement<>(SOUL_GHAST.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SoulGhast::checkSoulGhastSpawnRules));
-        consumer.accept((SpawnPlacement<T>) new SpawnPlacement<>(SOUL_BLAZE.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules));
+	    consumer.accept((SpawnPlacement<T>) new SpawnPlacement<>(SOUL_BLAZE, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Monster::checkAnyLightMonsterSpawnRules));
+	    consumer.accept((SpawnPlacement<T>) new SpawnPlacement<>(SOUL_GHAST, SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SoulGhast::checkSoulGhastSpawnRules));
     }
 
-    public record SpawnPlacement<T extends Mob>(EntityType<T> entityType, SpawnPlacementType spawnPlacementType, Heightmap.Types heightmapType, SpawnPlacements.SpawnPredicate<T> predicate) {}
-
+    public record SpawnPlacement<T extends Mob>(Supplier<EntityType<T>> entityType, SpawnPlacementType spawnPlacementType, Heightmap.Types heightmapType, SpawnPlacements.SpawnPredicate<T> predicate) {}
 
     /**
      * Registers Entity Attributes

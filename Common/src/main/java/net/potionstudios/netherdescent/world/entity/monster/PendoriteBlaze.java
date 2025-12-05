@@ -8,12 +8,12 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -24,7 +24,10 @@ import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
+import net.potionstudios.netherdescent.NetherDescent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -44,7 +47,7 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.0, true));
+		this.goalSelector.addGoal(4, new PendoriteBlazeAttackGoal(this));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0, 0.0F));
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
@@ -78,13 +81,14 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
     }
 
     public static AttributeSupplier.@NotNull Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 6.0F).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.FOLLOW_RANGE, 25.0F);
+		return Monster.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 4.0F).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.FOLLOW_RANGE, 25.0F);
 	}
 
     @Override
     public void aiStep() {
         if (!level().isClientSide())
             updatePersistentAnger((ServerLevel) level(), true);
+		super.aiStep();
     }
 
     @Override
@@ -143,4 +147,96 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
             return entityType != EntityType.CREEPER && super.canAttackType(entityType);
         }
     }
+
+	static class PendoriteBlazeAttackGoal extends Blaze.BlazeAttackGoal {
+		private final PendoriteBlaze blaze;
+		private int attackStep;
+		private int attackTime;
+		private int lastSeen;
+
+		public PendoriteBlazeAttackGoal(PendoriteBlaze blaze) {
+			super(blaze);
+			this.blaze = blaze;
+		}
+
+		@Override
+		public void start() {
+			this.attackStep = 0;
+		}
+
+		@Override
+		public void stop() {
+			this.blaze.setCharged(false);
+			this.lastSeen = 0;
+		}
+
+		@Override
+		public void tick() {
+			NetherDescent.LOGGER.info("Ticking Attack");
+			this.attackTime--;
+			LivingEntity livingEntity = this.blaze.getTarget();
+			if (livingEntity != null) {
+				boolean bl = this.blaze.getSensing().hasLineOfSight(livingEntity);
+				if (bl) {
+					this.lastSeen = 0;
+				} else {
+					this.lastSeen++;
+				}
+
+				double d = this.blaze.distanceToSqr(livingEntity);
+				if (d < 4.0) {
+					if (!bl) {
+						return;
+					}
+
+					if (this.attackTime <= 0) {
+						this.attackTime = 20;
+						if (this.blaze.doHurtTarget(livingEntity))
+							livingEntity.setSharedFlagOnFire(true);
+					}
+
+					this.blaze.getMoveControl().setWantedPosition(livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), 1.0);
+				} else if (d < this.getFollowDistance() * this.getFollowDistance() && bl) {
+					double e = livingEntity.getX() - this.blaze.getX();
+					double f = livingEntity.getY(0.5) - this.blaze.getY(0.5);
+					double g = livingEntity.getZ() - this.blaze.getZ();
+					if (this.attackTime <= 0) {
+						this.attackStep++;
+						if (this.attackStep == 1) {
+							this.attackTime = 60;
+							this.blaze.setCharged(true);
+						} else if (this.attackStep <= 3) {
+							this.attackTime = 6;
+						} else {
+							this.attackTime = 100;
+							this.attackStep = 0;
+							this.blaze.setCharged(false);
+						}
+
+						if (this.attackStep > 1) {
+							double h = Math.sqrt(Math.sqrt(d)) * 0.5;
+							if (!this.blaze.isSilent()) {
+								this.blaze.level().levelEvent(null, 1018, this.blaze.blockPosition(), 0);
+							}
+
+							for (int i = 0; i < 1; i++) {
+								Vec3 vec3 = new Vec3(this.blaze.getRandom().triangle(e, 2.297 * h), f, this.blaze.getRandom().triangle(g, 2.297 * h));
+								SmallFireball smallFireball = new SmallFireball(this.blaze.level(), this.blaze, vec3.normalize());
+								smallFireball.setPos(smallFireball.getX(), this.blaze.getY(0.5) + 0.5, smallFireball.getZ());
+								this.blaze.level().addFreshEntity(smallFireball);
+							}
+						}
+					}
+
+					this.blaze.getLookControl().setLookAt(livingEntity, 10.0F, 10.0F);
+				} else if (this.lastSeen < 5) {
+					this.blaze.getMoveControl().setWantedPosition(livingEntity.getX(), livingEntity.getY(), livingEntity.getZ(), 1.0);
+				}
+			}
+		}
+
+		private double getFollowDistance() {
+			return this.blaze.getAttributeValue(Attributes.FOLLOW_RANGE);
+		}
+	}
 }

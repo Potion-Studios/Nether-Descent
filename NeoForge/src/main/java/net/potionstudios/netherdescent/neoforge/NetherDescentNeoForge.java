@@ -29,7 +29,7 @@ public class NetherDescentNeoForge {
         eventBus.addListener(this::onInitialize);
         eventBus.addListener((FMLLoadCompleteEvent event) -> event.enqueueWork(NetherDescent::postInit));
         eventBus.addListener((EntityAttributeCreationEvent event) -> NetherDescentEntityType.registerEntityAttributes(event::put));
-        eventBus.addListener((RegisterSpawnPlacementsEvent event) -> NetherDescentEntityType.registerSpawnPlacements((consumer) -> event.register(consumer.entityType(), consumer.spawnPlacementType(), consumer.heightmapType(), consumer.predicate(), RegisterSpawnPlacementsEvent.Operation.OR)));
+        eventBus.addListener((RegisterSpawnPlacementsEvent event) -> NetherDescentEntityType.registerSpawnPlacements((consumer) -> event.register(consumer.entityType().get(), consumer.spawnPlacementType(), consumer.heightmapType(), consumer.predicate(), RegisterSpawnPlacementsEvent.Operation.OR)));
         EVENT_BUS.addListener((RegisterCommandsEvent event) -> NetherDescentCommands.register(event.getDispatcher()::register));
         VanillaCompatNeoForge.registerVanillaCompatEvents(EVENT_BUS);
     }

@@ -44,8 +44,8 @@ public class Hornet extends Bee {
 
     @Override
     protected void registerGoals() {
-		this.goalSelector.addGoal(1, new HornetEnterHiveGoal());
         this.goalSelector.addGoal(2, new HornetEnterNestGoal());
+	    this.goalSelector.addGoal(2, new BreedGoal(this, 1.0F));
 	    this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, itemStack -> itemStack.is(ItemTags.BEE_FOOD), false));
 	    this.beePollinateGoal = new Bee.BeePollinateGoal();
 	    this.goalSelector.addGoal(4, this.beePollinateGoal);
@@ -53,8 +53,10 @@ public class Hornet extends Bee {
 	    this.goalSelector.addGoal(5, new HornetLocateNestGoal());
         goToNestGoal = new HornetGoToNestGoal();
         this.goalSelector.addGoal(5, goToNestGoal);
-	    this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.25));
-        this.goalSelector.addGoal(8, new HornetWanderGoal());
+	    this.goToKnownFlowerGoal = new BeeGoToKnownFlowerGoal();
+	    this.goalSelector.addGoal(6, this.goToKnownFlowerGoal);
+	    this.goalSelector.addGoal(7, new BeeGrowCropGoal());
+	    this.goalSelector.addGoal(8, new HornetWanderGoal());
 	    this.goalSelector.addGoal(9, new FloatGoal(this));
 	    this.targetSelector.addGoal(3, new ResetUniversalAngerTargetGoal<>(this, true));
     }

@@ -45,6 +45,11 @@ accessible method net/minecraft/world/entity/animal/Bee isTiredOfLookingForNecta
 accessible class net/minecraft/world/entity/animal/Bee$BeePollinateGoal
 accessible method net/minecraft/world/entity/animal/Bee$BeePollinateGoal <init> (Lnet/minecraft/world/entity/animal/Bee;)V
 accessible field net/minecraft/world/entity/animal/Bee beePollinateGoal Lnet/minecraft/world/entity/animal/Bee$BeePollinateGoal;
+accessible class net/minecraft/world/entity/animal/Bee$BeeGrowCropGoal
+accessible method net/minecraft/world/entity/animal/Bee$BeeGrowCropGoal <init> (Lnet/minecraft/world/entity/animal/Bee;)V
+accessible field net/minecraft/world/entity/animal/Bee goToKnownFlowerGoal Lnet/minecraft/world/entity/animal/Bee$BeeGoToKnownFlowerGoal;
+accessible class net/minecraft/world/entity/animal/Bee$BeeGoToKnownFlowerGoal
+accessible method net/minecraft/world/entity/animal/Bee$BeeGoToKnownFlowerGoal <init> (Lnet/minecraft/world/entity/animal/Bee;)V
 
 accessible method net/minecraft/world/entity/ai/village/poi/PoiTypes getBlockStates (Lnet/minecraft/world/level/block/Block;)Ljava/util/Set;
 

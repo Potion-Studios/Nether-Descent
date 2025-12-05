@@ -44,9 +44,9 @@ public class NetherDescent {
         NetherDescentItems.items();
         NetherDescentBlocks.blocks();
         NetherDescentBlockEntityType.blockEntities();
-        NetherDescentCreativeTabs.tabs();
+	    NetherDescentEntityType.entityTypes();
+	    NetherDescentCreativeTabs.tabs();
 	    NetherDescentSounds.sounds();
-        NetherDescentEntityType.entityTypes();
         NetherDescentRuleSources.ruleSources();
 		NetherDescentFeature.features();
         NetherDescentFeatures.features();
