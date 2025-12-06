@@ -13,12 +13,16 @@ import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
  */
 public class NetherDescentFabric implements ModInitializer {
 
+    private static boolean initialized = false;
+
     @Override
     public void onInitialize() {
         init();
     }
 
     protected static void init() {
+        if (initialized) return;
+        initialized = true;
         NetherDescent.init();
         VanillaCompatFabric.init();
 	    NetherDescentEntityType.registerEntityAttributes(FabricDefaultAttributeRegistry::register);
