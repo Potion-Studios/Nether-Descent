@@ -17,27 +17,46 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingGillsBlock;
 
+import java.util.List;
+
 public class WailingGillsBlockEntity extends BlockEntity {
+    private static Holder<Enchantment> SOUL_SPEED = null;
 	public WailingGillsBlockEntity(BlockPos pos, BlockState blockState) {
 		super(NetherDescentBlockEntityType.WAILING_GILLS.get(), pos, blockState);
 	}
 
 	public static void serverTick(Level level, BlockPos pos, BlockState state, WailingGillsBlockEntity blockEntity) {
 		ServerLevel serverLevel = (ServerLevel) level;
-		if (serverLevel.getServer().getTickCount() % 4 == 0) {
-			AABB aabb = new AABB(pos).expandTowards(0.0, -15.0 - state.getValue(WailingGillsBlock.POWER), 0.0);
-			Holder<Enchantment> soulSpeed = level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SOUL_SPEED);
-			serverLevel.getEntitiesOfClass(LivingEntity.class, aabb).forEach(entity -> {
-				if (entity.isSpectator())
-					return;
+
+		if (serverLevel.getServer().getTickCount() % 5 == 0 && !level.getBlockState(pos.below()).isSolid()) {
+
+            if (SOUL_SPEED == null)
+                SOUL_SPEED = serverLevel.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SOUL_SPEED);
+
+            double distance = -15.0 - state.getValue(WailingGillsBlock.POWER);
+
+			AABB aabb = new AABB(pos.below()).expandTowards(0.0, distance, 0.0);
+
+            List<LivingEntity> entities = serverLevel.getEntitiesOfClass(LivingEntity.class, aabb);
+
+            if (entities.isEmpty()) return;
+
+            int solid = level.getMinBuildHeight();
+            for (int i = 1; i <= Math.abs(distance); i++)
+                if (level.getBlockState(pos.below(i)).isSolid())
+                    solid = pos.below(i).getY();
+
+            for (LivingEntity entity: entities) {
+                if (entity.isSpectator() || entity.getY() < solid)
+                    return;
 
                 for (ItemStack itemStack: entity.getArmorSlots())
-                    if (EnchantmentHelper.getItemEnchantmentLevel(soulSpeed, itemStack) > 0)
+                    if (EnchantmentHelper.getItemEnchantmentLevel(SOUL_SPEED, itemStack) > 0)
                         return;
 
                 entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 80, 0, false, false));
                 entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160, 0, false, false));
-			});
+            }
 		}
 	}
 }
