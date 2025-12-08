@@ -1,3 +1,5 @@
+import com.hypherionmc.modpublisher.properties.ModLoader
+
 plugins {
     id("com.gradleup.shadow")
 }
@@ -72,4 +74,12 @@ tasks {
         inputFile.set(shadowJar.get().archiveFile)
         dependsOn(shadowJar)
     }
+}
+
+publisher {
+    setLoaders(ModLoader.FORGE)
+    val depends = mutableListOf("terrablender", "oh-the-trees-youll-grow")
+    curseDepends.required.set(depends)
+    modrinthDepends.required.set(depends)
+    curseDepends.optional.set(mutableListOf("wthit-forge"))
 }

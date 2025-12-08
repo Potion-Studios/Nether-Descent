@@ -1,3 +1,5 @@
+import com.hypherionmc.modpublisher.properties.ModLoader
+
 plugins {
     id("com.gradleup.shadow")
 }
@@ -65,4 +67,11 @@ tasks {
         inputFile.set(shadowJar.get().archiveFile)
         dependsOn(shadowJar)
     }
+}
+
+publisher {
+    setLoaders(ModLoader.FABRIC, ModLoader.QUILT)
+    curseDepends.required.set(mutableListOf("fabric-api", "terrablender-fabric", "oh-the-trees-youll-grow"))
+    modrinthDepends.required.set(mutableListOf("fabric-api", "terrablender", "oh-the-trees-youll-grow"))
+    curseDepends.optional.set(mutableListOf("wthit"))
 }

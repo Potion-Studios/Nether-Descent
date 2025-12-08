@@ -1,3 +1,5 @@
+import com.hypherionmc.modpublisher.properties.ModLoader
+
 plugins {
     id("com.gradleup.shadow")
 }
@@ -75,4 +77,11 @@ tasks {
         dependsOn(shadowJar)
         atAccessWideners.add("netherdescent.accesswidener")
     }
+}
+
+publisher {
+    setLoaders(ModLoader.NEOFORGE)
+    curseDepends.required.set(mutableListOf("terrablender-neoforge", "oh-the-trees-youll-grow"))
+    modrinthDepends.required.set(mutableListOf("terrablender", "oh-the-trees-youll-grow"))
+    curseDepends.optional.set(mutableListOf("wthit-forge"))
 }
