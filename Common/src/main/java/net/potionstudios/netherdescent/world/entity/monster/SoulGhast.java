@@ -14,10 +14,11 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Ghast;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.LargeFireball;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
+import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.entity.projectile.LargeSoulFireball;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,12 +28,12 @@ public class SoulGhast extends Ghast {
         this.xpReward = 8;
     }
 
-    public static AttributeSupplier.@NotNull Builder createAttributes() {
+	public static AttributeSupplier.@NotNull Builder createAttributes() {
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 14.0F).add(Attributes.FOLLOW_RANGE, 100.0F);
     }
 
     public static boolean checkSoulGhastSpawnRules(EntityType<SoulGhast> ghast, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
-        return level.getDifficulty() != Difficulty.PEACEFUL && random.nextInt(20) == 0 && checkMobSpawnRules(ghast, level, spawnType, pos, random);
+		return level.getDifficulty() != Difficulty.PEACEFUL && random.nextInt(20) == 0 && (level.getBlockState(pos.below()).is(Blocks.SOUL_SOIL) || checkMobSpawnRules(ghast, level, spawnType, pos, random));
     }
 
     @Override
