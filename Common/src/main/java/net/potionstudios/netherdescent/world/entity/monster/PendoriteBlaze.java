@@ -27,7 +27,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.potionstudios.netherdescent.NetherDescent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -172,7 +171,6 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
 
 		@Override
 		public void tick() {
-			NetherDescent.LOGGER.info("Ticking Attack");
 			this.attackTime--;
 			LivingEntity livingEntity = this.blaze.getTarget();
 			if (livingEntity != null) {

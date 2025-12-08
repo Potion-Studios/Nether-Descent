@@ -246,9 +246,10 @@ public class TagsGenerator {
 
         @Override
         protected void addTags(HolderLookup.@NotNull Provider provider) {
-            tag(EntityTypeTags.IMPACT_PROJECTILES).add(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get());
+            tag(EntityTypeTags.IMPACT_PROJECTILES).add(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), NetherDescentEntityType.SOUL_FIREBALL.get());
             tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(NetherDescentEntityType.PENDORITE_BLAZE.get(), NetherDescentEntityType.SOUL_BLAZE.get(), NetherDescentEntityType.HORNET.get(), NetherDescentEntityType.SOUL_GHAST.get());
             tag(EntityTypeTags.ARTHROPOD).add(NetherDescentEntityType.HORNET.get());
+			tag(EntityTypeTags.REDIRECTABLE_PROJECTILE).add(NetherDescentEntityType.SOUL_FIREBALL.get());
         }
     }
 }

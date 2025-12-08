@@ -11,6 +11,7 @@ import net.minecraft.client.resources.model.Material;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.potionstudios.netherdescent.world.entity.monster.SoulBlaze;
+import net.potionstudios.netherdescent.world.entity.projectile.LargeSoulFireball;
 import net.potionstudios.netherdescent.world.entity.projectile.SmallSoulFireball;
 import org.joml.Quaternionf;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,14 +22,14 @@ public abstract class EntityRenderDispatcherMixin {
 
 	@WrapOperation(method = "renderFlame", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/resources/model/Material;sprite()Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;", ordinal = 0))
 	private TextureAtlasSprite onRenderFlameAtSprite0(Material originalMaterial, Operation<TextureAtlasSprite> original, PoseStack poseStack, MultiBufferSource multiBufferSource, Entity entity, Quaternionf matrix) {
-		if (entity instanceof SmallSoulFireball || entity instanceof SoulBlaze)
+		if (entity instanceof SmallSoulFireball || entity instanceof LargeSoulFireball || entity instanceof SoulBlaze)
 			return original.call(new Material(TextureAtlas.LOCATION_BLOCKS, ResourceLocation.withDefaultNamespace("block/soul_fire_0")));
 		return original.call(originalMaterial);
 	}
 
 	@WrapOperation(method = "renderFlame", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/resources/model/Material;sprite()Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;", ordinal = 1))
 	private TextureAtlasSprite onRenderFlameAtSprite1(Material originalMaterial, Operation<TextureAtlasSprite> original, PoseStack poseStack, MultiBufferSource multiBufferSource, Entity entity, Quaternionf matrix) {
-		if (entity instanceof SmallSoulFireball || entity instanceof SoulBlaze)
+		if (entity instanceof SmallSoulFireball || entity instanceof LargeSoulFireball || entity instanceof SoulBlaze)
 			return original.call(new Material(TextureAtlas.LOCATION_BLOCKS, ResourceLocation.withDefaultNamespace("block/soul_fire_1")));
 		return original.call(originalMaterial);
 	}

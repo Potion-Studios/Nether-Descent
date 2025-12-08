@@ -1,8 +1,10 @@
 package net.potionstudios.netherdescent.world.entity.monster;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -16,6 +18,7 @@ import net.minecraft.world.entity.projectile.LargeFireball;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.Vec3;
+import net.potionstudios.netherdescent.world.entity.projectile.LargeSoulFireball;
 import org.jetbrains.annotations.NotNull;
 
 public class SoulGhast extends Ghast {
@@ -40,7 +43,26 @@ public class SoulGhast extends Ghast {
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, (livingEntity) -> Math.abs(livingEntity.getY() - this.getY()) <= (double)4.0F));
     }
 
-    static class GhastShootFireballGoal extends Ghast.GhastShootFireballGoal {
+	private static boolean isReflectedFireball(DamageSource damageSource) {
+		return damageSource.getDirectEntity() instanceof LargeSoulFireball && damageSource.getEntity() instanceof Player;
+	}
+
+	@Override
+	public boolean isInvulnerableTo(@NotNull DamageSource source) {
+		return this.isInvulnerable() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) || !isReflectedFireball(source) && super.isInvulnerableTo(source);
+	}
+
+	@Override
+	public boolean hurt(@NotNull DamageSource source, float amount) {
+		if (isReflectedFireball(source)) {
+			super.hurt(source, 1000.0F);
+			return true;
+		} else {
+			return !this.isInvulnerableTo(source) && super.hurt(source, amount);
+		}
+	}
+
+	static class GhastShootFireballGoal extends Ghast.GhastShootFireballGoal {
         private final Ghast ghast;
         public GhastShootFireballGoal(Ghast ghast) {
             super(ghast);
@@ -70,7 +92,7 @@ public class SoulGhast extends Ghast {
 						    level.levelEvent(null, 1016, this.ghast.blockPosition(), 0);
 					    }
 
-					    LargeFireball largeFireball = new LargeFireball(level, this.ghast, dir, this.ghast.getExplosionPower());
+					    LargeSoulFireball largeFireball = new LargeSoulFireball(level, this.ghast, dir, this.ghast.getExplosionPower());
 					    largeFireball.setPos(
 							    this.ghast.getX() + view.x * e,
 							    this.ghast.getY(0.5D) + 0.5D,

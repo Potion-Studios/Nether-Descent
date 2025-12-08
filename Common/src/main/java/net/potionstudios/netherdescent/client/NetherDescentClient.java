@@ -72,6 +72,7 @@ public class NetherDescentClient {
      */
     public static void registerEntityRenderers(BiConsumer<EntityType<? extends Entity>, EntityRendererProvider> consumer) {
         consumer.accept(NetherDescentEntityType.SOUL_BLAZE.get(), SoulBlazeRenderer::new);
+		consumer.accept(NetherDescentEntityType.SOUL_FIREBALL.get(), context -> new ThrownItemRenderer<>(context, 3.0F, true));
 		consumer.accept(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), context -> new ThrownItemRenderer<>(context, 0.75F, true));
 		consumer.accept(NetherDescentEntityType.PENDORITE_BLAZE.get(), PendoriteBlazeRenderer::new);
         consumer.accept(NetherDescentEntityType.HORNET.get(), HornetRenderer::new);

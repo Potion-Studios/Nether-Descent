@@ -30,6 +30,7 @@ public class LangGenerator extends LanguageProvider {
 		NetherDescentItems.ITEMS.forEach(item -> addItem(item, getItemName(item)));
 		NetherDescentBiomes.BIOME_FACTORIES.forEach((key, factory) -> add("biome." + NetherDescent.MOD_ID + "." + key.location().getPath(), getBiomeName(key)));
         add(NetherDescentEntityType.SOUL_BLAZE.get(), "Soul Blaze");
+		add(NetherDescentEntityType.SOUL_FIREBALL.get(), "Soul Fireball");
         add(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), "Small Soul Fireball");
 		add(NetherDescentEntityType.PENDORITE_BLAZE.get(), "Pendorite Blaze");
         add(NetherDescentEntityType.HORNET.get(), "Hornet");
