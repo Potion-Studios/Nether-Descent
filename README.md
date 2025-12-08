@@ -17,6 +17,11 @@
   - CurseForge (Fabric): https://www.curseforge.com/minecraft/mc-mods/terrablender-fabric
   - CurseForge (NeoForge): https://www.curseforge.com/minecraft/mc-mods/terrablender-neoforge
   - Modrinth: https://modrinth.com/mod/terrablender
+ 
+- Oh The Tree's You'll Grow
+  - Github: https://github.com/CorgiTaco/Oh-The-Trees-Youll-Grow
+  - CurseForge: https://www.curseforge.com/minecraft/mc-mods/oh-the-trees-youll-grow
+  - Modrinth: https://modrinth.com/mod/oh-the-trees-youll-grow
 
 - Fabric API (Fabric Version Only)
   - Github: https://github.com/FabricMC/fabric
