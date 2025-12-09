@@ -15,6 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingGillsBlock;
 
 import java.util.List;
@@ -43,8 +44,10 @@ public class WailingGillsBlockEntity extends BlockEntity {
 
             int solid = level.getMinBuildHeight();
             for (int i = 1; i <= Math.abs(distance); i++)
-                if (level.getBlockState(pos.below(i)).isSolid())
+                if (level.getBlockState(pos.below(i)).isSolid()) {
                     solid = pos.below(i).getY();
+                    break;
+                }
 
             for (LivingEntity entity: entities) {
                 if (entity.isSpectator() || entity.getY() < solid)

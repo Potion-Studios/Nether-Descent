@@ -91,11 +91,11 @@ public class RecipeGenerator extends RecipeProvider {
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentItems.SYTHIAN_SCAFFOLDING.get(), 6)
                 .define('~', Items.STRING)
-                .define('I', NetherDescentBlocks.SYTHIAN.planks())
+                .define('I', NetherDescentBlocks.SYTHIAN_STALK.get())
                 .pattern("I~I")
                 .pattern("I I")
                 .pattern("I I")
-                .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN.planks()), has(NetherDescentBlocks.SYTHIAN.planks()))
+                .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.get()), has(NetherDescentBlocks.SYTHIAN_STALK.get()))
                 .save(recipeOutput);
 
         twoByTwoPacker(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.EMBUR_MOSS_BLOCK.get(), NetherDescentBlocks.EMBUR_CAVE_MOSS.get());

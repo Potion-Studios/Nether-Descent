@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_sythian_planks": {
+    "has_sythian_stalk": {
       "conditions": {
         "items": [
           {
-            "items": "netherdescent:sythian_planks"
+            "items": "netherdescent:sythian_stalk"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_sythian_planks"
+      "has_sythian_stalk"
     ]
   ],
   "rewards": {
