@@ -22,6 +22,7 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.GrowingPlantVinesDecorator;
+import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.HornetNestDecorator;
 
 import java.util.List;
 import java.util.Set;
@@ -389,6 +390,7 @@ public class NetherDescentTreeFeatures {
 
     //EMBUR WART TREES ------------------------------------------------------------------------------------------------------------------------
     public static final Supplier<GrowingPlantVinesDecorator> EMBUR_GEL_VINES_DECORATOR = () -> new GrowingPlantVinesDecorator(NetherDescentBlocks.EMBUR_GEL_VINES.get(), NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get());
+    public static final Supplier<HornetNestDecorator> HORNET_NEST_DECORATOR = () -> new HornetNestDecorator(0.1F);
     
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART1 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart1",
             TYGFeatures.TREE_FROM_NBT_V1,
@@ -402,7 +404,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(EMBUR_GEL_VINES_DECORATOR.get()))
+                    .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
                     .build()
     );
 
@@ -418,7 +420,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(EMBUR_GEL_VINES_DECORATOR.get()))
+                    .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
                     .build()
     );
 
@@ -434,7 +436,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(EMBUR_GEL_VINES_DECORATOR.get()))
+                    .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
                     .build()
     );
 
@@ -450,7 +452,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(EMBUR_GEL_VINES_DECORATOR.get()))
+                    .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
                     .build()
     );
 
@@ -466,7 +468,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(EMBUR_GEL_VINES_DECORATOR.get()))
+                    .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
                     .build()
     );
 
@@ -482,7 +484,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(EMBUR_GEL_VINES_DECORATOR.get()))
+                    .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
                     .build()
     );
 
@@ -498,7 +500,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(EMBUR_GEL_VINES_DECORATOR.get()))
+                    .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
                     .build()
     );
 

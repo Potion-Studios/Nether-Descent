@@ -12,6 +12,10 @@
     "canopy_location": "netherdescent:features/warts/embur/wart5_canopy",
     "decorators": [
       {
+        "type": "netherdescent:hornet_nest",
+        "probability": 0.1
+      },
+      {
         "type": "netherdescent:growing_plant",
         "body": {
           "Name": "netherdescent:embur_gel_vines_plant"
