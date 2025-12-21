@@ -110,6 +110,8 @@ public class NetherDescentBlocks {
 
 	public static final Supplier<HornetNestBlock> HORNET_NEST = registerBlock("hornet_nest", () -> new HornetNestBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEE_NEST)));
 
+    public static final Supplier<Block> BARTERING_TABLE = registerBlockItem("bartering_table", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.SMITHING_TABLE)));
+
     public static Supplier<Block> registerBasicBlockWithItem(String key, BlockBehaviour.Properties properties) {
         return registerCubeAllBlockItem(key, () -> new Block(properties));
     }

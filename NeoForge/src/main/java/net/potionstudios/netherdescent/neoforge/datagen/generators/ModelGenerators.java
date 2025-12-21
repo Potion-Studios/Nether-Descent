@@ -370,6 +370,8 @@ public class ModelGenerators {
                     return ConfiguredModel.builder().rotationY(180).modelFile(wallTorch).build();
                 return ConfiguredModel.builder().build();
             });
+
+			simpleBlockWithItem(NetherDescentBlocks.BARTERING_TABLE.get(), models().cubeBottomTop(name(NetherDescentBlocks.BARTERING_TABLE.get()), blockNDTexture(NetherDescentBlocks.BARTERING_TABLE.get(), "side"), mcLoc("block/smithing_table_bottom"), blockNDTexture(NetherDescentBlocks.BARTERING_TABLE.get(), "top")).texture("particle", blockNDTexture(NetherDescentBlocks.BARTERING_TABLE.get(), "side")));
         }
 
         private void rodBlock(RodBlock rodBlock, ModelFile modelFile) {
