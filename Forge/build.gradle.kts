@@ -35,7 +35,6 @@ loom {
         extraAccessWideners.add(loom.accessWidenerPath.get().asFile.name)
 
         mixinConfig("netherdescent-common.mixins.json")
-        mixinConfig("netherdescent.mixins.json")
     }
 }
 
@@ -48,6 +47,7 @@ dependencies {
     modLocalRuntime("me.djtheredstoner:DevAuth-forge-latest:${project.properties["devauth_version"]}")
 
     modApi("com.github.glitchfiend:TerraBlender-forge:$minecraftVersion-${project.properties["terrablender_version"]}")
+    modApi("software.bernie.geckolib:geckolib-forge-$minecraftVersion:${project.properties["geckolib_version"]}")
     modApi("dev.corgitaco:Oh-The-Trees-Youll-Grow-forge:$minecraftVersion-${project.properties["ohthetreesyoullgrow_version"]}")
 
     modCompileOnly("mcp.mobius.waila:wthit-api:forge-${project.properties["WTHIT"]}")
