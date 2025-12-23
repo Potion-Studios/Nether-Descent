@@ -1,5 +1,4 @@
 {
-	"format_version": "1.9.0",
 	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "netherdescent:block/embur_lily",
