@@ -49,6 +49,7 @@ public class NetherDescentEntityType {
 		consumer.accept(PENDORITE_BLAZE.get(), PendoriteBlaze.createAttributes().build());
         consumer.accept(HORNET.get(), Hornet.createAttributes().build());
         consumer.accept(SOUL_GHAST.get(), SoulGhast.createAttributes().build());
+		consumer.accept(NERTLING.get(), Nertling.createAttributes().build());
     }
 
     public static void entityTypes() {
