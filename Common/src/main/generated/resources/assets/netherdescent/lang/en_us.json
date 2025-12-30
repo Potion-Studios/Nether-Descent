@@ -139,6 +139,7 @@
   "death.attack.netherdescent.crimsonBerryBush": "%1$s was poked to death by a crimson berry bush",
   "death.attack.netherdescent.crimsonBerryBush.player": "%1$s was poked to death by a crimson berry bush while trying to escape %2$s",
   "entity.netherdescent.hornet": "Hornet",
+  "entity.netherdescent.nertling": "Nertling",
   "entity.netherdescent.pendorite_blaze": "Pendorite Blaze",
   "entity.netherdescent.small_soul_fireball": "Small Soul Fireball",
   "entity.netherdescent.soul_blaze": "Soul Blaze",

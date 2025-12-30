@@ -35,6 +35,7 @@ public class LangGenerator extends LanguageProvider {
 		add(NetherDescentEntityType.PENDORITE_BLAZE.get(), "Pendorite Blaze");
         add(NetherDescentEntityType.HORNET.get(), "Hornet");
         add(NetherDescentEntityType.SOUL_GHAST.get(),  "Soul Ghast");
+		add(NetherDescentEntityType.NERTLING.get(), "Nertling");
         add(death("crimsonBerryBush"), "%1$s was poked to death by a crimson berry bush");
         add(death("crimsonBerryBush.player"), "%1$s was poked to death by a crimson berry bush while trying to escape %2$s");
         add(advancement("title.root"), "Nether Descent");
