@@ -34,9 +34,8 @@ public class NDRodBlock extends EndRodBlock {
 
     @Override
     protected void onPlace(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean movedByPiston) {
-        if (state.is(NetherDescentBlocks.SOUL_FIRE_ROD.get()) && !oldState.is(state.getBlock()))
+        if (state.is(NetherDescentBlocks.PENDORITE_FIRE_ROD.get()) && !oldState.is(state.getBlock()))
             trySpawnBlaze(level, pos);
-
     }
 
     public boolean canSpawnBlaze(LevelReader level, BlockPos pos) {

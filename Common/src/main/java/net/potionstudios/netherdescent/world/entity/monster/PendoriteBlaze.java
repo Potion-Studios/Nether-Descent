@@ -159,6 +159,12 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
 		}
 
 		@Override
+		public boolean canUse() {
+			LivingEntity livingEntity = this.blaze.getTarget();
+			return livingEntity != null && livingEntity.isAlive() && this.blaze.canAttack(livingEntity) && livingEntity.getType() != blaze.getType();
+		}
+
+		@Override
 		public void start() {
 			this.attackStep = 0;
 		}
