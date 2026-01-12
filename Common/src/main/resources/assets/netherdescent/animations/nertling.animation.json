@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.nertling.walking": {
+		"walk": {
 			"loop": true,
 			"animation_length": 1.5,
 			"bones": {
@@ -147,7 +147,7 @@
 				}
 			}
 		},
-		"animation.nertling.idle": {
+		"idle": {
 			"loop": true,
 			"animation_length": 1.5,
 			"bones": {
@@ -214,7 +214,7 @@
 				}
 			}
 		},
-		"animation.nertling.idle2": {
+		"idle_2": {
 			"loop": true,
 			"animation_length": 1.5,
 			"bones": {
@@ -259,7 +259,7 @@
 				}
 			}
 		},
-		"animation.nertling.idle3": {
+		"idle_3": {
 			"loop": true,
 			"animation_length": 1.5,
 			"bones": {
@@ -339,7 +339,7 @@
 				}
 			}
 		},
-		"animation.nertling.no": {
+		"no": {
 			"animation_length": 1.5,
 			"bones": {
 				"head": {
@@ -405,7 +405,7 @@
 				}
 			}
 		},
-		"animation.nertling.attack": {
+		"attack": {
 			"animation_length": 0.75,
 			"bones": {
 				"head": {
@@ -473,7 +473,7 @@
 				}
 			}
 		},
-		"animation.nertling.death": {
+		"death": {
 			"animation_length": 0.75,
 			"bones": {
 				"head": {

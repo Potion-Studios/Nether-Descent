@@ -13,6 +13,7 @@ import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
 import net.potionstudios.netherdescent.sounds.NetherDescentSounds;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.entity.ai.village.poi.NetherDescentPoiTypes;
+import net.potionstudios.netherdescent.world.entity.schedule.NetherDescentSchedule;
 import net.potionstudios.netherdescent.world.item.NetherDescentArmorMaterials;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
@@ -58,6 +59,7 @@ public class NetherDescent {
 	    NetherDescentPotions.potions();
         NetherDescentArmorMaterials.armorMaterials();
 	    NetherDescentPoiTypes.poiTypes();
+        NetherDescentSchedule.schedules();
     }
 
     /**

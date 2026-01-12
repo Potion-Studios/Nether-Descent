@@ -12,6 +12,6 @@ public class NertlingRenderer<T extends Nertling> extends GeoEntityRenderer<T> {
 
     @Override
     protected float getShadowRadius(@NotNull T entity) {
-        return 0.9F;
+        return 0.6F;
     }
 }
