@@ -205,6 +205,15 @@ public class RecipeGenerator extends RecipeProvider {
                 .requires(Ingredient.of(Items.COAL, Items.CHARCOAL))
                 .unlockedBy(getHasName(NetherDescentItems.SOUL_BLAZE_POWDER.get()), has(NetherDescentItems.SOUL_BLAZE_POWDER.get()))
                 .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, NetherDescentBlocks.HORNET_NEST.get())
+                .define('#', ItemTags.LOGS)
+                .define('X', Tags.Items.BUCKETS_WATER)
+                .pattern(" # ")
+                .pattern("#X#")
+                .pattern(" # ")
+                .unlockedBy("has_logs", has(ItemTags.LOGS))
+                .save(recipeOutput);
     }
 
 	private static void NDNineBlockStorageRecipes(RecipeOutput recipeOutput, RecipeCategory unpackedCategory, ItemLike unpacked, RecipeCategory packedCategory, ItemLike packed, String packedName, @Nullable String packedGroup, String unpackedName, @Nullable String unpackedGroup) {
