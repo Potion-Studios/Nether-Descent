@@ -37,6 +37,7 @@ accessible method net/minecraft/world/entity/monster/Blaze setCharged (Z)V
 accessible class net/minecraft/world/entity/monster/Blaze$BlazeAttackGoal
 
 accessible method net/minecraft/world/entity/animal/Bee wantsToEnterHive ()Z
+accessible method net/minecraft/world/entity/animal/Bee setHasNectar (Z)V
 accessible method net/minecraft/world/entity/animal/Bee isTooFarAway (Lnet/minecraft/core/BlockPos;)Z
 accessible method net/minecraft/world/entity/animal/Bee pathfindRandomlyTowards (Lnet/minecraft/core/BlockPos;)V
 accessible field net/minecraft/world/entity/animal/Bee remainingCooldownBeforeLocatingNewHive I

@@ -1,372 +1,324 @@
 package net.potionstudios.netherdescent.world.entity.animal;
 
-import com.google.common.collect.Lists;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.util.VisibleForDebug;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
-import net.minecraft.world.entity.ai.util.AirAndWaterRandomPos;
-import net.minecraft.world.entity.ai.util.HoverRandomPos;
-import net.minecraft.world.entity.ai.village.poi.PoiManager;
-import net.minecraft.world.entity.ai.village.poi.PoiRecord;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.pathfinder.Path;
-import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.potionstudios.netherdescent.world.entity.ai.village.poi.NetherDescentPoiTypes;
-import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.level.block.entity.HornetNestBlockEntity;
-import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Comparator;
 import java.util.EnumSet;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Hornet extends Bee {
-    public Hornet(EntityType<? extends Bee> entityType, Level level) {
-        super(entityType, level);
-        this.setPathfindingMalus(PathType.DANGER_FIRE, 0.0F);
-    }
+    public static final int PLAYER_AGGRO_RADIUS = 10;
+    public static final int DOCILE_FLOWER_RADIUS = 15;
+    public static final int DOCILE_CHECK_INTERVAL_TICKS = 40;
 
-    HornetGoToNestGoal goToNestGoal;
+    public static final int MAX_DISTANCE_FROM_NEST = 16;
+    public static final int NEST_SEARCH_RADIUS = 24;
+    public static final int NEST_SEARCH_INTERVAL_TICKS = 200;
 
-    @Override
-    protected void registerGoals() {
-        this.goalSelector.addGoal(2, new HornetEnterNestGoal());
-	    this.goalSelector.addGoal(2, new BreedGoal(this, 1.0F));
-	    this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, itemStack -> itemStack.is(ItemTags.BEE_FOOD), false));
-	    this.beePollinateGoal = new Bee.BeePollinateGoal();
-	    this.goalSelector.addGoal(4, this.beePollinateGoal);
-	    this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.25));
-	    this.goalSelector.addGoal(5, new HornetLocateNestGoal());
-        goToNestGoal = new HornetGoToNestGoal();
-        this.goalSelector.addGoal(5, goToNestGoal);
-	    this.goToKnownFlowerGoal = new BeeGoToKnownFlowerGoal();
-	    this.goalSelector.addGoal(6, this.goToKnownFlowerGoal);
-	    this.goalSelector.addGoal(7, new BeeGrowCropGoal());
-	    this.goalSelector.addGoal(8, new HornetWanderGoal());
-	    this.goalSelector.addGoal(9, new FloatGoal(this));
-	    this.targetSelector.addGoal(3, new ResetUniversalAngerTargetGoal<>(this, true));
+    public static final int SLEEP_START_TIME = 18000;
+    public static final int WAKE_TIME = 2000;
+
+    private static final String NBT_NEST_POS = "HornetNestPos";
+
+    @Nullable
+    private BlockPos nestPos;
+
+    private boolean cachedDocile = false;
+    private long nextDocileCheckTick = 0L;
+    private long nextNestSearchTick = 0L;
+
+    public Hornet(EntityType<? extends Hornet> type, Level level) {
+        super(type, level);
     }
 
     public static AttributeSupplier.@NotNull Builder createAttributes() {
-        return Mob.createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 12.0)
-                .add(Attributes.FLYING_SPEED, 0.7F)
-                .add(Attributes.MOVEMENT_SPEED, 0.3F)
-                .add(Attributes.ATTACK_DAMAGE, 3.0)
-                .add(Attributes.FOLLOW_RANGE, 48.0);
+        return Bee.createAttributes()
+                .add(Attributes.MAX_HEALTH, 12.0D)
+                .add(Attributes.FLYING_SPEED, 0.7D)
+                .add(Attributes.ATTACK_DAMAGE, 6.0D);
     }
 
-    private boolean doesNestSpace(BlockPos hivePos) {
-        BlockEntity blockEntity = this.level().getBlockEntity(hivePos);
-        if (blockEntity instanceof HornetNestBlockEntity) {
-            return !((HornetNestBlockEntity)blockEntity).isFull();
-        } else {
-            return false;
+    public void setHivePos(BlockPos pos) {
+        this.nestPos = pos.immutable();
+        this.restrictTo(this.nestPos, MAX_DISTANCE_FROM_NEST);
+    }
+
+    @Nullable
+    public BlockPos getHornetNestPos() {
+        return this.nestPos;
+    }
+
+    public boolean hasHornetNest() {
+        return this.nestPos != null;
+    }
+
+    public void clearHornetNest() {
+        this.nestPos = null;
+        this.clearRestriction();
+    }
+
+    @Override
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.removeAllGoals(goal -> {
+            String n = goal.getClass().getSimpleName();
+            return n.contains("Hive") || n.equals("ValidateHiveGoal");
+        });
+        this.goalSelector.addGoal(0, new GoToAndEnterNestGoal(this));
+        this.targetSelector.addGoal(0, new AggroNearbyPlayerGoal(this));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Bee.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Monster.class, true));
+    }
+
+    @Override
+    protected void customServerAiStep() {
+        super.customServerAiStep();
+
+        long now = level().getGameTime();
+
+        if (this.nestPos == null && now >= this.nextNestSearchTick) {
+            this.nextNestSearchTick = now + NEST_SEARCH_INTERVAL_TICKS;
+            BlockPos found = this.findNearestNest((ServerLevel) level(), NEST_SEARCH_RADIUS);
+            if (found != null) {
+                this.setHivePos(found);
+            }
+        }
+
+        if (now >= this.nextDocileCheckTick) {
+            this.nextDocileCheckTick = now + DOCILE_CHECK_INTERVAL_TICKS;
+            this.cachedDocile = this.hasFlowerWithin(level(), this.blockPosition(), DOCILE_FLOWER_RADIUS, 5);
+        }
+
+        if (this.cachedDocile && this.getTarget() instanceof Player) {
+            super.setTarget(null);
         }
     }
 
-	public boolean wantsToEnterNest() {
-		if (this.stayOutOfHiveCountdown <= 0 && this.getTarget() == null) {
-			return this.isTiredOfLookingForNectar() || level().isRaining() || level().isNight() || this.hasNectar();
-		}
-		return false;
-	}
+    public boolean isDocile() {
+        return this.cachedDocile;
+    }
 
-    boolean isNestValid() {
-        if (!this.hasHive()) {
-            return false;
-        } else if (this.isTooFarAway(this.getHivePos())) {
-            return false;
-        } else {
-            BlockEntity blockEntity = this.level().getBlockEntity(this.getHivePos());
-            return blockEntity != null && blockEntity.getType() == NetherDescentBlockEntityType.HORNET_NEST.get();
+    @Override
+    public void setTarget(@Nullable LivingEntity target) {
+        if (this.isDocile() && target instanceof Player) return;
+
+        if (target instanceof Hornet) return;
+
+        super.setTarget(target);
+    }
+
+    @Override
+    public boolean canAttack(@NotNull LivingEntity target) {
+        if (target instanceof Hornet) return false;
+        if (this.isDocile() && target instanceof Player) return false;
+        return super.canAttack(target);
+    }
+
+
+    @Override
+    public boolean doHurtTarget(@NotNull Entity target) {
+        return target.hurt(damageSources().sting(this), (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
+    }
+
+    @Override
+    @Nullable
+    public Hornet getBreedOffspring(@NotNull ServerLevel level, @NotNull AgeableMob otherParent) {
+        return NetherDescentEntityType.HORNET.get().create(level);
+    }
+
+    @Override
+    public void addAdditionalSaveData(net.minecraft.nbt.@NotNull CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        if (this.nestPos != null) {
+            tag.putLong(NBT_NEST_POS, this.nestPos.asLong());
         }
     }
 
-    abstract class BaseHornetGoal extends Goal {
-        public abstract boolean canHornetUse();
+    @Override
+    public void readAdditionalSaveData(net.minecraft.nbt.@NotNull CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        if (tag.contains(NBT_NEST_POS)) {
+            this.nestPos = BlockPos.of(tag.getLong(NBT_NEST_POS));
+            if (this.nestPos != null) {
+                this.restrictTo(this.nestPos, MAX_DISTANCE_FROM_NEST);
+            }
+        }
+    }
 
-        public abstract boolean canHornetContinueToUse();
+    private boolean shouldSleepNow() {
+        long dayTime = this.level().getDayTime() % 24000L;
+        return dayTime >= SLEEP_START_TIME || dayTime < WAKE_TIME;
+    }
+
+    private boolean shouldDepositNectarNow() {
+        if (!this.hasNectar() || this.nestPos == null) return false;
+        return this.level().isDay() || this.shouldSleepNow();
+    }
+
+    private boolean isTooFarFromNest() {
+        if (this.nestPos == null) return false;
+        Vec3 c = Vec3.atCenterOf(this.nestPos);
+        return this.distanceToSqr(c) > (MAX_DISTANCE_FROM_NEST * MAX_DISTANCE_FROM_NEST);
+    }
+
+    private Vec3 getNestEntryPos() {
+        if (this.nestPos == null) return this.position();
+        BlockPos p = this.nestPos;
+        return new Vec3(p.getX() + 0.5D, p.getY() - 0.25D, p.getZ() + 0.5D);
+    }
+
+    private boolean tryEnterNest(ServerLevel level) {
+        if (this.nestPos == null) return false;
+        if (!(level.getBlockEntity(this.nestPos) instanceof HornetNestBlockEntity nest)) {
+            this.clearHornetNest();
+            return false;
+        }
+        if (nest.isFull()) return false;
+
+        Vec3 entry = this.getNestEntryPos();
+        if (this.distanceToSqr(entry) > 2.0D) return false;
+
+        if (this.hasNectar()) {
+            this.setHasNectar(false);
+        }
+
+        nest.storeHornet(HornetNestBlockEntity.Occupant.of(this));
+        this.discard();
+        return true;
+    }
+
+    @Nullable
+    private BlockPos findNearestNest(ServerLevel level, int radius) {
+        BlockPos origin = this.blockPosition();
+        BlockPos.MutableBlockPos cursor = new BlockPos.MutableBlockPos();
+
+        int bestDist2 = Integer.MAX_VALUE;
+        BlockPos best = null;
+
+        int yRange = 8;
+        for (int dy = -yRange; dy <= yRange; dy++) {
+            for (int dx = -radius; dx <= radius; dx++) {
+                for (int dz = -radius; dz <= radius; dz++) {
+                    cursor.set(origin.getX() + dx, origin.getY() + dy, origin.getZ() + dz);
+                    if (!level.hasChunkAt(cursor)) continue;
+
+                    if (level.getBlockEntity(cursor) instanceof HornetNestBlockEntity nest && !nest.isFull()) {
+                        int d2 = dx * dx + dy * dy + dz * dz;
+                        if (d2 < bestDist2) {
+                            bestDist2 = d2;
+                            best = cursor.immutable();
+                        }
+                    }
+                }
+            }
+        }
+        return best;
+    }
+
+    private boolean hasFlowerWithin(Level level, BlockPos center, int radiusXZ, int radiusY) {
+        BlockPos.MutableBlockPos cursor = new BlockPos.MutableBlockPos();
+
+        for (int dy = -radiusY; dy <= radiusY; dy++) {
+            for (int dx = -radiusXZ; dx <= radiusXZ; dx++) {
+                for (int dz = -radiusXZ; dz <= radiusXZ; dz++) {
+                    cursor.set(center.getX() + dx, center.getY() + dy, center.getZ() + dz);
+                    if (!level.hasChunkAt(cursor)) continue;
+
+                    BlockState state = level.getBlockState(cursor);
+                    if (state.is(BlockTags.FLOWERS)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private static final class GoToAndEnterNestGoal extends Goal {
+        private final Hornet hornet;
+        private int repathCooldown = 0;
+
+        GoToAndEnterNestGoal(Hornet hornet) {
+            this.hornet = hornet;
+            this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
+        }
 
         @Override
         public boolean canUse() {
-            return this.canHornetUse() && !Hornet.this.isAngry();
+            if (!hornet.hasHornetNest()) return false;
+            return hornet.shouldSleepNow() || hornet.isTooFarFromNest() || hornet.shouldDepositNectarNow();
         }
 
         @Override
         public boolean canContinueToUse() {
-            return this.canHornetContinueToUse() && !Hornet.this.isAngry();
-        }
-    }
-
-    class HornetEnterNestGoal extends BaseHornetGoal {
-        @Override
-        public void start() {
-            if (Hornet.this.level().getBlockEntity(Hornet.this.getHivePos()) instanceof HornetNestBlockEntity hornetNestBlockEntity) {
-                hornetNestBlockEntity.addOccupant(Hornet.this);
-            }
-        }
-
-        @Override
-        public boolean canHornetUse() {
-            if (Hornet.this.hasHive()
-                    && Hornet.this.wantsToEnterNest()
-                    && Hornet.this.getHivePos().closerToCenterThan(Hornet.this.position(), 2.0)
-                    && Hornet.this.level().getBlockEntity(Hornet.this.getHivePos()) instanceof HornetNestBlockEntity hornetNestBlockEntity) {
-                if (!hornetNestBlockEntity.isFull()) {
-                    return true;
-                }
-
-                Hornet.this.setHivePos(null);
-            }
-
-            return false;
-        }
-
-        @Override
-        public boolean canHornetContinueToUse() {
-            return false;
-        }
-    }
-
-    boolean closerThan(BlockPos pos, int distance) {
-        return pos.closerThan(this.blockPosition(), distance);
-    }
-
-    @VisibleForDebug
-    public class HornetGoToNestGoal extends BaseHornetGoal {
-        public static final int MAX_TRAVELLING_TICKS = 600;
-        int travellingTicks = Hornet.this.level().random.nextInt(10);
-        private static final int MAX_BLACKLISTED_TARGETS = 3;
-        final List<BlockPos> blacklistedTargets = Lists.<BlockPos>newArrayList();
-        @Nullable
-        private Path lastPath;
-        private static final int TICKS_BEFORE_HIVE_DROP = 60;
-        private int ticksStuck;
-
-        HornetGoToNestGoal() {
-            this.setFlags(EnumSet.of(Goal.Flag.MOVE));
-        }
-
-        @Override
-        public boolean canHornetUse() {
-            return Hornet.this.getHivePos() != null
-                    && !Hornet.this.hasRestriction()
-                    && Hornet.this.wantsToEnterHive()
-                    && !this.hasReachedTarget(Hornet.this.getHivePos())
-                    && Hornet.this.level().getBlockState(Hornet.this.getHivePos()).is(NetherDescentBlocks.HORNET_NEST.get());
-        }
-
-        @Override
-        public boolean canHornetContinueToUse() {
-            return this.canHornetUse();
+            return this.canUse();
         }
 
         @Override
         public void start() {
-            this.travellingTicks = 0;
-            this.ticksStuck = 0;
-            super.start();
-        }
-
-        @Override
-        public void stop() {
-            this.travellingTicks = 0;
-            this.ticksStuck = 0;
-            Hornet.this.navigation.stop();
-            Hornet.this.navigation.resetMaxVisitedNodesMultiplier();
+            this.repathCooldown = 0;
         }
 
         @Override
         public void tick() {
-            if (Hornet.this.getHivePos() != null) {
-                this.travellingTicks++;
-                if (this.travellingTicks > this.adjustedTickDelay(600)) {
-                    this.dropAndBlacklistHive();
-                } else if (!Hornet.this.navigation.isInProgress()) {
-                    if (!Hornet.this.closerThan(Hornet.this.getHivePos(), 16)) {
-                        if (Hornet.this.isTooFarAway(Hornet.this.getHivePos())) {
-                            this.dropHive();
-                        } else {
-                            Hornet.this.pathfindRandomlyTowards(Hornet.this.getHivePos());
-                        }
-                    } else {
-                        boolean bl = this.pathfindDirectlyTowards(Hornet.this.getHivePos());
-                        if (!bl) {
-                            this.dropAndBlacklistHive();
-                        } else if (this.lastPath != null && Hornet.this.navigation.getPath().sameAs(this.lastPath)) {
-                            this.ticksStuck++;
-                            if (this.ticksStuck > 60) {
-                                this.dropHive();
-                                this.ticksStuck = 0;
-                            }
-                        } else {
-                            this.lastPath = Hornet.this.navigation.getPath();
-                        }
-                    }
-                }
-            }
-        }
+            if (!hornet.hasHornetNest()) return;
 
-        private boolean pathfindDirectlyTowards(BlockPos pos) {
-            Hornet.this.navigation.setMaxVisitedNodesMultiplier(10.0F);
-            Hornet.this.navigation.moveTo(pos.getX(), pos.getY(), pos.getZ(), 2, 1.0);
-            return Hornet.this.navigation.getPath() != null && Hornet.this.navigation.getPath().canReach();
-        }
+            if (hornet.tryEnterNest((ServerLevel) hornet.level())) return;
 
-        boolean isTargetBlacklisted(BlockPos pos) {
-            return this.blacklistedTargets.contains(pos);
-        }
+            Vec3 entry = hornet.getNestEntryPos();
 
-        private void blacklistTarget(BlockPos pos) {
-            this.blacklistedTargets.add(pos);
-
-            while (this.blacklistedTargets.size() > 3) {
-                this.blacklistedTargets.remove(0);
-            }
-        }
-
-        void clearBlacklist() {
-            this.blacklistedTargets.clear();
-        }
-
-        private void dropAndBlacklistHive() {
-            if (Hornet.this.getHivePos() != null) {
-                this.blacklistTarget(Hornet.this.getHivePos());
+            if (this.repathCooldown-- <= 0) {
+                this.repathCooldown = 10;
+                hornet.getNavigation().moveTo(entry.x, entry.y, entry.z, 1.2D);
             }
 
-            this.dropHive();
-        }
-
-        private void dropHive() {
-            Hornet.this.setHivePos(null);
-            Hornet.this.remainingCooldownBeforeLocatingNewHive = 200;
-        }
-
-        private boolean hasReachedTarget(BlockPos pos) {
-            if (Hornet.this.closerThan(pos, 2)) {
-                return true;
-            } else {
-                Path path = Hornet.this.navigation.getPath();
-                return path != null && path.getTarget().equals(pos) && path.canReach() && path.isDone();
-            }
+            hornet.getLookControl().setLookAt(entry.x, entry.y, entry.z);
         }
     }
 
-    class HornetLocateNestGoal extends BaseHornetGoal {
-        @Override
-        public boolean canHornetUse() {
-            return Hornet.this.remainingCooldownBeforeLocatingNewHive == 0 && !Hornet.this.hasHive() && Hornet.this.wantsToEnterHive();
-        }
+    private static final class AggroNearbyPlayerGoal extends Goal {
+        private final Hornet hornet;
+        private final TargetingConditions conditions;
+        @Nullable private Player target;
 
-        @Override
-        public boolean canHornetContinueToUse() {
-            return false;
-        }
-
-        @Override
-        public void start() {
-            Hornet.this.remainingCooldownBeforeLocatingNewHive = 200;
-            List<BlockPos> list = this.findNearbyHivesWithSpace();
-            if (!list.isEmpty()) {
-                for (BlockPos blockPos : list) {
-                    if (!Hornet.this.goToNestGoal.isTargetBlacklisted(blockPos)) {
-                        Hornet.this.setHivePos(blockPos);
-                        return;
-                    }
-                }
-
-                Hornet.this.goToNestGoal.clearBlacklist();
-                Hornet.this.setHivePos(list.getFirst());
-            }
-        }
-
-        private List<BlockPos> findNearbyHivesWithSpace() {
-            BlockPos blockPos = Hornet.this.blockPosition();
-            PoiManager poiManager = ((ServerLevel)Hornet.this.level()).getPoiManager();
-            Stream<PoiRecord> stream = poiManager.getInRange((holder) -> holder.is(NetherDescentPoiTypes.HORNET_NEST), blockPos, 20, PoiManager.Occupancy.ANY);
-            return stream.map(PoiRecord::getPos).filter((pos) -> level().getBlockEntity(pos) instanceof HornetNestBlockEntity hornetNestBlockEntity && !hornetNestBlockEntity.isFull()).sorted(Comparator.comparingDouble((blockPos2) -> blockPos2.distSqr(blockPos))).collect(Collectors.toList());
-        }
-    }
-
-	class HornetEnterHiveGoal extends BaseHornetGoal {
-
-		@Override
-		public boolean canHornetUse() {
-			if (Hornet.this.hasHive() && Hornet.this.wantsToEnterNest() && Hornet.this.getHivePos().closerToCenterThan(Hornet.this.position(), 2.0) && Hornet.this.level().getBlockEntity(Hornet.this.getHivePos()) instanceof HornetNestBlockEntity hornetNestBlockEntity) {
-				if (!hornetNestBlockEntity.isFull()) {
-					return true;
-				}
-
-				Hornet.this.setHivePos(null);
-			}
-			return false;
-		}
-
-		@Override
-		public boolean canHornetContinueToUse() {
-			return false;
-		}
-
-		@Override
-		public void start() {
-			if (Hornet.this.level().getBlockEntity(Hornet.this.getHivePos()) instanceof HornetNestBlockEntity hornetNestBlockEntity)
-				hornetNestBlockEntity.addOccupant(Hornet.this);
-		}
-	}
-
-    class HornetWanderGoal extends Goal {
-        private static final int WANDER_THRESHOLD = 22;
-
-        HornetWanderGoal() {
-            this.setFlags(EnumSet.of(Goal.Flag.MOVE));
+        AggroNearbyPlayerGoal(Hornet hornet) {
+            this.hornet = hornet;
+            this.setFlags(EnumSet.of(Flag.TARGET));
+            this.conditions = TargetingConditions.forCombat()
+                    .range(PLAYER_AGGRO_RADIUS)
+                    .selector(p -> !hornet.isDocile() && !p.isSpectator());
         }
 
         @Override
         public boolean canUse() {
-            return Hornet.this.navigation.isDone() && Hornet.this.random.nextInt(10) == 0;
-        }
+            if (hornet.isDocile() || hornet.getTarget() instanceof Player) return false;
 
-        @Override
-        public boolean canContinueToUse() {
-            return Hornet.this.navigation.isInProgress();
+            this.target = hornet.level().getNearestPlayer(this.conditions, hornet);
+            return this.target != null;
         }
 
         @Override
         public void start() {
-            Vec3 vec3 = this.findPos();
-            if (vec3 != null) {
-                Hornet.this.navigation.moveTo(Hornet.this.navigation.createPath(BlockPos.containing(vec3), 1), 1.0);
-            }
-        }
-
-        @Nullable
-        private Vec3 findPos() {
-            Vec3 vec32;
-            if (Hornet.this.isNestValid() && !Hornet.this.closerThan(Hornet.this.getHivePos(), 22)) {
-                Vec3 vec3 = Vec3.atCenterOf(Hornet.this.getHivePos());
-                vec32 = vec3.subtract(Hornet.this.position()).normalize();
-            } else {
-                vec32 = Hornet.this.getViewVector(0.0F);
-            }
-
-            int i = 8;
-            Vec3 vec33 = HoverRandomPos.getPos(Hornet.this, 8, 7, vec32.x, vec32.z, (float) (Math.PI / 2), 3, 1);
-            return vec33 != null ? vec33 : AirAndWaterRandomPos.getPos(Hornet.this, 8, 4, -2, vec32.x, vec32.z, (float) (Math.PI / 2));
+            hornet.setTarget(this.target);
         }
     }
 }
