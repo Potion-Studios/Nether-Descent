@@ -35,12 +35,8 @@ import java.util.function.Supplier;
 
 @AutoService(PlatformHandler.class)
 public final class FabricPlatformHandler implements PlatformHandler {
-	@Override
-	public Platform getPlatform() {
-		return Platform.FABRIC;
-	}
 
-	@Override
+    @Override
 	public Path configPath() {
 		return FabricLoader.getInstance().getConfigDir().resolve(NetherDescent.MOD_ID);
 	}

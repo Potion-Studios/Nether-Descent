@@ -10,7 +10,6 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.datafix.fixes.References;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.*;
@@ -22,7 +21,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.loading.FMLPaths;
@@ -42,12 +40,8 @@ import java.util.function.Supplier;
 
 @AutoService(PlatformHandler.class)
 public final class ForgePlatformHandler implements PlatformHandler {
-	@Override
-	public Platform getPlatform() {
-		return Platform.FORGE;
-	}
 
-	@Override
+    @Override
 	public Path configPath() {
 		return FMLPaths.CONFIGDIR.get().resolve(NetherDescent.MOD_ID);
 	}
@@ -67,11 +61,6 @@ public final class ForgePlatformHandler implements PlatformHandler {
 	@Override
 	public Supplier<FlowerPotBlock> createPottedBlock(Supplier<? extends Block> block) {
 		return () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, block, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
-	}
-
-	@Override
-	public Supplier<MobBucketItem> createMobBucket(Supplier<EntityType<? extends Mob>> entity, Supplier<Fluid> fluid, Supplier<SoundEvent> sound) {
-		return () -> new MobBucketItem(entity, fluid, sound, new Item.Properties().stacksTo(1));
 	}
 
 	@Override

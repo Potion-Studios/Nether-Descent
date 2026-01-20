@@ -44,11 +44,6 @@ import java.util.function.Supplier;
 public final class NeoForgePlatformHandler implements PlatformHandler {
 
 	@Override
-	public Platform getPlatform() {
-		return Platform.NEOFORGE;
-	}
-
-	@Override
 	public Path configPath() {
 		return FMLPaths.CONFIGDIR.get().resolve(NetherDescent.MOD_ID);
 	}

@@ -1,6 +1,10 @@
 # Nether Descent
 ### By Potion Studios
 
+### Official Downloads
+* Curseforge: https://www.curseforge.com/minecraft/mc-mods/nether-descent
+* Modrinth: https://modrinth.com/mod/nether-descent
+
 ### Maven Information
 - Releases: https://maven.jt-dev.tech/releases
 - Snapshots: https://maven.jt-dev.tech/snapshots
