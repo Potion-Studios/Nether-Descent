@@ -10,20 +10,6 @@
       "type": "minecraft:replaceable"
     },
     "canopy_location": "netherdescent:features/bones/bone_canopy4",
-    "decorators": [
-      {
-        "type": "netherdescent:growing_plant",
-        "body": {
-          "Name": "minecraft:weeping_vines_plant"
-        },
-        "head": {
-          "Name": "minecraft:weeping_vines",
-          "Properties": {
-            "age": "0"
-          }
-        }
-      }
-    ],
     "height": {
       "type": "minecraft:biased_to_bottom",
       "max_inclusive": 25,

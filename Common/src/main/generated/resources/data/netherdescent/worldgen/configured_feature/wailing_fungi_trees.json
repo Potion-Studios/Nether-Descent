@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": {
+      "feature": "netherdescent:wailing_fungi_tree3",
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.3,
+        "feature": {
+          "feature": "netherdescent:wailing_fungi_tree1",
+          "placement": []
+        }
+      },
+      {
+        "chance": 0.33,
+        "feature": {
+          "feature": "netherdescent:wailing_fungi_tree2",
+          "placement": []
+        }
+      }
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 {
   "type": "ohthetreesyoullgrow:tree_from_nbt_v1",
   "config": {
-    "base_location": "netherdescent:features/bones/bone_trunk1",
+    "base_location": "netherdescent:features/trees/wailing/wailing_fungi_trunk2",
     "can_grow_on_filter": {
       "type": "minecraft:matching_block_tag",
       "tag": "minecraft:nylium"
@@ -9,32 +9,32 @@
     "can_leaves_place_filter": {
       "type": "minecraft:replaceable"
     },
-    "canopy_location": "netherdescent:features/bones/bone_canopy1",
+    "canopy_location": "netherdescent:features/trees/wailing/wailing_fungi_canopy2",
     "height": {
       "type": "minecraft:biased_to_bottom",
-      "max_inclusive": 20,
-      "min_inclusive": 5
+      "max_inclusive": 10,
+      "min_inclusive": 4
     },
     "leaves_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "netherdescent:crimson_carpet"
+        "Name": "netherdescent:wailing_wart_block"
       }
     },
     "leaves_target": [
-      "minecraft:nether_wart_block"
+      "minecraft:warped_wart_block"
     ],
     "log_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "minecraft:bone_block",
+        "Name": "netherdescent:wailing_stem",
         "Properties": {
           "axis": "y"
         }
       }
     },
     "log_target": [
-      "minecraft:bone_block"
+      "minecraft:oak_log"
     ],
     "max_log_depth": 4,
     "place_from_nbt": []

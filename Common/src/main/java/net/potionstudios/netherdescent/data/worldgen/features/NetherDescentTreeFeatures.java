@@ -1,8 +1,10 @@
 package net.potionstudios.netherdescent.data.worldgen.features;
 
 import com.google.common.collect.ImmutableList;
+import dev.corgitaco.ohthetreesyoullgrow.Constants;
 import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.TYGFeatures;
 import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.configurations.TreeFromStructureNBTConfig;
+import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.configurations.TreeFromStructureNBTConfigV2;
 import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.configurations.treedecorators.AttachedToLogsDecorator;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
@@ -10,6 +12,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.BiasedToBottomInt;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -33,7 +36,7 @@ public class NetherDescentTreeFeatures {
     public static final Supplier<AttachedToLogsDecorator> FUNGAL_BULBS_WALL_UP_DOWN = () -> new AttachedToLogsDecorator(0.25F, 0, 1, SimpleStateProvider.simple(NetherDescentBlocks.FUNGAL_BULBS.get()), 2, List.of(Direction.WEST, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.UP, Direction.DOWN));
 
     public static final GrowingPlantVinesDecorator WEEPING_VINES_DECORATOR = new GrowingPlantVinesDecorator(Blocks.WEEPING_VINES, Blocks.WEEPING_VINES_PLANT);
-    
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> BONE_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("bone_tree1",
             TYGFeatures.TREE_FROM_NBT_V1,
             () -> new TreeFromStructureNBTConfig.Builder()
@@ -46,7 +49,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
+                    .treeDecorators(ImmutableList.of())
                     .build()
     );
 
@@ -62,7 +65,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
+                    .treeDecorators(ImmutableList.of())
                     .build()
     );
 
@@ -78,7 +81,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
+                    .treeDecorators(ImmutableList.of())
                     .build()
     );
 
@@ -94,7 +97,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
+                    .treeDecorators(ImmutableList.of())
                     .build()
     );
 
@@ -516,6 +519,68 @@ public class NetherDescentTreeFeatures {
                         new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_WART5)), 0.1F),
                         new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_WART6)), 0.1F)),
                         PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(EMBUR_WART7)));
+            }
+    );
+
+    //WAILING TREES ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//    public static final GrowingPlantVinesDecorator WAILING_VINES_DECORATOR = new GrowingPlantVinesDecorator(NetherDescentBlocks.WAILING_VINES.get(), NetherDescentBlocks.WAILING_VINES_PLANT.get());
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_FUNGI_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_fungi_tree1",
+            TYGFeatures.TREE_FROM_NBT_V1,
+            () -> new TreeFromStructureNBTConfig.Builder()
+                    .baseLocation(NetherDescent.id("features/trees/wailing/wailing_fungi_trunk1"))
+                    .canopyLocation(NetherDescent.id("features/trees/wailing/wailing_fungi_canopy1"))
+                    .height(BiasedToBottomInt.of(4, 10))
+                    .logProvider(BlockStateProvider.simple(NetherDescentBlocks.WAILING.logstem()))
+                    .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.WAILING_WART_BLOCK.get()))
+                    .logTarget(Set.of(Blocks.OAK_LOG))
+                    .leavesTarget(Set.of(Blocks.WARPED_WART_BLOCK))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of())
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_FUNGI_TREE2 = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_fungi_tree2",
+            TYGFeatures.TREE_FROM_NBT_V1,
+            () -> new TreeFromStructureNBTConfig.Builder()
+                    .baseLocation(NetherDescent.id("features/trees/wailing/wailing_fungi_trunk2"))
+                    .canopyLocation(NetherDescent.id("features/trees/wailing/wailing_fungi_canopy2"))
+                    .height(BiasedToBottomInt.of(4, 10))
+                    .logProvider(BlockStateProvider.simple(NetherDescentBlocks.WAILING.logstem()))
+                    .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.WAILING_WART_BLOCK.get()))
+                    .logTarget(Set.of(Blocks.OAK_LOG))
+                    .leavesTarget(Set.of(Blocks.WARPED_WART_BLOCK))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of())
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_FUNGI_TREE3 = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_fungi_tree3",
+            TYGFeatures.TREE_FROM_NBT_V1,
+            () -> new TreeFromStructureNBTConfig.Builder()
+                    .baseLocation(NetherDescent.id("features/trees/wailing/wailing_fungi_trunk3"))
+                    .canopyLocation(NetherDescent.id("features/trees/wailing/wailing_fungi_canopy3"))
+                    .height(BiasedToBottomInt.of(9, 19))
+                    .logProvider(BlockStateProvider.simple(NetherDescentBlocks.WAILING.logstem()))
+                    .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.WAILING_WART_BLOCK.get()))
+                    .logTarget(Set.of(Blocks.OAK_LOG))
+                    .leavesTarget(Set.of(Blocks.WARPED_WART_BLOCK))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of())
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_FUNGI_TREES = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_fungi_trees",
+            Feature.RANDOM_SELECTOR,
+            (configuredFeatureBootstrapContext) -> {
+                HolderGetter<ConfiguredFeature<?, ?>> lookup = configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE);
+                return new RandomFeatureConfiguration(ImmutableList.of(
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(WAILING_FUNGI_TREE1)), 0.3F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(WAILING_FUNGI_TREE2)), 0.33F)),
+                        PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(WAILING_FUNGI_TREE3)));
             }
     );
 

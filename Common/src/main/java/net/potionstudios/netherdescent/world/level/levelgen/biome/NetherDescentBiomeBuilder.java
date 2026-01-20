@@ -110,6 +110,7 @@ public class NetherDescentBiomeBuilder {
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 
         addVegetal(generationSettings, NetherDescentPlacements.WAILING_GARTH_VEGETATION);
+        addVegetal(generationSettings, NetherDescentTreePlacements.WAILING_FUNGI_TREES);
         addVegetal(generationSettings, NetherDescentPlacements.WAILING_BULB_BLOSSOM);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
