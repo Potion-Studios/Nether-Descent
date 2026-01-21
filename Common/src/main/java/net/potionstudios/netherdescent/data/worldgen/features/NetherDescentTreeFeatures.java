@@ -11,9 +11,11 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.BiasedToBottomInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -21,6 +23,7 @@ import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
@@ -227,36 +230,36 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_FUNGI_HANGING_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_fungi_hanging_tree1",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/trees/crimson/crimson_fungi_trunk1"))
                     .canopyLocation(NetherDescent.id("features/trees/crimson/crimson_fungi_canopy1"))
                     .height(BiasedToBottomInt.of(8, 10))
                     .logProvider(BlockStateProvider.simple(Blocks.CRIMSON_STEM))
-                    .leavesProvider(BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK))
+                    .leavesProvider(List.of(BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK), BlockStateProvider.simple(Blocks.SHROOMLIGHT)))
                     .logTarget(Set.of(Blocks.CRIMSON_STEM))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK, Blocks.SHROOMLIGHT))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
-                    .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
+                    .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .build()
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_FUNGI_HANGING_TREE2 = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_fungi_hanging_tree2",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/trees/crimson/crimson_fungi_trunk2"))
                     .canopyLocation(NetherDescent.id("features/trees/crimson/crimson_fungi_canopy2"))
                     .height(BiasedToBottomInt.of(7, 10))
                     .logProvider(BlockStateProvider.simple(Blocks.CRIMSON_STEM))
-                    .leavesProvider(BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK))
+                    .leavesProvider(List.of(BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK), BlockStateProvider.simple(Blocks.SHROOMLIGHT)))
                     .logTarget(Set.of(Blocks.CRIMSON_STEM))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK, Blocks.SHROOMLIGHT))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
-                    .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
+                    .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .build()
     );
 
@@ -535,7 +538,7 @@ public class NetherDescentTreeFeatures {
                     .leavesProvider(List.of(BlockStateProvider.simple(NetherDescentBlocks.WAILING_WART_BLOCK.get()), BlockStateProvider.simple(NetherDescentBlocks.WAILING_GILLS.get())))
                     .logTarget(Set.of(Blocks.OAK_LOG))
                     .leavesTarget(List.of(Blocks.WARPED_WART_BLOCK, Blocks.SHROOMLIGHT))
-                    .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
+                    .growableOn(BlockPredicate.matchesBlocks(NetherDescentBlocks.WAILING_NYLIUM.get(), Blocks.SOUL_SOIL))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of())
                     .build()
@@ -551,7 +554,7 @@ public class NetherDescentTreeFeatures {
                     .leavesProvider(List.of(BlockStateProvider.simple(NetherDescentBlocks.WAILING_WART_BLOCK.get()), BlockStateProvider.simple(NetherDescentBlocks.WAILING_GILLS.get())))
                     .logTarget(Set.of(Blocks.OAK_LOG))
                     .leavesTarget(List.of(Blocks.WARPED_WART_BLOCK, Blocks.SHROOMLIGHT))
-                    .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
+                    .growableOn(BlockPredicate.matchesBlocks(NetherDescentBlocks.WAILING_NYLIUM.get(), Blocks.SOUL_SOIL))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of())
                     .build()
@@ -567,7 +570,7 @@ public class NetherDescentTreeFeatures {
                     .leavesProvider(List.of(BlockStateProvider.simple(NetherDescentBlocks.WAILING_WART_BLOCK.get()), BlockStateProvider.simple(NetherDescentBlocks.WAILING_GILLS.get())))
                     .logTarget(Set.of(Blocks.OAK_LOG))
                     .leavesTarget(List.of(Blocks.WARPED_WART_BLOCK, Blocks.SHROOMLIGHT))
-                    .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
+                    .growableOn(BlockPredicate.matchesBlocks(NetherDescentBlocks.WAILING_NYLIUM.get(), Blocks.SOUL_SOIL))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of())
                     .build()
@@ -581,6 +584,66 @@ public class NetherDescentTreeFeatures {
                         new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(WAILING_FUNGI_TREE1)), 0.3F),
                         new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(WAILING_FUNGI_TREE2)), 0.33F)),
                         PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(WAILING_FUNGI_TREE3)));
+            }
+    );
+
+    //WAILING CAGES --------------------------------------------------------------------------------------------------------------------------------------------------------------
+    public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_CAGE1 = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_cage1",
+            TYGFeatures.TREE_FROM_NBT_V1,
+            () -> new TreeFromStructureNBTConfig.Builder()
+                    .baseLocation(NetherDescent.id("features/cages/wailing_cage_trunk1"))
+                    .canopyLocation(NetherDescent.id("features/cages/wailing_cage_canopy1"))
+                    .height(BiasedToBottomInt.of(12, 12))
+                    .logProvider(new WeightedStateProvider(new SimpleWeightedRandomList.Builder<BlockState>()
+                            .add(Blocks.POLISHED_BLACKSTONE_BRICKS.defaultBlockState())
+                            .add(Blocks.POLISHED_BLACKSTONE.defaultBlockState(), 5)
+                            .add(Blocks.BLACKSTONE.defaultBlockState(), 5)
+                            .add(Blocks.GILDED_BLACKSTONE.defaultBlockState(), 5)))
+                    .leavesProvider(new WeightedStateProvider(new SimpleWeightedRandomList.Builder<BlockState>()
+                            .add(Blocks.BONE_BLOCK.defaultBlockState())
+                            .add(Blocks.CALCITE.defaultBlockState(), 3)
+                            .add(Blocks.BUDDING_AMETHYST.defaultBlockState(), 3)))
+                    .logTarget(Set.of(Blocks.POLISHED_BLACKSTONE_BRICKS))
+                    .leavesTarget(Set.of(Blocks.BONE_BLOCK))
+                    .growableOn(BlockPredicate.matchesBlocks(Blocks.NETHERRACK, Blocks.SOUL_SOIL))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of())
+                    .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_CAGE2 = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_cage2",
+            TYGFeatures.TREE_FROM_NBT_V1,
+            () -> new TreeFromStructureNBTConfig.Builder()
+                    .baseLocation(NetherDescent.id("features/cages/wailing_cage_trunk2"))
+                    .canopyLocation(NetherDescent.id("features/cages/wailing_cage_canopy2"))
+                    .height(BiasedToBottomInt.of(48, 48))
+                    .logProvider(new WeightedStateProvider(new SimpleWeightedRandomList.Builder<BlockState>()
+                            .add(Blocks.POLISHED_BLACKSTONE_BRICKS.defaultBlockState())
+                            .add(Blocks.POLISHED_BLACKSTONE.defaultBlockState(), 5)
+                            .add(Blocks.BLACKSTONE.defaultBlockState(), 5)
+                            .add(Blocks.GILDED_BLACKSTONE.defaultBlockState(), 5)))
+                    .leavesProvider(new WeightedStateProvider(new SimpleWeightedRandomList.Builder<BlockState>()
+                            .add(Blocks.BONE_BLOCK.defaultBlockState())
+                            .add(Blocks.CALCITE.defaultBlockState(), 3)
+                            .add(Blocks.BUDDING_AMETHYST.defaultBlockState(), 3)))
+                    .logTarget(Set.of(Blocks.POLISHED_BLACKSTONE_BRICKS))
+                    .leavesTarget(Set.of(Blocks.BONE_BLOCK))
+                    .growableOn(BlockPredicate.matchesBlocks(Blocks.NETHERRACK, Blocks.SOUL_SOIL))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of())
+                    .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_CAGES = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_cages",
+            Feature.RANDOM_SELECTOR,
+            (configuredFeatureBootstrapContext) -> {
+                HolderGetter<ConfiguredFeature<?, ?>> lookup = configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE);
+                return new RandomFeatureConfiguration(ImmutableList.of(
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(WAILING_CAGE1)), 0.3F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(WAILING_CAGE2)), 0.33F)),
+                        PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(WAILING_CAGE2)));
             }
     );
 

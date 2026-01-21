@@ -1,0 +1,86 @@
+{
+  "type": "ohthetreesyoullgrow:tree_from_nbt_v1",
+  "config": {
+    "base_location": "netherdescent:features/cages/wailing_cage_trunk1",
+    "can_grow_on_filter": {
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "minecraft:netherrack",
+        "minecraft:soul_soil"
+      ]
+    },
+    "can_leaves_place_filter": {
+      "type": "minecraft:replaceable"
+    },
+    "canopy_location": "netherdescent:features/cages/wailing_cage_canopy1",
+    "height": {
+      "type": "minecraft:biased_to_bottom",
+      "max_inclusive": 12,
+      "min_inclusive": 12
+    },
+    "leaves_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "minecraft:bone_block",
+            "Properties": {
+              "axis": "y"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "minecraft:calcite"
+          },
+          "weight": 3
+        },
+        {
+          "data": {
+            "Name": "minecraft:budding_amethyst"
+          },
+          "weight": 3
+        }
+      ]
+    },
+    "leaves_target": [
+      "minecraft:bone_block"
+    ],
+    "log_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "minecraft:polished_blackstone_bricks"
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "minecraft:polished_blackstone"
+          },
+          "weight": 5
+        },
+        {
+          "data": {
+            "Name": "minecraft:blackstone"
+          },
+          "weight": 5
+        },
+        {
+          "data": {
+            "Name": "minecraft:gilded_blackstone"
+          },
+          "weight": 5
+        }
+      ]
+    },
+    "log_target": [
+      "minecraft:polished_blackstone_bricks"
+    ],
+    "max_log_depth": 4,
+    "orientation": "UPSIDE_DOWN",
+    "place_from_nbt": []
+  }
+}

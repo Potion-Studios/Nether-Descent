@@ -1,5 +1,5 @@
 {
-  "type": "ohthetreesyoullgrow:tree_from_nbt_v1",
+  "type": "ohthetreesyoullgrow:tree_from_nbt_v2",
   "config": {
     "base_location": "netherdescent:features/trees/crimson/crimson_fungi_trunk2",
     "can_grow_on_filter": {
@@ -29,14 +29,23 @@
       "max_inclusive": 10,
       "min_inclusive": 7
     },
-    "leaves_provider": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "minecraft:nether_wart_block"
+    "leaves_provider": [
+      {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:nether_wart_block"
+        }
+      },
+      {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "minecraft:shroomlight"
+        }
       }
-    },
+    ],
     "leaves_target": [
-      "minecraft:nether_wart_block"
+      "minecraft:nether_wart_block",
+      "minecraft:shroomlight"
     ],
     "log_provider": {
       "type": "minecraft:simple_state_provider",
@@ -52,6 +61,6 @@
     ],
     "max_log_depth": 4,
     "orientation": "UPSIDE_DOWN",
-    "place_from_nbt": []
+    "replace_from_nbt": {}
   }
 }

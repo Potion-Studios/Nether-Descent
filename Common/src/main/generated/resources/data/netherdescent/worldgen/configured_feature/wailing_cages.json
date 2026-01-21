@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": {
+      "feature": "netherdescent:wailing_cage2",
+      "placement": []
+    },
+    "features": [
+      {
+        "chance": 0.3,
+        "feature": {
+          "feature": "netherdescent:wailing_cage1",
+          "placement": []
+        }
+      },
+      {
+        "chance": 0.33,
+        "feature": {
+          "feature": "netherdescent:wailing_cage2",
+          "placement": []
+        }
+      }
+    ]
+  }
+}

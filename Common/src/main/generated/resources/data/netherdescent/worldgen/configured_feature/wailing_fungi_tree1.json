@@ -3,8 +3,11 @@
   "config": {
     "base_location": "netherdescent:features/trees/wailing/wailing_fungi_trunk1",
     "can_grow_on_filter": {
-      "type": "minecraft:matching_block_tag",
-      "tag": "minecraft:nylium"
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "netherdescent:wailing_nylium",
+        "minecraft:soul_soil"
+      ]
     },
     "can_leaves_place_filter": {
       "type": "minecraft:replaceable"

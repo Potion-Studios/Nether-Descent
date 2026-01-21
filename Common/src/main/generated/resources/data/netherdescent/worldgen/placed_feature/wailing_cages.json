@@ -1,9 +1,9 @@
 {
-  "feature": "netherdescent:wailing_fungi_trees",
+  "feature": "netherdescent:wailing_cages",
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",
-      "count": 1
+      "count": 2
     },
     {
       "type": "minecraft:biome"
