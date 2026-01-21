@@ -1,5 +1,5 @@
 {
-  "type": "ohthetreesyoullgrow:tree_from_nbt_v1",
+  "type": "ohthetreesyoullgrow:tree_from_nbt_v2",
   "config": {
     "base_location": "netherdescent:features/trees/wailing/wailing_fungi_trunk2",
     "can_grow_on_filter": {
@@ -15,14 +15,26 @@
       "max_inclusive": 10,
       "min_inclusive": 4
     },
-    "leaves_provider": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "netherdescent:wailing_wart_block"
+    "leaves_provider": [
+      {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "netherdescent:wailing_wart_block"
+        }
+      },
+      {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "netherdescent:wailing_gills",
+          "Properties": {
+            "power": "0"
+          }
+        }
       }
-    },
+    ],
     "leaves_target": [
-      "minecraft:warped_wart_block"
+      "minecraft:warped_wart_block",
+      "minecraft:shroomlight"
     ],
     "log_provider": {
       "type": "minecraft:simple_state_provider",
@@ -37,6 +49,6 @@
       "minecraft:oak_log"
     ],
     "max_log_depth": 4,
-    "place_from_nbt": []
+    "replace_from_nbt": {}
   }
 }

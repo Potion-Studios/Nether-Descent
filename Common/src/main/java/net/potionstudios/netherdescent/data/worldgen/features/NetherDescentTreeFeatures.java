@@ -526,15 +526,15 @@ public class NetherDescentTreeFeatures {
 //    public static final GrowingPlantVinesDecorator WAILING_VINES_DECORATOR = new GrowingPlantVinesDecorator(NetherDescentBlocks.WAILING_VINES.get(), NetherDescentBlocks.WAILING_VINES_PLANT.get());
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_FUNGI_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_fungi_tree1",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/trees/wailing/wailing_fungi_trunk1"))
                     .canopyLocation(NetherDescent.id("features/trees/wailing/wailing_fungi_canopy1"))
                     .height(BiasedToBottomInt.of(4, 10))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.WAILING.logstem()))
-                    .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.WAILING_WART_BLOCK.get()))
+                    .leavesProvider(List.of(BlockStateProvider.simple(NetherDescentBlocks.WAILING_WART_BLOCK.get()), BlockStateProvider.simple(NetherDescentBlocks.WAILING_GILLS.get())))
                     .logTarget(Set.of(Blocks.OAK_LOG))
-                    .leavesTarget(Set.of(Blocks.WARPED_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.WARPED_WART_BLOCK, Blocks.SHROOMLIGHT))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of())
@@ -542,15 +542,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_FUNGI_TREE2 = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_fungi_tree2",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/trees/wailing/wailing_fungi_trunk2"))
                     .canopyLocation(NetherDescent.id("features/trees/wailing/wailing_fungi_canopy2"))
                     .height(BiasedToBottomInt.of(4, 10))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.WAILING.logstem()))
-                    .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.WAILING_WART_BLOCK.get()))
+                    .leavesProvider(List.of(BlockStateProvider.simple(NetherDescentBlocks.WAILING_WART_BLOCK.get()), BlockStateProvider.simple(NetherDescentBlocks.WAILING_GILLS.get())))
                     .logTarget(Set.of(Blocks.OAK_LOG))
-                    .leavesTarget(Set.of(Blocks.WARPED_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.WARPED_WART_BLOCK, Blocks.SHROOMLIGHT))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of())
@@ -558,15 +558,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_FUNGI_TREE3 = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_fungi_tree3",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/trees/wailing/wailing_fungi_trunk3"))
                     .canopyLocation(NetherDescent.id("features/trees/wailing/wailing_fungi_canopy3"))
                     .height(BiasedToBottomInt.of(9, 19))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.WAILING.logstem()))
-                    .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.WAILING_WART_BLOCK.get()))
+                    .leavesProvider(List.of(BlockStateProvider.simple(NetherDescentBlocks.WAILING_WART_BLOCK.get()), BlockStateProvider.simple(NetherDescentBlocks.WAILING_GILLS.get())))
                     .logTarget(Set.of(Blocks.OAK_LOG))
-                    .leavesTarget(Set.of(Blocks.WARPED_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.WARPED_WART_BLOCK, Blocks.SHROOMLIGHT))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of())
