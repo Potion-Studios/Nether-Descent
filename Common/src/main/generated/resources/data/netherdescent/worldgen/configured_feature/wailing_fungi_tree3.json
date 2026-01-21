@@ -13,6 +13,21 @@
       "type": "minecraft:replaceable"
     },
     "canopy_location": "netherdescent:features/trees/wailing/wailing_fungi_canopy3",
+    "decorators": [
+      {
+        "type": "netherdescent:growing_plant",
+        "attachable": "netherdescent:wailing_wart_block",
+        "body": {
+          "Name": "netherdescent:wailing_vines_plant"
+        },
+        "head": {
+          "Name": "netherdescent:wailing_vines",
+          "Properties": {
+            "age": "0"
+          }
+        }
+      }
+    ],
     "height": {
       "type": "minecraft:biased_to_bottom",
       "max_inclusive": 19,

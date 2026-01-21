@@ -1,7 +1,6 @@
 package net.potionstudios.netherdescent.data.worldgen.features;
 
 import com.google.common.collect.ImmutableList;
-import dev.corgitaco.ohthetreesyoullgrow.Constants;
 import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.TYGFeatures;
 import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.configurations.TreeFromStructureNBTConfig;
 import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.configurations.TreeFromStructureNBTConfigV2;
@@ -13,7 +12,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.BiasedToBottomInt;
-import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
@@ -526,7 +524,7 @@ public class NetherDescentTreeFeatures {
     );
 
     //WAILING TREES ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-//    public static final GrowingPlantVinesDecorator WAILING_VINES_DECORATOR = new GrowingPlantVinesDecorator(NetherDescentBlocks.WAILING_VINES.get(), NetherDescentBlocks.WAILING_VINES_PLANT.get());
+    public static final Supplier<GrowingPlantVinesDecorator> WAILING_VINES_DECORATOR = () -> new GrowingPlantVinesDecorator(NetherDescentBlocks.WAILING_VINES.get(), NetherDescentBlocks.WAILING_VINES_PLANT.get(), NetherDescentBlocks.WAILING_WART_BLOCK.get());
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_FUNGI_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_fungi_tree1",
             TYGFeatures.TREE_FROM_NBT_V2,
@@ -540,7 +538,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(List.of(Blocks.WARPED_WART_BLOCK, Blocks.SHROOMLIGHT))
                     .growableOn(BlockPredicate.matchesBlocks(NetherDescentBlocks.WAILING_NYLIUM.get(), Blocks.SOUL_SOIL))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of())
+                    .treeDecorators(ImmutableList.of(WAILING_VINES_DECORATOR.get()))
                     .build()
     );
 
@@ -556,7 +554,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(List.of(Blocks.WARPED_WART_BLOCK, Blocks.SHROOMLIGHT))
                     .growableOn(BlockPredicate.matchesBlocks(NetherDescentBlocks.WAILING_NYLIUM.get(), Blocks.SOUL_SOIL))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of())
+                    .treeDecorators(ImmutableList.of(WAILING_VINES_DECORATOR.get()))
                     .build()
     );
 
@@ -572,7 +570,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(List.of(Blocks.WARPED_WART_BLOCK, Blocks.SHROOMLIGHT))
                     .growableOn(BlockPredicate.matchesBlocks(NetherDescentBlocks.WAILING_NYLIUM.get(), Blocks.SOUL_SOIL))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of())
+                    .treeDecorators(ImmutableList.of(WAILING_VINES_DECORATOR.get()))
                     .build()
     );
 
