@@ -34,6 +34,28 @@ public class NetherDescentBiomeBuilder {
         return generationSettings;
     }
 
+    protected static Biome arisianUndergrowth(HolderGetter<PlacedFeature> placedFeatureHolderGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
+        BiomeGenerationSettings.Builder generationSettings = setupDefaultNetherGeneration(placedFeatureHolderGetter, carverGetter);
+
+        addVegetal(generationSettings, NetherPlacements.NETHER_SPROUTS);
+        BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
+
+        addVegetal(generationSettings, NetherDescentPlacements.WAILING_GARTH_VEGETATION);
+        addVegetal(generationSettings, NetherDescentTreePlacements.ARISIAN_ROOTS_HANGING);
+
+        MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
+        addSpawn(spawnSettings, EntityType.SKELETON, 20, 5, 5);
+        addSpawn(spawnSettings, NetherDescentEntityType.SOUL_GHAST.get(), 50, 4, 4);
+        addSpawn(spawnSettings, EntityType.ENDERMAN, 1, 4, 4);
+        addSpawn(spawnSettings, EntityType.STRIDER, 60, 1, 2);
+        spawnSettings.addMobCharge(EntityType.SKELETON, 0.7, 0.15)
+                .addMobCharge(NetherDescentEntityType.SOUL_GHAST.get(), 0.7, 0.15)
+                .addMobCharge(EntityType.ENDERMAN, 0.7, 0.15)
+                .addMobCharge(EntityType.STRIDER, 0.7, 0.15);
+
+        return new Biome.BiomeBuilder().hasPrecipitation(false).temperature(2).downfall(0.0F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(4529794).skyColor(4529794).ambientParticle(new AmbientParticleSettings(ParticleTypes.WARPED_SPORE, 0.01428F)).ambientLoopSound(NetherDescentSounds.AMBIENT_WAILING_GARTH_LOOP.get()).ambientMoodSound(new AmbientMoodSettings(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D)).ambientAdditionsSound(new AmbientAdditionsSettings(NetherDescentSounds.AMBIENT_WAILING_GARTH_ADDITIONS.get(), 0.0011D)).backgroundMusic(Musics.createGameMusic(NetherDescentSounds.MUSIC_BIOME_WAILING_GARTH.get())).build()).mobSpawnSettings(spawnSettings.build()).generationSettings(generationSettings.build()).build();
+    }
+
     protected static Biome crimsonGardens(HolderGetter<PlacedFeature> placedFeatureHolderGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         BiomeGenerationSettings.Builder generationSettings = setupDefaultNetherGeneration(placedFeatureHolderGetter, carverGetter);
         addVegetal(generationSettings, NetherPlacements.WEEPING_VINES);

@@ -1,6 +1,22 @@
 {
   "parent": "netherdescent:netherdescent/adventure/root",
   "criteria": {
+    "netherdescent:arisian_undergrowth": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biomes": "netherdescent:arisian_undergrowth"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
     "netherdescent:crimson_gardens": {
       "conditions": {
         "player": [
@@ -80,6 +96,9 @@
     }
   },
   "requirements": [
+    [
+      "netherdescent:arisian_undergrowth"
+    ],
     [
       "netherdescent:crimson_gardens"
     ],

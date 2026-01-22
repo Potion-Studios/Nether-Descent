@@ -38,6 +38,38 @@ public class NetherDescentTreeFeatures {
 
     public static final GrowingPlantVinesDecorator WEEPING_VINES_DECORATOR = new GrowingPlantVinesDecorator(Blocks.WEEPING_VINES, Blocks.WEEPING_VINES_PLANT);
 
+    //ARISIAN TREES ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_ROOT_1 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_root_1",
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
+                    .baseLocation(NetherDescent.id("features/trees/arisian/arisian_root_trunk1"))
+                    .canopyLocation(NetherDescent.id("features/trees/arisian/arisian_root_canopy1"))
+                    .height(BiasedToBottomInt.of(2, 6))
+                    .logProvider(BlockStateProvider.simple(Blocks.WARPED_STEM))
+                    .leavesProvider(List.of(BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK), BlockStateProvider.simple(Blocks.SHROOMLIGHT)))
+                    .logTarget(Set.of(Blocks.WARPED_STEM))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK, Blocks.SHROOMLIGHT))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of())
+                    .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_ROOTS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_roots",
+            Feature.RANDOM_SELECTOR,
+            (configuredFeatureBootstrapContext) -> {
+                HolderGetter<ConfiguredFeature<?, ?>> lookup = configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE);
+                return new RandomFeatureConfiguration(ImmutableList.of(
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_ROOT_1)), 0.25F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_ROOT_1)), 0.25F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_ROOT_1)), 0.25F)),
+                        PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_ROOT_1)));
+            }
+    );
+
+    //BONE TREES -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> BONE_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("bone_tree1",
             TYGFeatures.TREE_FROM_NBT_V1,
             () -> new TreeFromStructureNBTConfig.Builder()
@@ -394,7 +426,7 @@ public class NetherDescentTreeFeatures {
 
     //EMBUR WART TREES ------------------------------------------------------------------------------------------------------------------------
     public static final Supplier<GrowingPlantVinesDecorator> EMBUR_GEL_VINES_DECORATOR = () -> new GrowingPlantVinesDecorator(NetherDescentBlocks.EMBUR_GEL_VINES.get(), NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get());
-    public static final Supplier<HornetNestDecorator> HORNET_NEST_DECORATOR = () -> new HornetNestDecorator(0.1F);
+    public static final Supplier<HornetNestDecorator> HORNET_NEST_DECORATOR = () -> new HornetNestDecorator(0.2F);
     
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART1 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart1",
             TYGFeatures.TREE_FROM_NBT_V1,

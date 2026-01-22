@@ -1,0 +1,12 @@
+{
+  "feature": "netherdescent:hanging_arisian_roots",
+  "placement": [
+    {
+      "type": "minecraft:count_on_every_layer",
+      "count": 3
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

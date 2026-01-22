@@ -43,6 +43,12 @@ public class NetherDescentRegion extends Region {
                 Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F),
                 Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F),
                 0.175F, NetherDescentBiomes.CRIMSON_GARDENS);
+
+        addIfEnabled(mapper,
+                Climate.Parameter.point(-0.4F), Climate.Parameter.point(0.0F),
+                Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F),
+                Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F),
+                0.175F, NetherDescentBiomes.ARISIAN_UNDERGROWTH);
     }
 
     private void addIfEnabled(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper,

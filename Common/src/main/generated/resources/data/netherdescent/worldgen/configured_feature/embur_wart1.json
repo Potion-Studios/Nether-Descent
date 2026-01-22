@@ -13,7 +13,7 @@
     "decorators": [
       {
         "type": "netherdescent:hornet_nest",
-        "probability": 0.1
+        "probability": 0.2
       },
       {
         "type": "netherdescent:growing_plant",
