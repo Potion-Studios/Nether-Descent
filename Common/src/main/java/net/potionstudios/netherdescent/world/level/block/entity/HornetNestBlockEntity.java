@@ -23,12 +23,12 @@ import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BeehiveBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.entity.animal.Hornet;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -303,7 +303,7 @@ public class HornetNestBlockEntity extends BlockEntity {
 
 		public static Occupant create(int ticksInHive) {
 			CompoundTag compoundTag = new CompoundTag();
-			compoundTag.putString("id", BuiltInRegistries.ENTITY_TYPE.getKey(EntityType.BEE).toString());
+			compoundTag.putString("id", BuiltInRegistries.ENTITY_TYPE.getKey(NetherDescentEntityType.HORNET.get()).toString());
 			return new Occupant(CustomData.of(compoundTag), ticksInHive, 600);
 		}
 
