@@ -138,31 +138,31 @@
     "sounds": [
       {
         "name": "netherdescent:ambient/nether/wailing_garth/addition1",
-        "volume": 0.1
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/wailing_garth/addition2",
-        "volume": 0.1
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/wailing_garth/addition3",
-        "volume": 0.1
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/wailing_garth/addition4",
-        "volume": 0.1
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/wailing_garth/addition5",
-        "volume": 0.1
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/wailing_garth/addition6",
-        "volume": 0.1
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/wailing_garth/addition7",
-        "volume": 0.1
+        "volume": 0.4
       }
     ]
   },
@@ -171,7 +171,7 @@
       {
         "name": "netherdescent:ambient/nether/wailing_garth/ambience",
         "stream": true,
-        "volume": 0.1
+        "volume": 0.3
       }
     ]
   },

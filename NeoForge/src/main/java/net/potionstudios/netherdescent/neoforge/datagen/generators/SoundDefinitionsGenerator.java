@@ -26,15 +26,15 @@ public class SoundDefinitionsGenerator extends SoundDefinitionsProvider {
 	public void registerSounds() {
 
 		add(NetherDescentSounds.MUSIC_BIOME_WAILING_GARTH.get().value(), definition().with(sound(NetherDescent.id("music/game/nether/wailing_garth/chimes_of_the_damned")).stream().volume(0.3)));
-		add(NetherDescentSounds.AMBIENT_WAILING_GARTH_LOOP.get().value(), definition().with(sound(NetherDescent.id("ambient/nether/wailing_garth/ambience")).stream().volume(0.1)));
+		add(NetherDescentSounds.AMBIENT_WAILING_GARTH_LOOP.get().value(), definition().with(sound(NetherDescent.id("ambient/nether/wailing_garth/ambience")).stream().volume(0.3)));
 		add(NetherDescentSounds.AMBIENT_WAILING_GARTH_ADDITIONS.get().value(), definition().with(
-				sound(NetherDescent.id("ambient/nether/wailing_garth/addition1")).volume(0.1),
-				sound(NetherDescent.id("ambient/nether/wailing_garth/addition2")).volume(0.1),
-				sound(NetherDescent.id("ambient/nether/wailing_garth/addition3")).volume(0.1),
-				sound(NetherDescent.id("ambient/nether/wailing_garth/addition4")).volume(0.1),
-				sound(NetherDescent.id("ambient/nether/wailing_garth/addition5")).volume(0.1),
-				sound(NetherDescent.id("ambient/nether/wailing_garth/addition6")).volume(0.1),
-				sound(NetherDescent.id("ambient/nether/wailing_garth/addition7")).volume(0.1)
+				sound(NetherDescent.id("ambient/nether/wailing_garth/addition1")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/wailing_garth/addition2")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/wailing_garth/addition3")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/wailing_garth/addition4")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/wailing_garth/addition5")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/wailing_garth/addition6")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/wailing_garth/addition7")).volume(0.4)
 		));
 
 		add(NetherDescentSounds.MUSIC_BIOME_SYTHIAN_TORRIDS.get().value(), definition().with(sound(NetherDescent.id("music/game/nether/sythian_torrids/glistening_depths")).stream().volume(0.3)));
