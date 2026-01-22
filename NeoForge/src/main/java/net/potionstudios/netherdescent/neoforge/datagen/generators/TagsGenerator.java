@@ -87,6 +87,7 @@ public class TagsGenerator {
 			tag(BlockTags.INSIDE_STEP_SOUND_BLOCKS).add(NetherDescentBlocks.EMBUR_CAVE_MOSS.get());
             tag(BlockTags.NYLIUM).add(NetherDescentBlocks.SYTHIAN_SOIL.get(), NetherDescentBlocks.EMBUR_MOSS_BLOCK.get());
             tag(BlockTags.GOLD_ORES).add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get());
+			tag(BlockTags.BEE_GROWABLES).add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get());
             tag(Tags.Blocks.ORES_QUARTZ).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get());
             tag(Tags.Blocks.ORE_RATES_SPARSE).add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get());
             tag(Tags.Blocks.ORE_RATES_SINGULAR).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get());

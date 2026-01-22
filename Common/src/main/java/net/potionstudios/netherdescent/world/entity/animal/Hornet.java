@@ -244,7 +244,7 @@ public class Hornet extends Bee {
                     if (!level.hasChunkAt(cursor)) continue;
 
                     BlockState state = level.getBlockState(cursor);
-                    if (state.is(BlockTags.FLOWERS)) {
+                    if (state.is(BlockTags.BEE_GROWABLES) || state.is(BlockTags.FLOWERS)) {
                         return true;
                     }
                 }
