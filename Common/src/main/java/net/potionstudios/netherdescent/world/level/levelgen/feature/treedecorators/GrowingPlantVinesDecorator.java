@@ -55,14 +55,16 @@ public class GrowingPlantVinesDecorator extends TreeDecorator {
         RandomSource randomSource = context.random();
         LevelReader levelReader = (LevelReader) context.level();
         for (BlockPos blockPos: context.leaves()) {
-            if (attachable.isEmpty() || ((LevelReader) context.level()).getBlockState(blockPos).is(attachable.get())) {
+            if (attachable.isEmpty() || levelReader.getBlockState(blockPos).is(attachable.get())) {
                 BlockPos blockPos1 = blockPos.below();
                 if (head().canSurvive(levelReader, blockPos1) && randomSource.nextInt(3) > 0) {
-                    context.setBlock(blockPos1, head());
-                    while (body().canSurvive(levelReader, blockPos1.below()) && randomSource.nextInt(4) > 0) {
-                        blockPos1 = blockPos1.below();
+                    if (levelReader.isEmptyBlock(blockPos1)) {
                         context.setBlock(blockPos1, head());
-                        context.setBlock(blockPos1.above(), body());
+                        while (levelReader.isEmptyBlock(blockPos1.below()) && body().canSurvive(levelReader, blockPos1.below()) && randomSource.nextInt(4) > 0) {
+                            blockPos1 = blockPos1.below();
+                            context.setBlock(blockPos1, head());
+                            context.setBlock(blockPos1.above(), body());
+                        }
                     }
                 }
             }
