@@ -14,6 +14,7 @@ import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.BiasedToBottomInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStatePr
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
+import net.potionstudios.netherdescent.world.level.block.custom.FungalBulbsBlock;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.GrowingPlantVinesDecorator;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators.HornetNestDecorator;
 
@@ -34,7 +36,7 @@ import java.util.function.Supplier;
 
 public class NetherDescentTreeFeatures {
     public static final Supplier<AttachedToLogsDecorator> SYTHIAN_WALL_ROOTS = () -> new AttachedToLogsDecorator(0.22F, 0, 1, SimpleStateProvider.simple(NetherDescentBlocks.SYTHIAN_ROOTS.get()), 2, List.of(Direction.WEST, Direction.NORTH, Direction.SOUTH, Direction.EAST));
-    public static final Supplier<AttachedToLogsDecorator> FUNGAL_BULBS_WALL_UP_DOWN = () -> new AttachedToLogsDecorator(0.25F, 0, 1, SimpleStateProvider.simple(NetherDescentBlocks.FUNGAL_BULBS.get()), 2, List.of(Direction.WEST, Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.UP, Direction.DOWN));
+    public static final Supplier<AttachedToLogsDecorator> FUNGAL_BULBS_WALL_UP_DOWN = () -> new AttachedToLogsDecorator(0.2F, 0, 1, SimpleStateProvider.simple(NetherDescentBlocks.FUNGAL_BULBS.get().defaultBlockState().setValue(FungalBulbsBlock.FACE, AttachFace.WALL)), 2, List.of(Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH));
 
     public static final GrowingPlantVinesDecorator WEEPING_VINES_DECORATOR = new GrowingPlantVinesDecorator(Blocks.WEEPING_VINES, Blocks.WEEPING_VINES_PLANT);
 
@@ -51,7 +53,6 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK, Blocks.SHROOMLIGHT))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of())
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .build()
     );
@@ -82,7 +83,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of())
+                    .treeDecorators(ImmutableList.of(FUNGAL_BULBS_WALL_UP_DOWN.get()))
                     .build()
     );
 
@@ -98,7 +99,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of())
+                    .treeDecorators(ImmutableList.of(FUNGAL_BULBS_WALL_UP_DOWN.get()))
                     .build()
     );
 
@@ -114,7 +115,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of())
+                    .treeDecorators(ImmutableList.of(FUNGAL_BULBS_WALL_UP_DOWN.get()))
                     .build()
     );
 
@@ -130,7 +131,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of())
+                    .treeDecorators(ImmutableList.of(FUNGAL_BULBS_WALL_UP_DOWN.get()))
                     .build()
     );
 
@@ -146,7 +147,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR, FUNGAL_BULBS_WALL_UP_DOWN.get()))
                     .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
                     .build()
     );
@@ -163,7 +164,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR, FUNGAL_BULBS_WALL_UP_DOWN.get()))
                     .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
                     .build()
     );
@@ -180,7 +181,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR, FUNGAL_BULBS_WALL_UP_DOWN.get()))
                     .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
                     .build()
     );
@@ -197,7 +198,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
+                    .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR, FUNGAL_BULBS_WALL_UP_DOWN.get()))
                     .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
                     .build()
     );
@@ -637,7 +638,6 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.BONE_BLOCK))
                     .growableOn(BlockPredicate.matchesBlocks(Blocks.NETHERRACK, Blocks.SOUL_SOIL))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of())
                     .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
                     .build()
     );
@@ -661,7 +661,6 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(Set.of(Blocks.BONE_BLOCK))
                     .growableOn(BlockPredicate.matchesBlocks(Blocks.NETHERRACK, Blocks.SOUL_SOIL))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of())
                     .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
                     .build()
     );
