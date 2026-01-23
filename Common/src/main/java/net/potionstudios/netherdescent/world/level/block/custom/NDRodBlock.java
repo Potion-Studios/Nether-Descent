@@ -88,7 +88,7 @@ public class NDRodBlock extends EndRodBlock {
         if (this.blazeFull == null) {
             this.blazeFull = BlockPatternBuilder.start()
                     .aisle("~^~", "###", "~#~")
-                    .where('^', BlockInWorld.hasState(BlockStatePredicate.forBlock(NetherDescentBlocks.SOUL_FIRE_ROD.get())))
+                    .where('^', BlockInWorld.hasState(BlockStatePredicate.forBlock(NetherDescentBlocks.PENDORITE_FIRE_ROD.get())))
                     .where('#', BlockInWorld.hasState(BlockStatePredicate.forBlock(NetherDescentBlocks.PENDORITE_BLOCK.get())))
                     .where('~', blockInWorld -> blockInWorld.getState().isAir())
                     .build();
