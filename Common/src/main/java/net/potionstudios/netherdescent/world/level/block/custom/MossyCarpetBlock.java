@@ -30,7 +30,6 @@ import net.minecraft.world.level.block.state.properties.WallSide;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -161,7 +160,7 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
         return direction != Direction.UP && MultifaceBlock.canAttachTo(level, direction, pos, level.getBlockState(pos.relative(direction)));
     }
 
-    private static BlockState getUpdatedState(BlockState state, BlockGetter level, BlockPos pos, boolean tip) {
+    private static BlockState getUpdatedState(Block block, BlockState state, BlockGetter level, BlockPos pos, boolean tip) {
         BlockState blockState = null;
         BlockState blockState2 = null;
         tip |= state.getValue(BASE);
@@ -174,7 +173,7 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
                     blockState = level.getBlockState(pos.above());
                 }
 
-                if (blockState.is(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()) && blockState.getValue(enumProperty) != WallSide.NONE && !(Boolean)blockState.getValue(BASE)) {
+                if (blockState.is(block) && blockState.getValue(enumProperty) != WallSide.NONE && !(Boolean)blockState.getValue(BASE)) {
                     wallSide = WallSide.TALL;
                 }
 
@@ -183,7 +182,7 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
                         blockState2 = level.getBlockState(pos.below());
                     }
 
-                    if (blockState2.is(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()) && blockState2.getValue(enumProperty) == WallSide.NONE) {
+                    if (blockState2.is(block) && blockState2.getValue(enumProperty) == WallSide.NONE) {
                         wallSide = WallSide.NONE;
                     }
                 }
@@ -198,14 +197,13 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return getUpdatedState(this.defaultBlockState(), context.getLevel(), context.getClickedPos(), true);
+        return getUpdatedState(this.asBlock(), this.defaultBlockState(), context.getLevel(), context.getClickedPos(), true);
     }
 
-    public static void placeAt(LevelAccessor level, BlockPos pos, RandomSource random, int flags) {
-        BlockState blockState = NetherDescentBlocks.EMBUR_MOSS_CARPET.get().defaultBlockState();
-        BlockState blockState2 = getUpdatedState(blockState, level, pos, true);
+    public static void placeAt(BlockState blockState, LevelAccessor level, BlockPos pos, RandomSource random, int flags) {
+        BlockState blockState2 = getUpdatedState(blockState.getBlock(), blockState, level, pos, true);
         level.setBlock(pos, blockState2, 3);
-        BlockState blockState3 = createTopperWithSideChance(level, pos, random::nextBoolean);
+        BlockState blockState3 = createTopperWithSideChance(blockState.getBlock(), level, pos, random::nextBoolean);
         if (!blockState3.isAir()) {
             level.setBlock(pos.above(), blockState3, flags);
         }
@@ -215,20 +213,20 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
     public void setPlacedBy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack stack) {
         if (!level.isClientSide) {
             RandomSource randomSource = level.getRandom();
-            BlockState blockState = createTopperWithSideChance(level, pos, randomSource::nextBoolean);
+            BlockState blockState = createTopperWithSideChance(this.asBlock(), level, pos, randomSource::nextBoolean);
             if (!blockState.isAir()) {
                 level.setBlock(pos.above(), blockState, 3);
             }
         }
     }
 
-    private static BlockState createTopperWithSideChance(BlockGetter level, BlockPos pos, BooleanSupplier placeSide) {
+    private static BlockState createTopperWithSideChance(Block block, BlockGetter level, BlockPos pos, BooleanSupplier placeSide) {
         BlockPos blockPos = pos.above();
         BlockState blockState = level.getBlockState(blockPos);
-        boolean bl = blockState.is(NetherDescentBlocks.EMBUR_MOSS_CARPET.get());
+        boolean bl = blockState.is(block);
         if ((!bl || !(Boolean)blockState.getValue(BASE)) && (bl || blockState.canBeReplaced())) {
-            BlockState blockState2 = NetherDescentBlocks.EMBUR_MOSS_CARPET.get().defaultBlockState().setValue(BASE, false);
-            BlockState blockState3 = getUpdatedState(blockState2, level, pos.above(), true);
+            BlockState blockState2 = block.defaultBlockState().setValue(BASE, false);
+            BlockState blockState3 = getUpdatedState(block, blockState2, level, pos.above(), true);
 
             for (Direction direction : Direction.Plane.HORIZONTAL) {
                 EnumProperty<WallSide> enumProperty = getPropertyForFace(direction);
@@ -248,7 +246,7 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
         if (!state.canSurvive(level, pos)) {
             return Blocks.AIR.defaultBlockState();
         } else {
-            BlockState blockState = getUpdatedState(state, level, pos, false);
+            BlockState blockState = getUpdatedState(asBlock(), state, level, pos, false);
             return !hasFaces(blockState) ? Blocks.AIR.defaultBlockState() : blockState;
         }
     }
@@ -293,7 +291,7 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
 
     @Override
     public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, BlockState state) {
-        return state.getValue(BASE) && !createTopperWithSideChance(level, pos, () -> true).isAir();
+        return state.getValue(BASE) && !createTopperWithSideChance(this.asBlock(), level, pos, () -> true).isAir();
     }
 
     @Override
@@ -303,7 +301,7 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
 
     @Override
     public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
-        BlockState blockState = createTopperWithSideChance(level, pos, () -> true);
+        BlockState blockState = createTopperWithSideChance(this.asBlock(), level, pos, () -> true);
         if (!blockState.isAir()) {
             level.setBlock(pos.above(), blockState, 3);
         }

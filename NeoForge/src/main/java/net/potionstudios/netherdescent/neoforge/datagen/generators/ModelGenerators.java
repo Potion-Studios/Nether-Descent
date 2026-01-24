@@ -192,9 +192,22 @@ public class ModelGenerators {
 			});
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_HANGING_MOSS.get());
 
+//			models().cross(name(NetherDescentBlocks.ARISIAN_HANGING_MOSS.get()), blockTexture(NetherDescentBlocks.ARISIAN_HANGING_MOSS.get())).renderType("cutout");
+//			models().cross(name(NetherDescentBlocks.ARISIAN_HANGING_MOSS.get()) + "_tip", blockNDTexture(NetherDescentBlocks.ARISIAN_HANGING_MOSS.get(), "tip")).renderType("cutout");
+//			getVariantBuilder(NetherDescentBlocks.ARISIAN_HANGING_MOSS.get()).forAllStates(state -> {
+//				if (state.getValue(HangingMossBlock.TIP))
+//					return ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("block/" + name(NetherDescentBlocks.ARISIAN_HANGING_MOSS.get()) + "_tip"))).build();
+//				else return ConfiguredModel.builder().modelFile(models().getExistingFile(modLoc("block/" + name(NetherDescentBlocks.ARISIAN_HANGING_MOSS.get())))).build();
+//			});
+//			simpleItemBlockTexture(NetherDescentBlocks.ARISIAN_HANGING_MOSS.get());
+
             simpleBlockItem(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), models().carpet(name(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()), blockTexture(NetherDescentBlocks.EMBUR_MOSS_CARPET.get())).renderType("cutout"));
             models().withExistingParent(name(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()) + "_side_small", NetherDescent.id("block/mossy_carpet_side")).texture("side", blockNDTexture(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), "side_small")).renderType("cutout");
             models().withExistingParent(name(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()) + "_side_tall", NetherDescent.id("block/mossy_carpet_side")).texture("side", blockNDTexture(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), "side_tall")).renderType("cutout");
+
+			simpleBlockItem(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), models().carpet(name(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()), blockTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get())).renderType("cutout"));
+			models().withExistingParent(name(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()) + "_side_small", NetherDescent.id("block/mossy_carpet_side")).texture("side", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_small")).renderType("cutout");
+			models().withExistingParent(name(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()) + "_side_tall", NetherDescent.id("block/mossy_carpet_side")).texture("side", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_tall")).renderType("cutout");
 
             var stableScaffolding = models().withExistingParent(name(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get()) + "_stable", mcLoc("block/scaffolding_stable"))
                     .texture("particle", blockNDTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "top"))

@@ -22,7 +22,7 @@ public class CarpetPatchFeature extends Feature<CarpetPatchFeatureConfiguration>
 		BlockPos origin = context.origin();
 
         if (config.carpet() instanceof MossyCarpetBlock)
-            MossyCarpetBlock.placeAt(level, origin, context.random(), 2);
+            MossyCarpetBlock.placeAt(config.carpet().defaultBlockState(), level, origin, context.random(), 2);
         else setBlock(level, origin, config.carpet().defaultBlockState());
 
         return true;
