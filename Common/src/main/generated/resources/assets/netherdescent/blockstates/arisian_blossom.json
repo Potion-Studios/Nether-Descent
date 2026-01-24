@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "netherdescent:block/arisian_blossom"
+    },
+    "lit=true": {
+      "model": "netherdescent:block/arisian_blossom_lit"
+    }
+  }
+}

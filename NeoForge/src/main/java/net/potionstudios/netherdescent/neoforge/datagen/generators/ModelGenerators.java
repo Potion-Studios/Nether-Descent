@@ -20,6 +20,7 @@ import net.potionstudios.netherdescent.world.level.block.custom.HangingMossBlock
 import net.potionstudios.netherdescent.world.level.block.custom.SythianFarmBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.SythianRootsBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingBulbBlossomBlock;
+import net.potionstudios.netherdescent.world.level.block.plants.ArisianBlossomBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.SythianShootBlock;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
@@ -208,6 +209,15 @@ public class ModelGenerators {
 			simpleBlockItem(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), models().carpet(name(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()), blockTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get())).renderType("cutout"));
 			models().withExistingParent(name(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()) + "_side_small", NetherDescent.id("block/mossy_carpet_side")).texture("side", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_small")).renderType("cutout");
 			models().withExistingParent(name(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()) + "_side_tall", NetherDescent.id("block/mossy_carpet_side")).texture("side", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_tall")).renderType("cutout");
+
+			var blossom = models().cross(name(NetherDescentBlocks.ARISIAN_BLOSSOM.get()), blockTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.get())).renderType("cutout");
+			var blossomLit = models().cross(name(NetherDescentBlocks.ARISIAN_BLOSSOM.get()) + "_lit", blockNDTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.get(), "lit")).renderType("cutout");
+			getVariantBuilder(NetherDescentBlocks.ARISIAN_BLOSSOM.get()).forAllStates(state -> {
+				if (state.getValue(ArisianBlossomBlock.LIT))
+					return ConfiguredModel.builder().modelFile(blossomLit).build();
+				else return ConfiguredModel.builder().modelFile(blossom).build();
+			});
+			simpleItemBlockTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.get());
 
             var stableScaffolding = models().withExistingParent(name(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get()) + "_stable", mcLoc("block/scaffolding_stable"))
                     .texture("particle", blockNDTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "top"))
