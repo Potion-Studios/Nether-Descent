@@ -28,9 +28,7 @@ public class NDRodBlock extends EndRodBlock {
     }
 
     @Override
-    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-
-    }
+    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {}
 
     @Override
     protected void onPlace(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean movedByPiston) {
@@ -58,21 +56,19 @@ public class NDRodBlock extends EndRodBlock {
         blaze.moveTo(pos.getX() + 0.5, pos.getY() + 0.05, pos.getZ() + 0.5, 0.0F, 0.0F);
         level.addFreshEntity(blaze);
 
-        for (ServerPlayer serverPlayer : level.getEntitiesOfClass(ServerPlayer.class, blaze.getBoundingBox().inflate(5.0))) {
+        for (ServerPlayer serverPlayer : level.getEntitiesOfClass(ServerPlayer.class, blaze.getBoundingBox().inflate(5.0)))
             CriteriaTriggers.SUMMONED_ENTITY.trigger(serverPlayer, blaze);
-        }
 
         updatePatternBlocks(level, patternMatch);
     }
 
     public static void clearPatternBlocks(Level level, BlockPattern.BlockPatternMatch patternMatch) {
-        for (int i = 0; i < patternMatch.getWidth(); i++) {
+        for (int i = 0; i < patternMatch.getWidth(); i++)
             for (int j = 0; j < patternMatch.getHeight(); j++) {
                 BlockInWorld blockInWorld = patternMatch.getBlock(i, j, 0);
                 level.setBlock(blockInWorld.getPos(), Blocks.AIR.defaultBlockState(), 2);
                 level.levelEvent(2001, blockInWorld.getPos(), Block.getId(blockInWorld.getState()));
             }
-        }
     }
 
     public static void updatePatternBlocks(Level level, BlockPattern.BlockPatternMatch patternMatch) {

@@ -42,12 +42,15 @@ public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock imp
 
 	@Override
     protected void onProjectileHit(@NotNull Level level, @NotNull BlockState state, @NotNull BlockHitResult hit, @NotNull Projectile projectile) {
-        if (!level.isClientSide())
-            level.getEntitiesOfClass(LivingEntity.class, new AABB(-4.0, -4.0, -4.0, 4.0, 4.0, 4.0).move(hit.getBlockPos()))
-                    .forEach(entity -> {
-                        entity.addEffect(new MobEffectInstance(MobEffects.POISON, 300, 1));
-                        entity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 300, 1));
-                    });
+        if (!level.isClientSide()) {
+	        level.getEntitiesOfClass(LivingEntity.class, new AABB(-4.0, -4.0, -4.0, 4.0, 4.0, 4.0).move(hit.getBlockPos()))
+			        .forEach(entity -> {
+				        entity.addEffect(new MobEffectInstance(MobEffects.POISON, 300, 1));
+				        entity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 300, 1));
+			        });
+	        level.levelEvent(2008, hit.getBlockPos(), 0);
+			level.destroyBlock(hit.getBlockPos(), false);
+        }
     }
 
     @Override
