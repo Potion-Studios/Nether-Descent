@@ -16,10 +16,7 @@ import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import net.potionstudios.netherdescent.world.level.block.custom.HangingMossBlock;
-import net.potionstudios.netherdescent.world.level.block.custom.SythianFarmBlock;
-import net.potionstudios.netherdescent.world.level.block.custom.SythianRootsBlock;
-import net.potionstudios.netherdescent.world.level.block.custom.WailingBulbBlossomBlock;
+import net.potionstudios.netherdescent.world.level.block.custom.*;
 import net.potionstudios.netherdescent.world.level.block.plants.ArisianBlossomBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.SythianShootBlock;
@@ -398,7 +395,20 @@ public class ModelGenerators {
             });
 
 			simpleBlockWithItem(NetherDescentBlocks.BARTERING_TABLE.get(), models().cubeBottomTop(name(NetherDescentBlocks.BARTERING_TABLE.get()), blockNDTexture(NetherDescentBlocks.BARTERING_TABLE.get(), "side"), mcLoc("block/smithing_table_bottom"), blockNDTexture(NetherDescentBlocks.BARTERING_TABLE.get(), "top")).texture("particle", blockNDTexture(NetherDescentBlocks.BARTERING_TABLE.get(), "side")));
-        }
+
+			models().withExistingParent(name(NetherDescentBlocks.ARISIAN_BRANCH.get()), mcLoc("block/coral_wall_fan")).texture("fan", blockTexture(NetherDescentBlocks.ARISIAN_BRANCH.get())).renderType("cutout_mipped");
+			getVariantBuilder(NetherDescentBlocks.ARISIAN_BRANCH.get()).forAllStatesExcept(state -> switch (state.getValue(BranchBlock.FACING)) {
+				case Direction.EAST ->
+						ConfiguredModel.builder().rotationY(90).modelFile(models().getExistingFile(blockTexture(NetherDescentBlocks.ARISIAN_BRANCH.get()))).build();
+				case Direction.WEST ->
+						ConfiguredModel.builder().rotationY(270).modelFile(models().getExistingFile(blockTexture(NetherDescentBlocks.ARISIAN_BRANCH.get()))).build();
+				case Direction.SOUTH ->
+						ConfiguredModel.builder().rotationY(180).modelFile(models().getExistingFile(blockTexture(NetherDescentBlocks.ARISIAN_BRANCH.get()))).build();
+				default ->
+						ConfiguredModel.builder().modelFile(models().getExistingFile(blockTexture(NetherDescentBlocks.ARISIAN_BRANCH.get()))).build();
+			}, BranchBlock.WATERLOGGED);
+			simpleItemBlockTexture(NetherDescentBlocks.ARISIAN_BRANCH.get());
+		}
 
         private void rodBlock(RodBlock rodBlock, ModelFile modelFile) {
             getVariantBuilder(rodBlock).forAllStates(state -> {

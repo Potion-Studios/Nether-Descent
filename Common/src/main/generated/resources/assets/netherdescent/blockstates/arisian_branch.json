@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "netherdescent:block/arisian_branch",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "netherdescent:block/arisian_branch"
+    },
+    "facing=south": {
+      "model": "netherdescent:block/arisian_branch",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "netherdescent:block/arisian_branch",
+      "y": 270
+    }
+  }
+}
