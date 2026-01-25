@@ -70,7 +70,7 @@ public class ArisianBlossomBlock extends NetherDescentBush {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
-		super.createBlockStateDefinition(builder.add(LIT).add(PULSE));
+		super.createBlockStateDefinition(builder.add(LIT, PULSE));
 	}
 
 	@Override

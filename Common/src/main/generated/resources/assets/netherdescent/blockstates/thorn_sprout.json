@@ -1,0 +1,58 @@
+{
+  "variants": {
+    "flowering=false,segment=base,size=0": {
+      "model": "netherdescent:block/thorn_sprout_base"
+    },
+    "flowering=false,segment=base,size=1": {
+      "model": "netherdescent:block/thorn_sprout_base"
+    },
+    "flowering=false,segment=base,size=2": {
+      "model": "netherdescent:block/thorn_sprout_base"
+    },
+    "flowering=false,segment=end,size=0": {
+      "model": "netherdescent:block/thorn_sprout_end"
+    },
+    "flowering=false,segment=end,size=1": {
+      "model": "netherdescent:block/thorn_sprout_end"
+    },
+    "flowering=false,segment=end,size=2": {
+      "model": "netherdescent:block/thorn_sprout_end"
+    },
+    "flowering=false,segment=middle,size=0": {
+      "model": "netherdescent:block/thorn_sprout_middle"
+    },
+    "flowering=false,segment=middle,size=1": {
+      "model": "netherdescent:block/thorn_sprout_middle"
+    },
+    "flowering=false,segment=middle,size=2": {
+      "model": "netherdescent:block/thorn_sprout_middle"
+    },
+    "flowering=true,segment=base,size=0": {
+      "model": "netherdescent:block/thorn_sprout_base"
+    },
+    "flowering=true,segment=base,size=1": {
+      "model": "netherdescent:block/thorn_sprout_base"
+    },
+    "flowering=true,segment=base,size=2": {
+      "model": "netherdescent:block/thorn_sprout_base"
+    },
+    "flowering=true,segment=end,size=0": {
+      "model": "netherdescent:block/thorn_sprout_end"
+    },
+    "flowering=true,segment=end,size=1": {
+      "model": "netherdescent:block/thorn_sprout_end"
+    },
+    "flowering=true,segment=end,size=2": {
+      "model": "netherdescent:block/thorn_sprout_end"
+    },
+    "flowering=true,segment=middle,size=0": {
+      "model": "netherdescent:block/thorn_sprout_middle_flowering"
+    },
+    "flowering=true,segment=middle,size=1": {
+      "model": "netherdescent:block/thorn_sprout_middle_flowering"
+    },
+    "flowering=true,segment=middle,size=2": {
+      "model": "netherdescent:block/thorn_sprout_middle_flowering"
+    }
+  }
+}

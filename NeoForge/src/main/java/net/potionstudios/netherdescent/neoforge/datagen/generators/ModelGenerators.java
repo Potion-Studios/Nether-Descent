@@ -408,6 +408,21 @@ public class ModelGenerators {
 						ConfiguredModel.builder().modelFile(models().getExistingFile(blockTexture(NetherDescentBlocks.ARISIAN_BRANCH.get()))).build();
 			}, BranchBlock.WATERLOGGED);
 			simpleItemBlockTexture(NetherDescentBlocks.ARISIAN_BRANCH.get());
+
+			var base = models().cross(name(NetherDescentBlocks.THORN_SPROUT.get()) + "_base", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "base")).renderType("cutout");
+			var tip = models().cross(name(NetherDescentBlocks.THORN_SPROUT.get()) + "_end", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "end")).renderType("cutout");
+			var middle = models().cross(name(NetherDescentBlocks.THORN_SPROUT.get()) + "_middle", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "middle")).renderType("cutout");
+			var middleFlowering = models().cross(name(NetherDescentBlocks.THORN_SPROUT.get()) + "_middle_flowering", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "middle_flowering")).renderType("cutout");
+			getVariantBuilder(NetherDescentBlocks.THORN_SPROUT.get()).forAllStates(state -> {
+				if (state.getValue(ThornSproutBlock.SEGMENT) == ThornSproutBlock.SegmentType.BASE)
+					return ConfiguredModel.builder().modelFile(base).build();
+				else if (state.getValue(ThornSproutBlock.SEGMENT) == ThornSproutBlock.SegmentType.MIDDLE)
+					if (state.getValue(ThornSproutBlock.FLOWERING))
+						return ConfiguredModel.builder().modelFile(middleFlowering).build();
+					else return ConfiguredModel.builder().modelFile(middle).build();
+				else return ConfiguredModel.builder().modelFile(tip).build();
+			});
+			simpleItemBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "thorn_sprout_end");
 		}
 
         private void rodBlock(RodBlock rodBlock, ModelFile modelFile) {
