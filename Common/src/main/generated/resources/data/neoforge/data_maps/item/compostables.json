@@ -6,6 +6,9 @@
     }
   ],
   "values": {
+    "netherdescent:arisian_sprouts": {
+      "chance": 0.5
+    },
     "netherdescent:crimson_berries": {
       "chance": 0.3
     },

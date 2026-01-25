@@ -81,9 +81,9 @@ public class TagsGenerator {
                     NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get());
 			tag(Tags.Blocks.NETHERRACKS).add(NetherDescentBlocks.BLUE_NETHERRACK.get());
 			tag(BlockTags.ENDERMAN_HOLDABLE).add(NetherDescentBlocks.EMBUR_NYLIUM.get(), NetherDescentBlocks.SYTHIAN_NYLIUM.get(), NetherDescentBlocks.WAILING_NYLIUM.get());
-			tag(BlockTags.SWORD_EFFICIENT).add(NetherDescentBlocks.EMBUR_SPROUTS.get(), NetherDescentBlocks.EMBUR_CAVE_MOSS.get(), NetherDescentBlocks.SYTHIAN_SPROUTS.get());
-			tag(BlockTags.REPLACEABLE_BY_TREES).add(NetherDescentBlocks.EMBUR_SPROUTS.get(), NetherDescentBlocks.SYTHIAN_SPROUTS.get());
-			tag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).add(NetherDescentBlocks.EMBUR_SPROUTS.get(), NetherDescentBlocks.SYTHIAN_SPROUTS.get());
+			tag(BlockTags.SWORD_EFFICIENT).add(NetherDescentBlocks.EMBUR_SPROUTS.get(), NetherDescentBlocks.EMBUR_CAVE_MOSS.get(), NetherDescentBlocks.SYTHIAN_SPROUTS.get(), NetherDescentBlocks.ARISIAN_SPROUTS.get());
+			tag(BlockTags.REPLACEABLE_BY_TREES).add(NetherDescentBlocks.EMBUR_SPROUTS.get(), NetherDescentBlocks.SYTHIAN_SPROUTS.get(), NetherDescentBlocks.ARISIAN_SPROUTS.get());
+			tag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).add(NetherDescentBlocks.EMBUR_SPROUTS.get(), NetherDescentBlocks.SYTHIAN_SPROUTS.get(), NetherDescentBlocks.ARISIAN_SPROUTS.get());
 			tag(BlockTags.INSIDE_STEP_SOUND_BLOCKS).add(NetherDescentBlocks.EMBUR_CAVE_MOSS.get());
             tag(BlockTags.NYLIUM).add(NetherDescentBlocks.SYTHIAN_SOIL.get(), NetherDescentBlocks.EMBUR_MOSS_BLOCK.get());
             tag(BlockTags.GOLD_ORES).add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get());

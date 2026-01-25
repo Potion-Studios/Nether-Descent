@@ -1,9 +1,15 @@
 {
   "variants": {
-    "lit=false": {
+    "lit=false,pulse=false": {
       "model": "netherdescent:block/arisian_blossom"
     },
-    "lit=true": {
+    "lit=false,pulse=true": {
+      "model": "netherdescent:block/arisian_blossom"
+    },
+    "lit=true,pulse=false": {
+      "model": "netherdescent:block/arisian_blossom_lit"
+    },
+    "lit=true,pulse=true": {
       "model": "netherdescent:block/arisian_blossom_lit"
     }
   }

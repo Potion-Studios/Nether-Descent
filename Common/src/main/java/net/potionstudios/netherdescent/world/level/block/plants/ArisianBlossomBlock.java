@@ -45,7 +45,7 @@ public class ArisianBlossomBlock extends NetherDescentBush {
 		boolean changed = false;
 
 		if (state.getValue(LIT))
-			if (level.getEntitiesOfClass(LivingEntity.class, SHAPE.bounds().move(pos)).isEmpty()) {
+			if (level.getEntitiesOfClass(LivingEntity.class, SHAPE.bounds().inflate(0.2).move(pos)).isEmpty()) {
 				newState = newState.setValue(LIT, false).setValue(PULSE, true);
 				changed = true;
 			} else level.scheduleTick(pos, this, 20);

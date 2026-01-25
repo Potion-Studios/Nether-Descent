@@ -160,6 +160,9 @@ public class ModelGenerators {
             createCrossBlock(NetherDescentBlocks.SYTHIAN_SPROUTS.get(), "cutout");
             simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_SPROUTS.get());
 
+			createCrossBlock(NetherDescentBlocks.ARISIAN_SPROUTS.get(), "cutout");
+			simpleItemBlockTexture(NetherDescentBlocks.ARISIAN_SPROUTS.get());
+
 			for (int y : new int[]{0, 90, 180, 270})
 				for (int x : new int[]{0, 90, 180, 270})
 					builder.partialState()
