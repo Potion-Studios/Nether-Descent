@@ -6,7 +6,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
-import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.entity.HornetNestBlockEntity;
 import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
@@ -51,7 +50,6 @@ public class HornetNestDecorator extends TreeDecorator {
                         .findFirst();
 
                 if (optional.isPresent()) {
-                    NetherDescent.LOGGER.info("Placing Nest at: {}", optional.get());
                     context.setBlock(optional.get(), NetherDescentBlocks.HORNET_NEST.get().defaultBlockState());
                     context.level().getBlockEntity(optional.get(), NetherDescentBlockEntityType.HORNET_NEST.get()).ifPresent(arg2 -> {
                         int ix = 2 + randomSource.nextInt(2);

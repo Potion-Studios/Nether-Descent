@@ -1,16 +1,32 @@
 {
   "variants": {
-    "lit=false,pulse=false": {
+    "hanging=false,lit=false,pulse=false": {
       "model": "netherdescent:block/arisian_blossom"
     },
-    "lit=false,pulse=true": {
+    "hanging=false,lit=false,pulse=true": {
       "model": "netherdescent:block/arisian_blossom"
     },
-    "lit=true,pulse=false": {
+    "hanging=false,lit=true,pulse=false": {
       "model": "netherdescent:block/arisian_blossom_lit"
     },
-    "lit=true,pulse=true": {
+    "hanging=false,lit=true,pulse=true": {
       "model": "netherdescent:block/arisian_blossom_lit"
+    },
+    "hanging=true,lit=false,pulse=false": {
+      "model": "netherdescent:block/arisian_blossom",
+      "x": 180
+    },
+    "hanging=true,lit=false,pulse=true": {
+      "model": "netherdescent:block/arisian_blossom",
+      "x": 180
+    },
+    "hanging=true,lit=true,pulse=false": {
+      "model": "netherdescent:block/arisian_blossom_lit",
+      "x": 180
+    },
+    "hanging=true,lit=true,pulse=true": {
+      "model": "netherdescent:block/arisian_blossom_lit",
+      "x": 180
     }
   }
 }

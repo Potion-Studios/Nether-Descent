@@ -214,8 +214,13 @@ public class ModelGenerators {
 			var blossomLit = models().cross(name(NetherDescentBlocks.ARISIAN_BLOSSOM.get()) + "_lit", blockNDTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.get(), "lit")).renderType("cutout");
 			getVariantBuilder(NetherDescentBlocks.ARISIAN_BLOSSOM.get()).forAllStates(state -> {
 				if (state.getValue(ArisianBlossomBlock.LIT))
-					return ConfiguredModel.builder().modelFile(blossomLit).build();
-				else return ConfiguredModel.builder().modelFile(blossom).build();
+					if (state.getValue(ArisianBlossomBlock.HANGING))
+						return ConfiguredModel.builder().modelFile(blossomLit).rotationX(180).build();
+					else return ConfiguredModel.builder().modelFile(blossomLit).build();
+				else
+					if (state.getValue(ArisianBlossomBlock.HANGING))
+						return ConfiguredModel.builder().modelFile(blossom).rotationX(180).build();
+					else return ConfiguredModel.builder().modelFile(blossom).build();
 			});
 			simpleItemBlockTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.get());
 
