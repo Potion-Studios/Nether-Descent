@@ -1,12 +1,15 @@
 package net.potionstudios.netherdescent.forge;
 
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.brewing.BrewingRecipeRegisterEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.potionstudios.netherdescent.world.BlockItemFeatures;
+import net.potionstudios.netherdescent.world.entity.animal.NetherDescentWolf;
 import net.potionstudios.netherdescent.world.item.brewing.NetherDescentBrewingRecipes;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 
@@ -20,6 +23,7 @@ public class VanillaCompatForge {
         bus.addListener(VanillaCompatForge::registerBrewingRecipes);
         bus.addListener(VanillaCompatForge::registerTillables);
         bus.addListener(VanillaCompatForge::registerFuels);
+        bus.addListener(VanillaCompatForge::registerEntityInteract);
     }
 
     /**
@@ -48,5 +52,16 @@ public class VanillaCompatForge {
         BlockItemFeatures.registerFurnaceFuels((block, burnTime) -> {
             if (event.getItemStack().is(block.asItem())) event.setBurnTime(burnTime);
         });
+    }
+
+    /**
+     * Register entity interaction events.
+     * @see PlayerInteractEvent.EntityInteract
+     */
+    private static void registerEntityInteract(final PlayerInteractEvent.EntityInteract event) {
+        if (NetherDescentWolf.onEntityInteract(event.getLevel(), event.getEntity(), event.getTarget(), event.getItemStack()) == InteractionResult.SUCCESS) {
+            event.setCancellationResult(InteractionResult.SUCCESS);
+            event.setCanceled(true);
+        }
     }
 }

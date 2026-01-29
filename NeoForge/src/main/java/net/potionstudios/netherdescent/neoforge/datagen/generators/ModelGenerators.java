@@ -66,6 +66,7 @@ public class ModelGenerators {
 			simpleItem(NetherDescentBlocks.PENDORITE_CAMPFIRE.get());
             handheldItem(NetherDescentItems.SOUL_BLAZE_ROD.get());
             simpleItemBlockTexture(NetherDescentItems.PENDORITE_TORCH.get());
+			withExistingParent(name(NetherDescentItems.PENDORITE_WOLF_ARMOR.get()), mcLoc("item/generated")).texture("layer0", NetherDescent.id(ModelProvider.ITEM_FOLDER + "/pendorite_wolf_armor")).texture("layer1", NetherDescent.id(ModelProvider.ITEM_FOLDER + "/pendorite_wolf_armor_overlay"));
         }
 
 		private void simpleItem(ItemLike item, String texture) {
