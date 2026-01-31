@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "netherdescent:arisian_tangle_roots_plant"
+          "name": "minecraft:air"
         }
       ],
       "rolls": 1.0

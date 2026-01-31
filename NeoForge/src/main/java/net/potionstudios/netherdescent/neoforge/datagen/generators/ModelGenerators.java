@@ -56,6 +56,7 @@ public class ModelGenerators {
             simpleItemBlockTexture(NetherDescentBlocks.WAILING_GRASS.get());
             simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get());
             simpleItemBlockTexture(NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), "hanging_sythian_roots_plant");
+			simpleItemBlockTexture(NetherDescentBlocks.ARISIAN_TANGLE_ROOTS.get(), "arisian_tangle_roots_plant");
 			simpleItem(NetherDescentBlocks.FUNGAL_BULBS.get(), "fungal_bulbs");
 			simpleItem(NetherDescentBlocks.PENDORITE_DOOR.get(),  "pendorite_door");
             simpleBlockItem(NetherDescentBlocks.CRIMSON_CARPET.get());
