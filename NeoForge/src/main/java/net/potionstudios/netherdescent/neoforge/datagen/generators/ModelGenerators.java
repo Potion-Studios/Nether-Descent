@@ -151,6 +151,8 @@ public class ModelGenerators {
 			createCrossBlock(NetherDescentBlocks.EMBUR_ROOTS.get(), "cutout_mipped");
             createCrossBlock(NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), "cutout");
             createCrossBlock(NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get(), "cutout");
+			createCrossBlock(NetherDescentBlocks.ARISIAN_TANGLE_ROOTS.get(), "cutout");
+			createCrossBlock(NetherDescentBlocks.ARISIAN_TANGLE_ROOTS_PLANT.get(), "cutout");
 			createDoubleBlock(NetherDescentBlocks.TALL_EMBUR_ROOTS.get());
             createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get());
             createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get());
