@@ -5,6 +5,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.FeatureUtils;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -60,7 +61,23 @@ public class NetherDescentFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_CAVE_MOSS = ConfiguredFeaturesUtil.createConfiguredFeature("embur_cave_moss", Feature.MULTIFACE_GROWTH, (configuredFeatureBootstrapContext) -> new MultifaceGrowthConfiguration(NetherDescentBlocks.EMBUR_CAVE_MOSS.get(), 16, true, true, true, 1F, HolderSet.direct(Block::builtInRegistryHolder, NetherDescentBlocks.BLUE_NETHERRACK.get(), NetherDescentBlocks.EMBUR_NYLIUM.get(), NetherDescentBlocks.EMBUR.logstem())));
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_EMBUR_MOSS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_vines_feature", NetherDescentFeature.CEILING_HANGING_VINES, () -> new CeilingHangingVinesFeatureConfiguration(NetherDescentBlocks.BLUE_NETHERRACK.get(), NetherDescentBlocks.EMBUR_MOSS_BLOCK.get().defaultBlockState(), NetherDescentBlocks.EMBUR_HANGING_MOSS.get().defaultBlockState(), 0.75F, 10, 90));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_EMBUR_MOSS = ConfiguredFeaturesUtil.createConfiguredFeature(
+			"hanging_embur_moss",
+			Feature.RANDOM_PATCH,
+			() -> new RandomPatchConfiguration(
+					96, 10, 10,
+					PlacementUtils.filtered(
+							NetherDescentFeature.CEILING_HANGING_VINES.get(),
+							new CeilingHangingVinesFeatureConfiguration(
+									NetherDescentBlocks.BLUE_NETHERRACK.get(),
+									NetherDescentBlocks.EMBUR_MOSS_BLOCK.get().defaultBlockState(),
+									NetherDescentBlocks.EMBUR_HANGING_MOSS.get().defaultBlockState(),
+									UniformInt.of(0, 20)
+							),
+							ConfiguredFeaturesUtil.simplePatchPredicate(List.of())
+					)
+			)
+	);
 
     //public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_PATCH_BONEMEAL = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock();
 	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_carpet_patch", NetherDescentFeature.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()));

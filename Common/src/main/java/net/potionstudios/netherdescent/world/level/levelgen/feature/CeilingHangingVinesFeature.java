@@ -5,11 +5,17 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.potionstudios.netherdescent.world.level.block.custom.HangingMossBlock;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CeilingHangingVinesFeatureConfiguration;
 
+/**
+ * Feature that Places a Base Block then Places a Vine that grows down from the ceiling
+ * @see CeilingHangingVinesFeatureConfiguration
+ * @author Joseph T. McQuigg
+ */
 public class CeilingHangingVinesFeature extends Feature<CeilingHangingVinesFeatureConfiguration> {
     public CeilingHangingVinesFeature(Codec<CeilingHangingVinesFeatureConfiguration> codec) {
         super(codec);
@@ -20,31 +26,26 @@ public class CeilingHangingVinesFeature extends Feature<CeilingHangingVinesFeatu
         WorldGenLevel worldGenLevel = context.level();
         BlockPos origin = context.origin();
         RandomSource randomSource = context.random();
-        CeilingHangingVinesFeatureConfiguration config = context.config();
 
-        boolean placedAny = false;
-
-        for (int i = 0; i < config.tries(); i++) {
-            int dx = randomSource.nextInt(config.patchRadius() * 2 + 1) - config.patchRadius();
-            int dz = randomSource.nextInt(config.patchRadius() * 2 + 1) - config.patchRadius();
-            BlockPos candidate = origin.offset(dx, 0, dz);
-
-            if (worldGenLevel.isEmptyBlock(candidate.below()) && worldGenLevel.getBlockState(candidate).is(config.ceiling())) {
-                BlockPos.MutableBlockPos mutableBlockPos = candidate.below().mutable();
-                worldGenLevel.setBlock(mutableBlockPos, config.base(), 2);
-                mutableBlockPos.move(Direction.DOWN);
-                worldGenLevel.setBlock(mutableBlockPos, config.vine().setValue(HangingMossBlock.TIP, true), 2);
-
-                while (worldGenLevel.isEmptyBlock(mutableBlockPos.below()) && randomSource.nextFloat() < config.growth()) {
-                    worldGenLevel.setBlock(mutableBlockPos, config.vine().setValue(HangingMossBlock.TIP, false), 2);
-                    mutableBlockPos.move(Direction.DOWN);
-                    worldGenLevel.setBlock(mutableBlockPos, config.vine().setValue(HangingMossBlock.TIP, true), 2);
+        if (worldGenLevel.isEmptyBlock(origin) && worldGenLevel.isEmptyBlock(origin.below())) {
+            CeilingHangingVinesFeatureConfiguration config = context.config();
+            if (worldGenLevel.getBlockState(origin.above()).is(context.config().ceiling())) {
+                setBlock(worldGenLevel, origin, config.base());
+                BlockState vine = config.vine().setValue(HangingMossBlock.TIP, false);
+                int maxHeight = config.growth().sample(randomSource);
+                BlockPos.MutableBlockPos mutableBlockPos = origin.below().mutable();
+                for (int i = 0; i <= maxHeight; i++) {
+                    if ((i == maxHeight) || !worldGenLevel.isEmptyBlock(mutableBlockPos.below())) {
+                        setBlock(worldGenLevel, mutableBlockPos, vine.setValue(HangingMossBlock.TIP, true));
+                        return true;
+                    } else {
+                        setBlock(worldGenLevel, mutableBlockPos, vine);
+                        mutableBlockPos.move(Direction.DOWN);
+                    }
                 }
-
-                placedAny = true;
             }
         }
 
-        return placedAny;
+        return false;
     }
 }

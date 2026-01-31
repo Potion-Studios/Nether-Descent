@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "netherdescent:ceiling_hanging_vines",
+        "config": {
+          "base": {
+            "Name": "netherdescent:embur_moss_block"
+          },
+          "ceiling": "netherdescent:blue_netherrack",
+          "growth": {
+            "type": "minecraft:uniform",
+            "max_inclusive": 20,
+            "min_inclusive": 0
+          },
+          "vine": {
+            "Name": "netherdescent:embur_hanging_moss",
+            "Properties": {
+              "tip": "true"
+            }
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
+          }
+        }
+      ]
+    },
+    "tries": 96,
+    "xz_spread": 10,
+    "y_spread": 10
+  }
+}

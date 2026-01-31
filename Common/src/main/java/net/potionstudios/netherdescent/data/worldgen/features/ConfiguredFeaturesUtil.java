@@ -1,6 +1,7 @@
 package net.potionstudios.netherdescent.data.worldgen.features;
 
 import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
@@ -9,6 +10,7 @@ import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
@@ -41,6 +43,17 @@ public class ConfiguredFeaturesUtil {
             );
 
         return new RandomFeatureConfiguration(wightedPlacedFeatureList, PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(configuredFeatures[count - 1])));
+    }
+
+    public static BlockPredicate simplePatchPredicate(List<Block> blocks) {
+        BlockPredicate blockPredicate;
+        if (!blocks.isEmpty()) {
+            blockPredicate = BlockPredicate.allOf(BlockPredicate.ONLY_IN_AIR_PREDICATE, BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), blocks));
+        } else {
+            blockPredicate = BlockPredicate.ONLY_IN_AIR_PREDICATE;
+        }
+
+        return blockPredicate;
     }
 
     protected static <FC extends FeatureConfiguration, F extends Feature<FC>> ResourceKey<ConfiguredFeature<?, ?>> createConfiguredFeature(String id, F feature, Function<BootstrapContext<ConfiguredFeature<?, ?>>, ? extends FC> config) {
