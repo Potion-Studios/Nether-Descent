@@ -263,6 +263,7 @@ public class NetherDescentWoodSet {
     }
 
     public enum GrowerItem {
+        SAPLING("sapling"),
         FUNGUS("fungus"),
         WART("wart");
 

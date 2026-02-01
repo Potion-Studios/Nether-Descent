@@ -6,6 +6,9 @@
     }
   ],
   "values": {
+    "netherdescent:arisian_sapling": {
+      "chance": 0.65
+    },
     "netherdescent:arisian_sprouts": {
       "chance": 0.5
     },

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "netherdescent:block/arisian_slab"
+    },
+    "type=double": {
+      "model": "netherdescent:block/arisian_planks"
+    },
+    "type=top": {
+      "model": "netherdescent:block/arisian_slab_top"
+    }
+  }
+}

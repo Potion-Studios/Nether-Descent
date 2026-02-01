@@ -1,6 +1,10 @@
 {
   "values": [
     {
+      "id": "#netherdescent:arisian_logs",
+      "required": false
+    },
+    {
       "id": "#netherdescent:embur_pedus",
       "required": false
     },

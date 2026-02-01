@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "netherdescent:block/arisian/planks",
+    "east": "netherdescent:block/arisian/crafting_table_side",
+    "north": "netherdescent:block/arisian/crafting_table_front",
+    "particle": "netherdescent:block/arisian/crafting_table_front",
+    "south": "netherdescent:block/arisian/crafting_table_side",
+    "up": "netherdescent:block/arisian/crafting_table_top",
+    "west": "netherdescent:block/arisian/crafting_table_front"
+  }
+}

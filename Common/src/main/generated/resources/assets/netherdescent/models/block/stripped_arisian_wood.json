@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "netherdescent:block/arisian/stripped_log",
+    "side": "netherdescent:block/arisian/stripped_log"
+  }
+}
