@@ -210,6 +210,11 @@ public class ModelGenerators {
             models().withExistingParent(name(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()) + "_side_small", NetherDescent.id("block/mossy_carpet_side")).texture("side", blockNDTexture(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), "side_small")).renderType("cutout");
             models().withExistingParent(name(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()) + "_side_tall", NetherDescent.id("block/mossy_carpet_side")).texture("side", blockNDTexture(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), "side_tall")).renderType("cutout");
 
+			getVariantBuilder(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()).partialState()
+					.setModels(new ConfiguredModel(models().getExistingFile(blockTexture(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()))), new ConfiguredModel(models().getExistingFile(NetherDescent.id("block/arisian_moss_block2"))));
+			simpleBlockItem(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get(), models().getExistingFile(blockTexture(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get())));
+
+
 			simpleBlockItem(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), models().carpet(name(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()), blockTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get())).renderType("cutout"));
 			models().withExistingParent(name(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()) + "_side_small", NetherDescent.id("block/mossy_carpet_side")).texture("side", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_small")).renderType("cutout");
 			models().withExistingParent(name(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()) + "_side_tall", NetherDescent.id("block/mossy_carpet_side")).texture("side", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_tall")).renderType("cutout");

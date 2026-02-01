@@ -1,7 +1,12 @@
 {
   "variants": {
-    "": {
-      "model": "netherdescent:block/arisian_moss_block"
-    }
+    "": [
+      {
+        "model": "netherdescent:block/arisian_moss_block"
+      },
+      {
+        "model": "netherdescent:block/arisian_moss_block2"
+      }
+    ]
   }
 }
