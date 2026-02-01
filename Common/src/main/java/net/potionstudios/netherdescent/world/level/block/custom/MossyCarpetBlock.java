@@ -211,7 +211,7 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
 
     @Override
     public void setPlacedBy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack stack) {
-        if (!level.isClientSide) {
+        if (!level.isClientSide()) {
             RandomSource randomSource = level.getRandom();
             BlockState blockState = createTopperWithSideChance(this.asBlock(), level, pos, randomSource::nextBoolean);
             if (!blockState.isAir()) {

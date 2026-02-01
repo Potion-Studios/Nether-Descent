@@ -32,7 +32,7 @@ public class LargeSoulFireball extends Fireball {
 
 	protected void onHit(@NotNull HitResult result) {
 		super.onHit(result);
-		if (!this.level().isClientSide) {
+		if (!this.level().isClientSide()) {
 			boolean bl = this.level().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
 			this.level().explode(this, this.getX(), this.getY(), this.getZ(), (float)this.explosionPower, bl, Level.ExplosionInteraction.MOB);
 			this.discard();

@@ -1,151 +1,105 @@
 {
   "multipart": [
     {
-      "apply": {
-        "model": "netherdescent:block/arisian_moss_carpet"
-      },
-      "when": {
-        "bottom": "true"
-      }
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet" },
+      "when": { "bottom": true, "hanging": false }
     },
     {
-      "apply": {
-        "model": "netherdescent:block/arisian_moss_carpet"
-      },
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet", "x": 180 },
+      "when": { "bottom": true, "hanging": true }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_tall" },
+      "when": { "north": "tall", "hanging": false }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_small" },
+      "when": { "north": "low", "hanging": false }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_tall_hanging", "y": 180 },
+      "when": { "north": "tall", "hanging": true }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_small_hanging", "y": 180 },
+      "when": { "north": "low", "hanging": true }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_tall", "y": 90, "uvlock": true },
+      "when": { "east": "tall", "hanging": false }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_small", "y": 90, "uvlock": true },
+      "when": { "east": "low", "hanging": false }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_tall_hanging", "y": 270, "uvlock": true },
+      "when": { "east": "tall", "hanging": true }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_small_hanging", "y": 270, "uvlock": true },
+      "when": { "east": "low", "hanging": true }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_tall", "y": 180, "uvlock": true },
+      "when": { "south": "tall", "hanging": false }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_small", "y": 180, "uvlock": true },
+      "when": { "south": "low", "hanging": false }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_tall_hanging", "uvlock": true },
+      "when": { "south": "tall", "hanging": true }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_small_hanging", "uvlock": true },
+      "when": { "south": "low", "hanging": true }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_tall", "y": 270, "uvlock": true },
+      "when": { "west": "tall", "hanging": false }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_small", "y": 270, "uvlock": true },
+      "when": { "west": "low", "hanging": false }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_tall_hanging", "y": 90, "uvlock": true },
+      "when": { "west": "tall", "hanging": true }
+    },
+    {
+      "apply": { "model": "netherdescent:block/arisian_moss_carpet_side_small_hanging", "y": 90, "uvlock": true },
+      "when": { "west": "low", "hanging": true }
+    },
+    {
+      "apply": [
+        { "model": "netherdescent:block/arisian_moss_carpet_side_tall" },
+        { "model": "netherdescent:block/arisian_moss_carpet_side_tall", "y": 90 },
+        { "model": "netherdescent:block/arisian_moss_carpet_side_tall", "y": 180 },
+        { "model": "netherdescent:block/arisian_moss_carpet_side_tall", "y": 270 }
+      ],
       "when": {
-        "bottom": "false",
-        "east": "none",
+        "bottom": false,
+        "hanging": false,
         "north": "none",
+        "east": "none",
         "south": "none",
         "west": "none"
       }
     },
     {
-      "apply": {
-        "model": "netherdescent:block/arisian_moss_carpet_side_tall"
-      },
+      "apply": [
+        { "model": "netherdescent:block/arisian_moss_carpet_side_tall_hanging" },
+        { "model": "netherdescent:block/arisian_moss_carpet_side_tall_hanging", "y": 90 },
+        { "model": "netherdescent:block/arisian_moss_carpet_side_tall_hanging", "y": 180 },
+        { "model": "netherdescent:block/arisian_moss_carpet_side_tall_hanging", "y": 270 }
+      ],
       "when": {
-        "north": "tall"
-      }
-    },
-    {
-      "apply": {
-        "model": "netherdescent:block/arisian_moss_carpet_side_small"
-      },
-      "when": {
-        "north": "low"
-      }
-    },
-    {
-      "apply": {
-        "model": "netherdescent:block/arisian_moss_carpet_side_tall"
-      },
-      "when": {
-        "bottom": "false",
-        "east": "none",
+        "bottom": false,
+        "hanging": true,
         "north": "none",
-        "south": "none",
-        "west": "none"
-      }
-    },
-    {
-      "apply": {
-        "model": "netherdescent:block/arisian_moss_carpet_side_tall",
-        "uvlock": true,
-        "y": 90
-      },
-      "when": {
-        "east": "tall"
-      }
-    },
-    {
-      "apply": {
-        "model": "netherdescent:block/arisian_moss_carpet_side_small",
-        "uvlock": true,
-        "y": 90
-      },
-      "when": {
-        "east": "low"
-      }
-    },
-    {
-      "apply": {
-        "model": "netherdescent:block/arisian_moss_carpet_side_tall",
-        "uvlock": true,
-        "y": 90
-      },
-      "when": {
-        "bottom": "false",
         "east": "none",
-        "north": "none",
-        "south": "none",
-        "west": "none"
-      }
-    },
-    {
-      "apply": {
-        "model": "netherdescent:block/arisian_moss_carpet_side_tall",
-        "uvlock": true,
-        "y": 180
-      },
-      "when": {
-        "south": "tall"
-      }
-    },
-    {
-      "apply": {
-        "model": "netherdescent:block/arisian_moss_carpet_side_small",
-        "uvlock": true,
-        "y": 180
-      },
-      "when": {
-        "south": "low"
-      }
-    },
-    {
-      "apply": {
-        "model": "netherdescent:block/arisian_moss_carpet_side_tall",
-        "uvlock": true,
-        "y": 180
-      },
-      "when": {
-        "bottom": "false",
-        "east": "none",
-        "north": "none",
-        "south": "none",
-        "west": "none"
-      }
-    },
-    {
-      "apply": {
-        "model": "netherdescent:block/arisian_moss_carpet_side_tall",
-        "uvlock": true,
-        "y": 270
-      },
-      "when": {
-        "west": "tall"
-      }
-    },
-    {
-      "apply": {
-        "model": "netherdescent:block/arisian_moss_carpet_side_small",
-        "uvlock": true,
-        "y": 270
-      },
-      "when": {
-        "west": "low"
-      }
-    },
-    {
-      "apply": {
-        "model": "netherdescent:block/arisian_moss_carpet_side_tall",
-        "uvlock": true,
-        "y": 270
-      },
-      "when": {
-        "bottom": "false",
-        "east": "none",
-        "north": "none",
         "south": "none",
         "west": "none"
       }

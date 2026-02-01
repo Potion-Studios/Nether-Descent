@@ -1,0 +1,17 @@
+{
+  "ambientocclusion": true,
+  "textures": {
+    "particle": "#side"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 15.9],
+      "to":   [16, 16, 15.9],
+      "shade": true,
+      "faces": {
+        "north": { "uv": [0, 16, 16, 0], "texture": "#side" },
+        "south": { "uv": [16, 16, 0, 0], "texture": "#side" }
+      }
+    }
+  ]
+}
