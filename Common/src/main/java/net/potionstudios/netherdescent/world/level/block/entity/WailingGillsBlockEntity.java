@@ -2,6 +2,7 @@ package net.potionstudios.netherdescent.world.level.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -59,6 +60,9 @@ public class WailingGillsBlockEntity extends BlockEntity {
 
                 entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 80, 0, false, false));
                 entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160, 0, false, false));
+                ParticleOptions particleData = state.getValue(WailingGillsBlock.POWER) > 0 ? NetherDescentParticles.GILL_LEVITATE_POWERED.get() : NetherDescentParticles.GILL_LEVITATE.get();
+                for (int i = 0; i < blockEntity.getBlockPos().getY() - entity.getY() - 1; i++)
+                    serverLevel.sendParticles(particleData, entity.getX(), entity.getY() + i, entity.getZ(), 2,0.5, 0, 0.5, 1.2);
             }
 		}
 	}

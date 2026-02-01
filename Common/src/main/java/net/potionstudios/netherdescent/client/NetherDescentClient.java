@@ -26,6 +26,7 @@ import net.potionstudios.netherdescent.client.renderer.entity.SoulGhastRenderer;
 import net.potionstudios.netherdescent.client.renderer.entity.nertling.NertlingRenderer;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.core.particles.FallingParticle;
+import net.potionstudios.netherdescent.core.particles.RisingParticle;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
@@ -61,8 +62,8 @@ public class NetherDescentClient {
     public static void registerParticles(BiConsumer<SimpleParticleType, Function<SpriteSet, ParticleProvider<SimpleParticleType>>> consumer) {
 		consumer.accept(NetherDescentParticles.SYTHIAN_LEAF.get(), arg -> (arg2, arg3, d, e, f, g, h, i) -> new CherryParticle(arg3, d, e, f, arg));
 	    consumer.accept(NetherDescentParticles.EMBUR_GEL_DRIP.get(), FallingParticle.Provider::new);
-//		consumer.accept(NetherDescentParticles.GILL_LEVITATE.get(), null);
-//		consumer.accept(NetherDescentParticles.GILL_LEVITATE_POWERED.get(), null);
+		consumer.accept(NetherDescentParticles.GILL_LEVITATE.get(), RisingParticle.Provider::new);
+		consumer.accept(NetherDescentParticles.GILL_LEVITATE_POWERED.get(), RisingParticle.Provider::new);
         consumer.accept(NetherDescentParticles.PENDORITE_FIRE_FLAME.get(), FlameParticle.Provider::new);
     }
 
