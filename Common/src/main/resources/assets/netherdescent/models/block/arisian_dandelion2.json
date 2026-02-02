@@ -1,0 +1,142 @@
+{
+	"textures": {
+		"0": "netherdescent:block/arisian_sprouts",
+		"1": "netherdescent:block/arisian_dandelions",
+		"particle": "netherdescent:block/arisian_sprouts"
+	},
+	"render_type": "minecraft:cutout",
+	"elements": [
+		{
+			"from": [0, 0, 8],
+			"to": [16, 16, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"east": {"uv": [2, 0, 2, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 0, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 0], "texture": "#0"},
+				"down": {"uv": [0, 2, 16, 2], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 0, 8],
+			"to": [16, 16, 8],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"east": {"uv": [2, 0, 2, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 0, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 0], "texture": "#0"},
+				"down": {"uv": [0, 2, 16, 2], "texture": "#0"}
+			}
+		},
+		{
+			"name": "stem",
+			"from": [7.5, -1, 7],
+			"to": [7.5, 15, 8],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 1, 16], "texture": "#1"},
+				"south": {"uv": [0, 0, 0, 16], "texture": "#1"},
+				"west": {"uv": [1, 0, 2, 16], "texture": "#1"},
+				"up": {"uv": [0, 1, 0, 0], "texture": "#1"},
+				"down": {"uv": [0, 0, 0, 1], "texture": "#1"}
+			}
+		},
+		{
+			"name": "flower",
+			"from": [6, 12, 1],
+			"to": [9, 15, 4],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [6, 12, 1]},
+			"faces": {
+				"north": {"uv": [2, 0, 5, 3], "texture": "#1"},
+				"east": {"uv": [2, 3, 5, 6], "texture": "#1"},
+				"south": {"uv": [5, 0, 8, 3], "texture": "#1"},
+				"west": {"uv": [5, 3, 8, 6], "texture": "#1"},
+				"up": {"uv": [5, 9, 2, 6], "texture": "#1"},
+				"down": {"uv": [8, 6, 5, 9], "texture": "#1"}
+			}
+		},
+		{
+			"name": "stem",
+			"from": [8, -1, 8.5],
+			"to": [9, 15, 8.5],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [8, 0, 9]},
+			"faces": {
+				"north": {"uv": [0, 0, 1, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 0, 16], "texture": "#1"},
+				"south": {"uv": [1, 0, 2, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 0, 16], "texture": "#1"},
+				"up": {"uv": [1, 0, 0, 0], "texture": "#1"},
+				"down": {"uv": [1, 0, 0, 0], "texture": "#1"}
+			}
+		},
+		{
+			"name": "flower",
+			"from": [12, 11, 7],
+			"to": [15, 14, 10],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [15, 11, 7]},
+			"faces": {
+				"north": {"uv": [2, 0, 5, 3], "texture": "#1"},
+				"east": {"uv": [2, 3, 5, 6], "texture": "#1"},
+				"south": {"uv": [5, 0, 8, 3], "texture": "#1"},
+				"west": {"uv": [5, 3, 8, 6], "texture": "#1"},
+				"up": {"uv": [5, 9, 2, 6], "texture": "#1"},
+				"down": {"uv": [8, 6, 5, 9], "texture": "#1"}
+			}
+		},
+		{
+			"name": "stem",
+			"from": [5, -1, 10.5],
+			"to": [6, 15, 10.5],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [6, 0, 10]},
+			"faces": {
+				"north": {"uv": [0, 0, 1, 16], "texture": "#1"},
+				"east": {"uv": [0, 0, 0, 16], "texture": "#1"},
+				"south": {"uv": [1, 0, 2, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 0, 16], "texture": "#1"},
+				"up": {"uv": [1, 0, 0, 0], "texture": "#1"},
+				"down": {"uv": [1, 0, 0, 0], "texture": "#1"}
+			}
+		},
+		{
+			"name": "flower",
+			"from": [-1, 12, 9],
+			"to": [2, 15, 12],
+			"rotation": {"angle": 22.5, "axis": "z", "origin": [-1, 12, 12]},
+			"faces": {
+				"north": {"uv": [2, 0, 5, 3], "texture": "#1"},
+				"east": {"uv": [2, 3, 5, 6], "texture": "#1"},
+				"south": {"uv": [5, 0, 8, 3], "texture": "#1"},
+				"west": {"uv": [5, 3, 8, 6], "texture": "#1"},
+				"up": {"uv": [5, 9, 2, 6], "texture": "#1"},
+				"down": {"uv": [8, 6, 5, 9], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		0,
+		1,
+		{
+			"name": "flower",
+			"origin": [6, 15, 6],
+			"color": 0,
+			"children": [2, 3]
+		},
+		{
+			"name": "flower",
+			"origin": [6, 15, 6],
+			"color": 0,
+			"children": [4, 5]
+		},
+		{
+			"name": "flower",
+			"origin": [6, 15, 6],
+			"color": 0,
+			"children": [6, 7]
+		}
+	]
+}

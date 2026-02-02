@@ -104,7 +104,7 @@ public class TagsGenerator {
             tag(BlockTags.DRAGON_IMMUNE).add(NetherDescentBlocks.PENDORITE_BARS.get());
 			tag(BlockTags.CAMPFIRES).add(NetherDescentBlocks.PENDORITE_CAMPFIRE.get());
 
-            tag(BlockTags.FLOWERS).add(NetherDescentBlocks.EMBUR_LILY.get(), NetherDescentBlocks.ARISIAN_BLOSSOM.get());
+            tag(BlockTags.FLOWERS).add(NetherDescentBlocks.EMBUR_LILY.get(), NetherDescentBlocks.ARISIAN_BLOSSOM.get(), NetherDescentBlocks.ARISIAN_DANDELIONS.get());
 
             tag(NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON).addTag(BlockTags.NYLIUM).add(NetherDescentBlocks.SYTHIAN_SHOOT.get(), NetherDescentBlocks.SYTHIAN_STALK.get(), NetherDescentBlocks.SYTHIAN_FARMLAND.get());
 

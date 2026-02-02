@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "netherdescent:block/arisian_dandelion2"
+    },
+    "hanging=true": {
+      "model": "netherdescent:block/arisian_dandelion2",
+      "x": 180
+    }
+  }
+}

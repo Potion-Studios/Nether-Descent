@@ -7,45 +7,25 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-public class ArisianBlossomBlock extends NetherDescentBush {
+public class ArisianBlossomBlock extends HangingNDBushBlock {
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	public static final BooleanProperty PULSE = BooleanProperty.create("pulse");
-	public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
 	protected static final VoxelShape SHAPE = Block.box(4.0, 0.0, 4.0, 12.0, 14.0, 12.0);
 	protected static final VoxelShape CEILING_SHAPE = Block.box(4.0, 2.0, 4.0, 12.0, 16.0, 12.0);
 
 	public ArisianBlossomBlock(Properties properties, TagKey<Block> placeableOn) {
-		super(properties, placeableOn);
+		super(properties, placeableOn, SHAPE, CEILING_SHAPE);
 		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false).setValue(PULSE, false).setValue(HANGING, false));
-	}
-
-	@Override
-	public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
-		Direction direction = context.getClickedFace();
-		if (direction.getAxis().isVertical())
-			return this.defaultBlockState().setValue(HANGING, direction == Direction.DOWN);
-		return null;
-	}
-
-	@Override
-	protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
-		BlockPos blockPos = state.getValue(HANGING) ? pos.above() : pos.below();
-		return this.mayPlaceOn(level.getBlockState(blockPos), level, blockPos);
 	}
 
 	@Override
@@ -89,14 +69,7 @@ public class ArisianBlossomBlock extends NetherDescentBush {
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
-		super.createBlockStateDefinition(builder.add(LIT, PULSE, HANGING));
-	}
-
-	@Override
-	protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-		Vec3 vec3 = state.getOffset(level, pos);
-		VoxelShape shape = state.getValue(HANGING) ? CEILING_SHAPE : SHAPE;
-		return shape.move(vec3.x, vec3.y, vec3.z);
+		super.createBlockStateDefinition(builder.add(LIT, PULSE));
 	}
 
 //	@Override
