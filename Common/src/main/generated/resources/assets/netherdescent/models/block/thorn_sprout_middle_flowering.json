@@ -1,7 +1,8 @@
 {
-  "parent": "minecraft:block/cross",
+  "parent": "netherdescent:block/thorn_sprout",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "netherdescent:block/thorn_sprout_middle_flowering"
+    "1": "netherdescent:block/thorn_sprout_middle_flowering",
+    "particle": "netherdescent:block/thorn_sprout_middle_flowering"
   }
 }

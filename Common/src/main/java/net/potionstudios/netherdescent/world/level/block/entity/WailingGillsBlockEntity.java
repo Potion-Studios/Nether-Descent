@@ -35,7 +35,9 @@ public class WailingGillsBlockEntity extends BlockEntity {
             if (SOUL_SPEED == null)
                 SOUL_SPEED = serverLevel.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SOUL_SPEED);
 
-            double distance = -15.0 - state.getValue(WailingGillsBlock.POWER);
+			int powered = state.getValue(WailingGillsBlock.POWER);
+
+            double distance = -15.0 - powered;
 
 			AABB aabb = new AABB(pos.below()).expandTowards(0.0, distance, 0.0);
 
@@ -58,11 +60,11 @@ public class WailingGillsBlockEntity extends BlockEntity {
                     if (EnchantmentHelper.getItemEnchantmentLevel(SOUL_SPEED, itemStack) > 0)
                         return;
 
-                entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 80, 0, false, false));
-                entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160, 0, false, false));
-                ParticleOptions particleData = state.getValue(WailingGillsBlock.POWER) > 0 ? NetherDescentParticles.GILL_LEVITATE_POWERED.get() : NetherDescentParticles.GILL_LEVITATE.get();
+                entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 6, powered, false, false));
+                entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160, powered, false, false));
+                ParticleOptions particleData = powered > 0 ? NetherDescentParticles.GILL_LEVITATE_POWERED.get() : NetherDescentParticles.GILL_LEVITATE.get();
                 for (int i = 0; i < blockEntity.getBlockPos().getY() - entity.getY() - 1; i++)
-                    serverLevel.sendParticles(particleData, entity.getX(), entity.getY() + i, entity.getZ(), 2,0.5, 0, 0.5, 1.2);
+                    serverLevel.sendParticles(particleData, entity.getX(), entity.getY() + i, entity.getZ(), 2,0.5, 0, 0.5, 1.2 + (powered * 0.9));
             }
 		}
 	}

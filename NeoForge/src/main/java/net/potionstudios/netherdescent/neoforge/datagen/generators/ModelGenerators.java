@@ -220,7 +220,7 @@ public class ModelGenerators {
 
 			getVariantBuilder(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()).partialState()
 					.setModels(new ConfiguredModel(models().getExistingFile(blockTexture(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()))), new ConfiguredModel(models().getExistingFile(NetherDescent.id("block/arisian_moss_block2"))));
-			simpleBlockItem(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get(), models().getExistingFile(blockTexture(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get())));
+			simpleBlockItem(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get(), models().cubeAll(name(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()) + "_item", blockTexture(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get())));
 
 
 			simpleBlockItem(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), models().carpet(name(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()), blockTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get())).renderType("cutout"));
@@ -434,18 +434,24 @@ public class ModelGenerators {
 			}, BranchBlock.WATERLOGGED);
 			simpleItemBlockTexture(NetherDescentBlocks.ARISIAN_BRANCH.get());
 
-			var base = models().cross(name(NetherDescentBlocks.THORN_SPROUT.get()) + "_base", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "base")).renderType("cutout");
-			var tip = models().cross(name(NetherDescentBlocks.THORN_SPROUT.get()) + "_end", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "end")).renderType("cutout");
-			var middle = models().cross(name(NetherDescentBlocks.THORN_SPROUT.get()) + "_middle", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "middle")).renderType("cutout");
-			var middleFlowering = models().cross(name(NetherDescentBlocks.THORN_SPROUT.get()) + "_middle_flowering", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "middle_flowering")).renderType("cutout");
+			var base = models().withExistingParent(name(NetherDescentBlocks.THORN_SPROUT.get()) + "_base", blockTexture(NetherDescentBlocks.THORN_SPROUT.get())).texture("1", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "base")).texture("particle", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "base")).renderType("cutout");
+			var tip = models().withExistingParent(name(NetherDescentBlocks.THORN_SPROUT.get()) + "_end", blockTexture(NetherDescentBlocks.THORN_SPROUT.get())).texture("1", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "end")).texture("particle", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "end")).renderType("cutout");
+			var middle = models().withExistingParent(name(NetherDescentBlocks.THORN_SPROUT.get()) + "_middle", blockTexture(NetherDescentBlocks.THORN_SPROUT.get())).texture("1", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "middle")).texture("particle", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "middle")).renderType("cutout");
+			var middleFlowering = models().withExistingParent(name(NetherDescentBlocks.THORN_SPROUT.get()) + "_middle_flowering", blockTexture(NetherDescentBlocks.THORN_SPROUT.get())).texture("1", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "middle_flowering")).texture("particle", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "middle_flowering")).renderType("cutout");
 			getVariantBuilder(NetherDescentBlocks.THORN_SPROUT.get()).forAllStates(state -> {
+				int rotationY = switch (state.getValue(ThornSproutBlock.FACING)) {
+					case WEST -> 90;
+					case NORTH -> 180;
+					case EAST -> 270;
+					default -> 0;
+				};
 				if (state.getValue(ThornSproutBlock.SEGMENT) == ThornSproutBlock.SegmentType.BASE)
-					return ConfiguredModel.builder().modelFile(base).build();
+					return ConfiguredModel.builder().modelFile(base).rotationY(rotationY).build();
 				else if (state.getValue(ThornSproutBlock.SEGMENT) == ThornSproutBlock.SegmentType.MIDDLE)
 					if (state.getValue(ThornSproutBlock.FLOWERING))
-						return ConfiguredModel.builder().modelFile(middleFlowering).build();
-					else return ConfiguredModel.builder().modelFile(middle).build();
-				else return ConfiguredModel.builder().modelFile(tip).build();
+						return ConfiguredModel.builder().modelFile(middleFlowering).rotationY(rotationY).build();
+					else return ConfiguredModel.builder().modelFile(middle).rotationY(rotationY).build();
+				else return ConfiguredModel.builder().modelFile(tip).rotationY(rotationY).build();
 			});
 			simpleItemBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "thorn_sprout_end");
 		}

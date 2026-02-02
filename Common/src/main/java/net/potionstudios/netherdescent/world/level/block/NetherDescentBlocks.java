@@ -69,7 +69,7 @@ public class NetherDescentBlocks {
     public static final Supplier<NDGrowingPlantHeadBlock> ARISIAN_TANGLE_ROOTS = registerBlockItem("arisian_tangle_roots", () -> new NDGrowingPlantHeadBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES), () -> NetherDescentBlocks.ARISIAN_TANGLE_ROOTS_PLANT.get()));
     public static final Supplier<NDGrowingPlantBodyBlock> ARISIAN_TANGLE_ROOTS_PLANT = registerBlock("arisian_tangle_roots_plant", () -> new NDGrowingPlantBodyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES), ARISIAN_TANGLE_ROOTS));
 
-    public static final Supplier<ArisianBlossomBlock> ARISIAN_BLOSSOM = registerBlockItem("arisian_blossom", () -> new ArisianBlossomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DANDELION).mapColor(MapColor.COLOR_LIGHT_BLUE).lightLevel((state) -> state.getValue(ArisianBlossomBlock.LIT) ? 6 : 0), BlockTags.NYLIUM));
+    public static final Supplier<ArisianBlossomBlock> ARISIAN_BLOSSOM = registerBlockItem("arisian_blossom", () -> new ArisianBlossomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DANDELION).mapColor(MapColor.COLOR_LIGHT_BLUE).lightLevel((state) -> state.getValue(ArisianBlossomBlock.LIT) ? 14 : 0), BlockTags.NYLIUM));
     public static final Supplier<BranchBlock> ARISIAN_BRANCH = registerBlockItem("arisian_branch", () -> new BranchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_LIGHT_BLUE)));
 
     public static final NetherDescentWoodSet ARISIAN = new NetherDescentWoodSet("arisian", MapColor.COLOR_LIGHT_BLUE, NetherDescentWoodSet.LogStem.LOG, NetherDescentWoodSet.GrowerItem.SAPLING, ARISIAN_MOSS_BLOCK);
