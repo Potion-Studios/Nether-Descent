@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
+    "lit=false": {
       "model": "netherdescent:block/arisian_leaves"
+    },
+    "lit=true": {
+      "model": "netherdescent:block/arisian_leaves_lit"
     }
   }
 }

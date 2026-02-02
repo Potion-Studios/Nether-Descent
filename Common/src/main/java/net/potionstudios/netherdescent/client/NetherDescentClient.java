@@ -65,6 +65,7 @@ public class NetherDescentClient {
 		consumer.accept(NetherDescentParticles.GILL_LEVITATE.get(), RisingParticle.Provider::new);
 		consumer.accept(NetherDescentParticles.GILL_LEVITATE_POWERED.get(), RisingParticle.Provider::new);
         consumer.accept(NetherDescentParticles.PENDORITE_FIRE_FLAME.get(), FlameParticle.Provider::new);
+	    consumer.accept(NetherDescentParticles.ARISIAN_LEAF.get(), arg -> (arg2, arg3, d, e, f, g, h, i) -> new CherryParticle(arg3, d, e, f, arg));
     }
 
     /**

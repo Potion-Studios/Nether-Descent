@@ -24,5 +24,6 @@ public class ParticleDescriptionGenerator extends ParticleDescriptionProvider {
 		spriteSet(NetherDescentParticles.GILL_LEVITATE_POWERED.get(), NetherDescent.id("gill_powered_levitate"), 6, false);
 		sprite(NetherDescentParticles.SYTHIAN_LEAF.get(), NetherDescent.id("sythian_leaf"));
         sprite(NetherDescentParticles.PENDORITE_FIRE_FLAME.get(), NetherDescent.id("pendorite_fire_flame"));
+		sprite(NetherDescentParticles.ARISIAN_LEAF.get(), NetherDescent.id("arisian_leaf"));
     }
 }

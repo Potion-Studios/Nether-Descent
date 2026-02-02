@@ -21,6 +21,7 @@ import net.potionstudios.netherdescent.world.level.block.plants.ArisianBlossomBl
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.SythianShootBlock;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
+import net.potionstudios.netherdescent.world.level.block.wood.ArisianLeavesBlock;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 
 public class ModelGenerators {
@@ -139,7 +140,12 @@ public class ModelGenerators {
 				simpleBlockWithItem(set.craftingTable(), models().cube(name(set.craftingTable()), planksTexture, woodBlockTexture(set.name(), "crafting_table_top"), woodBlockTexture(set.name(), "crafting_table_front"), woodBlockTexture(set.name(), "crafting_table_side"), woodBlockTexture(set.name(), "crafting_table_side"), woodBlockTexture(set.name(), "crafting_table_front")).texture("particle", woodBlockTexture(set.name(), "crafting_table_front")));
 			});
 
-			simpleBlockWithItem(NetherDescentBlocks.ARISIAN_LEAVES.get(), models().leaves(name(NetherDescentBlocks.ARISIAN_LEAVES.get()), NetherDescent.id("block/arisian/leaves")).renderType("cutout_mipped"));
+			getVariantBuilder(NetherDescentBlocks.ARISIAN_LEAVES.get()).forAllStatesExcept((blockState -> {
+				if (blockState.getValue(ArisianLeavesBlock.LIT))
+					return ConfiguredModel.builder().modelFile(models().leaves(name(NetherDescentBlocks.ARISIAN_LEAVES.get()) + "_lit", NetherDescent.id("block/arisian/leaves_lit")).renderType("cutout_mipped")).build();
+				else return ConfiguredModel.builder().modelFile(models().leaves(name(NetherDescentBlocks.ARISIAN_LEAVES.get()), NetherDescent.id("block/arisian/leaves")).renderType("cutout_mipped")).build();
+			}), ArisianLeavesBlock.DISTANCE, ArisianLeavesBlock.WATERLOGGED, ArisianLeavesBlock.PERSISTENT);
+			simpleBlockItem(NetherDescentBlocks.ARISIAN_LEAVES.get(), models().getExistingFile(NetherDescent.id("block/arisian_leaves")));
 
 			ResourceLocation blue_netherrack = models().cubeAll(name(NetherDescentBlocks.BLUE_NETHERRACK.get()), blockTexture(NetherDescentBlocks.BLUE_NETHERRACK.get())).getLocation();
 			simpleBlockItem(NetherDescentBlocks.BLUE_NETHERRACK.get(), models().getExistingFile(blue_netherrack));
