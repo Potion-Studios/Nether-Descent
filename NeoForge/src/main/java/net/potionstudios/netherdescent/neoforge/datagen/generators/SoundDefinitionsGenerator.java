@@ -25,8 +25,21 @@ public class SoundDefinitionsGenerator extends SoundDefinitionsProvider {
 	@Override
 	public void registerSounds() {
 
+		add(NetherDescentSounds.AMBIENT_ARISIAN_UNDERGROWTH_LOOP.get().value(), definition().with(sound(NetherDescent.id("ambient/nether/arisian_undergrowth/ambience")).stream().volume(0.4)));
+		add(NetherDescentSounds.AMBIENT_ARISIAN_UNDERGROWTH_ADDITIONS.get().value(), definition().with(
+				sound(NetherDescent.id("ambient/nether/arisian_undergrowth/addition1")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/arisian_undergrowth/addition2")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/arisian_undergrowth/addition3")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/arisian_undergrowth/addition4")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/arisian_undergrowth/addition5")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/arisian_undergrowth/addition6")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/arisian_undergrowth/addition7")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/arisian_undergrowth/addition8")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/arisian_undergrowth/addition9")).volume(0.4)
+		));
+
 		add(NetherDescentSounds.MUSIC_BIOME_WAILING_GARTH.get().value(), definition().with(sound(NetherDescent.id("music/game/nether/wailing_garth/chimes_of_the_damned")).stream().volume(0.3)));
-		add(NetherDescentSounds.AMBIENT_WAILING_GARTH_LOOP.get().value(), definition().with(sound(NetherDescent.id("ambient/nether/wailing_garth/ambience")).stream().volume(0.3)));
+		add(NetherDescentSounds.AMBIENT_WAILING_GARTH_LOOP.get().value(), definition().with(sound(NetherDescent.id("ambient/nether/wailing_garth/ambience")).stream().volume(0.4)));
 		add(NetherDescentSounds.AMBIENT_WAILING_GARTH_ADDITIONS.get().value(), definition().with(
 				sound(NetherDescent.id("ambient/nether/wailing_garth/addition1")).volume(0.4),
 				sound(NetherDescent.id("ambient/nether/wailing_garth/addition2")).volume(0.4),
@@ -67,13 +80,13 @@ public class SoundDefinitionsGenerator extends SoundDefinitionsProvider {
 		add(NetherDescentSounds.MUSIC_BIOME_EMBUR_BOG.get().value(), definition().with(sound(NetherDescent.id("music/game/nether/embur_bog/haunting_adrenaline")).stream().volume(0.3)));
 		add(NetherDescentSounds.AMBIENT_EMBUR_BOG_LOOP.get().value(), definition().with(sound(NetherDescent.id("ambient/nether/embur_bog/ambience")).stream().volume(0.15)));
 		add(NetherDescentSounds.AMBIENT_EMBUR_BOG_ADDITIONS.get().value(), definition().with(
-				sound(NetherDescent.id("ambient/nether/embur_bog/addition1")).volume(0.1),
-				sound(NetherDescent.id("ambient/nether/embur_bog/addition2")).volume(0.1),
-				sound(NetherDescent.id("ambient/nether/embur_bog/addition3")).volume(0.1),
-				sound(NetherDescent.id("ambient/nether/embur_bog/addition4")).volume(0.1),
-				sound(NetherDescent.id("ambient/nether/embur_bog/addition5")).volume(0.1),
-				sound(NetherDescent.id("ambient/nether/embur_bog/addition6")).volume(0.1),
-				sound(NetherDescent.id("ambient/nether/embur_bog/addition7")).volume(0.1)
+				sound(NetherDescent.id("ambient/nether/embur_bog/addition1")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/embur_bog/addition2")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/embur_bog/addition3")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/embur_bog/addition4")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/embur_bog/addition5")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/embur_bog/addition6")).volume(0.4),
+				sound(NetherDescent.id("ambient/nether/embur_bog/addition7")).volume(0.4)
 		));
 	}
 

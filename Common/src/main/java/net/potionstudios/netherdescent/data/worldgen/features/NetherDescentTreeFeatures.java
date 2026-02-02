@@ -427,7 +427,7 @@ public class NetherDescentTreeFeatures {
 
     //EMBUR WART TREES ------------------------------------------------------------------------------------------------------------------------
     public static final Supplier<GrowingPlantVinesDecorator> EMBUR_GEL_VINES_DECORATOR = () -> new GrowingPlantVinesDecorator(NetherDescentBlocks.EMBUR_GEL_VINES.get(), NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get());
-    public static final Supplier<HornetNestDecorator> HORNET_NEST_DECORATOR = () -> new HornetNestDecorator(0.2F);
+    public static final Supplier<HornetNestDecorator> HORNET_NEST_DECORATOR = () -> new HornetNestDecorator(0.15F);
     
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART1 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart1",
             TYGFeatures.TREE_FROM_NBT_V1,

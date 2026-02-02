@@ -1,4 +1,53 @@
 {
+  "ambient.arisian_undergrowth.additions": {
+    "sounds": [
+      {
+        "name": "netherdescent:ambient/nether/arisian_undergrowth/addition1",
+        "volume": 0.4
+      },
+      {
+        "name": "netherdescent:ambient/nether/arisian_undergrowth/addition2",
+        "volume": 0.4
+      },
+      {
+        "name": "netherdescent:ambient/nether/arisian_undergrowth/addition3",
+        "volume": 0.4
+      },
+      {
+        "name": "netherdescent:ambient/nether/arisian_undergrowth/addition4",
+        "volume": 0.4
+      },
+      {
+        "name": "netherdescent:ambient/nether/arisian_undergrowth/addition5",
+        "volume": 0.4
+      },
+      {
+        "name": "netherdescent:ambient/nether/arisian_undergrowth/addition6",
+        "volume": 0.4
+      },
+      {
+        "name": "netherdescent:ambient/nether/arisian_undergrowth/addition7",
+        "volume": 0.4
+      },
+      {
+        "name": "netherdescent:ambient/nether/arisian_undergrowth/addition8",
+        "volume": 0.4
+      },
+      {
+        "name": "netherdescent:ambient/nether/arisian_undergrowth/addition9",
+        "volume": 0.4
+      }
+    ]
+  },
+  "ambient.arisian_undergrowth.loop": {
+    "sounds": [
+      {
+        "name": "netherdescent:ambient/nether/arisian_undergrowth/ambience",
+        "stream": true,
+        "volume": 0.4
+      }
+    ]
+  },
   "ambient.crimson_gardens.additions": {
     "sounds": [
       {
@@ -48,31 +97,31 @@
     "sounds": [
       {
         "name": "netherdescent:ambient/nether/embur_bog/addition1",
-        "volume": 0.1
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/embur_bog/addition2",
-        "volume": 0.1
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/embur_bog/addition3",
-        "volume": 0.1
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/embur_bog/addition4",
-        "volume": 0.1
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/embur_bog/addition5",
-        "volume": 0.1
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/embur_bog/addition6",
-        "volume": 0.1
+        "volume": 0.4
       },
       {
         "name": "netherdescent:ambient/nether/embur_bog/addition7",
-        "volume": 0.1
+        "volume": 0.4
       }
     ]
   },
@@ -171,7 +220,7 @@
       {
         "name": "netherdescent:ambient/nether/wailing_garth/ambience",
         "stream": true,
-        "volume": 0.3
+        "volume": 0.4
       }
     ]
   },

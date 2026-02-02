@@ -5,11 +5,11 @@
   "downfall": 0.0,
   "effects": {
     "additions_sound": {
-      "sound": "netherdescent:ambient.wailing_garth.additions",
+      "sound": "netherdescent:ambient.arisian_undergrowth.additions",
       "tick_chance": 0.0011
     },
-    "ambient_sound": "netherdescent:ambient.wailing_garth.loop",
-    "fog_color": 4529794,
+    "ambient_sound": "netherdescent:ambient.arisian_undergrowth.loop",
+    "fog_color": 2765878,
     "mood_sound": {
       "block_search_extent": 8,
       "offset": 2.0,
@@ -28,7 +28,7 @@
       },
       "probability": 0.01428
     },
-    "sky_color": 4529794,
+    "sky_color": 2765878,
     "water_color": 4159204,
     "water_fog_color": 329011
   },

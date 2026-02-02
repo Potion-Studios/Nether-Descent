@@ -10,6 +10,9 @@ import java.util.function.Supplier;
 
 public class NetherDescentSounds {
 
+	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_ARISIAN_UNDERGROWTH_LOOP = registerSoundEventHolder("ambient.arisian_undergrowth.loop");
+	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_ARISIAN_UNDERGROWTH_ADDITIONS = registerSoundEventHolder("ambient.arisian_undergrowth.additions");
+
 	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_EMBUR_BOG_LOOP = registerSoundEventHolder("ambient.embur_bog.loop");
 	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_EMBUR_BOG_ADDITIONS = registerSoundEventHolder("ambient.embur_bog.additions");
 	public static final Supplier<Holder.Reference<SoundEvent>> MUSIC_BIOME_EMBUR_BOG = registerSoundEventHolder("music.nether.embur_bog");
