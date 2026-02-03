@@ -22,8 +22,8 @@ public class HangingNDBushBlock extends NetherDescentBush {
     private final VoxelShape SHAPE;
     private final VoxelShape HANGING_SHAPE;
 
-    public HangingNDBushBlock(Properties properties, TagKey<Block> placeOn, VoxelShape shape, VoxelShape hangingShape) {
-        super(properties, placeOn);
+    public HangingNDBushBlock(Properties properties, VoxelShape shape, VoxelShape hangingShape) {
+        super(properties, shape);
         this.SHAPE = shape;
         this.HANGING_SHAPE = hangingShape;
         this.registerDefaultState(this.stateDefinition.any().setValue(HANGING, false));

@@ -23,8 +23,8 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 	protected static final VoxelShape SHAPE = Block.box(4.0, 0.0, 4.0, 12.0, 14.0, 12.0);
 	protected static final VoxelShape CEILING_SHAPE = Block.box(4.0, 2.0, 4.0, 12.0, 16.0, 12.0);
 
-	public ArisianBlossomBlock(Properties properties, TagKey<Block> placeableOn) {
-		super(properties, placeableOn, SHAPE, CEILING_SHAPE);
+	public ArisianBlossomBlock(Properties properties) {
+		super(properties, SHAPE, CEILING_SHAPE);
 		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false).setValue(PULSE, false).setValue(HANGING, false));
 	}
 

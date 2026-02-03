@@ -1,7 +1,11 @@
 {
   "variants": {
-    "": {
+    "hanging=false": {
       "model": "netherdescent:block/arisian_sprouts"
+    },
+    "hanging=true": {
+      "model": "netherdescent:block/arisian_sprouts",
+      "x": 180
     }
   }
 }

@@ -171,7 +171,12 @@ public class ModelGenerators {
             createCrossBlock(NetherDescentBlocks.SYTHIAN_SPROUTS.get(), "cutout");
             simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_SPROUTS.get());
 
-			createCrossBlock(NetherDescentBlocks.ARISIAN_SPROUTS.get(), "cutout");
+			getVariantBuilder(NetherDescentBlocks.ARISIAN_SPROUTS.get()).forAllStates(state -> {
+				if (state.getValue(HangingNDBushBlock.HANGING))
+					return ConfiguredModel.builder().modelFile(models().cross(name(NetherDescentBlocks.ARISIAN_SPROUTS.get()), blockTexture(NetherDescentBlocks.ARISIAN_SPROUTS.get())).renderType("cutout")).rotationX(180).build();
+				else return ConfiguredModel.builder().modelFile(models().cross(name(NetherDescentBlocks.ARISIAN_SPROUTS.get()), blockTexture(NetherDescentBlocks.ARISIAN_SPROUTS.get())).renderType("cutout")).build();
+			});
+
 			simpleItemBlockTexture(NetherDescentBlocks.ARISIAN_SPROUTS.get());
 
 			for (int y : new int[]{0, 90, 180, 270})
