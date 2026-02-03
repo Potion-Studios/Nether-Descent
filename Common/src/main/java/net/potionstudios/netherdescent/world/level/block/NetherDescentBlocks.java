@@ -76,7 +76,7 @@ public class NetherDescentBlocks {
     public static final NetherDescentWoodSet ARISIAN = new NetherDescentWoodSet("arisian", MapColor.COLOR_LIGHT_BLUE, NetherDescentWoodSet.LogStem.LOG, NetherDescentWoodSet.GrowerItem.SAPLING, ARISIAN_MOSS_BLOCK);
     public static final Supplier<ArisianLeavesBlock> ARISIAN_LEAVES = registerBlockItem("arisian_leaves", () -> new ArisianLeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).lightLevel((state) -> state.getValue(ArisianLeavesBlock.LIT) ? 14 : 0)));
 
-    public static final Supplier<ThornSproutBlock> THORN_SPROUT = registerBlockItem("thorn_sprout", () -> new ThornSproutBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POINTED_DRIPSTONE).mapColor(MapColor.COLOR_BROWN)));
+    public static final Supplier<ThornSproutBlock> THORN_SPROUT = registerBlockItem("thorn_sprout", () -> new ThornSproutBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POINTED_DRIPSTONE).mapColor(MapColor.COLOR_BROWN).offsetType(BlockBehaviour.OffsetType.NONE)));
 
     public static final Supplier<NetherDescentNyliumBlock> SYTHIAN_NYLIUM = registerBlockItem("sythian_nylium", () -> new NetherDescentNyliumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM).mapColor(MapColor.COLOR_YELLOW), Blocks.NETHERRACK, NetherDescent.key(Registries.CONFIGURED_FEATURE, "sythian_forest_vegetation_bonemeal")));
     public static final Supplier<NetherDescentBush> SYTHIAN_SPROUTS = registerBlockItem("sythian_sprouts", () -> new NetherDescentBush(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_YELLOW), Block.box(3.0, 0.0, 3.0, 13.0, 12.0, 13.0)));

@@ -1,11 +1,76 @@
 {
   "variants": {
-    "hanging=false": {
-      "model": "netherdescent:block/arisian_dandelion2"
-    },
-    "hanging=true": {
-      "model": "netherdescent:block/arisian_dandelion2",
-      "x": 180
-    }
+    "hanging=false": [
+      {
+        "model": "netherdescent:block/arisian_dandelion"
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelion2"
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelion",
+        "y": 90
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelion2",
+        "y": 90
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelion",
+        "y": 180
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelion2",
+        "y": 180
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelion",
+        "y": 270
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelion2",
+        "y": 270
+      }
+    ],
+    "hanging=true": [
+      {
+        "model": "netherdescent:block/arisian_dandelion",
+        "x": 180
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelion2",
+        "x": 180
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelion",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelion2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelion",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelion2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelion",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelion2",
+        "x": 180,
+        "y": 270
+      }
+    ]
   }
 }
