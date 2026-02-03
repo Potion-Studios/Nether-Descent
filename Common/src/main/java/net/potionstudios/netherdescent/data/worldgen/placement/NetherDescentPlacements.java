@@ -41,7 +41,10 @@ public class NetherDescentPlacements {
 
 	public static final ResourceKey<PlacedFeature> HANGING_SYTHIAN_ROOTS = PlacedFeaturesUtil.createPlacedFeature("hanging_sythian_roots", NetherDescentFeatures.HANGING_SYTHIAN_ROOTS, () -> List.of(CountPlacement.of(250), InSquarePlacement.spread(), PlacementUtils.FULL_RANGE, BiomeFilter.biome()));
 
-	public static final ResourceKey<PlacedFeature> SYTHIAN_STALKS = PlacedFeaturesUtil.createPlacedFeature("sythian_stalks", NetherDescentFeatures.SYTHIAN_STALK, () -> List.of(NoiseBasedCountPlacement.of(160, 80.0, 0.3), InSquarePlacement.spread(), PlacementUtils.RANGE_4_4, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.allOf(
+    public static final ResourceKey<PlacedFeature> HANGING_ARISIAN_TANGLE_ROOTS = PlacedFeaturesUtil.createPlacedFeature("hanging_arisian_tangle_roots", NetherDescentFeatures.HANGING_ARISIAN_TANGLE_ROOTS, () -> List.of(CountPlacement.of(250), InSquarePlacement.spread(), PlacementUtils.FULL_RANGE, BiomeFilter.biome()));
+
+
+    public static final ResourceKey<PlacedFeature> SYTHIAN_STALKS = PlacedFeaturesUtil.createPlacedFeature("sythian_stalks", NetherDescentFeatures.SYTHIAN_STALK, () -> List.of(NoiseBasedCountPlacement.of(160, 80.0, 0.3), InSquarePlacement.spread(), PlacementUtils.RANGE_4_4, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.allOf(
             BlockPredicate.matchesTag(Direction.DOWN.getNormal(), NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON),
             BlockPredicate.not(BlockPredicate.solid())
     ), 12), PlacementUtils.filteredByBlockSurvival(NetherDescentBlocks.SYTHIAN_STALK.get()), BiomeFilter.biome()));

@@ -39,6 +39,7 @@ public class NetherDescentTreeFeatures {
     public static final Supplier<AttachedToLogsDecorator> FUNGAL_BULBS_WALL_UP_DOWN = () -> new AttachedToLogsDecorator(0.2F, 0, 1, SimpleStateProvider.simple(NetherDescentBlocks.FUNGAL_BULBS.get().defaultBlockState().setValue(FungalBulbsBlock.FACE, AttachFace.WALL)), 2, List.of(Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH));
 
     public static final GrowingPlantVinesDecorator WEEPING_VINES_DECORATOR = new GrowingPlantVinesDecorator(Blocks.WEEPING_VINES, Blocks.WEEPING_VINES_PLANT);
+    public static final Supplier<GrowingPlantVinesDecorator> ARISIAN_TANGLE_ROOTS_DECORATOR = () -> new GrowingPlantVinesDecorator(NetherDescentBlocks.ARISIAN_TANGLE_ROOTS.get(), NetherDescentBlocks.ARISIAN_TANGLE_ROOTS_PLANT.get(), NetherDescentBlocks.ARISIAN.logstem());
 
     //ARISIAN TREES ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_ROOT_1 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_root_1",
@@ -46,13 +47,65 @@ public class NetherDescentTreeFeatures {
             () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/trees/arisian/arisian_root_trunk1"))
                     .canopyLocation(NetherDescent.id("features/trees/arisian/arisian_root_canopy1"))
-                    .height(BiasedToBottomInt.of(2, 6))
-                    .logProvider(BlockStateProvider.simple(Blocks.WARPED_STEM))
-                    .leavesProvider(List.of(BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK), BlockStateProvider.simple(Blocks.SHROOMLIGHT)))
+                    .height(BiasedToBottomInt.of(2, 45))
+                    .logProvider(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN.logstem()))
+                    .leavesProvider(List.of(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_LEAVES.get()), BlockStateProvider.simple(Blocks.SHROOMLIGHT)))
                     .logTarget(Set.of(Blocks.WARPED_STEM))
-                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK, Blocks.SHROOMLIGHT))
+                    .leavesTarget(List.of(Blocks.CHERRY_LEAVES, Blocks.SHROOMLIGHT))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get()))
+                    .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_ROOT_2 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_root_2",
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
+                    .baseLocation(NetherDescent.id("features/trees/arisian/arisian_root_trunk1"))
+                    .canopyLocation(NetherDescent.id("features/trees/arisian/arisian_root_canopy1"))
+                    .height(BiasedToBottomInt.of(2, 45))
+                    .logProvider(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN.logstem()))
+                    .leavesProvider(List.of(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_LEAVES.get()), BlockStateProvider.simple(Blocks.SHROOMLIGHT)))
+                    .logTarget(Set.of(Blocks.WARPED_STEM))
+                    .leavesTarget(List.of(Blocks.CHERRY_LEAVES, Blocks.SHROOMLIGHT))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get()))
+                    .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_ROOT_3 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_root_3",
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
+                    .baseLocation(NetherDescent.id("features/trees/arisian/arisian_root_trunk1"))
+                    .canopyLocation(NetherDescent.id("features/trees/arisian/arisian_root_canopy1"))
+                    .height(BiasedToBottomInt.of(2, 45))
+                    .logProvider(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN.logstem()))
+                    .leavesProvider(List.of(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_LEAVES.get()), BlockStateProvider.simple(Blocks.SHROOMLIGHT)))
+                    .logTarget(Set.of(Blocks.WARPED_STEM))
+                    .leavesTarget(List.of(Blocks.CHERRY_LEAVES, Blocks.SHROOMLIGHT))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get()))
+                    .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
+                    .build()
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_tree1",
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
+                    .baseLocation(NetherDescent.id("features/trees/arisian/arisian_trunk1"))
+                    .canopyLocation(NetherDescent.id("features/trees/arisian/arisian_canopy1"))
+                    .height(BiasedToBottomInt.of(16, 45))
+                    .logProvider(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN.logstem()))
+                    .leavesProvider(List.of(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_LEAVES.get()), BlockStateProvider.simple(Blocks.SHROOMLIGHT)))
+                    .logTarget(Set.of(Blocks.WARPED_HYPHAE))
+                    .leavesTarget(List.of(Blocks.CHERRY_LEAVES, Blocks.SHROOMLIGHT))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
+                    .maxLogDepth(4)
+                    .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .build()
     );
@@ -63,9 +116,21 @@ public class NetherDescentTreeFeatures {
                 HolderGetter<ConfiguredFeature<?, ?>> lookup = configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE);
                 return new RandomFeatureConfiguration(ImmutableList.of(
                         new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_ROOT_1)), 0.25F),
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_ROOT_1)), 0.25F),
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_ROOT_1)), 0.25F)),
-                        PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_ROOT_1)));
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_ROOT_2)), 0.25F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_ROOT_3)), 0.25F)),
+                        PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_ROOT_3)));
+            }
+    );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_TREES = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_trees",
+            Feature.RANDOM_SELECTOR,
+            (configuredFeatureBootstrapContext) -> {
+                HolderGetter<ConfiguredFeature<?, ?>> lookup = configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE);
+                return new RandomFeatureConfiguration(ImmutableList.of(
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_TREE1)), 0.25F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_TREE1)), 0.25F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_TREE1)), 0.25F)),
+                        PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_TREE1)));
             }
     );
 

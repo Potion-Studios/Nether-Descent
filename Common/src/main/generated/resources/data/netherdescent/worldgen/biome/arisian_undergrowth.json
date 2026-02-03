@@ -61,28 +61,13 @@
     [
       "minecraft:nether_sprouts",
       "netherdescent:wailing_garth_vegetation",
-      "netherdescent:arisian_roots_hanging"
+      "netherdescent:arisian_roots_hanging",
+      "netherdescent:arisian_trees_hanging",
+      "netherdescent:hanging_arisian_tangle_roots"
     ]
   ],
   "has_precipitation": false,
-  "spawn_costs": {
-    "minecraft:enderman": {
-      "charge": 0.7,
-      "energy_budget": 0.15
-    },
-    "minecraft:skeleton": {
-      "charge": 0.7,
-      "energy_budget": 0.15
-    },
-    "minecraft:strider": {
-      "charge": 0.7,
-      "energy_budget": 0.15
-    },
-    "netherdescent:soul_ghast": {
-      "charge": 0.7,
-      "energy_budget": 0.15
-    }
-  },
+  "spawn_costs": {},
   "spawners": {
     "ambient": [],
     "axolotls": [],
@@ -97,22 +82,10 @@
     "misc": [],
     "monster": [
       {
-        "type": "minecraft:skeleton",
-        "maxCount": 5,
-        "minCount": 5,
-        "weight": 20
-      },
-      {
-        "type": "netherdescent:soul_ghast",
-        "maxCount": 4,
-        "minCount": 4,
-        "weight": 50
-      },
-      {
         "type": "minecraft:enderman",
         "maxCount": 4,
-        "minCount": 4,
-        "weight": 1
+        "minCount": 2,
+        "weight": 20
       }
     ],
     "underground_water_creature": [],
