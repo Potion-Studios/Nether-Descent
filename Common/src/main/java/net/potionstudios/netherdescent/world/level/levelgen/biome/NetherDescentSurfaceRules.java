@@ -31,9 +31,10 @@ public class NetherDescentSurfaceRules {
     );
 
     private static final SurfaceRules.RuleSource ARISIAN_UNDERGROWTH = makeifTrueRule(NetherDescentBiomes.ARISIAN_UNDERGROWTH, SurfaceRules.sequence(
-            makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR,
-                    makeStateRule(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()))),
-            makeStateRule(Blocks.BLACKSTONE)));
+            makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, makeStateRule(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()))),
+            makeifTrueRule(SurfaceRules.ON_CEILING, makeifTrueRule(SurfaceRules.noiseCondition(Noises.PATCH, 0.3D), NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get())),
+            makeStateRule(Blocks.BLACKSTONE)
+    ));
 
     private static final SurfaceRules.RuleSource CRIMSON_GARDENS = makeifTrueRule(NetherDescentBiomes.CRIMSON_GARDENS, SurfaceRules.sequence(
             makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR,
