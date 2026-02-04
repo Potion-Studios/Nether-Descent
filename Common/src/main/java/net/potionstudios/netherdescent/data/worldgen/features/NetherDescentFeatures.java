@@ -86,16 +86,16 @@ public class NetherDescentFeatures {
 			new WeightedStateProvider(
 					SimpleWeightedRandomList.<BlockState>builder()
 							.add(NetherDescentBlocks.SYTHIAN_ROOTS.get().defaultBlockState(), 2)
-							.add(NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState(), 1)
+							.add(NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState())
 							.add(NetherDescentBlocks.SYTHIAN_SPROUTS.get().defaultBlockState(), 2)
-                            .add(NetherDescentBlocks.SYTHIAN.growerItem().getBlockState(), 1)
+                            .add(NetherDescentBlocks.SYTHIAN.growerItem().getBlockState())
 			), 8, 6));
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_TORRIDS_VEGETATION_BONEMEAL = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_torrids_vegetation_bonemeal", Feature.NETHER_FOREST_VEGETATION,  (configuredFeatureBootstrapContext) -> new NetherForestVegetationConfig(
 			new WeightedStateProvider(
 					SimpleWeightedRandomList.<BlockState>builder()
 							.add(NetherDescentBlocks.SYTHIAN_ROOTS.get().defaultBlockState(), 2)
-							.add(NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState(), 1)
+							.add(NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState())
 							.add(NetherDescentBlocks.SYTHIAN_SPROUTS.get().defaultBlockState(), 2)
 			), 3, 1));
 
