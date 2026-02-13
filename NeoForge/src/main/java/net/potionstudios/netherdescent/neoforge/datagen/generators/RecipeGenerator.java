@@ -91,11 +91,11 @@ public class RecipeGenerator extends RecipeProvider {
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentItems.SYTHIAN_SCAFFOLDING.get(), 6)
                 .define('~', Items.STRING)
-                .define('I', NetherDescentBlocks.SYTHIAN_STALK.get())
+                .define('I', NetherDescentBlocks.SYTHIAN_STALK.getItem())
                 .pattern("I~I")
                 .pattern("I I")
                 .pattern("I I")
-                .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.get()), has(NetherDescentBlocks.SYTHIAN_STALK.get()))
+                .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.getItem()), has(NetherDescentBlocks.SYTHIAN_STALK.getItem()))
                 .save(recipeOutput);
 
         twoByTwoPacker(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.EMBUR_MOSS_BLOCK.get(), NetherDescentBlocks.EMBUR_CAVE_MOSS.get());
@@ -139,12 +139,12 @@ public class RecipeGenerator extends RecipeProvider {
 	    doorBuilder(NetherDescentBlocks.PENDORITE_DOOR.get(), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get())).unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get())).save(recipeOutput);
 	    trapdoorBuilder(NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get())).unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get())).save(recipeOutput);
 
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.get()), RecipeCategory.MISC, Items.GOLD_NUGGET, 0.1F, 400)
-                .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.get()), has(NetherDescentBlocks.SYTHIAN_STALK.get()))
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.getItem()), RecipeCategory.MISC, Items.GOLD_NUGGET, 0.1F, 400)
+                .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.getItem()), has(NetherDescentBlocks.SYTHIAN_STALK.getItem()))
                 .save(recipeOutput, NetherDescent.id("gold_nugget_from_smelting"));
 
-        SimpleCookingRecipeBuilder.blasting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.get()), RecipeCategory.MISC, Items.GOLD_NUGGET, 0.1F, 200)
-                .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.get()), has(NetherDescentBlocks.SYTHIAN_STALK.get()))
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.getItem()), RecipeCategory.MISC, Items.GOLD_NUGGET, 0.1F, 200)
+                .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.getItem()), has(NetherDescentBlocks.SYTHIAN_STALK.getItem()))
                 .save(recipeOutput, NetherDescent.id("gold_nugget_from_blasting"));
 
         stairBuilder(NetherDescentBlocks.CUT_PENDORITE_STAIRS.get(), Ingredient.of(NetherDescentBlocks.CUT_PENDORITE.get()))

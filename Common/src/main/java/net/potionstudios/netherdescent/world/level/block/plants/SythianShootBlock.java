@@ -78,8 +78,8 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
         if (!state.canSurvive(level, pos))
             return Blocks.AIR.defaultBlockState();
         else {
-            if ((direction == Direction.UP || direction == Direction.DOWN) && neighborState.is(NetherDescentBlocks.SYTHIAN_STALK.get()))
-                level.setBlock(pos, NetherDescentBlocks.SYTHIAN_STALK.get().defaultBlockState().setValue(SythianStalkBlock.HANGING, state.getValue(HANGING)), 2);
+            if ((direction == Direction.UP || direction == Direction.DOWN) && neighborState.is(NetherDescentBlocks.SYTHIAN_STALK.getBlock()))
+                level.setBlock(pos, NetherDescentBlocks.SYTHIAN_STALK.getBlockState().setValue(SythianStalkBlock.HANGING, state.getValue(HANGING)), 2);
 
             return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
         }
@@ -87,7 +87,7 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
 
     @Override
     public @NotNull ItemStack getCloneItemStack(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
-        return NetherDescentBlocks.SYTHIAN_STALK.get().asItem().getDefaultInstance();
+        return NetherDescentBlocks.SYTHIAN_STALK.getItem().getDefaultInstance();
     }
 
     @Override
@@ -106,6 +106,6 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
     }
 
     protected void growStalk(Level level, BlockPos pos, BlockState state) {
-        level.setBlock(state.getValue(HANGING) ? pos.below() : pos.above(), NetherDescentBlocks.SYTHIAN_STALK.get().defaultBlockState().setValue(SythianStalkBlock.LEAVES, BambooLeaves.SMALL).setValue(SythianStalkBlock.HANGING, state.getValue(HANGING)), 3);
+        level.setBlock(state.getValue(HANGING) ? pos.below() : pos.above(), NetherDescentBlocks.SYTHIAN_STALK.getBlockState().setValue(SythianStalkBlock.LEAVES, BambooLeaves.SMALL).setValue(SythianStalkBlock.HANGING, state.getValue(HANGING)), 3);
     }
 }

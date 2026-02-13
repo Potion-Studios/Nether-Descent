@@ -88,11 +88,11 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
             if (blockState.is(NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON)) {
                 if (blockState.is(NetherDescentBlocks.SYTHIAN_SHOOT.get()))
                     return defaultBlockState().setValue(AGE, 0).setValue(HANGING, context.getClickedFace() == Direction.DOWN);
-                else if (blockState.is(NetherDescentBlocks.SYTHIAN_STALK.get()))
+                else if (blockState.is(NetherDescentBlocks.SYTHIAN_STALK.getBlock()))
                     return defaultBlockState().setValue(AGE, blockState.getValue(AGE) > 0 ? 1 : 0).setValue(HANGING, context.getClickedFace() == Direction.DOWN);
                 else {
                     BlockState blockState2 = level.getBlockState(pos.above());
-                    return blockState2.is(NetherDescentBlocks.SYTHIAN_STALK.get())
+                    return blockState2.is(NetherDescentBlocks.SYTHIAN_STALK.getBlock())
                             ? defaultBlockState().setValue(AGE, blockState2.getValue(AGE)).setValue(HANGING, context.getClickedFace() == Direction.DOWN)
                             : NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState().setValue(SythianShootBlock.HANGING, context.getClickedFace() == Direction.DOWN);
                 }
@@ -133,7 +133,7 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
         if (!state.canSurvive(level, pos))
             level.scheduleTick(pos, this, 1);
 
-        if (((direction == Direction.UP && !state.getValue(HANGING)) || (direction == Direction.DOWN && state.getValue(HANGING))) && neighborState.is(NetherDescentBlocks.SYTHIAN_STALK.get()) && neighborState.getValue(AGE) > state.getValue(AGE))
+        if (((direction == Direction.UP && !state.getValue(HANGING)) || (direction == Direction.DOWN && state.getValue(HANGING))) && neighborState.is(NetherDescentBlocks.SYTHIAN_STALK.getBlock()) && neighborState.getValue(AGE) > state.getValue(AGE))
             level.setBlock(pos, state.cycle(AGE), 2);
 
         return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
@@ -172,7 +172,7 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
         for (int i = 0; i < total; i++) {
             BlockPos currentPos = hanging ? startPos.above(i) : startPos.below(i);
             BlockState s = level.getBlockState(currentPos);
-            if (!s.is(NetherDescentBlocks.SYTHIAN_STALK.get()))
+            if (!s.is(NetherDescentBlocks.SYTHIAN_STALK.getBlock()))
                 break;
 
             BambooLeaves leaves = s.getValue(LEAVES);
@@ -188,14 +188,14 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
 
     protected int getHeightAboveUpToMax(BlockGetter level, BlockPos pos) {
         int i = 0;
-        while (i < 16 && level.getBlockState(pos.above(i + 1)).is(NetherDescentBlocks.SYTHIAN_STALK.get()))
+        while (i < 16 && level.getBlockState(pos.above(i + 1)).is(NetherDescentBlocks.SYTHIAN_STALK.getBlock()))
             i++;
         return i;
     }
 
     protected int getHeightBelowUpToMax(BlockGetter level, BlockPos pos) {
         int i = 0;
-        while (i < 16 && level.getBlockState(pos.below(i + 1)).is(NetherDescentBlocks.SYTHIAN_STALK.get()))
+        while (i < 16 && level.getBlockState(pos.below(i + 1)).is(NetherDescentBlocks.SYTHIAN_STALK.getBlock()))
             i++;
         return i;
     }
@@ -207,17 +207,17 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
         BlockState blockState2 = level.getBlockState(blockPos);
         BambooLeaves bambooLeaves = BambooLeaves.NONE;
         if (age >= 1)
-            if (!blockState.is(NetherDescentBlocks.SYTHIAN_STALK.get()) || blockState.getValue(LEAVES) == BambooLeaves.NONE)
+            if (!blockState.is(NetherDescentBlocks.SYTHIAN_STALK.getBlock()) || blockState.getValue(LEAVES) == BambooLeaves.NONE)
                 bambooLeaves = BambooLeaves.SMALL;
-            else if (blockState.is(NetherDescentBlocks.SYTHIAN_STALK.get()) && blockState.getValue(LEAVES) != BambooLeaves.NONE) {
+            else if (blockState.is(NetherDescentBlocks.SYTHIAN_STALK.getBlock()) && blockState.getValue(LEAVES) != BambooLeaves.NONE) {
                 bambooLeaves = BambooLeaves.LARGE;
-                if (blockState2.is(NetherDescentBlocks.SYTHIAN_STALK.get())) {
+                if (blockState2.is(NetherDescentBlocks.SYTHIAN_STALK.getBlock())) {
                     level.setBlock(hanging ? pos.above() : pos.below(), blockState.setValue(LEAVES, BambooLeaves.SMALL), 3);
                     level.setBlock(blockPos, blockState2.setValue(LEAVES, BambooLeaves.NONE), 3);
                 }
             }
 
-        int i = state.getValue(AGE) != 1 && !blockState2.is(NetherDescentBlocks.SYTHIAN_STALK.get()) ? 0 : 1;
+        int i = state.getValue(AGE) != 1 && !blockState2.is(NetherDescentBlocks.SYTHIAN_STALK.getBlock()) ? 0 : 1;
         int j = (age < 11 || !(random.nextFloat() < 0.25F)) && age != 15 ? 0 : 1;
         level.setBlock(hanging ? pos.below() : pos.above(), defaultBlockState().setValue(AGE, i).setValue(LEAVES, bambooLeaves).setValue(STAGE, j).setValue(HANGING, hanging), 3);
     }

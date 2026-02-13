@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/potted_bamboo",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bamboo": "netherdescent:block/sythian_stalk",
+    "dirt": "netherdescent:block/sythian_nylium",
+    "flowerpot": "minecraft:block/flower_pot",
+    "leaf": "netherdescent:block/sythian_stalk_small_leaves",
+    "particle": "minecraft:block/flower_pot"
+  }
+}

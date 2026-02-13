@@ -3,7 +3,6 @@ package net.potionstudios.netherdescent.world.level.block;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.NetherFeatures;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -54,7 +53,7 @@ public class NetherDescentBlocks {
     public static final Supplier<NDGrowingPlantBodyBlock> EMBUR_GEL_VINES_PLANT = registerBlock("embur_gel_vines_plant", () -> new NDGrowingPlantBodyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES_PLANT).mapColor(MapColor.COLOR_ORANGE).noCollission().speedFactor(1.2F).strength(0.2F).dynamicShape(), NetherDescentBlocks.EMBUR_GEL_VINES));
     public static final Supplier<NetherSproutsBlock> EMBUR_SPROUTS = registerBlockItem("embur_sprouts", () -> new NetherSproutsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_ORANGE)));
     public static final Supplier<EmburLilyBlock> EMBUR_LILY = registerBlock("embur_lily", () -> new EmburLilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD).mapColor(MapColor.COLOR_ORANGE)));
-    public static final Supplier<EmburRootsBlock> EMBUR_ROOTS = registerBlockItem("embur_roots", () -> new EmburRootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS).mapColor(MapColor.COLOR_ORANGE)));
+    public static final PottedBlock EMBUR_ROOTS = new PottedBlock("embur_roots", registerBlockItem("embur_roots", () -> new EmburRootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS).mapColor(MapColor.COLOR_ORANGE))));
     public static final Supplier<NetherDescentDoublePlantBlock> TALL_EMBUR_ROOTS = registerBlockItem("tall_embur_roots", () -> new NetherDescentDoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS).mapColor(MapColor.COLOR_ORANGE)));
     public static final Supplier<EmburCaveMossBlock> EMBUR_CAVE_MOSS = registerBlockItem("embur_cave_moss", () -> new EmburCaveMossBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLOW_LICHEN).lightLevel(EmburCaveMossBlock.emission(6)).mapColor(MapColor.COLOR_ORANGE)));
 
@@ -62,14 +61,14 @@ public class NetherDescentBlocks {
     public static final Supplier<MossyCarpetBlock> EMBUR_MOSS_CARPET = registerBlockItem("embur_moss_carpet", () -> new MossyCarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_CARPET).mapColor(MapColor.COLOR_ORANGE)));
     public static final Supplier<HangingMossBlock> EMBUR_HANGING_MOSS = registerBlockItem("embur_hanging_moss", () -> new HangingMossBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES).mapColor(MapColor.COLOR_ORANGE).noCollission().strength(0.2F).dynamicShape()));
 
-    public static final Supplier<NetherDescentBush> ARISIAN_SPROUTS = registerBlockItem("arisian_sprouts", () -> new HangingNDBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_LIGHT_BLUE), Block.box(3.0, 0.0, 3.0, 13.0, 12.0, 13.0), Block.box(3.0, 4.0, 3.0, 13.0, 16.0, 13.0)));
+    public static final PottedBlock ARISIAN_SPROUTS = new PottedBlock("arisian_sprouts", registerBlockItem("arisian_sprouts", () -> new HangingNDBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_LIGHT_BLUE), Block.box(3.0, 0.0, 3.0, 13.0, 12.0, 13.0), Block.box(3.0, 4.0, 3.0, 13.0, 16.0, 13.0))));
     public static final Supplier<BonemealableFeaturePlacerBlock> ARISIAN_MOSS_BLOCK = registerBlockItem("arisian_moss_block", () -> new BonemealableFeaturePlacerBlock(null, BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_BLOCK).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final Supplier<HangingMossyCarpetBlock> ARISIAN_MOSS_CARPET = registerBlockItem("arisian_moss_carpet", () -> new HangingMossyCarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_CARPET).mapColor(MapColor.COLOR_LIGHT_BLUE)));
 
     public static final Supplier<NDGrowingPlantHeadBlock> ARISIAN_TANGLE_ROOTS = registerBlockItem("arisian_tangle_roots", () -> new NDGrowingPlantHeadBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES), () -> NetherDescentBlocks.ARISIAN_TANGLE_ROOTS_PLANT.get()));
     public static final Supplier<NDGrowingPlantBodyBlock> ARISIAN_TANGLE_ROOTS_PLANT = registerBlock("arisian_tangle_roots_plant", () -> new NDGrowingPlantBodyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES), ARISIAN_TANGLE_ROOTS));
 
-    public static final Supplier<ArisianBlossomBlock> ARISIAN_BLOSSOM = registerBlockItem("arisian_blossom", () -> new ArisianBlossomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DANDELION).mapColor(MapColor.COLOR_LIGHT_BLUE).lightLevel((state) -> state.getValue(ArisianBlossomBlock.LIT) ? 14 : 0)));
+    public static final PottedBlock ARISIAN_BLOSSOM = new PottedBlock("arisian_blossom", registerBlockItem("arisian_blossom", () -> new ArisianBlossomBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DANDELION).mapColor(MapColor.COLOR_LIGHT_BLUE).lightLevel((state) -> state.getValue(ArisianBlossomBlock.LIT) ? 14 : 0))));
     public static final Supplier<BranchBlock> ARISIAN_BRANCH = registerBlockItem("arisian_branch", () -> new BranchBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final Supplier<HangingNDBushBlock> ARISIAN_DANDELIONS = registerBlockItem("arisian_dandelions", () -> new HangingNDBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DANDELION).lightLevel(state -> 12), Block.box(4.0, 0.0, 4.0, 12.0, 14.0, 12.0), Block.box(4.0, 2.0, 4.0, 12.0, 16.0, 12.0)));
 
@@ -79,8 +78,8 @@ public class NetherDescentBlocks {
     public static final Supplier<ThornSproutBlock> THORN_SPROUT = registerBlockItem("thorn_sprout", () -> new ThornSproutBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POINTED_DRIPSTONE).mapColor(MapColor.COLOR_BROWN).offsetType(BlockBehaviour.OffsetType.NONE)));
 
     public static final Supplier<NetherDescentNyliumBlock> SYTHIAN_NYLIUM = registerBlockItem("sythian_nylium", () -> new NetherDescentNyliumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM).mapColor(MapColor.COLOR_YELLOW), Blocks.NETHERRACK, NetherDescent.key(Registries.CONFIGURED_FEATURE, "sythian_forest_vegetation_bonemeal")));
-    public static final Supplier<NetherDescentBush> SYTHIAN_SPROUTS = registerBlockItem("sythian_sprouts", () -> new NetherDescentBush(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_YELLOW), Block.box(3.0, 0.0, 3.0, 13.0, 12.0, 13.0)));
-    public static final Supplier<SythianRootsBlock> SYTHIAN_ROOTS = registerBlockItem("sythian_roots", () -> new SythianRootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS).mapColor(MapColor.COLOR_YELLOW)));
+    public static final PottedBlock SYTHIAN_SPROUTS = new PottedBlock("sythian_sprouts",registerBlockItem("sythian_sprouts", () -> new NetherDescentBush(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_YELLOW), Block.box(3.0, 0.0, 3.0, 13.0, 12.0, 13.0))));
+    public static final PottedBlock SYTHIAN_ROOTS = new PottedBlock("sythian_roots",registerBlockItem("sythian_roots", () -> new SythianRootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS).mapColor(MapColor.COLOR_YELLOW))));
     public static final Supplier<Block> SYTHIAN_SOIL = registerBasicBlockWithItem("sythian_soil", BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT));
     public static final Supplier<SythianFarmBlock> SYTHIAN_FARMLAND = registerBlockItem("sythian_farmland", () -> new SythianFarmBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND), SYTHIAN_SOIL));
     public static final Supplier<NDGrowingPlantHeadBlock> HANGING_SYTHIAN_ROOTS = registerBlockItem("hanging_sythian_roots", () -> new NDGrowingPlantHeadBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES).mapColor(MapColor.COLOR_YELLOW).noCollission().strength(0.2F).dynamicShape(), () -> NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get()));
@@ -99,7 +98,7 @@ public class NetherDescentBlocks {
     public static final NetherDescentWoodSet SYTHIAN = new NetherDescentWoodSet("sythian", MapColor.COLOR_YELLOW, NetherDescentWoodSet.LogStem.STEM, NetherDescentWoodSet.GrowerItem.FUNGUS, SYTHIAN_NYLIUM);
     public static final Supplier<Block> SYTHIAN_WART_BLOCK = registerBasicBlockWithItem("sythian_wart_block", BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WART_BLOCK).mapColor(MapColor.COLOR_YELLOW));
     public static final Supplier<Block> SYTHIAN_SHOOT = registerBlock("sythian_shoot", () -> new SythianShootBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO_SAPLING).lightLevel((state) -> 5)));
-    public static final Supplier<SythianStalkBlock> SYTHIAN_STALK = registerBlockItem("sythian_stalk", () -> new SythianStalkBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO).lightLevel((state) -> state.getValue(SythianStalkBlock.LEAVES) != BambooLeaves.NONE ? 10 : 5)));
+    public static final PottedBlock SYTHIAN_STALK = new PottedBlock("sythian_stalk", registerBlockItem("sythian_stalk", () -> new SythianStalkBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BAMBOO).lightLevel((state) -> state.getValue(SythianStalkBlock.LEAVES) != BambooLeaves.NONE ? 10 : 5))));
     public static final NetherDescentWoodSet WAILING = new NetherDescentWoodSet("wailing", MapColor.COLOR_PURPLE, NetherDescentWoodSet.LogStem.STEM, NetherDescentWoodSet.GrowerItem.FUNGUS, WAILING_NYLIUM);
     public static final Supplier<Block> WAILING_WART_BLOCK = registerBasicBlockWithItem("wailing_wart_block", BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WART_BLOCK).mapColor(MapColor.COLOR_PURPLE));
 

@@ -35,7 +35,7 @@ public class NetherDescentFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_SPROUT = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("embur_sprout", NetherDescentBlocks.EMBUR_SPROUTS, 15);
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_LILY = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("embur_lily", NetherDescentBlocks.EMBUR_LILY, 15);
-    public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_ROOTS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("embur_roots", NetherDescentBlocks.EMBUR_ROOTS, 15);
+    public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_ROOTS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("embur_roots", NetherDescentBlocks.EMBUR_ROOTS.block(), 15);
     public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_EMBUR_ROOTS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("tall_embur_roots", NetherDescentBlocks.TALL_EMBUR_ROOTS, 15);
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("embur_wart", NetherDescentBlocks.EMBUR.growerItem().block(), 15);
 
@@ -43,7 +43,7 @@ public class NetherDescentFeatures {
             new WeightedStateProvider(
                     SimpleWeightedRandomList.<BlockState>builder()
                             .add(NetherDescentBlocks.EMBUR_SPROUTS.get().defaultBlockState(), 2)
-                            .add(NetherDescentBlocks.EMBUR_ROOTS.get().defaultBlockState(), 2)
+                            .add(NetherDescentBlocks.EMBUR_ROOTS.getBlockState(), 2)
                             .add(NetherDescentBlocks.TALL_EMBUR_ROOTS.get().defaultBlockState())
                             .add(NetherDescentBlocks.EMBUR.growerItem().getBlockState())
             ), 8, 6)
@@ -53,7 +53,7 @@ public class NetherDescentFeatures {
             new WeightedStateProvider(
                     SimpleWeightedRandomList.<BlockState>builder()
                             .add(NetherDescentBlocks.EMBUR_SPROUTS.get().defaultBlockState(), 2)
-                            .add(NetherDescentBlocks.EMBUR_ROOTS.get().defaultBlockState(), 2)
+                            .add(NetherDescentBlocks.EMBUR_ROOTS.getBlockState(), 2)
                             .add(NetherDescentBlocks.TALL_EMBUR_ROOTS.get().defaultBlockState())
                             .add(NetherDescentBlocks.EMBUR.growerItem().getBlockState())
             ), 3, 1)
@@ -85,18 +85,18 @@ public class NetherDescentFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_TORRIDS_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_torrids_vegetation", Feature.NETHER_FOREST_VEGETATION,  (configuredFeatureBootstrapContext) -> new NetherForestVegetationConfig(
 			new WeightedStateProvider(
 					SimpleWeightedRandomList.<BlockState>builder()
-							.add(NetherDescentBlocks.SYTHIAN_ROOTS.get().defaultBlockState(), 2)
+							.add(NetherDescentBlocks.SYTHIAN_ROOTS.getBlockState(), 2)
 							.add(NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState())
-							.add(NetherDescentBlocks.SYTHIAN_SPROUTS.get().defaultBlockState(), 2)
+							.add(NetherDescentBlocks.SYTHIAN_SPROUTS.getBlockState(), 2)
                             .add(NetherDescentBlocks.SYTHIAN.growerItem().getBlockState())
 			), 8, 6));
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_TORRIDS_VEGETATION_BONEMEAL = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_torrids_vegetation_bonemeal", Feature.NETHER_FOREST_VEGETATION,  (configuredFeatureBootstrapContext) -> new NetherForestVegetationConfig(
 			new WeightedStateProvider(
 					SimpleWeightedRandomList.<BlockState>builder()
-							.add(NetherDescentBlocks.SYTHIAN_ROOTS.get().defaultBlockState(), 2)
+							.add(NetherDescentBlocks.SYTHIAN_ROOTS.getBlockState(), 2)
 							.add(NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState())
-							.add(NetherDescentBlocks.SYTHIAN_SPROUTS.get().defaultBlockState(), 2)
+							.add(NetherDescentBlocks.SYTHIAN_SPROUTS.getBlockState(), 2)
 			), 3, 1));
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_CRIMSON_ROOTS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("tall_crimson_roots", NetherDescentBlocks.TALL_CRIMSON_ROOTS, 15);

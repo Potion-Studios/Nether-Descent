@@ -54,15 +54,15 @@ public class ModelGenerators {
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_LILY.get());
 			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_GEL_VINES.get(), "embur_gel_vines_plant");
             simpleItemBlockTexture(NetherDescentBlocks.WAILING_VINES.get(), "wailing_vines_plant");
-			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_ROOTS.get());
+			simpleItemBlockTexture(NetherDescentBlocks.EMBUR_ROOTS.getBlock());
             simpleItemBlockTexture(NetherDescentBlocks.WAILING_GRASS.get());
-            simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get());
+            simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.getBlock());
             simpleItemBlockTexture(NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), "hanging_sythian_roots_plant");
 			simpleItemBlockTexture(NetherDescentBlocks.ARISIAN_TANGLE_ROOTS.get(), "arisian_tangle_roots_plant");
 			simpleItem(NetherDescentBlocks.FUNGAL_BULBS.get(), "fungal_bulbs");
 			simpleItem(NetherDescentBlocks.PENDORITE_DOOR.get(),  "pendorite_door");
             simpleBlockItem(NetherDescentBlocks.CRIMSON_CARPET.get());
-            simpleItem(NetherDescentBlocks.SYTHIAN_STALK.get(),  "sythian_stalk");
+            simpleItem(NetherDescentBlocks.SYTHIAN_STALK.getBlock(),  "sythian_stalk");
             simpleItem(NetherDescentBlocks.PENDORITE_LANTERN.get());
             simpleItem(NetherDescentBlocks.PENDORITE_CHAIN.get());
             simpleItemBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get());
@@ -107,6 +107,13 @@ public class ModelGenerators {
 		@Override
 		protected void registerStatesAndModels() {
 			NetherDescentBlocks.cubeAllBlocks.forEach(block -> simpleBlockWithItem(block.get(), cubeAll(block.get())));
+
+			NetherDescentBlocks.BLOCKS.forEach(block -> {
+				if (block.get() instanceof FlowerPotBlock)
+					try {
+						simpleBlock(block.get(), models().withExistingParent(name(block.get()), mcLoc("block/flower_pot_cross")).texture("plant", blockTexture(((FlowerPotBlock) block.get()).getPotted())).renderType("cutout"));
+					} catch (Exception ignored) {}
+			});
 
 			NetherDescentBlockSet.getBlockSets().forEach(set -> {
 				registerSlab(set.getSlab(), set.getBase());
@@ -159,7 +166,7 @@ public class ModelGenerators {
 			createCrossBlock(NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(),  "translucent");
             createCrossBlock(NetherDescentBlocks.WAILING_VINES.get(), "cutout");
             createCrossBlock(NetherDescentBlocks.WAILING_VINES_PLANT.get(), "cutout");
-			createCrossBlock(NetherDescentBlocks.EMBUR_ROOTS.get(), "cutout_mipped");
+			createCrossBlock(NetherDescentBlocks.EMBUR_ROOTS.getBlock(), "cutout_mipped");
             createCrossBlock(NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), "cutout");
             createCrossBlock(NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get(), "cutout");
 			createCrossBlock(NetherDescentBlocks.ARISIAN_TANGLE_ROOTS.get(), "cutout");
@@ -168,16 +175,16 @@ public class ModelGenerators {
             createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get());
             createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get());
 
-            createCrossBlock(NetherDescentBlocks.SYTHIAN_SPROUTS.get(), "cutout");
-            simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_SPROUTS.get());
+            createCrossBlock(NetherDescentBlocks.SYTHIAN_SPROUTS.getBlock(), "cutout");
+            simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_SPROUTS.getBlock());
 
-			getVariantBuilder(NetherDescentBlocks.ARISIAN_SPROUTS.get()).forAllStates(state -> {
+			getVariantBuilder(NetherDescentBlocks.ARISIAN_SPROUTS.getBlock()).forAllStates(state -> {
 				if (state.getValue(HangingNDBushBlock.HANGING))
-					return ConfiguredModel.builder().modelFile(models().cross(name(NetherDescentBlocks.ARISIAN_SPROUTS.get()), blockTexture(NetherDescentBlocks.ARISIAN_SPROUTS.get())).renderType("cutout")).rotationX(180).build();
-				else return ConfiguredModel.builder().modelFile(models().cross(name(NetherDescentBlocks.ARISIAN_SPROUTS.get()), blockTexture(NetherDescentBlocks.ARISIAN_SPROUTS.get())).renderType("cutout")).build();
+					return ConfiguredModel.builder().modelFile(models().cross(name(NetherDescentBlocks.ARISIAN_SPROUTS.getBlock()), blockTexture(NetherDescentBlocks.ARISIAN_SPROUTS.getBlock())).renderType("cutout")).rotationX(180).build();
+				else return ConfiguredModel.builder().modelFile(models().cross(name(NetherDescentBlocks.ARISIAN_SPROUTS.getBlock()), blockTexture(NetherDescentBlocks.ARISIAN_SPROUTS.getBlock())).renderType("cutout")).build();
 			});
 
-			simpleItemBlockTexture(NetherDescentBlocks.ARISIAN_SPROUTS.get());
+			simpleItemBlockTexture(NetherDescentBlocks.ARISIAN_SPROUTS.getBlock());
 
 			for (int y : new int[]{0, 90, 180, 270})
 				for (int x : new int[]{0, 90, 180, 270})
@@ -237,9 +244,9 @@ public class ModelGenerators {
 			models().withExistingParent(name(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()) + "_side_tall_hanging", NetherDescent.id("block/mossy_carpet_side_hanging")).texture("side", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_tall")).renderType("cutout");
 
 
-			var blossom = models().cross(name(NetherDescentBlocks.ARISIAN_BLOSSOM.get()), blockTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.get())).renderType("cutout");
-			var blossomLit = models().cross(name(NetherDescentBlocks.ARISIAN_BLOSSOM.get()) + "_lit", blockNDTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.get(), "lit")).renderType("cutout");
-			getVariantBuilder(NetherDescentBlocks.ARISIAN_BLOSSOM.get()).forAllStates(state -> {
+			var blossom = models().cross(name(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock()), blockTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock())).renderType("cutout");
+			var blossomLit = models().cross(name(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock()) + "_lit", blockNDTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock(), "lit")).renderType("cutout");
+			getVariantBuilder(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock()).forAllStates(state -> {
 				if (state.getValue(ArisianBlossomBlock.LIT))
 					if (state.getValue(ArisianBlossomBlock.HANGING))
 						return ConfiguredModel.builder().modelFile(blossomLit).rotationX(180).build();
@@ -249,7 +256,7 @@ public class ModelGenerators {
 						return ConfiguredModel.builder().modelFile(blossom).rotationX(180).build();
 					else return ConfiguredModel.builder().modelFile(blossom).build();
 			});
-			simpleItemBlockTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.get());
+			simpleItemBlockTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock());
 
 			getVariantBuilder(NetherDescentBlocks.ARISIAN_DANDELIONS.get()).forAllStates(state -> {
 				if (state.getValue(HangingNDBushBlock.HANGING))
@@ -337,18 +344,26 @@ public class ModelGenerators {
             for (int i = 0; i < 2; i++)
                 for (int j = 1; j <= 4; j++)
                     models().withExistingParent("sythian_stalk" + j + "_age" + i, mcLoc("block/bamboo" + j + "_age" + i))
-                            .texture("all", blockTexture(NetherDescentBlocks.SYTHIAN_STALK.get()))
-                            .texture("particle",  blockTexture(NetherDescentBlocks.SYTHIAN_STALK.get()));
+                            .texture("all", blockTexture(NetherDescentBlocks.SYTHIAN_STALK.getBlock()))
+                            .texture("particle",  blockTexture(NetherDescentBlocks.SYTHIAN_STALK.getBlock()));
 
             models().withExistingParent("sythian_stalk_small_leaves", mcLoc("block/bamboo_small_leaves"))
-                    .texture("texture", blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "small_leaves"))
-                    .texture("particle",  blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "small_leaves"))
+                    .texture("texture", blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.getBlock(), "small_leaves"))
+                    .texture("particle",  blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.getBlock(), "small_leaves"))
                     .renderType("cutout");
 
             models().withExistingParent("sythian_stalk_large_leaves", mcLoc("block/bamboo_large_leaves"))
-                    .texture("texture", blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "large_leaves"))
-                    .texture("particle",  blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "large_leaves"))
+                    .texture("texture", blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.getBlock(), "large_leaves"))
+                    .texture("particle",  blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.getBlock(), "large_leaves"))
                     .renderType("cutout");
+
+			models().withExistingParent(name(NetherDescentBlocks.SYTHIAN_STALK.getPottedBlock()), mcLoc("block/potted_bamboo"))
+						.texture("particle", blockTexture(Blocks.FLOWER_POT))
+						.texture("flowerpot", blockTexture(Blocks.FLOWER_POT))
+						.texture("dirt", blockTexture(NetherDescentBlocks.SYTHIAN_NYLIUM.get()))
+						.texture("bamboo", blockTexture(NetherDescentBlocks.SYTHIAN_STALK.getBlock()))
+						.texture("leaf", blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.getBlock(), "small_leaves"))
+						.renderType("cutout");
 
             models().cross(name(NetherDescentBlocks.WAILING_GRASS.get()), blockTexture(NetherDescentBlocks.WAILING_GRASS.get())).renderType("cutout_mipped");
             models().withExistingParent("wailing_grass_1", mcLoc("coral_fan")).texture("fan", blockTexture(NetherDescentBlocks.WAILING_GRASS.get())).renderType("cutout_mipped");
@@ -356,18 +371,18 @@ public class ModelGenerators {
             getVariantBuilder(NetherDescentBlocks.WAILING_GRASS.get()).partialState()
                     .setModels(new ConfiguredModel(models().getExistingFile(blockTexture(NetherDescentBlocks.WAILING_GRASS.get()))), new ConfiguredModel(models().getExistingFile(NetherDescent.id("block/wailing_grass_1"))));
 
-            models().cross(name(NetherDescentBlocks.SYTHIAN_ROOTS.get()), blockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get())).renderType("cutout_mipped");
-            models().withExistingParent(name(NetherDescentBlocks.SYTHIAN_ROOTS.get()) + "_wall", mcLoc("block/coral_wall_fan")).texture("fan", blockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get())).renderType("cutout_mipped");
-            getVariantBuilder(NetherDescentBlocks.SYTHIAN_ROOTS.get()).forAllStates(state -> switch (state.getValue(SythianRootsBlock.FACING)) {
+            models().cross(name(NetherDescentBlocks.SYTHIAN_ROOTS.getBlock()), blockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.getBlock())).renderType("cutout_mipped");
+            models().withExistingParent(name(NetherDescentBlocks.SYTHIAN_ROOTS.getBlock()) + "_wall", mcLoc("block/coral_wall_fan")).texture("fan", blockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.getBlock())).renderType("cutout_mipped");
+            getVariantBuilder(NetherDescentBlocks.SYTHIAN_ROOTS.getBlock()).forAllStates(state -> switch (state.getValue(SythianRootsBlock.FACING)) {
                 case EAST ->
-                        ConfiguredModel.builder().rotationY(90).modelFile(models().getExistingFile(blockNDTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "wall"))).build();
+                        ConfiguredModel.builder().rotationY(90).modelFile(models().getExistingFile(blockNDTexture(NetherDescentBlocks.SYTHIAN_ROOTS.getBlock(), "wall"))).build();
                 case WEST ->
-                        ConfiguredModel.builder().rotationY(270).modelFile(models().getExistingFile(blockNDTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "wall"))).build();
+                        ConfiguredModel.builder().rotationY(270).modelFile(models().getExistingFile(blockNDTexture(NetherDescentBlocks.SYTHIAN_ROOTS.getBlock(), "wall"))).build();
                 case SOUTH ->
-                        ConfiguredModel.builder().rotationY(180).modelFile(models().getExistingFile(blockNDTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "wall"))).build();
+                        ConfiguredModel.builder().rotationY(180).modelFile(models().getExistingFile(blockNDTexture(NetherDescentBlocks.SYTHIAN_ROOTS.getBlock(), "wall"))).build();
                 case NORTH ->
-                        ConfiguredModel.builder().modelFile(models().getExistingFile(blockNDTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "wall"))).build();
-                default -> ConfiguredModel.builder().modelFile(models().getExistingFile(blockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.get()))).build();
+                        ConfiguredModel.builder().modelFile(models().getExistingFile(blockNDTexture(NetherDescentBlocks.SYTHIAN_ROOTS.getBlock(), "wall"))).build();
+                default -> ConfiguredModel.builder().modelFile(models().getExistingFile(blockTexture(NetherDescentBlocks.SYTHIAN_ROOTS.getBlock()))).build();
             });
 
             getVariantBuilder(NetherDescentBlocks.PENDORITE_LANTERN.get()).forAllStatesExcept(state -> {

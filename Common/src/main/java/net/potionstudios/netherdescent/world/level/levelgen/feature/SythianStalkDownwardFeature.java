@@ -15,8 +15,7 @@ import net.potionstudios.netherdescent.world.level.block.plants.SythianStalkBloc
 import org.jetbrains.annotations.NotNull;
 
 public class SythianStalkDownwardFeature extends Feature<NoneFeatureConfiguration> {
-	private static final BlockState STALK = NetherDescentBlocks.SYTHIAN_STALK.get()
-			.defaultBlockState()
+	private static final BlockState STALK = NetherDescentBlocks.SYTHIAN_STALK.getBlockState()
 			.setValue(SythianStalkBlock.AGE, 1)
 			.setValue(SythianStalkBlock.LEAVES, BambooLeaves.NONE)
 			.setValue(SythianStalkBlock.STAGE, 0)
@@ -37,7 +36,7 @@ public class SythianStalkDownwardFeature extends Feature<NoneFeatureConfiguratio
 		RandomSource randomSource = context.random();
 		BlockPos.MutableBlockPos mutableBlockPos = blockPos.mutable();
 		if (worldGenLevel.isEmptyBlock(blockPos)) {
-			if (NetherDescentBlocks.SYTHIAN_STALK.get().defaultBlockState().setValue(SythianStalkBlock.HANGING, true).canSurvive(worldGenLevel, mutableBlockPos)) {
+			if (NetherDescentBlocks.SYTHIAN_STALK.getBlockState().setValue(SythianStalkBlock.HANGING, true).canSurvive(worldGenLevel, mutableBlockPos)) {
 				int j = randomSource.nextInt(12) + 5;
 				for (int k = 0; k < j && worldGenLevel.isEmptyBlock(mutableBlockPos); k++) {
 					worldGenLevel.setBlock(mutableBlockPos, STALK, 2);

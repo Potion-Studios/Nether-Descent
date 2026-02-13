@@ -1,8 +1,14 @@
 {
   "values": [
+    "netherdescent:potted_embur_roots",
+    "netherdescent:potted_arisian_sprouts",
+    "netherdescent:potted_arisian_blossom",
     "netherdescent:potted_arisian_sapling",
+    "netherdescent:potted_sythian_sprouts",
+    "netherdescent:potted_sythian_roots",
     "netherdescent:potted_embur_wart",
     "netherdescent:potted_sythian_fungus",
+    "netherdescent:potted_sythian_stalk",
     "netherdescent:potted_wailing_fungus"
   ]
 }
