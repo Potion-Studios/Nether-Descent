@@ -2,6 +2,7 @@
   "parent": "minecraft:block/flower_pot_cross",
   "render_type": "minecraft:cutout",
   "textures": {
+    "dirt": "netherdescent:block/sythian_nylium",
     "plant": "netherdescent:block/sythian/fungus"
   }
 }

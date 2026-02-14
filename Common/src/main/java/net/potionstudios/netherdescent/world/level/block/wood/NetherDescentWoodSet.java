@@ -64,6 +64,7 @@ public class NetherDescentWoodSet {
     private final Supplier<HangingSignItem> hangingSignItem;
     private final TagKey<Block> logBlockTag;
     private final TagKey<Item> logItemTag;
+    private final Supplier<? extends Block> growerRequiredBlock;
 
 
     private BlockFamily family = null;
@@ -76,6 +77,7 @@ public class NetherDescentWoodSet {
      * @param requiredBlock
      */
     public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor, LogStem logstem, GrowerItem growerItem, Supplier<? extends Block> requiredBlock) {
+        this.growerRequiredBlock = requiredBlock;
         this.woodType = PlatformHandler.PLATFORM_HANDLER.createWoodType(blockSetType.name(), blockSetType);
         this.name = blockSetType.name().replace(NetherDescent.MOD_ID + ":", "");
         this.logstemEnum = logstem;
@@ -244,6 +246,10 @@ public class NetherDescentWoodSet {
 
     public GrowerItem growerItemEnum() {
         return growerItemEnum;
+    }
+
+    public Supplier<? extends Block> growerRequiredBlock() {
+        return growerRequiredBlock;
     }
 
     public enum LogStem {

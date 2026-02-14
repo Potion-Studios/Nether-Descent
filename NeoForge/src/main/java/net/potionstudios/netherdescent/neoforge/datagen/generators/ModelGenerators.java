@@ -17,10 +17,7 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.custom.*;
-import net.potionstudios.netherdescent.world.level.block.plants.ArisianBlossomBlock;
-import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
-import net.potionstudios.netherdescent.world.level.block.plants.HangingNDBushBlock;
-import net.potionstudios.netherdescent.world.level.block.plants.SythianShootBlock;
+import net.potionstudios.netherdescent.world.level.block.plants.*;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
 import net.potionstudios.netherdescent.world.level.block.wood.ArisianLeavesBlock;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
@@ -108,13 +105,6 @@ public class ModelGenerators {
 		protected void registerStatesAndModels() {
 			NetherDescentBlocks.cubeAllBlocks.forEach(block -> simpleBlockWithItem(block.get(), cubeAll(block.get())));
 
-			NetherDescentBlocks.BLOCKS.forEach(block -> {
-				if (block.get() instanceof FlowerPotBlock)
-					try {
-						simpleBlock(block.get(), models().withExistingParent(name(block.get()), mcLoc("block/flower_pot_cross")).texture("plant", blockTexture(((FlowerPotBlock) block.get()).getPotted())).renderType("cutout"));
-					} catch (Exception ignored) {}
-			});
-
 			NetherDescentBlockSet.getBlockSets().forEach(set -> {
 				registerSlab(set.getSlab(), set.getBase());
 				registerStairs(set.getStairs(), set.getBase());
@@ -137,7 +127,12 @@ public class ModelGenerators {
 				registerFenceAndGate(set.fence(), set.fenceGate(), planksTexture);
                 simpleBlock(set.growerItem().getBlock(), models().cross(name(set.growerItem().getBlock()), woodBlockTexture(set.name(), set.growerItemEnum().getName())).renderType("cutout"));
                 simpleItemBlockTexture(set.growerItem().getBlock(), set.name() + "/" + set.growerItemEnum().getName());
-                simpleBlock(set.growerItem().getPottedBlock(), models().withExistingParent(name(set.growerItem().getPottedBlock()), mcLoc("block/flower_pot_cross")).texture("plant", woodBlockTexture(set.name(), set.growerItemEnum().getName())).renderType("cutout"));
+
+                simpleBlock(set.growerItem().getPottedBlock(),
+		                models().withExistingParent(name(set.growerItem().getPottedBlock()), mcLoc("block/flower_pot_cross"))
+				                .texture("plant", woodBlockTexture(set.name(), set.growerItemEnum().getName()))
+				                .texture("dirt", blockTexture(set.growerRequiredBlock().get()))
+				                .renderType("cutout"));
                 signBlock(set.sign(), set.wallSign(), planksTexture);
 				hangingSignBlock(set.hangingSign(), set.wallHangingSign(), models().sign(name(set.hangingSign()), strippedLogTexture));
 				trapdoorBlockWithRenderType(set.trapdoor(), woodBlockTexture(set.name(), "trapdoor"), true, set != NetherDescentBlocks.EMBUR ? "cutout" : "translucent");
@@ -357,13 +352,13 @@ public class ModelGenerators {
                     .texture("particle",  blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.getBlock(), "large_leaves"))
                     .renderType("cutout");
 
-			models().withExistingParent(name(NetherDescentBlocks.SYTHIAN_STALK.getPottedBlock()), mcLoc("block/potted_bamboo"))
+			simpleBlock(NetherDescentBlocks.SYTHIAN_STALK.getPottedBlock(), models().withExistingParent(name(NetherDescentBlocks.SYTHIAN_STALK.getPottedBlock()), mcLoc("block/potted_bamboo"))
 						.texture("particle", blockTexture(Blocks.FLOWER_POT))
 						.texture("flowerpot", blockTexture(Blocks.FLOWER_POT))
 						.texture("dirt", blockTexture(NetherDescentBlocks.SYTHIAN_NYLIUM.get()))
 						.texture("bamboo", blockTexture(NetherDescentBlocks.SYTHIAN_STALK.getBlock()))
 						.texture("leaf", blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.getBlock(), "small_leaves"))
-						.renderType("cutout");
+						.renderType("cutout"));
 
             models().cross(name(NetherDescentBlocks.WAILING_GRASS.get()), blockTexture(NetherDescentBlocks.WAILING_GRASS.get())).renderType("cutout_mipped");
             models().withExistingParent("wailing_grass_1", mcLoc("coral_fan")).texture("fan", blockTexture(NetherDescentBlocks.WAILING_GRASS.get())).renderType("cutout_mipped");
@@ -500,6 +495,19 @@ public class ModelGenerators {
 				else return ConfiguredModel.builder().modelFile(tip).rotationY(rotationY).build();
 			});
 			simpleItemBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "thorn_sprout_end");
+
+			pottedBlock(NetherDescentBlocks.ARISIAN_BLOSSOM, NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get());
+			pottedBlock(NetherDescentBlocks.ARISIAN_SPROUTS, NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get());
+			pottedBlock(NetherDescentBlocks.EMBUR_ROOTS, NetherDescentBlocks.EMBUR_NYLIUM.get());
+			pottedBlock(NetherDescentBlocks.SYTHIAN_ROOTS, NetherDescentBlocks.SYTHIAN_NYLIUM.get());
+			pottedBlock(NetherDescentBlocks.SYTHIAN_SPROUTS, NetherDescentBlocks.SYTHIAN_NYLIUM.get());
+		}
+
+		private void pottedBlock(PottedBlock block, Block dirt) {
+			simpleBlock(block.getPottedBlock(), models().withExistingParent(name(block.getPottedBlock()), mcLoc("block/flower_pot_cross"))
+					.texture("plant", blockTexture(block.getBlock()))
+					.texture("dirt", blockTexture(dirt))
+					.renderType("cutout"));
 		}
 
         private void rodBlock(RodBlock rodBlock, ModelFile modelFile) {
