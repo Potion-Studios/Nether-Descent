@@ -241,7 +241,7 @@ public class ModelGenerators {
 
 			var blossom = models().cross(name(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock()), blockTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock())).renderType("cutout");
 			var blossomLit = models().cross(name(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock()) + "_lit", blockNDTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock(), "lit")).renderType("cutout");
-			getVariantBuilder(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock()).forAllStates(state -> {
+			getVariantBuilder(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock()).forAllStatesExcept(state -> {
 				if (state.getValue(ArisianBlossomBlock.LIT))
 					if (state.getValue(ArisianBlossomBlock.HANGING))
 						return ConfiguredModel.builder().modelFile(blossomLit).rotationX(180).build();
@@ -250,7 +250,7 @@ public class ModelGenerators {
 					if (state.getValue(ArisianBlossomBlock.HANGING))
 						return ConfiguredModel.builder().modelFile(blossom).rotationX(180).build();
 					else return ConfiguredModel.builder().modelFile(blossom).build();
-			});
+			}, ArisianBlossomBlock.PULSE, ArisianBlossomBlock.STRENGTH);
 			simpleItemBlockTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock());
 
 			getVariantBuilder(NetherDescentBlocks.ARISIAN_DANDELIONS.get()).forAllStates(state -> {
