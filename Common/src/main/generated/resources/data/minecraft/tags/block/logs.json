@@ -1,7 +1,7 @@
 {
   "values": [
     {
-      "id": "#netherdescent:arisian_logs",
+      "id": "#netherdescent:wailing_stems",
       "required": false
     },
     {
@@ -9,11 +9,11 @@
       "required": false
     },
     {
-      "id": "#netherdescent:sythian_stems",
+      "id": "#netherdescent:arisian_logs",
       "required": false
     },
     {
-      "id": "#netherdescent:wailing_stems",
+      "id": "#netherdescent:sythian_stems",
       "required": false
     }
   ]

@@ -1,8 +1,8 @@
 {
   "values": [
-    "netherdescent:arisian_door",
+    "netherdescent:wailing_door",
     "netherdescent:embur_door",
-    "netherdescent:sythian_door",
-    "netherdescent:wailing_door"
+    "netherdescent:arisian_door",
+    "netherdescent:sythian_door"
   ]
 }

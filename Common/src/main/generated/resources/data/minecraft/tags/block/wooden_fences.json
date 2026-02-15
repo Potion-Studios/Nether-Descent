@@ -1,8 +1,8 @@
 {
   "values": [
-    "netherdescent:arisian_fence",
+    "netherdescent:wailing_fence",
     "netherdescent:embur_fence",
-    "netherdescent:sythian_fence",
-    "netherdescent:wailing_fence"
+    "netherdescent:arisian_fence",
+    "netherdescent:sythian_fence"
   ]
 }

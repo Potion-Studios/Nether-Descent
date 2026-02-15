@@ -2,10 +2,10 @@
   "values": [
     "netherdescent:blue_nether_brick_slab",
     "netherdescent:mossy_blue_nether_brick_slab",
-    "netherdescent:arisian_slab",
-    "netherdescent:embur_slab",
-    "netherdescent:sythian_slab",
     "netherdescent:wailing_slab",
+    "netherdescent:embur_slab",
+    "netherdescent:arisian_slab",
+    "netherdescent:sythian_slab",
     "netherdescent:cut_pendorite_slab"
   ]
 }

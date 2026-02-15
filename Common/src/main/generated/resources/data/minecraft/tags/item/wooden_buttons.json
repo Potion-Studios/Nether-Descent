@@ -1,8 +1,8 @@
 {
   "values": [
-    "netherdescent:arisian_button",
+    "netherdescent:wailing_button",
     "netherdescent:embur_button",
-    "netherdescent:sythian_button",
-    "netherdescent:wailing_button"
+    "netherdescent:arisian_button",
+    "netherdescent:sythian_button"
   ]
 }

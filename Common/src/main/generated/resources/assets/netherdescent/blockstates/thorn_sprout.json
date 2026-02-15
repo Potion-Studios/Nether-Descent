@@ -12,6 +12,10 @@
       "model": "netherdescent:block/thorn_sprout_base",
       "y": 270
     },
+    "facing=east,flowering=false,segment=base,size=3": {
+      "model": "netherdescent:block/thorn_sprout_base",
+      "y": 270
+    },
     "facing=east,flowering=false,segment=end,size=0": {
       "model": "netherdescent:block/thorn_sprout_end",
       "y": 270
@@ -21,6 +25,10 @@
       "y": 270
     },
     "facing=east,flowering=false,segment=end,size=2": {
+      "model": "netherdescent:block/thorn_sprout_end",
+      "y": 270
+    },
+    "facing=east,flowering=false,segment=end,size=3": {
       "model": "netherdescent:block/thorn_sprout_end",
       "y": 270
     },
@@ -36,6 +44,10 @@
       "model": "netherdescent:block/thorn_sprout_middle",
       "y": 270
     },
+    "facing=east,flowering=false,segment=middle,size=3": {
+      "model": "netherdescent:block/thorn_sprout_middle",
+      "y": 270
+    },
     "facing=east,flowering=true,segment=base,size=0": {
       "model": "netherdescent:block/thorn_sprout_base",
       "y": 270
@@ -45,6 +57,10 @@
       "y": 270
     },
     "facing=east,flowering=true,segment=base,size=2": {
+      "model": "netherdescent:block/thorn_sprout_base",
+      "y": 270
+    },
+    "facing=east,flowering=true,segment=base,size=3": {
       "model": "netherdescent:block/thorn_sprout_base",
       "y": 270
     },
@@ -60,6 +76,10 @@
       "model": "netherdescent:block/thorn_sprout_end",
       "y": 270
     },
+    "facing=east,flowering=true,segment=end,size=3": {
+      "model": "netherdescent:block/thorn_sprout_end",
+      "y": 270
+    },
     "facing=east,flowering=true,segment=middle,size=0": {
       "model": "netherdescent:block/thorn_sprout_middle_flowering",
       "y": 270
@@ -69,6 +89,10 @@
       "y": 270
     },
     "facing=east,flowering=true,segment=middle,size=2": {
+      "model": "netherdescent:block/thorn_sprout_middle_flowering",
+      "y": 270
+    },
+    "facing=east,flowering=true,segment=middle,size=3": {
       "model": "netherdescent:block/thorn_sprout_middle_flowering",
       "y": 270
     },
@@ -84,6 +108,10 @@
       "model": "netherdescent:block/thorn_sprout_base",
       "y": 180
     },
+    "facing=north,flowering=false,segment=base,size=3": {
+      "model": "netherdescent:block/thorn_sprout_base",
+      "y": 180
+    },
     "facing=north,flowering=false,segment=end,size=0": {
       "model": "netherdescent:block/thorn_sprout_end",
       "y": 180
@@ -93,6 +121,10 @@
       "y": 180
     },
     "facing=north,flowering=false,segment=end,size=2": {
+      "model": "netherdescent:block/thorn_sprout_end",
+      "y": 180
+    },
+    "facing=north,flowering=false,segment=end,size=3": {
       "model": "netherdescent:block/thorn_sprout_end",
       "y": 180
     },
@@ -108,6 +140,10 @@
       "model": "netherdescent:block/thorn_sprout_middle",
       "y": 180
     },
+    "facing=north,flowering=false,segment=middle,size=3": {
+      "model": "netherdescent:block/thorn_sprout_middle",
+      "y": 180
+    },
     "facing=north,flowering=true,segment=base,size=0": {
       "model": "netherdescent:block/thorn_sprout_base",
       "y": 180
@@ -117,6 +153,10 @@
       "y": 180
     },
     "facing=north,flowering=true,segment=base,size=2": {
+      "model": "netherdescent:block/thorn_sprout_base",
+      "y": 180
+    },
+    "facing=north,flowering=true,segment=base,size=3": {
       "model": "netherdescent:block/thorn_sprout_base",
       "y": 180
     },
@@ -132,6 +172,10 @@
       "model": "netherdescent:block/thorn_sprout_end",
       "y": 180
     },
+    "facing=north,flowering=true,segment=end,size=3": {
+      "model": "netherdescent:block/thorn_sprout_end",
+      "y": 180
+    },
     "facing=north,flowering=true,segment=middle,size=0": {
       "model": "netherdescent:block/thorn_sprout_middle_flowering",
       "y": 180
@@ -144,6 +188,10 @@
       "model": "netherdescent:block/thorn_sprout_middle_flowering",
       "y": 180
     },
+    "facing=north,flowering=true,segment=middle,size=3": {
+      "model": "netherdescent:block/thorn_sprout_middle_flowering",
+      "y": 180
+    },
     "facing=south,flowering=false,segment=base,size=0": {
       "model": "netherdescent:block/thorn_sprout_base"
     },
@@ -151,6 +199,9 @@
       "model": "netherdescent:block/thorn_sprout_base"
     },
     "facing=south,flowering=false,segment=base,size=2": {
+      "model": "netherdescent:block/thorn_sprout_base"
+    },
+    "facing=south,flowering=false,segment=base,size=3": {
       "model": "netherdescent:block/thorn_sprout_base"
     },
     "facing=south,flowering=false,segment=end,size=0": {
@@ -162,6 +213,9 @@
     "facing=south,flowering=false,segment=end,size=2": {
       "model": "netherdescent:block/thorn_sprout_end"
     },
+    "facing=south,flowering=false,segment=end,size=3": {
+      "model": "netherdescent:block/thorn_sprout_end"
+    },
     "facing=south,flowering=false,segment=middle,size=0": {
       "model": "netherdescent:block/thorn_sprout_middle"
     },
@@ -169,6 +223,9 @@
       "model": "netherdescent:block/thorn_sprout_middle"
     },
     "facing=south,flowering=false,segment=middle,size=2": {
+      "model": "netherdescent:block/thorn_sprout_middle"
+    },
+    "facing=south,flowering=false,segment=middle,size=3": {
       "model": "netherdescent:block/thorn_sprout_middle"
     },
     "facing=south,flowering=true,segment=base,size=0": {
@@ -180,6 +237,9 @@
     "facing=south,flowering=true,segment=base,size=2": {
       "model": "netherdescent:block/thorn_sprout_base"
     },
+    "facing=south,flowering=true,segment=base,size=3": {
+      "model": "netherdescent:block/thorn_sprout_base"
+    },
     "facing=south,flowering=true,segment=end,size=0": {
       "model": "netherdescent:block/thorn_sprout_end"
     },
@@ -187,6 +247,9 @@
       "model": "netherdescent:block/thorn_sprout_end"
     },
     "facing=south,flowering=true,segment=end,size=2": {
+      "model": "netherdescent:block/thorn_sprout_end"
+    },
+    "facing=south,flowering=true,segment=end,size=3": {
       "model": "netherdescent:block/thorn_sprout_end"
     },
     "facing=south,flowering=true,segment=middle,size=0": {
@@ -198,6 +261,9 @@
     "facing=south,flowering=true,segment=middle,size=2": {
       "model": "netherdescent:block/thorn_sprout_middle_flowering"
     },
+    "facing=south,flowering=true,segment=middle,size=3": {
+      "model": "netherdescent:block/thorn_sprout_middle_flowering"
+    },
     "facing=west,flowering=false,segment=base,size=0": {
       "model": "netherdescent:block/thorn_sprout_base",
       "y": 90
@@ -207,6 +273,10 @@
       "y": 90
     },
     "facing=west,flowering=false,segment=base,size=2": {
+      "model": "netherdescent:block/thorn_sprout_base",
+      "y": 90
+    },
+    "facing=west,flowering=false,segment=base,size=3": {
       "model": "netherdescent:block/thorn_sprout_base",
       "y": 90
     },
@@ -222,6 +292,10 @@
       "model": "netherdescent:block/thorn_sprout_end",
       "y": 90
     },
+    "facing=west,flowering=false,segment=end,size=3": {
+      "model": "netherdescent:block/thorn_sprout_end",
+      "y": 90
+    },
     "facing=west,flowering=false,segment=middle,size=0": {
       "model": "netherdescent:block/thorn_sprout_middle",
       "y": 90
@@ -231,6 +305,10 @@
       "y": 90
     },
     "facing=west,flowering=false,segment=middle,size=2": {
+      "model": "netherdescent:block/thorn_sprout_middle",
+      "y": 90
+    },
+    "facing=west,flowering=false,segment=middle,size=3": {
       "model": "netherdescent:block/thorn_sprout_middle",
       "y": 90
     },
@@ -246,6 +324,10 @@
       "model": "netherdescent:block/thorn_sprout_base",
       "y": 90
     },
+    "facing=west,flowering=true,segment=base,size=3": {
+      "model": "netherdescent:block/thorn_sprout_base",
+      "y": 90
+    },
     "facing=west,flowering=true,segment=end,size=0": {
       "model": "netherdescent:block/thorn_sprout_end",
       "y": 90
@@ -258,6 +340,10 @@
       "model": "netherdescent:block/thorn_sprout_end",
       "y": 90
     },
+    "facing=west,flowering=true,segment=end,size=3": {
+      "model": "netherdescent:block/thorn_sprout_end",
+      "y": 90
+    },
     "facing=west,flowering=true,segment=middle,size=0": {
       "model": "netherdescent:block/thorn_sprout_middle_flowering",
       "y": 90
@@ -267,6 +353,10 @@
       "y": 90
     },
     "facing=west,flowering=true,segment=middle,size=2": {
+      "model": "netherdescent:block/thorn_sprout_middle_flowering",
+      "y": 90
+    },
+    "facing=west,flowering=true,segment=middle,size=3": {
       "model": "netherdescent:block/thorn_sprout_middle_flowering",
       "y": 90
     }
