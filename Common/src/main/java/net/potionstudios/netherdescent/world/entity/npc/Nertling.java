@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.ByIdMap;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.VariantHolder;
 import net.minecraft.world.entity.ai.Brain;
@@ -97,6 +98,11 @@ public class Nertling extends AbstractVillager implements VariantHolder<Nertling
     @Override
     protected void updateTrades() {
 
+    }
+
+    @Override
+    protected int getBaseExperienceReward() {
+        return getRandom().nextInt(3, 6);
     }
 
     @Override
