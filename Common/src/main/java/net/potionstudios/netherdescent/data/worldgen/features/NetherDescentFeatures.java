@@ -35,10 +35,6 @@ public class NetherDescentFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_SPROUT = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("embur_sprout", NetherDescentBlocks.EMBUR_SPROUTS, 15);
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_LILY = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("embur_lily", NetherDescentBlocks.EMBUR_LILY, 15);
-    public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_ROOTS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("embur_roots", NetherDescentBlocks.EMBUR_ROOTS.block(), 15);
-    public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_EMBUR_ROOTS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("tall_embur_roots", NetherDescentBlocks.TALL_EMBUR_ROOTS, 15);
-    public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("embur_wart", NetherDescentBlocks.EMBUR.growerItem().block(), 15);
-
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_BOG_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("embur_bog_vegetation", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
             new WeightedStateProvider(
                     SimpleWeightedRandomList.<BlockState>builder()
@@ -131,9 +127,7 @@ public class NetherDescentFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_TANGLE_ROOTS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_tangle_roots", NetherDescentFeature.HANGING_PLANT, () -> new HangingPlantFeatureConfiguration(Blocks.BLACKSTONE, NetherDescentBlocks.ARISIAN_TANGLE_ROOTS.get(), NetherDescentBlocks.ARISIAN_TANGLE_ROOTS_PLANT.get()));
 
-
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_SYTHIAN_ROOTS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_sythian_roots", NetherDescentFeature.HANGING_PLANT, () -> new HangingPlantFeatureConfiguration(Blocks.NETHERRACK, NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get()));
-    //public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_HANGING_SYTHIAN_ROOTS = ConfiguredFeaturesUtil.createConfiguredFeature("patch_hanging_sythian_roots", Feature.RANDOM_PATCH, () -> FeatureUtils.simplePatchConfiguration(NetherDescentFeature.HANGING_PLANT.get(), new HangingPlantFeatureConfiguration(Blocks.NETHERRACK, NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get())));
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_STALK = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_stalk", NetherDescentFeature.SYTHIAN_STALK, NoneFeatureConfiguration::new);
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_STALK_DOWNWARD = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_stalk_downward", NetherDescentFeature.SYTHIAN_STALK_DOWNWARD, NoneFeatureConfiguration::new);

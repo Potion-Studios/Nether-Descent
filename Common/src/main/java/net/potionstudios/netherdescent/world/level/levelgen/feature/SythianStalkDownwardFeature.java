@@ -3,7 +3,6 @@ package net.potionstudios.netherdescent.world.level.levelgen.feature;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BambooLeaves;
@@ -33,22 +32,21 @@ public class SythianStalkDownwardFeature extends Feature<NoneFeatureConfiguratio
 		int i = 0;
 		BlockPos blockPos = context.origin();
 		WorldGenLevel worldGenLevel = context.level();
-		RandomSource randomSource = context.random();
 		BlockPos.MutableBlockPos mutableBlockPos = blockPos.mutable();
 		if (worldGenLevel.isEmptyBlock(blockPos)) {
 			if (NetherDescentBlocks.SYTHIAN_STALK.getBlockState().setValue(SythianStalkBlock.HANGING, true).canSurvive(worldGenLevel, mutableBlockPos)) {
-				int j = randomSource.nextInt(12) + 5;
+				int j = context.random().nextInt(12) + 5;
 				for (int k = 0; k < j && worldGenLevel.isEmptyBlock(mutableBlockPos); k++) {
 					worldGenLevel.setBlock(mutableBlockPos, STALK, 2);
-					mutableBlockPos.move(Direction.DOWN, 1);
+					mutableBlockPos.move(Direction.DOWN);
 				}
 
 				if (blockPos.getY() - mutableBlockPos.getY() >= 3) {
                     if (!worldGenLevel.isEmptyBlock(mutableBlockPos.offset(0, -3, 0)))
                         mutableBlockPos.move(Direction.UP, 3);
 					worldGenLevel.setBlock(mutableBlockPos, STALK_FINAL_LARGE, 2);
-					worldGenLevel.setBlock(mutableBlockPos.move(Direction.DOWN, 1), STALK_TOP_LARGE, 2);
-					worldGenLevel.setBlock(mutableBlockPos.move(Direction.DOWN, 1), STALK_TOP_SMALL, 2);
+					worldGenLevel.setBlock(mutableBlockPos.move(Direction.DOWN), STALK_TOP_LARGE, 2);
+					worldGenLevel.setBlock(mutableBlockPos.move(Direction.DOWN), STALK_TOP_SMALL, 2);
 				}
 			}
 

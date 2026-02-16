@@ -34,9 +34,6 @@ public class NetherDescentPlacements {
 
 	public static final ResourceKey<PlacedFeature> SYTHIAN_TORRIDS_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("sythian_torrids_vegetation", NetherDescentFeatures.SYTHIAN_TORRIDS_VEGETATION, () -> List.of(CountOnEveryLayerPlacement.of(6), BiomeFilter.biome()));
 
-    public static final ResourceKey<PlacedFeature> TALL_CRIMSON_ROOTS = PlacedFeaturesUtil.createPlacedFeature("tall_crimson_roots", NetherDescentFeatures.TALL_CRIMSON_ROOTS, () -> List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome()));
-    public static final ResourceKey<PlacedFeature> PATCH_CRIMSON_BERRY = PlacedFeaturesUtil.createPlacedFeature("crimson_berry", NetherDescentFeatures.PATCH_CRIMSON_BERRY, () -> List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome()));
-
     public static final ResourceKey<PlacedFeature> CRIMSON_GARDEN_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("crimson_garden_vegetation", NetherDescentFeatures.CRIMSON_GARDEN_VEGETATION, () -> List.of(CountOnEveryLayerPlacement.of(6), BiomeFilter.biome()));
 
 	public static final ResourceKey<PlacedFeature> HANGING_SYTHIAN_ROOTS = PlacedFeaturesUtil.createPlacedFeature("hanging_sythian_roots", NetherDescentFeatures.HANGING_SYTHIAN_ROOTS, () -> List.of(CountPlacement.of(250), InSquarePlacement.spread(), PlacementUtils.FULL_RANGE, BiomeFilter.biome()));
