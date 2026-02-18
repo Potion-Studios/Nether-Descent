@@ -3,6 +3,7 @@ package net.potionstudios.netherdescent.world.level.block.custom;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.Entity;
@@ -100,9 +101,11 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 					BlockState prevState = level.getBlockState(prevPos);
 					if (prevState.is(this)) {
 						level.setBlockAndUpdate(prevPos, prevState.setValue(SEGMENT, SegmentType.END));
+						level.playLocalSound(pos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f, true);
 					}
 				} else {
 					level.setBlockAndUpdate(pos, state.setValue(SEGMENT, SegmentType.END).setValue(SIZE, currentSize));
+					level.playLocalSound(pos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f, true);
 				}
 				break;
 			}
@@ -137,6 +140,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 
 		if (prevState.is(this) && prevState.getValue(FACING) == state.getValue(FACING) && prevState.getValue(SIZE) == currentSize) {
 			level.destroyBlock(pos, false);
+			level.playLocalSound(pos, this.getSoundType(state).getBreakSound(), SoundSource.BLOCKS, 1.0f, 1.0f, true);
 			if (prevState.getValue(SEGMENT) == SegmentType.BASE) {
 				// We reached the original tip that was stepped on to grow these 3
 				BlockState nextState = prevState.setValue(SEGMENT, SegmentType.END).setValue(SIZE, currentSize - 1);
@@ -154,6 +158,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 			// We reached the base or something else.
 			if (currentSize > 0) {
 				level.destroyBlock(pos, false);
+				level.playLocalSound(pos, this.getSoundType(state).getBreakSound(), SoundSource.BLOCKS, 1.0f, 1.0f, true);
 			} else {
 				// It is the base, set it to tip
 				level.setBlockAndUpdate(pos, state.setValue(SEGMENT, SegmentType.END).setValue(SIZE, 0));
@@ -171,6 +176,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 				// This includes cases where we break a BASE or a MIDDLE segment.
 				if (nextState.getValue(SIZE) == state.getValue(SIZE) && nextState.getValue(SEGMENT) != SegmentType.BASE) {
 					level.destroyBlock(nextPos, false);
+					level.playLocalSound(pos, this.getSoundType(state).getBreakSound(), SoundSource.BLOCKS, 1.0f, 1.0f, true);
 				}
 			}
 
