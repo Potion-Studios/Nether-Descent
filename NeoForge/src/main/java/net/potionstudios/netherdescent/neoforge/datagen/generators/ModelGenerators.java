@@ -68,6 +68,7 @@ public class ModelGenerators {
             simpleItemBlockTexture(NetherDescentItems.PENDORITE_TORCH.get());
 			withExistingParent(name(NetherDescentItems.PENDORITE_WOLF_ARMOR.get()), mcLoc("item/generated")).texture("layer0", NetherDescent.id(ModelProvider.ITEM_FOLDER + "/pendorite_wolf_armor")).texture("layer1", NetherDescent.id(ModelProvider.ITEM_FOLDER + "/pendorite_wolf_armor_overlay"));
 			simpleItem(NetherDescentBlocks.ARISIAN_DANDELIONS.get());
+			//withExistingParent(name(NetherDescentItems.BONE_SHIV.get()), mcLoc("item/handheld")).texture("layer0", NetherDescent.id(ModelProvider.ITEM_FOLDER + "/bone_shiv"));
         }
 
 		private void simpleItem(ItemLike item, String texture) {
@@ -148,7 +149,7 @@ public class ModelGenerators {
 				if (blockState.getValue(ArisianLeavesBlock.LIT))
 					return ConfiguredModel.builder().modelFile(models().leaves(name(NetherDescentBlocks.ARISIAN_LEAVES.get()) + "_lit", NetherDescent.id("block/arisian/leaves_lit")).renderType("cutout_mipped")).build();
 				else return ConfiguredModel.builder().modelFile(models().leaves(name(NetherDescentBlocks.ARISIAN_LEAVES.get()), NetherDescent.id("block/arisian/leaves")).renderType("cutout_mipped")).build();
-			}), ArisianLeavesBlock.DISTANCE, ArisianLeavesBlock.WATERLOGGED, ArisianLeavesBlock.PERSISTENT);
+			}), ArisianLeavesBlock.DISTANCE, ArisianLeavesBlock.WATERLOGGED, ArisianLeavesBlock.PERSISTENT, ArisianLeavesBlock.STRENGTH);
 			simpleBlockItem(NetherDescentBlocks.ARISIAN_LEAVES.get(), models().getExistingFile(NetherDescent.id("block/arisian_leaves")));
 
 			ResourceLocation blue_netherrack = models().cubeAll(name(NetherDescentBlocks.BLUE_NETHERRACK.get()), blockTexture(NetherDescentBlocks.BLUE_NETHERRACK.get())).getLocation();
