@@ -37,10 +37,8 @@ public class NetherDescentBiomeBuilder {
     protected static Biome arisianUndergrowth(HolderGetter<PlacedFeature> placedFeatureHolderGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
         BiomeGenerationSettings.Builder generationSettings = setupDefaultNetherGeneration(placedFeatureHolderGetter, carverGetter);
 
-        addVegetal(generationSettings, NetherPlacements.NETHER_SPROUTS);
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 
-        addVegetal(generationSettings, NetherDescentPlacements.WAILING_GARTH_VEGETATION);
         addVegetal(generationSettings, NetherDescentTreePlacements.ARISIAN_ROOTS_HANGING);
         addVegetal(generationSettings, NetherDescentTreePlacements.ARISIAN_TREES_HANGING);
         addVegetal(generationSettings, NetherDescentPlacements.HANGING_ARISIAN_TANGLE_ROOTS);
