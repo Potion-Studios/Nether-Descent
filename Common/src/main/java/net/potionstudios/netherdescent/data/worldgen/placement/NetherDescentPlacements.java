@@ -40,7 +40,33 @@ public class NetherDescentPlacements {
 
     public static final ResourceKey<PlacedFeature> HANGING_ARISIAN_TANGLE_ROOTS = PlacedFeaturesUtil.createPlacedFeature("hanging_arisian_tangle_roots", NetherDescentFeatures.HANGING_ARISIAN_TANGLE_ROOTS, () -> List.of(CountPlacement.of(250), InSquarePlacement.spread(), PlacementUtils.FULL_RANGE, BiomeFilter.biome()));
 
+	public static final ResourceKey<PlacedFeature> ARISIAN_BLOSSOM = PlacedFeaturesUtil.createPlacedFeature("arisian_blossom", NetherDescentFeatures.ARISIAN_BLOSSOM, () -> List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome()));
 
+	public static final ResourceKey<PlacedFeature> HANGING_ARISIAN_BLOSSOM =
+			PlacedFeaturesUtil.createPlacedFeature(
+					"hanging_arisian_blossom",
+					NetherDescentFeatures.HANGING_ARISIAN_BLOSSOM,
+					() -> List.of(
+							CountPlacement.of(5),
+							InSquarePlacement.spread(),
+							PlacementUtils.FULL_RANGE,
+							BiomeFilter.biome()
+					)
+			);
+
+	public static final ResourceKey<PlacedFeature> ARISIAN_DANDELIONS = PlacedFeaturesUtil.createPlacedFeature("arisian_dandelions", NetherDescentFeatures.ARISIAN_DANDELIONS, () -> List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome()));
+
+	public static final ResourceKey<PlacedFeature> HANGING_ARISIAN_DANDELIONS =
+			PlacedFeaturesUtil.createPlacedFeature(
+					"hanging_arisian_dandelions",
+					NetherDescentFeatures.HANGING_ARISIAN_DANDELIONS,
+					() -> List.of(
+							CountPlacement.of(5),
+							InSquarePlacement.spread(),
+							PlacementUtils.FULL_RANGE,
+							BiomeFilter.biome()
+					)
+			);
     public static final ResourceKey<PlacedFeature> SYTHIAN_STALKS = PlacedFeaturesUtil.createPlacedFeature("sythian_stalks", NetherDescentFeatures.SYTHIAN_STALK, () -> List.of(NoiseBasedCountPlacement.of(160, 80.0, 0.3), InSquarePlacement.spread(), PlacementUtils.RANGE_4_4, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.allOf(
             BlockPredicate.matchesTag(Direction.DOWN.getNormal(), NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON),
             BlockPredicate.not(BlockPredicate.solid())

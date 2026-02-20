@@ -20,7 +20,9 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
+import net.potionstudios.netherdescent.world.level.block.plants.ArisianBlossomBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
+import net.potionstudios.netherdescent.world.level.block.plants.HangingNDBushBlock;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeature;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CarpetPatchFeatureConfiguration;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CeilingHangingVinesFeatureConfiguration;
@@ -133,6 +135,12 @@ public class NetherDescentFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_STALK_DOWNWARD = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_stalk_downward", NetherDescentFeature.SYTHIAN_STALK_DOWNWARD, NoneFeatureConfiguration::new);
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_BULB_BLOSSOM = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_bulb_blossom", NetherDescentFeature.FLOATING_BLOCK_FEATURE, () -> new FloatingBlockFeatureConfiguration(BlockStateProvider.simple(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get()), UniformInt.of(1, 6)));
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_BLOSSOM = createPatchConfiguredFeatureState("arisian_blossom", NetherDescentBlocks.ARISIAN_BLOSSOM::getBlockState, 32);
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_DANDELIONS = createPatchConfiguredFeatureState("arisian_dandelions", () -> NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState(), 32);
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_BLOSSOM = createPatchConfiguredFeatureState("hanging_arisian_blossom", () -> NetherDescentBlocks.ARISIAN_BLOSSOM.getBlockState().setValue(HangingNDBushBlock.HANGING, true), 32);
+	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_DANDELIONS = createPatchConfiguredFeatureState("hanging_arisian_dandelions", () -> NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState().setValue(HangingNDBushBlock.HANGING, true), 32);
 
 	private static ResourceKey<ConfiguredFeature<?, ?>> createPatchConfiguredFeatureState(String id, Supplier<? extends BlockState> state, int tries) {
 		return ConfiguredFeaturesUtil.createConfiguredFeature(id, Feature.RANDOM_PATCH, () -> FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(state.get())), List.of(), tries));
