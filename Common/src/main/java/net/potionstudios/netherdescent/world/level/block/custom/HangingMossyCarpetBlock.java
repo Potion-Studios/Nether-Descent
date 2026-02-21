@@ -12,6 +12,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -29,6 +31,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class HangingMossyCarpetBlock extends Block implements BonemealableBlock {
     public static final MapCodec<MossyCarpetBlock> CODEC = simpleCodec(MossyCarpetBlock::new);
@@ -155,20 +158,55 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
         }
     }
 
-    private static BlockState createTopperWithSideChance(Block block, BlockGetter level, BlockPos pos, BooleanSupplier placeSide) {
-        boolean hanging = level.getBlockState(pos).getValue(HANGING);
-        BlockPos targetPos = hanging ? pos.below() : pos.above();
-        BlockState current = level.getBlockState(targetPos);
-
-        if ((!current.is(block) || !current.getValue(BASE)) && (current.is(block) || current.canBeReplaced())) {
-            BlockState nextState = getUpdatedState(block, block.defaultBlockState().setValue(BASE, false).setValue(HANGING, hanging), level, targetPos, true);
-            for (Direction dir : Direction.Plane.HORIZONTAL) {
-                EnumProperty<WallSide> p = PROPERTY_BY_DIRECTION.get(dir);
-                if (nextState.getValue(p) != WallSide.NONE && !placeSide.getAsBoolean()) nextState = nextState.setValue(p, WallSide.NONE);
+    @Override
+    public void setPlacedBy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack stack) {
+        if (!level.isClientSide()) {
+            RandomSource randomSource = level.getRandom();
+            BlockState blockState = createTopperWithSideChance(this.asBlock(), level, pos, randomSource::nextBoolean);
+            if (!blockState.isAir()) {
+                level.setBlock(blockState.getValue(HANGING) ? pos.below() : pos.above(), blockState, 3);
             }
-            return nextState;
         }
-        return Blocks.AIR.defaultBlockState();
+    }
+
+    private static BlockState createTopperWithSideChance(Block block, BlockGetter level, BlockPos pos, BooleanSupplier placeSide) {
+        BlockPos blockPos = pos.above();
+        BlockState blockState = level.getBlockState(blockPos);
+        boolean bl = blockState.is(block);
+        if ((!bl || !(Boolean)blockState.getValue(BASE)) && (bl || blockState.canBeReplaced())) {
+            BlockState blockState2 = block.defaultBlockState().setValue(BASE, false);
+            BlockState blockState3 = getUpdatedState(block, blockState2, level, pos.above(), true);
+
+            for (Direction direction : Direction.Plane.HORIZONTAL) {
+                EnumProperty<WallSide> enumProperty = getPropertyForFace(direction);
+                if (blockState3.getValue(enumProperty) != WallSide.NONE && !placeSide.getAsBoolean()) {
+                    blockState3 = blockState3.setValue(enumProperty, WallSide.NONE);
+                }
+            }
+
+            return hasFaces(blockState3) && blockState3 != blockState ? blockState3 : Blocks.AIR.defaultBlockState();
+        } else {
+            return Blocks.AIR.defaultBlockState();
+        }
+    }
+
+    @Nullable
+    public static EnumProperty<WallSide> getPropertyForFace(Direction direction) {
+        return PROPERTY_BY_DIRECTION.get(direction);
+    }
+
+    private static boolean hasFaces(BlockState state) {
+        if (state.getValue(BASE)) {
+            return true;
+        } else {
+            for (EnumProperty<WallSide> enumProperty : PROPERTY_BY_DIRECTION.values()) {
+                if (state.getValue(enumProperty) != WallSide.NONE) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 
     @Override
