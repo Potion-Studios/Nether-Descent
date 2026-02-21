@@ -39,6 +39,7 @@
             "distance": "1",
             "lit": "false",
             "persistent": "true",
+            "strength": "0",
             "waterlogged": "true"
           }
         }
