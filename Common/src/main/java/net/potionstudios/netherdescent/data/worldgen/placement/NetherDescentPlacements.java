@@ -68,22 +68,13 @@ public class NetherDescentPlacements {
 					)
 			);
 
-	public static final ResourceKey<PlacedFeature> PATCH_ARISIAN_SPROUTS = PlacedFeaturesUtil.createPlacedFeature(
-			"patch_arisian_sprouts",
-			NetherDescentFeatures.PATCH_ARISIAN_SPROUTS,
-			() -> List.of(
-					CountPlacement.of(35),
-					InSquarePlacement.spread(),
-					PlacementUtils.RANGE_10_10,
-					BiomeFilter.biome()
-			)
-	);
+	public static final ResourceKey<PlacedFeature> PATCH_ARISIAN_SPROUTS = PlacedFeaturesUtil.createPlacedFeature("patch_arisian_sprouts", NetherDescentFeatures.PATCH_ARISIAN_SPROUTS, () -> List.of(CountPlacement.of(256), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
 
 	public static final ResourceKey<PlacedFeature> PATCH_HANGING_ARISIAN_SPROUTS = PlacedFeaturesUtil.createPlacedFeature(
 			"patch_hanging_arisian_sprouts",
 			NetherDescentFeatures.PATCH_HANGING_ARISIAN_SPROUTS,
 			() -> List.of(
-					CountPlacement.of(5),
+					CountPlacement.of(256),
 					InSquarePlacement.spread(),
 					PlacementUtils.RANGE_10_10,
 					BiomeFilter.biome()

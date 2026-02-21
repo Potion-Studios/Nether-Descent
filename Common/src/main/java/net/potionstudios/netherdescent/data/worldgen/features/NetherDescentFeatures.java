@@ -143,28 +143,7 @@ public class NetherDescentFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_BLOSSOM = createPatchConfiguredFeatureState("hanging_arisian_blossom", () -> NetherDescentBlocks.ARISIAN_BLOSSOM.getBlockState().setValue(HangingNDBushBlock.HANGING, true), 32);
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_DANDELIONS = createPatchConfiguredFeatureState("hanging_arisian_dandelions", () -> NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState().setValue(HangingNDBushBlock.HANGING, true), 32);
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_ARISIAN_SPROUTS = ConfiguredFeaturesUtil.createConfiguredFeature(
-			"arisian_sprouts_patch",
-			Feature.RANDOM_PATCH,
-			() -> new RandomPatchConfiguration(
-					64,
-					7,
-					3,
-					PlacementUtils.filtered(
-							Feature.SIMPLE_BLOCK,
-							new SimpleBlockConfiguration(
-									BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_SPROUTS.getBlock())
-							),
-							BlockPredicate.allOf(
-									BlockPredicate.matchesBlocks(
-											Direction.DOWN.getNormal(),
-											NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()
-									),
-									BlockPredicate.ONLY_IN_AIR_PREDICATE
-							)
-					)
-			)
-	);
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_ARISIAN_SPROUTS = createPatchConfiguredFeatureState("arisian_sprouts_patch", NetherDescentBlocks.ARISIAN_SPROUTS::getBlockState, 32);
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_HANGING_ARISIAN_SPROUTS = ConfiguredFeaturesUtil.createConfiguredFeature(
 			"hanging_arisian_sprouts_patch",
