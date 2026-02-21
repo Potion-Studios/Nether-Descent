@@ -1,6 +1,7 @@
 package net.potionstudios.netherdescent.data.worldgen.features;
 
 import com.google.common.collect.ImmutableList;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -12,6 +13,7 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
@@ -20,7 +22,6 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import net.potionstudios.netherdescent.world.level.block.plants.ArisianBlossomBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.HangingNDBushBlock;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeature;
@@ -141,6 +142,52 @@ public class NetherDescentFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_BLOSSOM = createPatchConfiguredFeatureState("hanging_arisian_blossom", () -> NetherDescentBlocks.ARISIAN_BLOSSOM.getBlockState().setValue(HangingNDBushBlock.HANGING, true), 32);
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_DANDELIONS = createPatchConfiguredFeatureState("hanging_arisian_dandelions", () -> NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState().setValue(HangingNDBushBlock.HANGING, true), 32);
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_ARISIAN_SPROUTS = ConfiguredFeaturesUtil.createConfiguredFeature(
+			"arisian_sprouts_patch",
+			Feature.RANDOM_PATCH,
+			() -> new RandomPatchConfiguration(
+					64,
+					7,
+					3,
+					PlacementUtils.filtered(
+							Feature.SIMPLE_BLOCK,
+							new SimpleBlockConfiguration(
+									BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_SPROUTS.getBlock())
+							),
+							BlockPredicate.allOf(
+									BlockPredicate.matchesBlocks(
+											Direction.DOWN.getNormal(),
+											NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()
+									),
+									BlockPredicate.ONLY_IN_AIR_PREDICATE
+							)
+					)
+			)
+	);
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_HANGING_ARISIAN_SPROUTS = ConfiguredFeaturesUtil.createConfiguredFeature(
+			"hanging_arisian_sprouts_patch",
+			Feature.RANDOM_PATCH,
+			() -> new RandomPatchConfiguration(
+					64,
+					7,
+					3,
+					PlacementUtils.filtered(
+							Feature.SIMPLE_BLOCK,
+							new SimpleBlockConfiguration(
+									BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_SPROUTS.getBlock().defaultBlockState().setValue(HangingNDBushBlock.HANGING, true))
+							),
+							BlockPredicate.allOf(
+									BlockPredicate.matchesBlocks(
+											Direction.UP.getNormal(),
+											NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()
+									),
+									BlockPredicate.ONLY_IN_AIR_PREDICATE
+							)
+					)
+			)
+	);
 
 	private static ResourceKey<ConfiguredFeature<?, ?>> createPatchConfiguredFeatureState(String id, Supplier<? extends BlockState> state, int tries) {
 		return ConfiguredFeaturesUtil.createConfiguredFeature(id, Feature.RANDOM_PATCH, () -> FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(state.get())), List.of(), tries));

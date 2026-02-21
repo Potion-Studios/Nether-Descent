@@ -67,6 +67,29 @@ public class NetherDescentPlacements {
 							BiomeFilter.biome()
 					)
 			);
+
+	public static final ResourceKey<PlacedFeature> PATCH_ARISIAN_SPROUTS = PlacedFeaturesUtil.createPlacedFeature(
+			"patch_arisian_sprouts",
+			NetherDescentFeatures.PATCH_ARISIAN_SPROUTS,
+			() -> List.of(
+					CountPlacement.of(8),
+					InSquarePlacement.spread(),
+					PlacementUtils.RANGE_10_10,
+					BiomeFilter.biome()
+			)
+	);
+
+	public static final ResourceKey<PlacedFeature> PATCH_HANGING_ARISIAN_SPROUTS = PlacedFeaturesUtil.createPlacedFeature(
+			"patch_hanging_arisian_sprouts",
+			NetherDescentFeatures.PATCH_HANGING_ARISIAN_SPROUTS,
+			() -> List.of(
+					CountPlacement.of(5),
+					InSquarePlacement.spread(),
+					PlacementUtils.RANGE_10_10,
+					BiomeFilter.biome()
+			)
+	);
+
     public static final ResourceKey<PlacedFeature> SYTHIAN_STALKS = PlacedFeaturesUtil.createPlacedFeature("sythian_stalks", NetherDescentFeatures.SYTHIAN_STALK, () -> List.of(NoiseBasedCountPlacement.of(160, 80.0, 0.3), InSquarePlacement.spread(), PlacementUtils.RANGE_4_4, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.allOf(
             BlockPredicate.matchesTag(Direction.DOWN.getNormal(), NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON),
             BlockPredicate.not(BlockPredicate.solid())

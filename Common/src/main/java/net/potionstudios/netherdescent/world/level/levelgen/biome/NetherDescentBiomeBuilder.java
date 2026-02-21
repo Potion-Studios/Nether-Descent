@@ -39,6 +39,8 @@ public class NetherDescentBiomeBuilder {
 
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 
+        addVegetal(generationSettings, NetherDescentPlacements.PATCH_ARISIAN_SPROUTS);
+        addVegetal(generationSettings, NetherDescentPlacements.PATCH_HANGING_ARISIAN_SPROUTS);
         addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_BLOSSOM);
         addVegetal(generationSettings, NetherDescentPlacements.HANGING_ARISIAN_BLOSSOM);
         addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_DANDELIONS);

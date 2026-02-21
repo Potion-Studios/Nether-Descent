@@ -59,6 +59,8 @@
     ],
     [],
     [
+      "netherdescent:patch_arisian_sprouts",
+      "netherdescent:patch_hanging_arisian_sprouts",
       "netherdescent:arisian_blossom",
       "netherdescent:hanging_arisian_blossom",
       "netherdescent:arisian_dandelions",
