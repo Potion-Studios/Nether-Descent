@@ -249,4 +249,13 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
         if (!state.canSurvive(level, pos)) return Blocks.AIR.defaultBlockState();
         return getUpdatedState(this, state, level, pos, false);
     }
+
+    public static void placeAt(BlockState blockState, LevelAccessor level, BlockPos pos, RandomSource random, int flags) {
+        BlockState blockState2 = getUpdatedState(blockState.getBlock(), blockState, level, pos, true);
+        level.setBlock(pos, blockState2, 3);
+        BlockState blockState3 = createTopperWithSideChance(blockState.getBlock(), level, pos, random::nextBoolean);
+        if (!blockState3.isAir()) {
+            level.setBlock(pos.above(), blockState3, flags);
+        }
+    }
 }

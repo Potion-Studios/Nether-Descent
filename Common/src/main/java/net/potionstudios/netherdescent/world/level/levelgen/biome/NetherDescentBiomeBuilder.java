@@ -39,6 +39,8 @@ public class NetherDescentBiomeBuilder {
 
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 
+        addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_MOSS_CARPET_PATCH);
+        addVegetal(generationSettings, NetherDescentPlacements.BASALT_LINE);
         addVegetal(generationSettings, NetherDescentPlacements.PATCH_ARISIAN_SPROUTS);
         addVegetal(generationSettings, NetherDescentPlacements.PATCH_HANGING_ARISIAN_SPROUTS);
         addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_BLOSSOM);

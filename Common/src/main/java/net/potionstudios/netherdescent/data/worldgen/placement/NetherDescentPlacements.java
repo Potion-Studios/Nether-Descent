@@ -41,6 +41,16 @@ public class NetherDescentPlacements {
 
     public static final ResourceKey<PlacedFeature> HANGING_ARISIAN_TANGLE_ROOTS = PlacedFeaturesUtil.createPlacedFeature("hanging_arisian_tangle_roots", NetherDescentFeatures.HANGING_ARISIAN_TANGLE_ROOTS, () -> List.of(CountPlacement.of(250), InSquarePlacement.spread(), PlacementUtils.FULL_RANGE, BiomeFilter.biome()));
 
+	public static final ResourceKey<PlacedFeature> ARISIAN_MOSS_CARPET_PATCH = PlacedFeaturesUtil.createPlacedFeature("arisian_moss_carpet_patch", NetherDescentFeatures.ARISIAN_MOSS_CARPET_PATCH, () -> List.of(
+			CountPlacement.of(256),
+			InSquarePlacement.spread(),
+			PlacementUtils.RANGE_10_10,
+			EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.allOf(
+					BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()),
+					BlockPredicate.not(BlockPredicate.solid())
+			), 12),
+			BiomeFilter.biome()));
+
 	public static final ResourceKey<PlacedFeature> ARISIAN_BLOSSOM = PlacedFeaturesUtil.createPlacedFeature("arisian_blossom", NetherDescentFeatures.ARISIAN_BLOSSOM, () -> List.of(CountPlacement.of(UniformInt.of(31, 64)), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
 
 	public static final ResourceKey<PlacedFeature> HANGING_ARISIAN_BLOSSOM =
@@ -99,6 +109,21 @@ public class NetherDescentPlacements {
                     BlockPredicate.matchesBlocks(Direction.UP.getNormal(), Blocks.SOUL_SOIL),
                     BlockPredicate.ONLY_IN_AIR_PREDICATE
             ), 12), BiomeFilter.biome()));
+
+	public static final ResourceKey<PlacedFeature> BASALT_LINE = PlacedFeaturesUtil.createPlacedFeature("basalt_line",
+			NetherDescentFeatures.BASALT_LINE,
+			() -> List.of(
+					CountPlacement.of(1),
+					InSquarePlacement.spread(),
+					PlacementUtils.RANGE_8_8,
+					EnvironmentScanPlacement.scanningFor(
+							Direction.DOWN,
+							BlockPredicate.matchesBlocks(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()),
+							32
+					),
+					BiomeFilter.biome()
+			)
+	);
 
     public static void placements() {
         NetherDescent.LOGGER.info("Registering Nether Descent Placements");
