@@ -2,8 +2,27 @@
   "feature": "netherdescent:arisian_blossom",
   "placement": [
     {
-      "type": "minecraft:count_on_every_layer",
-      "count": 3
+      "type": "minecraft:count",
+      "count": {
+        "type": "minecraft:uniform",
+        "max_inclusive": 64,
+        "min_inclusive": 31
+      }
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "max_inclusive": {
+          "below_top": 10
+        },
+        "min_inclusive": {
+          "above_bottom": 10
+        }
+      }
     },
     {
       "type": "minecraft:biome"

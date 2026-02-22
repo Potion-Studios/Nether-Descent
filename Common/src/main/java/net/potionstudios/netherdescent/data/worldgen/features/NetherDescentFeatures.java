@@ -98,13 +98,9 @@ public class NetherDescentFeatures {
 							.add(NetherDescentBlocks.SYTHIAN_SPROUTS.getBlockState(), 2)
 			), 3, 1));
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_CRIMSON_ROOTS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("tall_crimson_roots", NetherDescentBlocks.TALL_CRIMSON_ROOTS, 15);
-
 	//public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_CRIMSON_FUNGI = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("tall_crimson_fungi", NetherDescentBlocks.TALL_CRIMSON_FUNGI, 15);
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_CRIMSON_BERRY = createPatchConfiguredFeatureState("crimson_berry", () -> NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().defaultBlockState().setValue(CrimsonBerryBushBlock.AGE, 3), 32);
-
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_GARDEN_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_garden_vegetation", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_GARDEN_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_garden_vegetation", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
                 new WeightedStateProvider(
                         SimpleWeightedRandomList.<BlockState>builder()
                                 .add(Blocks.CRIMSON_ROOTS.defaultBlockState(), 5)
@@ -145,28 +141,7 @@ public class NetherDescentFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_ARISIAN_SPROUTS = createPatchConfiguredFeatureState("arisian_sprouts_patch", NetherDescentBlocks.ARISIAN_SPROUTS::getBlockState, 32);
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_HANGING_ARISIAN_SPROUTS = ConfiguredFeaturesUtil.createConfiguredFeature(
-			"hanging_arisian_sprouts_patch",
-			Feature.RANDOM_PATCH,
-			() -> new RandomPatchConfiguration(
-					64,
-					7,
-					3,
-					PlacementUtils.filtered(
-							Feature.SIMPLE_BLOCK,
-							new SimpleBlockConfiguration(
-									BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_SPROUTS.getBlock().defaultBlockState().setValue(HangingNDBushBlock.HANGING, true))
-							),
-							BlockPredicate.allOf(
-									BlockPredicate.matchesBlocks(
-											Direction.UP.getNormal(),
-											NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()
-									),
-									BlockPredicate.ONLY_IN_AIR_PREDICATE
-							)
-					)
-			)
-	);
+	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_HANGING_ARISIAN_SPROUTS = createPatchConfiguredFeatureState("hanging_arisian_sprouts_patch", () -> NetherDescentBlocks.ARISIAN_SPROUTS.getBlockState().setValue(HangingNDBushBlock.HANGING, true), 32);
 
 	private static ResourceKey<ConfiguredFeature<?, ?>> createPatchConfiguredFeatureState(String id, Supplier<? extends BlockState> state, int tries) {
 		return ConfiguredFeaturesUtil.createConfiguredFeature(id, Feature.RANDOM_PATCH, () -> FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(state.get())), List.of(), tries));

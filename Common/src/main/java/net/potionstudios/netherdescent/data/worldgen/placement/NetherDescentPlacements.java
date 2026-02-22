@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.placement.*;
@@ -40,7 +41,7 @@ public class NetherDescentPlacements {
 
     public static final ResourceKey<PlacedFeature> HANGING_ARISIAN_TANGLE_ROOTS = PlacedFeaturesUtil.createPlacedFeature("hanging_arisian_tangle_roots", NetherDescentFeatures.HANGING_ARISIAN_TANGLE_ROOTS, () -> List.of(CountPlacement.of(250), InSquarePlacement.spread(), PlacementUtils.FULL_RANGE, BiomeFilter.biome()));
 
-	public static final ResourceKey<PlacedFeature> ARISIAN_BLOSSOM = PlacedFeaturesUtil.createPlacedFeature("arisian_blossom", NetherDescentFeatures.ARISIAN_BLOSSOM, () -> List.of(CountOnEveryLayerPlacement.of(3), BiomeFilter.biome()));
+	public static final ResourceKey<PlacedFeature> ARISIAN_BLOSSOM = PlacedFeaturesUtil.createPlacedFeature("arisian_blossom", NetherDescentFeatures.ARISIAN_BLOSSOM, () -> List.of(CountPlacement.of(UniformInt.of(31, 64)), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
 
 	public static final ResourceKey<PlacedFeature> HANGING_ARISIAN_BLOSSOM =
 			PlacedFeaturesUtil.createPlacedFeature(
@@ -54,7 +55,7 @@ public class NetherDescentPlacements {
 					)
 			);
 
-	public static final ResourceKey<PlacedFeature> ARISIAN_DANDELIONS = PlacedFeaturesUtil.createPlacedFeature("arisian_dandelions", NetherDescentFeatures.ARISIAN_DANDELIONS, () -> List.of(CountOnEveryLayerPlacement.of(2), BiomeFilter.biome()));
+	public static final ResourceKey<PlacedFeature> ARISIAN_DANDELIONS = PlacedFeaturesUtil.createPlacedFeature("arisian_dandelions", NetherDescentFeatures.ARISIAN_DANDELIONS, () -> List.of(CountPlacement.of(UniformInt.of(31, 64)), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
 
 	public static final ResourceKey<PlacedFeature> HANGING_ARISIAN_DANDELIONS =
 			PlacedFeaturesUtil.createPlacedFeature(
@@ -68,7 +69,7 @@ public class NetherDescentPlacements {
 					)
 			);
 
-	public static final ResourceKey<PlacedFeature> PATCH_ARISIAN_SPROUTS = PlacedFeaturesUtil.createPlacedFeature("patch_arisian_sprouts", NetherDescentFeatures.PATCH_ARISIAN_SPROUTS, () -> List.of(CountPlacement.of(256), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
+	public static final ResourceKey<PlacedFeature> PATCH_ARISIAN_SPROUTS = PlacedFeaturesUtil.createPlacedFeature("patch_arisian_sprouts", NetherDescentFeatures.PATCH_ARISIAN_SPROUTS, () -> List.of(CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
 
 	public static final ResourceKey<PlacedFeature> PATCH_HANGING_ARISIAN_SPROUTS = PlacedFeaturesUtil.createPlacedFeature(
 			"patch_hanging_arisian_sprouts",
