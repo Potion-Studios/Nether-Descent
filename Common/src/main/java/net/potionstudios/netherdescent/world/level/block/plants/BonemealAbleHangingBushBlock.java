@@ -14,8 +14,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Supplier;
 
 public class BonemealAbleHangingBushBlock extends HangingNDBushBlock implements BonemealableBlock {
-	private final Supplier<NetherDescentDoublePlantBlock> block;
-	public BonemealAbleHangingBushBlock(Properties properties, Supplier<NetherDescentDoublePlantBlock> block, VoxelShape shape, VoxelShape hangingShape) {
+	private final Supplier<HangingDoublePlantBlock> block;
+	public BonemealAbleHangingBushBlock(Properties properties, Supplier<HangingDoublePlantBlock> block, VoxelShape shape, VoxelShape hangingShape) {
 		super(properties, shape, hangingShape);
 		this.block = block;
 	}
@@ -33,7 +33,7 @@ public class BonemealAbleHangingBushBlock extends HangingNDBushBlock implements 
 	@Override
 	public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
 		if (level.getBlockState(pos.above()).isAir()) {
-			BlockState blockState = block.get().defaultBlockState();
+			BlockState blockState = block.get().defaultBlockState().setValue(HangingDoublePlantBlock.HANGING, true);
 			level.setBlock(pos, blockState, 2);
 			level.setBlock(pos.above(), blockState.setValue(NetherDescentDoublePlantBlock.HALF, DoubleBlockHalf.UPPER), 2);
 		}
