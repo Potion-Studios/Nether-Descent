@@ -113,15 +113,14 @@ public class NetherDescentPlacements {
 	public static final ResourceKey<PlacedFeature> BASALT_LINE = PlacedFeaturesUtil.createPlacedFeature("basalt_line",
 			NetherDescentFeatures.BASALT_LINE,
 			() -> List.of(
-					CountPlacement.of(1),
+					CountOnEveryLayerPlacement.of(UniformInt.of(0, 2)),
 					InSquarePlacement.spread(),
 					PlacementUtils.RANGE_8_8,
-					EnvironmentScanPlacement.scanningFor(
-							Direction.DOWN,
-							BlockPredicate.matchesBlocks(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()),
-							32
-					),
-					BiomeFilter.biome()
+					BiomeFilter.biome(),
+					EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.allOf(
+							BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()),
+							BlockPredicate.not(BlockPredicate.solid())
+					), 12)
 			)
 	);
 

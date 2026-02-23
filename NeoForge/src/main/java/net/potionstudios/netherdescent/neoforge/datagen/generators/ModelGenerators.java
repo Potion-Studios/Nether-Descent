@@ -170,10 +170,15 @@ public class ModelGenerators {
 			createDoubleBlock(NetherDescentBlocks.TALL_EMBUR_ROOTS.get());
             createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get());
             createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get());
-			simpleBlock(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get(), models().getExistingFile(blockTexture(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get())));
+			getVariantBuilder(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get())
+					.partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER).addModels(new ConfiguredModel(models().getExistingFile(blockTexture(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get()))))
+					.partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER).addModels(new ConfiguredModel(models().withExistingParent(name(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get()) + "_top", NetherDescent.id("block/empty")).texture("particle", blockTexture(NetherDescentBlocks.ARISIAN_DANDELIONS.get()))));
+			simpleBlockItem(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get(), models().getExistingFile(blockTexture(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get())));
+
 			getVariantBuilder(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get())
 					.partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER).addModels(new ConfiguredModel(models().cross(name(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get()) + "_bottom", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_tall")).texture("particle", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_tall")).renderType("cutout")))
 					.partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER).addModels(new ConfiguredModel(models().cross(name(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get()) + "_top", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_small")).texture("particle", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_small")).renderType("cutout")));
+			simpleItemBlockTexture(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get(), name(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()) + "_side_small");
 
             createCrossBlock(NetherDescentBlocks.SYTHIAN_SPROUTS.getBlock(), "cutout");
             simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_SPROUTS.getBlock());
@@ -294,7 +299,6 @@ public class ModelGenerators {
                         else return ConfiguredModel.builder().modelFile(stableScaffolding).build();
                     }, ScaffoldingBlock.WATERLOGGED, ScaffoldingBlock.DISTANCE);
 
-
             itemModels().getBuilder(name(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get())).parent(stableScaffolding);
 
             getVariantBuilder(NetherDescentBlocks.SYTHIAN_FARMLAND.get()).forAllStates(state -> {
@@ -312,8 +316,6 @@ public class ModelGenerators {
             getVariantBuilder(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get()).forAllStates(state -> ConfiguredModel.builder()
                     .modelFile(models().cross(name(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get()) + "_stage" + state.getValue(CrimsonBerryBushBlock.AGE), blockNDTexture(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get(), "stage" + state.getValue(CrimsonBerryBushBlock.AGE))).renderType("cutout"))
                     .build());
-
-            //rotatableBlock(NetherDescentBlocks.FUNGAL_BULBS.get());  TODO: Fix Model to match hardcoded one
 
             registerStairs(NetherDescentBlocks.CUT_PENDORITE_STAIRS.get(), NetherDescentBlocks.CUT_PENDORITE.get());
             registerSlab(NetherDescentBlocks.CUT_PENDORITE_SLAB.get(), NetherDescentBlocks.CUT_PENDORITE.get());

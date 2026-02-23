@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "netherdescent:block/arisian_moss_carpet_side_small"
+  }
+}
