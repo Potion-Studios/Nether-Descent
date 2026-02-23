@@ -151,7 +151,7 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
 
     @Override
     public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
-        BlockState topper = createTopperWithSideChance(this, level, pos, () -> true);
+        BlockState topper = createTopperWithSideChance(this, level, pos, () -> true, state.getValue(HANGING));
         if (!topper.isAir()) {
             Direction growthDir = state.getValue(HANGING) ? Direction.DOWN : Direction.UP;
             level.setBlock(pos.relative(growthDir), topper.setValue(HANGING, state.getValue(HANGING)), 3);
@@ -161,27 +161,26 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     @Override
     public void setPlacedBy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack stack) {
         if (!level.isClientSide()) {
-            RandomSource randomSource = level.getRandom();
-            BlockState blockState = createTopperWithSideChance(this.asBlock(), level, pos, randomSource::nextBoolean);
-            if (!blockState.isAir()) {
-                level.setBlock(blockState.getValue(HANGING) ? pos.below() : pos.above(), blockState, 3);
-            }
+            BlockPos growthPos = pos.relative(state.getValue(HANGING) ? Direction.DOWN : Direction.UP);
+            BlockState topper = createTopperWithSideChance(this, level, pos, level.getRandom()::nextBoolean, state.getValue(HANGING));
+
+            if (!topper.isAir() && level.getBlockState(growthPos).canBeReplaced())
+                level.setBlock(growthPos, topper.setValue(HANGING, state.getValue(HANGING)), 3);
         }
     }
 
-    private static BlockState createTopperWithSideChance(Block block, BlockGetter level, BlockPos pos, BooleanSupplier placeSide) {
-        BlockPos blockPos = pos.above();
+    private static BlockState createTopperWithSideChance(Block block, BlockGetter level, BlockPos pos, BooleanSupplier placeSide, boolean hanging) {
+        BlockPos blockPos = hanging ? pos.below() : pos.above();
         BlockState blockState = level.getBlockState(blockPos);
         boolean bl = blockState.is(block);
         if ((!bl || !(Boolean)blockState.getValue(BASE)) && (bl || blockState.canBeReplaced())) {
             BlockState blockState2 = block.defaultBlockState().setValue(BASE, false);
-            BlockState blockState3 = getUpdatedState(block, blockState2, level, pos.above(), true);
+            BlockState blockState3 = getUpdatedState(block, blockState2, level, hanging ? pos.below() : pos.above(), true);
 
             for (Direction direction : Direction.Plane.HORIZONTAL) {
                 EnumProperty<WallSide> enumProperty = getPropertyForFace(direction);
-                if (blockState3.getValue(enumProperty) != WallSide.NONE && !placeSide.getAsBoolean()) {
+                if (blockState3.getValue(enumProperty) != WallSide.NONE && !placeSide.getAsBoolean())
                     blockState3 = blockState3.setValue(enumProperty, WallSide.NONE);
-                }
             }
 
             return hasFaces(blockState3) && blockState3 != blockState ? blockState3 : Blocks.AIR.defaultBlockState();
@@ -253,9 +252,9 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     public static void placeAt(BlockState blockState, LevelAccessor level, BlockPos pos, RandomSource random, int flags) {
         BlockState blockState2 = getUpdatedState(blockState.getBlock(), blockState, level, pos, true);
         level.setBlock(pos, blockState2, 3);
-        BlockState blockState3 = createTopperWithSideChance(blockState.getBlock(), level, pos, random::nextBoolean);
+        BlockState blockState3 = createTopperWithSideChance(blockState.getBlock(), level, pos, random::nextBoolean, blockState.getValue(HANGING));
         if (!blockState3.isAir()) {
-            level.setBlock(pos.above(), blockState3, flags);
+            level.setBlock(blockState.getValue(HANGING) ? pos.below() : pos.above(), blockState3, flags);
         }
     }
 }
