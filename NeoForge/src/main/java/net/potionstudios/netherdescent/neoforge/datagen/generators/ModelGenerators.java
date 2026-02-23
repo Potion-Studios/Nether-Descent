@@ -170,6 +170,10 @@ public class ModelGenerators {
 			createDoubleBlock(NetherDescentBlocks.TALL_EMBUR_ROOTS.get());
             createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get());
             createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get());
+			simpleBlock(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get(), models().getExistingFile(blockTexture(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get())));
+			getVariantBuilder(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get())
+					.partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER).addModels(new ConfiguredModel(models().cross(name(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get()) + "_bottom", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_tall")).texture("particle", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_tall")).renderType("cutout")))
+					.partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER).addModels(new ConfiguredModel(models().cross(name(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get()) + "_top", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_small")).texture("particle", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_small")).renderType("cutout")));
 
             createCrossBlock(NetherDescentBlocks.SYTHIAN_SPROUTS.getBlock(), "cutout");
             simpleItemBlockTexture(NetherDescentBlocks.SYTHIAN_SPROUTS.getBlock());

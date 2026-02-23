@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "netherdescent:block/tall_arisian_sprouts_bottom"
+    },
+    "half=upper": {
+      "model": "netherdescent:block/tall_arisian_sprouts_top"
+    }
+  }
+}
