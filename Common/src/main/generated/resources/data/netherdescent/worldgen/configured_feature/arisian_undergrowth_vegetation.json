@@ -1,0 +1,62 @@
+{
+  "type": "netherdescent:nether_forest_vegetation",
+  "config": {
+    "spread_height": 4,
+    "spread_width": 8,
+    "state_provider": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "netherdescent:arisian_sprouts",
+            "Properties": {
+              "hanging": "false"
+            }
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "netherdescent:tall_arisian_sprouts",
+            "Properties": {
+              "half": "lower",
+              "hanging": "false"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "netherdescent:arisian_dandelions",
+            "Properties": {
+              "hanging": "false"
+            }
+          },
+          "weight": 2
+        },
+        {
+          "data": {
+            "Name": "netherdescent:tall_arisian_dandelions",
+            "Properties": {
+              "half": "lower",
+              "hanging": "false"
+            }
+          },
+          "weight": 1
+        },
+        {
+          "data": {
+            "Name": "netherdescent:arisian_blossom",
+            "Properties": {
+              "hanging": "false",
+              "lit": "false",
+              "pulse": "false",
+              "strength": "0"
+            }
+          },
+          "weight": 1
+        }
+      ]
+    }
+  }
+}

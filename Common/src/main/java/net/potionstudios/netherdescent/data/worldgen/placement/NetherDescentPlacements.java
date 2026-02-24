@@ -51,36 +51,7 @@ public class NetherDescentPlacements {
 			), 12),
 			BiomeFilter.biome()));
 
-	public static final ResourceKey<PlacedFeature> ARISIAN_BLOSSOM = PlacedFeaturesUtil.createPlacedFeature("arisian_blossom", NetherDescentFeatures.ARISIAN_BLOSSOM, () -> List.of(CountPlacement.of(UniformInt.of(31, 64)), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
-
-	public static final ResourceKey<PlacedFeature> HANGING_ARISIAN_BLOSSOM =
-			PlacedFeaturesUtil.createPlacedFeature(
-					"hanging_arisian_blossom",
-					NetherDescentFeatures.HANGING_ARISIAN_BLOSSOM,
-					() -> List.of(
-							CountPlacement.of(5),
-							InSquarePlacement.spread(),
-							PlacementUtils.FULL_RANGE,
-							BiomeFilter.biome()
-					)
-			);
-
-	public static final ResourceKey<PlacedFeature> ARISIAN_DANDELIONS = PlacedFeaturesUtil.createPlacedFeature("arisian_dandelions", NetherDescentFeatures.ARISIAN_DANDELIONS, () -> List.of(CountPlacement.of(UniformInt.of(31, 64)), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
-
-	public static final ResourceKey<PlacedFeature> HANGING_ARISIAN_DANDELIONS =
-			PlacedFeaturesUtil.createPlacedFeature(
-					"hanging_arisian_dandelions",
-					NetherDescentFeatures.HANGING_ARISIAN_DANDELIONS,
-					() -> List.of(
-							CountPlacement.of(5),
-							InSquarePlacement.spread(),
-							PlacementUtils.FULL_RANGE,
-							BiomeFilter.biome()
-					)
-			);
-
-	public static final ResourceKey<PlacedFeature> PATCH_ARISIAN_SPROUTS = PlacedFeaturesUtil.createPlacedFeature("patch_arisian_sprouts", NetherDescentFeatures.PATCH_ARISIAN_SPROUTS, () -> List.of(CountPlacement.of(UniformInt.of(192, 256)), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
-
+	public static final ResourceKey<PlacedFeature> ARISIAN_UNDERGROWTH_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("arisian_undergrowth_vegetation", NetherDescentFeatures.ARISIAN_UNDERGROWTH_VEGETATION, () -> List.of(CountPlacement.of(125), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
 	public static final ResourceKey<PlacedFeature> PATCH_HANGING_ARISIAN_SPROUTS = PlacedFeaturesUtil.createPlacedFeature(
 			"patch_hanging_arisian_sprouts",
 			NetherDescentFeatures.PATCH_HANGING_ARISIAN_SPROUTS,

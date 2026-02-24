@@ -40,13 +40,8 @@ public class NetherDescentBiomeBuilder {
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
 
         addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_MOSS_CARPET_PATCH);
-        addVegetal(generationSettings, NetherDescentPlacements.BASALT_LINE);
-        addVegetal(generationSettings, NetherDescentPlacements.PATCH_ARISIAN_SPROUTS);
+        addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_UNDERGROWTH_VEGETATION);
         addVegetal(generationSettings, NetherDescentPlacements.PATCH_HANGING_ARISIAN_SPROUTS);
-        addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_BLOSSOM);
-        addVegetal(generationSettings, NetherDescentPlacements.HANGING_ARISIAN_BLOSSOM);
-        addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_DANDELIONS);
-        addVegetal(generationSettings, NetherDescentPlacements.HANGING_ARISIAN_DANDELIONS);
         addVegetal(generationSettings, NetherDescentTreePlacements.ARISIAN_ROOTS_HANGING);
         addVegetal(generationSettings, NetherDescentTreePlacements.ARISIAN_TREES_HANGING);
         addVegetal(generationSettings, NetherDescentPlacements.HANGING_ARISIAN_TANGLE_ROOTS);

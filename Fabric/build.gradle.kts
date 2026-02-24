@@ -43,7 +43,6 @@ dependencies {
     modApi("dev.corgitaco:Oh-The-Trees-Youll-Grow-fabric:$minecraftVersion-${project.properties["ohthetreesyoullgrow_version"]}")
     modApi("me.lucko:fabric-permissions-api:0.3.1")
 
-    modCompileOnly("mcp.mobius.waila:wthit-api:fabric-${project.properties["WTHIT"]}")
     modLocalRuntime("mcp.mobius.waila:wthit:fabric-${project.properties["WTHIT"]}")
     modLocalRuntime("lol.bai:badpackets:fabric-${project.properties["badPackets"]}")
 }

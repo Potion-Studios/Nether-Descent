@@ -2,9 +2,7 @@ package net.potionstudios.netherdescent.world.level.block.plants;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -19,8 +17,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluids;
+import net.potionstudios.netherdescent.NetherDescent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,7 +26,7 @@ public class HangingDoublePlantBlock extends NetherDescentDoublePlantBlock {
 	public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
 	public HangingDoublePlantBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(HANGING, false));
+		this.registerDefaultState(this.stateDefinition.any().setValue(HANGING, false).setValue(HALF, DoubleBlockHalf.LOWER));
 	}
 
 	@Override
@@ -54,6 +52,7 @@ public class HangingDoublePlantBlock extends NetherDescentDoublePlantBlock {
 				return blockstate.is(this) && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER;
 			}
 		}
+		NetherDescent.LOGGER.info("HangingDoublePlantBlock.canSurvive: {} at {}", state, pos);
 		return super.canSurvive(state, level, pos);
 	}
 

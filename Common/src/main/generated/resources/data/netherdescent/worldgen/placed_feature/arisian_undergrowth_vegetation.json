@@ -1,13 +1,9 @@
 {
-  "feature": "netherdescent:arisian_dandelions",
+  "feature": "netherdescent:arisian_undergrowth_vegetation",
   "placement": [
     {
       "type": "minecraft:count",
-      "count": {
-        "type": "minecraft:uniform",
-        "max_inclusive": 64,
-        "min_inclusive": 31
-      }
+      "count": 125
     },
     {
       "type": "minecraft:in_square"
