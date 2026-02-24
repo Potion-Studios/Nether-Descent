@@ -13,6 +13,7 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -145,6 +146,17 @@ public class NetherDescentFeatures {
 							.add(NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState(), 2)
 							.add(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get().defaultBlockState())
 							.add(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlockState())
+			), 8, 4)
+	);
+
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_UNDERGROWTH_HANGING_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_undergrowth_hanging_vegetation", NetherDescentFeature.HANGING_NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
+			new WeightedStateProvider(
+					SimpleWeightedRandomList.<BlockState>builder()
+							.add(NetherDescentBlocks.ARISIAN_SPROUTS.getBlockState().setValue(BlockStateProperties.HANGING, true), 2)
+							.add(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true))
+							.add(NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true), 2)
+							.add(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true))
+							.add(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlockState().setValue(BlockStateProperties.HANGING, true))
 			), 8, 4)
 	);
 

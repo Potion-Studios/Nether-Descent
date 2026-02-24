@@ -22,6 +22,7 @@ public class NetherDescentFeature {
 	public static final Supplier<Feature<NoneFeatureConfiguration>> SYTHIAN_STALK = create("sythian_stalk", () -> new SythianStalkFeature(NoneFeatureConfiguration.CODEC));
 	public static final Supplier<Feature<NoneFeatureConfiguration>> SYTHIAN_STALK_DOWNWARD = create("sythian_stalk_downward", () -> new SythianStalkDownwardFeature(NoneFeatureConfiguration.CODEC));
     public static final Supplier<Feature<NetherForestVegetationConfig>> NETHER_FOREST_VEGETATION = create("nether_forest_vegetation", () -> new NetherForestVegetationFeature(NetherForestVegetationConfig.CODEC));
+	public static final Supplier<Feature<NetherForestVegetationConfig>> HANGING_NETHER_FOREST_VEGETATION = create("hanging_nether_forest_vegetation", () -> new HangingNetherForestVegetationFeature(NetherForestVegetationConfig.CODEC));
     public static final Supplier<Feature<FloatingBlockFeatureConfiguration>> FLOATING_BLOCK_FEATURE = create("floating_block_feature", () -> new FloatingBlockFeature(FloatingBlockFeatureConfiguration.CODEC));
 	public static final Supplier<Feature<NoneFeatureConfiguration>> BASALT_LINE = create("basalt_line", () -> new BasaltLineFeature(NoneFeatureConfiguration.CODEC));
 

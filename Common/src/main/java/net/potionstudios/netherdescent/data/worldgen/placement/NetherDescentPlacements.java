@@ -52,16 +52,7 @@ public class NetherDescentPlacements {
 			BiomeFilter.biome()));
 
 	public static final ResourceKey<PlacedFeature> ARISIAN_UNDERGROWTH_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("arisian_undergrowth_vegetation", NetherDescentFeatures.ARISIAN_UNDERGROWTH_VEGETATION, () -> List.of(CountPlacement.of(125), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
-	public static final ResourceKey<PlacedFeature> PATCH_HANGING_ARISIAN_SPROUTS = PlacedFeaturesUtil.createPlacedFeature(
-			"patch_hanging_arisian_sprouts",
-			NetherDescentFeatures.PATCH_HANGING_ARISIAN_SPROUTS,
-			() -> List.of(
-					CountPlacement.of(256),
-					InSquarePlacement.spread(),
-					PlacementUtils.RANGE_10_10,
-					BiomeFilter.biome()
-			)
-	);
+	public static final ResourceKey<PlacedFeature> ARISIAN_UNDERGROWTH_HANGING_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("arisian_undergrowth_hanging_vegetation", NetherDescentFeatures.ARISIAN_UNDERGROWTH_HANGING_VEGETATION, () -> List.of(CountPlacement.of(100), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
 
     public static final ResourceKey<PlacedFeature> SYTHIAN_STALKS = PlacedFeaturesUtil.createPlacedFeature("sythian_stalks", NetherDescentFeatures.SYTHIAN_STALK, () -> List.of(NoiseBasedCountPlacement.of(160, 80.0, 0.3), InSquarePlacement.spread(), PlacementUtils.RANGE_4_4, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.allOf(
             BlockPredicate.matchesTag(Direction.DOWN.getNormal(), NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON),

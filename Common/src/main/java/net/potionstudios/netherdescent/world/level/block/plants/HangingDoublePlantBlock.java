@@ -109,6 +109,12 @@ public class HangingDoublePlantBlock extends NetherDescentDoublePlantBlock {
 		}
 	}
 
+	public static void placeHangingAt(LevelAccessor level, BlockState state, BlockPos pos, int flags) {
+		BlockPos blockPos = pos.below();
+		level.setBlock(pos, copyWaterloggedFrom(level, pos, state.setValue(HALF, DoubleBlockHalf.LOWER).setValue(HANGING, true)), flags);
+		level.setBlock(blockPos, copyWaterloggedFrom(level, blockPos, state.setValue(HALF, DoubleBlockHalf.UPPER).setValue(HANGING, true)), flags);
+	}
+
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder.add(HANGING));

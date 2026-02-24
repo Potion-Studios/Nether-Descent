@@ -1,4 +1,5 @@
 {
+  "parent": "netherdescent:block/empty",
   "textures": {
     "particle": "netherdescent:block/arisian_dandelions"
   }
