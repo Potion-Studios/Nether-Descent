@@ -1,10 +1,18 @@
 {
   "variants": {
-    "half=lower": {
+    "half=lower,hanging=false": {
       "model": "netherdescent:block/tall_arisian_sprouts_bottom"
     },
-    "half=upper": {
+    "half=lower,hanging=true": {
+      "model": "netherdescent:block/tall_arisian_sprouts_bottom",
+      "x": 180
+    },
+    "half=upper,hanging=false": {
       "model": "netherdescent:block/tall_arisian_sprouts_top"
+    },
+    "half=upper,hanging=true": {
+      "model": "netherdescent:block/tall_arisian_sprouts_top",
+      "x": 180
     }
   }
 }

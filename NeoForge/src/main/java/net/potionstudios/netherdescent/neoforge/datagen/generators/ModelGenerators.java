@@ -170,14 +170,28 @@ public class ModelGenerators {
 			createDoubleBlock(NetherDescentBlocks.TALL_EMBUR_ROOTS.get());
             createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get());
             createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get());
-			getVariantBuilder(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get())
-					.partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER).addModels(new ConfiguredModel(models().getExistingFile(blockTexture(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get()))))
-					.partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER).addModels(new ConfiguredModel(models().withExistingParent(name(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get()) + "_top", NetherDescent.id("block/empty")).texture("particle", blockTexture(NetherDescentBlocks.ARISIAN_DANDELIONS.get()))));
+			getVariantBuilder(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get()).forAllStates(state -> {
+				if (state.getValue(HangingDoublePlantBlock.HANGING))
+					if (state.getValue(HangingDoublePlantBlock.HALF) == DoubleBlockHalf.LOWER)
+						return ConfiguredModel.builder().modelFile(models().getExistingFile(blockTexture(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get()))).rotationX(180).build();
+					else return ConfiguredModel.builder().modelFile(models().withExistingParent(name(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get()) + "_top", NetherDescent.id("block/empty")).texture("particle", blockTexture(NetherDescentBlocks.ARISIAN_DANDELIONS.get()))).rotationX(180).build();
+				else
+					if (state.getValue(HangingDoublePlantBlock.HALF) == DoubleBlockHalf.LOWER)
+						return ConfiguredModel.builder().modelFile(models().getExistingFile(blockTexture(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get()))).build();
+					else return ConfiguredModel.builder().modelFile(models().withExistingParent(name(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get()) + "_top", NetherDescent.id("block/empty")).texture("particle", blockTexture(NetherDescentBlocks.ARISIAN_DANDELIONS.get()))).build();
+			});
 			simpleBlockItem(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get(), models().getExistingFile(blockTexture(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get())));
 
-			getVariantBuilder(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get())
-					.partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.LOWER).addModels(new ConfiguredModel(models().cross(name(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get()) + "_bottom", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_tall")).texture("particle", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_tall")).renderType("cutout")))
-					.partialState().with(DoublePlantBlock.HALF, DoubleBlockHalf.UPPER).addModels(new ConfiguredModel(models().cross(name(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get()) + "_top", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_small")).texture("particle", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_small")).renderType("cutout")));
+			getVariantBuilder(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get()).forAllStates(state -> {
+				if (state.getValue(HangingDoublePlantBlock.HANGING))
+					if (state.getValue(HangingDoublePlantBlock.HALF) == DoubleBlockHalf.LOWER)
+						return ConfiguredModel.builder().modelFile(models().cross(name(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get()) + "_bottom", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_tall")).texture("particle", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_tall")).renderType("cutout")).rotationX(180).build();
+					else return ConfiguredModel.builder().modelFile(models().cross(name(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get()) + "_top", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_small")).texture("particle", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_small")).renderType("cutout")).rotationX(180).build();
+				else
+				if (state.getValue(HangingDoublePlantBlock.HALF) == DoubleBlockHalf.LOWER)
+					return ConfiguredModel.builder().modelFile(models().cross(name(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get()) + "_bottom", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_tall")).texture("particle", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_tall")).renderType("cutout")).build();
+				else return ConfiguredModel.builder().modelFile(models().cross(name(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get()) + "_top", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_small")).texture("particle", blockNDTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "side_small")).renderType("cutout")).build();
+			});
 			simpleItemBlockTexture(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get(), name(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()) + "_side_small");
 
             createCrossBlock(NetherDescentBlocks.SYTHIAN_SPROUTS.getBlock(), "cutout");
@@ -610,28 +624,6 @@ public class ModelGenerators {
 				}
 			}
 		}
-
-        private void rotatableBlock(Block block) {
-            getVariantBuilder(block).partialState().addModels(createRotatedModels(models().getExistingFile(blockTexture(block))));
-        }
-
-        private void rotatableBlockWithItem(Block block, ModelFile modelFile) {
-            getVariantBuilder(block).partialState().addModels(createRotatedModels(modelFile));
-            simpleBlockItem(block, modelFile);
-        }
-
-        private void rotatableBlock(Block block, ModelFile modelFile) {
-            getVariantBuilder(block).partialState().addModels(createRotatedModels(modelFile));
-        }
-
-        private ConfiguredModel[] createRotatedModels(ModelFile model) {
-            return ConfiguredModel.builder()
-                    .modelFile(model)
-                    .nextModel().modelFile(model).rotationY(90)
-                    .nextModel().modelFile(model).rotationY(180)
-                    .nextModel().modelFile(model).rotationY(270)
-                    .build();
-        }
 
 		private String name(Block block) {
 			return key(block).getPath();
