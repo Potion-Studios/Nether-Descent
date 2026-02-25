@@ -76,6 +76,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 
 		int newSize = currentSize + 1;
 		level.setBlockAndUpdate(pos, state.setValue(SEGMENT, SegmentType.BASE).setValue(SIZE, newSize));
+		level.playSound(null, pos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
 
 		BlockPos nextPos = pos;
 		for (int i = 1; i <= 3; i++) {
@@ -83,7 +84,6 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 			if (level.getBlockState(nextPos).canBeReplaced()) {
 				SegmentType type = (i == 3) ? SegmentType.END : SegmentType.MIDDLE;
 				
-				// Push entities out of the way
 				AABB aabb = new AABB(nextPos);
 				for (Entity entity : level.getEntitiesOfClass(Entity.class, aabb)) {
 					Vec3 movement = Vec3.atLowerCornerOf(state.getValue(FACING).getNormal()).scale(0.5);
@@ -95,17 +95,18 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 						.setValue(FLOWERING, level.getRandom().nextBoolean())
 						.setValue(SEGMENT, type)
 						.setValue(SIZE, newSize));
+				level.playSound(null, nextPos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
 			} else {
 				if (i > 1) {
 					BlockPos prevPos = nextPos.relative(state.getValue(FACING).getOpposite());
 					BlockState prevState = level.getBlockState(prevPos);
 					if (prevState.is(this)) {
 						level.setBlockAndUpdate(prevPos, prevState.setValue(SEGMENT, SegmentType.END));
-						level.playLocalSound(pos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f, true);
+						level.playSound(null, prevPos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
 					}
 				} else {
 					level.setBlockAndUpdate(pos, state.setValue(SEGMENT, SegmentType.END).setValue(SIZE, currentSize));
-					level.playLocalSound(pos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f, true);
+					level.playSound(null, pos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
 				}
 				break;
 			}
@@ -127,7 +128,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 	}
 
 	private boolean isEntityOnBlock(Level level, BlockPos pos) {
-		AABB aabb = new AABB(pos).expandTowards(0, 0.5, 0); // Slightly above the block
+		AABB aabb = new AABB(pos).expandTowards(0, 0.5, 0);
 		return !level.getEntitiesOfClass(LivingEntity.class, aabb).isEmpty();
 	}
 
@@ -140,47 +141,39 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 
 		if (prevState.is(this) && prevState.getValue(FACING) == state.getValue(FACING) && prevState.getValue(SIZE) == currentSize) {
 			level.destroyBlock(pos, false);
-			level.playLocalSound(pos, this.getSoundType(state).getBreakSound(), SoundSource.BLOCKS, 1.0f, 1.0f, true);
+			level.playSound(null, pos, this.getSoundType(state).getBreakSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
 			if (prevState.getValue(SEGMENT) == SegmentType.BASE) {
-				// We reached the original tip that was stepped on to grow these 3
 				BlockState nextState = prevState.setValue(SEGMENT, SegmentType.END).setValue(SIZE, currentSize - 1);
 				level.setBlockAndUpdate(prevPos, nextState);
-				// If still not at SIZE 0, continue retracting immediately
 				if (nextState.getValue(SIZE) > 0 || nextState.getValue(SEGMENT) != SegmentType.END) {
 					level.scheduleTick(prevPos, this, 5);
 				}
 			} else {
 				level.setBlockAndUpdate(prevPos, prevState.setValue(SEGMENT, SegmentType.END));
-				// Schedule next retraction step
-				level.scheduleTick(prevPos, this, 5); // Rapid retraction
+				level.scheduleTick(prevPos, this, 5);
 			}
 		} else {
-			// We reached the base or something else.
 			if (currentSize > 0) {
 				level.destroyBlock(pos, false);
-				level.playLocalSound(pos, this.getSoundType(state).getBreakSound(), SoundSource.BLOCKS, 1.0f, 1.0f, true);
+				level.playSound(null, pos, this.getSoundType(state).getBreakSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
 			} else {
-				// It is the base, set it to tip
 				level.setBlockAndUpdate(pos, state.setValue(SEGMENT, SegmentType.END).setValue(SIZE, 0));
 			}
 		}
 	}
 
 	@Override
-	public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean moved) {
+	public void onRemove(BlockState state, @NotNull Level level, @NotNull BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.is(newState.getBlock())) {
 			BlockPos nextPos = pos.relative(state.getValue(FACING));
 			BlockState nextState = level.getBlockState(nextPos);
 			if (nextState.is(this) && nextState.getValue(FACING) == state.getValue(FACING)) {
-				// If we break any part of the thorn, the next ones (which are same SIZE) should break.
-				// This includes cases where we break a BASE or a MIDDLE segment.
-				if (nextState.getValue(SIZE) == state.getValue(SIZE) && nextState.getValue(SEGMENT) != SegmentType.BASE) {
+				if (nextState.getValue(SIZE).equals(state.getValue(SIZE)) && nextState.getValue(SEGMENT) != SegmentType.BASE) {
 					level.destroyBlock(nextPos, false);
-					level.playLocalSound(pos, this.getSoundType(state).getBreakSound(), SoundSource.BLOCKS, 1.0f, 1.0f, true);
+					//level.playLocalSound(pos, this.getSoundType(state).getBreakSound(), SoundSource.BLOCKS, 1.0f, 1.0f, true);
 				}
 			}
 
-			// If we break the tip block, make the one behind it the new tip and schedule a tick
 			if (state.getValue(SEGMENT) == SegmentType.END) {
 				BlockPos prevPos = pos.relative(state.getValue(FACING).getOpposite());
 				BlockState prevState = level.getBlockState(prevPos);
