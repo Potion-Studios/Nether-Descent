@@ -2,6 +2,7 @@ package net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorat
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.RandomSource;
@@ -54,7 +55,11 @@ public class GrowingPlantVinesDecorator extends TreeDecorator {
     public void place(@NotNull Context context) {
         RandomSource randomSource = context.random();
         LevelReader levelReader = (LevelReader) context.level();
-        for (BlockPos blockPos: context.leaves()) {
+        ObjectArrayList<BlockPos> list = new ObjectArrayList<>();
+        list.addAll(context.leaves());
+        list.addAll(context.logs());
+        list.addAll(context.roots());
+        for (BlockPos blockPos: list) {
             if (attachable.isEmpty() || levelReader.getBlockState(blockPos).is(attachable.get())) {
                 BlockPos blockPos1 = blockPos.below();
                 if (head().canSurvive(levelReader, blockPos1) && randomSource.nextInt(3) > 0) {
