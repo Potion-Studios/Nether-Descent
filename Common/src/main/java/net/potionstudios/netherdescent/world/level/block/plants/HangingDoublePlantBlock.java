@@ -18,7 +18,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.material.Fluids;
-import net.potionstudios.netherdescent.NetherDescent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -52,7 +51,6 @@ public class HangingDoublePlantBlock extends NetherDescentDoublePlantBlock {
 				return blockstate.is(this) && blockstate.getValue(HALF) == DoubleBlockHalf.LOWER;
 			}
 		}
-		NetherDescent.LOGGER.info("HangingDoublePlantBlock.canSurvive: {} at {}", state, pos);
 		return super.canSurvive(state, level, pos);
 	}
 

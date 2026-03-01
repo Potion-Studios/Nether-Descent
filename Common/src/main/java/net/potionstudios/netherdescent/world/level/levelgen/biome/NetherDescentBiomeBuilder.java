@@ -38,6 +38,7 @@ public class NetherDescentBiomeBuilder {
         BiomeGenerationSettings.Builder generationSettings = setupDefaultNetherGeneration(placedFeatureHolderGetter, carverGetter);
 
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
+        generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherDescentOrePlacements.ORE_PENDORITE);
 
         addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_MOSS_CARPET_PATCH);
         addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_UNDERGROWTH_VEGETATION);
