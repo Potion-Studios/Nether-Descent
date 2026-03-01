@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import org.jetbrains.annotations.NotNull;
 
 public class ArisianBlossomBlock extends HangingNDBushBlock {
@@ -97,8 +98,11 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 			level.setBlockAndUpdate(pos, newState);
 			level.updateNeighborsAt(pos, this);
 
-			if (newPulse)
+			if (newPulse) {
 				level.scheduleTick(pos, this, 2);
+				if (!level.isClientSide())
+					((ServerLevel) level).sendParticles(NetherDescentParticles.GILL_LEVITATE.get(), pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, 1, 0.12, 0.02, 0.12, 0.02);
+			}
 		}
 	}
 
