@@ -41,6 +41,7 @@ public class NetherDescentTreeFeatures {
 
     public static final GrowingPlantVinesDecorator WEEPING_VINES_DECORATOR = new GrowingPlantVinesDecorator(Blocks.WEEPING_VINES, Blocks.WEEPING_VINES_PLANT);
     public static final Supplier<GrowingPlantVinesDecorator> ARISIAN_TANGLE_ROOTS_DECORATOR = () -> new GrowingPlantVinesDecorator(NetherDescentBlocks.ARISIAN_TANGLE_ROOTS.get(), NetherDescentBlocks.ARISIAN_TANGLE_ROOTS_PLANT.get(), NetherDescentBlocks.ARISIAN.logstem());
+    public static final Supplier<AttachedToLogsDecorator> THORN_SPROUT_DECORATOR = () -> new AttachedToLogsDecorator(0.1F, 0, 1, SimpleStateProvider.simple(NetherDescentBlocks.THORN_SPROUT.get()), 2, List.of(Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH));
 
     //ARISIAN TREES ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_ROOT_1 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_root_1",
@@ -55,7 +56,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(List.of(Blocks.CHERRY_LEAVES, Blocks.SHROOMLIGHT))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get()))
+                    .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .build()
     );
@@ -72,7 +73,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(List.of(Blocks.CHERRY_LEAVES, Blocks.SHROOMLIGHT))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get()))
+                    .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .build()
     );
@@ -89,7 +90,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(List.of(Blocks.CHERRY_LEAVES, Blocks.SHROOMLIGHT))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get()))
+                    .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .build()
     );
@@ -106,7 +107,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(List.of(Blocks.CHERRY_LEAVES, Blocks.SHROOMLIGHT))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
-                    .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), ARISIAN_BRANCH_DECORATOR.get()))
+                    .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), ARISIAN_BRANCH_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .build()
     );
