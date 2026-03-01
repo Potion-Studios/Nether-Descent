@@ -105,6 +105,7 @@ public class TagsGenerator {
 			tag(BlockTags.CAMPFIRES).add(NetherDescentBlocks.PENDORITE_CAMPFIRE.get());
 
             tag(BlockTags.FLOWERS).add(NetherDescentBlocks.EMBUR_LILY.get(), NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock(), NetherDescentBlocks.ARISIAN_DANDELIONS.get());
+			tag(BlockTags.TALL_FLOWERS).add(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get());
 
             tag(NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON).addTag(BlockTags.NYLIUM).add(NetherDescentBlocks.SYTHIAN_SHOOT.get(), NetherDescentBlocks.SYTHIAN_STALK.getBlock(), NetherDescentBlocks.SYTHIAN_FARMLAND.get());
 
@@ -176,6 +177,8 @@ public class TagsGenerator {
             copy(Tags.Blocks.ORES_QUARTZ, Tags.Items.ORES_QUARTZ);
             copy(Tags.Blocks.CHAINS, Tags.Items.CHAINS);
             NetherDescentWoodSet.woodsets().forEach(set -> copy(set.logBlockTag(), set.logItemTag()));
+			copy(BlockTags.FLOWERS, ItemTags.FLOWERS);
+			copy(BlockTags.TALL_FLOWERS, ItemTags.TALL_FLOWERS);
 
 			tag(Tags.Items.BRICKS_NETHER).add(NetherDescentItems.BLUE_NETHER_BRICK.get());
             tag(Tags.Items.FOODS_BERRY).add(NetherDescentItems.CRIMSON_BERRIES.get());
