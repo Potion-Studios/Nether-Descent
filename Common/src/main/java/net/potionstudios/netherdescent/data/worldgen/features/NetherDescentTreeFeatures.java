@@ -63,8 +63,8 @@ public class NetherDescentTreeFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_ROOT_2 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_root_2",
             TYGFeatures.TREE_FROM_NBT_V2,
             () -> new TreeFromStructureNBTConfigV2.Builder()
-                    .baseLocation(NetherDescent.id("features/trees/arisian/arisian_root_trunk1"))
-                    .canopyLocation(NetherDescent.id("features/trees/arisian/arisian_root_canopy1"))
+                    .baseLocation(NetherDescent.id("features/trees/arisian/arisian_root_trunk2"))
+                    .canopyLocation(NetherDescent.id("features/trees/arisian/arisian_root_canopy2"))
                     .height(BiasedToBottomInt.of(2, 45))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN.logstem()))
                     .leavesProvider(List.of(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_LEAVES.get()), BlockStateProvider.simple(Blocks.SHROOMLIGHT)))
@@ -80,8 +80,8 @@ public class NetherDescentTreeFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_ROOT_3 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_root_3",
             TYGFeatures.TREE_FROM_NBT_V2,
             () -> new TreeFromStructureNBTConfigV2.Builder()
-                    .baseLocation(NetherDescent.id("features/trees/arisian/arisian_root_trunk1"))
-                    .canopyLocation(NetherDescent.id("features/trees/arisian/arisian_root_canopy1"))
+                    .baseLocation(NetherDescent.id("features/trees/arisian/arisian_root_trunk3"))
+                    .canopyLocation(NetherDescent.id("features/trees/arisian/arisian_root_canopy3"))
                     .height(BiasedToBottomInt.of(2, 45))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN.logstem()))
                     .leavesProvider(List.of(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_LEAVES.get()), BlockStateProvider.simple(Blocks.SHROOMLIGHT)))
