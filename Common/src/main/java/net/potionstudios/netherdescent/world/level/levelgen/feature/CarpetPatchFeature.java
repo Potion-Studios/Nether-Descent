@@ -27,7 +27,7 @@ public class CarpetPatchFeature extends Feature<CarpetPatchFeatureConfiguration>
         if (carpet instanceof MossyCarpetBlock)
             MossyCarpetBlock.placeAt(carpet.defaultBlockState(), level, origin, context.random(), 2);
         else if (carpet instanceof HangingMossyCarpetBlock)
-	        HangingMossyCarpetBlock.placeAt(carpet.defaultBlockState(), level, origin, context.random(), 2);
+	        HangingMossyCarpetBlock.placeAt(carpet.defaultBlockState().setValue(HangingMossyCarpetBlock.HANGING, config.hanging()), level, origin, context.random(), 2);
         else setBlock(level, origin, carpet.defaultBlockState());
 
         return true;

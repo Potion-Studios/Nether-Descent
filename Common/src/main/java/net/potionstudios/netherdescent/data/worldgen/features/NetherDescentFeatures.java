@@ -1,7 +1,6 @@
 package net.potionstudios.netherdescent.data.worldgen.features;
 
 import com.google.common.collect.ImmutableList;
-import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
@@ -14,8 +13,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
@@ -25,7 +22,6 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStatePr
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
-import net.potionstudios.netherdescent.world.level.block.plants.HangingDoublePlantBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.HangingNDBushBlock;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeature;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CarpetPatchFeatureConfiguration;
@@ -82,7 +78,7 @@ public class NetherDescentFeatures {
 	);
 
     //public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_PATCH_BONEMEAL = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock();
-	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_carpet_patch", NetherDescentFeature.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_carpet_patch", NetherDescentFeature.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), false));
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_TORRIDS_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_torrids_vegetation", Feature.NETHER_FOREST_VEGETATION,  (configuredFeatureBootstrapContext) -> new NetherForestVegetationConfig(
 			new WeightedStateProvider(
@@ -127,7 +123,8 @@ public class NetherDescentFeatures {
 				}
 	);
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_moss_carpet_patch", NetherDescentFeature.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_moss_carpet_patch", NetherDescentFeature.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), false));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_moss_carpet_patch", NetherDescentFeature.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), true));
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_TANGLE_ROOTS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_tangle_roots", NetherDescentFeature.HANGING_PLANT, () -> new HangingPlantFeatureConfiguration(Blocks.BLACKSTONE, NetherDescentBlocks.ARISIAN_TANGLE_ROOTS.get(), NetherDescentBlocks.ARISIAN_TANGLE_ROOTS_PLANT.get()));
 

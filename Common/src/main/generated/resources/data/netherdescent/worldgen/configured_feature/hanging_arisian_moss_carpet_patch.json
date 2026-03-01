@@ -2,6 +2,6 @@
   "type": "netherdescent:block_carpet_patch",
   "config": {
     "carpet": "netherdescent:arisian_moss_carpet",
-    "hanging": false
+    "hanging": true
   }
 }

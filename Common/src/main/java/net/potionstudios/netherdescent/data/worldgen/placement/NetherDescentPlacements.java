@@ -51,6 +51,16 @@ public class NetherDescentPlacements {
 			), 12),
 			BiomeFilter.biome()));
 
+	public static final ResourceKey<PlacedFeature> HANGING_ARISIAN_MOSS_CARPET_PATCH = PlacedFeaturesUtil.createPlacedFeature("hanging_arisian_moss_carpet_patch", NetherDescentFeatures.HANGING_ARISIAN_MOSS_CARPET_PATCH, () -> List.of(
+			CountPlacement.of(256),
+			InSquarePlacement.spread(),
+			PlacementUtils.RANGE_10_10,
+			EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.allOf(
+					BlockPredicate.matchesBlocks(Direction.UP.getNormal(), Blocks.BLACKSTONE),
+					BlockPredicate.not(BlockPredicate.solid())
+			), 12),
+			BiomeFilter.biome()));
+
 	public static final ResourceKey<PlacedFeature> ARISIAN_UNDERGROWTH_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("arisian_undergrowth_vegetation", NetherDescentFeatures.ARISIAN_UNDERGROWTH_VEGETATION, () -> List.of(CountPlacement.of(125), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
 	public static final ResourceKey<PlacedFeature> ARISIAN_UNDERGROWTH_HANGING_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("arisian_undergrowth_hanging_vegetation", NetherDescentFeatures.ARISIAN_UNDERGROWTH_HANGING_VEGETATION, () -> List.of(CountPlacement.of(100), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
 

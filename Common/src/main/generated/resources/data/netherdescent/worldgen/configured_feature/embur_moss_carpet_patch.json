@@ -1,6 +1,7 @@
 {
   "type": "netherdescent:block_carpet_patch",
   "config": {
-    "carpet": "netherdescent:embur_moss_carpet"
+    "carpet": "netherdescent:embur_moss_carpet",
+    "hanging": false
   }
 }
