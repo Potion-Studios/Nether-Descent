@@ -138,10 +138,10 @@ public class NetherDescentFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_UNDERGROWTH_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_undergrowth_vegetation", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
 			new WeightedStateProvider(
 					SimpleWeightedRandomList.<BlockState>builder()
-							.add(NetherDescentBlocks.ARISIAN_SPROUTS.getBlockState(), 2)
-							.add(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get().defaultBlockState())
-							.add(NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState(), 2)
-							.add(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get().defaultBlockState())
+							.add(NetherDescentBlocks.ARISIAN_SPROUTS.getBlockState(), 3)
+							.add(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get().defaultBlockState(), 3)
+							.add(NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState(), 1)
+							.add(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get().defaultBlockState(), 1)
 							.add(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlockState())
 			), 8, 4)
 	);
@@ -149,10 +149,10 @@ public class NetherDescentFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_UNDERGROWTH_HANGING_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_undergrowth_hanging_vegetation", NetherDescentFeature.HANGING_NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
 			new WeightedStateProvider(
 					SimpleWeightedRandomList.<BlockState>builder()
-							.add(NetherDescentBlocks.ARISIAN_SPROUTS.getBlockState().setValue(BlockStateProperties.HANGING, true), 2)
-							.add(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true))
-							.add(NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true), 2)
-							.add(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true))
+							.add(NetherDescentBlocks.ARISIAN_SPROUTS.getBlockState().setValue(BlockStateProperties.HANGING, true), 3)
+							.add(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true), 3)
+							.add(NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true), 1)
+							.add(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true), 1)
 							.add(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlockState().setValue(BlockStateProperties.HANGING, true))
 			), 8, 4)
 	);

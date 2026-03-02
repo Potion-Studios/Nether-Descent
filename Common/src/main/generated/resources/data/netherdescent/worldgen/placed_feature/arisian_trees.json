@@ -1,9 +1,9 @@
 {
-  "feature": "netherdescent:hanging_arisian_roots",
+  "feature": "netherdescent:arisian_trees",
   "placement": [
     {
       "type": "minecraft:count_on_every_layer",
-      "count": 10
+      "count": 5
     },
     {
       "type": "minecraft:biome"

@@ -20,7 +20,7 @@
       "max_delay": 24000,
       "min_delay": 12000,
       "replace_current_music": false,
-      "sound": "netherdescent:music.nether.wailing_garth"
+      "sound": "netherdescent:music.nether.arisian_undergrowth"
     },
     "particle": {
       "options": {
@@ -66,6 +66,7 @@
       "netherdescent:arisian_undergrowth_hanging_vegetation",
       "netherdescent:arisian_roots_hanging",
       "netherdescent:arisian_trees_hanging",
+      "netherdescent:arisian_trees",
       "netherdescent:hanging_arisian_tangle_roots"
     ]
   ],

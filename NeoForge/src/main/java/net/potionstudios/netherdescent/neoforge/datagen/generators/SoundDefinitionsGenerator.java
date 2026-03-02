@@ -25,6 +25,7 @@ public class SoundDefinitionsGenerator extends SoundDefinitionsProvider {
 	@Override
 	public void registerSounds() {
 
+		add(NetherDescentSounds.MUSIC_BIOME_ARISIAN_UNDERGROWTH.get().value(), definition().with(sound(NetherDescent.id("music/game/nether/arisian_undergrowth/down_under")).stream().volume(0.3)));
 		add(NetherDescentSounds.AMBIENT_ARISIAN_UNDERGROWTH_LOOP.get().value(), definition().with(sound(NetherDescent.id("ambient/nether/arisian_undergrowth/ambience")).stream().volume(0.4)));
 		add(NetherDescentSounds.AMBIENT_ARISIAN_UNDERGROWTH_ADDITIONS.get().value(), definition().with(
 				sound(NetherDescent.id("ambient/nether/arisian_undergrowth/addition1")).volume(0.4),

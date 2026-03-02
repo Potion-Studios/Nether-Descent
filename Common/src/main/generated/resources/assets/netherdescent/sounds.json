@@ -224,6 +224,15 @@
       }
     ]
   },
+  "music.nether.arisian_undergrowth": {
+    "sounds": [
+      {
+        "name": "netherdescent:music/game/nether/arisian_undergrowth/down_under",
+        "stream": true,
+        "volume": 0.3
+      }
+    ]
+  },
   "music.nether.crimson_gardens": {
     "sounds": [
       {

@@ -1,7 +1,7 @@
 {
   "type": "ohthetreesyoullgrow:tree_from_nbt_v2",
   "config": {
-    "base_location": "netherdescent:features/trees/arisian/arisian_trunk1",
+    "base_location": "netherdescent:features/trees/arisian/arisian_trunk3",
     "can_grow_on_filter": {
       "type": "minecraft:matching_block_tag",
       "tag": "minecraft:base_stone_nether"
@@ -9,7 +9,7 @@
     "can_leaves_place_filter": {
       "type": "minecraft:replaceable"
     },
-    "canopy_location": "netherdescent:features/trees/arisian/arisian_canopy1",
+    "canopy_location": "netherdescent:features/trees/arisian/arisian_canopy3",
     "decorators": [
       {
         "type": "netherdescent:growing_plant",
@@ -75,8 +75,8 @@
     ],
     "height": {
       "type": "minecraft:biased_to_bottom",
-      "max_inclusive": 4,
-      "min_inclusive": 2
+      "max_inclusive": 26,
+      "min_inclusive": 11
     },
     "leaves_provider": [
       {

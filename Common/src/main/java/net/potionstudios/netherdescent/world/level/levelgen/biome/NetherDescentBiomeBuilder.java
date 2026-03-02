@@ -46,13 +46,14 @@ public class NetherDescentBiomeBuilder {
         addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_UNDERGROWTH_HANGING_VEGETATION);
         addVegetal(generationSettings, NetherDescentTreePlacements.ARISIAN_ROOTS_HANGING);
         addVegetal(generationSettings, NetherDescentTreePlacements.ARISIAN_TREES_HANGING);
+        addVegetal(generationSettings, NetherDescentTreePlacements.ARISIAN_TREES);
         addVegetal(generationSettings, NetherDescentPlacements.HANGING_ARISIAN_TANGLE_ROOTS);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.ENDERMAN, 20, 2, 4);
         addSpawn(spawnSettings, EntityType.STRIDER, 60, 1, 2);
 
-        return new Biome.BiomeBuilder().hasPrecipitation(false).temperature(2).downfall(0.0F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(2765878).skyColor(2765878).ambientParticle(new AmbientParticleSettings(ParticleTypes.WARPED_SPORE, 0.01428F)).ambientLoopSound(NetherDescentSounds.AMBIENT_ARISIAN_UNDERGROWTH_LOOP.get()).ambientMoodSound(new AmbientMoodSettings(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D)).ambientAdditionsSound(new AmbientAdditionsSettings(NetherDescentSounds.AMBIENT_ARISIAN_UNDERGROWTH_ADDITIONS.get(), 0.0011D)).backgroundMusic(Musics.createGameMusic(NetherDescentSounds.MUSIC_BIOME_WAILING_GARTH.get())).build()).mobSpawnSettings(spawnSettings.build()).generationSettings(generationSettings.build()).build();
+        return new Biome.BiomeBuilder().hasPrecipitation(false).temperature(2).downfall(0.0F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(2765878).skyColor(2765878).ambientParticle(new AmbientParticleSettings(ParticleTypes.WARPED_SPORE, 0.01428F)).ambientLoopSound(NetherDescentSounds.AMBIENT_ARISIAN_UNDERGROWTH_LOOP.get()).ambientMoodSound(new AmbientMoodSettings(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D)).ambientAdditionsSound(new AmbientAdditionsSettings(NetherDescentSounds.AMBIENT_ARISIAN_UNDERGROWTH_ADDITIONS.get(), 0.0011D)).backgroundMusic(Musics.createGameMusic(NetherDescentSounds.MUSIC_BIOME_ARISIAN_UNDERGROWTH.get())).build()).mobSpawnSettings(spawnSettings.build()).generationSettings(generationSettings.build()).build();
     }
 
     protected static Biome crimsonGardens(HolderGetter<PlacedFeature> placedFeatureHolderGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {

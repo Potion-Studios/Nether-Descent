@@ -12,6 +12,7 @@ public class NetherDescentSounds {
 
 	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_ARISIAN_UNDERGROWTH_LOOP = registerSoundEventHolder("ambient.arisian_undergrowth.loop");
 	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_ARISIAN_UNDERGROWTH_ADDITIONS = registerSoundEventHolder("ambient.arisian_undergrowth.additions");
+	public static final Supplier<Holder.Reference<SoundEvent>> MUSIC_BIOME_ARISIAN_UNDERGROWTH = registerSoundEventHolder("music.nether.arisian_undergrowth");
 
 	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_EMBUR_BOG_LOOP = registerSoundEventHolder("ambient.embur_bog.loop");
 	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_EMBUR_BOG_ADDITIONS = registerSoundEventHolder("ambient.embur_bog.additions");

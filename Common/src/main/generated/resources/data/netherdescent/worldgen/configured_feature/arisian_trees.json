@@ -2,42 +2,42 @@
   "type": "minecraft:random_selector",
   "config": {
     "default": {
-      "feature": "netherdescent:hanging_arisian_tree6",
+      "feature": "netherdescent:arisian_tree6",
       "placement": []
     },
     "features": [
       {
         "chance": 0.1,
         "feature": {
-          "feature": "netherdescent:hanging_arisian_tree1",
+          "feature": "netherdescent:arisian_tree1",
           "placement": []
         }
       },
       {
         "chance": 0.1,
         "feature": {
-          "feature": "netherdescent:hanging_arisian_tree2",
+          "feature": "netherdescent:arisian_tree2",
           "placement": []
         }
       },
       {
         "chance": 0.2,
         "feature": {
-          "feature": "netherdescent:hanging_arisian_tree3",
+          "feature": "netherdescent:arisian_tree3",
           "placement": []
         }
       },
       {
         "chance": 0.2,
         "feature": {
-          "feature": "netherdescent:hanging_arisian_tree4",
+          "feature": "netherdescent:arisian_tree4",
           "placement": []
         }
       },
       {
         "chance": 0.25,
         "feature": {
-          "feature": "netherdescent:hanging_arisian_tree5",
+          "feature": "netherdescent:arisian_tree5",
           "placement": []
         }
       }
