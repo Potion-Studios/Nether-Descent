@@ -91,6 +91,9 @@ public class ArisianLeavesBlock extends LeavesBlock {
 			level.setBlockAndUpdate(pos, newState);
 			level.updateNeighborsAt(pos, this);
 			level.scheduleTick(pos, this, 1);
+
+			if (currentState.getValue(LIT) != newLit && !level.isClientSide())
+				((ServerLevel) level).sendParticles(NetherDescentParticles.GILL_LEVITATE.get(), pos.getX() + 0.5, pos.getY() + 0.99, pos.getZ() + 0.5, 1, 0.12, 0.02, 0.12, 0.02);
 		}
 	}
 
