@@ -39,7 +39,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 	@Override
 	public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
 		if (context.getClickedFace().getAxis().isHorizontal())
-			return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+			return defaultBlockState().setValue(FACING, context.getClickedFace());
 		return null;
 	}
 
