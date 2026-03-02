@@ -10,6 +10,7 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
 import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.item.custom.BoneShivItem;
 import net.potionstudios.netherdescent.world.item.custom.SoulFireChargeItem;
 import net.potionstudios.netherdescent.world.item.custom.SythianScaffoldingBlockItem;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
@@ -30,6 +31,8 @@ public class NetherDescentItems {
     public static final Supplier<PlaceOnWaterBlockItem> EMBUR_LILY = registerItemNoLang("embur_lily", () -> new PlaceOnWaterBlockItem(NetherDescentBlocks.EMBUR_LILY.get(), new Item.Properties()));
 
     public static final Supplier<SythianScaffoldingBlockItem> SYTHIAN_SCAFFOLDING = registerItemNoLang("sythian_scaffolding", () -> new SythianScaffoldingBlockItem(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), new Item.Properties()));
+
+    public static final Supplier<BoneShivItem> BONE_SHIV = registerItem("bone_shiv", () -> new BoneShivItem(new Item.Properties()));
 
     public static final Supplier<Item> CRIMSON_BERRIES = registerSimpleItem("crimson_berries", () -> new ItemNameBlockItem(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 1), 1.0F).build())));
     public static final Supplier<Item> CRIMSON_BERRY_PIE = registerSimpleItem("crimson_berry_pie", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.3F).effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 600, 1), 1.0F).build())));

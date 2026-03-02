@@ -68,7 +68,7 @@ public class ModelGenerators {
             simpleItemBlockTexture(NetherDescentItems.PENDORITE_TORCH.get());
 			withExistingParent(name(NetherDescentItems.PENDORITE_WOLF_ARMOR.get()), mcLoc("item/generated")).texture("layer0", NetherDescent.id(ModelProvider.ITEM_FOLDER + "/pendorite_wolf_armor")).texture("layer1", NetherDescent.id(ModelProvider.ITEM_FOLDER + "/pendorite_wolf_armor_overlay"));
 			simpleItem(NetherDescentBlocks.ARISIAN_DANDELIONS.get());
-			//withExistingParent(name(NetherDescentItems.BONE_SHIV.get()), mcLoc("item/handheld")).texture("layer0", NetherDescent.id(ModelProvider.ITEM_FOLDER + "/bone_shiv"));
+			withExistingParent(name(NetherDescentItems.BONE_SHIV.get()), mcLoc("item/handheld")).texture("layer0", NetherDescent.id(ModelProvider.ITEM_FOLDER + "/bone_shiv"));
         }
 
 		private void simpleItem(ItemLike item, String texture) {
