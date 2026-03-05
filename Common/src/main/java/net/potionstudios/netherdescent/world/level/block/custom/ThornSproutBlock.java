@@ -165,22 +165,18 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 	@Override
 	public void onRemove(BlockState state, @NotNull Level level, @NotNull BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.is(newState.getBlock())) {
+
 			BlockPos nextPos = pos.relative(state.getValue(FACING));
 			BlockState nextState = level.getBlockState(nextPos);
 			if (nextState.is(this) && nextState.getValue(FACING) == state.getValue(FACING)) {
-				if (nextState.getValue(SIZE).equals(state.getValue(SIZE)) && nextState.getValue(SEGMENT) != SegmentType.BASE) {
-					level.destroyBlock(nextPos, false);
-					//level.playLocalSound(pos, this.getSoundType(state).getBreakSound(), SoundSource.BLOCKS, 1.0f, 1.0f, true);
-				}
+				level.destroyBlock(nextPos, false);
 			}
 
-			if (state.getValue(SEGMENT) == SegmentType.END) {
-				BlockPos prevPos = pos.relative(state.getValue(FACING).getOpposite());
-				BlockState prevState = level.getBlockState(prevPos);
-				if (prevState.is(this) && prevState.getValue(FACING) == state.getValue(FACING)) {
-					level.setBlockAndUpdate(prevPos, prevState.setValue(SEGMENT, SegmentType.END));
-					level.scheduleTick(prevPos, this, 5);
-				}
+			BlockPos prevPos = pos.relative(state.getValue(FACING).getOpposite());
+			BlockState prevState = level.getBlockState(prevPos);
+			if (prevState.is(this) && prevState.getValue(FACING) == state.getValue(FACING)) {
+				level.setBlockAndUpdate(prevPos, prevState.setValue(SEGMENT, SegmentType.END));
+				level.scheduleTick(prevPos, this, 5);
 			}
 		}
 		super.onRemove(state, level, pos, newState, moved);
