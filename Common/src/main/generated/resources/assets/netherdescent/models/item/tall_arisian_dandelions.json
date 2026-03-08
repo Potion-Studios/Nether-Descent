@@ -1,3 +1,6 @@
 {
-  "parent": "netherdescent:block/tall_arisian_dandelions"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "netherdescent:item/arisian_dandelions"
+  }
 }

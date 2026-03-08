@@ -92,6 +92,7 @@ public class TagsGenerator {
             tag(Tags.Blocks.ORE_RATES_SPARSE).add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get());
             tag(Tags.Blocks.ORE_RATES_SINGULAR).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get());
             tag(Tags.Blocks.CHAINS).add(NetherDescentBlocks.PENDORITE_CHAIN.get());
+			tag(BlockTags.WART_BLOCKS).add(NetherDescentBlocks.SYTHIAN_WART_BLOCK.get(), NetherDescentBlocks.WAILING_WART_BLOCK.get());
 
 			tag(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE).add(NetherDescentBlocks.PENDORITE_BLOCK.get());
 			tag(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE).add(NetherDescentBlocks.RAW_PENDORITE_BLOCK.get());
@@ -135,9 +136,10 @@ public class TagsGenerator {
 				tag(BlockTags.MINEABLE_WITH_PICKAXE).add(object);
 			else if (type == SoundType.WOOD || type == SoundType.SWEET_BERRY_BUSH || type == SoundType.GLOW_LICHEN || type == SoundType.FUNGUS || type == SoundType.SCAFFOLDING)
 				tag(BlockTags.MINEABLE_WITH_AXE).add(object);
-			else if (type == SoundType.GRAVEL || type == SoundType.SAND || type == SoundType.SNOW || type == SoundType.GRASS)
-				if (object instanceof LeavesBlock) tag(BlockTags.MINEABLE_WITH_HOE).add(object);
-				else tag(BlockTags.MINEABLE_WITH_SHOVEL).add(object);
+			else if (object instanceof LeavesBlock || type == SoundType.WART_BLOCK)
+				tag(BlockTags.MINEABLE_WITH_HOE).add(object);
+			else if (type == SoundType.GRAVEL || type == SoundType.SAND || type == SoundType.SNOW)
+				tag(BlockTags.MINEABLE_WITH_SHOVEL).add(object);
 		}
 	}
 
@@ -179,6 +181,7 @@ public class TagsGenerator {
             NetherDescentWoodSet.woodsets().forEach(set -> copy(set.logBlockTag(), set.logItemTag()));
 			copy(BlockTags.FLOWERS, ItemTags.FLOWERS);
 			copy(BlockTags.TALL_FLOWERS, ItemTags.TALL_FLOWERS);
+			copy(BlockTags.WART_BLOCKS, ItemTags.WART_BLOCKS);
 
 			tag(Tags.Items.BRICKS_NETHER).add(NetherDescentItems.BLUE_NETHER_BRICK.get());
             tag(Tags.Items.FOODS_BERRY).add(NetherDescentItems.CRIMSON_BERRIES.get());

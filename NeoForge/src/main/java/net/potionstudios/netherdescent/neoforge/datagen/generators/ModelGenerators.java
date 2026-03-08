@@ -68,6 +68,7 @@ public class ModelGenerators {
             simpleItemBlockTexture(NetherDescentItems.PENDORITE_TORCH.get());
 			withExistingParent(name(NetherDescentItems.PENDORITE_WOLF_ARMOR.get()), mcLoc("item/generated")).texture("layer0", NetherDescent.id(ModelProvider.ITEM_FOLDER + "/pendorite_wolf_armor")).texture("layer1", NetherDescent.id(ModelProvider.ITEM_FOLDER + "/pendorite_wolf_armor_overlay"));
 			simpleItem(NetherDescentBlocks.ARISIAN_DANDELIONS.get());
+			simpleItem(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get(), "arisian_dandelions");
 			withExistingParent(name(NetherDescentItems.BONE_SHIV.get()), mcLoc("item/handheld")).texture("layer0", NetherDescent.id(ModelProvider.ITEM_FOLDER + "/bone_shiv"));
         }
 
@@ -180,7 +181,6 @@ public class ModelGenerators {
 						return ConfiguredModel.builder().modelFile(models().getExistingFile(blockTexture(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get()))).build();
 					else return ConfiguredModel.builder().modelFile(models().withExistingParent(name(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get()) + "_top", NetherDescent.id("block/empty")).texture("particle", blockTexture(NetherDescentBlocks.ARISIAN_DANDELIONS.get()))).build();
 			});
-			simpleBlockItem(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get(), models().getExistingFile(blockTexture(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get())));
 
 			getVariantBuilder(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get()).forAllStates(state -> {
 				if (state.getValue(HangingDoublePlantBlock.HANGING))

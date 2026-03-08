@@ -70,6 +70,7 @@ class BlockLootGenerator extends BlockLootSubProvider {
                 add(block, this::createSingleItemTable);
             else dropSelf(block);
         });
+        dropSelf(NetherDescentBlocks.ARISIAN_DANDELIONS.get());
         dropOther(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), NetherDescentBlocks.SYTHIAN_SOIL.get());
         add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get(), (arg2) -> this.createSilkTouchDispatchTable(arg2, this.applyExplosionDecay(arg2, LootItem.lootTableItem(Items.GOLD_NUGGET).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE))))));
         add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get(), (arg) -> this.createOreDrop(arg, Items.QUARTZ));
