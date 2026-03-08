@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
@@ -71,10 +72,11 @@ class BlockLootGenerator extends BlockLootSubProvider {
             else dropSelf(block);
         });
         dropSelf(NetherDescentBlocks.ARISIAN_DANDELIONS.get());
+        dropSelf(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock());
         dropOther(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), NetherDescentBlocks.SYTHIAN_SOIL.get());
         add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get(), (arg2) -> this.createSilkTouchDispatchTable(arg2, this.applyExplosionDecay(arg2, LootItem.lootTableItem(Items.GOLD_NUGGET).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE))))));
         add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get(), (arg) -> this.createOreDrop(arg, Items.QUARTZ));
-        add(NetherDescentBlocks.PENDORITE_ORE.get(), (arg) -> createOreDrop(arg, NetherDescentItems.RAW_PENDORITE.get()));
+        add(NetherDescentBlocks.PENDORITE_ORE.get(), createSilkTouchDispatchTable(NetherDescentBlocks.PENDORITE_ORE.get(), this.applyExplosionDecay(NetherDescentBlocks.PENDORITE_ORE.get(), LootItem.lootTableItem(NetherDescentItems.RAW_PENDORITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 5.0F))).apply(ApplyBonusCount.addOreBonusCount(registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE))))));
 	    add(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), (block) -> this.createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(Items.CHARCOAL).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))));
         add(NetherDescentBlocks.HORNET_NEST.get(), (block) ->
                 LootTable.lootTable()
