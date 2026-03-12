@@ -10,7 +10,7 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
-import net.potionstudios.netherdescent.config.configs.StructureConfig;
+import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentStructureType;
 import org.jetbrains.annotations.NotNull;
@@ -28,7 +28,7 @@ public class BlueNetherFortressStructure extends Structure {
 
 	@Override
 	public @NotNull Optional<Structure.GenerationStub> findGenerationPoint(Structure.@NotNull GenerationContext context) {
-        if (!StructureConfig.INSTANCE.config.blue_fortress) return Optional.empty();
+        if (!WorldGenerationConfig.get().blue_fortress) return Optional.empty();
 		ChunkPos chunkPos = context.chunkPos();
 		BlockPos blockPos = new BlockPos(chunkPos.getMinBlockX(), 64, chunkPos.getMinBlockZ());
 		return Optional.of(new Structure.GenerationStub(blockPos, structurePiecesBuilder -> generatePieces(structurePiecesBuilder, context)));

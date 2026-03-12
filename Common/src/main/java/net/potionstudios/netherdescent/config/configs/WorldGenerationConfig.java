@@ -29,6 +29,7 @@ public final class WorldGenerationConfig {
 
     public Map<String, Boolean> biomes = new LinkedHashMap<>();
     public int regionWeight = DEFAULT_REGION_WEIGHT;
+    public boolean blue_fortress = true;
 
     public boolean isEnabled(ResourceKey<Biome> key) {
         String id = key.location().toString().replace("netherdescent:", "");

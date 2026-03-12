@@ -2,7 +2,7 @@ package net.potionstudios.netherdescent.config.configs;
 
 import net.potionstudios.netherdescent.config.ConfigLoader;
 
-public class MobSpawnConfig {
+public final class MobSpawnConfig {
     public static SpawnConfig INSTANCE = ConfigLoader.loadConfig(MobSpawnConfig.class, "mob_spawn").spawn;
 
     public SpawnConfig spawn = new SpawnConfig();
