@@ -52,7 +52,7 @@ public class ArisianLeavesBlock extends LeavesBlock {
 		int currentStrength = state.getValue(STRENGTH);
 		int targetStrength = 0;
 
-		if (!level.getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(0.2).move(pos)).isEmpty())
+		if (!level.getEntitiesOfClass(LivingEntity.class, new AABB(pos).inflate(0.2)).isEmpty())
 			targetStrength = 5;
 		else {
 			int maxNeighborStrength = 0;
@@ -73,6 +73,8 @@ public class ArisianLeavesBlock extends LeavesBlock {
 
 		if (targetStrength != currentStrength)
 			updateState(state, level, pos, targetStrength);
+		else if (currentStrength > 0)
+			level.scheduleTick(pos, this, 1);
 	}
 
 	@Override

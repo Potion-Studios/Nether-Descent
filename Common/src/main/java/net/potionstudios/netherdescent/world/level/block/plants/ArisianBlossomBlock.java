@@ -45,7 +45,8 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 		int currentStrength = state.getValue(STRENGTH);
 		int targetStrength = 0;
 
-		if (!level.getEntitiesOfClass(LivingEntity.class, SHAPE.bounds().inflate(0.2).move(pos)).isEmpty())
+		VoxelShape detectionShape = state.getValue(HANGING) ? CEILING_SHAPE : SHAPE;
+		if (!level.getEntitiesOfClass(LivingEntity.class, detectionShape.bounds().inflate(0.2).move(pos)).isEmpty())
 			targetStrength = 7;
 		else {
 			int maxNeighborStrength = 0;
