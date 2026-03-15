@@ -4,6 +4,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -13,11 +14,11 @@ import net.minecraft.world.entity.monster.Blaze;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.Vec3;
+import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.world.entity.projectile.SmallSoulFireball;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.EnumSet;
 
 public class SoulBlaze extends Blaze {
     public SoulBlaze(EntityType<? extends Blaze> entityType, Level level) {
@@ -38,6 +39,11 @@ public class SoulBlaze extends Blaze {
 
     public static AttributeSupplier.@NotNull Builder createAttributes() {
         return Monster.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 7.0F).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.FOLLOW_RANGE, 30.0F);
+    }
+
+    @Override
+    public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull MobSpawnType reason) {
+        return MobSpawnConfig.INSTANCE.soul_blaze && super.checkSpawnRules(level, reason);
     }
 
     static class SoulBlazeAttackGoal extends Blaze.BlazeAttackGoal {

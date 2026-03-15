@@ -3,10 +3,7 @@ package net.potionstudios.netherdescent.world.entity.animal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -16,8 +13,10 @@ import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.level.block.entity.HornetNestBlockEntity;
 import org.jetbrains.annotations.NotNull;
@@ -55,6 +54,11 @@ public class Hornet extends Bee {
                 .add(Attributes.MAX_HEALTH, 12.0D)
                 .add(Attributes.FLYING_SPEED, 0.7D)
                 .add(Attributes.ATTACK_DAMAGE, 6.0D);
+    }
+
+    @Override
+    public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull MobSpawnType reason) {
+        return MobSpawnConfig.INSTANCE.hornet.value() && super.checkSpawnRules(level, reason);
     }
 
     public void setHivePos(BlockPos pos) {

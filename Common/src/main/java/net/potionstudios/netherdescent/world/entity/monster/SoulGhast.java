@@ -18,6 +18,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
+import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.world.entity.projectile.LargeSoulFireball;
 import org.jetbrains.annotations.NotNull;
 
@@ -35,7 +36,12 @@ public class SoulGhast extends Ghast {
 		return level.getDifficulty() != Difficulty.PEACEFUL && random.nextInt(20) == 0 && (level.getBlockState(pos.below()).is(Blocks.SOUL_SOIL) || checkMobSpawnRules(ghast, level, spawnType, pos, random));
     }
 
-    @Override
+	@Override
+	public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull MobSpawnType reason) {
+		return MobSpawnConfig.INSTANCE.soul_ghast && super.checkSpawnRules(level, reason);
+	}
+
+	@Override
     protected void registerGoals() {
         this.goalSelector.addGoal(5, new RandomFloatAroundGoal(this));
         this.goalSelector.addGoal(7, new GhastLookGoal(this));
