@@ -40,6 +40,13 @@
           "feature": "netherdescent:arisian_tree5",
           "placement": []
         }
+      },
+      {
+        "chance": 0.3,
+        "feature": {
+          "feature": "netherdescent:arisian_bush",
+          "placement": []
+        }
       }
     ]
   }

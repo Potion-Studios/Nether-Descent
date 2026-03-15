@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.valueproviders.BiasedToBottomInt;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.AttachFace;
@@ -20,9 +21,14 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.featuresize.ThreeLayersFeatureSize;
+import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.BushFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
@@ -319,6 +325,17 @@ public class NetherDescentTreeFeatures {
                     .build()
     );
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_BUSH_1 = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_bush",
+            Feature.TREE,
+            () -> new TreeConfiguration.TreeConfigurationBuilder(
+                    BlockStateProvider.simple(NetherDescentBlocks.ARISIAN.logstem()),
+                    new StraightTrunkPlacer(1, 0, 0),
+                    BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_LEAVES.get()),
+                    new BushFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2),
+                    new TwoLayersFeatureSize(0, 0, 0)
+            ).dirt(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get())).build()
+    );
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_TREES = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_trees",
             Feature.RANDOM_SELECTOR,
             (configuredFeatureBootstrapContext) -> {
@@ -328,7 +345,8 @@ public class NetherDescentTreeFeatures {
                         new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(ARISIAN_TREE2)), 0.1F),
                         new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(ARISIAN_TREE3)), 0.2F),
                         new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(ARISIAN_TREE4)), 0.2F),
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(ARISIAN_TREE5)), 0.25F)),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(ARISIAN_TREE5)), 0.25F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(ARISIAN_BUSH_1)), 0.3F)),
                         PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(ARISIAN_TREE6)));
             }
     );
