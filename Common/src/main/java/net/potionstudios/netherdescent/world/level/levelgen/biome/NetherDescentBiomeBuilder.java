@@ -48,6 +48,7 @@ public class NetherDescentBiomeBuilder {
         addVegetal(generationSettings, NetherDescentTreePlacements.ARISIAN_TREES_HANGING);
         addVegetal(generationSettings, NetherDescentTreePlacements.ARISIAN_TREES);
         addVegetal(generationSettings, NetherDescentPlacements.HANGING_ARISIAN_TANGLE_ROOTS);
+        addVegetal(generationSettings, NetherDescentPlacements.BASALT_LINE);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.ENDERMAN, 20, 2, 4);
