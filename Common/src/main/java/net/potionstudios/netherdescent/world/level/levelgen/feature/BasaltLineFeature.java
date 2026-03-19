@@ -26,17 +26,28 @@ public class BasaltLineFeature extends Feature<NoneFeatureConfiguration> {
 		Direction drift = random.nextBoolean() ? dir.getClockWise() : dir.getCounterClockWise();
 
 		for (int i = 0; i < length; i++) {
-			if (level.getBlockState(mutable).canBeReplaced() && level.getBlockState(mutable.below()).isFaceSturdy(level, mutable.below(), Direction.DOWN)) {
-				int height = random.nextInt(1,5);
-				for (int j = 0; j < height; j++) {
-					setBlock(level, mutable.above(j), Blocks.BASALT.defaultBlockState());
-				}
-				mutable.move(dir);
-			}
+			if (level.getBlockState(mutable).canBeReplaced() && level.getBlockState(mutable.below()).isFaceSturdy(level, mutable.below(), Direction.UP)) {
+				placeBlockAndMove(level, mutable, dir, random);
+			} else if (level.getBlockState(mutable.below()).canBeReplaced() && level.getBlockState(mutable.below().below()).isFaceSturdy(level, mutable.below().below(), Direction.UP)) {
+				mutable.move(Direction.DOWN);
+				placeBlockAndMove(level, mutable, dir, random);
+			} else if (level.getBlockState(mutable.above()).canBeReplaced() && level.getBlockState(mutable.above().above()).isFaceSturdy(level, mutable.above().above(), Direction.UP)) {
+				mutable.move(Direction.UP);
+				placeBlockAndMove(level, mutable, dir, random);
+			} else return i >= 3;
+
 			if (random.nextInt(5) == 0)
 				mutable.move(drift);
 		}
 
 		return true;
+	}
+
+	private void placeBlockAndMove(WorldGenLevel level, BlockPos.MutableBlockPos mutable, Direction dir, RandomSource random) {
+		int height = random.nextInt(1,5);
+		for (int j = 0; j < height; j++) {
+			setBlock(level, mutable.above(j), Blocks.BASALT.defaultBlockState());
+		}
+		mutable.move(dir);
 	}
 }
