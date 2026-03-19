@@ -60,6 +60,7 @@
     ],
     [],
     [
+      "netherdescent:basalt_line",
       "netherdescent:arisian_moss_carpet_patch",
       "netherdescent:hanging_arisian_moss_carpet_patch",
       "netherdescent:arisian_undergrowth_vegetation",
@@ -67,8 +68,7 @@
       "netherdescent:arisian_roots_hanging",
       "netherdescent:arisian_trees_hanging",
       "netherdescent:arisian_trees",
-      "netherdescent:hanging_arisian_tangle_roots",
-      "netherdescent:basalt_line"
+      "netherdescent:hanging_arisian_tangle_roots"
     ]
   ],
   "has_precipitation": false,

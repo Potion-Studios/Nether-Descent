@@ -40,6 +40,7 @@ public class NetherDescentBiomeBuilder {
         BiomeDefaultFeatures.addNetherDefaultOres(generationSettings);
         generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_DECORATION, NetherDescentOrePlacements.ORE_PENDORITE);
 
+        addVegetal(generationSettings, NetherDescentPlacements.BASALT_LINE);
         addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_MOSS_CARPET_PATCH);
         addVegetal(generationSettings, NetherDescentPlacements.HANGING_ARISIAN_MOSS_CARPET_PATCH);
         addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_UNDERGROWTH_VEGETATION);
@@ -48,7 +49,6 @@ public class NetherDescentBiomeBuilder {
         addVegetal(generationSettings, NetherDescentTreePlacements.ARISIAN_TREES_HANGING);
         addVegetal(generationSettings, NetherDescentTreePlacements.ARISIAN_TREES);
         addVegetal(generationSettings, NetherDescentPlacements.HANGING_ARISIAN_TANGLE_ROOTS);
-        addVegetal(generationSettings, NetherDescentPlacements.BASALT_LINE);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.ENDERMAN, 20, 2, 4);

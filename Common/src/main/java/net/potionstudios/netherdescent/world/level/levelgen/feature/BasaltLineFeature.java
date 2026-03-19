@@ -23,6 +23,7 @@ public class BasaltLineFeature extends Feature<NoneFeatureConfiguration> {
 		BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos(origin.getX(), origin.getY(), origin.getZ());
 		int length = random.nextInt(10) + 5;
 		Direction dir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
+		Direction drift = random.nextBoolean() ? dir.getClockWise() : dir.getCounterClockWise();
 
 		for (int i = 0; i < length; i++) {
 			if (level.getBlockState(mutable).canBeReplaced() && level.getBlockState(mutable.below()).isFaceSturdy(level, mutable.below(), Direction.DOWN)) {
@@ -32,6 +33,8 @@ public class BasaltLineFeature extends Feature<NoneFeatureConfiguration> {
 				}
 				mutable.move(dir);
 			}
+			if (random.nextInt(5) == 0)
+				mutable.move(drift);
 		}
 
 		return true;
