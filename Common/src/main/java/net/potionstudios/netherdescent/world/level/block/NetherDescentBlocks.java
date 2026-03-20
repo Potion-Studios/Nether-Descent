@@ -41,7 +41,7 @@ public class NetherDescentBlocks {
 	public static final Supplier<Block> CHISELED_BLUE_NETHER_BRICKS = registerBasicBlockWithItem("chiseled_blue_nether_bricks", BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_NETHER_BRICKS));
 	public static final Supplier<Block> CRACKED_BLUE_NETHER_BRICKS = registerBasicBlockWithItem("cracked_blue_nether_bricks", BlockBehaviour.Properties.ofFullCopy(Blocks.CRACKED_NETHER_BRICKS));
 
-    public static final Supplier<NetherDescentNyliumBlock> WAILING_NYLIUM = registerBlockItem("wailing_nylium", () -> new NetherDescentNyliumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM).mapColor(MapColor.COLOR_PURPLE), Blocks.SOUL_SAND, null));
+    public static final Supplier<NetherDescentNyliumBlock> WAILING_NYLIUM = registerBlockItem("wailing_nylium", () -> new NetherDescentNyliumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM).mapColor(MapColor.COLOR_PURPLE), Blocks.SOUL_SAND, () -> NetherDescentFeatures.WAILING_GARTH_VEGETATION));
     public static final Supplier<NDGrowingPlantHeadBlock> WAILING_VINES = registerBlockItem("wailing_vines", () -> new NDGrowingPlantHeadBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES).lightLevel((state) -> 10), () -> NetherDescentBlocks.WAILING_VINES_PLANT.get()));
     public static final Supplier<NDGrowingPlantBodyBlock> WAILING_VINES_PLANT = registerBlock("wailing_vines_plant", () -> new NDGrowingPlantBodyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES_PLANT).lightLevel((state) -> 10), NetherDescentBlocks.WAILING_VINES));
     public static final Supplier<Block> WAILING_GRASS = registerBlockItem("wailing_grass", () -> new RootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS)));
