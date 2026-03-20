@@ -16,15 +16,15 @@ import java.util.function.Supplier;
 public class NetherDescentNyliumBlock extends NyliumBlock {
 
     private final Supplier<Block> spreadBlock;
-    private final ResourceKey<ConfiguredFeature<?, ?>> feature;
+    private final Supplier<ResourceKey<ConfiguredFeature<?, ?>>> feature;
 
-    public NetherDescentNyliumBlock(Properties properties, Supplier<Block> spreadBlock, ResourceKey<ConfiguredFeature<?, ?>> feature) {
+    public NetherDescentNyliumBlock(Properties properties, Supplier<Block> spreadBlock, Supplier<ResourceKey<ConfiguredFeature<?, ?>>> feature) {
         super(properties);
         this.spreadBlock = spreadBlock;
         this.feature = feature;
     }
 
-    public NetherDescentNyliumBlock(Properties properties, Block spreadBlock, ResourceKey<ConfiguredFeature<?, ?>> feature) {
+    public NetherDescentNyliumBlock(Properties properties, Block spreadBlock, Supplier<ResourceKey<ConfiguredFeature<?, ?>>> feature) {
         this(properties, () -> spreadBlock, feature);
     }
 
@@ -36,6 +36,6 @@ public class NetherDescentNyliumBlock extends NyliumBlock {
 
     @Override
     public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
-	    level.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).getHolder(feature).ifPresent(reference -> reference.value().place(level, level.getChunkSource().getGenerator(), random, pos.above()));
+	    level.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).getHolder(feature.get()).ifPresent(reference -> reference.value().place(level, level.getChunkSource().getGenerator(), random, pos.above()));
     }
 }
