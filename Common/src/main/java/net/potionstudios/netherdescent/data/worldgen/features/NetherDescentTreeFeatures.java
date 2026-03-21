@@ -22,7 +22,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
-import net.minecraft.world.level.levelgen.feature.featuresize.ThreeLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BushFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
@@ -325,7 +324,7 @@ public class NetherDescentTreeFeatures {
                     .build()
     );
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_BUSH_1 = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_bush",
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_BUSH_1 = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_bush1",
             Feature.TREE,
             () -> new TreeConfiguration.TreeConfigurationBuilder(
                     BlockStateProvider.simple(NetherDescentBlocks.ARISIAN.logstem()),
