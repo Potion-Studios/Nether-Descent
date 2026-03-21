@@ -42,7 +42,6 @@ subprojects {
         maven("https://jitpack.io")
         maven("https://maven.jt-dev.tech/releases")
         maven("https://maven.jt-dev.tech/snapshots")
-        maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/").content { includeGroup("software.bernie.geckolib") }
         maven("https://maven2.bai.lol").content {
             includeGroup("lol.bai")
             includeGroup("mcp.mobius.waila")

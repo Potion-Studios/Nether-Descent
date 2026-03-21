@@ -23,7 +23,6 @@ import net.potionstudios.netherdescent.client.renderer.entity.HornetRenderer;
 import net.potionstudios.netherdescent.client.renderer.entity.PendoriteBlazeRenderer;
 import net.potionstudios.netherdescent.client.renderer.entity.SoulBlazeRenderer;
 import net.potionstudios.netherdescent.client.renderer.entity.SoulGhastRenderer;
-import net.potionstudios.netherdescent.client.renderer.entity.nertling.NertlingRenderer;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.core.particles.FallingParticle;
 import net.potionstudios.netherdescent.core.particles.RisingParticle;
@@ -80,7 +79,6 @@ public class NetherDescentClient {
 		consumer.accept(NetherDescentEntityType.PENDORITE_BLAZE.get(), PendoriteBlazeRenderer::new);
         consumer.accept(NetherDescentEntityType.HORNET.get(), HornetRenderer::new);
 		consumer.accept(NetherDescentEntityType.SOUL_GHAST.get(), SoulGhastRenderer::new);
-		consumer.accept(NetherDescentEntityType.NERTLING.get(), NertlingRenderer::new);
     }
 
 	/**

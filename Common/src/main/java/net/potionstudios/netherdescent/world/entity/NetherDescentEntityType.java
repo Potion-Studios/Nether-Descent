@@ -11,7 +11,6 @@ import net.potionstudios.netherdescent.world.entity.animal.Hornet;
 import net.potionstudios.netherdescent.world.entity.monster.PendoriteBlaze;
 import net.potionstudios.netherdescent.world.entity.monster.SoulBlaze;
 import net.potionstudios.netherdescent.world.entity.monster.SoulGhast;
-import net.potionstudios.netherdescent.world.entity.npc.Nertling;
 import net.potionstudios.netherdescent.world.entity.projectile.LargeSoulFireball;
 import net.potionstudios.netherdescent.world.entity.projectile.SmallSoulFireball;
 
@@ -27,7 +26,6 @@ public class NetherDescentEntityType {
 	public static final Supplier<EntityType<PendoriteBlaze>> PENDORITE_BLAZE = createEntity("pendorite_blaze", EntityType.Builder.of(PendoriteBlaze::new, MobCategory.CREATURE).fireImmune().sized(EntityType.BLAZE.getWidth(), EntityType.BLAZE.getHeight()).clientTrackingRange(8));
     public static final Supplier<EntityType<Hornet>> HORNET = createEntity("hornet", EntityType.Builder.of(Hornet::new, MobCategory.CREATURE).sized(0.7F, 0.6F).eyeHeight(0.3F).clientTrackingRange(8).fireImmune());
     public static final Supplier<EntityType<SoulGhast>> SOUL_GHAST = createEntity("soul_ghast", EntityType.Builder.of(SoulGhast::new, MobCategory.MONSTER).fireImmune().sized(EntityType.GHAST.getWidth(), EntityType.GHAST.getHeight()).eyeHeight(2.6F).passengerAttachments(4.0625F).ridingOffset(0.5F).clientTrackingRange(10));
-    public static final Supplier<EntityType<Nertling>> NERTLING = createEntity("nertling", EntityType.Builder.of(Nertling::new, MobCategory.CREATURE).fireImmune());
 
     private static <E extends Entity> Supplier<EntityType<E>> createEntity(String id, EntityType.Builder<E> Builder) {
         return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.ENTITY_TYPE, id, () -> Builder.build(id));
@@ -49,7 +47,6 @@ public class NetherDescentEntityType {
 		consumer.accept(PENDORITE_BLAZE.get(), PendoriteBlaze.createAttributes().build());
         consumer.accept(HORNET.get(), Hornet.createAttributes().build());
         consumer.accept(SOUL_GHAST.get(), SoulGhast.createAttributes().build());
-		consumer.accept(NERTLING.get(), Nertling.createAttributes().build());
     }
 
     public static void entityTypes() {
