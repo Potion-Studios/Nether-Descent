@@ -13,7 +13,16 @@
       "type": "minecraft:replaceable"
     },
     "can_logs_place_filter": {
-      "type": "minecraft:replaceable"
+      "type": "minecraft:any_of",
+      "predicates": [
+        {
+          "type": "minecraft:matching_blocks",
+          "blocks": "netherdescent:wailing_fungus"
+        },
+        {
+          "type": "minecraft:replaceable"
+        }
+      ]
     },
     "canopy_location": "netherdescent:features/trees/wailing/wailing_fungi_canopy1",
     "decorators": [
