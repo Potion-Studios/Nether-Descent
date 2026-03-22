@@ -25,6 +25,7 @@ import net.potionstudios.netherdescent.world.level.block.wood.sign.NetherDescent
 import net.potionstudios.netherdescent.world.level.block.wood.sign.NetherDescentStandingSignBlock;
 import net.potionstudios.netherdescent.world.level.block.wood.sign.NetherDescentWallHangingSignBlock;
 import net.potionstudios.netherdescent.world.level.block.wood.sign.NetherDescentWallSignBlock;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.function.Supplier;
@@ -78,7 +79,7 @@ public class NetherDescentWoodSet {
      * @param mapColor     The map color
      * @param requiredBlock
      */
-    public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor, LogStem logstem, GrowerItem growerItem, Supplier<? extends Block> requiredBlock, ResourceKey<ConfiguredFeature<?, ?>> feature) {
+    public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor, LogStem logstem, GrowerItem growerItem, Supplier<? extends Block> requiredBlock, ResourceKey<ConfiguredFeature<?, ?>> feature, @Nullable ResourceKey<ConfiguredFeature<?, ?>> hangingFeature, boolean hanging) {
         this.growerRequiredBlock = requiredBlock;
         this.woodType = PlatformHandler.PLATFORM_HANDLER.createWoodType(blockSetType.name(), blockSetType);
         this.name = blockSetType.name().replace(NetherDescent.MOD_ID + ":", "");
@@ -97,7 +98,7 @@ public class NetherDescentWoodSet {
         this.trapdoor = NetherDescentBlocks.registerBlockItem(name + "_trapdoor", () -> new TrapDoorBlock(woodType.setType(), BlockBehaviour.Properties.of().mapColor(mapColor).instrument(NoteBlockInstrument.BASS).strength(3.0F).noOcclusion().isValidSpawn(Blocks::never).ignitedByLava()));
         this.pressurePlate = NetherDescentBlocks.registerBlockItem(name + "_pressure_plate", () -> new PressurePlateBlock(woodType.setType(), BlockBehaviour.Properties.of().mapColor(this.logstem.get().defaultMapColor()).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(0.5F).ignitedByLava().pushReaction(PushReaction.DESTROY)));
         this.button = NetherDescentBlocks.registerBlockItem(name + "_button", () -> (ButtonBlock) Blocks.woodenButton(woodType.setType()));
-        Supplier<FungusBlock> fungus = NetherDescentBlocks.registerBlockItem(name + "_" + growerItem.getName(), () -> new FungusBlock(feature, requiredBlock.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_FUNGUS).mapColor(mapColor)));
+        Supplier<? extends BushBlock> fungus = NetherDescentBlocks.registerBlockItem(name + "_" + growerItem.getName(), hanging ? () -> new HangingFungusBlock(feature, hangingFeature, requiredBlock.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_FUNGUS).mapColor(mapColor)): () -> new FungusBlock(feature, requiredBlock.get(), BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_FUNGUS).mapColor(mapColor)));
         this.growerItem = new PottedBlock(fungus, NetherDescentBlocks.register("potted_" + name + "_" + growerItem.getName(), PlatformHandler.PLATFORM_HANDLER.createPottedBlock(fungus)));
         NetherDescentBlocks.BLOCKS.add(this.growerItem.pottedBlock());
         this.bookshelf = NetherDescentBlocks.registerBlockItem(name + "_bookshelf", () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.BOOKSHELF).mapColor(mapColor)));
@@ -116,7 +117,7 @@ public class NetherDescentWoodSet {
     }
 
     public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor, Supplier<? extends Block> requiredBlock, ResourceKey<ConfiguredFeature<?, ?>> feature) {
-        this(blockSetType, mapColor, LogStem.STEM, GrowerItem.FUNGUS, requiredBlock, feature);
+        this(blockSetType, mapColor, LogStem.STEM, GrowerItem.FUNGUS, requiredBlock, feature, null, false);
     }
 
     public NetherDescentWoodSet(String name, MapColor mapColor, Supplier<? extends Block> requiredBlock, ResourceKey<ConfiguredFeature<?, ?>> feature) {
@@ -124,7 +125,11 @@ public class NetherDescentWoodSet {
     }
 
     public NetherDescentWoodSet(String name, MapColor mapColor, LogStem logStem, GrowerItem growerItem, Supplier<? extends Block> requiredBlock, ResourceKey<ConfiguredFeature<?, ?>> feature) {
-        this(BlockSetType.register(new BlockSetType(name)), mapColor, logStem, growerItem, requiredBlock, feature);
+        this(BlockSetType.register(new BlockSetType(name)), mapColor, logStem, growerItem, requiredBlock, feature, null, false);
+    }
+
+    public NetherDescentWoodSet(String name, MapColor mapColor, LogStem logStem, GrowerItem growerItem, Supplier<? extends Block> requiredBlock, ResourceKey<ConfiguredFeature<?, ?>> feature, ResourceKey<ConfiguredFeature<?, ?>> hangingFeature, boolean hanging) {
+        this(BlockSetType.register(new BlockSetType(name)), mapColor, logStem, growerItem, requiredBlock, feature, hangingFeature, hanging);
     }
 
     public String name() {

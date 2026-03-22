@@ -20,6 +20,7 @@ import net.potionstudios.netherdescent.world.level.block.custom.*;
 import net.potionstudios.netherdescent.world.level.block.plants.*;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
 import net.potionstudios.netherdescent.world.level.block.wood.ArisianLeavesBlock;
+import net.potionstudios.netherdescent.world.level.block.wood.HangingFungusBlock;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 
 public class ModelGenerators {
@@ -127,8 +128,18 @@ public class ModelGenerators {
 				registerStairs(set.stairs(), planksTexture);
 				registerButton(set.button(), planksTexture);
 				registerFenceAndGate(set.fence(), set.fenceGate(), planksTexture);
-                simpleBlock(set.growerItem().getBlock(), models().cross(name(set.growerItem().getBlock()), woodBlockTexture(set.name(), set.growerItemEnum().getName())).renderType("cutout"));
-                simpleItemBlockTexture(set.growerItem().getBlock(), set.name() + "/" + set.growerItemEnum().getName());
+
+				if (set.growerItem().getBlock() instanceof HangingFungusBlock)
+					getVariantBuilder(set.growerItem().getBlock()).forAllStates(state -> {
+						if (state.getValue(HangingFungusBlock.HANGING))
+							return ConfiguredModel.builder().modelFile(models().cross(name(set.growerItem().getBlock()), woodBlockTexture(set.name(), set.growerItemEnum().getName())).renderType("cutout")).rotationX(180).build();
+						else return ConfiguredModel.builder().modelFile(models().cross(name(set.growerItem().getBlock()), woodBlockTexture(set.name(), set.growerItemEnum().getName())).renderType("cutout")).build();
+					});
+				else simpleBlock(set.growerItem().getBlock(), models().cross(name(set.growerItem().getBlock()), woodBlockTexture(set.name(), set.growerItemEnum().getName())).renderType("cutout"));
+
+
+
+				simpleItemBlockTexture(set.growerItem().getBlock(), set.name() + "/" + set.growerItemEnum().getName());
 
                 simpleBlock(set.growerItem().getPottedBlock(),
 		                models().withExistingParent(name(set.growerItem().getPottedBlock()), mcLoc("block/flower_pot_cross"))

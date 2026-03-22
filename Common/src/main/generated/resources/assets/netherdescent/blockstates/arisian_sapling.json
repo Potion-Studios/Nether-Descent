@@ -1,7 +1,11 @@
 {
   "variants": {
-    "": {
+    "hanging=false": {
       "model": "netherdescent:block/arisian_sapling"
+    },
+    "hanging=true": {
+      "model": "netherdescent:block/arisian_sapling",
+      "x": 180
     }
   }
 }
