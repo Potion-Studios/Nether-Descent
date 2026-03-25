@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:huge_fungus",
+  "config": {
+    "decor_state": {
+      "Name": "minecraft:shroomlight"
+    },
+    "hat_state": {
+      "Name": "minecraft:nether_wart_block"
+    },
+    "planted": true,
+    "replaceable_blocks": {
+      "type": "minecraft:replaceable"
+    },
+    "stem_state": {
+      "Name": "minecraft:crimson_stem",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "valid_base_block": {
+      "Name": "netherdescent:crimson_blackstone_nylium"
+    }
+  }
+}

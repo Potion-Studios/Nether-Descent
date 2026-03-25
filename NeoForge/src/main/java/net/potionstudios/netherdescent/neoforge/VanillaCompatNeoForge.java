@@ -4,8 +4,10 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
+import net.neoforged.neoforge.event.entity.player.BonemealEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import net.potionstudios.netherdescent.util.VanillaBonemealHandler;
 import net.potionstudios.netherdescent.world.entity.animal.NetherDescentWolf;
 import net.potionstudios.netherdescent.world.item.brewing.NetherDescentBrewingRecipes;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
@@ -16,6 +18,7 @@ public class VanillaCompatNeoForge {
         bus.addListener(VanillaCompatNeoForge::registerBrewingRecipes);
         bus.addListener(VanillaCompatNeoForge::registerTillables);
         bus.addListener(VanillaCompatNeoForge::registerEntityInteract);
+        bus.addListener(VanillaCompatNeoForge::onBoneMealUse);
     }
 
     /**
@@ -45,5 +48,14 @@ public class VanillaCompatNeoForge {
             event.setCancellationResult(InteractionResult.SUCCESS);
             event.setCanceled(true);
         }
+    }
+
+    /**
+     * Handle bone meal use.
+     * @see BonemealEvent
+     */
+    private static void onBoneMealUse(final BonemealEvent event) {
+        if (VanillaBonemealHandler.boneMealEventHandler(event.getLevel(), event.getPos(), event.getState(), event.getStack()))
+            event.setSuccessful(true);
     }
 }

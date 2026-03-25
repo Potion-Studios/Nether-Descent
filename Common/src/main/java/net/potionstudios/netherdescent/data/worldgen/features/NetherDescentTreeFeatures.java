@@ -19,6 +19,7 @@ import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.HugeFungusConfiguration;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
@@ -985,6 +986,17 @@ public class NetherDescentTreeFeatures {
                         PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(WAILING_CAGE2)));
             }
     );
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_FUNGUS_PLANTED = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_fungus_planted",
+            Feature.HUGE_FUNGUS,
+            () -> new HugeFungusConfiguration(
+                    NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get().defaultBlockState(),
+                    Blocks.CRIMSON_STEM.defaultBlockState(),
+                    Blocks.NETHER_WART_BLOCK.defaultBlockState(),
+                    Blocks.SHROOMLIGHT.defaultBlockState(),
+                    BlockPredicate.replaceable(),
+                    true
+            ));
 
     protected static void treeFeatures() {
         NetherDescent.LOGGER.info("NetherDescent Tree Features");
