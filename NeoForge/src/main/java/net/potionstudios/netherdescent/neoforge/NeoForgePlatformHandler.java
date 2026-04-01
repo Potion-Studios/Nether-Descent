@@ -26,6 +26,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
+import net.neoforged.neoforge.data.loading.DatagenModLoader;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -98,6 +99,11 @@ public final class NeoForgePlatformHandler implements PlatformHandler {
 	public <T> Supplier<Holder.Reference<T>> registerForHolder(Registry<T> registry, String name, Supplier<T> value) {
 		DeferredHolder<?, ?> registryObject = CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(registry.key().location(), NetherDescent.MOD_ID)).register(name, value);
 		return () -> (Holder.Reference<T>) registryObject.getDelegate();
+	}
+
+	@Override
+	public boolean isDatagen() {
+		return DatagenModLoader.isRunningDataGen();
 	}
 
     public static void registerPottedPlants() {

@@ -22,6 +22,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.minecraftforge.data.loading.DatagenModLoader;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.DeferredRegister;
@@ -100,6 +101,11 @@ public final class ForgePlatformHandler implements PlatformHandler {
 	public <T> Supplier<Holder.Reference<T>> registerForHolder(Registry<T> registry, String name, Supplier<T> value) {
 		RegistryObject<T> registryObject = CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(registry.key().location(), NetherDescent.MOD_ID)).register(name, value);
 		return () -> (Holder.Reference<T>) registryObject.getHolder().get();
+	}
+
+	@Override
+	public boolean isDatagen() {
+		return DatagenModLoader.isRunningDataGen();
 	}
 
     public static void registerPottedPlants() {

@@ -58,7 +58,8 @@ public class NetherDescentItems {
 
     public static <I extends Item> Supplier<I> registerSimpleItem(String id, Supplier<I> item) {
         Supplier<I> supplier = registerItem(id, item);
-        SIMPLE_ITEMS.add(supplier);
+        if (PlatformHandler.PLATFORM_HANDLER.isDatagen())
+            SIMPLE_ITEMS.add(supplier);
         return supplier;
     }
 
