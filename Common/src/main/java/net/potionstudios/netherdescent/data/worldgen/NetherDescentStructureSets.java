@@ -49,9 +49,7 @@ public class NetherDescentStructureSets {
             ));
 
 	private static ResourceKey<StructureSet> register(String id, StructureSetFactory factory) {
-		ResourceKey<StructureSet> structureSetResourceKey = NetherDescent.key(Registries.STRUCTURE_SET, id);
-		STRUCTURE_SET_FACTORIES.put(structureSetResourceKey, factory);
-		return structureSetResourceKey;
+		return register(NetherDescent.key(Registries.STRUCTURE_SET, id), factory);
 	}
 
 	private static ResourceKey<StructureSet> register(ResourceKey<StructureSet> key, StructureSetFactory factory) {
