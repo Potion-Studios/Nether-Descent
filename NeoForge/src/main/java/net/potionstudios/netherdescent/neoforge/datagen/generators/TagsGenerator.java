@@ -109,6 +109,7 @@ public class TagsGenerator {
 			tag(BlockTags.TALL_FLOWERS).add(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get());
 
             tag(NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON).addTag(BlockTags.NYLIUM).add(NetherDescentBlocks.SYTHIAN_SHOOT.get(), NetherDescentBlocks.SYTHIAN_STALK.getBlock(), NetherDescentBlocks.SYTHIAN_FARMLAND.get());
+			tag(NetherDescentBlockTags.NETHER_MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_NETHER).addTag(BlockTags.NYLIUM);
 
             tag(BlockTags.WALL_POST_OVERRIDE).add(NetherDescentBlocks.PENDORITE_TORCH.get());
 

@@ -1,0 +1,55 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "netherdescent:arisian_moss_carpet",
+            "Properties": {
+              "bottom": "true",
+              "east": "none",
+              "hanging": "false",
+              "north": "none",
+              "south": "none",
+              "west": "none"
+            }
+          },
+          "weight": 25
+        },
+        {
+          "data": {
+            "Name": "netherdescent:arisian_sprouts",
+            "Properties": {
+              "hanging": "false"
+            }
+          },
+          "weight": 25
+        },
+        {
+          "data": {
+            "Name": "netherdescent:tall_arisian_sprouts",
+            "Properties": {
+              "half": "lower",
+              "hanging": "false"
+            }
+          },
+          "weight": 10
+        },
+        {
+          "data": {
+            "Name": "netherdescent:arisian_blossom",
+            "Properties": {
+              "hanging": "false",
+              "lit": "false",
+              "pulse": "false",
+              "strength": "0"
+            }
+          },
+          "weight": 10
+        }
+      ]
+    }
+  }
+}

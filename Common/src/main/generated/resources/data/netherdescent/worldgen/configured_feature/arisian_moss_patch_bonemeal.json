@@ -7,14 +7,14 @@
     "ground_state": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "netherdescent:embur_moss_block"
+        "Name": "netherdescent:arisian_moss_block"
       }
     },
     "replaceable": "#netherdescent:nether_moss_replaceable",
     "surface": "floor",
     "vegetation_chance": 0.6,
     "vegetation_feature": {
-      "feature": "netherdescent:embur_moss_vegetation",
+      "feature": "netherdescent:arisian_moss_vegetation",
       "placement": []
     },
     "vertical_range": 5,
