@@ -7,7 +7,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -19,6 +21,7 @@ import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
+import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
@@ -77,7 +80,21 @@ public class NetherDescentFeatures {
 			)
 	);
 
-    //public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_PATCH_BONEMEAL = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock();
+	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_vegetation", Feature.SIMPLE_BLOCK, () -> new SimpleBlockConfiguration(
+			new WeightedStateProvider(
+					SimpleWeightedRandomList.<BlockState>builder()
+							.add(NetherDescentBlocks.EMBUR_MOSS_CARPET.get().defaultBlockState(), 25)
+							.add(NetherDescentBlocks.EMBUR_SPROUTS.get().defaultBlockState(), 25)
+							.add(NetherDescentBlocks.EMBUR_ROOTS.getBlockState(), 10)
+							.add(NetherDescentBlocks.TALL_EMBUR_ROOTS.get().defaultBlockState(), 10)
+							.build()
+			)
+	));
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_PATCH_BONEMEAL = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_patch_bonemeal", Feature.VEGETATION_PATCH, configuredFeatureBootstrapContext -> new VegetationPatchConfiguration(
+			BlockTags.BASE_STONE_NETHER, BlockStateProvider.simple(NetherDescentBlocks.EMBUR_MOSS_BLOCK.get()), PlacementUtils.inlinePlaced(configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(EMBUR_MOSS_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.6F, UniformInt.of(1, 2), 0.75F)
+	);
+
 	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_carpet_patch", NetherDescentFeature.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), false));
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_TORRIDS_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_torrids_vegetation", Feature.NETHER_FOREST_VEGETATION,  (configuredFeatureBootstrapContext) -> new NetherForestVegetationConfig(
