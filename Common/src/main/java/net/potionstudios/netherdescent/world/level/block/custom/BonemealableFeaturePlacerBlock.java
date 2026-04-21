@@ -14,10 +14,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import org.jetbrains.annotations.NotNull;
 
-public class BonemealableFeaturePlacerBlock extends Block implements BonemealableBlock {
-    private final ResourceKey<ConfiguredFeature<?, ?>> feature;
+import java.util.function.Supplier;
 
-    public BonemealableFeaturePlacerBlock(ResourceKey<ConfiguredFeature<?, ?>> feature, BlockBehaviour.Properties properties) {
+public class BonemealableFeaturePlacerBlock extends Block implements BonemealableBlock {
+    private final Supplier<ResourceKey<ConfiguredFeature<?, ?>>> feature;
+
+    public BonemealableFeaturePlacerBlock(Supplier<ResourceKey<ConfiguredFeature<?, ?>>> feature, BlockBehaviour.Properties properties) {
         super(properties);
         this.feature = feature;
     }
@@ -36,7 +38,7 @@ public class BonemealableFeaturePlacerBlock extends Block implements Bonemealabl
     public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
         level.registryAccess()
                 .lookup(Registries.CONFIGURED_FEATURE)
-                .flatMap(registry -> registry.get(this.feature))
+                .flatMap(registry -> registry.get(this.feature.get()))
                 .ifPresent(reference -> reference.value().place(level, level.getChunkSource().getGenerator(), random, pos.above()));
     }
 
