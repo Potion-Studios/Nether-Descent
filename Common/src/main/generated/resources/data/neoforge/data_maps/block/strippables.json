@@ -1,0 +1,34 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "netherdescent"
+    }
+  ],
+  "values": {
+    "netherdescent:arisian_log": {
+      "stripped_block": "netherdescent:stripped_arisian_log"
+    },
+    "netherdescent:arisian_wood": {
+      "stripped_block": "netherdescent:stripped_arisian_wood"
+    },
+    "netherdescent:embur_pedu": {
+      "stripped_block": "netherdescent:stripped_embur_pedu"
+    },
+    "netherdescent:embur_wood": {
+      "stripped_block": "netherdescent:stripped_embur_wood"
+    },
+    "netherdescent:sythian_stem": {
+      "stripped_block": "netherdescent:stripped_sythian_stem"
+    },
+    "netherdescent:sythian_wood": {
+      "stripped_block": "netherdescent:stripped_sythian_wood"
+    },
+    "netherdescent:wailing_stem": {
+      "stripped_block": "netherdescent:stripped_wailing_stem"
+    },
+    "netherdescent:wailing_wood": {
+      "stripped_block": "netherdescent:stripped_wailing_wood"
+    }
+  }
+}

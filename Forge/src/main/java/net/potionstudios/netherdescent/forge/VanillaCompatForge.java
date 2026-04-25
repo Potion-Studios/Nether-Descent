@@ -1,6 +1,7 @@
 package net.potionstudios.netherdescent.forge;
 
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.brewing.BrewingRecipeRegisterEvent;
@@ -14,12 +15,19 @@ import net.potionstudios.netherdescent.util.VanillaBonemealHandler;
 import net.potionstudios.netherdescent.world.BlockItemFeatures;
 import net.potionstudios.netherdescent.world.entity.animal.NetherDescentWolf;
 import net.potionstudios.netherdescent.world.item.brewing.NetherDescentBrewingRecipes;
+import net.potionstudios.netherdescent.world.item.tools.ToolInteractions;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
+
+import java.util.HashMap;
 
 public class VanillaCompatForge {
 
     public static void init() {
         BlockItemFeatures.registerCompostables((item, chance) -> ComposterBlock.COMPOSTABLES.put(item.asItem(), chance.floatValue()));
+        ToolInteractions.registerStrippableBlocks((block, stripped) -> {
+            AxeItem.STRIPPABLES = new HashMap<>(AxeItem.STRIPPABLES);
+            AxeItem.STRIPPABLES.put(block, stripped);
+        });
     }
 
     public static void registerVanillaCompatEvents(final IEventBus bus) {

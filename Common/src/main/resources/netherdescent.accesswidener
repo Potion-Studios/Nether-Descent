@@ -57,3 +57,6 @@ accessible method net/minecraft/world/entity/ai/village/poi/PoiTypes getBlockSta
 accessible class net/minecraft/world/entity/monster/Ghast$RandomFloatAroundGoal
 accessible class net/minecraft/world/entity/monster/Ghast$GhastLookGoal
 accessible class net/minecraft/world/entity/monster/Ghast$GhastShootFireballGoal
+
+accessible field net/minecraft/world/item/AxeItem STRIPPABLES Ljava/util/Map;
+mutable field net/minecraft/world/item/AxeItem STRIPPABLES Ljava/util/Map;
