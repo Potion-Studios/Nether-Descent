@@ -12,6 +12,7 @@ import net.potionstudios.netherdescent.client.NetherDescentClient;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.custom.EmburCaveMossBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.HangingMossBlock;
+import net.potionstudios.netherdescent.world.level.block.custom.HangingMossyCarpetBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.MossyCarpetBlock;
 
 /**
@@ -39,12 +40,13 @@ public class NetherDescentClientFabric implements ClientModInitializer {
 		NetherDescentBlocks.BLOCKS.forEach(entry -> renderTypeBlock(entry.get()));
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.translucent(), NetherDescentBlocks.EMBUR_GEL_BLOCK.get(), NetherDescentBlocks.EMBUR.door(), NetherDescentBlocks.EMBUR.trapdoor(),
 		        NetherDescentBlocks.EMBUR_GEL_VINES.get(), NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get());
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), NetherDescentBlocks.CRIMSON_CARPET.get(), NetherDescentBlocks.SYTHIAN_SHOOT.get(), NetherDescentBlocks.SYTHIAN_STALK.getBlock(), NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), NetherDescentBlocks.WAILING_BULB_BLOSSOM.get());
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), NetherDescentBlocks.CRIMSON_CARPET.get(), NetherDescentBlocks.SYTHIAN_SHOOT.get(), NetherDescentBlocks.SYTHIAN_STALK.getBlock(),
+				NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get());
 	}
 
 	private void renderTypeBlock(Block block) {
 		if (block instanceof DoorBlock || block instanceof TrapDoorBlock || block instanceof BushBlock || block instanceof LanternBlock || block instanceof GlowLichenBlock
-		|| block instanceof EmburCaveMossBlock || block instanceof MossyCarpetBlock || block instanceof GrowingPlantBlock || block instanceof FlowerPotBlock || block instanceof HangingMossBlock
+		|| block instanceof EmburCaveMossBlock || block instanceof MossyCarpetBlock || block instanceof HangingMossyCarpetBlock || block instanceof GrowingPlantBlock || block instanceof FlowerPotBlock || block instanceof HangingMossBlock
         || block instanceof ScaffoldingBlock || block instanceof TransparentBlock || block instanceof RodBlock)
 			BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.cutout());
 		else if (block instanceof LeavesBlock || block instanceof VineBlock || block instanceof MangroveRootsBlock || block instanceof SporeBlossomBlock || block instanceof BaseCoralPlantTypeBlock || block instanceof IronBarsBlock || block instanceof ChainBlock)
