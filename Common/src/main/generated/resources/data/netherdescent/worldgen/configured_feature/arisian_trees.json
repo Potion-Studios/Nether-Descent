@@ -47,6 +47,13 @@
           "feature": "netherdescent:arisian_bush1",
           "placement": []
         }
+      },
+      {
+        "chance": 0.35,
+        "feature": {
+          "feature": "netherdescent:arisian_large_bush",
+          "placement": []
+        }
       }
     ]
   }

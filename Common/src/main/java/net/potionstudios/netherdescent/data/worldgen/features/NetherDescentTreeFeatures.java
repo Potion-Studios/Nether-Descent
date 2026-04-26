@@ -221,6 +221,23 @@ public class NetherDescentTreeFeatures {
             }
     );
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_LARGE_BUSH = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_large_bush",
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
+                    .baseLocation(NetherDescent.id("features/trees/arisian/arisian_large_bush_trunk"))
+                    .canopyLocation(NetherDescent.id("features/trees/arisian/arisian_large_bush_canopy"))
+                    .height(BiasedToBottomInt.of(2, 3))
+                    .logProvider(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN.logstem()))
+                    .leavesProvider(List.of(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_LEAVES.get())))
+                    .logTarget(Set.of(NetherDescentBlocks.ARISIAN.logstem()))
+                    .leavesTarget(List.of(NetherDescentBlocks.ARISIAN_LEAVES.get()))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
+                    .maxLogDepth(4)
+                    .growableOn(BlockPredicate.anyOf(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER), BlockPredicate.matchesBlocks(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get())))
+                    .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
+                    .build()
+    );
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_TREES = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_trees",
             Feature.RANDOM_SELECTOR,
             (configuredFeatureBootstrapContext) -> {
@@ -230,7 +247,8 @@ public class NetherDescentTreeFeatures {
                         new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_TREE2)), 0.1F),
                         new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_TREE3)), 0.2F),
                         new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_TREE4)), 0.2F),
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_TREE5)), 0.25F)),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_TREE5)), 0.25F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_LARGE_BUSH)), 0.3F)),
                         PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(HANGING_ARISIAN_TREE6)));
             }
     );
@@ -348,6 +366,22 @@ public class NetherDescentTreeFeatures {
             ).dirt(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get())).build()
     );
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_LARGE_BUSH = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_large_bush",
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
+                    .baseLocation(NetherDescent.id("features/trees/arisian/arisian_large_bush_trunk"))
+                    .canopyLocation(NetherDescent.id("features/trees/arisian/arisian_large_bush_canopy"))
+                    .height(BiasedToBottomInt.of(2, 3))
+                    .logProvider(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN.logstem()))
+                    .leavesProvider(List.of(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_LEAVES.get())))
+                    .logTarget(Set.of(NetherDescentBlocks.ARISIAN.logstem()))
+                    .leavesTarget(List.of(NetherDescentBlocks.ARISIAN_LEAVES.get()))
+                    .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
+                    .maxLogDepth(4)
+                    .logsPlacementFilter(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(NetherDescentBlocks.ARISIAN.growerItem().getBlock()), BlockPredicate.replaceable()))
+                    .build()
+    );
+
     public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_TREES = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_trees",
             Feature.RANDOM_SELECTOR,
             (configuredFeatureBootstrapContext) -> {
@@ -358,7 +392,8 @@ public class NetherDescentTreeFeatures {
                         new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(ARISIAN_TREE3)), 0.2F),
                         new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(ARISIAN_TREE4)), 0.2F),
                         new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(ARISIAN_TREE5)), 0.25F),
-                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(ARISIAN_BUSH_1)), 0.3F)),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(ARISIAN_BUSH_1)), 0.3F),
+                        new WeightedPlacedFeature(PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(ARISIAN_LARGE_BUSH)), 0.35F)),
                         PlacedFeaturesUtil.createPlacedFeatureDirect(lookup.getOrThrow(ARISIAN_TREE6)));
             }
     );

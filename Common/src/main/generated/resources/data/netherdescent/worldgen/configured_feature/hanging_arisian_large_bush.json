@@ -1,0 +1,64 @@
+{
+  "type": "ohthetreesyoullgrow:tree_from_nbt_v2",
+  "config": {
+    "base_location": "netherdescent:features/trees/arisian/arisian_large_bush_trunk",
+    "can_grow_on_filter": {
+      "type": "minecraft:any_of",
+      "predicates": [
+        {
+          "type": "minecraft:matching_block_tag",
+          "tag": "minecraft:base_stone_nether"
+        },
+        {
+          "type": "minecraft:matching_blocks",
+          "blocks": "netherdescent:arisian_moss_block"
+        }
+      ]
+    },
+    "can_leaves_place_filter": {
+      "type": "minecraft:replaceable"
+    },
+    "can_logs_place_filter": {
+      "type": "minecraft:replaceable"
+    },
+    "canopy_location": "netherdescent:features/trees/arisian/arisian_large_bush_canopy",
+    "height": {
+      "type": "minecraft:biased_to_bottom",
+      "max_inclusive": 3,
+      "min_inclusive": 2
+    },
+    "leaves_provider": [
+      {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "netherdescent:arisian_leaves",
+          "Properties": {
+            "distance": "1",
+            "lit": "false",
+            "persistent": "true",
+            "strength": "0",
+            "waterlogged": "true"
+          }
+        }
+      }
+    ],
+    "leaves_target": [
+      "netherdescent:arisian_leaves"
+    ],
+    "log_provider": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "netherdescent:arisian_log",
+        "Properties": {
+          "axis": "y"
+        }
+      }
+    },
+    "log_target": [
+      "netherdescent:arisian_log"
+    ],
+    "max_log_depth": 4,
+    "orientation": "UPSIDE_DOWN",
+    "replace_from_nbt": {}
+  }
+}
