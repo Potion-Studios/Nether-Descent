@@ -174,7 +174,7 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
         BlockState blockState = level.getBlockState(blockPos);
         boolean bl = blockState.is(block);
         if ((!bl || !(Boolean)blockState.getValue(BASE)) && (bl || blockState.canBeReplaced())) {
-            BlockState blockState2 = block.defaultBlockState().setValue(BASE, false);
+            BlockState blockState2 = block.defaultBlockState().setValue(BASE, false).setValue(HANGING, hanging);
             BlockState blockState3 = getUpdatedState(block, blockState2, level, hanging ? pos.below() : pos.above(), true);
 
             for (Direction direction : Direction.Plane.HORIZONTAL) {
