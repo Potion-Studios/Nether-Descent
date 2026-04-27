@@ -1,6 +1,7 @@
 import com.hypherionmc.modpublisher.properties.CurseEnvironment
 import com.hypherionmc.modpublisher.properties.ReleaseType
 import net.fabricmc.loom.api.LoomGradleExtensionAPI
+import org.gradle.api.tasks.bundling.AbstractArchiveTask
 
 plugins {
     id("architectury-plugin") version "3.4-SNAPSHOT"
@@ -27,6 +28,10 @@ subprojects {
     apply(plugin = "com.hypherionmc.modutils.modpublisher")
 
     base.archivesName.set(project.properties["archives_base_name"] as String + "-${project.name}")
+
+    tasks.withType<AbstractArchiveTask>().configureEach {
+        archiveVersion.set("${project.version}-mc$minecraftVersion")
+    }
 
     val loom = project.extensions.getByName<LoomGradleExtensionAPI>("loom")
     loom.silentMojangMappingsLicense()
@@ -101,9 +106,9 @@ subprojects {
                 modrinth(getPublishingCredentials().second)
                 github(project.properties["github_token"].toString())
             }
-            displayName.set(base.archivesName.get() + "-${project.version}")
+            displayName.set(base.archivesName.get() + "-${project.version}-mc$minecraftVersion")
             artifact.set(project.tasks.getByName("remapJar"))
-            projectVersion.set(project.version.toString() + "-${project.name}")
+            projectVersion.set(project.version.toString() + "-${project.name}-mc$minecraftVersion")
             changelog.set(projectDir.toPath().parent.resolve("CHANGELOG.md").toFile().readLines().take(100).joinToString("\n"))
             curseID.set("1357097")
             modrinthID.set("OMC5QQv5")
