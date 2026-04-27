@@ -127,7 +127,8 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy(getHasName(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()), has(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()))
                 .save(recipeOutput, getBlastingRecipeName(Items.QUARTZ));
 
-        //nineBlockStorageRecipesRecipesWithCustomUnpacking(recipeOutput, RecipeCategory.MISC, NetherDescentItems.PENDORITE_NUGGET.get(), RecipeCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), "pendorite_ingot_from_nuggets", "pendorite_ingot");
+	    nineBlockStorageRecipesWithCustomPacking(recipeOutput, RecipeCategory.MISC, NetherDescentItems.PENDORITE_NUGGET.get(), RecipeCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), "pendorite_ingot_from_nuggets", "pendorite_ingot");
+		nineBlockStorageRecipesRecipesWithCustomUnpacking(recipeOutput, RecipeCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.PENDORITE_BLOCK.get(), "pendorite_ingot_from_pendorite_block", "pendorite_ingot");
         oreSmelting(recipeOutput, PENDORITE_SMELTABLES, RecipeCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), 0.7F, 200, "pendorite_ingot");
         oreBlasting(recipeOutput, PENDORITE_SMELTABLES, RecipeCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), 0.7F, 100, "pendorite_ingot");
 
@@ -239,7 +240,7 @@ public class RecipeGenerator extends RecipeProvider {
                 .save(recipeOutput);
     }
 
-	protected static void stonecutterResultFromBase(RecipeOutput recipeOutput, RecipeCategory category, ItemLike result, ItemLike material, int resultCount) {
+	protected static void stonecutterResultFromBase(@NotNull RecipeOutput recipeOutput, @NotNull RecipeCategory category, ItemLike result, ItemLike material, int resultCount) {
 		SingleItemRecipeBuilder.stonecutting(Ingredient.of(material), category, result, resultCount)
 				.unlockedBy(getHasName(material), has(material))
 				.save(recipeOutput, NetherDescent.id(getConversionRecipeName(result, material) + "_stonecutting"));

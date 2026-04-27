@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "pendorite_ingot",
+  "key": {
+    "#": {
+      "item": "netherdescent:pendorite_nugget"
+    }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "netherdescent:pendorite_ingot"
+  }
+}

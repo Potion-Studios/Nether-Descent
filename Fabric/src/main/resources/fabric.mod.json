@@ -3,7 +3,7 @@
   "id": "netherdescent",
   "version": "${version}",
   "name": "Nether Descent",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "Nether Descent is a brand new nether biome mod by the Potion Studios team, truly an adventure like no other awaits you with new biomes, mobs, blocks, items, and more!",
   "authors": [
     "Joseph T. McQuigg (JT122406)",
     "AOCAWOL"
@@ -28,13 +28,13 @@
     ]
   },
   "mixins": [
-    "netherdescent.mixins.json",
     "netherdescent-common.mixins.json"
   ],
   "depends": {
     "fabric": "*",
     "minecraft": ">=1.21.1",
-    "terrablender": ">=4.1.0.0"
+    "terrablender": ">=4.1.0.0",
+    "ohthetreesyoullgrow": ">=5.0.10"
   },
   "suggests": {
     "WTHIT": ">=8.15.0",

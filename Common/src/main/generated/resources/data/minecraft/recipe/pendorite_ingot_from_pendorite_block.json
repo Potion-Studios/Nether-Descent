@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "pendorite_ingot",
+  "ingredients": [
+    {
+      "item": "netherdescent:pendorite_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "id": "netherdescent:pendorite_ingot"
+  }
+}

@@ -10,6 +10,7 @@ displayName = "Nether Descent"
 logoFile = "netherdescent.png"
 authors = "Joseph T. McQuigg (JT122406), AOCAWOL"
 description = '''
+Nether Descent is a brand new nether biome mod by the Potion Studios team, truly an adventure like no other awaits you with new biomes, mobs, blocks, items, and more!
 '''
 displayURL="https://potionstudios.net/"
 
@@ -31,6 +32,13 @@ side = "BOTH"
 modId = "terrablender"
 type = "required"
 versionRange = "[4.1.0.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.netherdescent]]
+modId = "ohthetreesyoullgrow"
+type = "required"
+versionRange = "[5.0.10,)"
 ordering = "AFTER"
 side = "BOTH"
 
