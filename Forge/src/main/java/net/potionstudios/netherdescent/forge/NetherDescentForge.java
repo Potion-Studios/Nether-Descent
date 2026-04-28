@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.forge;
 
+import com.terraformersmc.biolith.impl.Biolith;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -7,19 +8,18 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.commands.NetherDescentCommands;
-import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
 import net.potionstudios.netherdescent.forge.client.NetherDescentClientForge;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
-import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentSurfaceRules;
-import net.potionstudios.netherdescent.world.level.levelgen.regions.NetherDescentRegion;
-import terrablender.api.Regions;
-import terrablender.api.SurfaceRuleManager;
+import net.potionstudios.netherdescent.world.level.levelgen.biome.SurfaceRuleRegisterBiolith;
+import net.potionstudios.netherdescent.world.level.levelgen.biome.SurfaceRuleRegisterTerrablender;
+import terrablender.core.TerraBlender;
 
 /**
  * Main class for the mod on the Forge platform.
@@ -48,11 +48,10 @@ public class NetherDescentForge {
         event.enqueueWork(() -> {
             NetherDescent.commonSetup();
             VanillaCompatForge.init();
-            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, NetherDescent.MOD_ID, NetherDescentSurfaceRules.makeRules());
-            Regions.register(new NetherDescentRegion(
-                    NetherDescent.id("nether_descent"),
-                    WorldGenerationConfig.get().regionWeight
-            ));
+            if (ModList.get().isLoaded(Biolith.MOD_ID))
+                SurfaceRuleRegisterBiolith.registerSurfaceRules();
+            else if (ModList.get().isLoaded(TerraBlender.MOD_ID))
+                SurfaceRuleRegisterTerrablender.registerSurfaceRules();
             ForgePlatformHandler.registerPottedPlants();
         });
     }

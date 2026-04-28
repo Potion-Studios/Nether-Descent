@@ -52,6 +52,7 @@ subprojects {
             includeGroup("mcp.mobius.waila")
         }
         maven("https://api.modrinth.com/maven")
+        maven("https://maven.terraformersmc.com/")
     }
 
     @Suppress("UnstableApiUsage")
