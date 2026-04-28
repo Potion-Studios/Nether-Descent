@@ -20,43 +20,9 @@ public class NetherDescentRegion extends Region {
 
     @Override
     public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
-        addIfEnabled(mapper,
-                Climate.Parameter.point(0.0F), Climate.Parameter.point(-0.5F),
-                Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F),
-                Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F),
-                0.0F, NetherDescentBiomes.EMBUR_BOG);
-
-        addIfEnabled(mapper,
-                Climate.Parameter.point(0.4F), Climate.Parameter.point(0.0F),
-                Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F),
-                Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F),
-                0.0F, NetherDescentBiomes.WAILING_GARTH);
-
-        addIfEnabled(mapper,
-                Climate.Parameter.point(0.0F), Climate.Parameter.point(0.5F),
-                Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F),
-                Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F),
-                0.375F, NetherDescentBiomes.SYTHIAN_TORRIDS);
-
-        addIfEnabled(mapper,
-                Climate.Parameter.point(-0.5F), Climate.Parameter.point(0.0F),
-                Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F),
-                Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F),
-                0.175F, NetherDescentBiomes.CRIMSON_GARDENS);
-
-        addIfEnabled(mapper,
-                Climate.Parameter.point(-0.4F), Climate.Parameter.point(0.0F),
-                Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F),
-                Climate.Parameter.point(0.0F), Climate.Parameter.point(0.0F),
-                0.175F, NetherDescentBiomes.ARISIAN_UNDERGROWTH);
-    }
-
-    private void addIfEnabled(Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper,
-                              Climate.Parameter temperature, Climate.Parameter humidity,
-                              Climate.Parameter continentalness, Climate.Parameter erosion,
-                              Climate.Parameter depth, Climate.Parameter weirdness,
-                              float offset, ResourceKey<Biome> biome) {
-        if (WorldGenerationConfig.get().isEnabled(biome))
-            this.addBiome(mapper, temperature, humidity, continentalness, erosion, depth, weirdness, offset, biome);
+        NetherDescentBiomes.BIOME_FACTORIES.forEach(((biomeResourceKey, biomeDefinition) -> {
+            if (WorldGenerationConfig.get().isEnabled(biomeResourceKey))
+                this.addBiome(mapper, biomeDefinition.parameterPoint(), biomeResourceKey);
+        }));
     }
 }

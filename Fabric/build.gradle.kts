@@ -38,7 +38,8 @@ dependencies {
 
     modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${project.properties["devauth_version"]}")
 
-    modApi("com.github.glitchfiend:TerraBlender-fabric:$minecraftVersion-${project.properties["terrablender_version"]}")
+    modCompileOnly("com.github.glitchfiend:TerraBlender-fabric:$minecraftVersion-${project.properties["terrablender_version"]}")
+    modApi("com.terraformersmc:biolith-fabric:${project.properties["biolith_version"]}")
     modApi("dev.corgitaco:Oh-The-Trees-Youll-Grow-fabric:$minecraftVersion-${project.properties["ohthetreesyoullgrow_version"]}")
     modApi("me.lucko:fabric-permissions-api:0.3.1")
 
@@ -70,7 +71,7 @@ tasks {
 
 publisher {
     setLoaders(ModLoader.FABRIC, ModLoader.QUILT)
-    curseDepends.required.set(mutableListOf("fabric-api", "terrablender-fabric", "oh-the-trees-youll-grow"))
-    modrinthDepends.required.set(mutableListOf("fabric-api", "terrablender", "oh-the-trees-youll-grow"))
-    curseDepends.optional.set(mutableListOf("wthit"))
+    curseDepends.required.set(mutableListOf("fabric-api", "oh-the-trees-youll-grow"))
+    modrinthDepends.required.set(mutableListOf("fabric-api", "oh-the-trees-youll-grow"))
+    curseDepends.optional.set(mutableListOf("terrablender-fabric", "biolith", "wthit"))
 }

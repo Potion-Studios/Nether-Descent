@@ -52,6 +52,7 @@ subprojects {
             includeGroup("mcp.mobius.waila")
         }
         maven("https://api.modrinth.com/maven")
+        maven("https://maven.terraformersmc.com/")
     }
 
     @Suppress("UnstableApiUsage")
@@ -117,7 +118,7 @@ subprojects {
             setGameVersions(minecraftVersion)
             setCurseEnvironment(CurseEnvironment.BOTH)
             setJavaVersions(JavaVersion.VERSION_21, JavaVersion.VERSION_22, JavaVersion.VERSION_25)
-            modrinthDepends.optional.set(mutableListOf("wthit"))
+            modrinthDepends.optional.set(mutableListOf("terrablender", "biolith", "wthit"))
         }
 }
 

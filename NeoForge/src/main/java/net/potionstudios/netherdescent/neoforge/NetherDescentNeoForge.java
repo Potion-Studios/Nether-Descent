@@ -1,6 +1,8 @@
 package net.potionstudios.netherdescent.neoforge;
 
+import com.terraformersmc.biolith.impl.Biolith;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
@@ -10,12 +12,10 @@ import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.commands.NetherDescentCommands;
-import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
-import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentSurfaceRules;
-import net.potionstudios.netherdescent.world.level.levelgen.regions.NetherDescentRegion;
-import terrablender.api.Regions;
-import terrablender.api.SurfaceRuleManager;
+import net.potionstudios.netherdescent.world.level.levelgen.biome.RegisterBiolith;
+import net.potionstudios.netherdescent.world.level.levelgen.biome.RegisterTerraBlender;
+import terrablender.core.TerraBlender;
 
 /**
  * Main class for the mod on the NeoForge platform.
@@ -41,11 +41,11 @@ public class NetherDescentNeoForge {
     private void onInitialize(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             NetherDescent.commonSetup();
-            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.NETHER, NetherDescent.MOD_ID, NetherDescentSurfaceRules.makeRules());
-            Regions.register(new NetherDescentRegion(
-                    NetherDescent.id("nether_descent"),
-                    WorldGenerationConfig.get().regionWeight
-            ));
+            if (ModList.get().isLoaded(Biolith.MOD_ID))
+                RegisterBiolith.register();
+            else if (ModList.get().isLoaded(TerraBlender.MOD_ID))
+                RegisterTerraBlender.register();
+            else NetherDescent.LOGGER.warn("TerraBlender or Biolith are not loaded, Nether Descent's biomes will not be added to the world!");
             NeoForgePlatformHandler.registerPottedPlants();
         });
     }

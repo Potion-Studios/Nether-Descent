@@ -47,6 +47,7 @@ dependencies {
     modLocalRuntime("me.djtheredstoner:DevAuth-neoforge:${project.properties["devauth_version"]}")
 
     modApi("com.github.glitchfiend:TerraBlender-neoforge:$minecraftVersion-${project.properties["terrablender_version"]}")
+    modApi("com.terraformersmc:biolith-neoforge:${project.properties["biolith_version"]}")
     modApi("dev.corgitaco:Oh-The-Trees-Youll-Grow-neoforge:$minecraftVersion-${project.properties["ohthetreesyoullgrow_version"]}")
 
     modLocalRuntime("mcp.mobius.waila:wthit:neo-${project.properties["WTHIT"]}")
@@ -80,7 +81,7 @@ tasks {
 
 publisher {
     setLoaders(ModLoader.NEOFORGE)
-    curseDepends.required.set(mutableListOf("terrablender-neoforge", "oh-the-trees-youll-grow"))
-    modrinthDepends.required.set(mutableListOf("terrablender", "oh-the-trees-youll-grow"))
-    curseDepends.optional.set(mutableListOf("wthit-forge"))
+    curseDepends.required.set(mutableListOf("oh-the-trees-youll-grow"))
+    modrinthDepends.required.set(mutableListOf("oh-the-trees-youll-grow"))
+    curseDepends.optional.set(mutableListOf("terrablender-neoforge", "biolith", "wthit-forge"))
 }

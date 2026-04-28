@@ -14,20 +14,32 @@
   - NeoForge: net.potionstudios:Nether-Descent-NeoForge:{version}
 
 
- ### Dependencies
-- TerraBlender 
-  - Github: https://github.com/Glitchfiend/TerraBlender/
-  - CurseForge (Forge): https://www.curseforge.com/minecraft/mc-mods/terrablender
-  - CurseForge (Fabric): https://www.curseforge.com/minecraft/mc-mods/terrablender-fabric
-  - CurseForge (NeoForge): https://www.curseforge.com/minecraft/mc-mods/terrablender-neoforge
+### Dependencies
+
+#### Required
+You must install **one** of the following worldgen libraries:
+
+- **TerraBlender**
+  - GitHub: https://github.com/Glitchfiend/TerraBlender/
+  - CurseForge:
+    - Forge: https://www.curseforge.com/minecraft/mc-mods/terrablender
+    - Fabric: https://www.curseforge.com/minecraft/mc-mods/terrablender-fabric
+    - NeoForge: https://www.curseforge.com/minecraft/mc-mods/terrablender-neoforge
   - Modrinth: https://modrinth.com/mod/terrablender
- 
-- Oh The Tree's You'll Grow
-  - Github: https://github.com/CorgiTaco/Oh-The-Trees-Youll-Grow
+
+- **Biolith**
+  - GitHub: https://github.com/TerraformersMC/Biolith
+  - CurseForge: https://www.curseforge.com/minecraft/mc-mods/biolith
+  - Modrinth: https://modrinth.com/mod/biolith
+
+#### Required Add-ons
+- **Oh The Trees You'll Grow**
+  - GitHub: https://github.com/CorgiTaco/Oh-The-Trees-Youll-Grow
   - CurseForge: https://www.curseforge.com/minecraft/mc-mods/oh-the-trees-youll-grow
   - Modrinth: https://modrinth.com/mod/oh-the-trees-youll-grow
 
-- Fabric API (Fabric Version Only)
-  - Github: https://github.com/FabricMC/fabric
+#### Fabric/Quilt Only
+- **Fabric API**
+  - GitHub: https://github.com/FabricMC/fabric
   - CurseForge: https://www.curseforge.com/minecraft/mc-mods/fabric-api
   - Modrinth: https://modrinth.com/mod/fabric-api
