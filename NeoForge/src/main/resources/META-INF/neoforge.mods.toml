@@ -30,8 +30,15 @@ side = "BOTH"
 
 [[dependencies.netherdescent]]
 modId = "terrablender"
-type = "required"
+type = "optional"
 versionRange = "[4.1.0.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.netherdescent]]
+modId = "biolith"
+type = "optional"
+versionRange = "[3.0.10,)"
 ordering = "AFTER"
 side = "BOTH"
 
