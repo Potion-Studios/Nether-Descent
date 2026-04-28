@@ -6,9 +6,9 @@ import net.potionstudios.netherdescent.world.level.levelgen.regions.NetherDescen
 import terrablender.api.Regions;
 import terrablender.api.SurfaceRuleManager;
 
-public class SurfaceRuleRegisterTerrablender {
+public class RegisterTerraBlender {
 
-    public static void registerSurfaceRules() {
+    public static void register() {
         SurfaceRuleManager.addSurfaceRules(terrablender.api.SurfaceRuleManager.RuleCategory.NETHER, NetherDescent.MOD_ID, NetherDescentSurfaceRules.makeRules());
         Regions.register(new NetherDescentRegion(
                 NetherDescent.id("nether_descent"),

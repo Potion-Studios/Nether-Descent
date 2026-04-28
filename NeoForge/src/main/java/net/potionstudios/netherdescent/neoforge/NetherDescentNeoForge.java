@@ -13,8 +13,8 @@ import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.commands.NetherDescentCommands;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
-import net.potionstudios.netherdescent.world.level.levelgen.biome.SurfaceRuleRegisterBiolith;
-import net.potionstudios.netherdescent.world.level.levelgen.biome.SurfaceRuleRegisterTerrablender;
+import net.potionstudios.netherdescent.world.level.levelgen.biome.RegisterBiolith;
+import net.potionstudios.netherdescent.world.level.levelgen.biome.RegisterTerraBlender;
 import terrablender.core.TerraBlender;
 
 /**
@@ -42,9 +42,9 @@ public class NetherDescentNeoForge {
         event.enqueueWork(() -> {
             NetherDescent.commonSetup();
             if (ModList.get().isLoaded(Biolith.MOD_ID))
-                SurfaceRuleRegisterBiolith.registerSurfaceRules();
+                RegisterBiolith.register();
             else if (ModList.get().isLoaded(TerraBlender.MOD_ID))
-                SurfaceRuleRegisterTerrablender.registerSurfaceRules();
+                RegisterTerraBlender.register();
             NeoForgePlatformHandler.registerPottedPlants();
         });
     }

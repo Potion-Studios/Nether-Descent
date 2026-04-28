@@ -9,8 +9,7 @@ import net.minecraft.world.entity.SpawnPlacements;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.commands.NetherDescentCommands;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
-import net.potionstudios.netherdescent.world.level.levelgen.biome.SurfaceRuleRegisterBiolith;
-import net.potionstudios.netherdescent.world.level.levelgen.biome.SurfaceRuleRegisterTerrablender;
+import net.potionstudios.netherdescent.world.level.levelgen.biome.RegisterBiolith;
 
 /**
  * This class is the entrypoint for the mod on the Fabric platform.
@@ -29,7 +28,7 @@ public class NetherDescentFabric implements ModInitializer {
         initialized = true;
         NetherDescent.init();
         if (FabricLoader.getInstance().isModLoaded(Biolith.MOD_ID))
-            SurfaceRuleRegisterBiolith.registerSurfaceRules();
+            RegisterBiolith.register();
         VanillaCompatFabric.init();
 	    NetherDescentEntityType.registerEntityAttributes(FabricDefaultAttributeRegistry::register);
 	    NetherDescentEntityType.registerSpawnPlacements((consumer) -> SpawnPlacements.register(consumer.entityType().get(), consumer.spawnPlacementType(), consumer.heightmapType(), consumer.predicate()));
