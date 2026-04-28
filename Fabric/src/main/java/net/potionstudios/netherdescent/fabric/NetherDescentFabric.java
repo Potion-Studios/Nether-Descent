@@ -10,6 +10,7 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.commands.NetherDescentCommands;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.RegisterBiolith;
+import terrablender.core.TerraBlender;
 
 /**
  * This class is the entrypoint for the mod on the Fabric platform.
@@ -29,6 +30,8 @@ public class NetherDescentFabric implements ModInitializer {
         NetherDescent.init();
         if (FabricLoader.getInstance().isModLoaded(Biolith.MOD_ID))
             RegisterBiolith.register();
+        else if (!FabricLoader.getInstance().isModLoaded(TerraBlender.MOD_ID))
+            NetherDescent.LOGGER.warn("TerraBlender or Biolith are not loaded, Nether Descent's biomes will not be added to the world!");
         VanillaCompatFabric.init();
 	    NetherDescentEntityType.registerEntityAttributes(FabricDefaultAttributeRegistry::register);
 	    NetherDescentEntityType.registerSpawnPlacements((consumer) -> SpawnPlacements.register(consumer.entityType().get(), consumer.spawnPlacementType(), consumer.heightmapType(), consumer.predicate()));

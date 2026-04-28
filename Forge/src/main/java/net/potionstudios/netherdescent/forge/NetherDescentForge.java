@@ -52,6 +52,7 @@ public class NetherDescentForge {
                 RegisterBiolith.register();
             else if (ModList.get().isLoaded(TerraBlender.MOD_ID))
                 RegisterTerraBlender.register();
+            else NetherDescent.LOGGER.warn("TerraBlender or Biolith are not loaded, Nether Descent's biomes will not be added to the world!");
             ForgePlatformHandler.registerPottedPlants();
         });
     }

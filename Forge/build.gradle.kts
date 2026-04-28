@@ -77,8 +77,8 @@ tasks {
 
 publisher {
     setLoaders(ModLoader.FORGE)
-    val depends = mutableListOf("terrablender", "oh-the-trees-youll-grow")
+    val depends = mutableListOf("oh-the-trees-youll-grow")
     curseDepends.required.set(depends)
     modrinthDepends.required.set(depends)
-    curseDepends.optional.set(mutableListOf("wthit-forge"))
+    curseDepends.optional.set(mutableListOf("terrablender", "biolith", "wthit-forge"))
 }
