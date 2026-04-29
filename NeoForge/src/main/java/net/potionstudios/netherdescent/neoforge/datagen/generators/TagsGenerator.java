@@ -213,6 +213,9 @@ public class TagsGenerator {
 			NetherDescentBiomes.BIOMES_BY_TAG.forEach((tag, biome) -> tag(tag).add(biome));
 
 			tag(BiomeTags.IS_NETHER).addTag(NetherDescentBiomeTags.NETHER);
+			tag(Tags.Biomes.IS_HOT_NETHER).addTag(NetherDescentBiomeTags.HOT);
+			tag(Tags.Biomes.IS_DRY_NETHER).addTag(NetherDescentBiomeTags.DRY);
+			tag(Tags.Biomes.IS_NETHER_FOREST).addTag(NetherDescentBiomeTags.FOREST);
 		}
 	}
 

@@ -14,6 +14,21 @@ public final class NetherDescentBiomeTags {
      **/
     public static final TagKey<Biome> NETHER = create("nether");
 
+	/** Correlates to
+	 * @see net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags#IS_HOT_NETHER
+	 **/
+	public static final TagKey<Biome> HOT = create("climate/hot");
+
+	/** Correlates to
+	 * @see net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags#IS_DRY_NETHER
+	 */
+	public static final TagKey<Biome> DRY = create("climate/dry");
+
+	/** Correlates to
+	 * @see net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags#IS_NETHER_FOREST
+	 */
+	public static final TagKey<Biome> FOREST = create("forest");
+
 	public static class StructureHasTags {
 		public static final TagKey<Biome> HAS_BLUE_FORTRESS = create("has_structure/blue_fortress");
 
