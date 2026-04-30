@@ -17,7 +17,7 @@
           "blocks": "netherdescent:embur_wart"
         },
         {
-          "type": "minecraft:replaceable"
+          "type": "minecraft:true"
         }
       ]
     },

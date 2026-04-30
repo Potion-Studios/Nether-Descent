@@ -20,7 +20,7 @@
           "blocks": "netherdescent:wailing_fungus"
         },
         {
-          "type": "minecraft:replaceable"
+          "type": "minecraft:true"
         }
       ]
     },

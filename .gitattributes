@@ -1,0 +1,18 @@
+# Snatched from: https://github.com/NeoForgeMDKs/MDK-1.21-ModDevGradle/blob/main/.gitattributes
+
+# Disable autocrlf on generated files, they always generate with LF
+# Add any extra files or paths here to make git stop saying they
+# are changed when only line endings change.
+Common/src/generated/**/.cache/* text eol=lf
+Common/src/generated/**/*.json text eol=lf
+
+###################
+
+# Snatched from: https://github.com/FabricMC/fabric-example-mod/blob/26.1.2/.gitattributes
+
+# https://help.github.com/articles/dealing-with-line-endings/
+# Linux start script should use lf
+/gradlew        text eol=lf
+
+# These are Windows script files and should use crlf
+*.bat           text eol=crlf
