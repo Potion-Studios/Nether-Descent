@@ -3,11 +3,16 @@ package net.potionstudios.netherdescent.fabric;
 import com.terraformersmc.biolith.impl.Biolith;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.Level;
 import net.potionstudios.netherdescent.NetherDescent;
+import net.potionstudios.netherdescent.PlatformHandler;
 import net.potionstudios.netherdescent.commands.NetherDescentCommands;
+import net.potionstudios.netherdescent.config.configs.DevConfig;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.RegisterBiolith;
 import terrablender.core.TerraBlender;
@@ -38,5 +43,18 @@ public class NetherDescentFabric implements ModInitializer {
             NetherDescent.LOGGER.warn("TerraBlender or Biolith are not loaded, Nether Descent's biomes will not be added to the world!");
         NetherDescent.postInit();
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> NetherDescentCommands.register(dispatcher::register));
+
+
+        if (PlatformHandler.PLATFORM_HANDLER.isDevEnvironment()) {
+            ServerPlayerEvents.JOIN.register(serverPlayer -> {
+                if (serverPlayer.level().dimension() != Level.NETHER) {
+                    DevConfig devConfig = DevConfig.getInstance(true);
+                    if (devConfig.startInNether()) {
+                        serverPlayer.setGameMode(GameType.SPECTATOR);
+                        serverPlayer.teleportTo(serverPlayer.level().getServer().getLevel(Level.NETHER), serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), serverPlayer.getYRot(), serverPlayer.getXRot());
+                    }
+                }
+            });
+        }
     }
 }

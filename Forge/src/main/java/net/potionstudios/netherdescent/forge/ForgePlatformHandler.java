@@ -11,8 +11,12 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.datafix.fixes.References;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.item.*;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -24,6 +28,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.data.loading.DatagenModLoader;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -120,5 +125,10 @@ public final class ForgePlatformHandler implements PlatformHandler {
 		PARTICLES.register(bus);
 		CACHED.values().forEach(deferredRegister -> deferredRegister.register(bus));
 		BLOCK_ENTITIES.register(bus);
+	}
+
+	@Override
+	public boolean isDevEnvironment() {
+		return !FMLLoader.isProduction();
 	}
 }

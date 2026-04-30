@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.potionstudios.netherdescent.config.configs.DevConfig;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
 import net.potionstudios.netherdescent.core.dispenser.DispenseItemBehavior;
@@ -59,6 +60,13 @@ public class NetherDescent {
         NetherDescentArmorMaterials.armorMaterials();
 	    NetherDescentPoiTypes.poiTypes();
         NetherDescentSchedule.schedules();
+        devEnvironmentSetup();
+    }
+
+    private static void devEnvironmentSetup() {
+        if (PlatformHandler.PLATFORM_HANDLER.isDevEnvironment()) {
+            DevConfig.getInstance(false);
+        }
     }
 
     /**

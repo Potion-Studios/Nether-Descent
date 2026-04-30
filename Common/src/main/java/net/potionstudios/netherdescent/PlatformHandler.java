@@ -154,4 +154,6 @@ public interface PlatformHandler {
 	default boolean isDatagen() {
 		return false;
 	}
+
+	boolean isDevEnvironment();
 }
