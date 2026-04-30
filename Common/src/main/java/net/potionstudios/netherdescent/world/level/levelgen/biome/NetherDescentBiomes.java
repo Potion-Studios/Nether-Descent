@@ -22,35 +22,34 @@ import java.util.Map;
 public class NetherDescentBiomes {
 
 	public static final Map<ResourceKey<Biome>, BiomeDefinition> BIOME_FACTORIES = new Reference2ObjectOpenHashMap<>();
-
 	public static final Multimap<TagKey<Biome>, ResourceKey<Biome>> BIOMES_BY_TAG = Multimaps.newSetMultimap(new HashMap<>(), HashSet::new);
 
 	public static final ResourceKey<Biome> ARISIAN_UNDERGROWTH = createBiome("arisian_undergrowth",
 			NetherDescentBiomeBuilder::arisianUndergrowth,
-			Climate.parameters(-0.4F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.175F),
+			Climate.parameters(0.75F, 0.9F, 0F, -0.1F, 0.0F, 0.6F, 0F),
 			BiomeTags.HAS_NETHER_FOSSIL, BiomeTags.HAS_BASTION_REMNANT, BiomeTags.HAS_NETHER_FORTRESS,
 			NetherDescentBiomeTags.DRY, NetherDescentBiomeTags.HOT, NetherDescentBiomeTags.FOREST
 	);
 	public static final ResourceKey<Biome> CRIMSON_GARDENS = createBiome("crimson_gardens",
 			NetherDescentBiomeBuilder::crimsonGardens,
-			Climate.parameters(-0.5F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.175F),
+			Climate.parameters(1.0F, 0.7F, 0F, 0.3F, 0.0F, -0.4F, 0F),
 			BiomeTags.HAS_NETHER_FOSSIL, BiomeTags.HAS_BASTION_REMNANT, BiomeTags.HAS_NETHER_FORTRESS,
 			NetherDescentBiomeTags.DRY, NetherDescentBiomeTags.HOT
 	);
 	public static final ResourceKey<Biome> EMBUR_BOG = createBiome("embur_bog",
 			NetherDescentBiomeBuilder::emburBog,
-			Climate.parameters(0.0F, -0.5F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F),
+			Climate.parameters(1.0F, 0.85F, 0F, -0.2F, 0.0F, -0.1F, 0F),
 			NetherDescentBiomeTags.StructureHasTags.HAS_BLUE_FORTRESS,
 			NetherDescentBiomeTags.DRY, NetherDescentBiomeTags.HOT
 	);
 	public static final ResourceKey<Biome> SYTHIAN_TORRIDS = createBiome("sythian_torrids",
 			NetherDescentBiomeBuilder::sythianTorrids,
-			Climate.parameters(0.0F, 0.5F, 0.0F, 0.0F, 0.0F, 0.0F, 0.375F),
+			Climate.parameters(1.0F, 0.6F, 0F, -0.4F, 0F, 0.8F, 0F),
 			NetherDescentBiomeTags.DRY, NetherDescentBiomeTags.HOT, NetherDescentBiomeTags.FOREST
 	);
 	public static final ResourceKey<Biome> WAILING_GARTH = createBiome("wailing_garth",
 			NetherDescentBiomeBuilder::wailingGarth,
-			Climate.parameters(0.4F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F),
+			Climate.parameters(1.0F, 0.5F, 0F, 0.7F, 0F, -0.2F, 0F),
 			NetherDescentBiomeTags.StructureHasTags.HAS_CHAINS, BiomeTags.HAS_NETHER_FOSSIL, BiomeTags.HAS_BASTION_REMNANT, BiomeTags.HAS_NETHER_FORTRESS,
 			NetherDescentBiomeTags.DRY, NetherDescentBiomeTags.HOT
 	);
