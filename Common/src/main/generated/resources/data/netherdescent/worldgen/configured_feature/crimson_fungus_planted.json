@@ -9,7 +9,7 @@
     },
     "planted": true,
     "replaceable_blocks": {
-      "type": "minecraft:true"
+      "type": "minecraft:replaceable"
     },
     "stem_state": {
       "Name": "minecraft:crimson_stem",
