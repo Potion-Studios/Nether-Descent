@@ -13,8 +13,8 @@ import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.commands.NetherDescentCommands;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
-import net.potionstudios.netherdescent.world.level.levelgen.biome.RegisterBiolith;
-import net.potionstudios.netherdescent.world.level.levelgen.biome.RegisterTerraBlender;
+import net.potionstudios.netherdescent.world.level.levelgen.biome.BiolithRegister;
+import net.potionstudios.netherdescent.world.level.levelgen.biome.TerraBlenderRegister;
 import terrablender.core.TerraBlender;
 
 /**
@@ -42,9 +42,9 @@ public class NetherDescentNeoForge {
         event.enqueueWork(() -> {
             NetherDescent.commonSetup();
             if (ModList.get().isLoaded(Biolith.MOD_ID))
-                RegisterBiolith.register();
+                BiolithRegister.register();
             else if (ModList.get().isLoaded(TerraBlender.MOD_ID))
-                RegisterTerraBlender.register();
+                TerraBlenderRegister.register();
             else NetherDescent.LOGGER.warn("TerraBlender or Biolith are not loaded, Nether Descent's biomes will not be added to the world!");
             NeoForgePlatformHandler.registerPottedPlants();
         });

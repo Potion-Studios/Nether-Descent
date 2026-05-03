@@ -5,7 +5,7 @@ import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
 
-public class RegisterBiolith {
+public class BiolithRegister {
 
     public static void register() {
         NetherDescentBiomes.BIOME_FACTORIES.forEach((biomeKey, biomeDefinition) -> {

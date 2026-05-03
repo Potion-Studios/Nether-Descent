@@ -29,6 +29,13 @@ ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.netherdescent]]
+modId = "ohthetreesyoullgrow"
+mandatory = true
+versionRange = "[5.0.10,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.netherdescent]]
 modId = "terrablender"
 mandatory = false
 versionRange = "[4.1.0.0,)"
@@ -39,12 +46,5 @@ side = "BOTH"
 modId = "biolith"
 mandatory = false
 versionRange = "[3.0.10,)"
-ordering = "AFTER"
-side = "BOTH"
-
-[[dependencies.netherdescent]]
-modId = "ohthetreesyoullgrow"
-mandatory = true
-versionRange = "[5.0.10,)"
 ordering = "AFTER"
 side = "BOTH"
