@@ -1,5 +1,5 @@
 {
-  "parent": "netherdescent:netherdescent/adventure/root",
+  "parent": "netherdescent:netherdescent/root",
   "criteria": {
     "netherdescent:arisian_undergrowth": {
       "conditions": {

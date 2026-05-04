@@ -1,0 +1,34 @@
+{
+  "parent": "netherdescent:netherdescent/wailing_garth",
+  "criteria": {
+    "wailing_bulb_blossom": {
+      "conditions": {
+        "location": {
+          "block": {
+            "blocks": "netherdescent:wailing_bulb_blossom"
+          }
+        }
+      },
+      "trigger": "netherdescent:wailing_interaction"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.netherdescent.step_on_wailing_bulb_blossom.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "netherdescent:wailing_bulb_blossom"
+    },
+    "title": {
+      "translate": "advancements.netherdescent.step_on_wailing_bulb_blossom.title"
+    }
+  },
+  "requirements": [
+    [
+      "wailing_bulb_blossom"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

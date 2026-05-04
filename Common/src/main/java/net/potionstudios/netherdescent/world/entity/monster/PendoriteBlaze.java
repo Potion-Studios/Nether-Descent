@@ -84,7 +84,7 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
     }
 
     public static AttributeSupplier.@NotNull Builder createAttributes() {
-		return Monster.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 4.0F).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.FOLLOW_RANGE, 25.0F);
+		return Monster.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 4.0F).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.FOLLOW_RANGE, 25.0F).add(Attributes.MAX_HEALTH, 40.0F);
 	}
 
     @Override
@@ -150,6 +150,11 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
             return entityType != EntityType.CREEPER && super.canAttackType(entityType);
         }
     }
+
+	@Override
+	public boolean canBeLeashed() {
+		return true;
+	}
 
 	static class PendoriteBlazeAttackGoal extends Blaze.BlazeAttackGoal {
 		private final PendoriteBlaze blaze;

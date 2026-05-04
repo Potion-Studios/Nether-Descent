@@ -49,7 +49,7 @@ public class NetherDescentBiomes {
 	);
 	public static final ResourceKey<Biome> WAILING_GARTH = createBiome("wailing_garth",
 			NetherDescentBiomeBuilder::wailingGarth,
-			Climate.parameters(1.0F, 0.9F, 0F, 0F, 0F, -0.2F, 0F),
+			Climate.parameters(-0.5F, 0.9F, 0F, 0F, 0F, -0.1F, 0F),
 			NetherDescentBiomeTags.StructureHasTags.HAS_CHAINS, BiomeTags.HAS_NETHER_FOSSIL, BiomeTags.HAS_BASTION_REMNANT, BiomeTags.HAS_NETHER_FORTRESS,
 			NetherDescentBiomeTags.DRY, NetherDescentBiomeTags.HOT
 	);

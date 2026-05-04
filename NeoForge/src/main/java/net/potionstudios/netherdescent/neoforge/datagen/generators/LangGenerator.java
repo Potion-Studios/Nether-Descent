@@ -39,10 +39,22 @@ public class LangGenerator extends LanguageProvider {
         add(death("crimsonBerryBush.player"), "%1$s was poked to death by a crimson berry bush while trying to escape %2$s");
         add(advancement("title.root"), "Nether Descent");
         add(advancement("description.root"), "Launch a world with the Nether Descent");
-        add(advancement("adventure.root.title"), "Adventure");
-        add(advancement("adventure.root.description"), "The root of all things Nether Descent adventure");
-        add(advancement("adventure.final_descent.title"), "Final Descent");
-        add(advancement("adventure.final_descent.description"), "Explore all of the Nether Descent biomes");
+        add(advancement("arisian_undergrowth.title"), "Arisian Undergrowth");
+		add(advancement("arisian_undergrowth.description"), "Discover the Arisian Undergrowth biome");
+		add(advancement("crimson_gardens.title"), "Crimson Gardens");
+		add(advancement("crimson_gardens.description"), "Discover the Crimson Gardens biome");
+		add(advancement("embur_bog.title"), "Embur Bog");
+		add(advancement("embur_bog.description"), "Discover the Embur Bog biome");
+		add(advancement("sythian_torrids.title"), "Sythian Torrids");
+		add(advancement("sythian_torrids.description"), "Discover the Sythian Torrids biome");
+		add(advancement("wailing_garth.title"), "Wailing Garth");
+		add(advancement("wailing_garth.description"), "Discover the Wailing Garth biome");
+		add(advancement("step_on_wailing_bulb_blossom.title"), "Space Walking");
+		add(advancement("step_on_wailing_bulb_blossom.description"), "Step on a Wailing Bulb Blossom");
+		add(advancement("float_from_wailing_gills.title"), "Natural Elevators");
+		add(advancement("float_from_wailing_gills.description"), "Be pulled off the ground by a Wailing Gill Block");
+        add(advancement("final_descent.title"), "Final Descent");
+        add(advancement("final_descent.description"), "Explore all of the Nether Descent biomes");
         add("netherdescent.commands.reload.success", "Successfully reloaded all configs");
         add("netherdescent.commands.reload.spawn.success", "Successfully reloaded Mob Spawn config");
 	}

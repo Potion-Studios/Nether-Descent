@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.potionstudios.netherdescent.advancements.critereon.NetherDescentCriterionTriggers;
 import net.potionstudios.netherdescent.config.configs.DevConfig;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
@@ -60,6 +61,7 @@ public class NetherDescent {
         NetherDescentArmorMaterials.armorMaterials();
 	    NetherDescentPoiTypes.poiTypes();
         NetherDescentSchedule.schedules();
+        NetherDescentCriterionTriggers.criterionTriggers();
         devEnvironmentSetup();
     }
 

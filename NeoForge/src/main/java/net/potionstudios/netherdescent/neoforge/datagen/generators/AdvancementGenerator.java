@@ -9,11 +9,13 @@ import net.minecraft.network.chat.MutableComponent;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
+import net.potionstudios.netherdescent.advancements.critereon.WailingTrigger;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class AdvancementGenerator implements AdvancementProvider.AdvancementGenerator {
@@ -33,19 +35,81 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 )
                 .save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/root"), existingFileHelper);
 
-        AdvancementHolder adventureRoot = VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, NetherDescentBiomes.BIOME_FACTORIES.keySet().stream().sorted().toList())
+        AdvancementHolder arisian_undergrowth = VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, List.of(NetherDescentBiomes.ARISIAN_UNDERGROWTH))
                 .parent(root)
-                .requirements(AdvancementRequirements.Strategy.OR)
                 .display(
-                        NetherDescentItems.PENDORITE_INGOT.get(),
-                        translateAble("adventure.root.title"),
-                        translateAble("adventure.root.description"),
+                        NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get(),
+                        translateAble("arisian_undergrowth.title"),
+                        translateAble("arisian_undergrowth.description"),
                         null,
-                        AdvancementType.TASK, false, false, false
-                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/adventure/root"), existingFileHelper);
+                        AdvancementType.TASK, false, true, false
+                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/arisian_undergrowth"), existingFileHelper);
+
+
+        AdvancementHolder crimson_gardens = VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, List.of(NetherDescentBiomes.CRIMSON_GARDENS))
+                .parent(root)
+                .display(
+                        NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get(),
+                        translateAble("crimson_gardens.title"),
+                        translateAble("crimson_gardens.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/crimson_gardens"), existingFileHelper);
+
+        AdvancementHolder embur_bog = VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, List.of(NetherDescentBiomes.EMBUR_BOG))
+                .parent(root)
+                .display(
+                        NetherDescentBlocks.EMBUR_NYLIUM.get(),
+                        translateAble("embur_bog.title"),
+                        translateAble("embur_bog.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/embur_bog"), existingFileHelper);
+
+        AdvancementHolder sythian_torrids = VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, List.of(NetherDescentBiomes.SYTHIAN_TORRIDS))
+                .parent(root)
+                .display(
+                        NetherDescentBlocks.SYTHIAN_NYLIUM.get(),
+                        translateAble("sythian_torrids.title"),
+                        translateAble("sythian_torrids.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/sythian_torrids"), existingFileHelper);
+
+        AdvancementHolder wailing_garth = VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, List.of(NetherDescentBiomes.WAILING_GARTH))
+                .parent(root)
+                .display(
+                        NetherDescentBlocks.WAILING_NYLIUM.get(),
+                        translateAble("wailing_garth.title"),
+                        translateAble("wailing_garth.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/wailing_garth"), existingFileHelper);
+
+        Advancement.Builder.advancement()
+                .addCriterion("wailing_bulb_blossom", WailingTrigger.TriggerInstance.interactedWithBlock(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get()))
+                .parent(wailing_garth)
+                .display(
+                        NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(),
+                        translateAble("step_on_wailing_bulb_blossom.title"),
+                        translateAble("step_on_wailing_bulb_blossom.description"),
+                        null,
+                        AdvancementType.CHALLENGE, true, true, false
+                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/wailing_garth/step_on_wailing_bulb_blossom"), existingFileHelper);
+
+        Advancement.Builder.advancement()
+                .addCriterion("wailing_gills", WailingTrigger.TriggerInstance.interactedWithBlock(NetherDescentBlocks.WAILING_GILLS.get()))
+                .parent(wailing_garth)
+                .display(
+                        NetherDescentBlocks.WAILING_GILLS.get(),
+                        translateAble("float_from_wailing_gills.title"),
+                        translateAble("float_from_wailing_gills.description"),
+                        null,
+                        AdvancementType.CHALLENGE, true, true, false
+                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/wailing_garth/float_from_wailing_gills"), existingFileHelper);
 
         VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, NetherDescentBiomes.BIOME_FACTORIES.keySet().stream().sorted().toList())
-                .parent(adventureRoot)
+                .parent(root)
                 .requirements(AdvancementRequirements.Strategy.AND)
                 .display(
                         NetherDescentItems.EMBUR_GEL_BALL.get(),
