@@ -67,6 +67,10 @@ public class LangGenerator extends LanguageProvider {
 		add(advancement("float_from_wailing_gills.description"), "Be pulled off the ground by a Wailing Gill Block");
 		add(advancement("kill_soul_ghast.title"), "Double-Whammy");
 		add(advancement("kill_soul_ghast.description"), "Kill a Soul Ghast");
+		add(advancement("kill_hornet.title"), "The Sting that Keeps on Stinging");
+		add(advancement("kill_hornet.description"), "Kill a Hornet");
+		add(advancement("find_blue_fortress.title"), "A jolly Blue Fortress");
+		add(advancement("find_blue_fortress.description"), "Discover a Blue Nether Fortress");
         add(advancement("final_descent.title"), "Final Descent");
         add(advancement("final_descent.description"), "Explore all of the Nether Descent biomes");
         add("netherdescent.commands.reload.success", "Successfully reloaded all configs");

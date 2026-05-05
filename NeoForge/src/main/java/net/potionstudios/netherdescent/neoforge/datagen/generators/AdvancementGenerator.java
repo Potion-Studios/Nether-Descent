@@ -3,15 +3,18 @@ package net.potionstudios.netherdescent.neoforge.datagen.generators;
 import net.minecraft.advancements.*;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.advancements.packs.VanillaAdventureAdvancements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.advancements.critereon.FungalBulbsBlockTrigger;
 import net.potionstudios.netherdescent.advancements.critereon.NetherDescentCriterionTriggers;
 import net.potionstudios.netherdescent.advancements.critereon.WailingTrigger;
+import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructures;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
@@ -141,6 +144,28 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         AdvancementType.TASK, false, true, false
                 ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/embur_bog"), existingFileHelper);
 
+        AdvancementHolder killHornet = Advancement.Builder.advancement()
+                .addCriterion("kill_hornet", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(NetherDescentEntityType.HORNET.get())))
+                .parent(embur_bog)
+                .display(
+                        NetherDescentBlocks.HORNET_NEST.get(),
+                        translateAble("kill_hornet.title"),
+                        translateAble("kill_hornet.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/embur_bog/kill_hornet"), existingFileHelper);
+
+        Advancement.Builder.advancement()
+                .addCriterion("blue_fortress", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inStructure(arg.lookupOrThrow(Registries.STRUCTURE).getOrThrow(NetherDescentStructures.BLUE_FORTRESS))))
+                .parent(embur_bog)
+                .display(
+                        NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase(),
+                        translateAble("find_blue_fortress.title"),
+                        translateAble("find_blue_fortress.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/embur_bog/find_blue_fortress"), existingFileHelper);
+
         AdvancementHolder sythian_torrids = VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, List.of(NetherDescentBiomes.SYTHIAN_TORRIDS))
                 .parent(root)
                 .display(
@@ -204,7 +229,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         null,
                         AdvancementType.CHALLENGE, true, true, false
                 ).rewards(AdvancementRewards.Builder.experience(1000))
-                .save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/adventure/final_descent"), existingFileHelper);
+                .save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/final_descent"), existingFileHelper);
     }
 
     private static MutableComponent translateAble(String key) {
