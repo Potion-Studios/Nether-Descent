@@ -1,0 +1,34 @@
+{
+  "parent": "netherdescent:netherdescent/crimson_gardens/pendorite_ingot",
+  "criteria": {
+    "has_pendorite_horse_armor": {
+      "conditions": {
+        "items": [
+          {
+            "items": "netherdescent:pendorite_horse_armor"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.netherdescent.pendorite_horse_armor.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "netherdescent:pendorite_horse_armor"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.netherdescent.pendorite_horse_armor.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_pendorite_horse_armor"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

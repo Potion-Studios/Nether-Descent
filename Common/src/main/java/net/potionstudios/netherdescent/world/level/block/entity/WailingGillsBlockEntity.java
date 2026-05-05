@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -66,6 +67,8 @@ public class WailingGillsBlockEntity extends BlockEntity {
                 entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160, powered, false, false));
 	            if (entity instanceof ServerPlayer player)
 		            NetherDescentCriterionTriggers.WAILING_INTERACTION.get().trigger(player, pos);
+                else if (entity instanceof Animal animal && animal.getLeashHolder() instanceof ServerPlayer player)
+                    NetherDescentCriterionTriggers.WAILING_INTERACTION.get().trigger(player, pos);
                 ParticleOptions particleData = powered > 0 ? NetherDescentParticles.GILL_LEVITATE_POWERED.get() : NetherDescentParticles.GILL_LEVITATE.get();
                 for (int i = 0; i < blockEntity.getBlockPos().getY() - entity.getY() - 1; i++)
                     serverLevel.sendParticles(particleData, entity.getX(), entity.getY() + i, entity.getZ(), 2,0.5, 0, 0.5, 1.2 + (powered * 0.9));

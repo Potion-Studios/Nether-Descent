@@ -84,7 +84,7 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.netherdescent.adventure.final_descent.description"
+      "translate": "advancements.netherdescent.final_descent.description"
     },
     "frame": "challenge",
     "icon": {
@@ -92,7 +92,7 @@
       "id": "netherdescent:embur_gel_ball"
     },
     "title": {
-      "translate": "advancements.netherdescent.adventure.final_descent.title"
+      "translate": "advancements.netherdescent.final_descent.title"
     }
   },
   "requirements": [

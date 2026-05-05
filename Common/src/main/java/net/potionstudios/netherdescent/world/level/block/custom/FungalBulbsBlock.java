@@ -4,6 +4,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -22,6 +23,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.potionstudios.netherdescent.advancements.critereon.NetherDescentCriterionTriggers;
 import org.jetbrains.annotations.NotNull;
 
 public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock implements BonemealableBlock {
@@ -50,6 +52,8 @@ public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock imp
 			        });
 	        level.levelEvent(2008, hit.getBlockPos(), 0);
 			level.destroyBlock(hit.getBlockPos(), false);
+			if (projectile.getOwner() instanceof ServerPlayer serverPlayer)
+				NetherDescentCriterionTriggers.FUNGAL_BULBS_BLOCK_HIT.get().trigger(serverPlayer, projectile);
         }
     }
 

@@ -1,0 +1,34 @@
+{
+  "parent": "netherdescent:netherdescent/crimson_gardens",
+  "criteria": {
+    "has_raw_pendorite": {
+      "conditions": {
+        "items": [
+          {
+            "items": "netherdescent:raw_pendorite"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.netherdescent.raw_pendorite.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "netherdescent:raw_pendorite"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.netherdescent.raw_pendorite.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_pendorite"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

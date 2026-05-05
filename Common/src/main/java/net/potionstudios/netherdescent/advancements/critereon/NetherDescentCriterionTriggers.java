@@ -10,6 +10,7 @@ import java.util.function.Supplier;
 public class NetherDescentCriterionTriggers {
 
 	public static final Supplier<WailingTrigger> WAILING_INTERACTION = register("wailing_interaction", WailingTrigger::new);
+	public static final Supplier<FungalBulbsBlockTrigger> FUNGAL_BULBS_BLOCK_HIT = register("fungal_bulbs_hit", FungalBulbsBlockTrigger::new);
 
 	private static <T extends CriterionTrigger<?>> Supplier<T> register(String id, Supplier<T> supplier) {
 		return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.TRIGGER_TYPES, id, supplier);

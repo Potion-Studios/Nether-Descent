@@ -43,6 +43,18 @@ public class LangGenerator extends LanguageProvider {
 		add(advancement("arisian_undergrowth.description"), "Discover the Arisian Undergrowth biome");
 		add(advancement("crimson_gardens.title"), "Crimson Gardens");
 		add(advancement("crimson_gardens.description"), "Discover the Crimson Gardens biome");
+		add(advancement("fungal_bulbs.title"), "Explosive Fun");
+		add(advancement("fungal_bulbs.description"), "Shoot a projectile at Fungal Bulbs");
+		add(advancement("raw_pendorite.title"), "Project Pendorite");
+		add(advancement("raw_pendorite.description"), "Obtain Raw Pendorite");
+		add(advancement("pendorite_wolf_armor.title"), "Flashy Protection");
+		add(advancement("pendorite_wolf_armor.description"), "Obtain Pendorite Wolf Armor");
+		add(advancement("pendorite_horse_armor.title"), "Stylish Steed");
+		add(advancement("pendorite_horse_armor.description"), "Obtain Pendorite Horse Armor");
+		add(advancement("pendorite_fire_rod.title"), "The Light is Coming..");
+		add(advancement("pendorite_fire_rod.description"), "Obtain Pendorite Fire Rod");
+		add(advancement("summon_pendorite_blaze.title"), "Extra Protection");
+		add(advancement("summon_pendorite_blaze.description"), "Summon a Pendorite Blaze Golem");
 		add(advancement("embur_bog.title"), "Embur Bog");
 		add(advancement("embur_bog.description"), "Discover the Embur Bog biome");
 		add(advancement("sythian_torrids.title"), "Sythian Torrids");
@@ -53,6 +65,8 @@ public class LangGenerator extends LanguageProvider {
 		add(advancement("step_on_wailing_bulb_blossom.description"), "Step on a Wailing Bulb Blossom");
 		add(advancement("float_from_wailing_gills.title"), "Natural Elevators");
 		add(advancement("float_from_wailing_gills.description"), "Be pulled off the ground by a Wailing Gill Block");
+		add(advancement("kill_soul_ghast.title"), "Double-Whammy");
+		add(advancement("kill_soul_ghast.description"), "Kill a Soul Ghast");
         add(advancement("final_descent.title"), "Final Descent");
         add(advancement("final_descent.description"), "Explore all of the Nether Descent biomes");
         add("netherdescent.commands.reload.success", "Successfully reloaded all configs");
