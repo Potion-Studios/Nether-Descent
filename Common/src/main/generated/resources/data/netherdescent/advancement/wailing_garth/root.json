@@ -1,7 +1,7 @@
 {
-  "parent": "netherdescent:netherdescent/embur_bog",
+  "parent": "netherdescent:root",
   "criteria": {
-    "blue_fortress": {
+    "netherdescent:wailing_garth": {
       "conditions": {
         "player": [
           {
@@ -9,7 +9,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "structures": "netherdescent:blue_fortress"
+                "biomes": "netherdescent:wailing_garth"
               }
             }
           }
@@ -20,20 +20,20 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.netherdescent.find_blue_fortress.description"
+      "translate": "advancements.netherdescent.wailing_garth.description"
     },
     "icon": {
       "count": 1,
-      "id": "netherdescent:blue_nether_bricks"
+      "id": "netherdescent:wailing_nylium"
     },
     "show_toast": false,
     "title": {
-      "translate": "advancements.netherdescent.find_blue_fortress.title"
+      "translate": "advancements.netherdescent.wailing_garth.title"
     }
   },
   "requirements": [
     [
-      "blue_fortress"
+      "netherdescent:wailing_garth"
     ]
   ],
   "sends_telemetry_event": true

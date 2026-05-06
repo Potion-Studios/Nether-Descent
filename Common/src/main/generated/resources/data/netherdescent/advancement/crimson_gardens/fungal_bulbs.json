@@ -1,5 +1,5 @@
 {
-  "parent": "netherdescent:netherdescent/crimson_gardens",
+  "parent": "netherdescent:crimson_gardens/root",
   "criteria": {
     "projectile_hit_fungal_bulbs": {
       "trigger": "netherdescent:fungal_bulbs_hit"

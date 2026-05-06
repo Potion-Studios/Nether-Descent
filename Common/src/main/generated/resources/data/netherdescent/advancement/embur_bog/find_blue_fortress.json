@@ -1,7 +1,7 @@
 {
-  "parent": "netherdescent:netherdescent/root",
+  "parent": "netherdescent:embur_bog/root",
   "criteria": {
-    "netherdescent:embur_bog": {
+    "blue_fortress": {
       "conditions": {
         "player": [
           {
@@ -9,7 +9,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biomes": "netherdescent:embur_bog"
+                "structures": "netherdescent:blue_fortress"
               }
             }
           }
@@ -20,20 +20,20 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.netherdescent.embur_bog.description"
+      "translate": "advancements.netherdescent.find_blue_fortress.description"
     },
     "icon": {
       "count": 1,
-      "id": "netherdescent:embur_nylium"
+      "id": "netherdescent:blue_nether_bricks"
     },
     "show_toast": false,
     "title": {
-      "translate": "advancements.netherdescent.embur_bog.title"
+      "translate": "advancements.netherdescent.find_blue_fortress.title"
     }
   },
   "requirements": [
     [
-      "netherdescent:embur_bog"
+      "blue_fortress"
     ]
   ],
   "sends_telemetry_event": true

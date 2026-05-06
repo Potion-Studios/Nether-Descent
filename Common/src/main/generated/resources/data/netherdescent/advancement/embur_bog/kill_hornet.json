@@ -1,14 +1,14 @@
 {
-  "parent": "netherdescent:netherdescent/wailing_garth",
+  "parent": "netherdescent:embur_bog/root",
   "criteria": {
-    "kill_soul_ghast": {
+    "kill_hornet": {
       "conditions": {
         "entity": [
           {
             "condition": "minecraft:entity_properties",
             "entity": "this",
             "predicate": {
-              "type": "netherdescent:soul_ghast"
+              "type": "netherdescent:hornet"
             }
           }
         ]
@@ -18,20 +18,20 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.netherdescent.kill_soul_ghast.description"
+      "translate": "advancements.netherdescent.kill_hornet.description"
     },
-    "frame": "challenge",
     "icon": {
       "count": 1,
-      "id": "netherdescent:soul_fire_charge"
+      "id": "netherdescent:hornet_nest"
     },
+    "show_toast": false,
     "title": {
-      "translate": "advancements.netherdescent.kill_soul_ghast.title"
+      "translate": "advancements.netherdescent.kill_hornet.title"
     }
   },
   "requirements": [
     [
-      "kill_soul_ghast"
+      "kill_hornet"
     ]
   ],
   "sends_telemetry_event": true

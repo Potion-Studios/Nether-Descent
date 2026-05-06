@@ -1,7 +1,7 @@
 {
-  "parent": "netherdescent:netherdescent/root",
+  "parent": "netherdescent:root",
   "criteria": {
-    "netherdescent:sythian_torrids": {
+    "netherdescent:embur_bog": {
       "conditions": {
         "player": [
           {
@@ -9,7 +9,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biomes": "netherdescent:sythian_torrids"
+                "biomes": "netherdescent:embur_bog"
               }
             }
           }
@@ -20,20 +20,20 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.netherdescent.sythian_torrids.description"
+      "translate": "advancements.netherdescent.embur_bog.description"
     },
     "icon": {
       "count": 1,
-      "id": "netherdescent:sythian_nylium"
+      "id": "netherdescent:embur_nylium"
     },
     "show_toast": false,
     "title": {
-      "translate": "advancements.netherdescent.sythian_torrids.title"
+      "translate": "advancements.netherdescent.embur_bog.title"
     }
   },
   "requirements": [
     [
-      "netherdescent:sythian_torrids"
+      "netherdescent:embur_bog"
     ]
   ],
   "sends_telemetry_event": true

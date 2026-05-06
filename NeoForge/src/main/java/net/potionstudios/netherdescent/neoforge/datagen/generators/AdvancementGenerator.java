@@ -40,7 +40,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         false,
                         false
                 )
-                .save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/root"), existingFileHelper);
+                .save(consumer, NetherDescent.id("root"), existingFileHelper);
 
         AdvancementHolder arisian_undergrowth = VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, List.of(NetherDescentBiomes.ARISIAN_UNDERGROWTH))
                 .parent(root)
@@ -50,7 +50,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         translateAble("arisian_undergrowth.description"),
                         null,
                         AdvancementType.TASK, false, true, false
-                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/arisian_undergrowth"), existingFileHelper);
+                ).save(consumer, NetherDescent.id("arisian_undergrowth/root"), existingFileHelper);
 
 
         AdvancementHolder crimson_gardens = VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, List.of(NetherDescentBiomes.CRIMSON_GARDENS))
@@ -61,7 +61,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         translateAble("crimson_gardens.description"),
                         null,
                         AdvancementType.TASK, false, true, false
-                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/crimson_gardens"), existingFileHelper);
+                ).save(consumer, NetherDescent.id("crimson_gardens/root"), existingFileHelper);
 
         Advancement.Builder.advancement()
                 .addCriterion("projectile_hit_fungal_bulbs", FungalBulbsBlockTrigger.TriggerInstance.fungalBulbsHit(Optional.empty()))
@@ -72,7 +72,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         translateAble("fungal_bulbs.description"),
                         null,
                         AdvancementType.TASK, false, true, false
-                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/crimson_gardens/fungal_bulbs"), existingFileHelper);
+                ).save(consumer, NetherDescent.id("crimson_gardens/fungal_bulbs"), existingFileHelper);
 
         AdvancementHolder project_pendorite = Advancement.Builder.advancement()
                 .addCriterion("has_raw_pendorite", InventoryChangeTrigger.TriggerInstance.hasItems(NetherDescentItems.RAW_PENDORITE.get()))
@@ -84,7 +84,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         null,
                         AdvancementType.TASK, false, true, false
                 )
-                .save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/crimson_gardens/pendorite_ingot"), existingFileHelper);
+                .save(consumer, NetherDescent.id("crimson_gardens/pendorite_ingot"), existingFileHelper);
 
         Advancement.Builder.advancement()
                 .addCriterion("has_pendorite_wolf_armor", InventoryChangeTrigger.TriggerInstance.hasItems(NetherDescentItems.PENDORITE_WOLF_ARMOR.get()))
@@ -96,7 +96,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         null,
                         AdvancementType.TASK, false, true, false
                 )
-                .save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/crimson_gardens/project_pendorite/pendorite_wolf_armor"), existingFileHelper);
+                .save(consumer, NetherDescent.id("crimson_gardens/pendorite_wolf_armor"), existingFileHelper);
 
         Advancement.Builder.advancement()
                 .addCriterion("has_pendorite_horse_armor", InventoryChangeTrigger.TriggerInstance.hasItems(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()))
@@ -108,7 +108,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         null,
                         AdvancementType.TASK, false, true, false
                 )
-                .save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/crimson_gardens/project_pendorite/pendorite_horse_armor"), existingFileHelper);
+                .save(consumer, NetherDescent.id("crimson_gardens/pendorite_horse_armor"), existingFileHelper);
 
         AdvancementHolder pendorite_fire_rod = Advancement.Builder.advancement()
                 .addCriterion("has_pendorite_fire_rod", InventoryChangeTrigger.TriggerInstance.hasItems(NetherDescentBlocks.PENDORITE_FIRE_ROD.get()))
@@ -120,7 +120,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         null,
                         AdvancementType.TASK, false, true, false
                 )
-                .save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/crimson_gardens/project_pendorite/pendorite_fire_rod"), existingFileHelper);
+                .save(consumer, NetherDescent.id("crimson_gardens/pendorite_fire_rod"), existingFileHelper);
 
         Advancement.Builder.advancement()
                 .addCriterion("summon_pendorite_blaze", SummonedEntityTrigger.TriggerInstance.summonedEntity(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(NetherDescentEntityType.PENDORITE_BLAZE.get()))))
@@ -132,7 +132,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         null,
                         AdvancementType.TASK, false, true, false
                 )
-                .save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/crimson_gardens/project_pendorite/pendorite_fire_rod/summon_pendorite_blaze"), existingFileHelper);
+                .save(consumer, NetherDescent.id("crimson_gardens/summon_pendorite_blaze"), existingFileHelper);
 
         AdvancementHolder embur_bog = VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, List.of(NetherDescentBiomes.EMBUR_BOG))
                 .parent(root)
@@ -142,7 +142,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         translateAble("embur_bog.description"),
                         null,
                         AdvancementType.TASK, false, true, false
-                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/embur_bog"), existingFileHelper);
+                ).save(consumer, NetherDescent.id("embur_bog/root"), existingFileHelper);
 
         AdvancementHolder killHornet = Advancement.Builder.advancement()
                 .addCriterion("kill_hornet", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(NetherDescentEntityType.HORNET.get())))
@@ -153,7 +153,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         translateAble("kill_hornet.description"),
                         null,
                         AdvancementType.TASK, false, true, false
-                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/embur_bog/kill_hornet"), existingFileHelper);
+                ).save(consumer, NetherDescent.id("embur_bog/kill_hornet"), existingFileHelper);
 
         Advancement.Builder.advancement()
                 .addCriterion("blue_fortress", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inStructure(arg.lookupOrThrow(Registries.STRUCTURE).getOrThrow(NetherDescentStructures.BLUE_FORTRESS))))
@@ -164,7 +164,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         translateAble("find_blue_fortress.description"),
                         null,
                         AdvancementType.TASK, false, true, false
-                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/embur_bog/find_blue_fortress"), existingFileHelper);
+                ).save(consumer, NetherDescent.id("embur_bog/find_blue_fortress"), existingFileHelper);
 
         AdvancementHolder sythian_torrids = VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, List.of(NetherDescentBiomes.SYTHIAN_TORRIDS))
                 .parent(root)
@@ -174,7 +174,31 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         translateAble("sythian_torrids.description"),
                         null,
                         AdvancementType.TASK, false, true, false
-                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/sythian_torrids"), existingFileHelper);
+                ).save(consumer, NetherDescent.id("sythian_torrids/root"), existingFileHelper);
+
+        AdvancementHolder renewableBusiness = Advancement.Builder.advancement()
+                .parent(sythian_torrids)
+                .addCriterion("smelted_sythian_stalk", RecipeCraftedTrigger.TriggerInstance.craftedItem(NetherDescent.id("gold_nugget_from_smelting")))
+                .display(
+                        NetherDescentBlocks.SYTHIAN_STALK.getItem(),
+                        translateAble("renewable_business.title"),
+                        translateAble("renewable_business.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                )
+                .save(consumer, NetherDescent.id("sythian_torrids/smelted_sythian_stalk"), existingFileHelper);
+
+        Advancement.Builder.advancement()
+                .parent(renewableBusiness)
+                .addCriterion("place_stalk_on_farmland", ItemUsedOnLocationTrigger.TriggerInstance.itemUsedOnBlock(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(NetherDescentBlocks.SYTHIAN_FARMLAND.get())), ItemPredicate.Builder.item().of(NetherDescentBlocks.SYTHIAN_STALK.getItem())))
+                .display(
+                        NetherDescentBlocks.SYTHIAN_FARMLAND.get(),
+                        translateAble("renewable_business_place_stalk_on_farmland.title"),
+                        translateAble("renewable_business_place_stalk_on_farmland.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                )
+                .save(consumer, NetherDescent.id("sythian_torrids/place_stalk_on_farmland"), existingFileHelper);
 
         AdvancementHolder wailing_garth = VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, List.of(NetherDescentBiomes.WAILING_GARTH))
                 .parent(root)
@@ -184,7 +208,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         translateAble("wailing_garth.description"),
                         null,
                         AdvancementType.TASK, false, true, false
-                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/wailing_garth"), existingFileHelper);
+                ).save(consumer, NetherDescent.id("wailing_garth/root"), existingFileHelper);
 
         Advancement.Builder.advancement()
                 .addCriterion("wailing_bulb_blossom", WailingTrigger.TriggerInstance.interactedWithBlock(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get()))
@@ -195,7 +219,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         translateAble("step_on_wailing_bulb_blossom.description"),
                         null,
                         AdvancementType.CHALLENGE, true, true, false
-                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/wailing_garth/step_on_wailing_bulb_blossom"), existingFileHelper);
+                ).save(consumer, NetherDescent.id("wailing_garth/step_on_wailing_bulb_blossom"), existingFileHelper);
 
         Advancement.Builder.advancement()
                 .addCriterion("wailing_gills", WailingTrigger.TriggerInstance.interactedWithBlock(NetherDescentBlocks.WAILING_GILLS.get()))
@@ -206,7 +230,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         translateAble("float_from_wailing_gills.description"),
                         null,
                         AdvancementType.CHALLENGE, true, true, false
-                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/wailing_garth/float_from_wailing_gills"), existingFileHelper);
+                ).save(consumer, NetherDescent.id("wailing_garth/float_from_wailing_gills"), existingFileHelper);
 
         Advancement.Builder.advancement()
                 .addCriterion("kill_soul_ghast", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(NetherDescentEntityType.SOUL_GHAST.get())))
@@ -217,7 +241,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         translateAble("kill_soul_ghast.description"),
                         null,
                         AdvancementType.CHALLENGE, true, true, false
-                ).save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/wailing_garth/kill_soul_ghast"), existingFileHelper);
+                ).save(consumer, NetherDescent.id("wailing_garth/kill_soul_ghast"), existingFileHelper);
 
         VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, NetherDescentBiomes.BIOME_FACTORIES.keySet().stream().sorted().toList())
                 .parent(root)
@@ -229,7 +253,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         null,
                         AdvancementType.CHALLENGE, true, true, false
                 ).rewards(AdvancementRewards.Builder.experience(1000))
-                .save(consumer, NetherDescent.id(NetherDescent.MOD_ID + "/final_descent"), existingFileHelper);
+                .save(consumer, NetherDescent.id("final_descent"), existingFileHelper);
     }
 
     private static MutableComponent translateAble(String key) {

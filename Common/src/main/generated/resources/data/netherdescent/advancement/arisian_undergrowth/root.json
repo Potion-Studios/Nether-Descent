@@ -1,7 +1,7 @@
 {
-  "parent": "netherdescent:netherdescent/root",
+  "parent": "netherdescent:root",
   "criteria": {
-    "netherdescent:wailing_garth": {
+    "netherdescent:arisian_undergrowth": {
       "conditions": {
         "player": [
           {
@@ -9,7 +9,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biomes": "netherdescent:wailing_garth"
+                "biomes": "netherdescent:arisian_undergrowth"
               }
             }
           }
@@ -20,20 +20,20 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.netherdescent.wailing_garth.description"
+      "translate": "advancements.netherdescent.arisian_undergrowth.description"
     },
     "icon": {
       "count": 1,
-      "id": "netherdescent:wailing_nylium"
+      "id": "netherdescent:arisian_moss_block"
     },
     "show_toast": false,
     "title": {
-      "translate": "advancements.netherdescent.wailing_garth.title"
+      "translate": "advancements.netherdescent.arisian_undergrowth.title"
     }
   },
   "requirements": [
     [
-      "netherdescent:wailing_garth"
+      "netherdescent:arisian_undergrowth"
     ]
   ],
   "sends_telemetry_event": true

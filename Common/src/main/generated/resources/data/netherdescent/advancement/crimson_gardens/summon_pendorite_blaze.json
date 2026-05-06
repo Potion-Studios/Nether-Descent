@@ -1,5 +1,5 @@
 {
-  "parent": "netherdescent:netherdescent/crimson_gardens/project_pendorite/pendorite_fire_rod",
+  "parent": "netherdescent:crimson_gardens/pendorite_fire_rod",
   "criteria": {
     "summon_pendorite_blaze": {
       "conditions": {

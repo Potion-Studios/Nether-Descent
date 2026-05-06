@@ -1,5 +1,5 @@
 {
-  "parent": "netherdescent:netherdescent/wailing_garth",
+  "parent": "netherdescent:wailing_garth/root",
   "criteria": {
     "wailing_gills": {
       "conditions": {

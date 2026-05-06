@@ -1,7 +1,7 @@
 {
-  "parent": "netherdescent:netherdescent/root",
+  "parent": "netherdescent:root",
   "criteria": {
-    "netherdescent:crimson_gardens": {
+    "netherdescent:sythian_torrids": {
       "conditions": {
         "player": [
           {
@@ -9,7 +9,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "biomes": "netherdescent:crimson_gardens"
+                "biomes": "netherdescent:sythian_torrids"
               }
             }
           }
@@ -20,20 +20,20 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.netherdescent.crimson_gardens.description"
+      "translate": "advancements.netherdescent.sythian_torrids.description"
     },
     "icon": {
       "count": 1,
-      "id": "netherdescent:crimson_blackstone_nylium"
+      "id": "netherdescent:sythian_nylium"
     },
     "show_toast": false,
     "title": {
-      "translate": "advancements.netherdescent.crimson_gardens.title"
+      "translate": "advancements.netherdescent.sythian_torrids.title"
     }
   },
   "requirements": [
     [
-      "netherdescent:crimson_gardens"
+      "netherdescent:sythian_torrids"
     ]
   ],
   "sends_telemetry_event": true
