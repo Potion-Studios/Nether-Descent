@@ -41,6 +41,10 @@ public class LangGenerator extends LanguageProvider {
         add(advancement("description.root"), "Launch a world with the Nether Descent");
         add(advancement("arisian_undergrowth.title"), "Arisian Undergrowth");
 		add(advancement("arisian_undergrowth.description"), "Discover the Arisian Undergrowth biome");
+		add(advancement("step_on_torn_sprout.title"), "Bridge to Somewhere?");
+		add(advancement("step_on_torn_sprout.description"), "Step on a Thorn Sprout");
+		add(advancement("step_on_arisian_leaves_blossom.title"), "So it Glows");
+		add(advancement("step_on_arisian_leaves_blossom.description"), "Step on Arisian Leaves or Arisian Bloom");
 		add(advancement("crimson_gardens.title"), "Crimson Gardens");
 		add(advancement("crimson_gardens.description"), "Discover the Crimson Gardens biome");
 		add(advancement("fungal_bulbs.title"), "Explosive Fun");
@@ -59,6 +63,10 @@ public class LangGenerator extends LanguageProvider {
 		add(advancement("embur_bog.description"), "Discover the Embur Bog biome");
 		add(advancement("sythian_torrids.title"), "Sythian Torrids");
 		add(advancement("sythian_torrids.description"), "Discover the Sythian Torrids biome");
+		add(advancement("smelted_sythian_stalk.title"), "Renewable Business");
+		add(advancement("smelted_sythian_stalk.description"), "Smelt Sythian Stalk in a Furnace");
+		add(advancement("place_stalk_on_farmland.title"), "Money Moves");
+		add(advancement("place_stalk_on_farmland.description"), "Place Sythian Stalk on Sythian Farmland ");
 		add(advancement("wailing_garth.title"), "Wailing Garth");
 		add(advancement("wailing_garth.description"), "Discover the Wailing Garth biome");
 		add(advancement("step_on_wailing_bulb_blossom.title"), "Space Walking");

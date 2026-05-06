@@ -7,6 +7,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.advancements.packs.VanillaAdventureAdvancements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -29,7 +30,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
     @Override
     public void generate(HolderLookup.@NotNull Provider arg, @NotNull Consumer<AdvancementHolder> consumer, @NotNull ExistingFileHelper existingFileHelper) {
         AdvancementHolder root = Advancement.Builder.advancement()
-                .addCriterion("tick", PlayerTrigger.TriggerInstance.tick())
+                .addCriterion("tick", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inDimension((Level.NETHER))))
                 .display(
 		                NetherDescentBlocks.EMBUR_LILY.get(),
                         translateAble("title.root"),
@@ -52,6 +53,29 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         AdvancementType.TASK, false, true, false
                 ).save(consumer, NetherDescent.id("arisian_undergrowth/root"), existingFileHelper);
 
+        Advancement.Builder.advancement()
+                .parent(arisian_undergrowth)
+                .addCriterion("step_on_torn_sprout", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(NetherDescentBlocks.THORN_SPROUT.get()))))
+                .display(
+                        NetherDescentBlocks.THORN_SPROUT.get(),
+                        translateAble("step_on_torn_sprout.title"),
+                        translateAble("step_on_torn_sprout.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                ).save(consumer, NetherDescent.id("arisian_undergrowth/step_on_torn_sprout"), existingFileHelper);
+
+        Advancement.Builder.advancement()
+                .parent(arisian_undergrowth)
+                .requirements(AdvancementRequirements.Strategy.OR)
+                .addCriterion("step_on_arisian_blossom", PlayerTrigger.TriggerInstance.located(EntityPredicate.Builder.entity().steppingOn(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(NetherDescentBlocks.ARISIAN_LEAVES.get())))))
+                .addCriterion("step_on_arisian_leaves", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock()))))
+                .display(
+                        NetherDescentBlocks.ARISIAN_LEAVES.get(),
+                        translateAble("step_on_arisian_leaves_blossom.title"),
+                        translateAble("step_on_arisian_leaves_blossom.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                ).save(consumer, NetherDescent.id("arisian_undergrowth/step_on_arisian_leaves_blossom"), existingFileHelper);
 
         AdvancementHolder crimson_gardens = VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, List.of(NetherDescentBiomes.CRIMSON_GARDENS))
                 .parent(root)
@@ -181,8 +205,8 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .addCriterion("smelted_sythian_stalk", RecipeCraftedTrigger.TriggerInstance.craftedItem(NetherDescent.id("gold_nugget_from_smelting")))
                 .display(
                         NetherDescentBlocks.SYTHIAN_STALK.getItem(),
-                        translateAble("renewable_business.title"),
-                        translateAble("renewable_business.description"),
+                        translateAble("smelted_sythian_stalk.title"),
+                        translateAble("smelted_sythian_stalk.description"),
                         null,
                         AdvancementType.TASK, false, true, false
                 )
@@ -193,8 +217,8 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .addCriterion("place_stalk_on_farmland", ItemUsedOnLocationTrigger.TriggerInstance.itemUsedOnBlock(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(NetherDescentBlocks.SYTHIAN_FARMLAND.get())), ItemPredicate.Builder.item().of(NetherDescentBlocks.SYTHIAN_STALK.getItem())))
                 .display(
                         NetherDescentBlocks.SYTHIAN_FARMLAND.get(),
-                        translateAble("renewable_business_place_stalk_on_farmland.title"),
-                        translateAble("renewable_business_place_stalk_on_farmland.description"),
+                        translateAble("place_stalk_on_farmland.title"),
+                        translateAble("place_stalk_on_farmland.description"),
                         null,
                         AdvancementType.TASK, false, true, false
                 )

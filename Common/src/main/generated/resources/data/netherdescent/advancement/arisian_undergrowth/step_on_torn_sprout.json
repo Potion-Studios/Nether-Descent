@@ -1,6 +1,7 @@
 {
+  "parent": "netherdescent:arisian_undergrowth/root",
   "criteria": {
-    "tick": {
+    "step_on_torn_sprout": {
       "conditions": {
         "player": [
           {
@@ -8,7 +9,9 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "dimension": "minecraft:the_nether"
+                "block": {
+                  "blocks": "netherdescent:thorn_sprout"
+                }
               }
             }
           }
@@ -18,23 +21,21 @@
     }
   },
   "display": {
-    "announce_to_chat": false,
-    "background": "netherdescent:textures/block/blue_netherrack.png",
     "description": {
-      "translate": "advancements.netherdescent.description.root"
+      "translate": "advancements.netherdescent.step_on_torn_sprout.description"
     },
     "icon": {
       "count": 1,
-      "id": "netherdescent:embur_lily"
+      "id": "netherdescent:thorn_sprout"
     },
     "show_toast": false,
     "title": {
-      "translate": "advancements.netherdescent.title.root"
+      "translate": "advancements.netherdescent.step_on_torn_sprout.title"
     }
   },
   "requirements": [
     [
-      "tick"
+      "step_on_torn_sprout"
     ]
   ],
   "sends_telemetry_event": true

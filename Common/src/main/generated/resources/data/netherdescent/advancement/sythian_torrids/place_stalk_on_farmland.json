@@ -25,7 +25,7 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.netherdescent.renewable_business_place_stalk_on_farmland.description"
+      "translate": "advancements.netherdescent.place_stalk_on_farmland.description"
     },
     "icon": {
       "count": 1,
@@ -33,7 +33,7 @@
     },
     "show_toast": false,
     "title": {
-      "translate": "advancements.netherdescent.renewable_business_place_stalk_on_farmland.title"
+      "translate": "advancements.netherdescent.place_stalk_on_farmland.title"
     }
   },
   "requirements": [

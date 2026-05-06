@@ -10,7 +10,7 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.netherdescent.renewable_business.description"
+      "translate": "advancements.netherdescent.smelted_sythian_stalk.description"
     },
     "icon": {
       "count": 1,
@@ -18,7 +18,7 @@
     },
     "show_toast": false,
     "title": {
-      "translate": "advancements.netherdescent.renewable_business.title"
+      "translate": "advancements.netherdescent.smelted_sythian_stalk.title"
     }
   },
   "requirements": [
