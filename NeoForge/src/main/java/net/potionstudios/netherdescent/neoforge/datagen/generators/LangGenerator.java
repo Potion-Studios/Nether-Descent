@@ -59,8 +59,6 @@ public class LangGenerator extends LanguageProvider {
 		add(advancement("pendorite_fire_rod.description"), "Obtain Pendorite Fire Rod");
 		add(advancement("summon_pendorite_blaze.title"), "Extra Protection");
 		add(advancement("summon_pendorite_blaze.description"), "Summon a Pendorite Blaze Golem");
-		add(advancement("embur_bog.title"), "Embur Bog");
-		add(advancement("embur_bog.description"), "Discover the Embur Bog biome");
 		add(advancement("sythian_torrids.title"), "Sythian Torrids");
 		add(advancement("sythian_torrids.description"), "Discover the Sythian Torrids biome");
 		add(advancement("smelted_sythian_stalk.title"), "Renewable Business");
@@ -77,6 +75,12 @@ public class LangGenerator extends LanguageProvider {
 		add(advancement("float_from_wailing_gills.description"), "Be pulled off the ground by a Wailing Gill Block");
 		add(advancement("kill_soul_ghast.title"), "Double-Whammy");
 		add(advancement("kill_soul_ghast.description"), "Kill a Soul Ghast");
+		add(advancement("embur_bog.title"), "Embur Bog");
+		add(advancement("embur_bog.description"), "Discover the Embur Bog biome");
+		add(advancement("sprinting_on_embur_gel.title"), "Zooooooom");
+		add(advancement("sprinting_on_embur_gel.description"), "Sprint across Embur Gel Blocks");
+		add(advancement("boat_ride_on_embur_gel.title"), "Grand Theft Auto");
+		add(advancement("boat_ride_on_embur_gel.description"), "Ride over Embur Gel Blocks while in a Boat");
 		add(advancement("kill_hornet.title"), "The Sting that Keeps on Stinging");
 		add(advancement("kill_hornet.description"), "Kill a Hornet");
 		add(advancement("find_blue_fortress.title"), "A jolly Blue Fortress");

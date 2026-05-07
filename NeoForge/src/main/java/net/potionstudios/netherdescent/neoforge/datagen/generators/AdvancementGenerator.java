@@ -7,13 +7,14 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.advancements.packs.VanillaAdventureAdvancements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.advancements.critereon.FungalBulbsBlockTrigger;
-import net.potionstudios.netherdescent.advancements.critereon.NetherDescentCriterionTriggers;
 import net.potionstudios.netherdescent.advancements.critereon.WailingTrigger;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructures;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
@@ -178,6 +179,46 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         null,
                         AdvancementType.TASK, false, true, false
                 ).save(consumer, NetherDescent.id("embur_bog/kill_hornet"), existingFileHelper);
+
+        AdvancementHolder runOn = Advancement.Builder.advancement()
+                .addCriterion("sprinting_on_embur_gel", PlayerTrigger.TriggerInstance.located(EntityPredicate.Builder.entity()
+                        .steppingOn(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(NetherDescentBlocks.EMBUR_GEL_BLOCK.get())))
+                        .flags(EntityFlagsPredicate.Builder.flags().setSprinting(true))
+                ))
+                .parent(embur_bog)
+                .display(
+                        NetherDescentBlocks.EMBUR_GEL_BLOCK.get(),
+                        translateAble("sprinting_on_embur_gel.title"),
+                        translateAble("sprinting_on_embur_gel.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                )
+                .save(consumer, NetherDescent.id("embur_bog/sprinting_on_embur_gel"), existingFileHelper);
+
+        Advancement.Builder.advancement()
+                .addCriterion("boat_ride_on_embur_gel",
+                        PlayerTrigger.TriggerInstance.located(
+                                    EntityPredicate.Builder.entity()
+                                            .vehicle(
+                                                    EntityPredicate.Builder.entity()
+                                                            .of(TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath("c", "boats")))
+                                                            .steppingOn(
+                                                                    LocationPredicate.Builder.location()
+                                                                            .setBlock(BlockPredicate.Builder.block().of(NetherDescentBlocks.EMBUR_GEL_BLOCK.get()))
+                                                            )
+                                                )
+                                            )
+
+                                )
+                .parent(runOn)
+                .display(
+                        Items.CHERRY_BOAT,
+                        translateAble("boat_ride_on_embur_gel.title"),
+                        translateAble("boat_ride_on_embur_gel.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                ).save(consumer, NetherDescent.id("embur_bog/boat_ride_on_embur_gel"), existingFileHelper);
+
 
         AdvancementHolder blueFortress = Advancement.Builder.advancement()
                 .addCriterion("blue_fortress", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inStructure(arg.lookupOrThrow(Registries.STRUCTURE).getOrThrow(NetherDescentStructures.BLUE_FORTRESS))))
