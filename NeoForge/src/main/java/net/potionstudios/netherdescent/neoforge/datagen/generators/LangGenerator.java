@@ -67,6 +67,8 @@ public class LangGenerator extends LanguageProvider {
 		add(advancement("smelted_sythian_stalk.description"), "Smelt Sythian Stalk in a Furnace");
 		add(advancement("place_stalk_on_farmland.title"), "Money Moves");
 		add(advancement("place_stalk_on_farmland.description"), "Place Sythian Stalk on Sythian Farmland ");
+		add(advancement("obtain_sythian_scaffolding.title"), "Modern Construction");
+		add(advancement("obtain_sythian_scaffolding.description"), "Obtain Sythian Scaffolding");
 		add(advancement("wailing_garth.title"), "Wailing Garth");
 		add(advancement("wailing_garth.description"), "Discover the Wailing Garth biome");
 		add(advancement("step_on_wailing_bulb_blossom.title"), "Space Walking");
@@ -79,6 +81,10 @@ public class LangGenerator extends LanguageProvider {
 		add(advancement("kill_hornet.description"), "Kill a Hornet");
 		add(advancement("find_blue_fortress.title"), "A jolly Blue Fortress");
 		add(advancement("find_blue_fortress.description"), "Discover a Blue Nether Fortress");
+		add(advancement("obtain_soul_blaze_rod.title"), "I'm Blue Da-Ba-Bee");
+		add(advancement("obtain_soul_blaze_rod.description"), "Obtain a Soul Blaze Rod");
+		add(advancement("obtain_soul_fire_rod.title"), "Rocking the Rods");
+		add(advancement("obtain_soul_fire_rod.description"), "Obtain a Soul Fire Rod");
         add(advancement("final_descent.title"), "Final Descent");
         add(advancement("final_descent.description"), "Explore all of the Nether Descent biomes");
         add("netherdescent.commands.reload.success", "Successfully reloaded all configs");

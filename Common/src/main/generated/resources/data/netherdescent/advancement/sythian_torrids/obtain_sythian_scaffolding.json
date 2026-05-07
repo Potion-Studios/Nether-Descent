@@ -1,0 +1,34 @@
+{
+  "parent": "netherdescent:sythian_torrids/root",
+  "criteria": {
+    "obtain_sythian_scaffolding": {
+      "conditions": {
+        "items": [
+          {
+            "items": "netherdescent:sythian_scaffolding"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.netherdescent.obtain_sythian_scaffolding.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "netherdescent:sythian_scaffolding"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.netherdescent.obtain_sythian_scaffolding.title"
+    }
+  },
+  "requirements": [
+    [
+      "obtain_sythian_scaffolding"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -179,7 +179,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         AdvancementType.TASK, false, true, false
                 ).save(consumer, NetherDescent.id("embur_bog/kill_hornet"), existingFileHelper);
 
-        Advancement.Builder.advancement()
+        AdvancementHolder blueFortress = Advancement.Builder.advancement()
                 .addCriterion("blue_fortress", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.inStructure(arg.lookupOrThrow(Registries.STRUCTURE).getOrThrow(NetherDescentStructures.BLUE_FORTRESS))))
                 .parent(embur_bog)
                 .display(
@@ -189,6 +189,28 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         null,
                         AdvancementType.TASK, false, true, false
                 ).save(consumer, NetherDescent.id("embur_bog/find_blue_fortress"), existingFileHelper);
+
+        AdvancementHolder soulBlazeRod = Advancement.Builder.advancement()
+                .addCriterion("obtain_soul_blaze_rod", InventoryChangeTrigger.TriggerInstance.hasItems(NetherDescentItems.SOUL_BLAZE_ROD.get()))
+                .parent(blueFortress)
+                .display(
+                        NetherDescentItems.SOUL_BLAZE_ROD.get(),
+                        translateAble("obtain_soul_blaze_rod.title"),
+                        translateAble("obtain_soul_blaze_rod.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                ).save(consumer, NetherDescent.id("embur_bog/obtain_soul_blaze_rod"), existingFileHelper);
+
+        Advancement.Builder.advancement()
+                .addCriterion("obtain_soul_fire_rod", InventoryChangeTrigger.TriggerInstance.hasItems(NetherDescentBlocks.SOUL_FIRE_ROD.get()))
+                .parent(soulBlazeRod)
+                .display(
+                        NetherDescentBlocks.SOUL_FIRE_ROD.get(),
+                        translateAble("obtain_soul_fire_rod.title"),
+                        translateAble("obtain_soul_fire_rod.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                ).save(consumer, NetherDescent.id("embur_bog/obtain_soul_fire_rod"), existingFileHelper);
 
         AdvancementHolder sythian_torrids = VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, List.of(NetherDescentBiomes.SYTHIAN_TORRIDS))
                 .parent(root)
@@ -223,6 +245,18 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         AdvancementType.TASK, false, true, false
                 )
                 .save(consumer, NetherDescent.id("sythian_torrids/place_stalk_on_farmland"), existingFileHelper);
+
+        Advancement.Builder.advancement()
+                .parent(sythian_torrids)
+                .addCriterion("obtain_sythian_scaffolding", InventoryChangeTrigger.TriggerInstance.hasItems(NetherDescentItems.SYTHIAN_SCAFFOLDING.get()))
+                .display(
+                        NetherDescentItems.SYTHIAN_SCAFFOLDING.get(),
+                        translateAble("obtain_sythian_scaffolding.title"),
+                        translateAble("obtain_sythian_scaffolding.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                )
+                .save(consumer, NetherDescent.id("sythian_torrids/obtain_sythian_scaffolding"), existingFileHelper);
 
         AdvancementHolder wailing_garth = VanillaAdventureAdvancements.addBiomes(Advancement.Builder.advancement(), arg, List.of(NetherDescentBiomes.WAILING_GARTH))
                 .parent(root)
