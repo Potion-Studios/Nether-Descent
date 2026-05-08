@@ -8,13 +8,19 @@ import net.minecraft.data.advancements.packs.VanillaAdventureAdvancements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.advancements.critereon.FungalBulbsBlockTrigger;
+import net.potionstudios.netherdescent.advancements.critereon.PlaceFlowerNearHornetTrigger;
 import net.potionstudios.netherdescent.advancements.critereon.WailingTrigger;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructures;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
@@ -179,6 +185,17 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         null,
                         AdvancementType.TASK, false, true, false
                 ).save(consumer, NetherDescent.id("embur_bog/kill_hornet"), existingFileHelper);
+
+        Advancement.Builder.advancement()
+                .addCriterion("place_flower_near_hornet", PlaceFlowerNearHornetTrigger.TriggerInstance.create())
+                .parent(killHornet)
+                .display(
+                        NetherDescentBlocks.EMBUR_LILY.get(),
+                        translateAble("place_flower_near_hornet.title"),
+                        translateAble("place_flower_near_hornet.description"),
+                        null,
+                        AdvancementType.TASK, false, true, false
+                ).save(consumer, NetherDescent.id("embur_bog/place_flower_near_hornet"), existingFileHelper);
 
         AdvancementHolder runOn = Advancement.Builder.advancement()
                 .addCriterion("sprinting_on_embur_gel", PlayerTrigger.TriggerInstance.located(EntityPredicate.Builder.entity()

@@ -14,6 +14,7 @@ import net.neoforged.neoforge.event.level.BlockEvent;
 import net.potionstudios.netherdescent.PlatformHandler;
 import net.potionstudios.netherdescent.config.configs.DevConfig;
 import net.potionstudios.netherdescent.util.VanillaBonemealHandler;
+import net.potionstudios.netherdescent.world.BlockItemFeatures;
 import net.potionstudios.netherdescent.world.entity.animal.NetherDescentWolf;
 import net.potionstudios.netherdescent.world.item.brewing.NetherDescentBrewingRecipes;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
@@ -26,6 +27,7 @@ public class VanillaCompatNeoForge {
         bus.addListener(VanillaCompatNeoForge::registerEntityInteract);
         bus.addListener(VanillaCompatNeoForge::onBoneMealUse);
         bus.addListener(VanillaCompatNeoForge::playerJoinEvent);
+        bus.addListener(VanillaCompatNeoForge::onBlockPlace);
     }
 
     /**
@@ -66,11 +68,20 @@ public class VanillaCompatNeoForge {
             event.setSuccessful(true);
     }
 
+    /**
+     * Handle block placement.
+     * @see BlockEvent.EntityPlaceEvent
+     */
+    private static void onBlockPlace(final BlockEvent.EntityPlaceEvent event) {
+        BlockItemFeatures.onPlaceBlock(event.getLevel(), event.getEntity(), event.getPlacedAgainst(), event.getPlacedBlock(), event.getPos());
+    }
+
+    /**
+     * Handle player join event.
+     * @see PlayerEvent.PlayerLoggedInEvent
+     */
     private static void playerJoinEvent(PlayerEvent.PlayerLoggedInEvent event) {
-        if (!PlatformHandler.PLATFORM_HANDLER.isDevEnvironment()) {
-            return;
-        }
-        if (event.getEntity().level().isClientSide()) {
+        if (!PlatformHandler.PLATFORM_HANDLER.isDevEnvironment() || event.getEntity().level().isClientSide()) {
             return;
         }
 

@@ -83,6 +83,8 @@ public class LangGenerator extends LanguageProvider {
 		add(advancement("boat_ride_on_embur_gel.description"), "Ride over Embur Gel Blocks while in a Boat");
 		add(advancement("kill_hornet.title"), "The Sting that Keeps on Stinging");
 		add(advancement("kill_hornet.description"), "Kill a Hornet");
+		add(advancement("place_flower_near_hornet.title"), "That's the Stuff..");
+		add(advancement("place_flower_near_hornet.description"), "Place down any flower near Hornets");
 		add(advancement("find_blue_fortress.title"), "A jolly Blue Fortress");
 		add(advancement("find_blue_fortress.description"), "Discover a Blue Nether Fortress");
 		add(advancement("obtain_soul_blaze_rod.title"), "I'm Blue Da-Ba-Bee");

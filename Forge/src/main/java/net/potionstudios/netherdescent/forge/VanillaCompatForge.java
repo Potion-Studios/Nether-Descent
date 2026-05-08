@@ -8,7 +8,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.brewing.BrewingRecipeRegisterEvent;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -44,6 +43,7 @@ public class VanillaCompatForge {
         bus.addListener(VanillaCompatForge::registerEntityInteract);
         bus.addListener(VanillaCompatForge::onBoneMealUse);
         bus.addListener(VanillaCompatForge::playerJoinEvent);
+        bus.addListener(VanillaCompatForge::onBlockPlace);
     }
 
     /**
@@ -94,7 +94,18 @@ public class VanillaCompatForge {
             event.setResult(Event.Result.ALLOW);
     }
 
+    /**
+     * Handle block placement.
+     * @see BlockEvent.EntityPlaceEvent
+     */
+    private static void onBlockPlace(final BlockEvent.EntityPlaceEvent event) {
+        BlockItemFeatures.onPlaceBlock(event.getLevel(), event.getEntity(), event.getPlacedAgainst(), event.getPlacedBlock(), event.getPos());
+    }
 
+    /**
+     * Handle player join event.
+     * @see PlayerEvent.PlayerLoggedInEvent
+     */
     private static void playerJoinEvent(PlayerEvent.PlayerLoggedInEvent event) {
         if (!PlatformHandler.PLATFORM_HANDLER.isDevEnvironment()) {
             return;

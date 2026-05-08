@@ -1,0 +1,39 @@
+{
+  "parent": "netherdescent:embur_bog/kill_hornet",
+  "criteria": {
+    "place_flower_near_hornet": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": "#minecraft:flowers"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.netherdescent.place_flower_near_hornet.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "netherdescent:embur_lily"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.netherdescent.place_flower_near_hornet.title"
+    }
+  },
+  "requirements": [
+    [
+      "place_flower_near_hornet"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
