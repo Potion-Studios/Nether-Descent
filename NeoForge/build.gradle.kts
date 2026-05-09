@@ -47,7 +47,7 @@ dependencies {
     modLocalRuntime("me.djtheredstoner:DevAuth-neoforge:${project.properties["devauth_version"]}")
 
     modApi("com.github.glitchfiend:TerraBlender-neoforge:$minecraftVersion-${project.properties["terrablender_version"]}")
-    modApi("com.terraformersmc:biolith-neoforge:${project.properties["biolith_version"]}")
+    modCompileOnly("com.terraformersmc:biolith-neoforge:${project.properties["biolith_version"]}")
     modApi("dev.corgitaco:Oh-The-Trees-Youll-Grow-neoforge:$minecraftVersion-${project.properties["ohthetreesyoullgrow_version"]}")
 
     modLocalRuntime("mcp.mobius.waila:wthit:neo-${project.properties["WTHIT"]}")

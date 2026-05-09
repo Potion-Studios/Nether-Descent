@@ -59,3 +59,28 @@ jobs:
 
       - name: Publish NeoForge
         run: ./gradlew :neoforge:publishMod
+
+      - name: Extract Changelog Section
+        id: changelog_reader
+        run: |
+          VERSION="${{ needs.check-version.outputs.version }}"
+          # This finds the line matching your version and prints until the next '#' header
+          # We use a temporary file to store the notes
+          sed -n "/# $VERSION/,/#/p" CHANGELOG.md | grep -v "#" > release_notes.txt
+          echo "Notes extracted:"
+          cat release_notes.txt
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ needs.check-version.outputs.version }}
+          name: ${{ needs.check-version.outputs.version }}
+          body_path: release_notes.txt
+          files: |
+            fabric/build/libs/*.jar
+            forge/build/libs/*.jar
+            neoforge/build/libs/*.jar
+            !**/build/libs/*-dev-shadow.jar
+            !**/build/libs/*-sources.jar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

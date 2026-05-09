@@ -27,7 +27,7 @@ You must install **one** of the following worldgen libraries:
     - NeoForge: https://www.curseforge.com/minecraft/mc-mods/terrablender-neoforge
   - Modrinth: https://modrinth.com/mod/terrablender
 
-- **Biolith**
+- **Biolith** → Still in Testing Stages but is supported
   - GitHub: https://github.com/TerraformersMC/Biolith
   - CurseForge: https://www.curseforge.com/minecraft/mc-mods/biolith
   - Modrinth: https://modrinth.com/mod/biolith
