@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/bamboo4_age0",
+  "render_type": "minecraft:cutout",
   "textures": {
     "all": "netherdescent:block/sythian_stalk",
     "particle": "netherdescent:block/sythian_stalk"

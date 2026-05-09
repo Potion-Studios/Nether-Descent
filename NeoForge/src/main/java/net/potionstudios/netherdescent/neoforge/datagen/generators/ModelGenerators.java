@@ -363,7 +363,8 @@ public class ModelGenerators {
                 for (int j = 1; j <= 4; j++)
                     models().withExistingParent("sythian_stalk" + j + "_age" + i, mcLoc("block/bamboo" + j + "_age" + i))
                             .texture("all", blockTexture(NetherDescentBlocks.SYTHIAN_STALK.getBlock()))
-                            .texture("particle",  blockTexture(NetherDescentBlocks.SYTHIAN_STALK.getBlock()));
+                            .texture("particle",  blockTexture(NetherDescentBlocks.SYTHIAN_STALK.getBlock()))
+		                    .renderType("cutout");
 
             models().withExistingParent("sythian_stalk_small_leaves", mcLoc("block/bamboo_small_leaves"))
                     .texture("texture", blockNDTexture(NetherDescentBlocks.SYTHIAN_STALK.getBlock(), "small_leaves"))
