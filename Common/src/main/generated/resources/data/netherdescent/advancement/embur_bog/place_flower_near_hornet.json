@@ -9,6 +9,7 @@
     "description": {
       "translate": "advancements.netherdescent.place_flower_near_hornet.description"
     },
+    "frame": "challenge",
     "icon": {
       "count": 1,
       "id": "netherdescent:embur_lily"

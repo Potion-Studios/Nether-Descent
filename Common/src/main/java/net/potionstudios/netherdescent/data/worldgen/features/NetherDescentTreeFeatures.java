@@ -30,8 +30,6 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
-import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Fluids;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;

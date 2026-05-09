@@ -6,8 +6,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
-import java.util.Optional;
-
 public record CarpetPatchFeatureConfiguration(Block carpet, boolean hanging) implements FeatureConfiguration {
 	public static final Codec<CarpetPatchFeatureConfiguration> CODEC = RecordCodecBuilder.create(
 			instance -> instance.group(

@@ -8,15 +8,10 @@ import net.minecraft.data.advancements.packs.VanillaAdventureAdvancements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
@@ -195,7 +190,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         translateAble("place_flower_near_hornet.title"),
                         translateAble("place_flower_near_hornet.description"),
                         null,
-                        AdvancementType.TASK, false, true, false
+                        AdvancementType.CHALLENGE, false, true, false
                 ).save(consumer, NetherDescent.id("embur_bog/place_flower_near_hornet"), existingFileHelper);
 
         AdvancementHolder runOn = Advancement.Builder.advancement()
@@ -234,7 +229,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         translateAble("boat_ride_on_embur_gel.title"),
                         translateAble("boat_ride_on_embur_gel.description"),
                         null,
-                        AdvancementType.TASK, false, true, false
+                        AdvancementType.CHALLENGE, false, true, false
                 ).save(consumer, NetherDescent.id("embur_bog/boat_ride_on_embur_gel"), existingFileHelper);
 
 

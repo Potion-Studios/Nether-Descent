@@ -27,6 +27,7 @@
     "description": {
       "translate": "advancements.netherdescent.boat_ride_on_embur_gel.description"
     },
+    "frame": "challenge",
     "icon": {
       "count": 1,
       "id": "minecraft:cherry_boat"
