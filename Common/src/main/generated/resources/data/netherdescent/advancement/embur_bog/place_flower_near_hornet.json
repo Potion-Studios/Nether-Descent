@@ -2,19 +2,7 @@
   "parent": "netherdescent:embur_bog/kill_hornet",
   "criteria": {
     "place_flower_near_hornet": {
-      "conditions": {
-        "location": [
-          {
-            "condition": "minecraft:location_check",
-            "predicate": {
-              "block": {
-                "blocks": "#minecraft:flowers"
-              }
-            }
-          }
-        ]
-      },
-      "trigger": "minecraft:placed_block"
+      "trigger": "netherdescent:place_flower_near_hornet"
     }
   },
   "display": {

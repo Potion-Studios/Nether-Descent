@@ -9,6 +9,7 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.tags.NetherDescentItemTags;
@@ -170,7 +171,33 @@ public class RecipeGenerator extends RecipeProvider {
 			    .unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get()))
 			    .save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.PENDORITE_BARS.get(), 16)
+                .define('#', NetherDescentItemTags.INGOTS_PENDORITE)
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("has_pendorite_ingot", has(NetherDescentItemTags.INGOTS_PENDORITE))
+                .save(recipeOutput);
+
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()), RecipeCategory.MISC, NetherDescentItems.PENDORITE_NUGGET.get(), 0.1F, 200).unlockedBy(getHasName(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()), has(NetherDescentItems.PENDORITE_HORSE_ARMOR.get())).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.PENDORITE_TORCH.get(), 4)
+                .define('X', Ingredient.of(Items.COAL, Items.CHARCOAL))
+                .define('#', Items.STICK)
+                .define('S', NetherDescentItems.PENDORITE_NUGGET.get())
+                .pattern("X")
+                .pattern("#")
+                .pattern("S")
+                .unlockedBy(getHasName(NetherDescentItems.PENDORITE_NUGGET.get()), has(NetherDescentItems.PENDORITE_NUGGET.get()))
+                .save(recipeOutput);
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.PENDORITE_LANTERN.get())
+                .define('#', NetherDescentItems.PENDORITE_TORCH.get())
+                .define('X', NetherDescentItems.PENDORITE_NUGGET.get())
+                .pattern("XXX")
+                .pattern("X#X")
+                .pattern("XXX")
+                .unlockedBy(getHasName(NetherDescentItems.PENDORITE_NUGGET.get()), has(NetherDescentItems.PENDORITE_NUGGET.get()))
+                .unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get()))
+                .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.SOUL_FIRE_ROD.get(), 4)
                 .define('X', NetherDescentItems.SOUL_BLAZE_ROD.get())
@@ -232,13 +259,6 @@ public class RecipeGenerator extends RecipeProvider {
 				.group(packedGroup)
 				.unlockedBy(getHasName(unpacked), has(unpacked))
 				.save(recipeOutput, NetherDescent.id(packedName));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.PENDORITE_BARS.get(), 16)
-                .define('#', NetherDescentItemTags.INGOTS_PENDORITE)
-                .pattern("###")
-                .pattern("###")
-                .unlockedBy("has_pendorite_ingot", has(NetherDescentItemTags.INGOTS_PENDORITE))
-                .save(recipeOutput);
     }
 
 	protected static void stonecutterResultFromBase(@NotNull RecipeOutput recipeOutput, @NotNull RecipeCategory category, ItemLike result, ItemLike material, int resultCount) {
