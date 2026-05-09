@@ -73,6 +73,8 @@ public class LangGenerator extends LanguageProvider {
 		add(advancement("step_on_wailing_bulb_blossom.description"), "Step on a Wailing Bulb Blossom");
 		add(advancement("float_from_wailing_gills.title"), "Natural Elevators");
 		add(advancement("float_from_wailing_gills.description"), "Be pulled off the ground by a Wailing Gill Block");
+		add(advancement("float_cow_from_wailing_gillis.title"), "UF-WOAH");
+		add(advancement("float_cow_from_wailing_gillis.description"), "Lead a Cow underneath a Powered Wailing Gill Block");
 		add(advancement("kill_soul_ghast.title"), "Double-Whammy");
 		add(advancement("kill_soul_ghast.description"), "Kill a Soul Ghast");
 		add(advancement("embur_bog.title"), "Embur Bog");

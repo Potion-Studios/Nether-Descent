@@ -41,7 +41,7 @@ public class WailingBulbBlossomBlock extends Block {
                         livingEntity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100, 0, false, false));
                         livingEntity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160, 0, false, false));
 						if (livingEntity instanceof ServerPlayer player)
-							NetherDescentCriterionTriggers.WAILING_INTERACTION.get().trigger(player, pos);
+							NetherDescentCriterionTriggers.WAILING_INTERACTION.get().trigger(player, pos, livingEntity);
                         level.scheduleTick(pos, this, 100);
                     }
             }

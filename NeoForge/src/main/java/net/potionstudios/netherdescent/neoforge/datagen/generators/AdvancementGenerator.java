@@ -10,6 +10,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -337,7 +338,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         AdvancementType.CHALLENGE, true, true, false
                 ).save(consumer, NetherDescent.id("wailing_garth/step_on_wailing_bulb_blossom"), existingFileHelper);
 
-        Advancement.Builder.advancement()
+        AdvancementHolder elevator = Advancement.Builder.advancement()
                 .addCriterion("wailing_gills", WailingTrigger.TriggerInstance.interactedWithBlock(NetherDescentBlocks.WAILING_GILLS.get()))
                 .parent(wailing_garth)
                 .display(
@@ -347,6 +348,17 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         null,
                         AdvancementType.CHALLENGE, true, true, false
                 ).save(consumer, NetherDescent.id("wailing_garth/float_from_wailing_gills"), existingFileHelper);
+
+        Advancement.Builder.advancement()
+                .parent(elevator)
+                .addCriterion("float_cow_from_wailing_gills", WailingTrigger.TriggerInstance.interactedWithPoweredBlockAndEntity(NetherDescentBlocks.WAILING_GILLS.get(), MinMaxBounds.Ints.atLeast(1), EntityPredicate.Builder.entity().of(EntityType.COW)))
+                .display(
+                        Items.LEAD,
+                        translateAble("float_cow_from_wailing_gillis.title"),
+                        translateAble("float_cow_from_wailing_gillis.description"),
+                        null,
+                        AdvancementType.CHALLENGE, true, true, false
+                ).save(consumer, NetherDescent.id("wailing_garth/float_cow_from_wailing_gillis"), existingFileHelper);
 
         Advancement.Builder.advancement()
                 .addCriterion("kill_soul_ghast", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(NetherDescentEntityType.SOUL_GHAST.get())))
