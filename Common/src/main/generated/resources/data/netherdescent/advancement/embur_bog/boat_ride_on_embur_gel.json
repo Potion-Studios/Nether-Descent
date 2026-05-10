@@ -1,5 +1,5 @@
 {
-  "parent": "netherdescent:embur_bog/sprinting_on_embur_gel",
+  "parent": "netherdescent:embur_bog/sprint_on_embur_gel",
   "criteria": {
     "boat_ride_on_embur_gel": {
       "conditions": {

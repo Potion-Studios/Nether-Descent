@@ -1,7 +1,7 @@
 {
   "parent": "netherdescent:embur_bog/root",
   "criteria": {
-    "sprinting_on_embur_gel": {
+    "sprint_on_embur_gel": {
       "conditions": {
         "player": [
           {
@@ -25,7 +25,7 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.netherdescent.sprinting_on_embur_gel.description"
+      "translate": "advancements.netherdescent.sprint_on_embur_gel.description"
     },
     "icon": {
       "count": 1,
@@ -33,12 +33,12 @@
     },
     "show_toast": false,
     "title": {
-      "translate": "advancements.netherdescent.sprinting_on_embur_gel.title"
+      "translate": "advancements.netherdescent.sprint_on_embur_gel.title"
     }
   },
   "requirements": [
     [
-      "sprinting_on_embur_gel"
+      "sprint_on_embur_gel"
     ]
   ],
   "sends_telemetry_event": true

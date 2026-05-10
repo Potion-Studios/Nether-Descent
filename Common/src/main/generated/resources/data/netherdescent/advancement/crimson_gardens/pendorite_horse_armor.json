@@ -1,5 +1,5 @@
 {
-  "parent": "netherdescent:crimson_gardens/pendorite_ingot",
+  "parent": "netherdescent:crimson_gardens/raw_pendorite",
   "criteria": {
     "has_pendorite_horse_armor": {
       "conditions": {

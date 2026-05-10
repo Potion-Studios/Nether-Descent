@@ -1,7 +1,7 @@
 {
   "parent": "netherdescent:arisian_undergrowth/root",
   "criteria": {
-    "step_on_torn_sprout": {
+    "step_on_thorn_sprout": {
       "conditions": {
         "player": [
           {
@@ -22,7 +22,7 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.netherdescent.step_on_torn_sprout.description"
+      "translate": "advancements.netherdescent.step_on_thorn_sprout.description"
     },
     "icon": {
       "count": 1,
@@ -30,12 +30,12 @@
     },
     "show_toast": false,
     "title": {
-      "translate": "advancements.netherdescent.step_on_torn_sprout.title"
+      "translate": "advancements.netherdescent.step_on_thorn_sprout.title"
     }
   },
   "requirements": [
     [
-      "step_on_torn_sprout"
+      "step_on_thorn_sprout"
     ]
   ],
   "sends_telemetry_event": true

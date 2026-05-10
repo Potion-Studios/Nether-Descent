@@ -41,8 +41,8 @@ public class LangGenerator extends LanguageProvider {
         add(advancement("description.root"), "Launch a world with the Nether Descent");
         add(advancement("arisian_undergrowth.title"), "Arisian Undergrowth");
 		add(advancement("arisian_undergrowth.description"), "Discover the Arisian Undergrowth biome");
-		add(advancement("step_on_torn_sprout.title"), "Bridge to Somewhere?");
-		add(advancement("step_on_torn_sprout.description"), "Step on a Thorn Sprout");
+		add(advancement("step_on_thorn_sprout.title"), "Bridge to Somewhere?");
+		add(advancement("step_on_thorn_sprout.description"), "Step on a Thorn Sprout");
 		add(advancement("step_on_arisian_leaves_blossom.title"), "So it Glows");
 		add(advancement("step_on_arisian_leaves_blossom.description"), "Step on Arisian Leaves or Arisian Bloom");
 		add(advancement("crimson_gardens.title"), "Crimson Gardens");
@@ -64,7 +64,7 @@ public class LangGenerator extends LanguageProvider {
 		add(advancement("smelted_sythian_stalk.title"), "Renewable Business");
 		add(advancement("smelted_sythian_stalk.description"), "Smelt Sythian Stalk in a Furnace");
 		add(advancement("place_stalk_on_farmland.title"), "Money Moves");
-		add(advancement("place_stalk_on_farmland.description"), "Place Sythian Stalk on Sythian Farmland ");
+		add(advancement("place_stalk_on_farmland.description"), "Place Sythian Stalk on Sythian Farmland");
 		add(advancement("obtain_sythian_scaffolding.title"), "Modern Construction");
 		add(advancement("obtain_sythian_scaffolding.description"), "Obtain Sythian Scaffolding");
 		add(advancement("wailing_garth.title"), "Wailing Garth");
@@ -73,14 +73,14 @@ public class LangGenerator extends LanguageProvider {
 		add(advancement("step_on_wailing_bulb_blossom.description"), "Step on a Wailing Bulb Blossom");
 		add(advancement("float_from_wailing_gills.title"), "Natural Elevators");
 		add(advancement("float_from_wailing_gills.description"), "Be pulled off the ground by a Wailing Gill Block");
-		add(advancement("float_cow_from_wailing_gillis.title"), "UF-WOAH");
-		add(advancement("float_cow_from_wailing_gillis.description"), "Lead a Cow underneath a Powered Wailing Gill Block");
+		add(advancement("float_cow_from_wailing_gills.title"), "UF-WOAH");
+		add(advancement("float_cow_from_wailing_gills.description"), "Lead a Cow underneath a Powered Wailing Gill Block");
 		add(advancement("kill_soul_ghast.title"), "Double-Whammy");
 		add(advancement("kill_soul_ghast.description"), "Kill a Soul Ghast");
 		add(advancement("embur_bog.title"), "Embur Bog");
 		add(advancement("embur_bog.description"), "Discover the Embur Bog biome");
-		add(advancement("sprinting_on_embur_gel.title"), "Zooooooom");
-		add(advancement("sprinting_on_embur_gel.description"), "Sprint across Embur Gel Blocks");
+		add(advancement("sprint_on_embur_gel.title"), "Zooooooom");
+		add(advancement("sprint_on_embur_gel.description"), "Sprint across Embur Gel Blocks");
 		add(advancement("boat_ride_on_embur_gel.title"), "Grand Theft Auto");
 		add(advancement("boat_ride_on_embur_gel.description"), "Ride over Embur Gel Blocks while in a Boat");
 		add(advancement("kill_hornet.title"), "The Sting that Keeps on Stinging");

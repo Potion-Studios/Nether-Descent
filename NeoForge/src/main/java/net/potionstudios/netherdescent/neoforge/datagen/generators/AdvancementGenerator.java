@@ -58,14 +58,14 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
 
         Advancement.Builder.advancement()
                 .parent(arisian_undergrowth)
-                .addCriterion("step_on_torn_sprout", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(NetherDescentBlocks.THORN_SPROUT.get()))))
+                .addCriterion("step_on_thorn_sprout", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(NetherDescentBlocks.THORN_SPROUT.get()))))
                 .display(
                         NetherDescentBlocks.THORN_SPROUT.get(),
-                        translateAble("step_on_torn_sprout.title"),
-                        translateAble("step_on_torn_sprout.description"),
+                        translateAble("step_on_thorn_sprout.title"),
+                        translateAble("step_on_thorn_sprout.description"),
                         null,
                         AdvancementType.TASK, false, true, false
-                ).save(consumer, NetherDescent.id("arisian_undergrowth/step_on_torn_sprout"), existingFileHelper);
+                ).save(consumer, NetherDescent.id("arisian_undergrowth/step_on_thorn_sprout"), existingFileHelper);
 
         Advancement.Builder.advancement()
                 .parent(arisian_undergrowth)
@@ -111,7 +111,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                         null,
                         AdvancementType.TASK, false, true, false
                 )
-                .save(consumer, NetherDescent.id("crimson_gardens/pendorite_ingot"), existingFileHelper);
+                .save(consumer, NetherDescent.id("crimson_gardens/raw_pendorite"), existingFileHelper);
 
         Advancement.Builder.advancement()
                 .addCriterion("has_pendorite_wolf_armor", InventoryChangeTrigger.TriggerInstance.hasItems(NetherDescentItems.PENDORITE_WOLF_ARMOR.get()))
@@ -194,19 +194,19 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 ).save(consumer, NetherDescent.id("embur_bog/place_flower_near_hornet"), existingFileHelper);
 
         AdvancementHolder runOn = Advancement.Builder.advancement()
-                .addCriterion("sprinting_on_embur_gel", PlayerTrigger.TriggerInstance.located(EntityPredicate.Builder.entity()
+                .addCriterion("sprint_on_embur_gel", PlayerTrigger.TriggerInstance.located(EntityPredicate.Builder.entity()
                         .steppingOn(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(NetherDescentBlocks.EMBUR_GEL_BLOCK.get())))
                         .flags(EntityFlagsPredicate.Builder.flags().setSprinting(true))
                 ))
                 .parent(embur_bog)
                 .display(
                         NetherDescentBlocks.EMBUR_GEL_BLOCK.get(),
-                        translateAble("sprinting_on_embur_gel.title"),
-                        translateAble("sprinting_on_embur_gel.description"),
+                        translateAble("sprint_on_embur_gel.title"),
+                        translateAble("sprint_on_embur_gel.description"),
                         null,
                         AdvancementType.TASK, false, true, false
                 )
-                .save(consumer, NetherDescent.id("embur_bog/sprinting_on_embur_gel"), existingFileHelper);
+                .save(consumer, NetherDescent.id("embur_bog/sprint_on_embur_gel"), existingFileHelper);
 
         Advancement.Builder.advancement()
                 .addCriterion("boat_ride_on_embur_gel",
@@ -349,11 +349,11 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .addCriterion("float_cow_from_wailing_gills", WailingTrigger.TriggerInstance.interactedWithPoweredBlockAndEntity(NetherDescentBlocks.WAILING_GILLS.get(), MinMaxBounds.Ints.atLeast(1), EntityPredicate.Builder.entity().of(EntityType.COW)))
                 .display(
                         Items.LEAD,
-                        translateAble("float_cow_from_wailing_gillis.title"),
-                        translateAble("float_cow_from_wailing_gillis.description"),
+                        translateAble("float_cow_from_wailing_gills.title"),
+                        translateAble("float_cow_from_wailing_gills.description"),
                         null,
                         AdvancementType.CHALLENGE, true, true, false
-                ).save(consumer, NetherDescent.id("wailing_garth/float_cow_from_wailing_gillis"), existingFileHelper);
+                ).save(consumer, NetherDescent.id("wailing_garth/float_cow_from_wailing_gills"), existingFileHelper);
 
         Advancement.Builder.advancement()
                 .addCriterion("kill_soul_ghast", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(NetherDescentEntityType.SOUL_GHAST.get())))
