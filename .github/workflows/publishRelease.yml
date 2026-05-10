@@ -12,11 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       is_release: ${{ steps.gate.outputs.is_release }}
+      version: ${{ steps.gate.outputs.version }}
     steps:
       - uses: actions/checkout@v6
       - id: gate
         run: |
           VERSION=$(grep 'mod_version' gradle.properties | cut -d'=' -f2 | xargs)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
           if [[ "$VERSION" != *"-SNAPSHOT"* ]]; then
             echo "is_release=true" >> $GITHUB_OUTPUT
             echo "Proceeding with release for version: $VERSION"
@@ -29,6 +31,8 @@ jobs:
     needs: check-version
     if: needs.check-version.outputs.is_release == 'true'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v6
@@ -84,3 +88,20 @@ jobs:
             !**/build/libs/*-sources.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Bump patch version and add SNAPSHOT
+        run: |
+          VERSION="${{ needs.check-version.outputs.version }}"
+          MAJOR=$(echo "$VERSION" | cut -d'.' -f1)
+          MINOR=$(echo "$VERSION" | cut -d'.' -f2)
+          PATCH=$(echo "$VERSION" | cut -d'.' -f3)
+          NEXT_PATCH=$((PATCH + 1))
+          NEXT_VERSION="${MAJOR}.${MINOR}.${NEXT_PATCH}-SNAPSHOT"
+          echo "Bumping version: $VERSION -> $NEXT_VERSION"
+          sed -i "s/^mod_version=.*/mod_version=$NEXT_VERSION/" gradle.properties
+
+      - name: Commit and push version bump
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "${{ steps.bump_version.outputs.next_version }} Cycle [skip ci]"
+          file_pattern: gradle.properties
