@@ -271,7 +271,7 @@ public class HornetNestBlockEntity extends BlockEntity {
 
     public enum HornetReleaseStatus {
         HORNET_RELEASED,
-        EMERGENCY;
+        EMERGENCY
     }
 
 	public record Occupant(CustomData entityData, int ticksInNest, int minTicksInNest) {

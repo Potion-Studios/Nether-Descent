@@ -1,7 +1,6 @@
 package net.potionstudios.netherdescent.forge;
 
 import com.google.auto.service.AutoService;
-import dev.corgitaco.ohthetreesyoullgrow.Constants;
 import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
@@ -96,18 +95,18 @@ public final class ForgePlatformHandler implements PlatformHandler {
 				.build());
 	}
 
-	public static final Map<ResourceKey<?>, DeferredRegister<?>> CACHED = new Reference2ObjectOpenHashMap<>();
+	private static final Map<ResourceKey<?>, DeferredRegister<?>> CACHED = new Reference2ObjectOpenHashMap<>();
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> Supplier<T> register(Registry<? super T> registry, String name, Supplier<T> value) {
-		return ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.location(), Constants.MOD_ID))).register(name, value);
+		return ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.location(), NetherDescent.MOD_ID))).register(name, value);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> Supplier<Holder.Reference<T>> registerForHolder(Registry<T> registry, String name, Supplier<T> value) {
-		RegistryObject<T> registryObject = ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.location(), Constants.MOD_ID))).register(name, value);
+		RegistryObject<T> registryObject = ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.location(), NetherDescent.MOD_ID))).register(name, value);
 		return () -> (Holder.Reference<T>) registryObject.getHolder().orElse(null);
 	}
 
