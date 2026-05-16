@@ -3,8 +3,6 @@ package net.potionstudios.netherdescent.forge;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.level.GameType;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.brewing.BrewingRecipeRegisterEvent;
@@ -15,8 +13,7 @@ import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.potionstudios.netherdescent.PlatformHandler;
-import net.potionstudios.netherdescent.config.configs.DevConfig;
+import net.potionstudios.netherdescent.event.ServerEventsHandler;
 import net.potionstudios.netherdescent.util.VanillaBonemealHandler;
 import net.potionstudios.netherdescent.world.BlockItemFeatures;
 import net.potionstudios.netherdescent.world.entity.animal.NetherDescentWolf;
@@ -42,7 +39,7 @@ public class VanillaCompatForge {
         bus.addListener(VanillaCompatForge::registerFuels);
         bus.addListener(VanillaCompatForge::registerEntityInteract);
         bus.addListener(VanillaCompatForge::onBoneMealUse);
-        bus.addListener(VanillaCompatForge::playerJoinEvent);
+        bus.addListener((PlayerEvent.PlayerLoggedInEvent event) -> ServerEventsHandler.onPlayerJoin((ServerPlayer) event.getEntity()));
         bus.addListener(VanillaCompatForge::onBlockPlace);
     }
 
@@ -100,28 +97,5 @@ public class VanillaCompatForge {
      */
     private static void onBlockPlace(final BlockEvent.EntityPlaceEvent event) {
         BlockItemFeatures.onPlaceBlock(event.getLevel(), event.getEntity(), event.getPlacedAgainst(), event.getPlacedBlock(), event.getPos());
-    }
-
-    /**
-     * Handle player join event.
-     * @see PlayerEvent.PlayerLoggedInEvent
-     */
-    private static void playerJoinEvent(PlayerEvent.PlayerLoggedInEvent event) {
-        if (!PlatformHandler.PLATFORM_HANDLER.isDevEnvironment()) {
-            return;
-        }
-        if (event.getEntity().level().isClientSide()) {
-            return;
-        }
-
-        ServerPlayer serverPlayer = (ServerPlayer) event.getEntity();
-
-        if (serverPlayer.level().dimension() != Level.NETHER) {
-            DevConfig devConfig = DevConfig.getInstance(true);
-            if (devConfig.startInNether()) {
-                serverPlayer.setGameMode(GameType.SPECTATOR);
-                serverPlayer.teleportTo(serverPlayer.level().getServer().getLevel(Level.NETHER), serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), serverPlayer.getYRot(), serverPlayer.getXRot());
-            }
-        }
     }
 }

@@ -28,6 +28,7 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.data.loading.DatagenModLoader;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.DeferredRegister;
@@ -132,5 +133,10 @@ public final class ForgePlatformHandler implements PlatformHandler {
 	@Override
 	public boolean isDevEnvironment() {
 		return !FMLLoader.isProduction();
+	}
+
+	@Override
+	public boolean isModLoaded(String modId) {
+		return ModList.get().isLoaded(modId);
 	}
 }

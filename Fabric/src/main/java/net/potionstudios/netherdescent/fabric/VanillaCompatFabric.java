@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.fabric;
 
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.registry.*;
@@ -11,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.state.BlockState;
+import net.potionstudios.netherdescent.event.ServerEventsHandler;
 import net.potionstudios.netherdescent.util.VanillaBonemealHandler;
 import net.potionstudios.netherdescent.world.BlockItemFeatures;
 import net.potionstudios.netherdescent.world.entity.animal.NetherDescentWolf;
@@ -62,5 +64,6 @@ public class VanillaCompatFabric {
 
             return InteractionResult.PASS;
         });
+        ServerPlayerEvents.JOIN.register(ServerEventsHandler::onPlayerJoin);
     }
 }

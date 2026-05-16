@@ -156,4 +156,6 @@ public interface PlatformHandler {
 	}
 
 	boolean isDevEnvironment();
+
+	boolean isModLoaded(String modId);
 }
