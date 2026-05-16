@@ -10,6 +10,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -79,6 +80,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 
 		int newSize = currentSize + 1;
 		level.setBlockAndUpdate(pos, state.setValue(SEGMENT, SegmentType.BASE).setValue(SIZE, newSize));
+		level.gameEvent(null, GameEvent.BLOCK_CHANGE, pos);
 		level.playSound(null, pos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
 
 		BlockPos nextPos = pos;
@@ -98,6 +100,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 						.setValue(FLOWERING, level.getRandom().nextBoolean())
 						.setValue(SEGMENT, type)
 						.setValue(SIZE, newSize));
+				level.gameEvent(null, GameEvent.BLOCK_CHANGE, pos);
 				level.playSound(null, nextPos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
 			} else {
 				if (i > 1) {
@@ -105,10 +108,12 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 					BlockState prevState = level.getBlockState(prevPos);
 					if (prevState.is(this)) {
 						level.setBlockAndUpdate(prevPos, prevState.setValue(SEGMENT, SegmentType.END));
+						level.gameEvent(null, GameEvent.BLOCK_CHANGE, pos);
 						level.playSound(null, prevPos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
 					}
 				} else {
 					level.setBlockAndUpdate(pos, state.setValue(SEGMENT, SegmentType.END).setValue(SIZE, currentSize));
+					level.gameEvent(null, GameEvent.BLOCK_CHANGE, pos);
 					level.playSound(null, pos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
 				}
 				break;
@@ -144,6 +149,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 
 		if (prevState.is(this) && prevState.getValue(FACING) == state.getValue(FACING) && prevState.getValue(SIZE) == currentSize) {
 			level.destroyBlock(pos, false);
+			level.gameEvent(null, GameEvent.BLOCK_CHANGE, pos);
 			level.playSound(null, pos, this.getSoundType(state).getBreakSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
 			if (prevState.getValue(SEGMENT) == SegmentType.BASE) {
 				BlockState nextState = prevState.setValue(SEGMENT, SegmentType.END).setValue(SIZE, currentSize - 1);
