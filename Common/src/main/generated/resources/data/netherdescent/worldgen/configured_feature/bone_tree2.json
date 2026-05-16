@@ -65,6 +65,7 @@
       "minecraft:bone_block"
     ],
     "max_log_depth": 4,
-    "place_from_nbt": []
+    "place_from_nbt": [],
+    "tree_filter_behavior": "PASSTHROUGH"
   }
 }

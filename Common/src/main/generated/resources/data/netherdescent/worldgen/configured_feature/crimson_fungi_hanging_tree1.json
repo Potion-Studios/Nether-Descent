@@ -64,6 +64,7 @@
     ],
     "max_log_depth": 4,
     "orientation": "UPSIDE_DOWN",
-    "replace_from_nbt": {}
+    "replace_from_nbt": {},
+    "tree_filter_behavior": "PASSTHROUGH"
   }
 }

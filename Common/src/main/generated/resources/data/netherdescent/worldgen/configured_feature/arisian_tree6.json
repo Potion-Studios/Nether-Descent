@@ -126,6 +126,7 @@
       "minecraft:warped_hyphae"
     ],
     "max_log_depth": 4,
-    "replace_from_nbt": {}
+    "replace_from_nbt": {},
+    "tree_filter_behavior": "PASSTHROUGH"
   }
 }

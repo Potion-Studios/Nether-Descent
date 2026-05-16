@@ -70,6 +70,7 @@
     "log_target": [
       "minecraft:oak_log"
     ],
-    "place_from_nbt": []
+    "place_from_nbt": [],
+    "tree_filter_behavior": "PASSTHROUGH"
   }
 }
