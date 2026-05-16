@@ -3,6 +3,7 @@ package net.potionstudios.netherdescent.config.configs;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.potionstudios.netherdescent.config.ConfigLoader;
+import net.potionstudios.netherdescent.config.ConfigUtils;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 
 import java.util.LinkedHashMap;
@@ -28,7 +29,7 @@ public final class WorldGenerationConfig {
     }
 
     public Map<String, Boolean> biomes = new LinkedHashMap<>();
-    public int regionWeight = DEFAULT_REGION_WEIGHT;
+    public ConfigUtils.CommentValue<Integer> regionWeight = ConfigUtils.CommentValue.of("Only used when using with Terrablender", DEFAULT_REGION_WEIGHT);
     public boolean blue_fortress = true;
 
     public boolean isEnabled(ResourceKey<Biome> key) {
