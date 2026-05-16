@@ -42,14 +42,14 @@ public class NetherDescentBiomeBuilder {
 
         generationSettings.addFeature(GenerationStep.Decoration.UNDERGROUND_STRUCTURES, NetherDescentPlacements.BASALT_LINE);
 
-        addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_MOSS_CARPET_PATCH);
-        addVegetal(generationSettings, NetherDescentPlacements.HANGING_ARISIAN_MOSS_CARPET_PATCH);
         addVegetal(generationSettings, NetherDescentTreePlacements.ARISIAN_ROOTS_HANGING);
         addVegetal(generationSettings, NetherDescentTreePlacements.ARISIAN_TREES_HANGING);
         addVegetal(generationSettings, NetherDescentTreePlacements.ARISIAN_TREES);
         addVegetal(generationSettings, NetherDescentPlacements.HANGING_ARISIAN_TANGLE_ROOTS);
         addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_UNDERGROWTH_VEGETATION);
         addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_UNDERGROWTH_HANGING_VEGETATION);
+        addVegetal(generationSettings, NetherDescentPlacements.ARISIAN_MOSS_CARPET_PATCH);
+        addVegetal(generationSettings, NetherDescentPlacements.HANGING_ARISIAN_MOSS_CARPET_PATCH);
 
         MobSpawnSettings.Builder spawnSettings = new MobSpawnSettings.Builder();
         addSpawn(spawnSettings, EntityType.ENDERMAN, 20, 2, 4);
