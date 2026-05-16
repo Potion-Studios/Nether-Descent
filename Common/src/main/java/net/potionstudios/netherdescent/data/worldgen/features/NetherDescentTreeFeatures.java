@@ -66,7 +66,8 @@ public class NetherDescentTreeFeatures {
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
-                    .treeLogFilterBehavior(TreeLogFilterBehavior.PIERCE)
+                    .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .build()
     );
 
@@ -84,7 +85,8 @@ public class NetherDescentTreeFeatures {
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
-                    .treeLogFilterBehavior(TreeLogFilterBehavior.PIERCE)
+                    .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .build()
     );
 
@@ -102,7 +104,8 @@ public class NetherDescentTreeFeatures {
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
-                    .treeLogFilterBehavior(TreeLogFilterBehavior.PIERCE)
+                    .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .build()
     );
 
@@ -120,7 +123,7 @@ public class NetherDescentTreeFeatures {
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), ARISIAN_BRANCH_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -139,7 +142,7 @@ public class NetherDescentTreeFeatures {
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), ARISIAN_BRANCH_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -158,7 +161,7 @@ public class NetherDescentTreeFeatures {
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), ARISIAN_BRANCH_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -177,7 +180,7 @@ public class NetherDescentTreeFeatures {
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), ARISIAN_BRANCH_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -196,7 +199,7 @@ public class NetherDescentTreeFeatures {
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), ARISIAN_BRANCH_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -215,7 +218,7 @@ public class NetherDescentTreeFeatures {
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), ARISIAN_BRANCH_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -233,6 +236,7 @@ public class NetherDescentTreeFeatures {
                     .maxLogDepth(4)
                     .growableOn(BlockPredicate.anyOf(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER), BlockPredicate.matchesBlocks(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get())))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -502,6 +506,7 @@ public class NetherDescentTreeFeatures {
                     .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR, FUNGAL_BULBS_WALL_UP_DOWN.get()))
                     .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .build()
     );
 
@@ -520,6 +525,7 @@ public class NetherDescentTreeFeatures {
                     .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR, FUNGAL_BULBS_WALL_UP_DOWN.get()))
                     .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .build()
     );
 
@@ -538,6 +544,7 @@ public class NetherDescentTreeFeatures {
                     .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR, FUNGAL_BULBS_WALL_UP_DOWN.get()))
                     .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .build()
     );
 
@@ -556,6 +563,7 @@ public class NetherDescentTreeFeatures {
                     .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR, FUNGAL_BULBS_WALL_UP_DOWN.get()))
                     .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .build()
     );
 
@@ -633,6 +641,7 @@ public class NetherDescentTreeFeatures {
                     .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .build()
     );
 
@@ -651,6 +660,7 @@ public class NetherDescentTreeFeatures {
                     .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
+                    .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .build()
     );
 

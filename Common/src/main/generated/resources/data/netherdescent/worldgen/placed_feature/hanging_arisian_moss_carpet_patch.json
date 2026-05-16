@@ -41,6 +41,10 @@
             "predicate": {
               "type": "minecraft:solid"
             }
+          },
+          {
+            "type": "minecraft:matching_fluids",
+            "fluids": "minecraft:empty"
           }
         ]
       }
