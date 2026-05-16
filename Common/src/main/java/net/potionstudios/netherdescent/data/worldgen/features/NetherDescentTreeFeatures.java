@@ -66,7 +66,7 @@ public class NetherDescentTreeFeatures {
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
-                    .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
+                    .treeLogFilterBehavior(TreeLogFilterBehavior.PIERCE)
                     .build()
     );
 
@@ -84,7 +84,7 @@ public class NetherDescentTreeFeatures {
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
-                    .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
+                    .treeLogFilterBehavior(TreeLogFilterBehavior.PIERCE)
                     .build()
     );
 
@@ -102,7 +102,7 @@ public class NetherDescentTreeFeatures {
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
                     .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
-                    .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
+                    .treeLogFilterBehavior(TreeLogFilterBehavior.PIERCE)
                     .build()
     );
 
