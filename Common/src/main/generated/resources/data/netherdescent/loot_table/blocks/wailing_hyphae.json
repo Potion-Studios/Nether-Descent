@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "netherdescent:stripped_embur_wood"
+          "name": "netherdescent:wailing_hyphae"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "netherdescent:blocks/stripped_embur_wood"
+  "random_sequence": "netherdescent:blocks/wailing_hyphae"
 }

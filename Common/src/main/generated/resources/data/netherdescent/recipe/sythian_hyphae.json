@@ -4,7 +4,7 @@
   "group": "bark",
   "key": {
     "#": {
-      "item": "netherdescent:wailing_stem"
+      "item": "netherdescent:sythian_stem"
     }
   },
   "pattern": [
@@ -13,6 +13,6 @@
   ],
   "result": {
     "count": 3,
-    "id": "netherdescent:wailing_wood"
+    "id": "netherdescent:sythian_hyphae"
   }
 }

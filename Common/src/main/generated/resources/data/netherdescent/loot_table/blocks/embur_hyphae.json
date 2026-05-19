@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "netherdescent:embur_wood"
+          "name": "netherdescent:embur_hyphae"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "netherdescent:blocks/embur_wood"
+  "random_sequence": "netherdescent:blocks/embur_hyphae"
 }

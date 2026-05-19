@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "netherdescent:embur_pedu"
+            "items": "netherdescent:stripped_embur_pedu"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:embur_wood"
+        "recipe": "netherdescent:stripped_embur_hyphae"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "netherdescent:embur_wood"
+      "netherdescent:stripped_embur_hyphae"
     ]
   }
 }

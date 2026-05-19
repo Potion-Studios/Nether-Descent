@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:wailing_wood"
+        "recipe": "netherdescent:wailing_hyphae"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "netherdescent:wailing_wood"
+      "netherdescent:wailing_hyphae"
     ]
   }
 }

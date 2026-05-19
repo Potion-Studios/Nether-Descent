@@ -4,7 +4,7 @@
   "group": "bark",
   "key": {
     "#": {
-      "item": "netherdescent:embur_pedu"
+      "item": "netherdescent:wailing_stem"
     }
   },
   "pattern": [
@@ -13,6 +13,6 @@
   ],
   "result": {
     "count": 3,
-    "id": "netherdescent:embur_wood"
+    "id": "netherdescent:wailing_hyphae"
   }
 }
