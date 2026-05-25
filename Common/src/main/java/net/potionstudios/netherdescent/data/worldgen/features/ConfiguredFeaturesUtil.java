@@ -85,10 +85,6 @@ public class ConfiguredFeaturesUtil {
     protected static <FC extends FeatureConfiguration, F extends Feature<FC>> Holder<ConfiguredFeature<?, ?>> createConfiguredFeature(Supplier<F> feature, Supplier<FC> config) {
         return Holder.direct(new ConfiguredFeature<>(feature.get(), config.get()));
     }
-/*
-    protected static <FC extends FeatureConfiguration, F extends Feature<FC>> ResourceKey<ConfiguredFeature<?, ?>> createFlowerConfiguredFeature(String id, Supplier<? extends Block> flowerBlock) {
-        return createConfiguredFeature(id, Feature.FLOWER, (configuredFeatureBootstrapContext) -> VegetationFeatures.grassPatch(SimpleStateProvider.simple(flowerBlock.get().defaultBlockState()), 15));
-    } */
 
     protected static <FC extends FeatureConfiguration, F extends Feature<FC>> ResourceKey<ConfiguredFeature<?, ?>> createPatchConfiguredFeatureWithBlock(String id, Supplier<? extends Block> block, int tries) {
         return createPatchConfiguredFeatureWithState(id, () -> block.get().defaultBlockState(), tries);

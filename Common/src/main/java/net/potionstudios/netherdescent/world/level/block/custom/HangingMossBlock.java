@@ -44,19 +44,6 @@ public class HangingMossBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-        /*
-        if (random.nextInt(500) == 0) {
-            BlockState blockState = level.getBlockState(pos.above());
-            if (blockState.is(BlockTags.PALE_OAK_LOGS) || blockState.is(Blocks.PALE_OAK_LEAVES)) {
-                level.playLocalSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.PALE_HANGING_MOSS_IDLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
-            }
-        }
-
-         */
-    }
-
-    @Override
     protected boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return true;
     }
