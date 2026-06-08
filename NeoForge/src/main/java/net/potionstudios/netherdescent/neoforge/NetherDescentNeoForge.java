@@ -1,6 +1,7 @@
 package net.potionstudios.netherdescent.neoforge;
 
 import com.terraformersmc.biolith.impl.Biolith;
+import dev.worldgen.lithostitched.Lithostitched;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
@@ -45,7 +46,8 @@ public class NetherDescentNeoForge {
                 BiolithRegister.register();
             else if (ModList.get().isLoaded(TerraBlender.MOD_ID))
                 TerraBlenderRegister.register();
-            else NetherDescent.LOGGER.warn("TerraBlender or Biolith are not loaded, Nether Descent's biomes will not be added to the world!");
+            else if (!ModList.get().isLoaded(Lithostitched.MOD_ID))
+                NetherDescent.LOGGER.warn("TerraBlender, Biolith, or Lithostitched are not loaded, Nether Descent's biomes will not be added to the world!");
             NeoForgePlatformHandler.registerPottedPlants();
         });
     }

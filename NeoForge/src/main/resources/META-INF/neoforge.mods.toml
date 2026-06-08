@@ -49,5 +49,12 @@ versionRange = "[3.0.10,)"
 ordering = "AFTER"
 side = "BOTH"
 
+[[dependencies.netherdescent]]
+modId = "lithostitched"
+type = "optional"
+versionRange = "[1.7.9,)"
+ordering = "AFTER"
+side = "BOTH"
+
 [[mixins]]
 config = "netherdescent-common.mixins.json"
