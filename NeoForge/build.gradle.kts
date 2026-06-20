@@ -9,7 +9,7 @@ architectury {
     neoForge()
 }
 
-val minecraftVersion = project.properties["minecraft_version"] as String
+val minecraftVersion = providers.gradleProperty("minecraft_version").get()
 
 configurations {
     create("common")
@@ -32,26 +32,28 @@ loom {
 
     runs.create("datagen") {
         data()
-        programArgs("--all", "--mod", "netherdescent")
-        programArgs("--output", project(":Common").file("src/main/generated/resources").absolutePath)
-        programArgs("--existing", project(":Common").file("src/main/resources").absolutePath)
+        programArguments.addAll(
+            "--all", "--mod", "netherdescent",
+            "--output", project(":Common").file("src/main/generated/resources").absolutePath,
+            "--existing", project(":Common").file("src/main/resources").absolutePath
+        )
     }
 }
 
 dependencies {
-    neoForge("net.neoforged:neoforge:${project.properties["neoforge_version"]}")
+    neoForge("net.neoforged:neoforge:${providers.gradleProperty("neoforge_version").get()}")
 
     "common"(project(":Common", "namedElements")) { isTransitive = false }
     "shadowBundle"(project(":Common", "transformProductionNeoForge"))
 
-    modLocalRuntime("me.djtheredstoner:DevAuth-neoforge:${project.properties["devauth_version"]}")
+    modLocalRuntime("me.djtheredstoner:DevAuth-neoforge:${providers.gradleProperty("devauth_version").get()}")
 
-    modApi("com.github.glitchfiend:TerraBlender-neoforge:$minecraftVersion-${project.properties["terrablender_version"]}")
-    modCompileOnly("com.terraformersmc:biolith-neoforge:${project.properties["biolith_version"]}")
-    modApi("dev.corgitaco:Oh-The-Trees-Youll-Grow-neoforge:$minecraftVersion-${project.properties["ohthetreesyoullgrow_version"]}")
+    modApi("com.github.glitchfiend:TerraBlender-neoforge:$minecraftVersion-${providers.gradleProperty("terrablender_version").get()}")
+    modCompileOnly("com.terraformersmc:biolith-neoforge:${providers.gradleProperty("biolith_version").get()}")
+    modApi("dev.corgitaco:Oh-The-Trees-Youll-Grow-neoforge:$minecraftVersion-${providers.gradleProperty("ohthetreesyoullgrow_version").get()}")
 
-    modLocalRuntime("mcp.mobius.waila:wthit:neo-${project.properties["WTHIT"]}")
-    modLocalRuntime("lol.bai:badpackets:neo-${project.properties["badPackets"]}")
+    modLocalRuntime("mcp.mobius.waila:wthit:neo-${providers.gradleProperty("WTHIT").get()}")
+    modLocalRuntime("lol.bai:badpackets:neo-${providers.gradleProperty("badPackets").get()}")
 
     modLocalRuntime("com.github.Jab125.architectury-data-generation-fix:architectury-data-generation-fix-neoforge:21.0.3")
     modLocalRuntime("maven.modrinth:worldedit:7.3.8")
