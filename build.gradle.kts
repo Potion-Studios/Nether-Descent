@@ -71,12 +71,12 @@ subprojects {
     java {
         withSourcesJar()
 
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     tasks.withType<JavaCompile>().configureEach {
-        options.release.set(21)
+        options.release.set(17)
     }
 
     publishing {
@@ -118,7 +118,7 @@ subprojects {
             setReleaseType(ReleaseType.RELEASE)
             setGameVersions(minecraftVersion)
             setCurseEnvironment(CurseEnvironment.BOTH)
-            setJavaVersions(JavaVersion.VERSION_21, JavaVersion.VERSION_22, JavaVersion.VERSION_25)
+            setJavaVersions(JavaVersion.VERSION_17, JavaVersion.VERSION_18, JavaVersion.VERSION_19, JavaVersion.VERSION_20, JavaVersion.VERSION_21, JavaVersion.VERSION_22, JavaVersion.VERSION_25)
             modrinthDepends.optional.set(mutableListOf("terrablender", "biolith", "wthit"))
         }
 }

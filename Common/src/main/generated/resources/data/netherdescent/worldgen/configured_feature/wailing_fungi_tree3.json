@@ -40,8 +40,10 @@
     ],
     "height": {
       "type": "minecraft:biased_to_bottom",
-      "max_inclusive": 19,
-      "min_inclusive": 9
+      "value": {
+        "max_inclusive": 19,
+        "min_inclusive": 9
+      }
     },
     "leaves_provider": [
       {

@@ -24,7 +24,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.SmallFireball;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -64,10 +63,10 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
 	}
 
 	@Override
-    protected void defineSynchedData(SynchedEntityData.@NotNull Builder builder) {
-        super.defineSynchedData(builder);
-        builder.define(DATA_FLAGS_ID, (byte) 0);
-    }
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(DATA_FLAGS_ID, (byte) 0);
+	}
 
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
@@ -151,8 +150,9 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
         }
     }
 
+
 	@Override
-	public boolean canBeLeashed() {
+	public boolean canBeLeashed(@NotNull Player player) {
 		return true;
 	}
 
@@ -233,8 +233,7 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
 							}
 
 							for (int i = 0; i < 1; i++) {
-								Vec3 vec3 = new Vec3(this.blaze.getRandom().triangle(e, 2.297 * h), f, this.blaze.getRandom().triangle(g, 2.297 * h));
-								SmallFireball smallFireball = new SmallFireball(this.blaze.level(), this.blaze, vec3.normalize());
+								SmallFireball smallFireball = new SmallFireball(this.blaze.level(), this.blaze, this.blaze.getRandom().triangle(e, 2.297 * h), f, this.blaze.getRandom().triangle(g, 2.297 * h));
 								smallFireball.setPos(smallFireball.getX(), this.blaze.getY(0.5) + 0.5, smallFireball.getZ());
 								this.blaze.level().addFreshEntity(smallFireball);
 							}

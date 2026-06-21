@@ -46,30 +46,30 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    public boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return true;
     }
 
     @Override
-    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         VoxelShape voxelShape = state.getValue(LEAVES) == BambooLeaves.LARGE ? LARGE_SHAPE : SMALL_SHAPE;
         Vec3 vec3 = state.getOffset(level, pos);
         return voxelShape.move(vec3.x, vec3.y, vec3.z);
     }
 
     @Override
-    protected boolean isPathfindable(@NotNull BlockState state, @NotNull PathComputationType pathComputationType) {
+    public boolean isPathfindable(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull PathComputationType type) {
         return false;
     }
 
     @Override
-    protected @NotNull VoxelShape getCollisionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public @NotNull VoxelShape getCollisionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         Vec3 vec3 = state.getOffset(level, pos);
         return COLLISION_SHAPE.move(vec3.x, vec3.y, vec3.z);
     }
 
     @Override
-    protected boolean isCollisionShapeFullBlock(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    public boolean isCollisionShapeFullBlock(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return false;
     }
 
@@ -103,18 +103,18 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+    public void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (!state.canSurvive(level, pos))
             level.destroyBlock(pos, true);
     }
 
     @Override
-    protected boolean isRandomlyTicking(@NotNull BlockState state) {
+    public boolean isRandomlyTicking(@NotNull BlockState state) {
         return state.getValue(STAGE) == 0;
     }
 
     @Override
-    protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (state.getValue(STAGE) == 0)
             if (random.nextInt(6) == 0 && level.isEmptyBlock(state.getValue(HANGING) ? pos.below() : pos.above())) {
                 int i = state.getValue(HANGING)? getHeightAboveUpToMax(level, pos) + 1 : getHeightBelowUpToMax(level, pos) + 1;
@@ -124,12 +124,12 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
+    public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
         return level.getBlockState(state.getValue(HANGING) ? pos.above() : pos.below()).is(NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON);
     }
 
     @Override
-    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
         if (!state.canSurvive(level, pos))
             level.scheduleTick(pos, this, 1);
 
@@ -151,8 +151,8 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
 		}
 	}
 
-	@Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
+    @Override
+    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state, boolean isClient) {
         return true;
     }
 

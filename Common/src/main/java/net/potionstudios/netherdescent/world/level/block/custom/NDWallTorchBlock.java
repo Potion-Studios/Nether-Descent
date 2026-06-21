@@ -13,9 +13,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Supplier;
 
 public class NDWallTorchBlock extends WallTorchBlock {
-    private final  Supplier<SimpleParticleType> particleSupplier;
+    private final Supplier<SimpleParticleType> particleSupplier;
     public NDWallTorchBlock(Supplier<SimpleParticleType> flameParticle, Properties properties) {
-        super(ParticleTypes.FLAME, properties);
+        super(properties, ParticleTypes.FLAME);
         this.particleSupplier = flameParticle;
     }
 

@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.world.level.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -27,7 +26,6 @@ import net.potionstudios.netherdescent.advancements.critereon.NetherDescentCrite
 import org.jetbrains.annotations.NotNull;
 
 public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock implements BonemealableBlock {
-	public static final MapCodec<FungalBulbsBlock> CODEC = simpleCodec(FungalBulbsBlock::new);
     private static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 4.0D, 15.0D);
     private static final VoxelShape SHAPE_SOUTH = Block.box(1.0D, 1.0D, 0.0D, 15.0D, 15.0D, 4.0D);
     private static final VoxelShape SHAPE_EAST = Block.box(0.0D, 1.0D, 1.0D, 4.0D, 15.0D, 15.0D);
@@ -38,12 +36,7 @@ public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock imp
     }
 
 	@Override
-	protected @NotNull MapCodec<? extends FaceAttachedHorizontalDirectionalBlock> codec() {
-		return CODEC;
-	}
-
-	@Override
-    protected void onProjectileHit(@NotNull Level level, @NotNull BlockState state, @NotNull BlockHitResult hit, @NotNull Projectile projectile) {
+    public void onProjectileHit(@NotNull Level level, @NotNull BlockState state, @NotNull BlockHitResult hit, @NotNull Projectile projectile) {
         if (!level.isClientSide()) {
 	        level.getEntitiesOfClass(LivingEntity.class, new AABB(-4.0, -4.0, -4.0, 4.0, 4.0, 4.0).move(hit.getBlockPos()))
 			        .forEach(entity -> {
@@ -53,12 +46,12 @@ public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock imp
 	        level.levelEvent(2008, hit.getBlockPos(), 0);
 			level.destroyBlock(hit.getBlockPos(), false);
 			if (projectile.getOwner() instanceof ServerPlayer serverPlayer)
-				NetherDescentCriterionTriggers.FUNGAL_BULBS_BLOCK_HIT.get().trigger(serverPlayer, projectile);
+				NetherDescentCriterionTriggers.FUNGAL_BULBS_BLOCK_HIT.trigger(serverPlayer, projectile);
         }
     }
 
     @Override
-    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 	    AttachFace face = state.getValue(FACE);
 	    if (face == AttachFace.FLOOR)
 		    return SHAPE;
@@ -72,12 +65,12 @@ public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock imp
 		    };
     }
 
-    @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
-        return true;
-    }
+	@Override
+	public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state, boolean isClient) {
+		return true;
+	}
 
-    @Override
+	@Override
     public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
         return true;
     }

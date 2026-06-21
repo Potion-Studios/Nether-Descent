@@ -1,0 +1,49 @@
+{
+  "parent": "netherdescent:embur_bog/sprint_on_embur_gel",
+  "criteria": {
+    "boat_ride_on_embur_gel": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "vehicle": {
+                "type": "#c:boats",
+                "stepping_on": {
+                  "block": {
+                    "blocks": [
+                      "netherdescent:embur_gel_block"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.netherdescent.boat_ride_on_embur_gel.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:cherry_boat"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.netherdescent.boat_ride_on_embur_gel.title"
+    }
+  },
+  "requirements": [
+    [
+      "boat_ride_on_embur_gel"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

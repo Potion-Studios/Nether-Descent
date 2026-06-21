@@ -18,8 +18,10 @@
     "canopy_location": "netherdescent:features/cages/wailing_cage_canopy1",
     "height": {
       "type": "minecraft:biased_to_bottom",
-      "max_inclusive": 12,
-      "min_inclusive": 12
+      "value": {
+        "max_inclusive": 12,
+        "min_inclusive": 12
+      }
     },
     "leaves_provider": {
       "type": "minecraft:weighted_state_provider",

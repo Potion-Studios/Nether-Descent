@@ -36,6 +36,15 @@ loom {
 
         mixinConfig("netherdescent-common.mixins.json")
     }
+
+    runs.create("datagen") {
+        data()
+        programArguments.addAll(
+            "--all", "--mod", "netherdescent",
+            "--output", project(":Common").file("src/main/generated/resources").absolutePath,
+            "--existing", project(":Common").file("src/main/resources").absolutePath
+        )
+    }
 }
 
 dependencies {
@@ -52,6 +61,9 @@ dependencies {
 
     modLocalRuntime("mcp.mobius.waila:wthit:forge-${providers.gradleProperty("WTHIT").get()}")
     modLocalRuntime("lol.bai:badpackets:forge-${providers.gradleProperty("badPackets").get()}")
+
+    compileOnly("io.github.llamalad7:mixinextras-common:0.5.4")?.let { annotationProcessor(it) }
+    include("io.github.llamalad7:mixinextras-forge:0.5.4")?.let { implementation(it) }
 }
 
 tasks {
@@ -64,7 +76,7 @@ tasks {
     }
 
     shadowJar {
-        exclude("architectury.common.json", ".cache/**", "data/neoforge/**")
+        exclude("architectury.common.json", ".cache/**", "net/potionstudios/netherdescent/forge/datagen/**")
         configurations = listOf(project.configurations.getByName("shadowBundle"))
         archiveClassifier.set("dev-shadow")
     }

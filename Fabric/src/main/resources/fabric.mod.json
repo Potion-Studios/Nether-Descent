@@ -25,6 +25,9 @@
     ],
     "terrablender": [
       "net.potionstudios.netherdescent.fabric.NetherDescentTerrablenderEntry"
+    ],
+    "fabric-datagen": [
+      "net.potionstudios.netherdescent.fabric.datagen.FabricDatagen"
     ]
   },
   "mixins": [
@@ -32,15 +35,15 @@
   ],
   "depends": {
     "fabric": "*",
-    "minecraft": ">=1.21.1",
-    "ohthetreesyoullgrow": ">=5.3.2"
+    "minecraft": ">=1.20.1",
+    "ohthetreesyoullgrow": ">=1.7.0"
   },
   "recommends": {
-    "terrablender": ">=4.1.0.0",
-    "biolith": ">=3.0.10"
+    "terrablender": ">=3.0.1.10",
+    "biolith": ">=1.0.1"
   },
   "suggests": {
-    "WTHIT": ">=8.15.0",
+    "WTHIT": ">=8.21.1",
     "fabric-permissions-api-v0": "*"
   },
   "custom": {

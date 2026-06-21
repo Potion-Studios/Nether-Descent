@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "netherdescent:blue_nether_brick"
+    },
+    "W": {
+      "item": "netherdescent:blue_nether_bricks"
+    }
+  },
+  "pattern": [
+    "W#W",
+    "W#W"
+  ],
+  "result": {
+    "count": 6,
+    "item": "netherdescent:blue_nether_brick_fence"
+  },
+  "show_notification": true
+}

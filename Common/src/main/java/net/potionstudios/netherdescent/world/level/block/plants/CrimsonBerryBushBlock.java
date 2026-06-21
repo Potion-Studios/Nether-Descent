@@ -7,6 +7,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -15,13 +16,13 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.world.damagesource.NetherDescentDamageTypes;
@@ -36,7 +37,7 @@ public class CrimsonBerryBushBlock extends SweetBerryBushBlock {
     }
 
     @Override
-    public @NotNull ItemStack getCloneItemStack(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public @NotNull ItemStack getCloneItemStack(@NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull BlockState state) {
         return NetherDescentItems.CRIMSON_BERRIES.get().getDefaultInstance();
     }
 
@@ -51,10 +52,14 @@ public class CrimsonBerryBushBlock extends SweetBerryBushBlock {
         return state.is(BlockTags.NYLIUM) || state.is(NetherDescentBlocks.SYTHIAN_FARMLAND.get());
     }
 
+
     @Override
-    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         int i = state.getValue(AGE);
         boolean bl = i == 3;
+        if (!bl && player.getItemInHand(hand).is(Items.BONE_MEAL)) {
+            return InteractionResult.PASS;
+        } else
         if (i > 1) {
             int j = 1 + level.random.nextInt(2);
             popResource(level, pos, new ItemStack(NetherDescentItems.CRIMSON_BERRIES.get(), j + (bl ? 1 : 0)));
@@ -69,7 +74,7 @@ public class CrimsonBerryBushBlock extends SweetBerryBushBlock {
     }
 
     @Override
-    protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
+    public void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             entity.makeStuckInBlock(state, new Vec3(0.8F, 0.75, 0.8F));
             if (!level.isClientSide && state.getValue(AGE) > 0 && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
@@ -88,7 +93,7 @@ public class CrimsonBerryBushBlock extends SweetBerryBushBlock {
      * @see net.minecraftforge.common.extensions.IForgeBlock#getBlockPathType
      */
     @Nullable
-    PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
-        return PathType.DAMAGE_OTHER;
+    BlockPathTypes getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
+        return BlockPathTypes.DAMAGE_OTHER;
     }
 }

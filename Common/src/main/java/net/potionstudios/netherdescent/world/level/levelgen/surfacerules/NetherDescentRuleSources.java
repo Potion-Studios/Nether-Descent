@@ -1,6 +1,6 @@
 package net.potionstudios.netherdescent.world.level.levelgen.surfacerules;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.levelgen.SurfaceRules;
@@ -15,7 +15,7 @@ public class NetherDescentRuleSources {
         return new WeightedRuleSource(ruleSource);
     }
 
-    private static void register(String id, Supplier<MapCodec<? extends SurfaceRules.RuleSource>> codec) {
+    private static void register(String id, Supplier<Codec<? extends SurfaceRules.RuleSource>> codec) {
         PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.MATERIAL_RULE, id, codec);
     }
 

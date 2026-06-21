@@ -67,7 +67,7 @@ public final class ForgePlatformHandler implements PlatformHandler {
 
 	@Override
 	public Supplier<FlowerPotBlock> createPottedBlock(Supplier<? extends Block> block) {
-		return () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, block, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
+		return () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, block, BlockBehaviour.Properties.copy(Blocks.FLOWER_POT));
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public final class ForgePlatformHandler implements PlatformHandler {
         NetherDescentBlocks.BLOCKS.forEach(entry -> {
             if (entry.get() instanceof FlowerPotBlock)
                 ((FlowerPotBlock) Blocks.FLOWER_POT)
-                        .addPlant(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(((FlowerPotBlock) entry.get()).getPotted())), entry);
+                        .addPlant(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(((FlowerPotBlock) entry.get()).getContent())), entry);
         });
     }
 

@@ -1,10 +1,7 @@
 package net.potionstudios.netherdescent.world.level.block.wood;
 
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
@@ -25,15 +22,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 
 public class HangingFungusBlock extends HangingNDBushBlock implements BonemealableBlock {
-    public static final MapCodec<HangingFungusBlock> CODEC = RecordCodecBuilder.mapCodec(
-            instance -> instance.group(
-                            ResourceKey.codec(Registries.CONFIGURED_FEATURE).fieldOf("feature").forGetter(fungusBlock -> fungusBlock.feature),
-                            ResourceKey.codec(Registries.CONFIGURED_FEATURE).fieldOf("hanging_feature").forGetter(fungusBlock -> fungusBlock.hangingFeature),
-                            BuiltInRegistries.BLOCK.byNameCodec().fieldOf("grows_on").forGetter(fungusBlock -> fungusBlock.requiredBlock),
-                            propertiesCodec()
-                    )
-                    .apply(instance, HangingFungusBlock::new)
-    );
     protected static final VoxelShape SHAPE = Block.box(4.0, 0.0, 4.0, 12.0, 9.0, 12.0);
     private final Block requiredBlock;
     private final ResourceKey<ConfiguredFeature<?, ?>> feature;
@@ -55,7 +43,7 @@ public class HangingFungusBlock extends HangingNDBushBlock implements Bonemealab
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, BlockState state, boolean isClient) {
         return state.getValue(HANGING) ? level.getBlockState(pos.above()).is(this.requiredBlock) : level.getBlockState(pos.below()).is(this.requiredBlock);
     }
 

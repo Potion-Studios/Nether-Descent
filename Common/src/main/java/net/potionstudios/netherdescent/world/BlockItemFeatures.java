@@ -43,7 +43,7 @@ public class BlockItemFeatures {
         if (!level.isClientSide() && entity instanceof ServerPlayer serverPlayer) {
             if (placed.is(BlockTags.FLOWERS))
                 if (!level.getEntitiesOfClass(Hornet.class, new AABB(pos).inflate(5.0)).isEmpty())
-                    NetherDescentCriterionTriggers.PLACE_FLOWER_NEAR_HORNET.get().trigger(serverPlayer);
+                    NetherDescentCriterionTriggers.PLACE_FLOWER_NEAR_HORNET.trigger(serverPlayer);
         }
     }
 }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "netherdescent:pendorite_nugget"
+    },
+    "Y": {
+      "item": "netherdescent:soul_fire_rod"
+    }
+  },
+  "pattern": [
+    "X",
+    "Y"
+  ],
+  "result": {
+    "item": "netherdescent:pendorite_fire_rod"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 2,
+  "ingredient": {
+    "item": "netherdescent:cut_pendorite"
+  },
+  "result": "netherdescent:cut_pendorite_slab"
+}

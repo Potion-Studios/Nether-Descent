@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "netherdescent:crimson_berries"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    [
+      {
+        "item": "minecraft:egg"
+      },
+      {
+        "tag": "forge:eggs"
+      }
+    ]
+  ],
+  "result": {
+    "item": "netherdescent:crimson_berry_pie"
+  }
+}

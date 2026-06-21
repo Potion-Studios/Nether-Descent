@@ -205,7 +205,7 @@ public class Hornet extends Bee {
             this.setHasNectar(false);
         }
 
-        nest.storeHornet(HornetNestBlockEntity.Occupant.of(this));
+        nest.addOccupant(this);
         this.discard();
         return true;
     }

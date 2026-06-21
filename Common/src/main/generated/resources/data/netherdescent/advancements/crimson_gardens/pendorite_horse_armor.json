@@ -1,0 +1,38 @@
+{
+  "parent": "netherdescent:crimson_gardens/raw_pendorite",
+  "criteria": {
+    "has_pendorite_horse_armor": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "netherdescent:pendorite_horse_armor"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.netherdescent.pendorite_horse_armor.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "netherdescent:pendorite_horse_armor"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.netherdescent.pendorite_horse_armor.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_pendorite_horse_armor"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

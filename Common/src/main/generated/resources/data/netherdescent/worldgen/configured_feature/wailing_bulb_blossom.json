@@ -12,8 +12,10 @@
     },
     "distance": {
       "type": "minecraft:uniform",
-      "max_inclusive": 6,
-      "min_inclusive": 1
+      "value": {
+        "max_inclusive": 6,
+        "min_inclusive": 1
+      }
     }
   }
 }

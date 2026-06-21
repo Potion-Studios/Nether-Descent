@@ -1,0 +1,121 @@
+{
+  "parent": "netherdescent:root",
+  "criteria": {
+    "netherdescent:arisian_undergrowth": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "netherdescent:arisian_undergrowth"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "netherdescent:crimson_gardens": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "netherdescent:crimson_gardens"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "netherdescent:embur_bog": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "netherdescent:embur_bog"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "netherdescent:sythian_torrids": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "netherdescent:sythian_torrids"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "netherdescent:wailing_garth": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "netherdescent:wailing_garth"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.netherdescent.final_descent.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "netherdescent:embur_gel_ball"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.netherdescent.final_descent.title"
+    }
+  },
+  "requirements": [
+    [
+      "netherdescent:arisian_undergrowth"
+    ],
+    [
+      "netherdescent:crimson_gardens"
+    ],
+    [
+      "netherdescent:embur_bog"
+    ],
+    [
+      "netherdescent:sythian_torrids"
+    ],
+    [
+      "netherdescent:wailing_garth"
+    ]
+  ],
+  "rewards": {
+    "experience": 1000
+  },
+  "sends_telemetry_event": true
+}

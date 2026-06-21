@@ -2,7 +2,7 @@
   "type": "minecraft:jigsaw",
   "biomes": "#netherdescent:has_structure/chains",
   "max_distance_from_center": 80,
-  "size": 20,
+  "size": 7,
   "spawn_overrides": {},
   "start_height": {
     "below_top": 17

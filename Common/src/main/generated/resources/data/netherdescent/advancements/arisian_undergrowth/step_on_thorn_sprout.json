@@ -1,0 +1,46 @@
+{
+  "parent": "netherdescent:arisian_undergrowth/root",
+  "criteria": {
+    "step_on_thorn_sprout": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "block": {
+                  "blocks": [
+                    "netherdescent:thorn_sprout"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.netherdescent.step_on_thorn_sprout.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "netherdescent:thorn_sprout"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.netherdescent.step_on_thorn_sprout.title"
+    }
+  },
+  "requirements": [
+    [
+      "step_on_thorn_sprout"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

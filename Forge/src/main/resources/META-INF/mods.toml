@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[52,)"
+loaderVersion = "[47,)"
 issueTrackerURL = "https://github.com/Potion-Studios/Nether-Descent/issues"
 license = "All Rights Reserved"
 
@@ -17,34 +17,34 @@ displayURL="https://potionstudios.net/"
 [[dependencies.netherdescent]]
 modId = "forge"
 mandatory = true
-versionRange = "[52.0,)"
+versionRange = "[47.0,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.netherdescent]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.21.1]"
+versionRange = "[1.20.1]"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.netherdescent]]
 modId = "ohthetreesyoullgrow"
 mandatory = true
-versionRange = "[5.3.2,)"
+versionRange = "[1.7.0,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.netherdescent]]
 modId = "terrablender"
 mandatory = false
-versionRange = "[4.1.0.0,)"
+versionRange = "[3.0.1.10,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.netherdescent]]
 modId = "biolith"
 mandatory = false
-versionRange = "[3.0.10,)"
+versionRange = "[1.0.1-alpha.1,)"
 ordering = "AFTER"
 side = "BOTH"

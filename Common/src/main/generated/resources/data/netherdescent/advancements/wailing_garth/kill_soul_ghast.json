@@ -1,0 +1,40 @@
+{
+  "parent": "netherdescent:wailing_garth/root",
+  "criteria": {
+    "kill_soul_ghast": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "netherdescent:soul_ghast"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.netherdescent.kill_soul_ghast.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "netherdescent:soul_fire_charge"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.netherdescent.kill_soul_ghast.title"
+    }
+  },
+  "requirements": [
+    [
+      "kill_soul_ghast"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

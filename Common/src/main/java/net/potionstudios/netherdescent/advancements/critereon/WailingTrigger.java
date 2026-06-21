@@ -1,79 +1,84 @@
 package net.potionstudios.netherdescent.advancements.critereon;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.advancements.Criterion;
+import com.google.gson.JsonObject;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingBulbBlossomBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingGillsBlock;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Optional;
-
 public class WailingTrigger extends SimpleCriterionTrigger<WailingTrigger.TriggerInstance> {
-	@Override
-	public @NotNull Codec<TriggerInstance> codec() {
-		return TriggerInstance.CODEC;
-	}
+	static final ResourceLocation ID = NetherDescent.id("wailing_interaction");
 
 	public void trigger(@NotNull ServerPlayer player, BlockPos pos, Entity entity) {
 		LootContext lootcontext = EntityPredicate.createContext(player, entity);
 		super.trigger(player, instance -> instance.matches(player.serverLevel(), pos, lootcontext));
 	}
 
-	public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<LocationPredicate> location, Optional<MinMaxBounds.Ints> powered, Optional<ContextAwarePredicate> entity) implements SimpleCriterionTrigger.SimpleInstance {
-		public static final Codec<TriggerInstance> CODEC = RecordCodecBuilder.create(instance ->
-				instance.group(
-						EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(TriggerInstance::player),
-						LocationPredicate.CODEC.optionalFieldOf("location").forGetter(TriggerInstance::location),
-						MinMaxBounds.Ints.CODEC.optionalFieldOf("powered").forGetter(TriggerInstance::powered),
-						EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("entity").forGetter(TriggerInstance::entity)
-				).apply(instance, TriggerInstance::new)
-		);
+	@Override
+	protected @NotNull TriggerInstance createInstance(@NotNull JsonObject json, @NotNull ContextAwarePredicate playerPredicate, @NotNull DeserializationContext context) {
+		LocationPredicate location = LocationPredicate.fromJson(json.get("location"));
+		MinMaxBounds.Ints powered = MinMaxBounds.Ints.fromJson(json.get("powered"));
+		ContextAwarePredicate entity = EntityPredicate.fromJson(json, "entity", context);
+
+		return new TriggerInstance(playerPredicate, location, powered, entity);
+	}
+
+	@Override
+	public @NotNull ResourceLocation getId() {
+		return ID;
+	}
+
+	public static class TriggerInstance extends AbstractCriterionTriggerInstance {
+		private final LocationPredicate location;
+		private final MinMaxBounds.Ints powered;
+		private final ContextAwarePredicate entity;
+
+		public TriggerInstance(ContextAwarePredicate player, LocationPredicate location, MinMaxBounds.Ints powered, ContextAwarePredicate entity) {
+			super(WailingTrigger.ID, player);
+			this.location = location;
+			this.powered = powered;
+			this.entity = entity;
+		}
 
 		public boolean matches(ServerLevel level, BlockPos pos, LootContext entityContext) {
-			if (location.isPresent() && !location.get().matches(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5)) {
+			if (this.location != LocationPredicate.ANY && !this.location.matches(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5)) {
 				return false;
 			}
-			if (entity.isPresent() && !entity.get().matches(entityContext)) {
+			if (this.entity != ContextAwarePredicate.ANY && !this.entity.matches(entityContext)) {
 				return false;
 			}
-			if (powered.isPresent()) {
+			if (!this.powered.isAny()) {
 				BlockState state = level.getBlockState(pos);
 				if (state.hasProperty(WailingGillsBlock.POWER)) {
-					return powered.get().matches(state.getValue(WailingGillsBlock.POWER));
+					return this.powered.matches(state.getValue(WailingGillsBlock.POWER));
 				}
 				if (state.hasProperty(WailingBulbBlossomBlock.ACTIVE)) {
-					return powered.get().matches(state.getValue(WailingBulbBlossomBlock.ACTIVE) ? 15 : 0);
+					return this.powered.matches(state.getValue(WailingBulbBlossomBlock.ACTIVE) ? 15 : 0);
 				}
 				return false;
 			}
 			return true;
 		}
 
-		public static Criterion<TriggerInstance> interactedWithBlock(Block block) {
-			return NetherDescentCriterionTriggers.WAILING_INTERACTION.get().createCriterion(
-					new TriggerInstance(Optional.empty(), Optional.of(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block)).build()), Optional.empty(), Optional.empty())
-			);
+		public static TriggerInstance interactedWithBlock(Block block) {
+			return new TriggerInstance(ContextAwarePredicate.ANY, LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block).build()).build(), MinMaxBounds.Ints.ANY, ContextAwarePredicate.ANY);
 		}
 
-		public static Criterion<TriggerInstance> interactedWithPoweredBlock(Block block, MinMaxBounds.Ints powered) {
-			return NetherDescentCriterionTriggers.WAILING_INTERACTION.get().createCriterion(
-					new TriggerInstance(Optional.empty(), Optional.of(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block)).build()), Optional.of(powered), Optional.empty())
-			);
+		public static TriggerInstance interactedWithPoweredBlock(Block block, MinMaxBounds.Ints powered) {
+			return new TriggerInstance(ContextAwarePredicate.ANY, LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block).build()).build(), powered, ContextAwarePredicate.ANY);
 		}
 
-		public static Criterion<TriggerInstance> interactedWithPoweredBlockAndEntity(Block block, MinMaxBounds.Ints powered, EntityPredicate.Builder entity) {
-			return NetherDescentCriterionTriggers.WAILING_INTERACTION.get().createCriterion(
-					new TriggerInstance(Optional.empty(), Optional.of(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block)).build()), Optional.of(powered), Optional.of(EntityPredicate.wrap(entity.build())))
-			);
+		public static TriggerInstance interactedWithPoweredBlockAndEntity(Block block, MinMaxBounds.Ints powered, EntityPredicate.Builder entity) {
+			return new TriggerInstance(ContextAwarePredicate.ANY, LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block).build()).build(), powered, EntityPredicate.wrap(entity.build()));
 		}
 	}
 }

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "netherdescent:embur_pedus"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "netherdescent:embur_planks"
+  }
+}

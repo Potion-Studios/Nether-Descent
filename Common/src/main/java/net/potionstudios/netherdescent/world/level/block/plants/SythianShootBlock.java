@@ -37,7 +37,7 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         boolean hanging = state.getValue(HANGING);
         if (level.isEmptyBlock(hanging ? pos.below() : pos.above())) {
                 int modifier = 6;
@@ -50,7 +50,7 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         Vec3 vec3 = state.getOffset(level, pos);
         VoxelShape shape = state.getValue(HANGING) ? TOP_SHAPE : BOTTOM_SHAPE;
         return shape.move(vec3.x, vec3.y, vec3.z);
@@ -69,12 +69,12 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
+    public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
         return level.getBlockState(state.getValue(HANGING) ? pos.above() : pos.below()).is(NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON);
     }
 
     @Override
-    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
         if (!state.canSurvive(level, pos))
             return Blocks.AIR.defaultBlockState();
         else {
@@ -86,12 +86,12 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public @NotNull ItemStack getCloneItemStack(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public @NotNull ItemStack getCloneItemStack(@NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull BlockState state) {
         return NetherDescentBlocks.SYTHIAN_STALK.getItem().getDefaultInstance();
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader level, @NotNull BlockPos pos, BlockState state, boolean isClient) {
         return level.isEmptyBlock(state.getValue(HANGING) ? pos.below() : pos.above());
     }
 

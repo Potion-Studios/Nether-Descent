@@ -1,0 +1,30 @@
+{
+  "parent": "netherdescent:wailing_garth/float_from_wailing_gills",
+  "criteria": {
+    "float_cow_from_wailing_gills": {
+      "conditions": {},
+      "trigger": "netherdescent:wailing_interaction"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.netherdescent.float_cow_from_wailing_gills.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:lead"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.netherdescent.float_cow_from_wailing_gills.title"
+    }
+  },
+  "requirements": [
+    [
+      "float_cow_from_wailing_gills"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "netherdescent:wailing_crafting_table"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wailing_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "netherdescent:wailing_planks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_wailing_planks",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "netherdescent:wailing_crafting_table"
+    ]
+  },
+  "sends_telemetry_event": false
+}

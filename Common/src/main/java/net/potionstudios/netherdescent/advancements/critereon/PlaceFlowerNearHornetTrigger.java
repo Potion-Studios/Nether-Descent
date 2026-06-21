@@ -1,37 +1,36 @@
 package net.potionstudios.netherdescent.advancements.critereon;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.ContextAwarePredicate;
-import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
+import com.google.gson.JsonObject;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.potionstudios.netherdescent.NetherDescent;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Optional;
-
 public class PlaceFlowerNearHornetTrigger extends SimpleCriterionTrigger<PlaceFlowerNearHornetTrigger.TriggerInstance> {
-
-    @Override
-    public @NotNull Codec<TriggerInstance> codec() {
-        return TriggerInstance.CODEC;
-    }
+    static final ResourceLocation ID = NetherDescent.id("place_flower_near_hornet");
 
     public void trigger(ServerPlayer player) {
         this.trigger(player, triggerInstance -> true);
     }
 
-    public record TriggerInstance(Optional<ContextAwarePredicate> player) implements SimpleInstance {
-        public static final Codec<TriggerInstance> CODEC = RecordCodecBuilder.create(inst ->
-                inst.group(
-                        EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player")
-                                .forGetter(TriggerInstance::player)
-                ).apply(inst, TriggerInstance::new)
-        );
+    @Override
+    protected @NotNull TriggerInstance createInstance(@NotNull JsonObject json, @NotNull ContextAwarePredicate predicate, @NotNull DeserializationContext deserializationContext) {
+        return new TriggerInstance(predicate);
+    }
 
-        public static Criterion<TriggerInstance> create() {
-            return NetherDescentCriterionTriggers.PLACE_FLOWER_NEAR_HORNET.get().createCriterion(new TriggerInstance(Optional.empty()));
+    @Override
+    public @NotNull ResourceLocation getId() {
+        return ID;
+    }
+
+    public static class TriggerInstance extends AbstractCriterionTriggerInstance {
+        public TriggerInstance(ContextAwarePredicate player) {
+            super(ID, player);
+        }
+
+        public static TriggerInstance create() {
+            return new TriggerInstance(ContextAwarePredicate.ANY);
         }
     }
 }

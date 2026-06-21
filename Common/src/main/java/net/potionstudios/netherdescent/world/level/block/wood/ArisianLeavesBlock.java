@@ -47,7 +47,7 @@ public class ArisianLeavesBlock extends LeavesBlock {
 	}
 
 	@Override
-	protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+	public void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
 		super.tick(state, level, pos, random);
 		int currentStrength = state.getValue(STRENGTH);
 		int targetStrength = 0;
@@ -78,7 +78,7 @@ public class ArisianLeavesBlock extends LeavesBlock {
 	}
 
 	@Override
-	protected void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block neighborBlock, @NotNull BlockPos neighborPos, boolean movedByPiston) {
+	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block neighborBlock, @NotNull BlockPos neighborPos, boolean movedByPiston) {
 		super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
 		if (!level.isClientSide())
 			level.scheduleTick(pos, this, 1);

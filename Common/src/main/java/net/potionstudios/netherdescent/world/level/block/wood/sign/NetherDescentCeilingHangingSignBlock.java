@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class NetherDescentCeilingHangingSignBlock extends CeilingHangingSignBlock {
     public NetherDescentCeilingHangingSignBlock(WoodType type, Properties properties) {
-        super(type, properties);
+        super(properties, type);
     }
 
     @Override

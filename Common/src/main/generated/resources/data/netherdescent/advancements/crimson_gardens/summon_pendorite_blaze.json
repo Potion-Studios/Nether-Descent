@@ -1,0 +1,40 @@
+{
+  "parent": "netherdescent:crimson_gardens/pendorite_fire_rod",
+  "criteria": {
+    "summon_pendorite_blaze": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "netherdescent:pendorite_blaze"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:summoned_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.netherdescent.summon_pendorite_blaze.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "netherdescent:pendorite_fire_charge"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.netherdescent.summon_pendorite_blaze.title"
+    }
+  },
+  "requirements": [
+    [
+      "summon_pendorite_blaze"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,42 @@
+{
+  "parent": "netherdescent:embur_bog/root",
+  "criteria": {
+    "blue_fortress": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "netherdescent:blue_fortress"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.netherdescent.find_blue_fortress.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "netherdescent:blue_nether_bricks"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.netherdescent.find_blue_fortress.title"
+    }
+  },
+  "requirements": [
+    [
+      "blue_fortress"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

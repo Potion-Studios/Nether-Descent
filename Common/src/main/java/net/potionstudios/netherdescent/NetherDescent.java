@@ -7,14 +7,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.potionstudios.netherdescent.advancements.critereon.NetherDescentCriterionTriggers;
 import net.potionstudios.netherdescent.config.configs.DevConfig;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
-import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
 import net.potionstudios.netherdescent.core.dispenser.DispenseItemBehavior;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
 import net.potionstudios.netherdescent.sounds.NetherDescentSounds;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.entity.ai.village.poi.NetherDescentPoiTypes;
-import net.potionstudios.netherdescent.world.item.NetherDescentArmorMaterials;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.item.alchemy.NetherDescentPotions;
@@ -41,7 +39,6 @@ public class NetherDescent {
      * Initializes the mod.
      */
     public static void init() {
-	    NetherDescentDataComponents.dataComponents();
         NetherDescentItems.items();
         NetherDescentBlocks.blocks();
         NetherDescentBlockEntityType.blockEntities();
@@ -57,7 +54,6 @@ public class NetherDescent {
         NetherDescentTreeDecoratorType.treeDecoratorType();
         NetherDescentParticles.particleTypes();
 	    NetherDescentPotions.potions();
-        NetherDescentArmorMaterials.armorMaterials();
 	    NetherDescentPoiTypes.poiTypes();
         NetherDescentCriterionTriggers.criterionTriggers();
         devEnvironmentSetup();
@@ -90,7 +86,7 @@ public class NetherDescent {
      * @return the new resource location with the Biomes We've Gone location
      */
     public static ResourceLocation id(String name) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, name);
+        return new ResourceLocation(MOD_ID, name);
     }
 
     /**

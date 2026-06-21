@@ -37,7 +37,7 @@ public class HangingNDBushBlock extends NetherDescentBush {
     }
 
     @Override
-    protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
+    public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
         BlockPos blockPos = state.getValue(HANGING) ? pos.above() : pos.below();
         return this.mayPlaceOn(level.getBlockState(blockPos), level, blockPos);
     }
@@ -48,7 +48,8 @@ public class HangingNDBushBlock extends NetherDescentBush {
     }
 
     @Override
-    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    @NotNull
+    public VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         Vec3 vec3 = state.getOffset(level, pos);
         VoxelShape shape = state.getValue(HANGING) ? HANGING_SHAPE : SHAPE;
         return shape.move(vec3.x, vec3.y, vec3.z);

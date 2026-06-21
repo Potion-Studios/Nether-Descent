@@ -15,9 +15,4 @@ public class NetherDescentCampfireBlockEntity extends CampfireBlockEntity {
 	public @NotNull BlockEntityType<?> getType() {
 		return NetherDescentBlockEntityType.CAMPFIRE.get();
 	}
-
-    @Override
-    public boolean isValidBlockState(@NotNull BlockState blockState) {
-        return getType().isValid(blockState);
-    }
 }

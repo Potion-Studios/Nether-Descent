@@ -59,10 +59,6 @@ jobs:
         if: steps.gate.outputs.is_release == 'true'
         run: ./gradlew :forge:publishMod
 
-      - name: Publish NeoForge
-        if: steps.gate.outputs.is_release == 'true'
-        run: ./gradlew :neoforge:publishMod
-
       - name: Check if release exists
         if: steps.gate.outputs.is_release == 'true'
         id: release_check

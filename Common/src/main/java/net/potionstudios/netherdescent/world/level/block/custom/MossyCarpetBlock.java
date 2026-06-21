@@ -2,7 +2,7 @@ package net.potionstudios.netherdescent.world.level.block.custom;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.mojang.serialization.MapCodec;
+
 import java.util.Map;
 import java.util.function.BooleanSupplier;
 import java.util.function.Function;
@@ -34,7 +34,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class MossyCarpetBlock extends Block implements BonemealableBlock {
-    public static final MapCodec<MossyCarpetBlock> CODEC = simpleCodec(MossyCarpetBlock::new);
     public static final BooleanProperty BASE = BlockStateProperties.BOTTOM;
     private static final EnumProperty<WallSide> NORTH = BlockStateProperties.NORTH_WALL;
     private static final EnumProperty<WallSide> EAST = BlockStateProperties.EAST_WALL;
@@ -61,11 +60,6 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
     private static final VoxelShape SOUTH_SHORT_AABB = Block.box(0.0, 0.0, 15.0, 16.0, 10.0, 16.0);
     private final Map<BlockState, VoxelShape> shapesCache;
 
-    @Override
-    public @NotNull MapCodec<MossyCarpetBlock> codec() {
-        return CODEC;
-    }
-
     public MossyCarpetBlock(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(
@@ -86,7 +80,7 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected @NotNull VoxelShape getOcclusionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    public @NotNull VoxelShape getOcclusionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return Shapes.empty();
     }
 
@@ -122,22 +116,22 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return this.shapesCache.get(state);
     }
 
     @Override
-    protected @NotNull VoxelShape getCollisionShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public @NotNull VoxelShape getCollisionShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return state.getValue(BASE) ? DOWN_AABB : Shapes.empty();
     }
 
     @Override
-    protected boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    public boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return true;
     }
 
     @Override
-    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         BlockState blockState = level.getBlockState(pos.below());
         return state.getValue(BASE) ? !blockState.isAir() : blockState.is(this) && blockState.getValue(BASE);
     }
@@ -242,7 +236,7 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected @NotNull BlockState updateShape(BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
         if (!state.canSurvive(level, pos)) {
             return Blocks.AIR.defaultBlockState();
         } else {
@@ -257,17 +251,17 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected @NotNull BlockState rotate(@NotNull BlockState state, Rotation rotation) {
+    public @NotNull BlockState rotate(@NotNull BlockState state, Rotation rotation) {
         return switch (rotation) {
-            case Rotation.CLOCKWISE_180 -> state.setValue(NORTH, state.getValue(SOUTH))
+            case CLOCKWISE_180 -> state.setValue(NORTH, state.getValue(SOUTH))
                     .setValue(EAST, state.getValue(WEST))
                     .setValue(SOUTH, state.getValue(NORTH))
                     .setValue(WEST, state.getValue(EAST));
-            case Rotation.COUNTERCLOCKWISE_90 -> state.setValue(NORTH, state.getValue(EAST))
+            case COUNTERCLOCKWISE_90 -> state.setValue(NORTH, state.getValue(EAST))
                     .setValue(EAST, state.getValue(SOUTH))
                     .setValue(SOUTH, state.getValue(WEST))
                     .setValue(WEST, state.getValue(NORTH));
-            case Rotation.CLOCKWISE_90 -> state.setValue(NORTH, state.getValue(WEST))
+            case CLOCKWISE_90 -> state.setValue(NORTH, state.getValue(WEST))
                     .setValue(EAST, state.getValue(NORTH))
                     .setValue(SOUTH, state.getValue(EAST))
                     .setValue(WEST, state.getValue(SOUTH));
@@ -276,7 +270,7 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected @NotNull BlockState mirror(@NotNull BlockState state, Mirror mirror) {
+    public @NotNull BlockState mirror(@NotNull BlockState state, Mirror mirror) {
         return switch (mirror) {
             case LEFT_RIGHT -> state.setValue(NORTH, state.getValue(SOUTH)).setValue(SOUTH, state.getValue(NORTH));
             case FRONT_BACK -> state.setValue(EAST, state.getValue(WEST)).setValue(WEST, state.getValue(EAST));
@@ -290,7 +284,7 @@ public class MossyCarpetBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state, boolean isClient) {
         return state.getValue(BASE) && !createTopperWithSideChance(this.asBlock(), level, pos, () -> true).isAir();
     }
 

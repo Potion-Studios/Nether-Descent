@@ -5,7 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -42,7 +42,7 @@ public class SythianFarmBlock extends Block {
     }
 
     @Override
-    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
         if (direction == Direction.UP && !state.canSurvive(level, pos))
             level.scheduleTick(pos, this, 1);
 
@@ -50,18 +50,18 @@ public class SythianFarmBlock extends Block {
     }
 
     @Override
-    protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
+    public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
         BlockState blockState = level.getBlockState(pos.above());
         return !blockState.isSolid() || blockState.getBlock() instanceof FenceGateBlock || blockState.getBlock() instanceof MovingPistonBlock || blockState.is(NetherDescentBlocks.SYTHIAN_SHOOT.get()) || blockState.is(NetherDescentBlocks.SYTHIAN_STALK.getBlock());
     }
 
     @Override
-    protected boolean useShapeForLightOcclusion(@NotNull BlockState state) {
+    public boolean useShapeForLightOcclusion(@NotNull BlockState state) {
         return true;
     }
 
     @Override
-    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return SHAPE;
     }
 
@@ -73,7 +73,7 @@ public class SythianFarmBlock extends Block {
     }
 
     @Override
-    protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+    public void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (!state.canSurvive(level, pos))
             turnToDirtBlock(null, state, level, pos);
     }
@@ -103,19 +103,22 @@ public class SythianFarmBlock extends Block {
     }
 
     @Override
-    protected boolean isPathfindable(@NotNull BlockState state, @NotNull PathComputationType pathComputationType) {
+    public boolean isPathfindable(BlockState state, BlockGetter level, BlockPos pos, PathComputationType type) {
         return false;
     }
 
     @Override
-    protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
-        if (!state.getValue(MOSSY) && stack.is(NetherDescentBlocks.EMBUR_CAVE_MOSS.get().asItem())) {
-            level.setBlockAndUpdate(pos, state.setValue(MOSSY, true));
-            if (!player.isCreative())
-                stack.shrink(1);
-            return ItemInteractionResult.sidedSuccess(level.isClientSide());
-        }
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        ItemStack itemStack = player.getItemInHand(hand);
+        if (itemStack.is(NetherDescentBlocks.EMBUR_CAVE_MOSS.get().asItem()))
+            if (!state.getValue(MOSSY)) {
+                level.setBlockAndUpdate(pos, state.setValue(MOSSY, true));
+                if (!player.isCreative())
+                    itemStack.shrink(1);
+                return InteractionResult.sidedSuccess(level.isClientSide());
+            }
 
-        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+
+        return super.use(state, level, pos, player, hand, hit);
     }
 }

@@ -2,7 +2,7 @@ package net.potionstudios.netherdescent.world.level.block.custom;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.mojang.serialization.MapCodec;
+
 import java.util.Map;
 import java.util.function.BooleanSupplier;
 import java.util.function.Function;
@@ -34,7 +34,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class HangingMossyCarpetBlock extends Block implements BonemealableBlock {
-    public static final MapCodec<MossyCarpetBlock> CODEC = simpleCodec(MossyCarpetBlock::new);
     public static final BooleanProperty BASE = BlockStateProperties.BOTTOM;
     public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
     private static final EnumProperty<WallSide> NORTH = BlockStateProperties.NORTH_WALL;
@@ -85,7 +84,7 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     }
 
     @Override
-    protected @NotNull VoxelShape getOcclusionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    public @NotNull VoxelShape getOcclusionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return Shapes.empty();
     }
 
@@ -110,7 +109,7 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     }
 
     @Override
-    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         Direction supportDir = state.getValue(HANGING) ? Direction.UP : Direction.DOWN;
         BlockState supportState = level.getBlockState(pos.relative(supportDir));
         return state.getValue(BASE) ? !supportState.isAir() : supportState.is(this) && supportState.getValue(BASE) && supportState.getValue(HANGING) == state.getValue(HANGING);
@@ -209,17 +208,12 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     }
 
     @Override
-    public @NotNull MapCodec<MossyCarpetBlock> codec() {
-        return CODEC;
-    }
-
-    @Override
-    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return this.shapesCache.get(state);
     }
 
     @Override
-    protected @NotNull VoxelShape getCollisionShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public @NotNull VoxelShape getCollisionShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return state.getValue(BASE) ? (state.getValue(HANGING) ? UP_AABB : DOWN_AABB) : Shapes.empty();
     }
 
@@ -229,12 +223,12 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     }
 
     @Override
-    protected boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    public boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return true;
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, boolean isClient) {
         return state.getValue(BASE);
     }
 
@@ -244,7 +238,7 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     }
 
     @Override
-    protected @NotNull BlockState updateShape(BlockState state, @NotNull Direction dir, @NotNull BlockState neighbor, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(BlockState state, @NotNull Direction dir, @NotNull BlockState neighbor, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
         if (!state.canSurvive(level, pos)) return Blocks.AIR.defaultBlockState();
         return getUpdatedState(this, state, level, pos, false);
     }

@@ -1,0 +1,30 @@
+{
+  "parent": "netherdescent:wailing_garth/root",
+  "criteria": {
+    "wailing_bulb_blossom": {
+      "conditions": {},
+      "trigger": "netherdescent:wailing_interaction"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.netherdescent.step_on_wailing_bulb_blossom.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "netherdescent:wailing_bulb_blossom"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.netherdescent.step_on_wailing_bulb_blossom.title"
+    }
+  },
+  "requirements": [
+    [
+      "wailing_bulb_blossom"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

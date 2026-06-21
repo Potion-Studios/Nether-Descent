@@ -1,0 +1,38 @@
+{
+  "parent": "netherdescent:embur_bog/find_blue_fortress",
+  "criteria": {
+    "obtain_soul_blaze_rod": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "netherdescent:soul_blaze_rod"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.netherdescent.obtain_soul_blaze_rod.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "netherdescent:soul_blaze_rod"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.netherdescent.obtain_soul_blaze_rod.title"
+    }
+  },
+  "requirements": [
+    [
+      "obtain_soul_blaze_rod"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -41,32 +41,36 @@
       },
       {
         "type": "ohthetreesyoullgrow:attached_to_logs",
-        "block_provider": {
-          "type": "minecraft:simple_state_provider",
-          "state": {
-            "Name": "netherdescent:fungal_bulbs",
-            "Properties": {
-              "face": "wall",
-              "facing": "north"
+        "value": {
+          "block_provider": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "netherdescent:fungal_bulbs",
+              "Properties": {
+                "face": "wall",
+                "facing": "north"
+              }
             }
-          }
-        },
-        "directions": [
-          "west",
-          "east",
-          "north",
-          "south"
-        ],
-        "exclusion_radius_xz": 0,
-        "exclusion_radius_y": 1,
-        "probability": 0.2,
-        "required_empty_blocks": 2
+          },
+          "directions": [
+            "west",
+            "east",
+            "north",
+            "south"
+          ],
+          "exclusion_radius_xz": 0,
+          "exclusion_radius_y": 1,
+          "probability": 0.2,
+          "required_empty_blocks": 2
+        }
       }
     ],
     "height": {
       "type": "minecraft:biased_to_bottom",
-      "max_inclusive": 20,
-      "min_inclusive": 4
+      "value": {
+        "max_inclusive": 20,
+        "min_inclusive": 4
+      }
     },
     "leaves_provider": {
       "type": "minecraft:simple_state_provider",

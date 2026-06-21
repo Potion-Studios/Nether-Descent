@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "group": "pendorite_ingot",
+  "ingredient": {
+    "item": "netherdescent:raw_pendorite"
+  },
+  "result": "netherdescent:pendorite_ingot"
+}

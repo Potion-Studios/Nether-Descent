@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class NetherDescentWallHangingSignBlock extends WallHangingSignBlock {
     public NetherDescentWallHangingSignBlock(WoodType type, Properties properties) {
-        super(type, properties);
+        super(properties, type);
     }
 
     @Override

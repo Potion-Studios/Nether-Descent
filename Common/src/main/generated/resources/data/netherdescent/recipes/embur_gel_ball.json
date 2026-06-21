@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "netherdescent:embur_gel_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "netherdescent:embur_gel_ball"
+  }
+}

@@ -44,7 +44,7 @@ public class NetherDescentBlockSet {
     }
 
     public NetherDescentBlockSet(String name, MapColor color) {
-        BlockBehaviour.Properties properties = BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).mapColor(color);
+        BlockBehaviour.Properties properties = BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(color);
         this.base = NetherDescentBlocks.registerBasicBlockWithItem(name ,properties);
         this.stairs = NetherDescentBlocks.registerBlockItem(name + "_stairs", () -> new StairBlock(base.get().defaultBlockState(), properties));
         this.slab = NetherDescentBlocks.registerBlockItem(name + "_slab", () -> new SlabBlock(properties));
@@ -53,7 +53,7 @@ public class NetherDescentBlockSet {
     }
 
     public NetherDescentBlockSet(String name, String alt, MapColor color) {
-        BlockBehaviour.Properties properties = BlockBehaviour.Properties.ofFullCopy(Blocks.STONE).mapColor(color);
+        BlockBehaviour.Properties properties = BlockBehaviour.Properties.copy(Blocks.STONE).mapColor(color);
         this.base = NetherDescentBlocks.registerBasicBlockWithItem(name, properties);
         this.stairs = NetherDescentBlocks.registerBlockItem(alt + "_stairs", () -> new StairBlock(base.get().defaultBlockState(), properties));
         this.slab = NetherDescentBlocks.registerBlockItem(alt + "_slab", () -> new SlabBlock(properties));

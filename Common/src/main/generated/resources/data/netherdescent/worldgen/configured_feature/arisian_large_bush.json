@@ -22,8 +22,10 @@
     "canopy_location": "netherdescent:features/trees/arisian/arisian_large_bush_canopy",
     "height": {
       "type": "minecraft:biased_to_bottom",
-      "max_inclusive": 3,
-      "min_inclusive": 2
+      "value": {
+        "max_inclusive": 3,
+        "min_inclusive": 2
+      }
     },
     "leaves_provider": [
       {

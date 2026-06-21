@@ -1,0 +1,40 @@
+{
+  "parent": "netherdescent:embur_bog/root",
+  "criteria": {
+    "kill_hornet": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "netherdescent:hornet"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:player_killed_entity"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.netherdescent.kill_hornet.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "netherdescent:hornet_nest"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.netherdescent.kill_hornet.title"
+    }
+  },
+  "requirements": [
+    [
+      "kill_hornet"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

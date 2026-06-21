@@ -45,8 +45,8 @@ public class NetherDescentFeatures {
                     SimpleWeightedRandomList.<BlockState>builder()
                             .add(NetherDescentBlocks.EMBUR_SPROUTS.get().defaultBlockState(), 2)
                             .add(NetherDescentBlocks.EMBUR_ROOTS.getBlockState(), 2)
-                            .add(NetherDescentBlocks.TALL_EMBUR_ROOTS.get().defaultBlockState())
-                            .add(NetherDescentBlocks.EMBUR.growerItem().getBlockState())
+                            .add(NetherDescentBlocks.TALL_EMBUR_ROOTS.get().defaultBlockState(), 1)
+                            .add(NetherDescentBlocks.EMBUR.growerItem().getBlockState(), 1)
             ), 8, 6)
     );
 
@@ -55,8 +55,8 @@ public class NetherDescentFeatures {
                     SimpleWeightedRandomList.<BlockState>builder()
                             .add(NetherDescentBlocks.EMBUR_SPROUTS.get().defaultBlockState(), 2)
                             .add(NetherDescentBlocks.EMBUR_ROOTS.getBlockState(), 2)
-                            .add(NetherDescentBlocks.TALL_EMBUR_ROOTS.get().defaultBlockState())
-                            .add(NetherDescentBlocks.EMBUR.growerItem().getBlockState())
+                            .add(NetherDescentBlocks.TALL_EMBUR_ROOTS.get().defaultBlockState(), 1)
+                            .add(NetherDescentBlocks.EMBUR.growerItem().getBlockState(), 1)
             ), 3, 1)
     );
 
@@ -101,16 +101,16 @@ public class NetherDescentFeatures {
 			new WeightedStateProvider(
 					SimpleWeightedRandomList.<BlockState>builder()
 							.add(NetherDescentBlocks.SYTHIAN_ROOTS.getBlockState(), 2)
-							.add(NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState())
+							.add(NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState(), 1)
 							.add(NetherDescentBlocks.SYTHIAN_SPROUTS.getBlockState(), 2)
-                            .add(NetherDescentBlocks.SYTHIAN.growerItem().getBlockState())
+                            .add(NetherDescentBlocks.SYTHIAN.growerItem().getBlockState(), 1)
 			), 8, 6));
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_TORRIDS_VEGETATION_BONEMEAL = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_torrids_vegetation_bonemeal", Feature.NETHER_FOREST_VEGETATION,  (configuredFeatureBootstrapContext) -> new NetherForestVegetationConfig(
 			new WeightedStateProvider(
 					SimpleWeightedRandomList.<BlockState>builder()
 							.add(NetherDescentBlocks.SYTHIAN_ROOTS.getBlockState(), 2)
-							.add(NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState())
+							.add(NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState(), 1)
 							.add(NetherDescentBlocks.SYTHIAN_SPROUTS.getBlockState(), 2)
 			), 3, 1));
 
@@ -122,10 +122,10 @@ public class NetherDescentFeatures {
                                 .add(Blocks.CRIMSON_ROOTS.defaultBlockState(), 5)
                                 .add(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get().defaultBlockState(), 3)
                                 .add(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get().defaultBlockState(), 3)
-                                .add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().defaultBlockState())
-                                .add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().defaultBlockState().setValue(CrimsonBerryBushBlock.AGE, 1))
-                                .add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().defaultBlockState().setValue(CrimsonBerryBushBlock.AGE, 2))
-                                .add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().defaultBlockState().setValue(CrimsonBerryBushBlock.AGE, 3))
+                                .add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().defaultBlockState(), 1)
+                                .add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().defaultBlockState().setValue(CrimsonBerryBushBlock.AGE, 1), 1)
+                                .add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().defaultBlockState().setValue(CrimsonBerryBushBlock.AGE, 2), 1)
+                                .add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().defaultBlockState().setValue(CrimsonBerryBushBlock.AGE, 3), 1)
                 ), 8, 6));
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_GRASS = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("wailing_grass", NetherDescentBlocks.WAILING_GRASS, 15);
@@ -159,7 +159,7 @@ public class NetherDescentFeatures {
 							.add(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get().defaultBlockState(), 3)
 							.add(NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState(), 1)
 							.add(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get().defaultBlockState(), 1)
-							.add(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlockState())
+							.add(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlockState(), 1)
 			), 8, 4)
 	);
 
@@ -170,7 +170,7 @@ public class NetherDescentFeatures {
 							.add(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true), 3)
 							.add(NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true), 1)
 							.add(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true), 1)
-							.add(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlockState().setValue(BlockStateProperties.HANGING, true))
+							.add(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlockState().setValue(BlockStateProperties.HANGING, true), 1)
 			), 8, 4)
 	);
 

@@ -28,7 +28,7 @@ public class SythianRootsBlock extends RootsBlock {
     }
 
     @Override
-    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         if (state.getValue(FACING).getAxis().isVertical())
             return super.getShape(state, level, pos, context);
         return SHAPES.get(state.getValue(FACING));

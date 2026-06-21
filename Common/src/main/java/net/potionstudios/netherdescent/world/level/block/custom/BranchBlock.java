@@ -2,7 +2,6 @@ package net.potionstudios.netherdescent.world.level.block.custom;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -17,7 +16,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
@@ -29,12 +27,6 @@ public class BranchBlock extends BaseCoralPlantTypeBlock implements Bonemealable
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(Direction.NORTH, Block.box(0.0D, 4.0D, 5.0D, 16.0D, 12.0D, 16.0D), Direction.SOUTH, Block.box(0.0D, 4.0D, 0.0D, 16.0D, 12.0D, 11.0D), Direction.WEST, Block.box(5.0D, 4.0D, 0.0D, 16.0D, 12.0D, 16.0D), Direction.EAST, Block.box(0.0D, 4.0D, 0.0D, 11.0D, 12.0D, 16.0D)));
-
-    private static final MapCodec<BranchBlock> CODEC = simpleCodec(BranchBlock::new);
-
-    public BranchBlock() {
-        this(Properties.of().mapColor(MapColor.PLANT).instabreak().sound(SoundType.WOOD).noOcclusion().noCollission());
-    }
 
     public BranchBlock(Properties properties) {
         super(properties);
@@ -76,11 +68,6 @@ public class BranchBlock extends BaseCoralPlantTypeBlock implements Bonemealable
         return level.getBlockState(blockPos).isFaceSturdy(level, blockPos, direction);
     }
 
-    @Override
-    protected @NotNull MapCodec<? extends BaseCoralPlantTypeBlock> codec() {
-        return CODEC;
-    }
-
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
@@ -95,7 +82,7 @@ public class BranchBlock extends BaseCoralPlantTypeBlock implements Bonemealable
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state, boolean isClient) {
         return true;
     }
 

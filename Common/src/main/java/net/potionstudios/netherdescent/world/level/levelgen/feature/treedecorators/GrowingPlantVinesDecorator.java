@@ -1,6 +1,6 @@
 package net.potionstudios.netherdescent.world.level.levelgen.feature.treedecorators;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.core.BlockPos;
@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Optional;
 
 public class GrowingPlantVinesDecorator extends TreeDecorator {
-    public static final MapCodec<GrowingPlantVinesDecorator> CODEC = RecordCodecBuilder.mapCodec(
+    public static final Codec<GrowingPlantVinesDecorator> CODEC = RecordCodecBuilder.create(
             instance -> instance.group(
                     BlockState.CODEC.fieldOf("head").forGetter(GrowingPlantVinesDecorator::head),
                     BlockState.CODEC.fieldOf("body").forGetter(GrowingPlantVinesDecorator::body),

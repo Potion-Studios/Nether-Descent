@@ -77,7 +77,7 @@ public interface PlatformHandler {
 	 * @return Supplier of the FlowerPotBlock
 	 */
 	default Supplier<FlowerPotBlock> createPottedBlock(Supplier<? extends Block> block) {
-		return () -> new FlowerPotBlock(block.get(), FlowerPotBlock.Properties.ofFullCopy(Blocks.FLOWER_POT));
+		return () -> new FlowerPotBlock(block.get(), FlowerPotBlock.Properties.copy(Blocks.FLOWER_POT));
 	}
 
 	/**

@@ -31,7 +31,7 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 	}
 
 	@Override
-	protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
+	public void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
 		super.entityInside(state, level, pos, entity);
 		if (!level.isClientSide() && entity instanceof LivingEntity)
 			if (state.getValue(STRENGTH) != 7)
@@ -39,7 +39,7 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 	}
 
 	@Override
-	protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+	public void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
 		super.tick(state, level, pos, random);
 
 		int currentStrength = state.getValue(STRENGTH);
@@ -75,7 +75,7 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 	}
 
 	@Override
-	protected void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block neighborBlock, @NotNull BlockPos neighborPos, boolean movedByPiston) {
+	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block neighborBlock, @NotNull BlockPos neighborPos, boolean movedByPiston) {
 		super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
 		if (!level.isClientSide())
 			level.scheduleTick(pos, this, 1);
@@ -113,12 +113,12 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 	}
 
 	@Override
-	protected boolean isSignalSource(@NotNull BlockState state) {
+	public boolean isSignalSource(@NotNull BlockState state) {
 		return state.getValue(PULSE);
 	}
 
 	@Override
-	protected int getSignal(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+	public int getSignal(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
 		return state.getValue(PULSE) ? 6 : 0;
 	}
 }

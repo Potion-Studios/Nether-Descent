@@ -36,57 +36,63 @@
       },
       {
         "type": "ohthetreesyoullgrow:attached_to_logs",
-        "block_provider": {
-          "type": "minecraft:simple_state_provider",
-          "state": {
-            "Name": "netherdescent:arisian_branch",
-            "Properties": {
-              "facing": "north",
-              "waterlogged": "false"
+        "value": {
+          "block_provider": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "netherdescent:arisian_branch",
+              "Properties": {
+                "facing": "north",
+                "waterlogged": "false"
+              }
             }
-          }
-        },
-        "directions": [
-          "west",
-          "north",
-          "south",
-          "east"
-        ],
-        "exclusion_radius_xz": 0,
-        "exclusion_radius_y": 1,
-        "probability": 0.2,
-        "required_empty_blocks": 2
+          },
+          "directions": [
+            "west",
+            "north",
+            "south",
+            "east"
+          ],
+          "exclusion_radius_xz": 0,
+          "exclusion_radius_y": 1,
+          "probability": 0.2,
+          "required_empty_blocks": 2
+        }
       },
       {
         "type": "ohthetreesyoullgrow:attached_to_logs",
-        "block_provider": {
-          "type": "minecraft:simple_state_provider",
-          "state": {
-            "Name": "netherdescent:thorn_sprout",
-            "Properties": {
-              "facing": "north",
-              "flowering": "false",
-              "segment": "end",
-              "size": "0"
+        "value": {
+          "block_provider": {
+            "type": "minecraft:simple_state_provider",
+            "state": {
+              "Name": "netherdescent:thorn_sprout",
+              "Properties": {
+                "facing": "north",
+                "flowering": "false",
+                "segment": "end",
+                "size": "0"
+              }
             }
-          }
-        },
-        "directions": [
-          "west",
-          "east",
-          "north",
-          "south"
-        ],
-        "exclusion_radius_xz": 0,
-        "exclusion_radius_y": 1,
-        "probability": 0.1,
-        "required_empty_blocks": 2
+          },
+          "directions": [
+            "west",
+            "east",
+            "north",
+            "south"
+          ],
+          "exclusion_radius_xz": 0,
+          "exclusion_radius_y": 1,
+          "probability": 0.1,
+          "required_empty_blocks": 2
+        }
       }
     ],
     "height": {
       "type": "minecraft:biased_to_bottom",
-      "max_inclusive": 4,
-      "min_inclusive": 2
+      "value": {
+        "max_inclusive": 4,
+        "min_inclusive": 2
+      }
     },
     "leaves_provider": [
       {

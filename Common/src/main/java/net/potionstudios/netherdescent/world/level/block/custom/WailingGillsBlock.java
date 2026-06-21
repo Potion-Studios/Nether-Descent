@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.world.level.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
@@ -21,31 +20,25 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class WailingGillsBlock extends BaseEntityBlock {
-	private static final MapCodec<WailingGillsBlock> CODEC = simpleCodec(WailingGillsBlock::new);
     public static final IntegerProperty POWER = BlockStateProperties.POWER;
 	public WailingGillsBlock(Properties properties) {
-		super(properties);
+        super(properties);
         this.registerDefaultState(stateDefinition.any().setValue(POWER, 0));
-	}
-
-	@Override
-	protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
-		return CODEC;
-	}
+    }
 
     @Override
-    protected int getSignal(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+    public int getSignal(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
         return state.getValue(POWER);
     }
 
     @Override
-    protected void onPlace(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean movedByPiston) {
+    public void onPlace(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean movedByPiston) {
         if (!level.isClientSide()) refreshPower(level, pos, state);
         super.onPlace(state, level, pos, oldState, movedByPiston);
     }
 
     @Override
-    protected void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block neighborBlock, @NotNull BlockPos neighborPos, boolean movedByPiston) {
+    public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block neighborBlock, @NotNull BlockPos neighborPos, boolean movedByPiston) {
         if (!level.isClientSide()) refreshPower(level, pos, state);
         super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
     }
@@ -62,7 +55,7 @@ public class WailingGillsBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	protected @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
 		return RenderShape.MODEL;
 	}
 

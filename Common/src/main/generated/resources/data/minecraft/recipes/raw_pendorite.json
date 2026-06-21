@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "netherdescent:raw_pendorite_block"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "netherdescent:raw_pendorite"
+  }
+}

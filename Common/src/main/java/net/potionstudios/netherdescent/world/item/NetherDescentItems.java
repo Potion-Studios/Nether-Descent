@@ -8,15 +8,12 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
-import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
-import net.potionstudios.netherdescent.world.item.custom.BoneShivItem;
 import net.potionstudios.netherdescent.world.item.custom.SoulFireChargeItem;
 import net.potionstudios.netherdescent.world.item.custom.SythianScaffoldingBlockItem;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Supplier;
 
 public class NetherDescentItems {
@@ -32,24 +29,19 @@ public class NetherDescentItems {
 
     public static final Supplier<SythianScaffoldingBlockItem> SYTHIAN_SCAFFOLDING = registerItemNoLang("sythian_scaffolding", () -> new SythianScaffoldingBlockItem(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), new Item.Properties()));
 
-    public static final Supplier<BoneShivItem> BONE_SHIV = registerItem("bone_shiv", () -> new BoneShivItem(new Item.Properties()));
-
-    public static final Supplier<Item> CRIMSON_BERRIES = registerSimpleItem("crimson_berries", () -> new ItemNameBlockItem(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationModifier(0.1F).effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 1), 1.0F).build())));
-    public static final Supplier<Item> CRIMSON_BERRY_PIE = registerSimpleItem("crimson_berry_pie", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationModifier(0.3F).effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 600, 1), 1.0F).build())));
+    public static final Supplier<Item> CRIMSON_BERRIES = registerSimpleItem("crimson_berries", () -> new ItemNameBlockItem(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get(), new Item.Properties().food(new FoodProperties.Builder().nutrition(2).saturationMod(0.1F).effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 1), 1.0F).build())));
+    public static final Supplier<Item> CRIMSON_BERRY_PIE = registerSimpleItem("crimson_berry_pie", () -> new Item(new Item.Properties().food(new FoodProperties.Builder().nutrition(8).saturationMod(0.3F).effect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 600, 1), 1.0F).build())));
 
     public static final Supplier<Item> RAW_PENDORITE = registerSimpleItem("raw_pendorite", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> PENDORITE_INGOT = registerSimpleItem("pendorite_ingot", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> PENDORITE_NUGGET = registerSimpleItem("pendorite_nugget", () -> new Item(new Item.Properties()));
     public static final Supplier<StandingAndWallBlockItem> PENDORITE_TORCH = registerItemNoLang("pendorite_torch", () -> new StandingAndWallBlockItem(NetherDescentBlocks.PENDORITE_TORCH.get(), NetherDescentBlocks.PENDORITE_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
-    public static final Supplier<AnimalArmorItem> PENDORITE_HORSE_ARMOR = registerSimpleItem("pendorite_horse_armor", () -> new AnimalArmorItem(NetherDescentArmorMaterials.PENDORITE.get(), AnimalArmorItem.BodyType.EQUESTRIAN, false, new Item.Properties().stacksTo(1)));
-    public static final Supplier<AnimalArmorItem> PENDORITE_WOLF_ARMOR = registerItem("pendorite_wolf_armor", () -> new AnimalArmorItem(NetherDescentArmorMaterials.PENDORITE.get(), AnimalArmorItem.BodyType.CANINE, true, new Item.Properties().durability(ArmorItem.Type.BODY.getDurability(4))));
+    public static final Supplier<HorseArmorItem> PENDORITE_HORSE_ARMOR = registerSimpleItem("pendorite_horse_armor", () -> new HorseArmorItem(1, "pendorite", new Item.Properties().stacksTo(1)));
 
     public static final Supplier<Item> SOUL_BLAZE_ROD = registerItem("soul_blaze_rod", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> SOUL_BLAZE_POWDER = registerSimpleItem("soul_blaze_powder", () -> new Item(new Item.Properties()));
     public static final Supplier<SoulFireChargeItem> SOUL_FIRE_CHARGE = registerSimpleItem("soul_fire_charge", () -> new SoulFireChargeItem(new Item.Properties()));
     public static final Supplier<FireChargeItem> PENDORITE_FIRE_CHARGE = registerSimpleItem("pendorite_fire_charge", () -> new FireChargeItem(new Item.Properties()));
-
-    public static final Supplier<Item> HORNET_NEST = registerItemNoLang("hornet_nest", () -> new BlockItem(NetherDescentBlocks.HORNET_NEST.get(), new Item.Properties().component(NetherDescentDataComponents.HORNETS.get(), List.of())));
 
     public static final Supplier<SpawnEggItem> SOUL_BLAZE_SPAWN_EGG = registerSimpleItem("soul_blaze_spawn_egg", PlatformHandler.PLATFORM_HANDLER.createSpawnEgg(NetherDescentEntityType.SOUL_BLAZE, 2467756, 13958911));
 	public static final Supplier<SpawnEggItem> PENDORITE_BLAZE_SPAWN_EGG = registerSimpleItem("pendorite_blaze_spawn_egg", PlatformHandler.PLATFORM_HANDLER.createSpawnEgg(NetherDescentEntityType.PENDORITE_BLAZE, 3679595, 10005478));

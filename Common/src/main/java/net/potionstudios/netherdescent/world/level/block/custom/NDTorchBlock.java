@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 public class NDTorchBlock extends TorchBlock {
     private final Supplier<SimpleParticleType> simpleParticleTypeSupplier;
     public NDTorchBlock(Supplier<SimpleParticleType> flameParticle, Properties properties) {
-        super(ParticleTypes.FLAME, properties);
+        super(properties, ParticleTypes.FLAME);
         this.simpleParticleTypeSupplier = flameParticle;
     }
 

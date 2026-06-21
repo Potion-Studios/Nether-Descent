@@ -16,6 +16,6 @@ develocity.buildScan {
     termsOfUseAgree = "yes"
 }
 
-include("Common", "Fabric", "Forge", "NeoForge")
+include("Common", "Fabric", "Forge")
 
 rootProject.name = "Nether Descent"

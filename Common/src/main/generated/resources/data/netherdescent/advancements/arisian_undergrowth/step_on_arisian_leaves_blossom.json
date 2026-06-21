@@ -1,0 +1,67 @@
+{
+  "parent": "netherdescent:arisian_undergrowth/root",
+  "criteria": {
+    "step_on_arisian_blossom": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "stepping_on": {
+                "block": {
+                  "blocks": [
+                    "netherdescent:arisian_leaves"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "step_on_arisian_leaves": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "block": {
+                  "blocks": [
+                    "netherdescent:arisian_blossom"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.netherdescent.step_on_arisian_leaves_blossom.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "netherdescent:arisian_leaves"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.netherdescent.step_on_arisian_leaves_blossom.title"
+    }
+  },
+  "requirements": [
+    [
+      "step_on_arisian_blossom",
+      "step_on_arisian_leaves"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

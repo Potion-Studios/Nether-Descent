@@ -118,7 +118,7 @@ public class SoulBlaze extends Blaze {
 
                             for (int i = 0; i < 1; i++) {
                                 Vec3 vec3 = new Vec3(this.blaze.getRandom().triangle(e, 2.297 * h), f, this.blaze.getRandom().triangle(g, 2.297 * h));
-                                SmallSoulFireball smallFireball = new SmallSoulFireball(this.blaze, vec3.normalize(), this.blaze.level());
+                                SmallSoulFireball smallFireball = new SmallSoulFireball(this.blaze.level(), this.blaze, this.blaze.getRandom().triangle(e, 2.297 * h), f, this.blaze.getRandom().triangle(g, 2.297 * h));
                                 smallFireball.setPos(smallFireball.getX(), this.blaze.getY(0.5) + 0.5, smallFireball.getZ());
                                 this.blaze.level().addFreshEntity(smallFireball);
                             }

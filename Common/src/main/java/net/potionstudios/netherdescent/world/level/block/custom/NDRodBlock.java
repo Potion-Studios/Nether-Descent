@@ -31,7 +31,7 @@ public class NDRodBlock extends EndRodBlock {
     public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {}
 
     @Override
-    protected void onPlace(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean movedByPiston) {
+    public void onPlace(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean movedByPiston) {
         if (state.is(NetherDescentBlocks.PENDORITE_FIRE_ROD.get()) && !oldState.is(state.getBlock()))
             trySpawnBlaze(level, pos);
     }

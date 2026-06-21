@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "netherdescent:arisian_planks"
+    }
+  ],
+  "result": {
+    "item": "netherdescent:arisian_button"
+  }
+}

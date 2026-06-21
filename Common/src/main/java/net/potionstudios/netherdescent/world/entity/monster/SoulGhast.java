@@ -98,7 +98,7 @@ public class SoulGhast extends Ghast {
 						    level.levelEvent(null, 1016, this.ghast.blockPosition(), 0);
 					    }
 
-					    LargeSoulFireball largeFireball = new LargeSoulFireball(level, this.ghast, dir, this.ghast.getExplosionPower());
+					    LargeSoulFireball largeFireball = new LargeSoulFireball(level, this.ghast, f, g, h, this.ghast.getExplosionPower());
 					    largeFireball.setPos(
 							    this.ghast.getX() + view.x * e,
 							    this.ghast.getY(0.5D) + 0.5D,

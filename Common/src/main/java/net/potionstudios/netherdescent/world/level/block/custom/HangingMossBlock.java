@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.world.level.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -22,16 +21,10 @@ import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import org.jetbrains.annotations.NotNull;
 
 public class HangingMossBlock extends Block implements BonemealableBlock {
-    public static final MapCodec<HangingMossBlock> CODEC = simpleCodec(HangingMossBlock::new);
     private static final int SIDE_PADDING = 1;
     private static final VoxelShape TIP_SHAPE = Block.box(1.0, 2.0, 1.0, 15.0, 16.0, 15.0);
     private static final VoxelShape BASE_SHAPE = Block.box(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
     public static final BooleanProperty TIP = BooleanProperty.create("tip");
-
-    @Override
-    public @NotNull MapCodec<HangingMossBlock> codec() {
-        return CODEC;
-    }
 
     public HangingMossBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -39,17 +32,17 @@ public class HangingMossBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
         return state.getValue(TIP) ? TIP_SHAPE : BASE_SHAPE;
     }
 
     @Override
-    protected boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    public boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
         return true;
     }
 
     @Override
-    protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
+    public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
         return this.canStayAtPosition(level, pos);
     }
 
@@ -60,7 +53,7 @@ public class HangingMossBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+    public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
         if (!this.canStayAtPosition(level, pos)) {
             level.scheduleTick(pos, this, 1);
         }
@@ -69,7 +62,7 @@ public class HangingMossBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+    public void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (!this.canStayAtPosition(level, pos)) {
             level.destroyBlock(pos, true);
         }
@@ -78,11 +71,6 @@ public class HangingMossBlock extends Block implements BonemealableBlock {
     @Override
     protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
         builder.add(TIP);
-    }
-
-    @Override
-    public boolean isValidBonemealTarget(LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
-        return this.canGrowInto(level.getBlockState(this.getTip(level, pos).below()));
     }
 
     private boolean canGrowInto(BlockState state) {
@@ -99,6 +87,11 @@ public class HangingMossBlock extends Block implements BonemealableBlock {
         } while (blockState.is(this));
 
         return mutableBlockPos.relative(Direction.UP).immutable();
+    }
+
+    @Override
+    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state, boolean isClient) {
+        return this.canGrowInto(level.getBlockState(this.getTip(level, pos).below()));
     }
 
     @Override

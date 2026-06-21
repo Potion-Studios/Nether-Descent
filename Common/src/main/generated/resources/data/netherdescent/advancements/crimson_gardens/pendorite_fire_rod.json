@@ -1,0 +1,38 @@
+{
+  "parent": "netherdescent:crimson_gardens/raw_pendorite",
+  "criteria": {
+    "has_pendorite_fire_rod": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "netherdescent:pendorite_fire_rod"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.netherdescent.pendorite_fire_rod.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "netherdescent:pendorite_fire_rod"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.netherdescent.pendorite_fire_rod.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_pendorite_fire_rod"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

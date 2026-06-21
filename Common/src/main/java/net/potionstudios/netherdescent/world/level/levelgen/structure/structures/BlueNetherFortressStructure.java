@@ -1,6 +1,6 @@
 package net.potionstudios.netherdescent.world.level.levelgen.structure.structures;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.random.WeightedRandomList;
 import net.minecraft.world.entity.EntityType;
@@ -20,7 +20,7 @@ import java.util.Optional;
 
 public class BlueNetherFortressStructure extends Structure {
     public static final WeightedRandomList<MobSpawnSettings.SpawnerData> BLUE_FORTRESS_ENEMIES = WeightedRandomList.create(new MobSpawnSettings.SpawnerData(NetherDescentEntityType.SOUL_BLAZE.get(), 10, 2, 3), new MobSpawnSettings.SpawnerData(EntityType.ZOMBIFIED_PIGLIN, 5, 4, 4), new MobSpawnSettings.SpawnerData(EntityType.WITHER_SKELETON, 8, 5, 5), new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 2, 5, 5), new MobSpawnSettings.SpawnerData(EntityType.MAGMA_CUBE, 3, 4, 4));
-	public static final MapCodec<BlueNetherFortressStructure> CODEC = simpleCodec(BlueNetherFortressStructure::new);
+	public static final Codec<BlueNetherFortressStructure> CODEC = simpleCodec(BlueNetherFortressStructure::new);
 
 	public BlueNetherFortressStructure(Structure.StructureSettings settings) {
 		super(settings);

@@ -1,20 +1,26 @@
 package net.potionstudios.netherdescent.advancements.critereon;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.advancements.Criterion;
+import com.google.gson.JsonObject;
 import net.minecraft.advancements.critereon.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.potionstudios.netherdescent.NetherDescent;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Optional;
-
 public class FungalBulbsBlockTrigger extends SimpleCriterionTrigger<FungalBulbsBlockTrigger.TriggerInstance> {
+    static final ResourceLocation ID = NetherDescent.id("fungal_bulbs_hit");
+
     @Override
-    public @NotNull Codec<FungalBulbsBlockTrigger.TriggerInstance> codec() {
-        return TriggerInstance.CODEC;
+    public @NotNull ResourceLocation getId() {
+        return ID;
+    }
+
+    @Override
+    protected @NotNull TriggerInstance createInstance(@NotNull JsonObject json, @NotNull ContextAwarePredicate predicate, @NotNull DeserializationContext deserializationContext) {
+        ContextAwarePredicate contextAwarePredicate = EntityPredicate.fromJson(json, "projectile", deserializationContext);
+        return new TriggerInstance(predicate, contextAwarePredicate);
     }
 
     public void trigger(ServerPlayer player, Entity projectile) {
@@ -22,27 +28,26 @@ public class FungalBulbsBlockTrigger extends SimpleCriterionTrigger<FungalBulbsB
         this.trigger(player, arg3 -> arg3.matches(lootContext));
     }
 
-    public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<ContextAwarePredicate> projectile) implements SimpleCriterionTrigger.SimpleInstance {
-        public static final Codec<FungalBulbsBlockTrigger.TriggerInstance> CODEC = RecordCodecBuilder.create(
-                instance -> instance.group(
-                        EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(FungalBulbsBlockTrigger.TriggerInstance::player),
-                        EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("projectile").forGetter(FungalBulbsBlockTrigger.TriggerInstance::projectile)
-                )
-                .apply(instance, FungalBulbsBlockTrigger.TriggerInstance::new)
-        );
-
-        public static Criterion<FungalBulbsBlockTrigger.TriggerInstance> fungalBulbsHit(Optional<ContextAwarePredicate> projectile) {
-            return NetherDescentCriterionTriggers.FUNGAL_BULBS_BLOCK_HIT.get().createCriterion(new FungalBulbsBlockTrigger.TriggerInstance(Optional.empty(), projectile));
+    public static class TriggerInstance extends AbstractCriterionTriggerInstance {
+        private final ContextAwarePredicate projectile;
+        public TriggerInstance(ContextAwarePredicate player, ContextAwarePredicate projectile) {
+            super(FungalBulbsBlockTrigger.ID, player);
+            this.projectile = projectile;
         }
 
-        public boolean matches(LootContext lootContext) {
-            return this.projectile.isEmpty() || this.projectile.get().matches(lootContext);
+        public static TriggerInstance fungalBulbsHit(ContextAwarePredicate projectile) {
+            return new TriggerInstance(ContextAwarePredicate.ANY, projectile);
         }
 
         @Override
-        public void validate(@NotNull CriterionValidator validator) {
-            SimpleCriterionTrigger.SimpleInstance.super.validate(validator);
-            validator.validateEntity(this.projectile, ".projectile");
+        public @NotNull JsonObject serializeToJson(@NotNull SerializationContext context) {
+            JsonObject jsonObject = super.serializeToJson(context);
+            jsonObject.add("projectile", this.projectile.toJson(context));
+            return jsonObject;
+        }
+
+        public boolean matches(LootContext lootContext) {
+            return this.projectile.matches(lootContext);
         }
     }
 }

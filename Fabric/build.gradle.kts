@@ -29,6 +29,8 @@ configurations {
 
 loom.accessWidenerPath.set(project(":Common").loom.accessWidenerPath)
 
+fabricApi.configureDataGeneration()
+
 dependencies {
     modImplementation("net.fabricmc:fabric-loader:${providers.gradleProperty("fabric_loader_version").get()}")
     modApi("net.fabricmc.fabric-api:fabric-api:${providers.gradleProperty("fabric_api_version").get()}+$minecraftVersion")
@@ -39,7 +41,9 @@ dependencies {
     modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${providers.gradleProperty("devauth_version").get()}")
 
     modApi("com.github.glitchfiend:TerraBlender-fabric:$minecraftVersion-${providers.gradleProperty("terrablender_version").get()}")
-    modCompileOnly("com.terraformersmc:biolith-fabric:${providers.gradleProperty("biolith_version").get()}")
+    modCompileOnly("com.terraformersmc:biolith-fabric:${providers.gradleProperty("biolith_version").get()}")  {
+        exclude(group = "net.fabricmc.fabric-api")
+    }
     modApi("dev.corgitaco:Oh-The-Trees-Youll-Grow-fabric:$minecraftVersion-${providers.gradleProperty("ohthetreesyoullgrow_version").get()}")
     modApi("me.lucko:fabric-permissions-api:0.3.1")
 
@@ -57,7 +61,7 @@ tasks {
     }
 
     shadowJar {
-        exclude("architectury.common.json", ".cache/**", "data/neoforge/**")
+        exclude("architectury.common.json", ".cache/**", "data/forge/**", "net/potionstudios/netherdescent/fabric/datagen/**")
         configurations = listOf(project.configurations.getByName("shadowBundle"))
         archiveClassifier.set("dev-shadow")
     }

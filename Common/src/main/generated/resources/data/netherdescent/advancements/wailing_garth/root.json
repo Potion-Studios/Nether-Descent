@@ -1,0 +1,42 @@
+{
+  "parent": "netherdescent:root",
+  "criteria": {
+    "netherdescent:wailing_garth": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "biome": "netherdescent:wailing_garth"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.netherdescent.wailing_garth.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "netherdescent:wailing_nylium"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.netherdescent.wailing_garth.title"
+    }
+  },
+  "requirements": [
+    [
+      "netherdescent:wailing_garth"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

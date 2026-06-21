@@ -4,7 +4,7 @@ import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
@@ -29,20 +29,18 @@ public class NetherDescentStructures {
 
 	public static final ResourceKey<Structure> BLUE_FORTRESS = register("blue_fortress", context ->
 			new BlueNetherFortressStructure(
-					new Structure.StructureSettings.Builder(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_BLUE_FORTRESS))
-							.spawnOverrides(
-									Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE,  BlueNetherFortressStructure.BLUE_FORTRESS_ENEMIES))
-							)
-							.generationStep(GenerationStep.Decoration.UNDERGROUND_DECORATION)
-							.build()
-			)
+					new Structure.StructureSettings(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_BLUE_FORTRESS),
+									Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, BlueNetherFortressStructure.BLUE_FORTRESS_ENEMIES)),
+							GenerationStep.Decoration.UNDERGROUND_DECORATION,
+							TerrainAdjustment.NONE
+			))
 	);
 
 	public static final ResourceKey<Structure> SMALL_CHAINS = register("chains/small", context ->
 			createJigsaw(
 					structure(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_CHAINS), TerrainAdjustment.NONE),
 					context.lookup(Registries.TEMPLATE_POOL).getOrThrow(NetherDescentTemplatePools.CHAINS_ANCHOR_SMALL),
-					20,
+					7,
 					ConstantHeight.of(VerticalAnchor.belowTop(17))
 			)
 	);
@@ -51,7 +49,7 @@ public class NetherDescentStructures {
 			createJigsaw(
 					structure(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_CHAINS), TerrainAdjustment.NONE),
 					context.lookup(Registries.TEMPLATE_POOL).getOrThrow(NetherDescentTemplatePools.CHAINS_ANCHOR_MEDIUM),
-					20,
+					7,
 					ConstantHeight.of(VerticalAnchor.belowTop(17))
 			)
 	);
@@ -60,7 +58,7 @@ public class NetherDescentStructures {
 			createJigsaw(
 					structure(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_CHAINS), TerrainAdjustment.NONE),
 					context.lookup(Registries.TEMPLATE_POOL).getOrThrow(NetherDescentTemplatePools.CHAINS_ANCHOR_LARGE),
-					20,
+					7,
 					ConstantHeight.of(VerticalAnchor.belowTop(17))
 			)
 	);
@@ -94,6 +92,6 @@ public class NetherDescentStructures {
 
 	@FunctionalInterface
 	public interface StructureFactory {
-		Structure generate(BootstrapContext<Structure> structureFactoryBootstapContext);
+		Structure generate(BootstapContext<Structure> structureFactoryBootstapContext);
 	}
 }

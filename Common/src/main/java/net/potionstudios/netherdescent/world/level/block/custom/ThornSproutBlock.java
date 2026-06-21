@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.world.level.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -45,11 +44,6 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 				return defaultBlockState().setValue(FACING, context.getClickedFace());
 		}
 		return null;
-	}
-
-	@Override
-	protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
-		return simpleCodec(ThornSproutBlock::new);
 	}
 
 	@Override
@@ -122,7 +116,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+	public void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
 		super.tick(state, level, pos, random);
 
 		if (isEntityOnBlock(level, pos)) {
@@ -192,12 +186,12 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+	public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
 		return Block.box(0, 8, 0, 16, 14, 16);
 	}
 
 	@Override
-	protected boolean isCollisionShapeFullBlock(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+	public boolean isCollisionShapeFullBlock(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
 		return state.getValue(SEGMENT) != SegmentType.END;
 	}
 

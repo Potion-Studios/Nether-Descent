@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 400,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "netherdescent:sythian_stalk"
+  },
+  "result": "minecraft:gold_nugget"
+}

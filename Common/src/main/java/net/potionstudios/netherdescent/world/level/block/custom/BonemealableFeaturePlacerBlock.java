@@ -25,7 +25,7 @@ public class BonemealableFeaturePlacerBlock extends Block implements Bonemealabl
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state, boolean isClient) {
         return level.getBlockState(pos.above()).isAir();
     }
 
@@ -40,10 +40,5 @@ public class BonemealableFeaturePlacerBlock extends Block implements Bonemealabl
                 .lookup(Registries.CONFIGURED_FEATURE)
                 .flatMap(registry -> registry.get(this.feature.get()))
                 .ifPresent(reference -> reference.value().place(level, level.getChunkSource().getGenerator(), random, pos.above()));
-    }
-
-    @Override
-    public @NotNull Type getType() {
-        return Type.NEIGHBOR_SPREADER;
     }
 }

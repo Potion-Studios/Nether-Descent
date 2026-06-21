@@ -1,9 +1,8 @@
 package net.potionstudios.netherdescent.world.level.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
-import net.minecraft.tags.EnchantmentTags;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -12,8 +11,10 @@ import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.WitherSkull;
 import net.minecraft.world.entity.vehicle.MinecartTNT;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -34,21 +35,15 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class HornetNestBlock extends BaseEntityBlock {
-	public static final MapCodec<HornetNestBlock> CODEC = simpleCodec(HornetNestBlock::new);
 	public HornetNestBlock(Properties properties) {
 		super(properties);
-	}
-
-	@Override
-	protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
-		return CODEC;
 	}
 
     @Override
     public void playerDestroy(@NotNull Level level, @NotNull Player player, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable BlockEntity blockEntity, @NotNull ItemStack tool) {
         super.playerDestroy(level, player, pos, state, blockEntity, tool);
         if (!level.isClientSide() && blockEntity instanceof HornetNestBlockEntity hornetNestBlockEntity) {
-            if (!EnchantmentHelper.hasTag(tool, EnchantmentTags.PREVENTS_BEE_SPAWNS_WHEN_MINING)) {
+            if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, tool) == 0) {
                 hornetNestBlockEntity.emptyAllLivingFromHive(player, state, HornetNestBlockEntity.HornetReleaseStatus.EMERGENCY);
                 this.angerNearbyHornets(level, pos);
             }
@@ -78,7 +73,8 @@ public class HornetNestBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	protected @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
+    @NotNull
+    public RenderShape getRenderShape(@NotNull BlockState state) {
 		return RenderShape.MODEL;
 	}
 
@@ -93,23 +89,25 @@ public class HornetNestBlock extends BaseEntityBlock {
     }
 
     @Override
-    public @NotNull BlockState playerWillDestroy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
+    public void playerWillDestroy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
         if (!level.isClientSide() && player.isCreative()
             && level.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)
             && level.getBlockEntity(pos) instanceof HornetNestBlockEntity hornetNestBlockEntity)
             if (!hornetNestBlockEntity.isEmpty()) {
                 ItemStack itemStack = new ItemStack(this);
-                itemStack.applyComponents(hornetNestBlockEntity.collectComponents());
+                CompoundTag compoundTag = new CompoundTag();
+                compoundTag.put("Hornets", hornetNestBlockEntity.writeHornets());
+                BlockItem.setBlockEntityData(itemStack, NetherDescentBlockEntityType.HORNET_NEST.get(), compoundTag);
                 ItemEntity itemEntity = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), itemStack);
                 itemEntity.setDefaultPickUpDelay();
                 level.addFreshEntity(itemEntity);
             }
 
-        return super.playerWillDestroy(level, pos, state, player);
+        super.playerWillDestroy(level, pos, state, player);
     }
 
     @Override
-    protected @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootParams.@NotNull Builder params) {
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootParams.@NotNull Builder params) {
         Entity entity = params.getOptionalParameter(LootContextParams.THIS_ENTITY);
         if (entity instanceof PrimedTnt
                 || entity instanceof Creeper

@@ -13,7 +13,6 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import org.jetbrains.annotations.NotNull;
@@ -25,8 +24,8 @@ public class LargeSoulFireball extends Fireball {
 		super(entityType, level);
 	}
 
-	public LargeSoulFireball(Level level, LivingEntity owner, Vec3 movement, int explosionPower) {
-		super(NetherDescentEntityType.SOUL_FIREBALL.get(), owner, movement, level);
+	public LargeSoulFireball(Level level, LivingEntity shooter, double offsetX, double offsetY, double offsetZ, int explosionPower) {
+		super(NetherDescentEntityType.SOUL_FIREBALL.get(), shooter, offsetX, offsetY, offsetZ, level);
 		this.explosionPower = explosionPower;
 	}
 
@@ -42,12 +41,11 @@ public class LargeSoulFireball extends Fireball {
 	protected void onHitEntity(@NotNull EntityHitResult result) {
 		super.onHitEntity(result);
 		Level var3 = this.level();
-		if (var3 instanceof ServerLevel serverLevel) {
+		if (var3 instanceof ServerLevel && getOwner() instanceof LivingEntity livingEntity) {
 			Entity var6 = result.getEntity();
-			Entity entity2 = this.getOwner();
-			DamageSource damageSource = this.damageSources().fireball(this, entity2);
+			DamageSource damageSource = this.damageSources().fireball(this, livingEntity);
 			var6.hurt(damageSource, 6.0F);
-			EnchantmentHelper.doPostAttackEffects(serverLevel, var6, damageSource);
+			EnchantmentHelper.doPostDamageEffects(livingEntity, var6);
 		}
 	}
 

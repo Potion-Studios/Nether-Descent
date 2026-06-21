@@ -42,7 +42,7 @@ public class HangingDoublePlantBlock extends NetherDescentDoublePlantBlock {
 	}
 
 	@Override
-	protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
+	public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
 		if (state.getValue(HANGING)) {
 			if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
 				return mayPlaceOn(level.getBlockState(pos.above()), level, pos);
@@ -55,7 +55,7 @@ public class HangingDoublePlantBlock extends NetherDescentDoublePlantBlock {
 	}
 
 	@Override
-	protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+	public @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
 		if (state.getValue(HANGING)) {
 			DoubleBlockHalf doubleBlockHalf = state.getValue(HALF);
 			if (direction.getAxis() != Direction.Axis.Y

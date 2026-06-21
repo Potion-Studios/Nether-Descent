@@ -11,7 +11,6 @@
   - Common: net.potionstudios:Nether-Descent-Common:{version}
   - Fabric: net.potionstudios:Nether-Descent-Fabric:{version}
   - Forge: net.potionstudios:Nether-Descent-Forge:{version}
-  - NeoForge: net.potionstudios:Nether-Descent-NeoForge:{version}
 
 
 ### Dependencies
@@ -24,7 +23,6 @@ You must install **one** of the following worldgen libraries:
   - CurseForge:
     - Forge: https://www.curseforge.com/minecraft/mc-mods/terrablender
     - Fabric: https://www.curseforge.com/minecraft/mc-mods/terrablender-fabric
-    - NeoForge: https://www.curseforge.com/minecraft/mc-mods/terrablender-neoforge
   - Modrinth: https://modrinth.com/mod/terrablender
 
 - **Biolith** → Still in Testing Stages but is supported

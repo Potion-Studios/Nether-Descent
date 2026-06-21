@@ -29,7 +29,7 @@ public class NetherDescentNyliumBlock extends NyliumBlock {
     }
 
     @Override
-    protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (!NyliumBlock.canBeNylium(state, level, pos))
             level.setBlockAndUpdate(pos, spreadBlock.get().defaultBlockState());
     }

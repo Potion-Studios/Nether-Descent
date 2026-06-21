@@ -11,8 +11,10 @@
           "ceiling": "netherdescent:blue_netherrack",
           "growth": {
             "type": "minecraft:uniform",
-            "max_inclusive": 20,
-            "min_inclusive": 0
+            "value": {
+              "max_inclusive": 20,
+              "min_inclusive": 0
+            }
           },
           "vine": {
             "Name": "netherdescent:embur_hanging_moss",

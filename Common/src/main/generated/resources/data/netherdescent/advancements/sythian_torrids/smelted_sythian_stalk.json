@@ -1,0 +1,32 @@
+{
+  "parent": "netherdescent:sythian_torrids/root",
+  "criteria": {
+    "smelted_sythian_stalk": {
+      "conditions": {
+        "recipe_id": "netherdescent:gold_nugget_from_smelting"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.netherdescent.smelted_sythian_stalk.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "netherdescent:sythian_stalk"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.netherdescent.smelted_sythian_stalk.title"
+    }
+  },
+  "requirements": [
+    [
+      "smelted_sythian_stalk"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

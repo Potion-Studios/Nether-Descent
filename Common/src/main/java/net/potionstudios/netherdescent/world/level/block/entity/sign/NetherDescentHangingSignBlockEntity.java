@@ -16,9 +16,4 @@ public class NetherDescentHangingSignBlockEntity extends HangingSignBlockEntity 
     public @NotNull BlockEntityType<?> getType() {
         return NetherDescentBlockEntityType.HANGING_SIGNS.get();
     }
-
-    @Override
-    public boolean isValidBlockState(@NotNull BlockState blockState) {
-        return getType().isValid(blockState);
-    }
 }

@@ -33,7 +33,7 @@ public class SythianScaffoldingBlock extends ScaffoldingBlock {
     }
 
     @Override
-    protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+    public void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         int i = getDistance(level, pos);
         BlockState blockState = state.setValue(DISTANCE, i).setValue(BOTTOM, this.isBottom(level, pos, i));
         if (blockState.getValue(DISTANCE) == 7) {
@@ -48,7 +48,7 @@ public class SythianScaffoldingBlock extends ScaffoldingBlock {
     }
 
     @Override
-    protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
+    public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
         return getDistance(level, pos) < 7;
     }
 

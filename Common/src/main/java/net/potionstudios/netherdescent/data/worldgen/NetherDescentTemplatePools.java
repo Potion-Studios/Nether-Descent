@@ -5,7 +5,7 @@ import com.mojang.datafixers.util.Pair;
 import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.Pools;
 import net.minecraft.data.worldgen.ProcessorLists;
 import net.minecraft.resources.ResourceKey;
@@ -80,19 +80,19 @@ public class NetherDescentTemplatePools {
 		return new StructureTemplatePool(fallback, rawTemplateFactories, projection);
 	}
 
-	private static Holder.Reference<StructureTemplatePool> getEmptyPool(BootstrapContext<StructureTemplatePool> context) {
+	private static Holder.Reference<StructureTemplatePool> getEmptyPool(BootstapContext<StructureTemplatePool> context) {
 		return getPool(context, Pools.EMPTY);
 	}
 
-	private static Holder.Reference<StructureTemplatePool> getPool(BootstrapContext<StructureTemplatePool> context, ResourceKey<StructureTemplatePool> poolResourceKey) {
+	private static Holder.Reference<StructureTemplatePool> getPool(BootstapContext<StructureTemplatePool> context, ResourceKey<StructureTemplatePool> poolResourceKey) {
 		return context.lookup(Registries.TEMPLATE_POOL).getOrThrow(poolResourceKey);
 	}
 
-	private static Holder.Reference<StructureProcessorList> getEmptyProcessor(BootstrapContext<StructureTemplatePool> context) {
+	private static Holder.Reference<StructureProcessorList> getEmptyProcessor(BootstapContext<StructureTemplatePool> context) {
 		return getProcessor(context, ProcessorLists.EMPTY);
 	}
 
-	private static Holder.Reference<StructureProcessorList> getProcessor(BootstrapContext<StructureTemplatePool> context, ResourceKey<StructureProcessorList> processorList) {
+	private static Holder.Reference<StructureProcessorList> getProcessor(BootstapContext<StructureTemplatePool> context, ResourceKey<StructureProcessorList> processorList) {
 		return context.lookup(Registries.PROCESSOR_LIST).getOrThrow(processorList);
 	}
 
@@ -104,6 +104,6 @@ public class NetherDescentTemplatePools {
 
 	@FunctionalInterface
 	public interface TemplatePoolFactory {
-		StructureTemplatePool generate(BootstrapContext<StructureTemplatePool> templatePoolFactoryContext);
+		StructureTemplatePool generate(BootstapContext<StructureTemplatePool> templatePoolFactoryContext);
 	}
 }

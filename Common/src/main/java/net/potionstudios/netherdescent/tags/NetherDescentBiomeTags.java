@@ -10,22 +10,22 @@ public final class NetherDescentBiomeTags {
 
     /** Correlates to
      * @see BiomeTags#IS_NETHER
-     * @see net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags#IS_NETHER,
+     * @see net.fabricmc.fabric.api.tag.convention.v1.ConventionalBiomeTags#IN_NETHER,
      **/
     public static final TagKey<Biome> NETHER = create("nether");
 
 	/** Correlates to
-	 * @see net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags#IS_HOT_NETHER
+	 * @see net.fabricmc.fabric.api.tag.convention.v1.ConventionalBiomeTags#CLIMATE_HOT
 	 **/
 	public static final TagKey<Biome> HOT = create("climate/hot");
 
 	/** Correlates to
-	 * @see net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags#IS_DRY_NETHER
+	 * @see net.fabricmc.fabric.api.tag.convention.v1.ConventionalBiomeTags#CLIMATE_DRY
 	 */
 	public static final TagKey<Biome> DRY = create("climate/dry");
 
 	/** Correlates to
-	 * @see net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags#IS_NETHER_FOREST
+	 * @see net.fabricmc.fabric.api.tag.convention.v1.ConventionalBiomeTags#NETHER_FORESTS
 	 */
 	public static final TagKey<Biome> FOREST = create("forest");
 
