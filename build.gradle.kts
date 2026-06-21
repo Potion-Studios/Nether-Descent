@@ -27,7 +27,7 @@ subprojects {
     pluginManager.apply("maven-publish")
     pluginManager.apply("com.hypherionmc.modutils.modpublisher")
 
-    base.archivesName.set(project.properties["archives_base_name"] as String + "-${project.name}")
+    base.archivesName.set(providers.gradleProperty("archives_base_name").get() + "-${project.name}")
 
     tasks.withType<AbstractArchiveTask>().configureEach {
         archiveVersion.set("${project.version}-mc$minecraftVersion")
@@ -82,6 +82,7 @@ subprojects {
     publishing {
         publications.create<MavenPublication>("mavenJava") {
             artifactId = base.archivesName.get()
+            version = "${version}-mc$minecraftVersion"
             from(components["java"])
         }
 
@@ -90,7 +91,7 @@ subprojects {
             maven {
                 val releasesRepoUrl = "https://maven.jt-dev.tech/releases"
                 val snapshotsRepoUrl = "https://maven.jt-dev.tech/snapshots"
-                url = uri(if (project.version.toString().endsWith("SNAPSHOT") || project.version.toString().startsWith("0")) snapshotsRepoUrl else releasesRepoUrl)
+                url = uri(if (project.version.toString().contains("SNAPSHOT") || project.version.toString().startsWith("0")) snapshotsRepoUrl else releasesRepoUrl)
                 name = "JTDev-Maven-Repository"
                 credentials {
                     username = providers.gradleProperty("repoLogin").orNull
