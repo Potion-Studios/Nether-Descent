@@ -8,7 +8,7 @@ import net.potionstudios.netherdescent.PlatformHandler;
 
 import java.util.function.Supplier;
 
-public class NetherDescentSounds {
+public class NetherDescentSoundEvents {
 
 	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_ARISIAN_UNDERGROWTH_LOOP = registerSoundEventHolder("ambient.arisian_undergrowth.loop");
 	public static final Supplier<Holder.Reference<SoundEvent>> AMBIENT_ARISIAN_UNDERGROWTH_ADDITIONS = registerSoundEventHolder("ambient.arisian_undergrowth.additions");
@@ -44,6 +44,6 @@ public class NetherDescentSounds {
 	}
 
 	public static void sounds() {
-		NetherDescent.LOGGER.info("Registering Nether Descent Sounds");
+		NetherDescent.LOGGER.info("Registering Nether Descent Sound Events");
 	}
 }

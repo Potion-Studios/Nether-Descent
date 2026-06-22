@@ -90,7 +90,7 @@ jobs:
         if: steps.gate.outputs.is_release == 'true' && steps.release_check.outputs.release_exists == 'false'
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ steps.gate.outputs.version }}
+          tag_name: ${{ steps.gate.outputs.version }}
           name: ${{ steps.gate.outputs.version }}
           body_path: release_notes.txt
           files: |
@@ -108,7 +108,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TAG="v${{ steps.gate.outputs.version }}"
+          TAG="${{ steps.gate.outputs.version }}"
           find Fabric/build/libs NeoForge/build/libs Forge/build/libs \
             -name "*.jar" \
             ! -name "*-dev-shadow.jar" \
