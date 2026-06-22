@@ -7,6 +7,7 @@ import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
 import net.minecraft.server.level.ServerPlayer;
+import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
@@ -31,7 +32,7 @@ public class PlaceFlowerNearHornetTrigger extends SimpleCriterionTrigger<PlaceFl
         );
 
         public static Criterion<TriggerInstance> create() {
-            return NetherDescentCriterionTriggers.PLACE_FLOWER_NEAR_HORNET.get().createCriterion(new TriggerInstance(Optional.empty()));
+            return NetherDescentCriteriaTriggers.PLACE_FLOWER_NEAR_HORNET.get().createCriterion(new TriggerInstance(Optional.empty()));
         }
     }
 }

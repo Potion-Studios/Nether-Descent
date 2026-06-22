@@ -7,6 +7,7 @@ import net.minecraft.advancements.critereon.*;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
@@ -32,7 +33,7 @@ public class FungalBulbsBlockTrigger extends SimpleCriterionTrigger<FungalBulbsB
         );
 
         public static Criterion<FungalBulbsBlockTrigger.TriggerInstance> fungalBulbsHit(Optional<ContextAwarePredicate> projectile) {
-            return NetherDescentCriterionTriggers.FUNGAL_BULBS_BLOCK_HIT.get().createCriterion(new FungalBulbsBlockTrigger.TriggerInstance(Optional.empty(), projectile));
+            return NetherDescentCriteriaTriggers.FUNGAL_BULBS_BLOCK_HIT.get().createCriterion(new FungalBulbsBlockTrigger.TriggerInstance(Optional.empty(), projectile));
         }
 
         public boolean matches(LootContext lootContext) {

@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.potionstudios.netherdescent.advancements.critereon.NetherDescentCriterionTriggers;
+import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
 import org.jetbrains.annotations.NotNull;
 
 public class WailingBulbBlossomBlock extends Block {
@@ -41,7 +41,7 @@ public class WailingBulbBlossomBlock extends Block {
                         livingEntity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100, 0, false, false));
                         livingEntity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160, 0, false, false));
 						if (livingEntity instanceof ServerPlayer player)
-							NetherDescentCriterionTriggers.WAILING_INTERACTION.get().trigger(player, pos, livingEntity);
+							NetherDescentCriteriaTriggers.WAILING_INTERACTION.get().trigger(player, pos, livingEntity);
                         level.scheduleTick(pos, this, 100);
                     }
             }

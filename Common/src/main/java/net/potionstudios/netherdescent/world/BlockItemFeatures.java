@@ -8,7 +8,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.potionstudios.netherdescent.advancements.critereon.NetherDescentCriterionTriggers;
+import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
 import net.potionstudios.netherdescent.world.entity.animal.Hornet;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
@@ -43,7 +43,7 @@ public class BlockItemFeatures {
         if (!level.isClientSide() && entity instanceof ServerPlayer serverPlayer) {
             if (placed.is(BlockTags.FLOWERS))
                 if (!level.getEntitiesOfClass(Hornet.class, new AABB(pos).inflate(5.0)).isEmpty())
-                    NetherDescentCriterionTriggers.PLACE_FLOWER_NEAR_HORNET.get().trigger(serverPlayer);
+                    NetherDescentCriteriaTriggers.PLACE_FLOWER_NEAR_HORNET.get().trigger(serverPlayer);
         }
     }
 }

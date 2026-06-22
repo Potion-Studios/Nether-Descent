@@ -11,6 +11,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingBulbBlossomBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingGillsBlock;
 import org.jetbrains.annotations.NotNull;
@@ -39,39 +40,35 @@ public class WailingTrigger extends SimpleCriterionTrigger<WailingTrigger.Trigge
 		);
 
 		public boolean matches(ServerLevel level, BlockPos pos, LootContext entityContext) {
-			if (location.isPresent() && !location.get().matches(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5)) {
+			if (location.isPresent() && !location.get().matches(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5))
 				return false;
-			}
-			if (entity.isPresent() && !entity.get().matches(entityContext)) {
+			if (entity.isPresent() && !entity.get().matches(entityContext))
 				return false;
-			}
 			if (powered.isPresent()) {
 				BlockState state = level.getBlockState(pos);
-				if (state.hasProperty(WailingGillsBlock.POWER)) {
+				if (state.hasProperty(WailingGillsBlock.POWER))
 					return powered.get().matches(state.getValue(WailingGillsBlock.POWER));
-				}
-				if (state.hasProperty(WailingBulbBlossomBlock.ACTIVE)) {
+				if (state.hasProperty(WailingBulbBlossomBlock.ACTIVE))
 					return powered.get().matches(state.getValue(WailingBulbBlossomBlock.ACTIVE) ? 15 : 0);
-				}
 				return false;
 			}
 			return true;
 		}
 
 		public static Criterion<TriggerInstance> interactedWithBlock(Block block) {
-			return NetherDescentCriterionTriggers.WAILING_INTERACTION.get().createCriterion(
+			return NetherDescentCriteriaTriggers.WAILING_INTERACTION.get().createCriterion(
 					new TriggerInstance(Optional.empty(), Optional.of(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block)).build()), Optional.empty(), Optional.empty())
 			);
 		}
 
 		public static Criterion<TriggerInstance> interactedWithPoweredBlock(Block block, MinMaxBounds.Ints powered) {
-			return NetherDescentCriterionTriggers.WAILING_INTERACTION.get().createCriterion(
+			return NetherDescentCriteriaTriggers.WAILING_INTERACTION.get().createCriterion(
 					new TriggerInstance(Optional.empty(), Optional.of(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block)).build()), Optional.of(powered), Optional.empty())
 			);
 		}
 
 		public static Criterion<TriggerInstance> interactedWithPoweredBlockAndEntity(Block block, MinMaxBounds.Ints powered, EntityPredicate.Builder entity) {
-			return NetherDescentCriterionTriggers.WAILING_INTERACTION.get().createCriterion(
+			return NetherDescentCriteriaTriggers.WAILING_INTERACTION.get().createCriterion(
 					new TriggerInstance(Optional.empty(), Optional.of(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block)).build()), Optional.of(powered), Optional.of(EntityPredicate.wrap(entity.build())))
 			);
 		}

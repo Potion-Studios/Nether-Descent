@@ -1,13 +1,16 @@
-package net.potionstudios.netherdescent.advancements.critereon;
+package net.potionstudios.netherdescent.advancements;
 
 import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
+import net.potionstudios.netherdescent.advancements.critereon.FungalBulbsBlockTrigger;
+import net.potionstudios.netherdescent.advancements.critereon.PlaceFlowerNearHornetTrigger;
+import net.potionstudios.netherdescent.advancements.critereon.WailingTrigger;
 
 import java.util.function.Supplier;
 
-public class NetherDescentCriterionTriggers {
+public class NetherDescentCriteriaTriggers {
 
 	public static final Supplier<WailingTrigger> WAILING_INTERACTION = register("wailing_interaction", WailingTrigger::new);
 	public static final Supplier<FungalBulbsBlockTrigger> FUNGAL_BULBS_BLOCK_HIT = register("fungal_bulbs_hit", FungalBulbsBlockTrigger::new);
@@ -17,7 +20,7 @@ public class NetherDescentCriterionTriggers {
 		return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.TRIGGER_TYPES, id, supplier);
 	}
 
-	public static void criterionTriggers() {
-		NetherDescent.LOGGER.info("Registering Wayfinder Criterion Triggers");
+	public static void criteriaTriggers() {
+		NetherDescent.LOGGER.info("Registering Wayfinder Criteria Triggers");
 	}
 }
