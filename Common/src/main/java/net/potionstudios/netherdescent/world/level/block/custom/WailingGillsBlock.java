@@ -20,13 +20,13 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.phys.AABB;
 import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
@@ -85,80 +85,34 @@ public class WailingGillsBlock extends Block {
         super.createBlockStateDefinition(builder.add(POWER));
     }
 
-    @Override
-    protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        super.tick(state, level, pos, random);
+    public static void tryApplyWailingGillEffects(BlockState state, ServerLevel level, BlockPos pos) {
         int powered = state.getValue(WailingGillsBlock.POWER);
         double distance = -15.0 - powered;
 
-        AABB box = state.getShape(level, pos).bounds().expandTowards(0, -powered, 0).move(pos);
+        AABB box = state.getShape(level, pos).bounds().expandTowards(0, distance, 0).move(pos);
         Predicate<Entity> entityPredicate = entity -> entity instanceof LivingEntity livingEntity && entityChecks(level, pos, livingEntity, distance);
         List<Entity> entities = level.getEntities((Entity) null, box, entityPredicate);
         for (Entity entity : entities) {
             if (entity instanceof LivingEntity livingEntity) {
-                applyWailingGillsEffects(state, level, pos, livingEntity);
-            }
+                applyWailingGillEffects(level, pos, livingEntity, powered);            }
         }
-        level.scheduleTick(pos, this, TICK_DELAY);
-    }
-
-    @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-        super.randomTick(state, level, pos, random);
-
-    }
-
-//    @Override
-//    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-//        super.animateTick(state, level, pos, random);
-//        if (random.nextInt(3) == 1) {
-//            int powered = state.getValue(WailingGillsBlock.POWER);
-//            int columnHeight = 15 + powered;
-//            ParticleOptions particleData = powered > 0 ? NetherDescentParticles.GILL_LEVITATE_POWERED.get() : NetherDescentParticles.GILL_LEVITATE.get();
-//            BlockPos.MutableBlockPos checkPos = pos.mutable();
-//            for (int i = 1; i <= columnHeight; i++) {
-//                checkPos.setY(pos.getY() - i);
-//                BlockState checkState = level.getBlockState(checkPos);
-//                if (checkState.isFaceSturdy(level, checkPos, Direction.UP) || checkState.getBlock() instanceof WailingGillsBlock)
-//                    break;
-//                level.addParticle(particleData,
-//                        checkPos.getX() + 0.5 + random.nextDouble() - 0.5,
-//                        checkPos.getY(),
-//                        checkPos.getZ() + 0.5 + random.nextDouble() - 0.5,
-//                        (random.nextDouble() - 0.5) * 0.5, 1.2 + (powered * 0.9), (random.nextDouble() - 0.5) * 0.5);
-//            }
-//        }
-//    }
-
-    private static void applyWailingGillsEffects(BlockState state, ServerLevel serverLevel, BlockPos pos, LivingEntity entity) {
-
-        Holder<Enchantment> soulSpeed = serverLevel.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SOUL_SPEED);
-        for (ItemStack itemStack : entity.getArmorSlots())
-            if (EnchantmentHelper.getItemEnchantmentLevel(soulSpeed, itemStack) > 0)
-                return;
-
-
-        if (entity.isSpectator())
-            return;
-
-        int powered = state.getValue(WailingGillsBlock.POWER);
-        // We can safely apply effects here as we know we are stepping on the block.
-        applyEffects(serverLevel, pos, entity, powered);
-
-    }
-
-    @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
-        level.scheduleTick(pos, this, TICK_DELAY);
-        return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
     }
 
     private static boolean entityChecks(ServerLevel serverLevel, BlockPos pos, LivingEntity entity, double distance) {
+        Holder<Enchantment> soulSpeed = serverLevel.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SOUL_SPEED);
+        for (ItemStack itemStack : entity.getArmorSlots())
+            if (EnchantmentHelper.getItemEnchantmentLevel(soulSpeed, itemStack) > 0)
+                return false;
+
+
+        if (entity.isSpectator())
+            return false;
         int solidFloor = serverLevel.getMinBuildHeight();
         BlockPos.MutableBlockPos checkPos = pos.mutable();
+        ChunkAccess chunk = serverLevel.getChunk(checkPos);
         for (int i = 1; i <= Math.abs(distance); i++) {
             checkPos.setY(pos.getY() - i);
-            BlockState checkState = serverLevel.getBlockState(checkPos);
+            BlockState checkState = chunk.getBlockState(checkPos);
             if (checkState.isFaceSturdy(serverLevel, checkPos, Direction.UP) || checkState.getBlock() instanceof WailingGillsBlock) {
                 solidFloor = checkPos.getY();
                 break;
@@ -169,7 +123,7 @@ public class WailingGillsBlock extends Block {
 
     }
 
-    private static void applyEffects(ServerLevel serverLevel, BlockPos pos, LivingEntity entity, int powered) {
+    private static void applyWailingGillEffects(ServerLevel serverLevel, BlockPos pos, LivingEntity entity, int powered) {
         entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 6, powered, false, false));
         entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160, powered, false, false));
         if (entity instanceof ServerPlayer player)
