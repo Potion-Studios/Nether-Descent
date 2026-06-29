@@ -14,6 +14,7 @@ public class NetherDescentPoiTypes {
 
 	public static final ResourceKey<PoiType> HORNET_NEST = register("hornet_nest", NetherDescentBlocks.HORNET_NEST, 0, 1);
 	public static final ResourceKey<PoiType> BARTERER = register("barterer", NetherDescentBlocks.BARTERING_TABLE, 1, 1);
+	public static final ResourceKey<PoiType> WAILING_GILLS = register("barterer", NetherDescentBlocks.WAILING_GILLS, 1, 1);
 
 	private static ResourceKey<PoiType> register(String id, Supplier<? extends Block> block, int maxTickets, int validRange) {
 		PlatformHandler.PLATFORM_HANDLER.registerPOIType(id, block, maxTickets, validRange);
