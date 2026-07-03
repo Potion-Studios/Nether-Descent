@@ -1,0 +1,11 @@
+{
+  "biomes": [
+    "netherdescent:embur_bog",
+    "netherdescent:crimson_gardens",
+    "netherdescent:sythian_torrids",
+    "netherdescent:wailing_garth",
+    "netherdescent:arisian_undergrowth"
+  ],
+  "dimension": "minecraft:the_nether",
+  "weight": 10
+}

@@ -40,6 +40,7 @@ dependencies {
 
     modApi("com.github.glitchfiend:TerraBlender-fabric:$minecraftVersion-${providers.gradleProperty("terrablender_version").get()}")
     modCompileOnly("com.terraformersmc:biolith-fabric:${providers.gradleProperty("biolith_version").get()}")
+    modCompileOnly("maven.modrinth:lithostitched:${providers.gradleProperty("lithostitched_version").get()}-fabric-21.1")
     modApi("dev.corgitaco:Oh-The-Trees-Youll-Grow-fabric:$minecraftVersion-${providers.gradleProperty("ohthetreesyoullgrow_version").get()}")
     modApi("me.lucko:fabric-permissions-api:0.3.1")
 
@@ -73,5 +74,5 @@ publisher {
     setLoaders(ModLoader.FABRIC, ModLoader.QUILT)
     curseDepends.required.set(mutableListOf("fabric-api", "oh-the-trees-youll-grow"))
     modrinthDepends.required.set(mutableListOf("fabric-api", "oh-the-trees-youll-grow"))
-    curseDepends.optional.set(mutableListOf("terrablender-fabric", "biolith", "wthit"))
+    curseDepends.optional.set(mutableListOf("terrablender-fabric", "biolith", "lithostitched", "wthit"))
 }

@@ -1,5 +1,6 @@
 # 1.0.3
-- Fix Wailing Gills Skipping Pulling Entities once it finds one Spectator Entity or a entity below a solid block
+- Fix Wailing Gills Skipping Pulling Entities once it finds one Spectator Entity or an entity below a solid block
+- Add Support for Lithostitched (Support is still in early stages, expect some issues and missing features. Please report any bugs you encounter.)
 
 # 1.0.2
 - Code Cleanup

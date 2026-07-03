@@ -32,6 +32,11 @@ You must install **one** of the following worldgen libraries:
   - CurseForge: https://www.curseforge.com/minecraft/mc-mods/biolith
   - Modrinth: https://modrinth.com/mod/biolith
 
+- **Lithostitched** → Still in Testing Stages but is supported
+  - GitHub: https://github.com/Apollounknowndev/lithostitched
+  - CurseForge: https://www.curseforge.com/minecraft/mc-mods/lithostitched
+  - Modrinth: https://modrinth.com/mod/lithostitched
+
 #### Required Add-ons
 - **Oh The Trees You'll Grow**
   - GitHub: https://github.com/CorgiTaco/Oh-The-Trees-Youll-Grow
