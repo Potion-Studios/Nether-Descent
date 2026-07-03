@@ -22,26 +22,33 @@ import net.potionstudios.netherdescent.world.level.block.custom.WailingGillsBloc
 import java.util.List;
 
 public class WailingGillsBlockEntity extends BlockEntity {
-	public WailingGillsBlockEntity(BlockPos pos, BlockState blockState) {
+    private final AABB[] cachedBoxes = new AABB[16];
+    public WailingGillsBlockEntity(BlockPos pos, BlockState blockState) {
 		super(NetherDescentBlockEntityType.WAILING_GILLS.get(), pos, blockState);
+        this.cachedBoxes[0] = new AABB(pos.below()).expandTowards(0.0, -15, 0.0);
 	}
 
 	public static void serverTick(Level level, BlockPos pos, BlockState state, WailingGillsBlockEntity blockEntity) {
 		ServerLevel serverLevel = (ServerLevel) level;
-
 		if (serverLevel.getServer().getTickCount() % 5 == 0 && !level.getBlockState(pos.below()).isSolid()) {
 			int powered = state.getValue(WailingGillsBlock.POWER);
+            AABB searchArea = blockEntity.cachedBoxes[powered];
 
-            double distance = -15.0 - powered;
+            if (searchArea == null) {
+                double maxDistance = 15.0 + powered;
+                searchArea = new AABB(
+                        pos.getX(), pos.getY() - 1 - maxDistance, pos.getZ(),
+                        pos.getX() + 1, pos.getY(), pos.getZ() + 1
+                );
+                blockEntity.cachedBoxes[powered] = searchArea;
+            }
 
-			AABB aabb = new AABB(pos.below()).expandTowards(0.0, distance, 0.0);
-
-            List<LivingEntity> entities = serverLevel.getEntitiesOfClass(LivingEntity.class, aabb);
+            List<LivingEntity> entities = serverLevel.getEntitiesOfClass(LivingEntity.class, searchArea, LivingEntity::isAlive);
 
             if (entities.isEmpty()) return;
 
             int solid = level.getMinBuildHeight();
-            for (int i = 1; i <= Math.abs(distance); i++)
+            for (int i = 1; i <= 15 + powered; i++)
                 if (level.getBlockState(pos.below(i)).isSolid()) {
                     solid = pos.below(i).getY();
                     break;
@@ -49,7 +56,7 @@ public class WailingGillsBlockEntity extends BlockEntity {
 
             for (LivingEntity entity: entities) {
                 if (entity.isSpectator() || entity.getY() < solid)
-                    return;
+                    continue;
 
                 for (ItemStack itemStack: entity.getArmorSlots())
                     if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SOUL_SPEED, itemStack) > 0)

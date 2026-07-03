@@ -1,3 +1,6 @@
+# 1.0.3
+- Fix Wailing Gills Skipping Pulling Entities once it finds one Spectator Entity or a entity below a solid block
+
 # 1.0.2
 - Code Cleanup
 - First 1.20.1 Release
