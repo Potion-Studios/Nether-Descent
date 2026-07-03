@@ -9,7 +9,6 @@ plugins {
     id("com.gradleup.shadow") version "9.4.3" apply false
     id("com.hypherionmc.modutils.modpublisher") version "2.+"
     java
-    idea
     `maven-publish`
 }
 
