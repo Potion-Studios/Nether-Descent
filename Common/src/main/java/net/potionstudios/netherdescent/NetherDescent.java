@@ -73,7 +73,6 @@ public class NetherDescent {
      * Ran later in the initialization process to set up common things.
      */
     public static void commonSetup() {
-        WorldGenerationConfig.init();
         MobSpawnConfig.reload();
     }
 
