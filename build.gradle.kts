@@ -6,7 +6,7 @@ import org.gradle.api.tasks.bundling.AbstractArchiveTask
 plugins {
     id("architectury-plugin") version "3.5-SNAPSHOT"
     id("dev.architectury.loom") version "1.17-SNAPSHOT" apply false
-    id("com.gradleup.shadow") version "9.4.2" apply false
+    id("com.gradleup.shadow") version "9.4.3" apply false
     id("com.hypherionmc.modutils.modpublisher") version "2.+"
     java
     idea
