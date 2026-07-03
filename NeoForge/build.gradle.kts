@@ -86,5 +86,5 @@ publisher {
     setLoaders(ModLoader.NEOFORGE)
     curseDepends.required.set(mutableListOf("oh-the-trees-youll-grow"))
     modrinthDepends.required.set(mutableListOf("oh-the-trees-youll-grow"))
-    curseDepends.optional.set(mutableListOf("terrablender-neoforge", "biolith", "wthit-forge"))
+    curseDepends.optional.set(mutableListOf("terrablender-neoforge", "biolith", "lithostitched", "wthit-forge"))
 }
