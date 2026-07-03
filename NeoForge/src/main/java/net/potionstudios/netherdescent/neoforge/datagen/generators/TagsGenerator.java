@@ -135,7 +135,7 @@ public class TagsGenerator {
             SoundType type = object.defaultBlockState().getSoundType();
 			if (type == SoundType.STONE || type == SoundType.DEEPSLATE || type == SoundType.NETHER_BRICKS || type == SoundType.NYLIUM || object instanceof DropExperienceBlock || type == SoundType.COPPER_GRATE || type == SoundType.CHAIN || type == SoundType.METAL || type == SoundType.NETHERRACK)
 				tag(BlockTags.MINEABLE_WITH_PICKAXE).add(object);
-			else if (type == SoundType.WOOD || type == SoundType.SWEET_BERRY_BUSH || type == SoundType.GLOW_LICHEN || type == SoundType.FUNGUS || type == SoundType.SCAFFOLDING)
+			else if (type == SoundType.WOOD || type == SoundType.SWEET_BERRY_BUSH || type == SoundType.GLOW_LICHEN || type == SoundType.FUNGUS || type == SoundType.SCAFFOLDING || type == SoundType.NETHER_WOOD)
 				tag(BlockTags.MINEABLE_WITH_AXE).add(object);
 			else if (object instanceof LeavesBlock || type == SoundType.WART_BLOCK)
 				tag(BlockTags.MINEABLE_WITH_HOE).add(object);
