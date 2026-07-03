@@ -14,6 +14,7 @@ dependencies {
 
     modCompileOnly("com.github.glitchfiend:TerraBlender-common:$minecraftVersion-${providers.gradleProperty("terrablender_version").get()}")
     modCompileOnly("com.terraformersmc:biolith-fabric:${providers.gradleProperty("biolith_version").get()}")
+    modCompileOnly("maven.modrinth:lithostitched:${providers.gradleProperty("lithostitched_version").get()}-fabric-21.1")
     modImplementation("dev.corgitaco:Oh-The-Trees-Youll-Grow-common:$minecraftVersion-${providers.gradleProperty("ohthetreesyoullgrow_version").get()}")
 
     modCompileOnly("mcp.mobius.waila:wthit-api:fabric-${providers.gradleProperty("WTHIT").get()}")

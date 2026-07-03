@@ -28,21 +28,21 @@ public final class WorldGenerationConfig {
         INSTANCE = cfg;
     }
 
-    public Map<String, Boolean> biomes = new LinkedHashMap<>();
+    public ConfigUtils.CommentValue<Map<String, Boolean>> biomes = ConfigUtils.CommentValue.of("Only for Terrablender and Biolith", new LinkedHashMap<>());
     public ConfigUtils.CommentValue<Integer> regionWeight = ConfigUtils.CommentValue.of("Only used when using with Terrablender", DEFAULT_REGION_WEIGHT);
     public boolean blue_fortress = true;
 
     public boolean isEnabled(ResourceKey<Biome> key) {
         String id = key.location().toString().replace("netherdescent:", "");
-        return biomes.getOrDefault(id, true);
+        return biomes.value().getOrDefault(id, true);
     }
 
     private boolean ensureAllKnownBiomesPresent() {
         boolean changed = false;
         for (ResourceKey<Biome> key : NetherDescentBiomes.BIOME_FACTORIES.keySet()) {
             String id = key.location().toString().replace("netherdescent:", "");
-            if (!biomes.containsKey(id)) {
-                biomes.put(id, true);
+            if (!biomes.value().containsKey(id)) {
+                biomes.value().put(id, true);
                 changed = true;
             }
         }
