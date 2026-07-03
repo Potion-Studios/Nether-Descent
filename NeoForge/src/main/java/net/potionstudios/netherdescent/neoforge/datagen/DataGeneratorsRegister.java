@@ -58,7 +58,8 @@ class DataGeneratorsRegister {
 	    generator.addProvider(event.includeClient(), new SoundDefinitionsGenerator(output, existingFileHelper));
         generator.addProvider(event.includeClient(), new ParticleDescriptionGenerator(output, existingFileHelper));
         generator.addProvider(event.includeServer(), new AdvancementProvider(output, lookupProvider, existingFileHelper, ImmutableList.of(new AdvancementGenerator())));
-    }
+        generator.addProvider(event.includeServer(), new LithostitchedSurfaceRuleGenerator(output));
+	}
 
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
             .add(Registries.CONFIGURED_FEATURE, configuredFeatureHolderGetter -> ConfiguredFeaturesUtil.CONFIGURED_FEATURES_FACTORIES.forEach(((biomeResourceKey, biomeFactory) -> configuredFeatureHolderGetter.register(biomeResourceKey, biomeFactory.generate(configuredFeatureHolderGetter)))))
@@ -71,23 +72,34 @@ class DataGeneratorsRegister {
 		    .add(Registries.DAMAGE_TYPE, pContext -> NetherDescentDamageTypes.DAMAGE_TYPE_FACTORIES.forEach(((damageTypeResourceKey, damageTypeFactory) -> pContext.register(damageTypeResourceKey, damageTypeFactory.generate(pContext)))))
 		    .add(LithostitchedRegistries.BIOME_INJECTOR, pContext -> {
 			    HolderGetter<Biome> biomeLookup = pContext.lookup(Registries.BIOME);
-			    List<Holder.Reference<Biome>> allBiomeHolders = NetherDescentBiomes.BIOME_FACTORIES.keySet().stream()
-					    .map(biomeLookup::getOrThrow)
+			    List<Pair<Climate.ParameterPoint, Holder<Biome>>> points = NetherDescentBiomes.BIOME_FACTORIES.entrySet().stream()
+					    .map(entry -> Pair.of(
+							    entry.getValue().parameterPoint(),
+							    (Holder<Biome>) biomeLookup.getOrThrow(entry.getKey())
+					    ))
 					    .toList();
-				pContext.register(NetherDescent.key(LithostitchedRegistries.BIOME_INJECTOR, "nether_descent"),
-						new AddPoints(Optional.empty(), LevelStem.NETHER, 10, new Climate.ParameterList<>(List.of(Pair.of(NetherDescentBiomes.BIOME_FACTORIES.get(NetherDescentBiomes.ARISIAN_UNDERGROWTH).parameterPoint(), biomeLookup.getOrThrow(NetherDescentBiomes.ARISIAN_UNDERGROWTH))))));
+			    pContext.register(
+					    NetherDescent.key(LithostitchedRegistries.BIOME_INJECTOR, "nether_descent"),
+					    new AddPoints(
+							    Optional.empty(),
+							    LevelStem.NETHER,
+							    10,
+							    new Climate.ParameterList<>(points)
+					    )
+			    );
 		    })
 		    .add(LithostitchedRegistries.REGION, pContext -> {
 			    HolderGetter<Biome> biomeLookup = pContext.lookup(Registries.BIOME);
-			    List<Holder.Reference<Biome>> allBiomeHolders = NetherDescentBiomes.BIOME_FACTORIES.keySet().stream()
+			    List<Holder<Biome>> enabledBiomeHolders = NetherDescentBiomes.BIOME_FACTORIES.keySet().stream()
 					    .map(biomeLookup::getOrThrow)
+					    .map(holder -> (Holder<Biome>) holder)
 					    .toList();
 			    pContext.register(
 					    NetherDescent.key(LithostitchedRegistries.REGION, "nether_descent"),
 					    Region.create(
 							    LevelStem.NETHER,
-							    10,
-							    HolderSet.direct(allBiomeHolders)
+								    10,
+							    HolderSet.direct(enabledBiomeHolders)
 					    )
 			    );
 		    });
