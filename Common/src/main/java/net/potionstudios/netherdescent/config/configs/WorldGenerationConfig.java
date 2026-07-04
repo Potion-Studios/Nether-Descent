@@ -28,12 +28,12 @@ public final class WorldGenerationConfig {
     public boolean blue_fortress = true;
 
     public boolean isEnabled(ResourceKey<Biome> key) {
-        return biomes.value().getOrDefault(key.location(), true);
+        return biomes.value().getOrDefault(key.identifier(), true);
     }
 
     private static @NotNull Map<Identifier, Boolean> getDefaultBiomes() {
         return NetherDescentBiomes.BIOME_FACTORIES.keySet().stream()
-                .map(ResourceKey::location)
+                .map(ResourceKey::identifier)
                 .sorted(Comparator.comparing(Identifier::toString))
                 .collect(Collectors.toMap(loc -> loc, loc -> true, (a, b) -> a, LinkedHashMap::new));
     }
