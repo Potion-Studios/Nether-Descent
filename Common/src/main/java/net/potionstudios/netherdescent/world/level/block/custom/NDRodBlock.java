@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -43,7 +44,7 @@ public class NDRodBlock extends EndRodBlock {
     private void trySpawnBlaze(Level level, BlockPos pos) {
         BlockPattern.BlockPatternMatch blockPatternMatch = getOrCreatePendoriteBlaze().find(level, pos);
         if (blockPatternMatch != null) {
-            PendoriteBlaze pendoriteBlaze = NetherDescentEntityType.PENDORITE_BLAZE.get().create(level);
+            PendoriteBlaze pendoriteBlaze = NetherDescentEntityType.PENDORITE_BLAZE.get().create(level, EntitySpawnReason.MOB_SUMMONED);
             if (pendoriteBlaze != null) {
                 pendoriteBlaze.setPlayerCreated(true);
                 spawnBlazeInWorld(level, blockPatternMatch, pendoriteBlaze, pos);
@@ -53,7 +54,7 @@ public class NDRodBlock extends EndRodBlock {
 
     private static void spawnBlazeInWorld(Level level, BlockPattern.BlockPatternMatch patternMatch, Entity blaze, BlockPos pos) {
         clearPatternBlocks(level, patternMatch);
-        blaze.moveTo(pos.getX() + 0.5, pos.getY() + 0.05, pos.getZ() + 0.5, 0.0F, 0.0F);
+        blaze.snapTo(pos.getX() + 0.5, pos.getY() + 0.05, pos.getZ() + 0.5, 0.0F, 0.0F);
         level.addFreshEntity(blaze);
 
         for (ServerPlayer serverPlayer : level.getEntitiesOfClass(ServerPlayer.class, blaze.getBoundingBox().inflate(5.0)))
@@ -75,7 +76,7 @@ public class NDRodBlock extends EndRodBlock {
         for (int i = 0; i < patternMatch.getWidth(); i++) {
             for (int j = 0; j < patternMatch.getHeight(); j++) {
                 BlockInWorld blockInWorld = patternMatch.getBlock(i, j, 0);
-                level.blockUpdated(blockInWorld.getPos(), Blocks.AIR);
+                level.updateNeighborsAt(blockInWorld.getPos(), Blocks.AIR);
             }
         }
     }

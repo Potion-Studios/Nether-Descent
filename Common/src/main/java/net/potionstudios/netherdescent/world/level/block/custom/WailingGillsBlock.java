@@ -15,10 +15,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.redstone.Orientation;
 import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
 import net.potionstudios.netherdescent.world.level.block.entity.WailingGillsBlockEntity;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 public class WailingGillsBlock extends BaseEntityBlock {
 	private static final MapCodec<WailingGillsBlock> CODEC = simpleCodec(WailingGillsBlock::new);
@@ -29,50 +29,50 @@ public class WailingGillsBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
+	protected @NonNull MapCodec<? extends BaseEntityBlock> codec() {
 		return CODEC;
 	}
 
     @Override
-    protected int getSignal(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+    protected int getSignal(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull Direction direction) {
         return state.getValue(POWER);
     }
 
     @Override
-    protected void onPlace(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean movedByPiston) {
+    protected void onPlace(@NonNull BlockState state, Level level, @NonNull BlockPos pos, @NonNull BlockState oldState, boolean movedByPiston) {
         if (!level.isClientSide()) refreshPower(level, pos, state);
         super.onPlace(state, level, pos, oldState, movedByPiston);
     }
 
     @Override
-    protected void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block neighborBlock, @NotNull BlockPos neighborPos, boolean movedByPiston) {
+    protected void neighborChanged(@NonNull BlockState state, Level level, @NonNull BlockPos pos, @NonNull Block block, @org.jspecify.annotations.Nullable Orientation orientation, boolean movedByPiston) {
         if (!level.isClientSide()) refreshPower(level, pos, state);
-        super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
+        super.neighborChanged(state, level, pos, block, orientation, movedByPiston);
     }
 
-    private void refreshPower(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state) {
+    private void refreshPower(Level level, BlockPos pos, BlockState state) {
         int power = level.getBestNeighborSignal(pos);
         if (state.getValue(POWER) != power)
             level.setBlock(pos, state.setValue(POWER, power), 3);
     }
 
     @Override
-	public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+	public BlockEntity newBlockEntity(@NonNull BlockPos pos, @NonNull BlockState state) {
 		return new WailingGillsBlockEntity(pos, state);
 	}
 
 	@Override
-	protected @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
+	protected @NonNull RenderShape getRenderShape(@NonNull BlockState state) {
 		return RenderShape.MODEL;
 	}
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder.add(POWER));
     }
 
     @Override
-	public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> blockEntityType) {
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NonNull Level level, @NonNull BlockState state, @NonNull BlockEntityType<T> blockEntityType) {
 		return createTickerHelper(level, blockEntityType, NetherDescentBlockEntityType.WAILING_GILLS.get());
 	}
 
