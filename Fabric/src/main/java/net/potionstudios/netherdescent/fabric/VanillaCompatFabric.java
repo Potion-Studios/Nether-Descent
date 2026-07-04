@@ -37,7 +37,7 @@ public class VanillaCompatFabric {
             if (stack.is(Items.BONE_MEAL) && VanillaBonemealHandler.boneMealEventHandler(world, hitResult.getBlockPos(), world.getBlockState(hitResult.getBlockPos()), stack)) {
                 if (world.isClientSide())
                     BoneMealItem.addGrowthParticles(world, hitResult.getBlockPos(), 0);
-                return InteractionResult.sidedSuccess(world.isClientSide());
+                return InteractionResult.SUCCESS_SERVER;
             }
 
             if (!(stack.getItem() instanceof BlockItem blockItem))

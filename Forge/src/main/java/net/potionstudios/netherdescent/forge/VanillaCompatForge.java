@@ -5,13 +5,13 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.util.Result;
 import net.minecraftforge.event.brewing.BrewingRecipeRegisterEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.potionstudios.netherdescent.event.ServerEventsHandler;
 import net.potionstudios.netherdescent.util.VanillaBonemealHandler;
@@ -88,7 +88,7 @@ public class VanillaCompatForge {
      */
     private static void onBoneMealUse(final BonemealEvent event) {
         if (VanillaBonemealHandler.boneMealEventHandler(event.getLevel(), event.getPos(), event.getBlock(), event.getStack()))
-            event.setResult(Event.Result.ALLOW);
+            event.setResult(Result.ALLOW);
     }
 
     /**

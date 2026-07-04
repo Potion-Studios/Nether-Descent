@@ -39,6 +39,6 @@ public class VanillaBonemealHandler {
     }
 
     private static Optional<? extends Holder<ConfiguredFeature<?, ?>>> getFeature(LevelReader level) {
-        return level.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).getHolder(NetherDescentTreeFeatures.CRIMSON_FUNGUS_PLANTED);
+        return level.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(NetherDescentTreeFeatures.CRIMSON_FUNGUS_PLANTED);
     }
 }
