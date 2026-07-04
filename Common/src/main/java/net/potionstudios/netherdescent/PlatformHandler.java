@@ -5,16 +5,13 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.server.permissions.Permissions;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import org.jetbrains.annotations.NotNull;
@@ -46,29 +43,8 @@ public interface PlatformHandler {
      * @return True if the player has the permission, false otherwise
      */
     default boolean hasPermission(@NotNull CommandSourceStack sourceStack, @NotNull String permission) {
-        return sourceStack.hasPermission(4);
+        return sourceStack.permissions().hasPermission(Permissions.COMMANDS_ADMIN);
     }
-
-	/**
-	 * Registers a block entity with the specified parameters
-	 * @see BlockEntityType
-	 * @param key The id/name of the block entity
-	 * @param builder The builder for the block entity
-	 * @return Supplier of the BlockEntityType
-	 */
-	<T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntity(String key, Supplier<BlockEntityType.Builder<T>> builder);
-
-	/**
-	 * Creates a spawn egg with the specified parameters
-	 * @see SpawnEggItem
-	 * @param entity The entity to be spawned from the spawn egg
-	 * @param backgroundColor The background color of the spawn egg
-	 * @param highlightColor The highlight color of the spawn egg
-	 * @return Supplier of the SpawnEggItem
-	 */
-	default <T extends Mob> Supplier<SpawnEggItem> createSpawnEgg(Supplier<EntityType<T>> entity, int backgroundColor, int highlightColor) {
-		return () -> new SpawnEggItem(entity.get(), backgroundColor, highlightColor, new Item.Properties());
-	}
 
 	/**
 	 * Registers a potted block with the specified block
