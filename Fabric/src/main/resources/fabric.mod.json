@@ -32,16 +32,16 @@
   ],
   "depends": {
     "fabric": "*",
-    "minecraft": ">=1.21.1",
+    "minecraft": ">=26.1",
     "ohthetreesyoullgrow": ">=5.3.2"
   },
   "recommends": {
-    "terrablender": ">=4.1.0.0",
-    "biolith": ">=3.0.10",
-    "lithostitched": ">=1.7.9"
+    "terrablender": ">=26.1.2.0.2",
+    "biolith": ">=3.6.0-alpha.9",
+    "lithostitched": ">=1.7.12"
   },
   "suggests": {
-    "WTHIT": ">=8.15.0",
+    "WTHIT": ">=19.0.1",
     "fabric-permissions-api-v0": "*"
   },
   "custom": {

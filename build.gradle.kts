@@ -5,7 +5,7 @@ import org.gradle.api.tasks.bundling.AbstractArchiveTask
 
 plugins {
     id("architectury-plugin") version "3.5-SNAPSHOT"
-    id("dev.architectury.loom") version "1.17-SNAPSHOT" apply false
+    id("dev.architectury.loom-no-remap") version "1.17-SNAPSHOT" apply false
     id("com.gradleup.shadow") version "9.4.3" apply false
     id("com.hypherionmc.modutils.modpublisher") version "2.+"
     java
@@ -21,7 +21,7 @@ allprojects {
 }
 
 subprojects {
-    pluginManager.apply("dev.architectury.loom")
+    pluginManager.apply("dev.architectury.loom-no-remap")
     pluginManager.apply("architectury-plugin")
     pluginManager.apply("maven-publish")
     pluginManager.apply("com.hypherionmc.modutils.modpublisher")
@@ -32,13 +32,9 @@ subprojects {
         archiveVersion.set("${project.version}-mc$minecraftVersion")
     }
 
-    val loom = project.extensions.getByName<LoomGradleExtensionAPI>("loom")
-    loom.silentMojangMappingsLicense()
-
     repositories {
         mavenCentral()
         mavenLocal()
-        maven("https://maven.parchmentmc.org")
         maven("https://maven.fabricmc.net/")
         maven("https://maven.minecraftforge.net/")
         maven("https://maven.neoforged.net/releases/")
@@ -57,12 +53,7 @@ subprojects {
     @Suppress("UnstableApiUsage")
     dependencies {
         "minecraft"("com.mojang:minecraft:$minecraftVersion")
-        "mappings"(loom.layered{
-            officialMojangMappings()
-            parchment("org.parchmentmc.data:parchment-$minecraftVersion:${providers.gradleProperty("parchment").get()}@zip")
-        })
 
-        compileOnly("org.jetbrains:annotations:26.1.0")
         compileOnly("com.google.auto.service:auto-service:1.1.1")
         annotationProcessor("com.google.auto.service:auto-service:1.1.1")
     }
@@ -70,12 +61,12 @@ subprojects {
     java {
         withSourcesJar()
 
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_25
+        targetCompatibility = JavaVersion.VERSION_25
     }
 
     tasks.withType<JavaCompile>().configureEach {
-        options.release.set(21)
+        options.release.set(25)
     }
 
     publishing {
@@ -108,14 +99,14 @@ subprojects {
                 github(providers.gradleProperty("github_token").orNull)
             }
             displayName.set(base.archivesName.get() + "-${project.version}-mc$minecraftVersion")
-            artifact.set(project.tasks.getByName("remapJar"))
+            artifact.set(project.provider { project.tasks.named("shadowJar").get() })
             projectVersion.set(project.version.toString() + "-${project.name}-mc$minecraftVersion")
             changelog.set(projectDir.toPath().parent.resolve("CHANGELOG.md").toFile().readLines().take(100).joinToString("\n"))
             curseID.set("1357097")
             modrinthID.set("OMC5QQv5")
             githubRepo.set("https://github.com/Potion-Studios/Nether-Descent")
             setReleaseType(ReleaseType.RELEASE)
-            setGameVersions(minecraftVersion)
+            setGameVersions(minecraftVersion, "26.1.1", "26.1")
             setCurseEnvironment(CurseEnvironment.BOTH)
             setJavaVersions(JavaVersion.VERSION_21, JavaVersion.VERSION_22, JavaVersion.VERSION_25)
             modrinthDepends.optional.set(mutableListOf("terrablender", "biolith", "lithostitched", "wthit"))

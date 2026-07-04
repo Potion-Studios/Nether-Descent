@@ -12,52 +12,45 @@ architectury {
 val minecraftVersion = providers.gradleProperty("minecraft_version").get()
 
 configurations {
-    create("common")
-    "common" {
-        isCanBeResolved = true
-        isCanBeConsumed = false
-    }
-    create("shadowBundle")
-    compileClasspath.get().extendsFrom(configurations["common"])
-    runtimeClasspath.get().extendsFrom(configurations["common"])
-    getByName("developmentNeoForge").extendsFrom(configurations["common"])
-    "shadowBundle" {
-        isCanBeResolved = true
-        isCanBeConsumed = false
-    }
+    val common = register("common")
+    register("shadowCommon")
+    compileClasspath.get().extendsFrom(common.get())
+    runtimeClasspath.get().extendsFrom(common.get())
+    named("developmentNeoForge") { extendsFrom(common.get()) }
 }
 
 loom {
     accessWidenerPath.set(project(":Common").loom.accessWidenerPath)
 
     runs.create("datagen") {
-        data()
+        clientData()
         programArguments.addAll(
             "--all", "--mod", "netherdescent",
             "--output", project(":Common").file("src/main/generated/resources").absolutePath,
             "--existing", project(":Common").file("src/main/resources").absolutePath
         )
     }
+
+    neoForge.convertAccessWideners(tasks.shadowJar, "netherdescent.accessWidener")
 }
 
 dependencies {
     neoForge("net.neoforged:neoforge:${providers.gradleProperty("neoforge_version").get()}")
 
-    "common"(project(":Common", "namedElements")) { isTransitive = false }
-    "shadowBundle"(project(":Common", "transformProductionNeoForge"))
+    "common"(project(":Common")) { isTransitive = false }
+    "shadowCommon"(project(":Common", "transformProductionNeoForge"))
 
-    modLocalRuntime("me.djtheredstoner:DevAuth-neoforge:${providers.gradleProperty("devauth_version").get()}")
+    localRuntime("me.djtheredstoner:DevAuth-neoforge:${providers.gradleProperty("devauth_version").get()}")
 
-    modCompileOnly("com.github.glitchfiend:TerraBlender-neoforge:$minecraftVersion-${providers.gradleProperty("terrablender_version").get()}")
-    modCompileOnly("com.terraformersmc:biolith-neoforge:${providers.gradleProperty("biolith_version").get()}")
-    modApi("maven.modrinth:lithostitched:${providers.gradleProperty("lithostitched_version").get()}-neoforge-21.1")
-    modApi("dev.corgitaco:Oh-The-Trees-Youll-Grow-neoforge:$minecraftVersion-${providers.gradleProperty("ohthetreesyoullgrow_version").get()}")
+    compileOnly("com.github.glitchfiend:TerraBlender-neoforge:$minecraftVersion-${providers.gradleProperty("terrablender_version").get()}")
+    compileOnly("com.terraformersmc:biolith-neoforge:${providers.gradleProperty("biolith_version").get()}")
+    api("maven.modrinth:lithostitched:${providers.gradleProperty("lithostitched_version").get()}-neoforge-26.1")
+    api("dev.corgitaco.ohthetreesyoullgrow:ohthetreesyoullgrow-neoforge-$minecraftVersion:${providers.gradleProperty("ohthetreesyoullgrow_version").get()}")
 
-    modLocalRuntime("mcp.mobius.waila:wthit:neo-${providers.gradleProperty("WTHIT").get()}")
-    modLocalRuntime("lol.bai:badpackets:neo-${providers.gradleProperty("badPackets").get()}")
+    localRuntime("mcp.mobius.waila:wthit:neo-${providers.gradleProperty("WTHIT").get()}")
+    localRuntime("lol.bai:badpackets:neo-${providers.gradleProperty("badPackets").get()}")
 
-    modLocalRuntime("com.github.Jab125.architectury-data-generation-fix:architectury-data-generation-fix-neoforge:21.0.3")
-    modLocalRuntime("maven.modrinth:worldedit:7.3.8")
+    localRuntime("maven.modrinth:worldedit:7.4.4")
 }
 
 tasks {
@@ -69,16 +62,14 @@ tasks {
         }
     }
 
-    shadowJar {
-        exclude("architectury.common.json", "net/potionstudios/netherdescent/neoforge/datagen/**", ".cache/**")
-        configurations = listOf(project.configurations.getByName("shadowBundle"))
-        archiveClassifier.set("dev-shadow")
-    }
+    jar.get().archiveClassifier.set("raw")
 
-    remapJar {
-        inputFile.set(shadowJar.get().archiveFile)
-        dependsOn(shadowJar)
-        atAccessWideners.add("netherdescent.accesswidener")
+    shadowJar {
+        dependsOn(jar)
+        from(zipTree(jar.get().archiveFile))
+        exclude("architectury.common.json", "net/potionstudios/netherdescent/neoforge/datagen/**", ".cache/**")
+        configurations = listOf(project.configurations.getByName("shadowCommon"))
+        archiveClassifier.set(null)
     }
 }
 
