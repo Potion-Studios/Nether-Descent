@@ -3,18 +3,6 @@
   "dimension": "minecraft:the_nether",
   "points": [
     {
-      "biome": "netherdescent:arisian_undergrowth",
-      "parameters": {
-        "continentalness": 0.0,
-        "depth": 0.0,
-        "erosion": 0.0,
-        "humidity": 0.4,
-        "offset": 0.375,
-        "temperature": 0.0,
-        "weirdness": 0.0
-      }
-    },
-    {
       "biome": "netherdescent:crimson_gardens",
       "parameters": {
         "continentalness": 0.0,
@@ -23,18 +11,6 @@
         "humidity": 0.0,
         "offset": 0.0,
         "temperature": 0.3,
-        "weirdness": 0.0
-      }
-    },
-    {
-      "biome": "netherdescent:embur_bog",
-      "parameters": {
-        "continentalness": 0.0,
-        "depth": 0.0,
-        "erosion": 0.0,
-        "humidity": 0.0,
-        "offset": 0.0,
-        "temperature": 0.5,
         "weirdness": 0.0
       }
     },
@@ -59,6 +35,30 @@
         "humidity": 0.0,
         "offset": 0.175,
         "temperature": -0.4,
+        "weirdness": 0.0
+      }
+    },
+    {
+      "biome": "netherdescent:embur_bog",
+      "parameters": {
+        "continentalness": 0.0,
+        "depth": 0.0,
+        "erosion": 0.0,
+        "humidity": 0.0,
+        "offset": 0.0,
+        "temperature": 0.5,
+        "weirdness": 0.0
+      }
+    },
+    {
+      "biome": "netherdescent:arisian_undergrowth",
+      "parameters": {
+        "continentalness": 0.0,
+        "depth": 0.0,
+        "erosion": 0.0,
+        "humidity": 0.4,
+        "offset": 0.375,
+        "temperature": 0.0,
         "weirdness": 0.0
       }
     }

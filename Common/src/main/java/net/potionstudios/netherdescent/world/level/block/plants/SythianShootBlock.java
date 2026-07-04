@@ -78,7 +78,7 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
         if (!state.canSurvive(level, pos))
             return Blocks.AIR.defaultBlockState();
         else {
-            if ((direction == Direction.UP || direction == Direction.DOWN) && neighborState.is(NetherDescentBlocks.SYTHIAN_STALK.getBlock()))
+            if ((direction == Direction.UP || direction == Direction.DOWN) && neighborState.is(NetherDescentBlocks.SYTHIAN_STALK.get()))
                 level.setBlock(pos, NetherDescentBlocks.SYTHIAN_STALK.getBlockState().setValue(SythianStalkBlock.HANGING, state.getValue(HANGING)), 2);
 
             return super.updateShape(state, direction, neighborState, level, pos, neighborPos);

@@ -71,7 +71,7 @@ class BlockLootGenerator extends BlockLootSubProvider {
             else dropSelf(block);
         });
         dropSelf(NetherDescentBlocks.ARISIAN_DANDELIONS.get());
-        dropSelf(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock());
+        dropSelf(NetherDescentBlocks.ARISIAN_BLOSSOM.get());
         dropOther(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), NetherDescentBlocks.SYTHIAN_SOIL.get());
         add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get(), (arg2) -> this.createSilkTouchDispatchTable(arg2, this.applyExplosionDecay(arg2, LootItem.lootTableItem(Items.GOLD_NUGGET).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE))))));
         add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get(), (arg) -> this.createOreDrop(arg, Items.QUARTZ));
@@ -90,7 +90,7 @@ class BlockLootGenerator extends BlockLootSubProvider {
                     ));
         add(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), createMossyCarpetBlockDrops(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()));
         add(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), createMossyCarpetBlockDrops(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()));
-        add(NetherDescentBlocks.ARISIAN_LEAVES.get(), createLeavesDrops(NetherDescentBlocks.ARISIAN_LEAVES.get(), NetherDescentBlocks.ARISIAN.growerItem().getBlock(), NORMAL_LEAVES_SAPLING_CHANCES));
+        add(NetherDescentBlocks.ARISIAN_LEAVES.get(), createLeavesDrops(NetherDescentBlocks.ARISIAN_LEAVES.get(), NetherDescentBlocks.ARISIAN.growerItem().get(), NORMAL_LEAVES_SAPLING_CHANCES));
     }
 
     private LootTable.Builder createMossyCarpetBlockDrops(Block block) {

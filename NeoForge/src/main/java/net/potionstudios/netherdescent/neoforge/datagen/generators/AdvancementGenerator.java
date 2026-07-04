@@ -71,7 +71,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                 .parent(arisian_undergrowth)
                 .requirements(AdvancementRequirements.Strategy.OR)
                 .addCriterion("step_on_arisian_blossom", PlayerTrigger.TriggerInstance.located(EntityPredicate.Builder.entity().steppingOn(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(NetherDescentBlocks.ARISIAN_LEAVES.get())))))
-                .addCriterion("step_on_arisian_leaves", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(NetherDescentBlocks.ARISIAN_BLOSSOM.getBlock()))))
+                .addCriterion("step_on_arisian_leaves", PlayerTrigger.TriggerInstance.located(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(NetherDescentBlocks.ARISIAN_BLOSSOM.get()))))
                 .display(
                         NetherDescentBlocks.ARISIAN_LEAVES.get(),
                         translateAble("step_on_arisian_leaves_blossom.title"),

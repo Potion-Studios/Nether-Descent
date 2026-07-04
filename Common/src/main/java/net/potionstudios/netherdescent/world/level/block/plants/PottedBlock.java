@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
-public record PottedBlock(Supplier<? extends Block> block, Supplier<? extends Block> pottedBlock) {
+public record PottedBlock(Supplier<? extends Block> block, Supplier<? extends Block> pottedBlock) implements Supplier<Block> {
     public PottedBlock(@NotNull Supplier<? extends Block> block, @NotNull Supplier<? extends Block> pottedBlock) {
         this.block = block;
         this.pottedBlock = pottedBlock;
@@ -17,10 +17,6 @@ public record PottedBlock(Supplier<? extends Block> block, Supplier<? extends Bl
 
     public PottedBlock(String id, @NotNull Supplier<? extends Block> block) {
         this(block, NetherDescentBlocks.registerBlock("potted_" + id, PlatformHandler.PLATFORM_HANDLER.createPottedBlock(block)));
-    }
-
-    public Block getBlock() {
-        return block.get();
     }
 
     public Item getItem() {
@@ -33,5 +29,10 @@ public record PottedBlock(Supplier<? extends Block> block, Supplier<? extends Bl
 
     public BlockState getBlockState() {
         return block.get().defaultBlockState();
+    }
+
+    @Override
+    public Block get() {
+        return block.get();
     }
 }

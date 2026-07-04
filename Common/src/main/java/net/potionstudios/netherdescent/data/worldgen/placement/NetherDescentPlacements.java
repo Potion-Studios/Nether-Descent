@@ -68,7 +68,7 @@ public class NetherDescentPlacements {
     public static final ResourceKey<PlacedFeature> SYTHIAN_STALKS = PlacedFeaturesUtil.createPlacedFeature("sythian_stalks", NetherDescentFeatures.SYTHIAN_STALK, () -> List.of(NoiseBasedCountPlacement.of(160, 80.0, 0.3), InSquarePlacement.spread(), PlacementUtils.RANGE_4_4, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.allOf(
             BlockPredicate.matchesTag(Direction.DOWN.getNormal(), NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON),
             BlockPredicate.not(BlockPredicate.solid())
-    ), 12), PlacementUtils.filteredByBlockSurvival(NetherDescentBlocks.SYTHIAN_STALK.getBlock()), BiomeFilter.biome()));
+    ), 12), PlacementUtils.filteredByBlockSurvival(NetherDescentBlocks.SYTHIAN_STALK.get()), BiomeFilter.biome()));
 
 	public static final ResourceKey<PlacedFeature> SYTHIAN_STALKS_DOWNWARD = PlacedFeaturesUtil.createPlacedFeature("sythian_stalks_downward", NetherDescentFeatures.SYTHIAN_STALK_DOWNWARD, () -> List.of(NoiseBasedCountPlacement.of(160, 80.0, 0.3), InSquarePlacement.spread(), PlacementUtils.RANGE_4_4, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.allOf(
 			BlockPredicate.matchesTag(Direction.UP.getNormal(), NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON),

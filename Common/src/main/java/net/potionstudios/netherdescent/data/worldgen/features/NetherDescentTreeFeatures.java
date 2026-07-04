@@ -43,7 +43,7 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 public class NetherDescentTreeFeatures {
-    public static final Supplier<AttachedToLogsDecorator> SYTHIAN_WALL_ROOTS = () -> new AttachedToLogsDecorator(0.22F, 0, 1, SimpleStateProvider.simple(NetherDescentBlocks.SYTHIAN_ROOTS.getBlock()), 2, List.of(Direction.WEST, Direction.NORTH, Direction.SOUTH, Direction.EAST));
+    public static final Supplier<AttachedToLogsDecorator> SYTHIAN_WALL_ROOTS = () -> new AttachedToLogsDecorator(0.22F, 0, 1, SimpleStateProvider.simple(NetherDescentBlocks.SYTHIAN_ROOTS.get()), 2, List.of(Direction.WEST, Direction.NORTH, Direction.SOUTH, Direction.EAST));
     public static final Supplier<AttachedToLogsDecorator> ARISIAN_BRANCH_DECORATOR = () -> new AttachedToLogsDecorator(0.2f, 0, 1, SimpleStateProvider.simple(NetherDescentBlocks.ARISIAN_BRANCH.get()), 2, List.of(Direction.WEST, Direction.NORTH, Direction.SOUTH, Direction.EAST));
     public static final Supplier<AttachedToLogsDecorator> FUNGAL_BULBS_WALL_UP_DOWN = () -> new AttachedToLogsDecorator(0.2F, 0, 1, SimpleStateProvider.simple(NetherDescentBlocks.FUNGAL_BULBS.get().defaultBlockState().setValue(FungalBulbsBlock.FACE, AttachFace.WALL)), 2, List.of(Direction.WEST, Direction.EAST, Direction.NORTH, Direction.SOUTH));
 
@@ -281,7 +281,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), ARISIAN_BRANCH_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -299,7 +299,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), ARISIAN_BRANCH_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -317,7 +317,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), ARISIAN_BRANCH_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -335,7 +335,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), ARISIAN_BRANCH_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -353,7 +353,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), ARISIAN_BRANCH_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -371,7 +371,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(ARISIAN_TANGLE_ROOTS_DECORATOR.get(), ARISIAN_BRANCH_DECORATOR.get(), THORN_SPROUT_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -399,7 +399,7 @@ public class NetherDescentTreeFeatures {
                     .leavesTarget(List.of(NetherDescentBlocks.ARISIAN_LEAVES.get()))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.ARISIAN.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -698,7 +698,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(5)
                     .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.SYTHIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.SYTHIAN.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -716,7 +716,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.SYTHIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.SYTHIAN.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -734,7 +734,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.SYTHIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.SYTHIAN.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -752,7 +752,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.SYTHIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.SYTHIAN.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -770,7 +770,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.SYTHIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.SYTHIAN.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -788,7 +788,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.SYTHIAN.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.SYTHIAN.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -824,7 +824,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.EMBUR.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.EMBUR.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -842,7 +842,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.EMBUR.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.EMBUR.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -860,7 +860,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.EMBUR.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.EMBUR.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -878,7 +878,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.EMBUR.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.EMBUR.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -896,7 +896,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.EMBUR.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.EMBUR.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -914,7 +914,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.EMBUR.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.EMBUR.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -932,7 +932,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.EMBUR.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.EMBUR.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -968,7 +968,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesBlocks(NetherDescentBlocks.WAILING_NYLIUM.get(), Blocks.SOUL_SOIL))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(WAILING_VINES_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.WAILING.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.WAILING.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -986,7 +986,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesBlocks(NetherDescentBlocks.WAILING_NYLIUM.get(), Blocks.SOUL_SOIL))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(WAILING_VINES_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.WAILING.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.WAILING.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
@@ -1004,7 +1004,7 @@ public class NetherDescentTreeFeatures {
                     .growableOn(BlockPredicate.matchesBlocks(NetherDescentBlocks.WAILING_NYLIUM.get(), Blocks.SOUL_SOIL))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(WAILING_VINES_DECORATOR.get()))
-                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.WAILING.growerItem().getBlock()))
+                    .logsPlacementFilter(logPlacementFilter(NetherDescentBlocks.WAILING.growerItem().get()))
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
