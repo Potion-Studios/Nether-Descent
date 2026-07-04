@@ -4,9 +4,9 @@ import net.minecraft.advancements.CriterionTrigger;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
-import net.potionstudios.netherdescent.advancements.critereon.FungalBulbsBlockTrigger;
-import net.potionstudios.netherdescent.advancements.critereon.PlaceFlowerNearHornetTrigger;
-import net.potionstudios.netherdescent.advancements.critereon.WailingTrigger;
+import net.potionstudios.netherdescent.advancements.criterion.FungalBulbsBlockTrigger;
+import net.potionstudios.netherdescent.advancements.criterion.PlaceFlowerNearHornetTrigger;
+import net.potionstudios.netherdescent.advancements.criterion.WailingTrigger;
 
 import java.util.function.Supplier;
 

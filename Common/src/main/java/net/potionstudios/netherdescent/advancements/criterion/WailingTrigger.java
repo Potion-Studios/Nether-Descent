@@ -1,10 +1,11 @@
-package net.potionstudios.netherdescent.advancements.critereon;
+package net.potionstudios.netherdescent.advancements.criterion;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.criterion.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -14,19 +15,19 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingBulbBlossomBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingGillsBlock;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 
 public class WailingTrigger extends SimpleCriterionTrigger<WailingTrigger.TriggerInstance> {
 	@Override
-	public @NotNull Codec<TriggerInstance> codec() {
+	public @NonNull Codec<TriggerInstance> codec() {
 		return TriggerInstance.CODEC;
 	}
 
-	public void trigger(@NotNull ServerPlayer player, BlockPos pos, Entity entity) {
+	public void trigger(ServerPlayer player, BlockPos pos, Entity entity) {
 		LootContext lootcontext = EntityPredicate.createContext(player, entity);
-		super.trigger(player, instance -> instance.matches(player.serverLevel(), pos, lootcontext));
+		super.trigger(player, instance -> instance.matches(player.level(), pos, lootcontext));
 	}
 
 	public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<LocationPredicate> location, Optional<MinMaxBounds.Ints> powered, Optional<ContextAwarePredicate> entity) implements SimpleCriterionTrigger.SimpleInstance {
@@ -55,19 +56,19 @@ public class WailingTrigger extends SimpleCriterionTrigger<WailingTrigger.Trigge
 			return true;
 		}
 
-		public static Criterion<TriggerInstance> interactedWithBlock(Block block) {
+		public static Criterion<TriggerInstance> interactedWithBlock(HolderGetter<Block> block) {
 			return NetherDescentCriteriaTriggers.WAILING_INTERACTION.get().createCriterion(
 					new TriggerInstance(Optional.empty(), Optional.of(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block)).build()), Optional.empty(), Optional.empty())
 			);
 		}
 
-		public static Criterion<TriggerInstance> interactedWithPoweredBlock(Block block, MinMaxBounds.Ints powered) {
+		public static Criterion<TriggerInstance> interactedWithPoweredBlock(HolderGetter<Block> block, MinMaxBounds.Ints powered) {
 			return NetherDescentCriteriaTriggers.WAILING_INTERACTION.get().createCriterion(
 					new TriggerInstance(Optional.empty(), Optional.of(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block)).build()), Optional.of(powered), Optional.empty())
 			);
 		}
 
-		public static Criterion<TriggerInstance> interactedWithPoweredBlockAndEntity(Block block, MinMaxBounds.Ints powered, EntityPredicate.Builder entity) {
+		public static Criterion<TriggerInstance> interactedWithPoweredBlockAndEntity(HolderGetter<Block> block, MinMaxBounds.Ints powered, EntityPredicate.Builder entity) {
 			return NetherDescentCriteriaTriggers.WAILING_INTERACTION.get().createCriterion(
 					new TriggerInstance(Optional.empty(), Optional.of(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block)).build()), Optional.of(powered), Optional.of(EntityPredicate.wrap(entity.build())))
 			);
