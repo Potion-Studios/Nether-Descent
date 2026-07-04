@@ -2,20 +2,18 @@ package net.potionstudios.netherdescent.world.level.block.plants;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.DoublePlantBlock;
-import net.minecraft.world.level.block.RootsBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import org.jetbrains.annotations.NotNull;
 
-public class EmburRootsBlock extends RootsBlock implements BonemealableBlock {
-    public EmburRootsBlock(Properties properties) {
-        super(properties);
+public class EmburRootsBlock extends NetherRootsBlock implements BonemealableBlock {
+    public EmburRootsBlock(TagKey<Block> supportBlocks, Properties properties) {
+        super(supportBlocks, properties);
     }
 
     @Override

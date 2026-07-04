@@ -9,12 +9,12 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.WaterlilyBlock;
+import net.minecraft.world.level.block.LilyPadBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.NotNull;
 
-public class EmburLilyBlock extends WaterlilyBlock implements BonemealableBlock {
+public class EmburLilyBlock extends LilyPadBlock implements BonemealableBlock {
     public EmburLilyBlock(Properties properties) {
         super(properties);
     }
