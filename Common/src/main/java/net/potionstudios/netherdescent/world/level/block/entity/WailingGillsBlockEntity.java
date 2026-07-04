@@ -15,7 +15,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.potionstudios.netherdescent.advancements.critereon.NetherDescentCriterionTriggers;
+import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingGillsBlock;
 
@@ -58,9 +58,9 @@ public class WailingGillsBlockEntity extends BlockEntity {
                 entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 6, powered, false, false));
                 entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160, powered, false, false));
 	            if (entity instanceof ServerPlayer player)
-		            NetherDescentCriterionTriggers.WAILING_INTERACTION.trigger(player, pos, entity);
+		            NetherDescentCriteriaTriggers.WAILING_INTERACTION.trigger(player, pos, entity);
                 else if (entity instanceof Animal animal && animal.getLeashHolder() instanceof ServerPlayer player)
-                    NetherDescentCriterionTriggers.WAILING_INTERACTION.trigger(player, pos, entity);
+                    NetherDescentCriteriaTriggers.WAILING_INTERACTION.trigger(player, pos, entity);
                 ParticleOptions particleData = powered > 0 ? NetherDescentParticles.GILL_LEVITATE_POWERED.get() : NetherDescentParticles.GILL_LEVITATE.get();
                 for (int i = 0; i < blockEntity.getBlockPos().getY() - entity.getY() - 1; i++)
                     serverLevel.sendParticles(particleData, entity.getX(), entity.getY() + i, entity.getZ(), 2,0.5, 0, 0.5, 1.2 + (powered * 0.9));
