@@ -7,7 +7,7 @@ import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.potionstudios.netherdescent.world.item.NetherDescentArmorMaterials;
+import net.potionstudios.netherdescent.world.item.equipment.NetherDescentArmorMaterials;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import org.jetbrains.annotations.Nullable;
 

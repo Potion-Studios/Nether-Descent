@@ -15,7 +15,7 @@ import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.sounds.NetherDescentSoundEvents;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.entity.ai.village.poi.NetherDescentPoiTypes;
-import net.potionstudios.netherdescent.world.item.NetherDescentArmorMaterials;
+import net.potionstudios.netherdescent.world.item.equipment.NetherDescentArmorMaterials;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.item.alchemy.NetherDescentPotions;
