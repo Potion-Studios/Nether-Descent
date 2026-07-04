@@ -2,8 +2,8 @@ package net.potionstudios.netherdescent.core.dispenser;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.dispenser.BlockSource;
+import net.minecraft.core.dispenser.EquipmentDispenseItemBehavior;
 import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
@@ -31,7 +31,7 @@ public interface DispenseItemBehavior {
                     }
                     item.shrink(1);
                     setSuccess(true);
-                } else setSuccess(ArmorItem.dispenseArmor(blockSource, item));
+                } else setSuccess(EquipmentDispenseItemBehavior.dispenseEquipment(blockSource, item));
                 return item;
             }
         });
