@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.function.BooleanSupplier;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import net.minecraft.Util;
+import net.minecraft.util.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -15,10 +15,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,8 +27,7 @@ import net.minecraft.world.level.block.state.properties.WallSide;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 public class HangingMossyCarpetBlock extends Block implements BonemealableBlock {
     public static final MapCodec<MossyCarpetBlock> CODEC = simpleCodec(MossyCarpetBlock::new);
@@ -85,7 +81,7 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     }
 
     @Override
-    protected @NotNull VoxelShape getOcclusionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    protected @NonNull VoxelShape getOcclusionShape(@NonNull BlockState state) {
         return Shapes.empty();
     }
 
@@ -150,7 +146,7 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     }
 
     @Override
-    public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, BlockState state) {
         BlockState topper = createTopperWithSideChance(this, level, pos, () -> true, state.getValue(HANGING));
         if (!topper.isAir()) {
             Direction growthDir = state.getValue(HANGING) ? Direction.DOWN : Direction.UP;
@@ -159,7 +155,7 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     }
 
     @Override
-    public void setPlacedBy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack stack) {
+    public void setPlacedBy(Level level, @NonNull BlockPos pos, @NonNull BlockState state, LivingEntity placer, @NonNull ItemStack stack) {
         if (!level.isClientSide()) {
             BlockPos growthPos = pos.relative(state.getValue(HANGING) ? Direction.DOWN : Direction.UP);
             BlockState topper = createTopperWithSideChance(this, level, pos, level.getRandom()::nextBoolean, state.getValue(HANGING));
@@ -189,7 +185,7 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
         }
     }
 
-    @Nullable
+
     public static EnumProperty<WallSide> getPropertyForFace(Direction direction) {
         return PROPERTY_BY_DIRECTION.get(direction);
     }
@@ -209,42 +205,42 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     }
 
     @Override
-    public @NotNull MapCodec<MossyCarpetBlock> codec() {
+    public @NonNull MapCodec<MossyCarpetBlock> codec() {
         return CODEC;
     }
 
     @Override
-    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    protected @NonNull VoxelShape getShape(@NonNull BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
         return this.shapesCache.get(state);
     }
 
     @Override
-    protected @NotNull VoxelShape getCollisionShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    protected @NonNull VoxelShape getCollisionShape(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
         return state.getValue(BASE) ? (state.getValue(HANGING) ? UP_AABB : DOWN_AABB) : Shapes.empty();
     }
 
     @Override
-    protected void createBlockStateDefinition(@NotNull Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder.add(BASE, HANGING, NORTH, EAST, SOUTH, WEST));
     }
 
     @Override
-    protected boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    protected boolean propagatesSkylightDown(@NonNull BlockState state) {
         return true;
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, BlockState state) {
         return state.getValue(BASE);
     }
 
     @Override
-    public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
         return true;
     }
 
     @Override
-    protected @NotNull BlockState updateShape(BlockState state, @NotNull Direction dir, @NotNull BlockState neighbor, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+    protected @NonNull BlockState updateShape(BlockState state, @NonNull LevelReader level, @NonNull ScheduledTickAccess ticks, @NonNull BlockPos pos, @NonNull Direction directionToNeighbour, @NonNull BlockPos neighbourPos, @NonNull BlockState neighbourState, @NonNull RandomSource random) {
         if (!state.canSurvive(level, pos)) return Blocks.AIR.defaultBlockState();
         return getUpdatedState(this, state, level, pos, false);
     }
