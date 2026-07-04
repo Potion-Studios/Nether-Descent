@@ -23,7 +23,7 @@ public class VanillaCompatFabric {
 
     public static void init() {
         BlockItemFeatures.registerCompostables(CompostingChanceRegistry.INSTANCE::add);
-        FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> NetherDescentBrewingRecipes.buildBrewingRecipes(builder::addMix));
+        FabricPotionBrewingBuilder.BUILD.register(builder -> NetherDescentBrewingRecipes.buildBrewingRecipes(builder::addMix));
         ToolInteractions.registerStrippableBlocks(StrippableBlockRegistry::register);
         ToolInteractions.registerTillables((block, pair) -> TillableBlockRegistry.register(block, pair.getFirst(), pair.getSecond()));
         BlockItemFeatures.registerFurnaceFuels(FuelRegistry.INSTANCE::add);
