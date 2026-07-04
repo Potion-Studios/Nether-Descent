@@ -8,11 +8,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -37,7 +36,7 @@ public class WailingGillsBlockEntity extends BlockEntity {
 		if (serverLevel.getServer().getTickCount() % 5 == 0 && !level.getBlockState(pos.below()).isSolid()) {
 
             if (SOUL_SPEED == null)
-                SOUL_SPEED = serverLevel.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SOUL_SPEED);
+                SOUL_SPEED = serverLevel.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.SOUL_SPEED);
 
             int powered = state.getValue(WailingGillsBlock.POWER);
             AABB searchArea = blockEntity.cachedBoxes[powered];
@@ -55,7 +54,7 @@ public class WailingGillsBlockEntity extends BlockEntity {
 
             if (entities.isEmpty()) return;
 
-            int solid = level.getMinBuildHeight();
+            int solid = level.getMinY();
             for (int i = 1; i <= 15 + powered; i++)
                 if (level.getBlockState(pos.below(i)).isSolid()) {
                     solid = pos.below(i).getY();
@@ -67,12 +66,13 @@ public class WailingGillsBlockEntity extends BlockEntity {
                     continue;
 
 				boolean hasSoulSpeed = false;
-                for (ItemStack itemStack: entity.getArmorSlots())
-                    if (EnchantmentHelper.getItemEnchantmentLevel(SOUL_SPEED, itemStack) > 0) {
-						hasSoulSpeed = true;
-						break;
-                    }
-				if (hasSoulSpeed) continue;
+	            for (EquipmentSlot slot : EquipmentSlot.values())
+		            if (slot.getType() == EquipmentSlot.Type.HUMANOID_ARMOR)
+			            if (entity.getItemBySlot(slot).getEnchantments().getLevel(SOUL_SPEED) > 0) {
+                            hasSoulSpeed = true;
+                            break;
+                        }
+                if (hasSoulSpeed) continue;
 
                 entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 6, powered, false, false));
                 entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160, powered, false, false));

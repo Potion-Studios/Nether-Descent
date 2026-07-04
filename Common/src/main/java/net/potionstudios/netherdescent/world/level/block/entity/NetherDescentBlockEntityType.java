@@ -1,6 +1,6 @@
 package net.potionstudios.netherdescent.world.level.block.entity;
 
-import net.minecraft.world.level.block.SignBlock;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.potionstudios.netherdescent.NetherDescent;
@@ -10,32 +10,34 @@ import net.potionstudios.netherdescent.world.level.block.entity.sign.NetherDesce
 import net.potionstudios.netherdescent.world.level.block.entity.sign.NetherDescentSignBlockEntity;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 
+import java.util.Set;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class NetherDescentBlockEntityType {
-    public static final Supplier<BlockEntityType<NetherDescentSignBlockEntity>> SIGNS = register("sign", () -> BlockEntityType.Builder.of(
+    public static final Supplier<BlockEntityType<NetherDescentSignBlockEntity>> SIGNS = register("sign", () -> new BlockEntityType<>(
             NetherDescentSignBlockEntity::new,
             Stream.concat(
                     NetherDescentWoodSet.woodsets().stream().map(NetherDescentWoodSet::sign),
                     NetherDescentWoodSet.woodsets().stream().map(NetherDescentWoodSet::wallSign)
-            ).toArray(SignBlock[]::new)));
+            ).collect(Collectors.toSet())));
 
-    public static final Supplier<BlockEntityType<NetherDescentHangingSignBlockEntity>> HANGING_SIGNS = register("hanging_sign", () -> BlockEntityType.Builder.of(
+    public static final Supplier<BlockEntityType<NetherDescentHangingSignBlockEntity>> HANGING_SIGNS = register("hanging_sign", () -> new BlockEntityType<>(
             NetherDescentHangingSignBlockEntity::new,
             Stream.concat(
                     NetherDescentWoodSet.woodsets().stream().map(NetherDescentWoodSet::hangingSign),
                     NetherDescentWoodSet.woodsets().stream().map(NetherDescentWoodSet::wallHangingSign)
-            ).toArray(SignBlock[]::new)));
+            ).collect(Collectors.toSet())));
 
-	public static final Supplier<BlockEntityType<WailingGillsBlockEntity>> WAILING_GILLS = register("wailing_gills", () -> BlockEntityType.Builder.of(WailingGillsBlockEntity::new, NetherDescentBlocks.WAILING_GILLS.get()));
+	public static final Supplier<BlockEntityType<WailingGillsBlockEntity>> WAILING_GILLS = register("wailing_gills", () -> new BlockEntityType<>(WailingGillsBlockEntity::new, Set.of(NetherDescentBlocks.WAILING_GILLS.get())));
 
-	public static final Supplier<BlockEntityType<NetherDescentCampfireBlockEntity>> CAMPFIRE = register("campfire", () -> BlockEntityType.Builder.of(NetherDescentCampfireBlockEntity::new, NetherDescentBlocks.PENDORITE_CAMPFIRE.get()));
+	public static final Supplier<BlockEntityType<NetherDescentCampfireBlockEntity>> CAMPFIRE = register("campfire", () -> new BlockEntityType<>(NetherDescentCampfireBlockEntity::new, Set.of(NetherDescentBlocks.PENDORITE_CAMPFIRE.get())));
 
-	public static final Supplier<BlockEntityType<HornetNestBlockEntity>> HORNET_NEST = register("hornet_nest", () -> BlockEntityType.Builder.of(HornetNestBlockEntity::new, NetherDescentBlocks.HORNET_NEST.get()));
+	public static final Supplier<BlockEntityType<HornetNestBlockEntity>> HORNET_NEST = register("hornet_nest", () -> new BlockEntityType<>(HornetNestBlockEntity::new, Set.of(NetherDescentBlocks.HORNET_NEST.get())));
 
-    private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String key, Supplier<BlockEntityType.Builder<T>> builder) {
-        return PlatformHandler.PLATFORM_HANDLER.registerBlockEntity(key, builder);
+    private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String key, Supplier<BlockEntityType<T>> blockEntity) {
+	    return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, key, blockEntity);
     }
 
     public static void blockEntities() {
