@@ -7,7 +7,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.advancements.packs.VanillaAdventureAdvancements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
@@ -214,7 +214,7 @@ public class AdvancementGenerator implements AdvancementProvider.AdvancementGene
                                     EntityPredicate.Builder.entity()
                                             .vehicle(
                                                     EntityPredicate.Builder.entity()
-                                                            .of(TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath("c", "boats")))
+                                                            .of(TagKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath("c", "boats")))
                                                             .steppingOn(
                                                                     LocationPredicate.Builder.location()
                                                                             .setBlock(BlockPredicate.Builder.block().of(NetherDescentBlocks.EMBUR_GEL_BLOCK.get()))

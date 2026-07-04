@@ -5,7 +5,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.models.model.ModelLocationUtils;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.ItemLike;
@@ -93,7 +93,7 @@ public class ModelGenerators {
 			return key(item.asItem()).getPath();
 		}
 
-		private ResourceLocation key(Item item) {
+		private Identifier key(Item item) {
 			return BuiltInRegistries.ITEM.getKey(item);
 		}
 	}
@@ -115,13 +115,13 @@ public class ModelGenerators {
 			});
 
 			NetherDescentWoodSet.woodsets().forEach(set -> {
-				ResourceLocation planksTexture = woodBlockTexture(set.name(), "planks");
+				Identifier planksTexture = woodBlockTexture(set.name(), "planks");
 				simpleBlockWithItem(set.planks(), models().cubeAll(name(set.planks()), planksTexture));
-				ResourceLocation logTexture = woodBlockTexture(set.name(), set.logStemEnum().getName());
+				Identifier logTexture = woodBlockTexture(set.name(), set.logStemEnum().getName());
 				slabBlock(set.slab(), key(set.planks()), planksTexture);
 				itemModels().slab(name(set.slab()), planksTexture, planksTexture, planksTexture);
 				log(set);
-				ResourceLocation strippedLogTexture = woodBlockTexture(set.name(), "stripped_" + set.logStemEnum().getName());
+				Identifier strippedLogTexture = woodBlockTexture(set.name(), "stripped_" + set.logStemEnum().getName());
 				log(set.strippedLogStem(), strippedLogTexture, woodBlockTexture(set.name(), "stripped_" + set.logStemEnum().getName() + "_top"));
 				woodBlock(set.wood(), logTexture);
 				woodBlock(set.strippedWood(), strippedLogTexture);
@@ -164,7 +164,7 @@ public class ModelGenerators {
 			}), ArisianLeavesBlock.DISTANCE, ArisianLeavesBlock.WATERLOGGED, ArisianLeavesBlock.PERSISTENT, ArisianLeavesBlock.STRENGTH);
 			simpleBlockItem(NetherDescentBlocks.ARISIAN_LEAVES.get(), models().getExistingFile(NetherDescent.id("block/arisian_leaves")));
 
-			ResourceLocation blue_netherrack = models().cubeAll(name(NetherDescentBlocks.BLUE_NETHERRACK.get()), blockTexture(NetherDescentBlocks.BLUE_NETHERRACK.get())).getLocation();
+			Identifier blue_netherrack = models().cubeAll(name(NetherDescentBlocks.BLUE_NETHERRACK.get()), blockTexture(NetherDescentBlocks.BLUE_NETHERRACK.get())).getLocation();
 			simpleBlockItem(NetherDescentBlocks.BLUE_NETHERRACK.get(), models().getExistingFile(blue_netherrack));
 			VariantBlockStateBuilder builder = getVariantBuilder(NetherDescentBlocks.BLUE_NETHERRACK.get());
 
@@ -556,29 +556,29 @@ public class ModelGenerators {
 			registerStairs(stairs, ModelLocationUtils.getModelLocation(texturedBlock));
 		}
 
-		private void registerStairs(StairBlock stairs, ResourceLocation texture) {
+		private void registerStairs(StairBlock stairs, Identifier texture) {
 			stairsBlock(stairs, texture);
 			simpleBlockItem(stairs, itemModels().stairs("block/" + key(stairs).getPath(), texture, texture, texture));
 		}
 
 		private void registerSlab(SlabBlock slab, Block texturedBlock) {
-			ResourceLocation texture = ModelLocationUtils.getModelLocation(texturedBlock);
+			Identifier texture = ModelLocationUtils.getModelLocation(texturedBlock);
 			slabBlock(slab, texture, texture);
 			simpleBlockItem(slab, itemModels().slab("block/" + key(slab).getPath(), texture, texture, texture));
 		}
 
 		private void registerWall(WallBlock wall, Block texturedBlock) {
-			ResourceLocation texture = ModelLocationUtils.getModelLocation(texturedBlock);
+			Identifier texture = ModelLocationUtils.getModelLocation(texturedBlock);
 			wallBlock(wall, texture);
 			simpleBlockItem(wall, itemModels().wallInventory("block/" + key(wall).getPath(), texture));
 		}
 
-		private void registerButton(ButtonBlock button, ResourceLocation texture) {
+		private void registerButton(ButtonBlock button, Identifier texture) {
 			buttonBlock(button, texture);
 			itemModels().buttonInventory(key(button).getPath(), texture);
 		}
 
-		private void registerFenceAndGate(FenceBlock fence, FenceGateBlock gate, ResourceLocation texture) {
+		private void registerFenceAndGate(FenceBlock fence, FenceGateBlock gate, Identifier texture) {
 			fenceBlock(fence, texture);
 			itemModels().fenceInventory(key(fence).getPath(), texture);
 			fenceGateBlock(gate, texture);
@@ -589,12 +589,12 @@ public class ModelGenerators {
 			log(set.logstem(), woodBlockTexture(set.name(), set.logStemEnum().getName()), woodBlockTexture(set.name(), set.logStemEnum().getName() + "_top"));
 		}
 
-		private void log(RotatedPillarBlock block, ResourceLocation side, ResourceLocation top) {
+		private void log(RotatedPillarBlock block, Identifier side, Identifier top) {
 			axisBlock(block, side, top);
 			itemModels().cubeColumn(name(block), side, top);
 		}
 
-		private void woodBlock(RotatedPillarBlock block, ResourceLocation texture) {
+		private void woodBlock(RotatedPillarBlock block, Identifier texture) {
 			getVariantBuilder(block).forAllStates(state -> {
 				if (state.getValue(RotatedPillarBlock.AXIS).equals(Direction.Axis.X))
 					return ConfiguredModel.builder().rotationX(90).rotationY(90).modelFile(models().cubeColumn(name(block), texture, texture)).build();
@@ -641,15 +641,15 @@ public class ModelGenerators {
 			return key(block).getPath();
 		}
 
-		private ResourceLocation key(Block block) {
+		private Identifier key(Block block) {
 			return BuiltInRegistries.BLOCK.getKey(block);
 		}
 
-		private ResourceLocation blockNDTexture(Block block, String end) {
+		private Identifier blockNDTexture(Block block, String end) {
 			return NetherDescent.id(ModelProvider.BLOCK_FOLDER + "/" + key(block).getPath() + "_" + end);
 		}
 
-		private ResourceLocation woodBlockTexture(String type, String name) {
+		private Identifier woodBlockTexture(String type, String name) {
 			return NetherDescent.id(ModelProvider.BLOCK_FOLDER + "/" + type + "/" + name);
 		}
 

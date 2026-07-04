@@ -3,7 +3,7 @@ package net.potionstudios.netherdescent.config;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.potionstudios.netherdescent.PlatformHandler;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,15 +21,15 @@ public class ConfigLoader {
 	/** The Gson instance for the Config Loader. */
 	private static final Gson GSON = new GsonBuilder()
 			.setPrettyPrinting().
-			registerTypeHierarchyAdapter(ResourceLocation.class, new TypeAdapter<ResourceLocation>() {
+			registerTypeHierarchyAdapter(Identifier.class, new TypeAdapter<Identifier>() {
 				@Override
-				public void write(JsonWriter out, ResourceLocation value) throws java.io.IOException {
+				public void write(JsonWriter out, Identifier value) throws java.io.IOException {
 					out.value(value == null ? null : value.toString());
 				}
 
 				@Override
-				public ResourceLocation read(JsonReader in) throws java.io.IOException {
-					return ResourceLocation.parse(in.nextString());
+				public Identifier read(JsonReader in) throws java.io.IOException {
+					return Identifier.parse(in.nextString());
 				}
 			})
 			.create();

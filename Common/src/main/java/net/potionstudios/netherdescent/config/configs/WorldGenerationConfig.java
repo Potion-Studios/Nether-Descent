@@ -1,7 +1,7 @@
 package net.potionstudios.netherdescent.config.configs;
 
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.biome.Biome;
 import net.potionstudios.netherdescent.config.ConfigLoader;
 import net.potionstudios.netherdescent.config.ConfigUtils;
@@ -23,7 +23,7 @@ public final class WorldGenerationConfig {
         return INSTANCE;
     }
 
-    public ConfigUtils.CommentValue<Map<ResourceLocation, Boolean>> biomes = ConfigUtils.CommentValue.of("Set Entry to False to disable generation of that biome", getDefaultBiomes());
+    public ConfigUtils.CommentValue<Map<Identifier, Boolean>> biomes = ConfigUtils.CommentValue.of("Set Entry to False to disable generation of that biome", getDefaultBiomes());
     public ConfigUtils.CommentValue<Integer> regionWeight = ConfigUtils.CommentValue.of("Only used when using with Terrablender", DEFAULT_REGION_WEIGHT);
     public boolean blue_fortress = true;
 
@@ -31,10 +31,10 @@ public final class WorldGenerationConfig {
         return biomes.value().getOrDefault(key.location(), true);
     }
 
-    private static @NotNull Map<ResourceLocation, Boolean> getDefaultBiomes() {
+    private static @NotNull Map<Identifier, Boolean> getDefaultBiomes() {
         return NetherDescentBiomes.BIOME_FACTORIES.keySet().stream()
                 .map(ResourceKey::location)
-                .sorted(Comparator.comparing(ResourceLocation::toString))
+                .sorted(Comparator.comparing(Identifier::toString))
                 .collect(Collectors.toMap(loc -> loc, loc -> true, (a, b) -> a, LinkedHashMap::new));
     }
 }

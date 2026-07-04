@@ -17,6 +17,6 @@ public final class NetherDescentItemTags {
     }
 
 	private static TagKey<Item> createCommon(String name) {
-		return TagKey.create(Registries.ITEM, net.minecraft.resources.ResourceLocation.fromNamespaceAndPath("c", name));
+		return TagKey.create(Registries.ITEM, net.minecraft.resources.Identifier.fromNamespaceAndPath("c", name));
 	}
 }

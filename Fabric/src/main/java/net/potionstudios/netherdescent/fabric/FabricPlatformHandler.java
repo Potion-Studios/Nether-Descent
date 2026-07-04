@@ -14,7 +14,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.datafix.fixes.References;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.item.CreativeModeTab;
@@ -50,9 +50,9 @@ public final class FabricPlatformHandler implements PlatformHandler {
 
 	@Override
 	public <T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntity(String key, Supplier<BlockEntityType.Builder<T>> builder) {
-		ResourceLocation resourceLocation = NetherDescent.id(key);
-		BlockEntityType<T> blockEntity = builder.get().build(Util.fetchChoiceType(References.BLOCK_ENTITY, resourceLocation.toString()));
-		Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, resourceLocation, blockEntity);
+		Identifier Identifier = NetherDescent.id(key);
+		BlockEntityType<T> blockEntity = builder.get().build(Util.fetchChoiceType(References.BLOCK_ENTITY, Identifier.toString()));
+		Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, Identifier, blockEntity);
 		return () -> blockEntity;
 	}
 
