@@ -16,6 +16,6 @@ public class LoadPredicateType {
 	}
 
 	public static void loadPredicateType() {
-		NetherDescent.LOGGER.info("Registering LoadPredicateType for Lithostitched compatibility.");
+		NetherDescent.LOGGER.info("Registering LoadPredicateType for Lithostitched compatibility");
 	}
 }

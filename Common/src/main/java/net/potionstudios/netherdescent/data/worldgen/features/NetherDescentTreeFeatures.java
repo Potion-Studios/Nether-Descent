@@ -1092,7 +1092,7 @@ public class NetherDescentTreeFeatures {
             ));
 
     protected static void treeFeatures() {
-        NetherDescent.LOGGER.info("NetherDescent Tree Features");
+        NetherDescent.LOGGER.info("Registering Nether Descent Tree Configured Features");
     }
 
     public static BlockPredicate logPlacementFilter(Block... blocks) {

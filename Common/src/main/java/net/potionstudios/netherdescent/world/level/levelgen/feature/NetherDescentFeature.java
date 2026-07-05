@@ -31,6 +31,6 @@ public class NetherDescentFeature {
 	}
 
 	public static void features() {
-		NetherDescent.LOGGER.info("Loading Nether Descent Custom Features");
+		NetherDescent.LOGGER.info("Registering Nether Descent Features");
 	}
 }
