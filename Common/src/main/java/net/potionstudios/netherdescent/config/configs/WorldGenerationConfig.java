@@ -23,7 +23,7 @@ public final class WorldGenerationConfig {
         return INSTANCE;
     }
 
-    public ConfigUtils.CommentValue<Map<ResourceLocation, Boolean>> biomes = ConfigUtils.CommentValue.of("Only for Terrablender and Biolith", getDefaultBiomes());
+    public ConfigUtils.CommentValue<Map<ResourceLocation, Boolean>> biomes = ConfigUtils.CommentValue.of("Set Entry to False to disable generation of that biome", getDefaultBiomes());
     public ConfigUtils.CommentValue<Integer> regionWeight = ConfigUtils.CommentValue.of("Only used when using with Terrablender", DEFAULT_REGION_WEIGHT);
     public boolean blue_fortress = true;
 

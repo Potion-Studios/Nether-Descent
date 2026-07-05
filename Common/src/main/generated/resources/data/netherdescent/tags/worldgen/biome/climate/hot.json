@@ -1,9 +1,9 @@
 {
   "values": [
-    "netherdescent:embur_bog",
-    "netherdescent:arisian_undergrowth",
     "netherdescent:wailing_garth",
-    "netherdescent:crimson_gardens",
-    "netherdescent:sythian_torrids"
+    "netherdescent:arisian_undergrowth",
+    "netherdescent:embur_bog",
+    "netherdescent:sythian_torrids",
+    "netherdescent:crimson_gardens"
   ]
 }

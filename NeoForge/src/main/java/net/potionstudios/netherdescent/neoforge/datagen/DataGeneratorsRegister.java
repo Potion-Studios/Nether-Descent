@@ -20,6 +20,8 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.potionstudios.netherdescent.compat.lithostitched.ConfigLoadPredicate;
+import net.potionstudios.netherdescent.compat.lithostitched.LoadPredicateType;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentProcessorLists;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.*;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.loot.LootGenerator;
@@ -41,6 +43,7 @@ class DataGeneratorsRegister {
 
     @SubscribeEvent
     protected static void onGatherData(final GatherDataEvent event) {
+	    LoadPredicateType.loadPredicateType();
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         PackOutput output = generator.getPackOutput();
@@ -78,15 +81,15 @@ class DataGeneratorsRegister {
 							    (Holder<Biome>) biomeLookup.getOrThrow(entry.getKey())
 					    ))
 					    .toList();
-			    pContext.register(
-					    NetherDescent.key(LithostitchedRegistries.BIOME_INJECTOR, "nether_descent"),
+			    points.forEach(pair -> pContext.register(
+					    NetherDescent.key(LithostitchedRegistries.BIOME_INJECTOR, pair.getSecond().unwrapKey().get().location().getPath()),
 					    new AddPoints(
-							    Optional.empty(),
+							    Optional.of(new ConfigLoadPredicate(pair.getSecond().getKey())),
 							    LevelStem.NETHER,
 							    10,
-							    new Climate.ParameterList<>(points)
+							    new Climate.ParameterList<>(List.of(pair))
 					    )
-			    );
+			    ));
 		    })
 		    .add(LithostitchedRegistries.REGION, pContext -> {
 			    HolderGetter<Biome> biomeLookup = pContext.lookup(Registries.BIOME);
