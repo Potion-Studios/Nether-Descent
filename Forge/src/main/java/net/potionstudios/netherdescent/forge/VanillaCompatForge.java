@@ -12,7 +12,6 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.potionstudios.netherdescent.event.ServerEventsHandler;
 import net.potionstudios.netherdescent.util.VanillaBonemealHandler;
 import net.potionstudios.netherdescent.world.BlockItemFeatures;
@@ -24,7 +23,6 @@ import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import java.util.HashMap;
 
 public class VanillaCompatForge {
-
     public static void init() {
         BlockItemFeatures.registerCompostables((item, chance) -> ComposterBlock.COMPOSTABLES.put(item.asItem(), chance.floatValue()));
         ToolInteractions.registerStrippableBlocks((block, stripped) -> {
@@ -33,14 +31,14 @@ public class VanillaCompatForge {
         });
     }
 
-    public static void registerVanillaCompatEvents(final IEventBus bus) {
-        bus.addListener(VanillaCompatForge::registerBrewingRecipes);
-        bus.addListener(VanillaCompatForge::registerTillables);
-        bus.addListener(VanillaCompatForge::registerFuels);
-        bus.addListener(VanillaCompatForge::registerEntityInteract);
-        bus.addListener(VanillaCompatForge::onBoneMealUse);
-        bus.addListener((PlayerEvent.PlayerLoggedInEvent event) -> ServerEventsHandler.onPlayerJoin((ServerPlayer) event.getEntity()));
-        bus.addListener(VanillaCompatForge::onBlockPlace);
+    public static void registerVanillaCompatEvents() {
+        BrewingRecipeRegisterEvent.BUS.addListener(VanillaCompatForge::registerBrewingRecipes);
+        BlockEvent.BlockToolModificationEvent.BUS.addListener(VanillaCompatForge::registerTillables);
+        FurnaceFuelBurnTimeEvent.BUS.addListener(VanillaCompatForge::registerFuels);
+        PlayerInteractEvent.EntityInteractSpecific.BUS.addListener(VanillaCompatForge::registerEntityInteract);
+        BonemealEvent.BUS.addListener(VanillaCompatForge::onBoneMealUse);
+        PlayerEvent.PlayerLoggedInEvent.BUS.addListener((PlayerEvent.PlayerLoggedInEvent event) -> ServerEventsHandler.onPlayerJoin((ServerPlayer) event.getEntity()));
+        BlockEvent.EntityPlaceEvent.BUS.addListener(VanillaCompatForge::onBlockPlace);
     }
 
     /**
@@ -73,12 +71,11 @@ public class VanillaCompatForge {
 
     /**
      * Register entity interaction events.
-     * @see PlayerInteractEvent.EntityInteract
+     * @see PlayerInteractEvent.EntityInteractSpecific
      */
-    private static void registerEntityInteract(final PlayerInteractEvent.EntityInteract event) {
+    private static void registerEntityInteract(final PlayerInteractEvent.EntityInteractSpecific event) {
         if (NetherDescentWolf.onEntityInteract(event.getLevel(), event.getEntity(), event.getTarget(), event.getItemStack()) == InteractionResult.SUCCESS) {
             event.setCancellationResult(InteractionResult.SUCCESS);
-            event.setCanceled(true);
         }
     }
 
