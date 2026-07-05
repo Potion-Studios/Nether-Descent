@@ -1,5 +1,6 @@
 # 1.0.4
 - Allow toggling of Biomes with Lithostitched
+- Fix Wailing Gills Skipping Pulling Entities if it finds a single Entity with Soul Speed
 
 # 1.0.3
 - Fix Wailing Gills Skipping Pulling Entities once it finds one Spectator Entity or an entity below a solid block

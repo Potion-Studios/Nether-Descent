@@ -66,9 +66,13 @@ public class WailingGillsBlockEntity extends BlockEntity {
                 if (entity.isSpectator() || entity.getY() < solid)
                     continue;
 
+				boolean hasSoulSpeed = false;
                 for (ItemStack itemStack: entity.getArmorSlots())
-                    if (EnchantmentHelper.getItemEnchantmentLevel(SOUL_SPEED, itemStack) > 0)
-                        return;
+                    if (EnchantmentHelper.getItemEnchantmentLevel(SOUL_SPEED, itemStack) > 0) {
+						hasSoulSpeed = true;
+						break;
+                    }
+				if (hasSoulSpeed) continue;
 
                 entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 6, powered, false, false));
                 entity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160, powered, false, false));
