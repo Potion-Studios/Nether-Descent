@@ -20,13 +20,12 @@ import net.potionstudios.netherdescent.world.item.brewing.NetherDescentBrewingRe
 import net.potionstudios.netherdescent.world.item.tools.ToolInteractions;
 
 public class VanillaCompatFabric {
-
     public static void init() {
-        BlockItemFeatures.registerCompostables(CompostingChanceRegistry.INSTANCE::add);
+        BlockItemFeatures.registerCompostables(CompostableRegistry.INSTANCE::add);
         FabricPotionBrewingBuilder.BUILD.register(builder -> NetherDescentBrewingRecipes.buildBrewingRecipes(builder::addMix));
         ToolInteractions.registerStrippableBlocks(StrippableBlockRegistry::register);
         ToolInteractions.registerTillables((block, pair) -> TillableBlockRegistry.register(block, pair.getFirst(), pair.getSecond()));
-        BlockItemFeatures.registerFurnaceFuels(FuelRegistry.INSTANCE::add);
+        BlockItemFeatures.registerFurnaceFuels((item, burnTime) -> FuelValueEvents.BUILD.register(((builder, context) -> builder.add(item, burnTime))));
         UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             if (NetherDescentWolf.onEntityInteract(world, player, entity, player.getItemInHand(hand)) == InteractionResult.SUCCESS)
                 return InteractionResult.SUCCESS;
@@ -46,7 +45,7 @@ public class VanillaCompatFabric {
             BlockPos placedAgainstPos = hitResult.getBlockPos();
             BlockState placedAgainst = world.getBlockState(placedAgainstPos);
 
-            BlockPos placedPos = placedAgainstPos.offset(hitResult.getDirection().getNormal());
+            BlockPos placedPos = placedAgainstPos.offset(hitResult.getDirection().getUnitVec3i());
 
             BlockPlaceContext context = new BlockPlaceContext(player, hand, stack, hitResult);
 

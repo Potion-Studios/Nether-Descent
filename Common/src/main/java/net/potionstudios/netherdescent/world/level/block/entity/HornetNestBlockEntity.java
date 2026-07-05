@@ -19,7 +19,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.VisibleForDebug;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.animal.bee.Bee;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;

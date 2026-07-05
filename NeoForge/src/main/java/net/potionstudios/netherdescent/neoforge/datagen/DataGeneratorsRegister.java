@@ -15,7 +15,6 @@ import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -45,23 +44,22 @@ class DataGeneratorsRegister {
     protected static void onGatherData(final GatherDataEvent event) {
 	    LoadPredicateType.loadPredicateType();
         DataGenerator generator = event.getGenerator();
-        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         PackOutput output = generator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         DatapackBuiltinEntriesProvider datapackBuiltinEntriesProvider = new DatapackBuiltinEntriesProvider(output, lookupProvider, BUILDER, Set.of(NetherDescent.MOD_ID, Identifier.DEFAULT_NAMESPACE));
-        generator.addProvider(event.includeServer(), datapackBuiltinEntriesProvider);
+        generator.addProvider(true, datapackBuiltinEntriesProvider);
         lookupProvider = datapackBuiltinEntriesProvider.getRegistryProvider();
 
-        ModelGenerators.init(generator, event.includeClient(), output, existingFileHelper);
-        generator.addProvider(event.includeClient(), new LangGenerator(output, "en_us"));
-        generator.addProvider(event.includeServer(), new RecipeGenerator(output, lookupProvider));
-        generator.addProvider(event.includeServer(), new LootGenerator(output, lookupProvider));
-        TagsGenerator.init(generator, event.includeServer(), output, lookupProvider, existingFileHelper);
-        generator.addProvider(event.includeServer(), new DataMapGenerator(output, lookupProvider));
-	    generator.addProvider(event.includeClient(), new SoundDefinitionsGenerator(output, existingFileHelper));
-        generator.addProvider(event.includeClient(), new ParticleDescriptionGenerator(output, existingFileHelper));
-        generator.addProvider(event.includeServer(), new AdvancementProvider(output, lookupProvider, existingFileHelper, ImmutableList.of(new AdvancementGenerator())));
-        generator.addProvider(event.includeServer(), new LithostitchedSurfaceRuleGenerator(output));
+        generator.addProvider(true, new ModelGenerators(output));
+        generator.addProvider(true, new LangGenerator(output, "en_us"));
+        generator.addProvider(true, new RecipeGenerator(output, lookupProvider));
+        generator.addProvider(true, new LootGenerator(output, lookupProvider));
+        TagsGenerator.init(generator, true, output, lookupProvider);
+        generator.addProvider(true, new DataMapGenerator(output, lookupProvider));
+	    generator.addProvider(true, new SoundDefinitionsGenerator(output));
+        generator.addProvider(true, new ParticleDescriptionGenerator(output));
+        generator.addProvider(true, new AdvancementProvider(output, lookupProvider, ImmutableList.of(new AdvancementGenerator())));
+        generator.addProvider(true, new LithostitchedSurfaceRuleGenerator(output));
 	}
 
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
