@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -14,9 +15,11 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 public class ArisianBlossomBlock extends HangingNDBushBlock {
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
@@ -31,15 +34,15 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 	}
 
 	@Override
-	protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
-		super.entityInside(state, level, pos, entity);
+	protected void entityInside(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull Entity entity, @NonNull InsideBlockEffectApplier effectApplier, boolean isPrecise) {
+		super.entityInside(state, level, pos, entity, effectApplier, isPrecise);
 		if (!level.isClientSide() && entity instanceof LivingEntity)
 			if (state.getValue(STRENGTH) != 7)
 				updateState(state, level, pos, 7);
 	}
 
 	@Override
-	protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+	protected void tick(@NonNull BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, @NonNull RandomSource random) {
 		super.tick(state, level, pos, random);
 
 		int currentStrength = state.getValue(STRENGTH);
@@ -75,13 +78,13 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 	}
 
 	@Override
-	protected void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block neighborBlock, @NotNull BlockPos neighborPos, boolean movedByPiston) {
-		super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
+	protected void neighborChanged(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull Block block, @Nullable Orientation orientation, boolean movedByPiston) {
+		super.neighborChanged(state, level, pos, block, orientation, movedByPiston);
 		if (!level.isClientSide())
 			level.scheduleTick(pos, this, 1);
 	}
 
-	private void updateState(@NotNull BlockState currentState, @NotNull Level level, @NotNull BlockPos pos, int newStrength) {
+	private void updateState(BlockState currentState, Level level, BlockPos pos, int newStrength) {
 		boolean currentLit = currentState.getValue(LIT);
 		boolean currentPulse = currentState.getValue(PULSE);
 
@@ -108,17 +111,17 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder.add(LIT, STRENGTH, PULSE));
 	}
 
 	@Override
-	protected boolean isSignalSource(@NotNull BlockState state) {
+	protected boolean isSignalSource(BlockState state) {
 		return state.getValue(PULSE);
 	}
 
 	@Override
-	protected int getSignal(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+	protected int getSignal(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull Direction direction) {
 		return state.getValue(PULSE) ? 6 : 0;
 	}
 }

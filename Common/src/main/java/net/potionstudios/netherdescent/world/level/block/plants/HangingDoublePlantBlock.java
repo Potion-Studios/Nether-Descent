@@ -2,6 +2,7 @@ package net.potionstudios.netherdescent.world.level.block.plants;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -9,6 +10,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
@@ -18,8 +20,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.material.Fluids;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 public class HangingDoublePlantBlock extends NetherDescentDoublePlantBlock {
 	public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
@@ -29,11 +30,11 @@ public class HangingDoublePlantBlock extends NetherDescentDoublePlantBlock {
 	}
 
 	@Override
-	public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
+	public BlockState getStateForPlacement(BlockPlaceContext context) {
 		if (context.getClickedFace() == Direction.DOWN) {
 			BlockPos blockPos = context.getClickedPos();
 			Level level = context.getLevel();
-			return blockPos.getY() > level.getMinBuildHeight() + 1 && level.getBlockState(blockPos.below()).canBeReplaced(context)
+			return blockPos.getY() > level.getMinY() + 1 && level.getBlockState(blockPos.below()).canBeReplaced(context)
 					? defaultBlockState().setValue(HALF, DoubleBlockHalf.LOWER).setValue(HANGING, true)
 					: null;
 		} else {
@@ -42,7 +43,7 @@ public class HangingDoublePlantBlock extends NetherDescentDoublePlantBlock {
 	}
 
 	@Override
-	protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
+	protected boolean canSurvive(BlockState state, @NonNull LevelReader level, @NonNull BlockPos pos) {
 		if (state.getValue(HANGING)) {
 			if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
 				return mayPlaceOn(level.getBlockState(pos.above()), level, pos);
@@ -55,31 +56,31 @@ public class HangingDoublePlantBlock extends NetherDescentDoublePlantBlock {
 	}
 
 	@Override
-	protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+	protected @NonNull BlockState updateShape(BlockState state, @NonNull LevelReader level, @NonNull ScheduledTickAccess ticks, @NonNull BlockPos pos, @NonNull Direction directionToNeighbour, @NonNull BlockPos neighbourPos, @NonNull BlockState neighbourState, @NonNull RandomSource random) {
 		if (state.getValue(HANGING)) {
 			DoubleBlockHalf doubleBlockHalf = state.getValue(HALF);
-			if (direction.getAxis() != Direction.Axis.Y
-					|| doubleBlockHalf == DoubleBlockHalf.LOWER != (direction == Direction.DOWN)
-					|| neighborState.is(this) && neighborState.getValue(HALF) != doubleBlockHalf) {
-				return doubleBlockHalf == DoubleBlockHalf.LOWER && direction == Direction.UP && !state.canSurvive(level, pos)
+			if (directionToNeighbour.getAxis() != Direction.Axis.Y
+					|| doubleBlockHalf == DoubleBlockHalf.LOWER != (directionToNeighbour == Direction.DOWN)
+					|| neighbourState.is(this) && neighbourState.getValue(HALF) != doubleBlockHalf) {
+				return doubleBlockHalf == DoubleBlockHalf.LOWER && directionToNeighbour == Direction.UP && !state.canSurvive(level, pos)
 						? Blocks.AIR.defaultBlockState()
-						: super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+						: super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
 			} else {
 				return Blocks.AIR.defaultBlockState();
 			}
 		}
-		return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+		return super.updateShape(state, level, ticks, pos, directionToNeighbour, neighbourPos, neighbourState, random);
 	}
 
 	@Override
-	public void setPlacedBy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull LivingEntity placer, @NotNull ItemStack stack) {
+	public void setPlacedBy(@NonNull Level level, @NonNull BlockPos pos, BlockState state, LivingEntity placer, @NonNull ItemStack stack) {
 		if (state.getValue(HANGING))
 			level.setBlockAndUpdate(pos.below(), DoublePlantBlock.copyWaterloggedFrom(level, pos.below(), this.defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER).setValue(HANGING, true)));
 		else super.setPlacedBy(level, pos, state, placer, stack);
 	}
 
 //	@Override
-//	public @NotNull BlockState playerWillDestroy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
+//	public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
 //		if (!level.isClientSide() && state.getValue(HANGING)) {
 //			if (player.isCreative())
 //				preventDropFromBottomPart(level, pos, state, player);
@@ -94,7 +95,7 @@ public class HangingDoublePlantBlock extends NetherDescentDoublePlantBlock {
 //		return super.playerWillDestroy(level, pos, state, player);
 //	}
 
-	protected static void preventDropFromBottomPart(@NotNull Level level, @NotNull BlockPos pos, BlockState state, @NotNull Player player) {
+	protected static void preventDropFromBottomPart(@NonNull Level level, @NonNull BlockPos pos, BlockState state, @NonNull Player player) {
 		DoubleBlockHalf doubleBlockHalf = state.getValue(HALF);
 		if (doubleBlockHalf == DoubleBlockHalf.UPPER) {
 			BlockPos blockPos = pos.above();
@@ -114,7 +115,7 @@ public class HangingDoublePlantBlock extends NetherDescentDoublePlantBlock {
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder.add(HANGING));
 	}
 }

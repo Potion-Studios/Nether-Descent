@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.world.level.block.wood;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -18,18 +19,19 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.AABB;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class ArisianLeavesBlock extends LeavesBlock {
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	public static final IntegerProperty STRENGTH = IntegerProperty.create("strength", 0, 5);
-	public ArisianLeavesBlock(Properties properties) {
-		super(properties);
+	public static final MapCodec<ArisianLeavesBlock> CODEC = simpleCodec(ArisianLeavesBlock::new);
+	public ArisianLeavesBlock(float leafParticleChance, Properties properties) {
+		super(leafParticleChance, properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false).setValue(STRENGTH, 0));
 	}
 
 	@Override
-	public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-		super.animateTick(state, level, pos, random);
+	protected void spawnFallingLeavesParticle(@NonNull Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {
 		if (random.nextInt(10) == 0) {
 			BlockPos blockPos = pos.below();
 			BlockState blockState = level.getBlockState(blockPos);
@@ -44,6 +46,11 @@ public class ArisianLeavesBlock extends LeavesBlock {
 		if (!level.isClientSide() && entity instanceof LivingEntity)
 			if (state.getValue(STRENGTH) != 5)
 				updateState(state, level, pos, 5);
+	}
+
+	@Override
+	public @NonNull MapCodec<? extends LeavesBlock> codec() {
+		return CODEC;
 	}
 
 	@Override

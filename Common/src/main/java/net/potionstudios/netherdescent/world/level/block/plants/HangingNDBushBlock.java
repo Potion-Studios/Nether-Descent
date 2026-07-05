@@ -13,8 +13,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 public class HangingNDBushBlock extends NetherDescentBush {
     public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
@@ -29,7 +29,7 @@ public class HangingNDBushBlock extends NetherDescentBush {
     }
 
     @Override
-    public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction direction = context.getClickedFace();
         if (direction.getAxis().isVertical())
             return this.defaultBlockState().setValue(HANGING, direction == Direction.DOWN);
@@ -37,19 +37,19 @@ public class HangingNDBushBlock extends NetherDescentBush {
     }
 
     @Override
-    protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
+    protected boolean canSurvive(BlockState state, @NonNull LevelReader level, @NonNull BlockPos pos) {
         BlockPos blockPos = state.getValue(HANGING) ? pos.above() : pos.below();
         return this.mayPlaceOn(level.getBlockState(blockPos), level, blockPos);
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder.add(HANGING));
     }
 
     @Override
-    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-        Vec3 vec3 = state.getOffset(level, pos);
+    protected @NonNull VoxelShape getShape(@NonNull BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
+        Vec3 vec3 = state.getOffset(pos);
         VoxelShape shape = state.getValue(HANGING) ? HANGING_SHAPE : SHAPE;
         return shape.move(vec3.x, vec3.y, vec3.z);
     }

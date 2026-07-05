@@ -13,7 +13,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.function.Supplier;
 
@@ -38,10 +38,10 @@ public class NDGrowingPlantHeadBlock extends GrowingPlantHeadBlock {
     }
 
     @Override
-    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+    public void animateTick(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {
         super.animateTick(state, level, pos, random);
         if (state.is(NetherDescentBlocks.EMBUR_GEL_VINES.get()) && level.isEmptyBlock(pos.below()) && random.nextInt(10) == 0) {
-            Vec3 vec3 = state.getOffset(level, pos);
+            Vec3 vec3 = state.getOffset(pos);
             double e = (double)pos.getX() + (double)0.5F + vec3.x;
             double f = (double)((float)(pos.getY() + 1) - 0.6875F) - (double)0.0625F;
             double g = (double)pos.getZ() + (double)0.5F + vec3.z;
@@ -50,22 +50,22 @@ public class NDGrowingPlantHeadBlock extends GrowingPlantHeadBlock {
     }
 
     @Override
-	protected @NotNull MapCodec<? extends GrowingPlantHeadBlock> codec() {
+	protected @NonNull MapCodec<? extends GrowingPlantHeadBlock> codec() {
 		return CODEC;
 	}
 
 	@Override
-	protected @NotNull Block getBodyBlock() {
+	protected @NonNull Block getBodyBlock() {
 		return bodyBlock.get();
 	}
 
 	@Override
-	protected int getBlocksToGrowWhenBonemealed(@NotNull RandomSource random) {
+	protected int getBlocksToGrowWhenBonemealed(@NonNull RandomSource random) {
 		return NetherVines.getBlocksToGrowWhenBonemealed(random);
 	}
 
 	@Override
-	protected boolean canGrowInto(@NotNull BlockState state) {
+	protected boolean canGrowInto(@NonNull BlockState state) {
 		return NetherVines.isValidGrowthState(state);
 	}
 }

@@ -9,10 +9,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -27,8 +24,7 @@ import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.world.damagesource.NetherDescentDamageTypes;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 public class CrimsonBerryBushBlock extends SweetBerryBushBlock {
     public CrimsonBerryBushBlock(Properties properties) {
@@ -36,47 +32,47 @@ public class CrimsonBerryBushBlock extends SweetBerryBushBlock {
     }
 
     @Override
-    public @NotNull ItemStack getCloneItemStack(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
+    protected @NonNull ItemStack getCloneItemStack(@NonNull LevelReader level, @NonNull BlockPos pos, @NonNull BlockState state, boolean includeData) {
         return NetherDescentItems.CRIMSON_BERRIES.get().getDefaultInstance();
     }
 
     @Override
-    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+    public void animateTick(BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {
         if (state.getValue(AGE) == MAX_AGE)
             level.addParticle(ParticleTypes.CRIMSON_SPORE, (double) pos.getX() + 0.5D + (random.nextDouble() - 0.5D), (double) pos.getY() + 0.5D + (random.nextDouble() - 0.5D), (double) pos.getZ() + 0.5D + (random.nextDouble() - 0.5D), 0.0D, 0.0D, 0.0D);
     }
 
     @Override
-    protected boolean mayPlaceOn(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos) {
         return state.is(BlockTags.NYLIUM) || state.is(NetherDescentBlocks.SYTHIAN_FARMLAND.get());
     }
 
     @Override
-    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull BlockHitResult hitResult) {
+    protected @NonNull InteractionResult useWithoutItem(BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull Player player, @NonNull BlockHitResult hitResult) {
         int i = state.getValue(AGE);
         boolean bl = i == 3;
         if (i > 1) {
-            int j = 1 + level.random.nextInt(2);
+            int j = 1 + level.getRandom().nextInt(2);
             popResource(level, pos, new ItemStack(NetherDescentItems.CRIMSON_BERRIES.get(), j + (bl ? 1 : 0)));
-            level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.random.nextFloat() * 0.4F);
+            level.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + level.getRandom().nextFloat() * 0.4F);
             BlockState blockState = state.setValue(AGE, 1);
             level.setBlock(pos, blockState, 2);
             level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, blockState));
-            return InteractionResult.sidedSuccess(level.isClientSide());
+            return InteractionResult.SUCCESS_SERVER;
         } else {
             return InteractionResult.PASS;
         }
     }
 
     @Override
-    protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
+    protected void entityInside(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull Entity entity, @NonNull InsideBlockEffectApplier effectApplier, boolean isPrecise) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             entity.makeStuckInBlock(state, new Vec3(0.8F, 0.75, 0.8F));
-            if (!level.isClientSide && state.getValue(AGE) > 0 && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
+            if (!level.isClientSide() && state.getValue(AGE) > 0 && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
                 double d = Math.abs(entity.getX() - entity.xOld);
                 double e = Math.abs(entity.getZ() - entity.zOld);
                 if (d >= 0.003F || e >= 0.003F) {
-                    entity.hurt(new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(NetherDescentDamageTypes.CRIMSON_BERRY_BUSH)), 1.0F);
+                    entity.hurt(new DamageSource(level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(NetherDescentDamageTypes.CRIMSON_BERRY_BUSH)), 1.0F);
                 }
             }
         }
@@ -87,8 +83,7 @@ public class CrimsonBerryBushBlock extends SweetBerryBushBlock {
      * @see net.neoforged.neoforge.common.extensions.IBlockExtension#getBlockPathType
      * @see net.minecraftforge.common.extensions.IForgeBlock#getBlockPathType
      */
-    @Nullable
-    PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, @Nullable Mob mob) {
-        return PathType.DAMAGE_OTHER;
+    PathType getBlockPathType(BlockState state, BlockGetter level, BlockPos pos, Mob mob) {
+        return PathType.DAMAGING;
     }
 }
