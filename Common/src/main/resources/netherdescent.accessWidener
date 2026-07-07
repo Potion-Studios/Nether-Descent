@@ -16,6 +16,7 @@ accessible method net/minecraft/world/level/block/FungusBlock <init> (Lnet/minec
 accessible method net/minecraft/world/level/block/WaterloggedTransparentBlock <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
 accessible method net/minecraft/world/level/block/RootsBlock <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
 accessible method net/minecraft/world/level/block/IronBarsBlock <init> (Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
+accessible method net/minecraft/world/level/block/NetherRootsBlock <init> (Lnet/minecraft/tags/TagKey;Lnet/minecraft/world/level/block/state/BlockBehaviour$Properties;)V
 
 transitive-accessible method net/minecraft/world/level/block/entity/BlockEntityType <init> (Lnet/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier;Ljava/util/Set;)V
 transitive-accessible class net/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier
