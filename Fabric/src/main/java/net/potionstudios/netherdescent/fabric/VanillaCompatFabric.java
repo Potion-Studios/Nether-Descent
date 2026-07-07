@@ -2,7 +2,6 @@ package net.potionstudios.netherdescent.fabric;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
-import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
@@ -15,7 +14,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.potionstudios.netherdescent.event.ServerEventsHandler;
 import net.potionstudios.netherdescent.util.VanillaBonemealHandler;
 import net.potionstudios.netherdescent.world.BlockItemFeatures;
-import net.potionstudios.netherdescent.world.entity.animal.NetherDescentWolf;
 import net.potionstudios.netherdescent.world.item.brewing.NetherDescentBrewingRecipes;
 import net.potionstudios.netherdescent.world.item.tools.ToolInteractions;
 
@@ -26,11 +24,6 @@ public class VanillaCompatFabric {
         ToolInteractions.registerStrippableBlocks(StrippableBlockRegistry::register);
         ToolInteractions.registerTillables((block, pair) -> TillableBlockRegistry.register(block, pair.getFirst(), pair.getSecond()));
         BlockItemFeatures.registerFurnaceFuels((item, burnTime) -> FuelValueEvents.BUILD.register(((builder, context) -> builder.add(item, burnTime))));
-        UseEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
-            if (NetherDescentWolf.onEntityInteract(world, player, entity, player.getItemInHand(hand)) == InteractionResult.SUCCESS)
-                return InteractionResult.SUCCESS;
-            return InteractionResult.PASS;
-        });
         UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
             ItemStack stack = player.getItemInHand(hand);
             if (stack.is(Items.BONE_MEAL) && VanillaBonemealHandler.boneMealEventHandler(world, hitResult.getBlockPos(), world.getBlockState(hitResult.getBlockPos()), stack)) {
