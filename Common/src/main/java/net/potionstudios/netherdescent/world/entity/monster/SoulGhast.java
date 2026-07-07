@@ -18,7 +18,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.world.entity.projectile.LargeSoulFireball;
-import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
 
 public class SoulGhast extends Ghast {
@@ -27,7 +26,7 @@ public class SoulGhast extends Ghast {
         this.xpReward = 8;
     }
 
-	public static AttributeSupplier.@NotNull Builder createAttributes() {
+	public static AttributeSupplier.@NonNull Builder createAttributes() {
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 14.0F).add(Attributes.FOLLOW_RANGE, 100.0F);
     }
 

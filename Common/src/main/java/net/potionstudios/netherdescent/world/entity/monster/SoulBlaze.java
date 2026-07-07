@@ -2,9 +2,9 @@ package net.potionstudios.netherdescent.world.entity.monster;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -18,7 +18,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.world.entity.projectile.SmallSoulFireball;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class SoulBlaze extends Blaze {
     public SoulBlaze(EntityType<? extends Blaze> entityType, Level level) {
@@ -37,13 +37,13 @@ public class SoulBlaze extends Blaze {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
-    public static AttributeSupplier.@NotNull Builder createAttributes() {
+    public static AttributeSupplier.@NonNull Builder createAttributes() {
         return Monster.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 7.0F).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.FOLLOW_RANGE, 30.0F);
     }
 
     @Override
-    public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull MobSpawnType reason) {
-        return MobSpawnConfig.INSTANCE.soul_blaze && super.checkSpawnRules(level, reason);
+    public boolean checkSpawnRules(@NonNull LevelAccessor level, @NonNull EntitySpawnReason spawnReason) {
+        return MobSpawnConfig.INSTANCE.soul_blaze && super.checkSpawnRules(level, spawnReason);
     }
 
     static class SoulBlazeAttackGoal extends Blaze.BlazeAttackGoal {
@@ -88,7 +88,7 @@ public class SoulBlaze extends Blaze {
 
                     if (this.attackTime <= 0) {
                         this.attackTime = 20;
-                        if (this.blaze.doHurtTarget(livingEntity))
+                        if (this.blaze.doHurtTarget(getServerLevel(blaze.level()), livingEntity))
                             livingEntity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100));
                     }
 
