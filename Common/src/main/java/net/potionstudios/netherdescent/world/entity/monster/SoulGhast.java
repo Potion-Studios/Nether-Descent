@@ -1,14 +1,12 @@
 package net.potionstudios.netherdescent.world.entity.monster;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -21,6 +19,7 @@ import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.world.entity.projectile.LargeSoulFireball;
 import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class SoulGhast extends Ghast {
     public SoulGhast(EntityType<? extends Ghast> entityType, Level level) {
@@ -32,13 +31,13 @@ public class SoulGhast extends Ghast {
         return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 14.0F).add(Attributes.FOLLOW_RANGE, 100.0F);
     }
 
-    public static boolean checkSoulGhastSpawnRules(EntityType<SoulGhast> ghast, LevelAccessor level, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
+    public static boolean checkSoulGhastSpawnRules(EntityType<SoulGhast> ghast, LevelAccessor level, EntitySpawnReason spawnType, BlockPos pos, RandomSource random) {
 		return level.getDifficulty() != Difficulty.PEACEFUL && random.nextInt(20) == 0 && (level.getBlockState(pos.below()).is(Blocks.SOUL_SOIL) || checkMobSpawnRules(ghast, level, spawnType, pos, random));
     }
 
 	@Override
-	public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull MobSpawnType reason) {
-		return MobSpawnConfig.INSTANCE.soul_ghast && super.checkSpawnRules(level, reason);
+	public boolean checkSpawnRules(@NonNull LevelAccessor level, @NonNull EntitySpawnReason spawnReason) {
+		return MobSpawnConfig.INSTANCE.soul_ghast && super.checkSpawnRules(level, spawnReason);
 	}
 
 	@Override
@@ -46,7 +45,7 @@ public class SoulGhast extends Ghast {
         this.goalSelector.addGoal(5, new RandomFloatAroundGoal(this));
         this.goalSelector.addGoal(7, new GhastLookGoal(this));
         this.goalSelector.addGoal(7, new GhastShootFireballGoal(this));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, (livingEntity) -> Math.abs(livingEntity.getY() - this.getY()) <= (double)4.0F));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, (livingEntity, level) -> Math.abs(livingEntity.getY() - this.getY()) <= (double)4.0F));
     }
 
 	private static boolean isReflectedFireball(DamageSource damageSource) {
@@ -54,17 +53,17 @@ public class SoulGhast extends Ghast {
 	}
 
 	@Override
-	public boolean isInvulnerableTo(@NotNull DamageSource source) {
-		return this.isInvulnerable() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) || !isReflectedFireball(source) && super.isInvulnerableTo(source);
+	public boolean isInvulnerableTo(@NonNull ServerLevel level, @NonNull DamageSource source) {
+		return this.isInvulnerable() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY) || !isReflectedFireball(source) &&super.isInvulnerableTo(level, source);
 	}
 
 	@Override
-	public boolean hurt(@NotNull DamageSource source, float amount) {
+	public boolean hurtServer(@NonNull ServerLevel level, @NonNull DamageSource source, float damage) {
 		if (isReflectedFireball(source)) {
-			super.hurt(source, 1000.0F);
+			super.hurtServer(level, source,1000.0F);
 			return true;
 		} else {
-			return !this.isInvulnerableTo(source) && super.hurt(source, amount);
+			return !this.isInvulnerableTo(level, source) && super.hurtServer(level, source, damage);
 		}
 	}
 
