@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -50,8 +51,8 @@ public class NetherDescentClient {
 	 * @param woodType the wood type to register
 	 */
 	private static void registerWoodTypes(WoodType woodType) {
-		Sheets.SIGN_MATERIALS.put(woodType, Sheets.createSignMaterial(woodType));
-		Sheets.HANGING_SIGN_MATERIALS.put(woodType, Sheets.createHangingSignMaterial(woodType));
+		Sheets.SIGN_SPRITES.put(woodType, Sheets.SIGN_MAPPER.apply(Identifier.parse(woodType.name())));
+		Sheets.HANGING_SIGN_SPRITES.put(woodType, Sheets.HANGING_SIGN_MAPPER.apply(Identifier.parse(woodType.name())));
 	}
 
     /**
