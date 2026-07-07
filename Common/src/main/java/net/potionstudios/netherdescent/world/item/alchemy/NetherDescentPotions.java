@@ -11,9 +11,8 @@ import net.potionstudios.netherdescent.PlatformHandler;
 import java.util.function.Supplier;
 
 public class NetherDescentPotions {
-
-	public static final Supplier<Holder.Reference<Potion>> LEVITATION = register("levitation", () -> new Potion(new MobEffectInstance(MobEffects.LEVITATION, 1800)));
-	public static final Supplier<Holder.Reference<Potion>> STRONG_LEVITATION = register("strong_levitation", () -> new Potion(new MobEffectInstance(MobEffects.LEVITATION, 4800)));
+	public static final Supplier<Holder.Reference<Potion>> LEVITATION = register("levitation", () -> new Potion("levitation", new MobEffectInstance(MobEffects.LEVITATION, 1800)));
+	public static final Supplier<Holder.Reference<Potion>> STRONG_LEVITATION = register("strong_levitation", () -> new Potion("strong_levitation", new MobEffectInstance(MobEffects.LEVITATION, 4800)));
 
 	private static Supplier<Holder.Reference<Potion>> register(String name, Supplier<Potion> potion) {
 		return PlatformHandler.PLATFORM_HANDLER.registerForHolder(BuiltInRegistries.POTION, name, potion);
