@@ -2,8 +2,12 @@ package net.potionstudios.netherdescent.world.item;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.potionstudios.netherdescent.NetherDescent;
@@ -52,10 +56,10 @@ public class NetherDescentItems {
 
     public static final Supplier<Item> HORNET_NEST = registerItemNoLang("hornet_nest", () -> new BlockItem(NetherDescentBlocks.HORNET_NEST.get(), new Item.Properties().component(NetherDescentDataComponents.HORNETS.get(), List.of())));
 
-    public static final Supplier<SpawnEggItem> SOUL_BLAZE_SPAWN_EGG = registerSimpleItem("soul_blaze_spawn_egg", PlatformHandler.PLATFORM_HANDLER.createSpawnEgg(NetherDescentEntityType.SOUL_BLAZE, 2467756, 13958911));
-	public static final Supplier<SpawnEggItem> PENDORITE_BLAZE_SPAWN_EGG = registerSimpleItem("pendorite_blaze_spawn_egg", PlatformHandler.PLATFORM_HANDLER.createSpawnEgg(NetherDescentEntityType.PENDORITE_BLAZE, 3679595, 10005478));
-    public static final Supplier<SpawnEggItem> HORNET_SPAWN_EGG = registerSimpleItem("hornet_spawn_egg", PlatformHandler.PLATFORM_HANDLER.createSpawnEgg(NetherDescentEntityType.HORNET, 362174354, 15965792));
-    public static final Supplier<SpawnEggItem> SOUL_GHAST_SPAWN_EGG = registerSimpleItem("soul_ghast_spawn_egg", PlatformHandler.PLATFORM_HANDLER.createSpawnEgg(NetherDescentEntityType.SOUL_GHAST, 611926,3318177));
+    public static final Supplier<SpawnEggItem> SOUL_BLAZE_SPAWN_EGG = registerSpawnEgg("soul_blaze_spawn_egg", NetherDescentEntityType.SOUL_BLAZE);
+	public static final Supplier<SpawnEggItem> PENDORITE_BLAZE_SPAWN_EGG = registerSpawnEgg("pendorite_blaze_spawn_egg", NetherDescentEntityType.PENDORITE_BLAZE);
+    public static final Supplier<SpawnEggItem> HORNET_SPAWN_EGG = registerSpawnEgg("hornet_spawn_egg", NetherDescentEntityType.HORNET);
+    public static final Supplier<SpawnEggItem> SOUL_GHAST_SPAWN_EGG = registerSpawnEgg("soul_ghast_spawn_egg", NetherDescentEntityType.SOUL_GHAST);
 
     public static <I extends Item> Supplier<I> registerSimpleItem(String id, Supplier<I> item) {
         Supplier<I> supplier = registerItem(id, item);
@@ -74,6 +78,17 @@ public class NetherDescentItems {
         Supplier<I> supplier = register(id, item);
         NO_LANG_ITEMS.add(supplier);
         return supplier;
+    }
+
+    private static <E extends Entity> Supplier<SpawnEggItem> registerSpawnEgg(String id, Supplier<EntityType<E>> entity) {
+        Supplier<SpawnEggItem> egg = PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.ITEM, id, () -> new SpawnEggItem(new Item.Properties().setId(key(id)).spawnEgg(entity.get())));
+        SIMPLE_ITEMS.add(egg);
+        ITEMS.add(egg);
+        return egg;
+    }
+
+    private static ResourceKey<Item> key(String id) {
+        return NetherDescent.key(Registries.ITEM, id);
     }
 
     public static <I extends Item> Supplier<I> register(String id, Supplier<I> item) {
