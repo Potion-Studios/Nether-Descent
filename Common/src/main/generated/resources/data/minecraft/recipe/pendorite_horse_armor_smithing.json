@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "netherdescent:pendorite_ingot"
+  },
+  "base": {
+    "item": "minecraft:diamond_horse_armor"
+  },
+  "result": {
+    "count": 1,
+    "id": "netherdescent:pendorite_horse_armor"
+  },
+  "template": []
+}

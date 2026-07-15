@@ -6,8 +6,10 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.SmithingTransformRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 import net.potionstudios.netherdescent.NetherDescent;
@@ -242,6 +244,17 @@ public class RecipeGenerator extends RecipeProvider {
                 .pattern(" # ")
                 .unlockedBy("has_logs", has(ItemTags.LOGS))
                 .save(recipeOutput);
+
+        pendoriteSmithing(recipeOutput, Items.DIAMOND_HORSE_ARMOR, RecipeCategory.COMBAT, NetherDescentItems.PENDORITE_HORSE_ARMOR.get());
+        pendoriteSmithing(recipeOutput, Items.WOLF_ARMOR, RecipeCategory.COMBAT, NetherDescentItems.PENDORITE_WOLF_ARMOR.get());
+    }
+
+    protected static void pendoriteSmithing(RecipeOutput recipeOutput, Item ingredientItem, RecipeCategory category, Item resultItem) {
+        SmithingTransformRecipeBuilder.smithing(
+                        Ingredient.EMPTY, Ingredient.of(ingredientItem), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get()), category, resultItem
+                )
+                .unlocks("has_pendorite_ingot", has(NetherDescentItems.PENDORITE_INGOT.get()))
+                .save(recipeOutput, getItemName(resultItem) + "_smithing");
     }
 
 	private static void NDNineBlockStorageRecipes(RecipeOutput recipeOutput, RecipeCategory unpackedCategory, ItemLike unpacked, RecipeCategory packedCategory, ItemLike packed, String packedName, @Nullable String packedGroup, String unpackedName, @Nullable String unpackedGroup) {

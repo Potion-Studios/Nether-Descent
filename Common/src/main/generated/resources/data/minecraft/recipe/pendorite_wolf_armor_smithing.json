@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "netherdescent:pendorite_ingot"
+  },
+  "base": {
+    "item": "minecraft:wolf_armor"
+  },
+  "result": {
+    "count": 1,
+    "id": "netherdescent:pendorite_wolf_armor"
+  },
+  "template": []
+}
