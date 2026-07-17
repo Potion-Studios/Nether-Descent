@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.neoforge.datagen;
 
-import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import dev.worldgen.lithostitched.api.registry.LithostitchedRegistries;
 import dev.worldgen.lithostitched.impl.worldgen.biomeinjector.AddPoints;
@@ -13,7 +12,6 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.dimension.LevelStem;
-import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -58,7 +56,7 @@ class DataGeneratorsRegister {
         generator.addProvider(true, new DataMapGenerator(output, lookupProvider));
 	    generator.addProvider(true, new SoundDefinitionsGenerator(output));
         generator.addProvider(true, new ParticleDescriptionGenerator(output));
-        generator.addProvider(true, new AdvancementProvider(output, lookupProvider, ImmutableList.of(new AdvancementGenerator())));
+        generator.addProvider(true, new AdvancementGenerator(output, lookupProvider));
         generator.addProvider(true, new LithostitchedSurfaceRuleGenerator(output));
 	}
 
