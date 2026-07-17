@@ -5,11 +5,9 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.criterion.*;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
@@ -56,21 +54,21 @@ public class WailingTrigger extends SimpleCriterionTrigger<WailingTrigger.Trigge
 			return true;
 		}
 
-		public static Criterion<TriggerInstance> interactedWithBlock(HolderGetter<Block> block) {
+		public static Criterion<TriggerInstance> interactedWithBlock(BlockPredicate.Builder blockPredicate) {
 			return NetherDescentCriteriaTriggers.WAILING_INTERACTION.get().createCriterion(
-					new TriggerInstance(Optional.empty(), Optional.of(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block)).build()), Optional.empty(), Optional.empty())
+					new TriggerInstance(Optional.empty(), Optional.of(LocationPredicate.Builder.location().setBlock(blockPredicate).build()), Optional.empty(), Optional.empty())
 			);
 		}
 
-		public static Criterion<TriggerInstance> interactedWithPoweredBlock(HolderGetter<Block> block, MinMaxBounds.Ints powered) {
+		public static Criterion<TriggerInstance> interactedWithPoweredBlock(BlockPredicate.Builder blockPredicate, MinMaxBounds.Ints powered) {
 			return NetherDescentCriteriaTriggers.WAILING_INTERACTION.get().createCriterion(
-					new TriggerInstance(Optional.empty(), Optional.of(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block)).build()), Optional.of(powered), Optional.empty())
+					new TriggerInstance(Optional.empty(), Optional.of(LocationPredicate.Builder.location().setBlock(blockPredicate).build()), Optional.of(powered), Optional.empty())
 			);
 		}
 
-		public static Criterion<TriggerInstance> interactedWithPoweredBlockAndEntity(HolderGetter<Block> block, MinMaxBounds.Ints powered, EntityPredicate.Builder entity) {
+		public static Criterion<TriggerInstance> interactedWithPoweredBlockAndEntity(BlockPredicate.Builder blockPredicate, MinMaxBounds.Ints powered, EntityPredicate.Builder entity) {
 			return NetherDescentCriteriaTriggers.WAILING_INTERACTION.get().createCriterion(
-					new TriggerInstance(Optional.empty(), Optional.of(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block)).build()), Optional.of(powered), Optional.of(EntityPredicate.wrap(entity.build())))
+					new TriggerInstance(Optional.empty(), Optional.of(LocationPredicate.Builder.location().setBlock(blockPredicate).build()), Optional.of(powered), Optional.of(EntityPredicate.wrap(entity.build())))
 			);
 		}
 	}

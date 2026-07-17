@@ -8,6 +8,7 @@ import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
@@ -50,7 +51,7 @@ class DataGeneratorsRegister {
 
         generator.addProvider(true, new ModelGenerators(output));
         generator.addProvider(true, new LangGenerator(output, "en_us"));
-        generator.addProvider(true, new RecipeGenerator(output, lookupProvider));
+        generator.addProvider(true, new RecipeGenerator.RecipeGeneratorRunner(output, lookupProvider));
         generator.addProvider(true, new LootGenerator(output, lookupProvider));
         TagsGenerator.init(generator, true, output, lookupProvider);
         generator.addProvider(true, new DataMapGenerator(output, lookupProvider));
@@ -78,7 +79,7 @@ class DataGeneratorsRegister {
 					    ))
 					    .toList();
 			    points.forEach(pair -> pContext.register(
-					    NetherDescent.key(LithostitchedRegistries.BIOME_INJECTOR, pair.getSecond().unwrapKey().get().location().getPath()),
+					    NetherDescent.key(LithostitchedRegistries.BIOME_INJECTOR, pair.getSecond().unwrapKey().get().identifier().getPath()),
 					    new AddPoints(
 							    Optional.of(new ConfigLoadPredicate(pair.getSecond().getKey())),
 							    LevelStem.NETHER,
