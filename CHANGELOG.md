@@ -1,3 +1,6 @@
+# 1.0.5
+- Add Pendorite Horse and Wolf Armor Recipes
+
 # 1.0.4
 - Allow toggling of Biomes with Lithostitched
 - Fix Wailing Gills Skipping Pulling Entities if it finds a single Entity with Soul Speed
