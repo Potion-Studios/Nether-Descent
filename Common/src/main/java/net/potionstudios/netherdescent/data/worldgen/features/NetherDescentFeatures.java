@@ -7,7 +7,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
@@ -42,7 +42,7 @@ public class NetherDescentFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_LILY = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("embur_lily", NetherDescentBlocks.EMBUR_LILY, 15);
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_BOG_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("embur_bog_vegetation", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
             new WeightedStateProvider(
-                    SimpleWeightedRandomList.<BlockState>builder()
+                    WeightedList.<BlockState>builder()
                             .add(NetherDescentBlocks.EMBUR_SPROUTS.get().defaultBlockState(), 2)
                             .add(NetherDescentBlocks.EMBUR_ROOTS.getBlockState(), 2)
                             .add(NetherDescentBlocks.TALL_EMBUR_ROOTS.get().defaultBlockState())
@@ -52,7 +52,7 @@ public class NetherDescentFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_BOG_VEGETATION_BONEMEAL = ConfiguredFeaturesUtil.createConfiguredFeature("embur_bog_vegetation_bonemeal", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
             new WeightedStateProvider(
-                    SimpleWeightedRandomList.<BlockState>builder()
+                    WeightedList.<BlockState>builder()
                             .add(NetherDescentBlocks.EMBUR_SPROUTS.get().defaultBlockState(), 2)
                             .add(NetherDescentBlocks.EMBUR_ROOTS.getBlockState(), 2)
                             .add(NetherDescentBlocks.TALL_EMBUR_ROOTS.get().defaultBlockState())
@@ -82,7 +82,7 @@ public class NetherDescentFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_vegetation", Feature.SIMPLE_BLOCK, () -> new SimpleBlockConfiguration(
 			new WeightedStateProvider(
-					SimpleWeightedRandomList.<BlockState>builder()
+					WeightedList.<BlockState>builder()
 							.add(NetherDescentBlocks.EMBUR_MOSS_CARPET.get().defaultBlockState(), 25)
 							.add(NetherDescentBlocks.EMBUR_SPROUTS.get().defaultBlockState(), 25)
 							.add(NetherDescentBlocks.EMBUR_ROOTS.getBlockState(), 10)
@@ -99,7 +99,7 @@ public class NetherDescentFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_TORRIDS_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_torrids_vegetation", Feature.NETHER_FOREST_VEGETATION,  (configuredFeatureBootstrapContext) -> new NetherForestVegetationConfig(
 			new WeightedStateProvider(
-					SimpleWeightedRandomList.<BlockState>builder()
+					WeightedList.<BlockState>builder()
 							.add(NetherDescentBlocks.SYTHIAN_ROOTS.getBlockState(), 2)
 							.add(NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState())
 							.add(NetherDescentBlocks.SYTHIAN_SPROUTS.getBlockState(), 2)
@@ -108,7 +108,7 @@ public class NetherDescentFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_TORRIDS_VEGETATION_BONEMEAL = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_torrids_vegetation_bonemeal", Feature.NETHER_FOREST_VEGETATION,  (configuredFeatureBootstrapContext) -> new NetherForestVegetationConfig(
 			new WeightedStateProvider(
-					SimpleWeightedRandomList.<BlockState>builder()
+					WeightedList.<BlockState>builder()
 							.add(NetherDescentBlocks.SYTHIAN_ROOTS.getBlockState(), 2)
 							.add(NetherDescentBlocks.SYTHIAN_SHOOT.get().defaultBlockState())
 							.add(NetherDescentBlocks.SYTHIAN_SPROUTS.getBlockState(), 2)
@@ -118,7 +118,7 @@ public class NetherDescentFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_GARDEN_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_garden_vegetation", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
                 new WeightedStateProvider(
-                        SimpleWeightedRandomList.<BlockState>builder()
+                        WeightedList.<BlockState>builder()
                                 .add(Blocks.CRIMSON_ROOTS.defaultBlockState(), 5)
                                 .add(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get().defaultBlockState(), 3)
                                 .add(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get().defaultBlockState(), 3)
@@ -154,7 +154,7 @@ public class NetherDescentFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_UNDERGROWTH_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_undergrowth_vegetation", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
 			new WeightedStateProvider(
-					SimpleWeightedRandomList.<BlockState>builder()
+					WeightedList.<BlockState>builder()
 							.add(NetherDescentBlocks.ARISIAN_SPROUTS.getBlockState(), 3)
 							.add(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get().defaultBlockState(), 3)
 							.add(NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState(), 1)
@@ -165,7 +165,7 @@ public class NetherDescentFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_UNDERGROWTH_HANGING_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_undergrowth_hanging_vegetation", NetherDescentFeature.HANGING_NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
 			new WeightedStateProvider(
-					SimpleWeightedRandomList.<BlockState>builder()
+					WeightedList.<BlockState>builder()
 							.add(NetherDescentBlocks.ARISIAN_SPROUTS.getBlockState().setValue(BlockStateProperties.HANGING, true), 3)
 							.add(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true), 3)
 							.add(NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState().setValue(BlockStateProperties.HANGING, true), 1)
@@ -180,7 +180,7 @@ public class NetherDescentFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_MOSS_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_moss_vegetation", Feature.SIMPLE_BLOCK, () -> new SimpleBlockConfiguration(
 			new WeightedStateProvider(
-					SimpleWeightedRandomList.<BlockState>builder()
+					WeightedList.<BlockState>builder()
 							.add(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get().defaultBlockState(), 25)
 							.add(NetherDescentBlocks.ARISIAN_SPROUTS.getBlockState(), 25)
 							.add(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get().defaultBlockState(), 10)
