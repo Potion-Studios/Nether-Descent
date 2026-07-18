@@ -24,7 +24,7 @@ loom {
 
     forge {
         convertAccessWideners(tasks.shadowJar, "netherdescent.accessWidener")
-//        mixinConfig("biomeswevegone-common.mixins.json")
+        mixinConfig("netherdescent-common.mixins.json")
     }
 }
 
