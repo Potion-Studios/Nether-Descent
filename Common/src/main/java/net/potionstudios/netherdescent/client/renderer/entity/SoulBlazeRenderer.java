@@ -2,10 +2,10 @@ package net.potionstudios.netherdescent.client.renderer.entity;
 
 import net.minecraft.client.renderer.entity.BlazeRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.entity.monster.Blaze;
 import net.potionstudios.netherdescent.NetherDescent;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class SoulBlazeRenderer extends BlazeRenderer {
     private static final Identifier SOUL_BLAZE_LOCATION = NetherDescent.id("textures/entity/soul_blaze.png");
@@ -15,7 +15,7 @@ public class SoulBlazeRenderer extends BlazeRenderer {
     }
 
     @Override
-    public @NotNull Identifier getTextureLocation(@NotNull Blaze entity) {
+    public @NonNull Identifier getTextureLocation(@NonNull LivingEntityRenderState state) {
         return SOUL_BLAZE_LOCATION;
     }
 }
