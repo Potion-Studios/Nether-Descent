@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.world.entity.monster;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -21,22 +20,22 @@ import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.SmallFireball;
+import net.minecraft.world.entity.projectile.hurtingprojectile.SmallFireball;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.UUID;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 public class PendoriteBlaze extends Blaze implements NeutralMob {
     protected static final EntityDataAccessor<Byte> DATA_FLAGS_ID = SynchedEntityData.defineId(PendoriteBlaze.class, EntityDataSerializers.BYTE);
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
-    private int remainingPersistentAngerTime;
-    @Nullable
-    private UUID persistentAngerTarget;
+    private long persistentAngerEndTime;
+	private @org.jspecify.annotations.Nullable EntityReference<LivingEntity> persistentAngerTarget;
 
 	public PendoriteBlaze(EntityType<? extends Blaze> entityType, Level level) {
 		super(entityType, level);
@@ -51,16 +50,13 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(2, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
-        this.targetSelector
-                .addGoal(
-                        3, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, livingEntity -> livingEntity instanceof Enemy && !(livingEntity instanceof Creeper))
-                );
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, (livingEntity, _) -> livingEntity instanceof Enemy && !(livingEntity instanceof Creeper)));
         this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, false));
     }
 
 	@Override
-	public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull MobSpawnType reason) {
-		return MobSpawnConfig.INSTANCE.pendorite_blaze && super.checkSpawnRules(level, reason);
+	public boolean checkSpawnRules(@NonNull LevelAccessor level, @NonNull EntitySpawnReason spawnReason) {
+		return MobSpawnConfig.INSTANCE.pendorite_blaze && super.checkSpawnRules(level, spawnReason);
 	}
 
 	@Override
@@ -69,19 +65,19 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
         builder.define(DATA_FLAGS_ID, (byte) 0);
     }
 
-    @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
-        compound.putBoolean("PlayerCreated", this.isPlayerCreated());
-        this.addPersistentAngerSaveData(compound);
-    }
+	@Override
+	protected void addAdditionalSaveData(@NonNull ValueOutput output) {
+		super.addAdditionalSaveData(output);
+		output.putBoolean("PlayerCreated", this.isPlayerCreated());
+		this.addPersistentAngerSaveData(output);
+	}
 
-    @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-        this.setPlayerCreated(compound.getBoolean("PlayerCreated"));
-        this.readPersistentAngerSaveData(this.level(), compound);
-    }
+	@Override
+	protected void readAdditionalSaveData(@NonNull ValueInput input) {
+		super.readAdditionalSaveData(input);
+		this.setPlayerCreated(input.getBooleanOr("PlayerCreated", false));
+		this.readPersistentAngerSaveData(this.level(), input);
+	}
 
     public static AttributeSupplier.@NotNull Builder createAttributes() {
 		return Monster.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 4.0F).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.FOLLOW_RANGE, 25.0F).add(Attributes.MAX_HEALTH, 40.0F);
@@ -95,33 +91,33 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
     }
 
     @Override
-	protected boolean shouldDropLoot() {
+	protected boolean shouldDropLoot(@NonNull ServerLevel level) {
 		return false;
 	}
 
-    @Override
-    public int getRemainingPersistentAngerTime() {
-        return this.remainingPersistentAngerTime;
-    }
+	@Override
+	public long getPersistentAngerEndTime() {
+		return this.persistentAngerEndTime;
+	}
 
-    @Override
-    public void setRemainingPersistentAngerTime(int remainingPersistentAngerTime) {
-        this.remainingPersistentAngerTime = remainingPersistentAngerTime;
-    }
+	@Override
+	public void setPersistentAngerEndTime(long endTime) {
+		this.persistentAngerEndTime = endTime;
+	}
 
-    @Override
-    public @Nullable UUID getPersistentAngerTarget() {
-        return this.persistentAngerTarget;
-    }
+	@Override
+	public @Nullable EntityReference<LivingEntity> getPersistentAngerTarget() {
+		return this.persistentAngerTarget;
+	}
 
-    @Override
-    public void setPersistentAngerTarget(@Nullable UUID persistentAngerTarget) {
-        this.persistentAngerTarget = persistentAngerTarget;
-    }
+	@Override
+	public void setPersistentAngerTarget(@org.jspecify.annotations.Nullable EntityReference<LivingEntity> persistentAngerTarget) {
+		this.persistentAngerTarget = persistentAngerTarget;
+	}
 
     @Override
     public void startPersistentAngerTimer() {
-        this.setRemainingPersistentAngerTime(PERSISTENT_ANGER_TIME.sample(this.random));
+	    this.setTimeToRemainAngry(PERSISTENT_ANGER_TIME.sample(this.random));
     }
 
     public boolean isPlayerCreated() {
@@ -142,14 +138,14 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
         return false;
     }
 
-    @Override
-    public boolean canAttackType(@NotNull EntityType<?> entityType) {
-        if (this.isPlayerCreated() && entityType == EntityType.PLAYER) {
-            return false;
-        } else {
-            return entityType != EntityType.CREEPER && super.canAttackType(entityType);
-        }
-    }
+	@Override
+	public boolean canAttack(@NonNull LivingEntity target) {
+		if (this.isPlayerCreated() && target.is(EntityType.PLAYER)) {
+			return false;
+		} else {
+			return !target.is(EntityType.CREEPER) && super.canAttack(target);
+		}
+	}
 
 	@Override
 	public boolean canBeLeashed() {
@@ -204,7 +200,7 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
 
 					if (this.attackTime <= 0) {
 						this.attackTime = 20;
-						if (this.blaze.doHurtTarget(livingEntity))
+						if (this.blaze.doHurtTarget(getServerLevel(this.blaze), livingEntity))
 							livingEntity.setSharedFlagOnFire(true);
 					}
 
