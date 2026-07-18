@@ -1,10 +1,9 @@
 package net.potionstudios.netherdescent.client.model;
 
-import net.minecraft.client.model.BeeModel;
+import net.minecraft.client.model.animal.bee.AdultBeeModel;
 import net.minecraft.client.model.geom.ModelPart;
-import net.potionstudios.netherdescent.world.entity.animal.Hornet;
 
-public class HornetModel extends BeeModel<Hornet> {
+public class HornetModel extends AdultBeeModel {
     public HornetModel(ModelPart root) {
         super(root);
     }

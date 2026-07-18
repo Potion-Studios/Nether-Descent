@@ -2,10 +2,7 @@ package net.potionstudios.netherdescent.client;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.particle.CherryParticle;
-import net.minecraft.client.particle.FlameParticle;
-import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -60,12 +57,12 @@ public class NetherDescentClient {
      * @see ParticleProvider
      */
     public static void registerParticles(BiConsumer<SimpleParticleType, Function<SpriteSet, ParticleProvider<SimpleParticleType>>> consumer) {
-		consumer.accept(NetherDescentParticles.SYTHIAN_LEAF.get(), arg -> (arg2, arg3, d, e, f, g, h, i) -> new CherryParticle(arg3, d, e, f, arg));
+		consumer.accept(NetherDescentParticles.SYTHIAN_LEAF.get(), arg -> (simpleParticleType, level, d, e, f, g, h, i, randomSource) -> new FallingLeavesParticle.CherryProvider(arg).createParticle(simpleParticleType, level, d, e, f, g, h, i, randomSource));
 	    consumer.accept(NetherDescentParticles.EMBUR_GEL_DRIP.get(), FallingParticle.Provider::new);
 		consumer.accept(NetherDescentParticles.GILL_LEVITATE.get(), RisingParticle.Provider::new);
 		consumer.accept(NetherDescentParticles.GILL_LEVITATE_POWERED.get(), RisingParticle.Provider::new);
         consumer.accept(NetherDescentParticles.PENDORITE_FIRE_FLAME.get(), FlameParticle.Provider::new);
-	    consumer.accept(NetherDescentParticles.ARISIAN_LEAF.get(), arg -> (arg2, arg3, d, e, f, g, h, i) -> new CherryParticle(arg3, d, e, f, arg));
+	    consumer.accept(NetherDescentParticles.ARISIAN_LEAF.get(), arg -> (simpleParticleType, level, d, e, f, g, h, i, randomSource) -> new FallingLeavesParticle.CherryProvider(arg).createParticle(simpleParticleType, level, d, e, f, g, h, i, randomSource));
     }
 
     /**
@@ -88,7 +85,7 @@ public class NetherDescentClient {
 	 * @see NetherDescentBlockEntityType
 	 */
 	public static void registerBlockEntityRenderers(BiConsumer<BlockEntityType<? extends BlockEntity>, BlockEntityRendererProvider> consumer) {
-		consumer.accept(NetherDescentBlockEntityType.SIGNS.get(), SignRenderer::new);
+		consumer.accept(NetherDescentBlockEntityType.SIGNS.get(), StandingSignRenderer::new);
 		consumer.accept(NetherDescentBlockEntityType.HANGING_SIGNS.get(), HangingSignRenderer::new);
 		consumer.accept(NetherDescentBlockEntityType.CAMPFIRE.get(), CampfireRenderer::new);
 	}
