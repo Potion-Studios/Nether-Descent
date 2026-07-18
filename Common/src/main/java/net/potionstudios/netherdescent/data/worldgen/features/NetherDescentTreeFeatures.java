@@ -2,7 +2,6 @@ package net.potionstudios.netherdescent.data.worldgen.features;
 
 import com.google.common.collect.ImmutableList;
 import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.TYGFeatures;
-import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.configurations.TreeFromStructureNBTConfig;
 import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.configurations.TreeFromStructureNBTConfigV2;
 import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.configurations.TreeLogFilterBehavior;
 import dev.corgitaco.ohthetreesyoullgrow.world.level.levelgen.feature.configurations.treedecorators.AttachedToLogsDecorator;
@@ -11,7 +10,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.util.valueproviders.BiasedToBottomInt;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Block;
@@ -384,7 +383,7 @@ public class NetherDescentTreeFeatures {
                     BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_LEAVES.get()),
                     new BushFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2),
                     new TwoLayersFeatureSize(0, 0, 0)
-            ).dirt(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get())).build()
+            ).belowTrunkProvider(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get())).build()
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_LARGE_BUSH = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_large_bush",
@@ -424,15 +423,15 @@ public class NetherDescentTreeFeatures {
     //BONE TREES -------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> BONE_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("bone_tree1",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/bones/bone_trunk1"))
                     .canopyLocation(NetherDescent.id("features/bones/bone_canopy1"))
                     .height(BiasedToBottomInt.of(5, 20))
                     .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.CRIMSON_CARPET.get()))
                     .logTarget(Set.of(Blocks.BONE_BLOCK))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(FUNGAL_BULBS_WALL_UP_DOWN.get()))
@@ -441,15 +440,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> BONE_TREE2 = ConfiguredFeaturesUtil.createConfiguredFeature("bone_tree2",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/bones/bone_trunk2"))
                     .canopyLocation(NetherDescent.id("features/bones/bone_canopy2"))
                     .height(BiasedToBottomInt.of(7, 22))
                     .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.CRIMSON_CARPET.get()))
                     .logTarget(Set.of(Blocks.BONE_BLOCK))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(FUNGAL_BULBS_WALL_UP_DOWN.get()))
@@ -458,15 +457,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> BONE_TREE3 = ConfiguredFeaturesUtil.createConfiguredFeature("bone_tree3",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/bones/bone_trunk3"))
                     .canopyLocation(NetherDescent.id("features/bones/bone_canopy3"))
                     .height(BiasedToBottomInt.of(4, 20))
                     .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.CRIMSON_CARPET.get()))
                     .logTarget(Set.of(Blocks.BONE_BLOCK))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(FUNGAL_BULBS_WALL_UP_DOWN.get()))
@@ -475,15 +474,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> BONE_TREE4 = ConfiguredFeaturesUtil.createConfiguredFeature("bone_tree4",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/bones/bone_trunk4"))
                     .canopyLocation(NetherDescent.id("features/bones/bone_canopy4"))
                     .height(BiasedToBottomInt.of(7, 25))
                     .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.CRIMSON_CARPET.get()))
                     .logTarget(Set.of(Blocks.BONE_BLOCK))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(FUNGAL_BULBS_WALL_UP_DOWN.get()))
@@ -492,76 +491,76 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_BONE_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_bone_tree1",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/bones/bone_trunk1"))
                     .canopyLocation(NetherDescent.id("features/bones/bone_canopy1"))
                     .height(BiasedToBottomInt.of(5, 20))
                     .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .leavesProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .logTarget(Set.of(Blocks.BONE_BLOCK))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR, FUNGAL_BULBS_WALL_UP_DOWN.get()))
-                    .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
+                    .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .build()
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_BONE_TREE2 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_bone_tree2",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/bones/bone_trunk2"))
                     .canopyLocation(NetherDescent.id("features/bones/bone_canopy2"))
                     .height(BiasedToBottomInt.of(7, 25))
                     .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .leavesProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .logTarget(Set.of(Blocks.BONE_BLOCK))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR, FUNGAL_BULBS_WALL_UP_DOWN.get()))
-                    .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
+                    .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .build()
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_BONE_TREE3 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_bone_tree3",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/bones/bone_trunk3"))
                     .canopyLocation(NetherDescent.id("features/bones/bone_canopy3"))
                     .height(BiasedToBottomInt.of(4, 20))
                     .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .leavesProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .logTarget(Set.of(Blocks.BONE_BLOCK))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR, FUNGAL_BULBS_WALL_UP_DOWN.get()))
-                    .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
+                    .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .build()
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_BONE_TREE4 = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_bone_tree4",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/bones/bone_trunk4"))
                     .canopyLocation(NetherDescent.id("features/bones/bone_canopy4"))
                     .height(BiasedToBottomInt.of(7, 25))
                     .logProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .leavesProvider(BlockStateProvider.simple(Blocks.BONE_BLOCK))
                     .logTarget(Set.of(Blocks.BONE_BLOCK))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR, FUNGAL_BULBS_WALL_UP_DOWN.get()))
-                    .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
+                    .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .logsPlacementFilter(BlockPredicate.not(BlockPredicate.anyOf(BlockPredicate.matchesBlocks(Blocks.BEDROCK), BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))))
                     .build()
@@ -593,15 +592,15 @@ public class NetherDescentTreeFeatures {
 
     //CRIMSON TREES ----------------------------------------------------------------------------------------------------------------------------------------
     public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_FUNGI_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_fungi_tree1",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/trees/crimson/crimson_fungi_trunk1"))
                     .canopyLocation(NetherDescent.id("features/trees/crimson/crimson_fungi_canopy1"))
                     .height(BiasedToBottomInt.of(8, 12))
                     .logProvider(BlockStateProvider.simple(Blocks.CRIMSON_STEM))
                     .leavesProvider(BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK))
                     .logTarget(Set.of(Blocks.CRIMSON_STEM))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
@@ -610,15 +609,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_FUNGI_TREE2 = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_fungi_tree2",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/trees/crimson/crimson_fungi_trunk2"))
                     .canopyLocation(NetherDescent.id("features/trees/crimson/crimson_fungi_canopy2"))
                     .height(BiasedToBottomInt.of(7, 12))
                     .logProvider(BlockStateProvider.simple(Blocks.CRIMSON_STEM))
                     .leavesProvider(BlockStateProvider.simple(Blocks.NETHER_WART_BLOCK))
                     .logTarget(Set.of(Blocks.CRIMSON_STEM))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.BASE_STONE_NETHER))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(WEEPING_VINES_DECORATOR))
@@ -686,15 +685,15 @@ public class NetherDescentTreeFeatures {
 
     //SYTHIAN TREES ----------------------------------------------------------------------------------------------------------------------------------------
     public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_FUNGI_TREE1 = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_fungi_tree1",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/trees/sythian/sythian_fungi_trunk1"))
                     .canopyLocation(NetherDescent.id("features/trees/sythian/sythian_fungi_canopy1"))
                     .height(BiasedToBottomInt.of(9, 12))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN_WART_BLOCK.get()))
                     .logTarget(Set.of(Blocks.OAK_LOG))
-                    .leavesTarget(Set.of(Blocks.OAK_LEAVES))
+                    .leavesTarget(List.of(Blocks.OAK_LEAVES))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(5)
                     .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
@@ -704,15 +703,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_FUNGI_TREE2 = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_fungi_tree2",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/trees/sythian/sythian_fungi_trunk2"))
                     .canopyLocation(NetherDescent.id("features/trees/sythian/sythian_fungi_canopy2"))
                     .height(BiasedToBottomInt.of(10, 14))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN_WART_BLOCK.get()))
                     .logTarget(Set.of(Blocks.OAK_LOG))
-                    .leavesTarget(Set.of(Blocks.OAK_LEAVES))
+                    .leavesTarget(List.of(Blocks.OAK_LEAVES))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
@@ -722,15 +721,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_FUNGI_TREE3 = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_fungi_tree3",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/trees/sythian/sythian_fungi_trunk3"))
                     .canopyLocation(NetherDescent.id("features/trees/sythian/sythian_fungi_canopy3"))
                     .height(BiasedToBottomInt.of(15, 20))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN_WART_BLOCK.get()))
                     .logTarget(Set.of(Blocks.OAK_LOG))
-                    .leavesTarget(Set.of(Blocks.OAK_LEAVES))
+                    .leavesTarget(List.of(Blocks.OAK_LEAVES))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
@@ -740,15 +739,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_FUNGI_TREE4 = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_fungi_tree4",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/trees/sythian/sythian_fungi_trunk4"))
                     .canopyLocation(NetherDescent.id("features/trees/sythian/sythian_fungi_canopy4"))
                     .height(BiasedToBottomInt.of(18, 25))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN_WART_BLOCK.get()))
                     .logTarget(Set.of(Blocks.OAK_LOG))
-                    .leavesTarget(Set.of(Blocks.OAK_LEAVES))
+                    .leavesTarget(List.of(Blocks.OAK_LEAVES))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
@@ -758,15 +757,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_FUNGI_TREE5 = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_fungi_tree5",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/trees/sythian/sythian_fungi_trunk5"))
                     .canopyLocation(NetherDescent.id("features/trees/sythian/sythian_fungi_canopy5"))
                     .height(BiasedToBottomInt.of(20, 40))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN_WART_BLOCK.get()))
                     .logTarget(Set.of(Blocks.OAK_LOG))
-                    .leavesTarget(Set.of(Blocks.OAK_LEAVES))
+                    .leavesTarget(List.of(Blocks.OAK_LEAVES))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
@@ -776,15 +775,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_FUNGI_TREE6 = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_fungi_tree6",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/trees/sythian/sythian_fungi_trunk6"))
                     .canopyLocation(NetherDescent.id("features/trees/sythian/sythian_fungi_canopy6"))
                     .height(BiasedToBottomInt.of(21, 22))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN.logstem()))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.SYTHIAN_WART_BLOCK.get()))
                     .logTarget(Set.of(Blocks.OAK_LOG))
-                    .leavesTarget(Set.of(Blocks.OAK_LEAVES))
+                    .leavesTarget(List.of(Blocks.OAK_LEAVES))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(SYTHIAN_WALL_ROOTS.get()))
@@ -812,15 +811,15 @@ public class NetherDescentTreeFeatures {
     public static final Supplier<HornetNestDecorator> HORNET_NEST_DECORATOR = () -> new HornetNestDecorator(0.15F);
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART1 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart1",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/warts/embur/wart1_stem"))
                     .canopyLocation(NetherDescent.id("features/warts/embur/wart1_canopy"))
                     .height(BiasedToBottomInt.of(2, 4))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()))
                     .logTarget(Set.of(Blocks.CRIMSON_STEM))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
@@ -830,15 +829,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART2 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart2",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/warts/embur/wart2_stem"))
                     .canopyLocation(NetherDescent.id("features/warts/embur/wart2_canopy"))
                     .height(BiasedToBottomInt.of(4, 8))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()))
                     .logTarget(Set.of(Blocks.CRIMSON_STEM))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
@@ -848,15 +847,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART3 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart3",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/warts/embur/wart3_stem"))
                     .canopyLocation(NetherDescent.id("features/warts/embur/wart3_canopy"))
                     .height(BiasedToBottomInt.of(6, 10))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()))
                     .logTarget(Set.of(Blocks.CRIMSON_STEM))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
@@ -866,15 +865,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART4 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart4",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/warts/embur/wart4_stem"))
                     .canopyLocation(NetherDescent.id("features/warts/embur/wart4_canopy"))
                     .height(BiasedToBottomInt.of(10, 14))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()))
                     .logTarget(Set.of(Blocks.CRIMSON_STEM))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
@@ -884,15 +883,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART5 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart5",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/warts/embur/wart5_stem"))
                     .canopyLocation(NetherDescent.id("features/warts/embur/wart5_canopy"))
                     .height(BiasedToBottomInt.of(14, 18))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()))
                     .logTarget(Set.of(Blocks.CRIMSON_STEM))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
@@ -902,15 +901,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART6 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart6",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/warts/embur/wart6_stem"))
                     .canopyLocation(NetherDescent.id("features/warts/embur/wart6_canopy"))
                     .height(BiasedToBottomInt.of(11, 15))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()))
                     .logTarget(Set.of(Blocks.CRIMSON_STEM))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
@@ -920,15 +919,15 @@ public class NetherDescentTreeFeatures {
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_WART7 = ConfiguredFeaturesUtil.createConfiguredFeature("embur_wart7",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/warts/embur/wart7_stem"))
                     .canopyLocation(NetherDescent.id("features/warts/embur/wart7_canopy"))
                     .height(BiasedToBottomInt.of(11, 15))
                     .logProvider(BlockStateProvider.simple(NetherDescentBlocks.EMBUR.logstem()))
                     .leavesProvider(BlockStateProvider.simple(NetherDescentBlocks.EMBUR_GEL_BLOCK.get().defaultBlockState()))
                     .logTarget(Set.of(Blocks.CRIMSON_STEM))
-                    .leavesTarget(Set.of(Blocks.NETHER_WART_BLOCK))
+                    .leavesTarget(List.of(Blocks.NETHER_WART_BLOCK))
                     .growableOn(BlockPredicate.matchesTag(BlockTags.NYLIUM))
                     .maxLogDepth(4)
                     .treeDecorators(ImmutableList.of(HORNET_NEST_DECORATOR.get(), EMBUR_GEL_VINES_DECORATOR.get()))
@@ -1022,49 +1021,49 @@ public class NetherDescentTreeFeatures {
 
     //WAILING CAGES --------------------------------------------------------------------------------------------------------------------------------------------------------------
     public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_CAGE1 = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_cage1",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/cages/wailing_cage_trunk1"))
                     .canopyLocation(NetherDescent.id("features/cages/wailing_cage_canopy1"))
                     .height(BiasedToBottomInt.of(12, 12))
-                    .logProvider(new WeightedStateProvider(new SimpleWeightedRandomList.Builder<BlockState>()
+                    .logProvider(new WeightedStateProvider(new WeightedList.Builder<BlockState>()
                             .add(Blocks.POLISHED_BLACKSTONE_BRICKS.defaultBlockState())
                             .add(Blocks.POLISHED_BLACKSTONE.defaultBlockState(), 5)
                             .add(Blocks.BLACKSTONE.defaultBlockState(), 5)
                             .add(Blocks.GILDED_BLACKSTONE.defaultBlockState(), 5)))
-                    .leavesProvider(new WeightedStateProvider(new SimpleWeightedRandomList.Builder<BlockState>()
+                    .leavesProvider(new WeightedStateProvider(new WeightedList.Builder<BlockState>()
                             .add(Blocks.BONE_BLOCK.defaultBlockState())
                             .add(Blocks.CALCITE.defaultBlockState(), 3)
                             .add(Blocks.BUDDING_AMETHYST.defaultBlockState(), 3)))
                     .logTarget(Set.of(Blocks.POLISHED_BLACKSTONE_BRICKS))
-                    .leavesTarget(Set.of(Blocks.BONE_BLOCK))
+                    .leavesTarget(List.of(Blocks.BONE_BLOCK))
                     .growableOn(BlockPredicate.matchesBlocks(Blocks.NETHERRACK, Blocks.SOUL_SOIL))
                     .maxLogDepth(4)
-                    .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
+                    .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_CAGE2 = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_cage2",
-            TYGFeatures.TREE_FROM_NBT_V1,
-            () -> new TreeFromStructureNBTConfig.Builder()
+            TYGFeatures.TREE_FROM_NBT_V2,
+            () -> new TreeFromStructureNBTConfigV2.Builder()
                     .baseLocation(NetherDescent.id("features/cages/wailing_cage_trunk2"))
                     .canopyLocation(NetherDescent.id("features/cages/wailing_cage_canopy2"))
                     .height(BiasedToBottomInt.of(48, 48))
-                    .logProvider(new WeightedStateProvider(new SimpleWeightedRandomList.Builder<BlockState>()
+                    .logProvider(new WeightedStateProvider(new WeightedList.Builder<BlockState>()
                             .add(Blocks.POLISHED_BLACKSTONE_BRICKS.defaultBlockState())
                             .add(Blocks.POLISHED_BLACKSTONE.defaultBlockState(), 5)
                             .add(Blocks.BLACKSTONE.defaultBlockState(), 5)
                             .add(Blocks.GILDED_BLACKSTONE.defaultBlockState(), 5)))
-                    .leavesProvider(new WeightedStateProvider(new SimpleWeightedRandomList.Builder<BlockState>()
+                    .leavesProvider(new WeightedStateProvider(new WeightedList.Builder<BlockState>()
                             .add(Blocks.BONE_BLOCK.defaultBlockState())
                             .add(Blocks.CALCITE.defaultBlockState(), 3)
                             .add(Blocks.BUDDING_AMETHYST.defaultBlockState(), 3)))
                     .logTarget(Set.of(Blocks.POLISHED_BLACKSTONE_BRICKS))
-                    .leavesTarget(Set.of(Blocks.BONE_BLOCK))
+                    .leavesTarget(List.of(Blocks.BONE_BLOCK))
                     .growableOn(BlockPredicate.matchesBlocks(Blocks.NETHERRACK, Blocks.SOUL_SOIL))
                     .maxLogDepth(4)
-                    .orientation(TreeFromStructureNBTConfig.Orientation.UPSIDE_DOWN)
+                    .orientation(TreeFromStructureNBTConfigV2.Orientation.UPSIDE_DOWN)
                     .treeLogFilterBehavior(TreeLogFilterBehavior.PASSTHROUGH)
                     .build()
     );

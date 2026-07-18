@@ -48,7 +48,7 @@ public class ConfiguredFeaturesUtil {
     public static BlockPredicate simplePatchPredicate(List<Block> blocks) {
         BlockPredicate blockPredicate;
         if (!blocks.isEmpty()) {
-            blockPredicate = BlockPredicate.allOf(BlockPredicate.ONLY_IN_AIR_PREDICATE, BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), blocks));
+            blockPredicate = BlockPredicate.allOf(BlockPredicate.ONLY_IN_AIR_PREDICATE, BlockPredicate.matchesBlocks(Direction.DOWN.getUnitVec3i(), blocks));
         } else {
             blockPredicate = BlockPredicate.ONLY_IN_AIR_PREDICATE;
         }
