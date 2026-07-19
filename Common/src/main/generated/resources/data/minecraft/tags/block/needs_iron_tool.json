@@ -1,0 +1,18 @@
+{
+  "values": [
+    "netherdescent:pendorite_block",
+    "netherdescent:pendorite_ore",
+    "netherdescent:raw_pendorite_block",
+    "netherdescent:cut_pendorite",
+    "netherdescent:cut_pendorite_slab",
+    "netherdescent:cut_pendorite_stairs",
+    "netherdescent:chiseled_pendorite",
+    "netherdescent:pendorite_grate",
+    "netherdescent:pendorite_door",
+    "netherdescent:pendorite_trapdoor",
+    "netherdescent:pendorite_chain",
+    "netherdescent:pendorite_bars",
+    "netherdescent:pendorite_lantern",
+    "netherdescent:pendorite_fire_rod"
+  ]
+}

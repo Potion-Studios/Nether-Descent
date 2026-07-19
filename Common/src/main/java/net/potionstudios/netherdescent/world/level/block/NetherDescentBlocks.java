@@ -115,7 +115,7 @@ public class NetherDescentBlocks {
     public static final Supplier<ChainBlock> PENDORITE_CHAIN = registerBlockItem("pendorite_chain", () -> new ChainBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHAIN)));
     public static final Supplier<IronBarsBlock> PENDORITE_BARS = registerBlockItem("pendorite_bars", () -> new IronBarsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BARS)));
 	public static final Supplier<NetherDescentCampfireBlock> PENDORITE_CAMPFIRE = registerBlockItem("pendorite_campfire", () -> new NetherDescentCampfireBlock(false, 2, BlockBehaviour.Properties.ofFullCopy(Blocks.SOUL_CAMPFIRE)));
-    public static final Supplier<NDRodBlock> PENDORITE_FIRE_ROD = registerBlockItem("pendorite_fire_rod", () -> new NDRodBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.END_ROD)));
+    public static final Supplier<NDRodBlock> PENDORITE_FIRE_ROD = registerBlockItem("pendorite_fire_rod", () -> new NDRodBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHTNING_ROD)));
 
     public static final Supplier<NDRodBlock> SOUL_FIRE_ROD = registerBlockItem("soul_fire_rod", () -> new NDRodBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.END_ROD)));
     public static final Supplier<NDRodBlock> BLAZE_FIRE_ROD = registerBlockItem("blaze_fire_rod", () -> new NDRodBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.END_ROD)));

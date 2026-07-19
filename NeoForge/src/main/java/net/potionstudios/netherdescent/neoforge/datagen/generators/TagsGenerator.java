@@ -74,6 +74,9 @@ public class TagsGenerator {
 				tag(Tags.Blocks.STRIPPED_WOODS).add(set.strippedWood());
 				tag(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES).add(set.craftingTable());
 			});
+			tag(BlockTags.NEEDS_IRON_TOOL).add(NetherDescentBlocks.PENDORITE_BLOCK.get(), NetherDescentBlocks.PENDORITE_ORE.get(), NetherDescentBlocks.RAW_PENDORITE_BLOCK.get(), NetherDescentBlocks.CUT_PENDORITE.get(), NetherDescentBlocks.CUT_PENDORITE_SLAB.get(),
+					NetherDescentBlocks.CUT_PENDORITE_STAIRS.get(), NetherDescentBlocks.CHISELED_PENDORITE.get(), NetherDescentBlocks.PENDORITE_GRATE.get(), NetherDescentBlocks.PENDORITE_DOOR.get(), NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), NetherDescentBlocks.PENDORITE_CHAIN.get(),
+					NetherDescentBlocks.PENDORITE_BARS.get(), NetherDescentBlocks.PENDORITE_LANTERN.get(), NetherDescentBlocks.PENDORITE_FIRE_ROD.get());
             tag(BlockTags.FENCES).add(NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get());
             tag(Tags.Blocks.FENCES_NETHER_BRICK).add(NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get());
 			tag(BlockTags.BASE_STONE_NETHER).add(NetherDescentBlocks.BLUE_NETHERRACK.get());
@@ -98,8 +101,6 @@ public class TagsGenerator {
 			tag(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE).add(NetherDescentBlocks.RAW_PENDORITE_BLOCK.get());
 			tag(Tags.Blocks.STORAGE_BLOCKS).addTag(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE).addTag(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE);
 
-            tag(BlockTags.NEEDS_DIAMOND_TOOL).add(NetherDescentBlocks.PENDORITE_ORE.get());
-            tag(BlockTags.NEEDS_STONE_TOOL).add(NetherDescentBlocks.PENDORITE_GRATE.get());
 			tag(BlockTags.DOORS).add(NetherDescentBlocks.PENDORITE_DOOR.get());
 			tag(BlockTags.TRAPDOORS).add(NetherDescentBlocks.PENDORITE_TRAPDOOR.get());
             tag(BlockTags.DRAGON_IMMUNE).add(NetherDescentBlocks.PENDORITE_BARS.get());

@@ -2,6 +2,7 @@
 - Fix Certain Pendorite Based Blocks not being Mineable with Pickaxe
 - Fix Pendorite Torch not dropping
 - Fix Nylium Block Loot Tables 
+- Require Iron Tools for Pendorite Based Blocks
 
 # 1.0.4
 - Allow toggling of Biomes with Lithostitched
