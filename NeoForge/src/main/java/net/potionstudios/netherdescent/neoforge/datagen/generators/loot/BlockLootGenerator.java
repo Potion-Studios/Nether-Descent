@@ -38,7 +38,6 @@ class BlockLootGenerator extends BlockLootSubProvider {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 
-
     @Override
     protected void generate() {
         NetherDescentBlocks.BLOCKS.forEach(entry -> {
@@ -70,6 +69,12 @@ class BlockLootGenerator extends BlockLootSubProvider {
                 add(block, this::createSingleItemTable);
             else dropSelf(block);
         });
+
+        add(NetherDescentBlocks.EMBUR_NYLIUM.get(), (arg) -> this.createSingleItemTableWithSilkTouch(arg, NetherDescentBlocks.BLUE_NETHERRACK.get()));
+        add(NetherDescentBlocks.SYTHIAN_NYLIUM.get(), (arg) -> createSingleItemTableWithSilkTouch(arg, Blocks.NETHERRACK));
+        add(NetherDescentBlocks.WAILING_NYLIUM.get(), (arg) -> createSingleItemTableWithSilkTouch(arg, Blocks.SOUL_SOIL));
+        add(NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get(), (arg) -> createSingleItemTableWithSilkTouch(arg, Blocks.BLACKSTONE));
+
         dropSelf(NetherDescentBlocks.ARISIAN_DANDELIONS.get());
         dropSelf(NetherDescentBlocks.ARISIAN_BLOSSOM.get());
         dropOther(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), NetherDescentBlocks.SYTHIAN_SOIL.get());

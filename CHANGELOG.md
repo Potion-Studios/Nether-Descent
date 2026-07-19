@@ -1,6 +1,7 @@
 # 1.0.5
 - Fix Certain Pendorite Based Blocks not being Mineable with Pickaxe
 - Fix Pendorite Torch not dropping
+- Fix Nylium Block Loot Tables 
 
 # 1.0.4
 - Allow toggling of Biomes with Lithostitched
