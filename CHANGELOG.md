@@ -1,3 +1,7 @@
+# 1.0.5
+- Fix Certain Pendorite Based Blocks not being Mineable with Pickaxe
+- Fix Pendorite Torch not dropping
+
 # 1.0.4
 - Allow toggling of Biomes with Lithostitched
 - Fix Wailing Gills Skipping Pulling Entities if it finds a single Entity with Soul Speed
