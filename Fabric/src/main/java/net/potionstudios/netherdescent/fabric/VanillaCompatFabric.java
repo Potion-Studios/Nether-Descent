@@ -2,6 +2,7 @@ package net.potionstudios.netherdescent.fabric;
 
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
@@ -12,9 +13,15 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.potionstudios.netherdescent.event.ServerEventsHandler;
 import net.potionstudios.netherdescent.util.VanillaBonemealHandler;
 import net.potionstudios.netherdescent.world.BlockItemFeatures;
+import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.item.brewing.NetherDescentBrewingRecipes;
 import net.potionstudios.netherdescent.world.item.tools.ToolInteractions;
 
@@ -59,5 +66,17 @@ public class VanillaCompatFabric {
             return InteractionResult.PASS;
         });
         ServerPlayConnectionEvents.JOIN.register((event, sender, server) -> ServerEventsHandler.onPlayerJoin(event.getPlayer()));
+        registerLootModifiers();
+    }
+
+    private static void registerLootModifiers() {
+        LootTableEvents.MODIFY.register((resourceManager, lootDataManager, resourceLocation, builder, source )  -> {
+            if (resourceLocation.equals(BuiltInLootTables.NETHER_BRIDGE))
+                builder.withPool(LootPool.lootPool()
+                        .setRolls(UniformGenerator.between(2.0f, 4.0f))
+                        .with(LootItem.lootTableItem(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()).setWeight(3).build())
+                                .with(EmptyLootItem.emptyItem().setWeight(73).build())
+                                ).build();
+        });
     }
 }
