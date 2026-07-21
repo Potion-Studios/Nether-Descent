@@ -66,6 +66,10 @@ public class HangingFungusBlock extends HangingNDBushBlock implements Bonemealab
 
     @Override
     public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
-        this.getFeature(level, state.getValue(HANGING) ? this.hangingFeature : this.feature).ifPresent(holder -> holder.value().place(level, level.getChunkSource().getGenerator(), random, pos));
+        this.getFeature(level, state.getValue(HANGING) ? this.hangingFeature : this.feature).ifPresent(holder -> {
+            boolean b = holder.value().place(level, level.getChunkSource().getGenerator(), random, pos);
+            if (b && level.getBlockState(pos).is(this))
+                level.destroyBlock(pos, false);
+        });
     }
 }
