@@ -4,6 +4,8 @@
 - Fix Pendorite Torch not dropping
 - Fix Nylium Block Loot Tables
 - Require Iron Tools for Pendorite Based Blocks
+- Pendorite Blocks to Cut Pendorite Recipe
+- Fix Block of Pendorite and Block of Raw Pendorite Block Lang to match Vanilla
 
 # 1.0.3
 - Fix Wailing Gills Skipping Pulling Entities once it finds one Spectator Entity or a entity below a solid block
