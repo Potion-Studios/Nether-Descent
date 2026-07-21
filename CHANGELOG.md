@@ -5,6 +5,7 @@
 - Require Iron Tools for Pendorite Based Blocks
 - Pendorite Blocks to Cut Pendorite Recipe
 - Fix Block of Pendorite and Block of Raw Pendorite Block Lang to match Vanilla
+- Fix Fungus not removing when tree is grown from Bonemeal
 
 # 1.0.4
 - Allow toggling of Biomes with Lithostitched
