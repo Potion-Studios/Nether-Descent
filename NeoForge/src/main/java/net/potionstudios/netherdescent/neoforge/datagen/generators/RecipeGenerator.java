@@ -160,6 +160,10 @@ public class RecipeGenerator extends RecipeProvider {
         stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CUT_PENDORITE_SLAB.get(), NetherDescentBlocks.CUT_PENDORITE.get(),2);
         stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CUT_PENDORITE_SLAB.get(), NetherDescentBlocks.PENDORITE_BLOCK.get(), 8);
 
+        cutBuilder(RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CUT_PENDORITE.get(), Ingredient.of(NetherDescentBlocks.PENDORITE_BLOCK.get()))
+                .unlockedBy(getHasName(NetherDescentBlocks.PENDORITE_BLOCK.get()), has(NetherDescentBlocks.PENDORITE_BLOCK.get()))
+                .save(recipeOutput);
+
 	    ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.PENDORITE_CAMPFIRE.get())
 			    .define('L', ItemTags.LOGS)
 			    .define('S', Items.STICK)

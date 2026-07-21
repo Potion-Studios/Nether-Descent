@@ -3,6 +3,7 @@
 - Fix Pendorite Torch not dropping
 - Fix Nylium Block Loot Tables 
 - Require Iron Tools for Pendorite Based Blocks
+- Pendorite Blocks to Cut Pendorite Recipe
 
 # 1.0.4
 - Allow toggling of Biomes with Lithostitched
