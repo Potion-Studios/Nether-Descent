@@ -16,20 +16,44 @@ import net.potionstudios.netherdescent.world.level.block.plants.NDGrowingPlantBo
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Supplier;
 
 public class LangGenerator extends LanguageProvider {
+	private final Set<String> addedKeys = new HashSet<>();
+
 	public LangGenerator(PackOutput output, String locale) {
 		super(output, NetherDescent.MOD_ID, locale);
 	}
 
 	@Override
+	public void add(@NotNull String key, @NotNull String value) {
+		super.add(key, value);
+		addedKeys.add(key);
+	}
+
+	@Override
 	protected void addTranslations() {
+		addTranslationsManual();
+		NetherDescentBlocks.BLOCKS.forEach(block -> {
+			if (!addedKeys.contains(block.get().getDescriptionId()))
+				addBlock(block, getBlockName(block));
+		});
+		NetherDescentItems.ITEMS.forEach(item -> {
+			if (!addedKeys.contains(item.get().asItem().getDescriptionId()))
+				addItem(item, getItemName(item));
+		});
+		NetherDescentBiomes.BIOME_FACTORIES.forEach((key, factory) -> {
+			String translationKey = "biome." + NetherDescent.MOD_ID + "." + key.location().getPath();
+			if (!addedKeys.contains(translationKey))
+				add(translationKey, getBiomeName(key));
+		});
+	}
+
+	private void addTranslationsManual() {
 		add("itemGroup." + NetherDescentCreativeTabs.CREATIVE_TAB.location().toLanguageKey(), "Nether Descent");
-		NetherDescentBlocks.BLOCKS.forEach(block -> addBlock(block, getBlockName(block)));
-		NetherDescentItems.ITEMS.forEach(item -> addItem(item, getItemName(item)));
-		NetherDescentBiomes.BIOME_FACTORIES.forEach((key, factory) -> add("biome." + NetherDescent.MOD_ID + "." + key.location().getPath(), getBiomeName(key)));
-        add(NetherDescentEntityType.SOUL_BLAZE.get(), "Soul Blaze");
+		add(NetherDescentEntityType.SOUL_BLAZE.get(), "Soul Blaze");
 		add(NetherDescentEntityType.SOUL_FIREBALL.get(), "Soul Fireball");
         add(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), "Small Soul Fireball");
 		add(NetherDescentEntityType.PENDORITE_BLAZE.get(), "Pendorite Blaze");
@@ -97,6 +121,8 @@ public class LangGenerator extends LanguageProvider {
         add(advancement("final_descent.description"), "Explore all of the Nether Descent biomes");
         add("netherdescent.commands.reload.success", "Successfully reloaded all configs");
         add("netherdescent.commands.reload.spawn.success", "Successfully reloaded Mob Spawn config");
+		add(NetherDescentBlocks.PENDORITE_BLOCK.get(), "Block of Pendorite");
+		add(NetherDescentBlocks.RAW_PENDORITE_BLOCK.get(), "Block of Raw Pendorite");
 	}
 
     private static String advancement(String key) {

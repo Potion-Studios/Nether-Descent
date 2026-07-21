@@ -4,6 +4,7 @@
 - Fix Nylium Block Loot Tables 
 - Require Iron Tools for Pendorite Based Blocks
 - Pendorite Blocks to Cut Pendorite Recipe
+- Fix Block of Pendorite and Block of Raw Pendorite Block Lang to match Vanilla
 
 # 1.0.4
 - Allow toggling of Biomes with Lithostitched
