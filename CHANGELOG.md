@@ -6,6 +6,7 @@
 - Require Iron Tools for Pendorite Based Blocks
 - Pendorite Blocks to Cut Pendorite Recipe
 - Fix Block of Pendorite and Block of Raw Pendorite Block Lang to match Vanilla
+- Fix Fungus not removing when tree is grown from Bonemeal
 
 # 1.0.3
 - Fix Wailing Gills Skipping Pulling Entities once it finds one Spectator Entity or a entity below a solid block
