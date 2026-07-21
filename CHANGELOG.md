@@ -7,6 +7,7 @@
 - Pendorite Blocks to Cut Pendorite Recipe
 - Fix Block of Pendorite and Block of Raw Pendorite Block Lang to match Vanilla
 - Fix Fungus not removing when tree is grown from Bonemeal
+- Fix Wailing Nylium Decaying into Soul Sand and not Soul Soil
 
 # 1.0.3
 - Fix Wailing Gills Skipping Pulling Entities once it finds one Spectator Entity or a entity below a solid block
