@@ -2,7 +2,15 @@
   "parent": "netherdescent:wailing_garth/root",
   "criteria": {
     "wailing_bulb_blossom": {
-      "conditions": {},
+      "conditions": {
+        "location": {
+          "block": {
+            "blocks": [
+              "netherdescent:wailing_bulb_blossom"
+            ]
+          }
+        }
+      },
       "trigger": "netherdescent:wailing_interaction"
     }
   },

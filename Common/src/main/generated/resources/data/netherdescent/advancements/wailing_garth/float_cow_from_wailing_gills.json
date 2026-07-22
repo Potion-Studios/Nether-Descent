@@ -2,7 +2,27 @@
   "parent": "netherdescent:wailing_garth/float_from_wailing_gills",
   "criteria": {
     "float_cow_from_wailing_gills": {
-      "conditions": {},
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:cow"
+            }
+          }
+        ],
+        "location": {
+          "block": {
+            "blocks": [
+              "netherdescent:wailing_gills"
+            ]
+          }
+        },
+        "powered": {
+          "min": 1
+        }
+      },
       "trigger": "netherdescent:wailing_interaction"
     }
   },

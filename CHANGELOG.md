@@ -1,3 +1,6 @@
+# 1.0.5
+- Fix WailingTrigger Based Advancements triggering all at once
+
 # 1.0.3
 - Fix Wailing Gills Skipping Pulling Entities once it finds one Spectator Entity or a entity below a solid block
 

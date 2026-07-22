@@ -2,7 +2,15 @@
   "parent": "netherdescent:wailing_garth/root",
   "criteria": {
     "wailing_gills": {
-      "conditions": {},
+      "conditions": {
+        "location": {
+          "block": {
+            "blocks": [
+              "netherdescent:wailing_gills"
+            ]
+          }
+        }
+      },
       "trigger": "netherdescent:wailing_interaction"
     }
   },

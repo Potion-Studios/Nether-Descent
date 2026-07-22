@@ -69,6 +69,15 @@ public class WailingTrigger extends SimpleCriterionTrigger<WailingTrigger.Trigge
 			return true;
 		}
 
+		@Override
+		public @NotNull JsonObject serializeToJson(@NotNull SerializationContext context) {
+			JsonObject jsonObject = super.serializeToJson(context);
+			jsonObject.add("location", this.location.serializeToJson());
+			jsonObject.add("powered", this.powered.serializeToJson());
+			jsonObject.add("entity", this.entity.toJson(context));
+			return jsonObject;
+		}
+
 		public static TriggerInstance interactedWithBlock(Block block) {
 			return new TriggerInstance(ContextAwarePredicate.ANY, LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(block).build()).build(), MinMaxBounds.Ints.ANY, ContextAwarePredicate.ANY);
 		}
