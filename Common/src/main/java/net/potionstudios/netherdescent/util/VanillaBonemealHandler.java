@@ -21,11 +21,13 @@ public class VanillaBonemealHandler {
     public static boolean boneMealEventHandler(Level level, BlockPos blockPos, BlockState state, ItemStack stack) {
         if (state.is(Blocks.CRIMSON_FUNGUS))
             return crimsonFungusHandler(level, blockPos, state, stack);
-        else if (state.is(Blocks.SOUL_SOIL)) {
+        else if (state.is(Blocks.SOUL_SOIL))
             return netherrackLikeHandler(level, blockPos, state, stack, NetherDescentBlocks.WAILING_NYLIUM.get());
-        } else if (state.is(Blocks.BLACKSTONE)) {
+        else if (state.is(Blocks.BLACKSTONE))
             return netherrackLikeHandler(level, blockPos, state, stack, NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get());
-        }
+        else if (state.is(Blocks.NETHERRACK))
+            return netherrackHandler(level, blockPos, state, stack, NetherDescentBlocks.SYTHIAN_NYLIUM.get());
+
         return false;
     }
 
@@ -54,6 +56,50 @@ public class VanillaBonemealHandler {
                     return true;
                 }
             }
+        }
+        return false;
+    }
+
+    private static boolean netherrackHandler(Level level, BlockPos pos, BlockState state, ItemStack stack, Block nylium) {
+        if (level.getBlockState(pos.above()).propagatesSkylightDown(level, pos)) {
+            boolean crimson = false;
+            boolean warped = false;
+            boolean n = false;
+
+            for(BlockPos blockPos : BlockPos.betweenClosed(pos.offset(-1, -1, -1), pos.offset(1, 1, 1))) {
+                BlockState blockState = level.getBlockState(blockPos);
+                if (blockState.is(Blocks.WARPED_NYLIUM))
+                    warped = true;
+                else if (blockState.is(Blocks.CRIMSON_NYLIUM))
+                    crimson = true;
+                else if (blockState.is(nylium))
+                    n = true;
+
+                if (warped && crimson && n) break;
+            }
+
+            if (!n) return false;
+
+            if (warped && crimson) {
+                BlockState state1;
+                int random = level.getRandom().nextInt(0, 2);
+                if (random == 0)
+                    state1 = Blocks.WARPED_NYLIUM.defaultBlockState();
+                else if (random == 1) {
+                    state1 = Blocks.CRIMSON_NYLIUM.defaultBlockState();
+                } else {
+                    state1 = nylium.defaultBlockState();
+                }
+                level.setBlock(pos, state1, 3);
+            } else if (crimson) {
+                level.setBlock(pos, level.getRandom().nextBoolean() ? Blocks.CRIMSON_NYLIUM.defaultBlockState() : nylium.defaultBlockState(), 3);
+            } else if (warped) {
+                level.setBlock(pos, level.getRandom().nextBoolean() ? nylium.defaultBlockState() : Blocks.WARPED_NYLIUM.defaultBlockState(), 3);
+            }  else {
+                level.setBlock(pos, nylium.defaultBlockState(), 3);
+            }
+            stack.shrink(1);
+            return true;
         }
         return false;
     }
