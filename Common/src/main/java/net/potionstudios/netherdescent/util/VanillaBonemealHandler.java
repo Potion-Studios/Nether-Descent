@@ -7,6 +7,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,6 +21,11 @@ public class VanillaBonemealHandler {
     public static boolean boneMealEventHandler(Level level, BlockPos blockPos, BlockState state, ItemStack stack) {
         if (state.is(Blocks.CRIMSON_FUNGUS))
             return crimsonFungusHandler(level, blockPos, state, stack);
+        else if (state.is(Blocks.SOUL_SOIL)) {
+            return netherrackLikeHandler(level, blockPos, state, stack, NetherDescentBlocks.WAILING_NYLIUM.get());
+        } else if (state.is(Blocks.BLACKSTONE)) {
+            return netherrackLikeHandler(level, blockPos, state, stack, NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get());
+        }
         return false;
     }
 
@@ -34,6 +40,20 @@ public class VanillaBonemealHandler {
                 }
             }
             return true;
+        }
+        return false;
+    }
+
+    private static boolean netherrackLikeHandler(Level level, BlockPos pos, BlockState state, ItemStack stack, Block nylium) {
+        if (level.getBlockState(pos.above()).propagatesSkylightDown(level, pos)) {
+            for (BlockPos blockPos : BlockPos.betweenClosed(pos.offset(-1, -1, -1), pos.offset(1, 1, 1))) {
+                BlockState blockState = level.getBlockState(blockPos);
+                if (blockState.is(nylium)) {
+                    level.setBlockAndUpdate(pos, nylium.defaultBlockState());
+                    stack.shrink(1);
+                    return true;
+                }
+            }
         }
         return false;
     }
