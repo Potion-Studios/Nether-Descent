@@ -24,6 +24,7 @@ import net.potionstudios.netherdescent.compat.lithostitched.ConfigLoadPredicate;
 import net.potionstudios.netherdescent.compat.lithostitched.LoadPredicateType;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentProcessorLists;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.*;
+import net.potionstudios.netherdescent.neoforge.datagen.generators.loot.GlobalLootModifiersGenerator;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.loot.LootGenerator;
 import net.potionstudios.netherdescent.world.damagesource.NetherDescentDamageTypes;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
@@ -56,7 +57,8 @@ class DataGeneratorsRegister {
         generator.addProvider(event.includeClient(), new LangGenerator(output, "en_us"));
         generator.addProvider(event.includeServer(), new RecipeGenerator(output, lookupProvider));
         generator.addProvider(event.includeServer(), new LootGenerator(output, lookupProvider));
-        TagsGenerator.init(generator, event.includeServer(), output, lookupProvider, existingFileHelper);
+		generator.addProvider(event.includeServer(), new GlobalLootModifiersGenerator(output, lookupProvider));
+		TagsGenerator.init(generator, event.includeServer(), output, lookupProvider, existingFileHelper);
         generator.addProvider(event.includeServer(), new DataMapGenerator(output, lookupProvider));
 	    generator.addProvider(event.includeClient(), new SoundDefinitionsGenerator(output, existingFileHelper));
         generator.addProvider(event.includeClient(), new ParticleDescriptionGenerator(output, existingFileHelper));
