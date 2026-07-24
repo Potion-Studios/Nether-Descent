@@ -7,6 +7,9 @@
 - Fix Block of Pendorite and Block of Raw Pendorite Block Lang to match Vanilla
 - Fix Fungus not removing when tree is grown from Bonemeal
 - Fix Wailing Nylium Decaying into Soul Sand and not Soul Soil
+- Add Pendorite Wolf Armor Recipe
+- Add Pendorite Horse Armor to Nether Bridge Chest Loot Pool
+- Add ability to Bonemeal to spread Neighbor Nylium on Soul Soil, BlackStone, Netherrack and Blue Netherrack
 
 # 1.0.4
 - Allow toggling of Biomes with Lithostitched

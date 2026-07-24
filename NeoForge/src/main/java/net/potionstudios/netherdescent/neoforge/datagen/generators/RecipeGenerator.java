@@ -28,7 +28,6 @@ public class RecipeGenerator extends RecipeProvider {
 
     private static final ImmutableList<ItemLike> PENDORITE_SMELTABLES = ImmutableList.of(NetherDescentBlocks.PENDORITE_ORE.get(), NetherDescentItems.RAW_PENDORITE.get());
 
-
     @Override
     protected void buildRecipes(@NotNull RecipeOutput recipeOutput, HolderLookup.@NotNull Provider holderLookup) {
         NetherDescentBlockSet.getBlockSets().forEach(blockSet -> generateRecipes(recipeOutput, blockSet.getBlockFamily(), FeatureFlags.VANILLA_SET));
@@ -246,6 +245,15 @@ public class RecipeGenerator extends RecipeProvider {
                 .pattern(" # ")
                 .unlockedBy("has_logs", has(ItemTags.LOGS))
                 .save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, NetherDescentItems.PENDORITE_WOLF_ARMOR.get())
+                .define('X', NetherDescentItems.PENDORITE_INGOT.get())
+                .pattern("X  ")
+                .pattern("XXX")
+                .pattern("X X")
+                .unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get()))
+                .save(recipeOutput);
+
     }
 
 	private static void NDNineBlockStorageRecipes(RecipeOutput recipeOutput, RecipeCategory unpackedCategory, ItemLike unpacked, RecipeCategory packedCategory, ItemLike packed, String packedName, @Nullable String packedGroup, String unpackedName, @Nullable String unpackedGroup) {

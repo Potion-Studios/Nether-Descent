@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_pendorite_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "netherdescent:pendorite_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "netherdescent:pendorite_wolf_armor"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_pendorite_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "netherdescent:pendorite_wolf_armor"
+    ]
+  }
+}
