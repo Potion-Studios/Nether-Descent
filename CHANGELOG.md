@@ -9,7 +9,10 @@
 - Fix Wailing Nylium Decaying into Soul Sand and not Soul Soil
 - Add Pendorite Wolf Armor Recipe
 - Add Pendorite Horse Armor to Nether Bridge Chest Loot Pool
-- Add ability to Bonemeal to spread Neighbor Nylium on Soul Soil, BlackStone, Netherrack and Blue Netherrack
+- Add the ability to Bonemeal to spread Neighbor Nylium on Soul Soil, BlackStone, Netherrack and Blue Netherrack
+- Change Crimson Carpet Sound to match Moss Carpet
+- Change Wailing Bulb Blossom Sound to match Sculk
+- Make Fungal Bulbs Instabreak
 
 # 1.0.4
 - Allow toggling of Biomes with Lithostitched

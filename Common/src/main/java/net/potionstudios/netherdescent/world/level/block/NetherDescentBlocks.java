@@ -46,7 +46,7 @@ public class NetherDescentBlocks {
     public static final Supplier<NDGrowingPlantBodyBlock> WAILING_VINES_PLANT = registerBlock("wailing_vines_plant", () -> new NDGrowingPlantBodyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES_PLANT).lightLevel((state) -> 10), NetherDescentBlocks.WAILING_VINES));
     public static final Supplier<Block> WAILING_GRASS = registerBlockItem("wailing_grass", () -> new RootsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS)));
 	public static final Supplier<WailingGillsBlock> WAILING_GILLS = registerCubeAllBlockItem("wailing_gills", () -> new WailingGillsBlock(BlockBehaviour.Properties.of().sound(SoundType.SCULK).lightLevel((blockState) -> 14).isRedstoneConductor((blockState, blockGetter, blockPos) -> true)));
-	public static final Supplier<WailingBulbBlossomBlock> WAILING_BULB_BLOSSOM = registerBlockItem("wailing_bulb_blossom", () -> new WailingBulbBlossomBlock(BlockBehaviour.Properties.of().noOcclusion().lightLevel((state) -> state.getValue(WailingBulbBlossomBlock.ACTIVE) ? 14 : 8)));
+	public static final Supplier<WailingBulbBlossomBlock> WAILING_BULB_BLOSSOM = registerBlockItem("wailing_bulb_blossom", () -> new WailingBulbBlossomBlock(BlockBehaviour.Properties.of().sound(SoundType.SCULK).noOcclusion().lightLevel((state) -> state.getValue(WailingBulbBlossomBlock.ACTIVE) ? 14 : 8)));
     public static final Supplier<Block> WAILING_WART_BLOCK = registerBasicBlockWithItem("wailing_wart_block", BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WART_BLOCK).mapColor(MapColor.COLOR_PURPLE));
     public static final NetherDescentWoodSet WAILING = new NetherDescentWoodSet("wailing", MapColor.COLOR_PURPLE, NetherDescentWoodSet.LogStem.STEM, NetherDescentWoodSet.GrowerItem.FUNGUS, WAILING_NYLIUM, NetherDescentTreeFeatures.WAILING_FUNGI_TREES);
 
@@ -95,9 +95,9 @@ public class NetherDescentBlocks {
     public static final Supplier<NetherDescentNyliumBlock> CRIMSON_BLACKSTONE_NYLIUM = registerBlockItem("crimson_blackstone_nylium", () -> new NetherDescentNyliumBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM).mapColor(MapColor.COLOR_RED), Blocks.BLACKSTONE, () -> NetherFeatures.CRIMSON_FOREST_VEGETATION_BONEMEAL));
     public static final Supplier<NetherDescentDoublePlantBlock> TALL_CRIMSON_ROOTS = registerBlockItem("tall_crimson_roots", () -> new NetherDescentDoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS).mapColor(MapColor.COLOR_RED)));
     public static final Supplier<CrimsonBerryBushBlock> CRIMSON_BERRY_BUSH = registerBlock("crimson_berry_bush", () -> new CrimsonBerryBushBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SWEET_BERRY_BUSH).mapColor(MapColor.COLOR_RED)));
-    public static final Supplier<CrimsonCarpetBlock> CRIMSON_CARPET = registerBlockItem("crimson_carpet", () -> new CrimsonCarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET)));
+    public static final Supplier<CrimsonCarpetBlock> CRIMSON_CARPET = registerBlockItem("crimson_carpet", () -> new CrimsonCarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.RED_CARPET).sound(SoundType.MOSS_CARPET)));
 
-    public static final Supplier<FungalBulbsBlock> FUNGAL_BULBS = registerBlockItem("fungal_bulbs", () -> new FungalBulbsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHROOMLIGHT).lightLevel((state) -> 13)));
+    public static final Supplier<FungalBulbsBlock> FUNGAL_BULBS = registerBlockItem("fungal_bulbs", () -> new FungalBulbsBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHROOMLIGHT).lightLevel((state) -> 13).instabreak()));
 
     public static final Supplier<Block> PENDORITE_BLOCK = registerBasicBlockWithItem("pendorite_block", BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).mapColor(MapColor.METAL));
     public static final Supplier<DropExperienceBlock> PENDORITE_ORE = registerCubeAllBlockItem("pendorite_ore", () -> new DropExperienceBlock(UniformInt.of(3, 7), BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_ORE).mapColor(MapColor.METAL)));
