@@ -113,6 +113,8 @@ public class TagsGenerator {
 			tag(NetherDescentBlockTags.NETHER_MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_NETHER).addTag(BlockTags.NYLIUM);
 
             tag(BlockTags.WALL_POST_OVERRIDE).add(NetherDescentBlocks.PENDORITE_TORCH.get());
+			tag(BlockTags.SOUL_SPEED_BLOCKS).add(NetherDescentBlocks.WAILING_NYLIUM.get());
+			tag(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(NetherDescentBlocks.WAILING_NYLIUM.get());
 
 			IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> intrinsicTagAppender = this.tag(BlockTags.REPLACEABLE);
 			provider.lookupOrThrow(Registries.BLOCK)
