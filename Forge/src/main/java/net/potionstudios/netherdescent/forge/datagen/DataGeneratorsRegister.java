@@ -21,6 +21,7 @@ import net.potionstudios.netherdescent.data.worldgen.NetherDescentTemplatePools;
 import net.potionstudios.netherdescent.data.worldgen.features.ConfiguredFeaturesUtil;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
 import net.potionstudios.netherdescent.forge.datagen.generators.*;
+import net.potionstudios.netherdescent.forge.datagen.generators.loot.GlobalLootModifiersGenerator;
 import net.potionstudios.netherdescent.forge.datagen.generators.loot.LootGenerator;
 import net.potionstudios.netherdescent.world.damagesource.NetherDescentDamageTypes;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
@@ -49,6 +50,7 @@ class DataGeneratorsRegister {
 
         generator.addProvider(event.includeClient(), new LangGenerator(output, "en_us"));
         generator.addProvider(event.includeServer(), new LootGenerator(output));
+        generator.addProvider(event.includeServer(), new GlobalLootModifiersGenerator(output));
         ModelGenerators.init(generator, event.includeClient(), output, existingFileHelper);
         TagsGenerator.init(generator, event.includeServer(), output, lookupProvider, existingFileHelper);
         generator.addProvider(event.includeServer(), new ForgeAdvancementProvider(output, lookupProvider, existingFileHelper, ImmutableList.of(new AdvancementGenerator())));

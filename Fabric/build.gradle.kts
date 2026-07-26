@@ -61,7 +61,7 @@ tasks {
     }
 
     shadowJar {
-        exclude("architectury.common.json", ".cache/**", "data/forge/**", "net/potionstudios/netherdescent/fabric/datagen/**")
+        exclude("architectury.common.json", ".cache/**", "data/forge/**", "net/potionstudios/netherdescent/fabric/datagen/**", "data/netherdescent/loot_modifiers/**")
         configurations = listOf(project.configurations.getByName("shadowBundle"))
         archiveClassifier.set("dev-shadow")
     }
