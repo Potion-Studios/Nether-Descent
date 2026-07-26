@@ -16,6 +16,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.commands.NetherDescentCommands;
 import net.potionstudios.netherdescent.forge.client.NetherDescentClientForge;
+import net.potionstudios.netherdescent.forge.loot.LootModifiersRegister;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.BiolithRegister;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.TerraBlenderRegister;
@@ -37,6 +38,7 @@ public class NetherDescentForge {
         MOD_BUS.addListener((SpawnPlacementRegisterEvent event) -> NetherDescentEntityType.registerSpawnPlacements((consumer) -> event.register(consumer.entityType().get(), consumer.spawnPlacementType(), consumer.heightmapType(), consumer.predicate(), SpawnPlacementRegisterEvent.Operation.OR)));
         EVENT_BUS.addListener((RegisterCommandsEvent event) -> NetherDescentCommands.register(event.getDispatcher()::register));
         VanillaCompatForge.registerVanillaCompatEvents(EVENT_BUS);
+        LootModifiersRegister.register(MOD_BUS);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> NetherDescentClientForge.init(MOD_BUS));
     }
 

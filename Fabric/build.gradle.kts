@@ -58,7 +58,7 @@ tasks {
     }
 
     shadowJar {
-        exclude("architectury.common.json", ".cache/**", "data/neoforge/**")
+        exclude("architectury.common.json", ".cache/**", "data/neoforge/**", "data/netherdescent/loot_modifiers/**")
         configurations = listOf(project.configurations.getByName("shadowBundle"))
         archiveClassifier.set("dev-shadow")
     }
