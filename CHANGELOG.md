@@ -1,5 +1,8 @@
 # 1.0.5
 - Fix WailingTrigger Based Advancements triggering all at once
+- Fix Certain Pendorite Based Blocks not being Mineable with Pickaxe
+- Fix Pendorite Torch not dropping
+- Fix Nylium Block Loot Tables
 
 # 1.0.3
 - Fix Wailing Gills Skipping Pulling Entities once it finds one Spectator Entity or a entity below a solid block
