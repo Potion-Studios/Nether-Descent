@@ -75,7 +75,7 @@ public class VanillaCompatFabric {
                 builder.withPool(LootPool.lootPool()
                         .setRolls(UniformGenerator.between(2.0f, 4.0f))
                         .with(LootItem.lootTableItem(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()).setWeight(3).build())
-                                .with(EmptyLootItem.emptyItem().setWeight(73).build())
+                                .with(EmptyLootItem.emptyItem().setWeight(70).build())
                                 ).build();
         });
     }

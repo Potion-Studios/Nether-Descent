@@ -136,6 +136,10 @@ public class RecipeGenerator extends RecipeProvider {
         stonecutterResultFromBase(writer, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CHISELED_PENDORITE.get(), NetherDescentBlocks.PENDORITE_BLOCK.get(), 4);
         stonecutterResultFromBase(writer, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CHISELED_PENDORITE.get(), NetherDescentBlocks.CUT_PENDORITE.get(), 1);
 
+        cutBuilder(RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CUT_PENDORITE.get(), Ingredient.of(NetherDescentBlocks.PENDORITE_BLOCK.get()))
+                .unlockedBy(getHasName(NetherDescentBlocks.PENDORITE_BLOCK.get()), has(NetherDescentBlocks.PENDORITE_BLOCK.get()))
+                .save(writer);
+
         nineBlockStorageRecipes(writer, RecipeCategory.MISC, NetherDescentItems.RAW_PENDORITE.get(), RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.RAW_PENDORITE_BLOCK.get());
 
         doorBuilder(NetherDescentBlocks.PENDORITE_DOOR.get(), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get())).unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get())).save(writer);
