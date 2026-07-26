@@ -111,6 +111,8 @@ public class TagsGenerator {
 			tag(NetherDescentBlockTags.NETHER_MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_NETHER).addTag(BlockTags.NYLIUM);
 
             tag(BlockTags.WALL_POST_OVERRIDE).add(NetherDescentBlocks.PENDORITE_TORCH.get());
+			tag(BlockTags.SOUL_SPEED_BLOCKS).add(NetherDescentBlocks.WAILING_NYLIUM.get());
+			tag(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(NetherDescentBlocks.WAILING_NYLIUM.get());
 
 			IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> intrinsicTagAppender = this.tag(BlockTags.REPLACEABLE);
 			provider.lookupOrThrow(Registries.BLOCK)
@@ -132,7 +134,7 @@ public class TagsGenerator {
 			else if (object instanceof FlowerPotBlock) tag(BlockTags.FLOWER_POTS).add(object);
 			else if (object instanceof NyliumBlock) tag(BlockTags.NYLIUM).add(object);
 			SoundType type = object.defaultBlockState().getSoundType();
-			if (type == SoundType.STONE || type == SoundType.DEEPSLATE || type == SoundType.NETHER_BRICKS || type == SoundType.NYLIUM || object instanceof DropExperienceBlock || type == SoundType.COPPER || type == SoundType.CHAIN || type == SoundType.LANTERN || type == SoundType.METAL || type == SoundType.NETHERRACK)
+			if (type == SoundType.STONE || type == SoundType.DEEPSLATE || type == SoundType.NETHER_BRICKS || type == SoundType.NYLIUM || object instanceof DropExperienceBlock || type == SoundType.COPPER || type == SoundType.CHAIN || type == SoundType.LANTERN || type == SoundType.METAL || type == SoundType.NETHERRACK || type == SoundType.SCULK)
 				tag(BlockTags.MINEABLE_WITH_PICKAXE).add(object);
 			else if (type == SoundType.WOOD || type == SoundType.SWEET_BERRY_BUSH || type == SoundType.GLOW_LICHEN || type == SoundType.FUNGUS || type == SoundType.SCAFFOLDING)
 				tag(BlockTags.MINEABLE_WITH_AXE).add(object);

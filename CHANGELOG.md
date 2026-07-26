@@ -12,6 +12,7 @@
 - Change Crimson Carpet Sound to match Moss Carpet
 - Change Wailing Bulb Blossom Sound to match Sculk
 - Make Fungal Bulbs Instabreak
+- Add Wailing Nylium to soul_fire_base_blocks and soul_speed_blocks Tags
 
 # 1.0.3
 - Fix Wailing Gills Skipping Pulling Entities once it finds one Spectator Entity or a entity below a solid block
