@@ -29,10 +29,17 @@
     "netherdescent:potted_sythian_stalk",
     "netherdescent:potted_sythian_fungus",
     "netherdescent:crimson_blackstone_nylium",
+    "netherdescent:pendorite_block",
     "netherdescent:pendorite_ore",
     "netherdescent:raw_pendorite_block",
+    "netherdescent:cut_pendorite",
+    "netherdescent:cut_pendorite_stairs",
+    "netherdescent:cut_pendorite_slab",
     "netherdescent:chiseled_pendorite",
     "netherdescent:pendorite_grate",
+    "netherdescent:pendorite_door",
+    "netherdescent:pendorite_trapdoor",
+    "netherdescent:pendorite_lantern",
     "netherdescent:pendorite_chain",
     "netherdescent:pendorite_bars"
   ]
