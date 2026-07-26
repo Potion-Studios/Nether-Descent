@@ -8,6 +8,10 @@
 - Fix Block of Pendorite and Block of Raw Pendorite Block Lang to match Vanilla
 - Fix Fungus not removing when tree is grown from Bonemeal
 - Fix Wailing Nylium Decaying into Soul Sand and not Soul Soil
+- Add the ability to Bonemeal to spread Neighbor Nylium on Soul Soil, BlackStone, Netherrack and Blue Netherrack
+- Change Crimson Carpet Sound to match Moss Carpet
+- Change Wailing Bulb Blossom Sound to match Sculk
+- Make Fungal Bulbs Instabreak
 
 # 1.0.3
 - Fix Wailing Gills Skipping Pulling Entities once it finds one Spectator Entity or a entity below a solid block
