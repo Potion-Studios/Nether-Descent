@@ -1,3 +1,6 @@
+# 1.0.6
+- Pull Fabric Loot Modifier from LootTable Json
+
 # 1.0.5
 - Fix Certain Pendorite Based Blocks not being Mineable with Pickaxe
 - Fix Pendorite Torch not dropping

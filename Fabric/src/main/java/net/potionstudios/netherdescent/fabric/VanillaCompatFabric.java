@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BoneMealItem;
@@ -15,14 +16,12 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.world.level.storage.loot.entries.NestedLootTable;
+import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.event.ServerEventsHandler;
 import net.potionstudios.netherdescent.util.VanillaBonemealHandler;
 import net.potionstudios.netherdescent.world.BlockItemFeatures;
 import net.potionstudios.netherdescent.world.entity.animal.NetherDescentWolf;
-import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.item.brewing.NetherDescentBrewingRecipes;
 import net.potionstudios.netherdescent.world.item.tools.ToolInteractions;
 
@@ -76,13 +75,13 @@ public class VanillaCompatFabric {
     }
 
     private static void registerLootModifiers() {
-        LootTableEvents.MODIFY.register((key, tableBuilder, source, registries)  -> {
+        LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             if (key.equals(BuiltInLootTables.NETHER_BRIDGE))
-                tableBuilder.pool(LootPool.lootPool()
-                        .setRolls(UniformGenerator.between(2.0f, 4.0f))
-                        .with(LootItem.lootTableItem(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()).setWeight(3).build())
-                                .with(EmptyLootItem.emptyItem().setWeight(70).build()).build()
-                                ).build();
+                tableBuilder.pool(
+                        LootPool.lootPool().with(
+                                NestedLootTable.lootTableReference(NetherDescent.key(Registries.LOOT_TABLE, "chests/nether_bridge"))
+                                        .build())
+                                .build());
         });
     }
 }
