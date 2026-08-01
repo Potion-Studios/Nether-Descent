@@ -1,5 +1,6 @@
 # 1.0.6
 - Pull Fabric Loot Modifier from LootTable Json
+- Add Recipe for Mossy Blue Nether Bricks
 
 # 1.0.5
 - Fix Certain Pendorite Based Blocks not being Mineable with Pickaxe

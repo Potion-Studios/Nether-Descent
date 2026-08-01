@@ -65,6 +65,12 @@ public class RecipeGenerator extends RecipeProvider {
 			    .unlockedBy(getHasName(NetherDescentBlocks.BLUE_NETHERRACK.get()), has(NetherDescentBlocks.BLUE_NETHERRACK.get()))
 			    .save(recipeOutput);
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, NetherDescentBlocks.MOSSY_BLUE_NETHER_BRICKS.getBase())
+                .requires(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase())
+                .requires(NetherDescentBlocks.EMBUR_CAVE_MOSS.get())
+                .unlockedBy(getHasName(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()), has(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()))
+                .save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get(), 6)
                 .define('W', NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase())
                 .define('#', NetherDescentItems.BLUE_NETHER_BRICK.get())
