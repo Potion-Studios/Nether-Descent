@@ -15,13 +15,11 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.world.level.storage.loot.entries.LootTableReference;
+import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.event.ServerEventsHandler;
 import net.potionstudios.netherdescent.util.VanillaBonemealHandler;
 import net.potionstudios.netherdescent.world.BlockItemFeatures;
-import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.item.brewing.NetherDescentBrewingRecipes;
 import net.potionstudios.netherdescent.world.item.tools.ToolInteractions;
 
@@ -70,13 +68,13 @@ public class VanillaCompatFabric {
     }
 
     private static void registerLootModifiers() {
-        LootTableEvents.MODIFY.register((resourceManager, lootDataManager, resourceLocation, builder, source )  -> {
+        LootTableEvents.MODIFY.register((resourceManager, lootDataManager, resourceLocation, builder, source)  -> {
             if (resourceLocation.equals(BuiltInLootTables.NETHER_BRIDGE))
-                builder.withPool(LootPool.lootPool()
-                        .setRolls(UniformGenerator.between(2.0f, 4.0f))
-                        .with(LootItem.lootTableItem(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()).setWeight(3).build())
-                                .with(EmptyLootItem.emptyItem().setWeight(70).build())
-                                ).build();
+                builder.pool(
+		                LootPool.lootPool().with(
+				                LootTableReference.lootTableReference(NetherDescent.id("chests/nether_bridge")).build()
+		                ).build()
+                );
         });
     }
 }
