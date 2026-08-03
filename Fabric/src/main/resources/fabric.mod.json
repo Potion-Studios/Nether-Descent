@@ -40,7 +40,7 @@
   },
   "recommends": {
     "terrablender": ">=3.0.1.10",
-    "biolith": ">=1.0.1"
+    "biolith": "*"
   },
   "suggests": {
     "WTHIT": ">=8.21.1",
