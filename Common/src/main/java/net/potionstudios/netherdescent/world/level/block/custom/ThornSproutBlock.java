@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -193,6 +194,13 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 	@Override
 	public boolean isCollisionShapeFullBlock(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
 		return state.getValue(SEGMENT) != SegmentType.END;
+	}
+
+	@Override
+	public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+		if (state.getValue(FLOWERING) && random.nextInt(10) == 0) {
+			level.addParticle(NetherDescentParticles.ARISIAN_LEAF.get(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 0, 0, 0);
+		}
 	}
 
 	@Override

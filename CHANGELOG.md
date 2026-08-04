@@ -2,6 +2,7 @@
 - Fix Launch being stopped when using Biolith 1.0.1-beta.1
 - Pull Fabric Loot Modifier from LootTable Json
 - Add Recipe for Mossy Blue Nether Bricks
+- Add Arisian Leaves Particle to Flowering Thorn Sprout
 
 # 1.0.5
 - Fix WailingTrigger Based Advancements triggering all at once
