@@ -503,7 +503,7 @@ public class ModelGenerators {
 			var tip = models().withExistingParent(name(NetherDescentBlocks.THORN_SPROUT.get()) + "_end", blockTexture(NetherDescentBlocks.THORN_SPROUT.get())).texture("1", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "end")).texture("particle", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "end")).renderType("cutout");
 			var middle = models().withExistingParent(name(NetherDescentBlocks.THORN_SPROUT.get()) + "_middle", blockTexture(NetherDescentBlocks.THORN_SPROUT.get())).texture("1", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "middle")).texture("particle", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "middle")).renderType("cutout");
 			var middleFlowering = models().withExistingParent(name(NetherDescentBlocks.THORN_SPROUT.get()) + "_middle_flowering", blockTexture(NetherDescentBlocks.THORN_SPROUT.get())).texture("1", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "middle_flowering")).texture("particle", blockNDTexture(NetherDescentBlocks.THORN_SPROUT.get(), "middle_flowering")).renderType("cutout");
-			getVariantBuilder(NetherDescentBlocks.THORN_SPROUT.get()).forAllStates(state -> {
+			getVariantBuilder(NetherDescentBlocks.THORN_SPROUT.get()).forAllStatesExcept(state -> {
 				int rotationY = switch (state.getValue(ThornSproutBlock.FACING)) {
 					case WEST -> 90;
 					case NORTH -> 180;
@@ -517,7 +517,7 @@ public class ModelGenerators {
 						return ConfiguredModel.builder().modelFile(middleFlowering).rotationY(rotationY).build();
 					else return ConfiguredModel.builder().modelFile(middle).rotationY(rotationY).build();
 				else return ConfiguredModel.builder().modelFile(tip).rotationY(rotationY).build();
-			});
+			}, ThornSproutBlock.SIZE);
 			simpleItemBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "thorn_sprout_end");
 
 			pottedBlock(NetherDescentBlocks.ARISIAN_BLOSSOM, NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get());

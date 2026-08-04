@@ -1,6 +1,7 @@
 # 1.0.6
 - Pull Fabric Loot Modifier from LootTable Json
 - Add Recipe for Mossy Blue Nether Bricks
+- Add Arisian Leaves Particle to Flowering Thorn Sprout
 
 # 1.0.5
 - Fix Certain Pendorite Based Blocks not being Mineable with Pickaxe
