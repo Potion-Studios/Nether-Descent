@@ -12,19 +12,11 @@ architectury {
 val minecraftVersion = providers.gradleProperty("minecraft_version").get()
 
 configurations {
-    create("common")
-    "common" {
-        isCanBeResolved = true
-        isCanBeConsumed = false
-    }
-    create("shadowBundle")
-    compileClasspath.get().extendsFrom(configurations["common"])
-    runtimeClasspath.get().extendsFrom(configurations["common"])
-    getByName("developmentFabric").extendsFrom(configurations["common"])
-    "shadowBundle" {
-        isCanBeResolved = true
-        isCanBeConsumed = false
-    }
+    val common = register("common")
+    register("shadowCommon")
+    compileClasspath.get().extendsFrom(common.get())
+    runtimeClasspath.get().extendsFrom(common.get())
+    named("developmentFabric") { extendsFrom(common.get()) }
 }
 
 loom.accessWidenerPath.set(project(":Common").loom.accessWidenerPath)
@@ -34,7 +26,7 @@ dependencies {
     modApi("net.fabricmc.fabric-api:fabric-api:${providers.gradleProperty("fabric_api_version").get()}+$minecraftVersion")
 
     "common"(project(":Common", "namedElements")) { isTransitive = false }
-    "shadowBundle"(project(":Common", "transformProductionFabric"))
+    "shadowCommon"(project(":Common", "transformProductionFabric"))
 
     modLocalRuntime("me.djtheredstoner:DevAuth-fabric:${providers.gradleProperty("devauth_version").get()}")
 
@@ -59,7 +51,7 @@ tasks {
 
     shadowJar {
         exclude("architectury.common.json", ".cache/**", "data/neoforge/**", "data/netherdescent/loot_modifiers/**")
-        configurations = listOf(project.configurations.getByName("shadowBundle"))
+        configurations = listOf(project.configurations.getByName("shadowCommon"))
         archiveClassifier.set("dev-shadow")
     }
 
