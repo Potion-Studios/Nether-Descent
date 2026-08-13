@@ -1,3 +1,6 @@
+# 1.0.7
+- Fix WolfMixin overwriting vanilla hasArmor check
+
 # 1.0.6
 - Pull Fabric Loot Modifier from LootTable Json
 - Add Recipe for Mossy Blue Nether Bricks

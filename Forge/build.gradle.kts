@@ -44,6 +44,9 @@ dependencies {
 
     modLocalRuntime("mcp.mobius.waila:wthit:forge-${providers.gradleProperty("WTHIT").get()}")
     modLocalRuntime("lol.bai:badpackets:forge-${providers.gradleProperty("badPackets").get()}")
+
+    compileOnly("io.github.llamalad7:mixinextras-common:0.5.4")?.let { annotationProcessor(it) }
+    include("io.github.llamalad7:mixinextras-forge:0.5.4")?.let { implementation(it) }
 }
 
 tasks {
