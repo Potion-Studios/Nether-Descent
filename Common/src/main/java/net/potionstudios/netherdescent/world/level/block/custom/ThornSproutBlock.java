@@ -3,6 +3,7 @@ package net.potionstudios.netherdescent.world.level.block.custom;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.Entity;
@@ -30,36 +31,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-/**
- * No BlockEntity - the growth/timer/retraction state machine runs entirely on scheduled
- * ticks ({@link #tick}) plus one extra BlockState property, {@link #COUNTING}.
- *
- * How the loop works, all from a single {@code tick()} entry point:
- * <ul>
- *     <li>Player present on the tip -> clear COUNTING, reschedule a short poll. This covers
- *         both "still standing there" and "came back before the timer ran out" (reset).</li>
- *     <li>Player absent, COUNTING false -> this is the moment they left. Set COUNTING true
- *         and schedule the real 15s wait.</li>
- *     <li>Player absent, COUNTING true -> either the 15s just fully elapsed, or we're mid
- *         retraction and this is the next step - both cases land here and do the same thing:
- *         retract one block, then reschedule a fast follow-up tick at the new tip. That new
- *         tip's next tick will see COUNTING true again and either keep retracting (still
- *         absent) or stop (a player caught up to it and is now standing on it).</li>
- * </ul>
- *
- * Assumptions worth confirming against the spec (unchanged from before, just restating since
- * they drive the constants below):
- * <ul>
- *     <li>{@link #GROWTH_LENGTH} (3) blocks are added per "step on end" trigger, repeating
- *         every time the player re-enters the tip, capped at {@link #MAX_CHAIN_SIZE} (18,
- *         matching SIZE's 0-17 range) rather than a hard-coded 3 growth events - "extend 3
- *         blocks... repeat one more time" and "18 blocks total" don't reconcile as a literal
- *         fixed 3-event sequence, so this is how I squared the two numbers.</li>
- *     <li>Only MIDDLE segments roll flowering (50/50). BASE and END never flower.</li>
- *     <li>With no player anywhere on the chain, it retracts all the way back to BASE
- *         (SIZE 0), which becomes the new END.</li>
- * </ul>
- */
 public class ThornSproutBlock extends HorizontalDirectionalBlock {
 	private static final VoxelShape SHAPE = Block.box(0, 8, 0, 16, 14, 16);
 	public static final EnumProperty<SegmentType> SEGMENT = EnumProperty.create("segment", SegmentType.class);
@@ -134,19 +105,26 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 		if (toGrow <= 0) return;
 
 		Direction facing = endState.getValue(FACING);
+
+		int canPlace = 0;
+		BlockPos checkPos = endPos;
+		for (int i = 1; i <= toGrow; i++) {
+			checkPos = checkPos.relative(facing);
+			if (!level.isEmptyBlock(checkPos)) break;
+			canPlace++;
+		}
+		if (canPlace == 0) return;
+
 		SegmentType convertedType = currentSize == 0 ? SegmentType.BASE : SegmentType.MIDDLE;
 		boolean convertedFlowering = convertedType == SegmentType.MIDDLE && level.random.nextBoolean();
 		level.setBlock(endPos, endState.setValue(SEGMENT, convertedType).setValue(FLOWERING, convertedFlowering).setValue(COUNTING, false), 3);
+		level.playSound(null, endPos, getSoundType(endState).getPlaceSound(), SoundSource.BLOCKS);
 
 		BlockPos cursor = endPos;
-		int placed = 0;
-		for (int i = 1; i <= toGrow; i++) {
-			BlockPos next = cursor.relative(facing);
-			if (!level.getBlockState(next).canBeReplaced()) break;
-			cursor = next;
-			placed++;
+		for (int placed = 1; placed <= canPlace; placed++) {
+			cursor = cursor.relative(facing);
 			int newSize = currentSize + placed;
-			boolean isNewEnd = placed == toGrow;
+			boolean isNewEnd = placed == canPlace;
 
 			pushEntitiesOutOfWay(level, cursor, facing);
 
@@ -159,9 +137,10 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 					.setValue(FLOWERING, flowering)
 					.setValue(COUNTING, false);
 			level.setBlock(cursor, newState, 3);
+			level.playSound(null, cursor, getSoundType(newState).getPlaceSound(), SoundSource.BLOCKS);
 		}
 
-		level.scheduleTick(placed > 0 ? cursor : endPos, this, POLL_INTERVAL_TICKS);
+		level.scheduleTick(cursor, this, POLL_INTERVAL_TICKS);
 	}
 
 	private void pushEntitiesOutOfWay(Level level, BlockPos pos, Direction facing) {
@@ -236,13 +215,13 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 	@Override
 	protected void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean movedByPiston) {
 		if (!movedByPiston && !state.is(newState.getBlock())) {
-			// forward: breaking a segment breaks everything after it, toward the tip
 			if (state.getValue(SEGMENT) != SegmentType.END) {
 				Direction facing = state.getValue(FACING);
 				BlockPos nextPos = pos.relative(facing);
 				BlockState nextState = level.getBlockState(nextPos);
 				if (nextState.is(this) && nextState.getValue(SIZE) == state.getValue(SIZE) + 1) {
 					level.destroyBlock(nextPos, false);
+					level.playSound(null, nextPos, getSoundType(state).getBreakSound(), SoundSource.BLOCKS);
 				}
 			}
 
