@@ -2,19 +2,17 @@ package net.potionstudios.netherdescent.world.level.block.custom;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MoverType;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -22,30 +20,232 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 public class ThornSproutBlock extends HorizontalDirectionalBlock {
+	private static final VoxelShape SHAPE = Block.box(0, 8, 0, 16, 14, 16);
 	public static final EnumProperty<SegmentType> SEGMENT = EnumProperty.create("segment", SegmentType.class);
 	public static final BooleanProperty FLOWERING = BooleanProperty.create("flowering");
-	public static final IntegerProperty SIZE = IntegerProperty.create("size", 0, 3);
+	public static final IntegerProperty SIZE = IntegerProperty.create("size", 0, 17);
+	public static final BooleanProperty COUNTING = BooleanProperty.create("counting");
+
+	public static final int RETRACT_DELAY_TICKS = 15 * 20;
+	public static final int POLL_INTERVAL_TICKS = 5;
+	public static final int RETRACT_STEP_INTERVAL_TICKS = 4;
+	public static final int GROWTH_LENGTH = 3;
+	public static final int MAX_CHAIN_SIZE = 18;
+	private static final float PUSHBACK_STRENGTH = 0.6f;
 
 	public ThornSproutBlock(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.stateDefinition.any().setValue(SEGMENT, SegmentType.END).setValue(FLOWERING, false).setValue(SIZE, 0));
+		this.registerDefaultState(this.stateDefinition.any()
+				.setValue(SEGMENT, SegmentType.END)
+				.setValue(FLOWERING, false)
+				.setValue(SIZE, 0)
+				.setValue(COUNTING, false));
 	}
 
 	@Override
 	public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
 		if (context.getClickedFace().getAxis().isHorizontal()) {
 			BlockPos attachPos = context.getClickedPos().relative(context.getClickedFace().getOpposite());
-			if (context.getLevel().getBlockState(attachPos).isFaceSturdy(context.getLevel(), attachPos, context.getClickedFace()))
-				return defaultBlockState().setValue(FACING, context.getClickedFace());
+			BlockState attachState = context.getLevel().getBlockState(attachPos);
+			boolean extendingChain = attachState.is(this) && attachState.getValue(SEGMENT).equals(SegmentType.END) && attachState.getValue(SIZE) != 17;
+			if (attachState.isFaceSturdy(context.getLevel(), attachPos, context.getClickedFace()) || extendingChain) {
+				int size = extendingChain ? attachState.getValue(SIZE) + 1 : 0;
+				return defaultBlockState().setValue(FACING, context.getClickedFace()).setValue(SIZE, size);
+			}
 		}
 		return null;
+	}
+
+	@Override
+	public void setPlacedBy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack stack) {
+		super.setPlacedBy(level, pos, state, placer, stack);
+
+		int size = state.getValue(SIZE);
+		if (size > 0) {
+			Direction backwards = state.getValue(FACING).getOpposite();
+			BlockPos previousPos = pos.relative(backwards);
+			BlockState previousState = level.getBlockState(previousPos);
+			if (previousState.is(this) && previousState.getValue(SEGMENT) == SegmentType.END) {
+				SegmentType convertedType = (size - 1 == 0) ? SegmentType.BASE : SegmentType.MIDDLE;
+				boolean flowering = convertedType == SegmentType.MIDDLE && level.random.nextBoolean();
+				level.setBlock(previousPos, previousState.setValue(SEGMENT, convertedType).setValue(FLOWERING, flowering).setValue(COUNTING, false), 3);
+			}
+		}
+
+		if (!level.isClientSide() && state.getValue(SEGMENT) == SegmentType.END) {
+			level.scheduleTick(pos, this, POLL_INTERVAL_TICKS);
+		}
+	}
+
+	@Override
+	public void stepOn(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Entity entity) {
+		super.stepOn(level, pos, state, entity);
+		if (level.isClientSide() || !(level instanceof ServerLevel serverLevel)) return;
+		if (!(entity instanceof Player)) return;
+		if (state.getValue(SEGMENT) != SegmentType.END) return;
+		grow(serverLevel, pos, state);
+	}
+
+	private void grow(ServerLevel level, BlockPos endPos, BlockState endState) {
+		int currentSize = endState.getValue(SIZE);
+		int remaining = MAX_CHAIN_SIZE - 1 - currentSize;
+		int toGrow = Math.min(GROWTH_LENGTH, remaining);
+		if (toGrow <= 0) return;
+
+		Direction facing = endState.getValue(FACING);
+
+		int canPlace = 0;
+		BlockPos checkPos = endPos;
+		for (int i = 1; i <= toGrow; i++) {
+			checkPos = checkPos.relative(facing);
+			if (!level.isEmptyBlock(checkPos)) break;
+			canPlace++;
+		}
+		if (canPlace == 0) return;
+
+		SegmentType convertedType = currentSize == 0 ? SegmentType.BASE : SegmentType.MIDDLE;
+		boolean convertedFlowering = convertedType == SegmentType.MIDDLE && level.random.nextBoolean();
+		level.setBlock(endPos, endState.setValue(SEGMENT, convertedType).setValue(FLOWERING, convertedFlowering).setValue(COUNTING, false), 3);
+
+		BlockPos cursor = endPos;
+		for (int placed = 1; placed <= canPlace; placed++) {
+			cursor = cursor.relative(facing);
+			int newSize = currentSize + placed;
+			boolean isNewEnd = placed == canPlace;
+
+			pushEntitiesOutOfWay(level, cursor, facing);
+
+			SegmentType type = isNewEnd ? SegmentType.END : SegmentType.MIDDLE;
+			boolean flowering = type == SegmentType.MIDDLE && level.random.nextBoolean();
+
+			BlockState newState = endState
+					.setValue(SEGMENT, type)
+					.setValue(SIZE, newSize)
+					.setValue(FLOWERING, flowering)
+					.setValue(COUNTING, false);
+			level.setBlock(cursor, newState, 3);
+		}
+
+		level.scheduleTick(cursor, this, POLL_INTERVAL_TICKS);
+		playPlaceSound(level, cursor, endState);
+	}
+
+	private void playPlaceSound(Level level, BlockPos pos, BlockState state) {
+		SoundType soundType = getSoundType(state);
+		level.playSound(null, pos, soundType.getPlaceSound(), SoundSource.BLOCKS,
+				(soundType.getVolume() + 1.0F) / 2.0F, soundType.getPitch() * 0.8F);
+	}
+
+	private void playBreakSound(Level level, BlockPos pos, BlockState state) {
+		SoundType soundType = getSoundType(state);
+		level.playSound(null, pos, soundType.getBreakSound(), SoundSource.BLOCKS,
+				(soundType.getVolume() + 1.0F) / 2.0F, soundType.getPitch() * 0.8F);
+	}
+
+	private void pushEntitiesOutOfWay(Level level, BlockPos pos, Direction facing) {
+		List<Entity> entities = level.getEntitiesOfClass(Entity.class, new AABB(pos));
+		if (entities.isEmpty()) return;
+		Vec3 push = new Vec3(-facing.getStepX(), 0.15, -facing.getStepZ()).scale(PUSHBACK_STRENGTH);
+		for (Entity entity : entities) {
+			entity.setDeltaMovement(entity.getDeltaMovement().add(push));
+			entity.hurtMarked = true;
+		}
+	}
+
+	@Override
+	protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+		if (state.getValue(SEGMENT) != SegmentType.END) return;
+
+		boolean present = isPlayerStandingOn(level, pos);
+		boolean counting = state.getValue(COUNTING);
+
+		if (present) {
+			if (counting) {
+				level.setBlock(pos, state.setValue(COUNTING, false), 3);
+			}
+			level.scheduleTick(pos, this, POLL_INTERVAL_TICKS);
+			return;
+		}
+
+		if (!counting) {
+			level.setBlock(pos, state.setValue(COUNTING, true), 3);
+			level.scheduleTick(pos, this, RETRACT_DELAY_TICKS);
+			return;
+		}
+
+		retractOneStep(level, pos, state);
+	}
+
+	private void retractOneStep(ServerLevel level, BlockPos endPos, BlockState endState) {
+		int currentSize = endState.getValue(SIZE);
+		if (currentSize <= 0) {
+			level.setBlock(endPos, endState.setValue(COUNTING, false), 3);
+			level.scheduleTick(endPos, this, POLL_INTERVAL_TICKS);
+			return;
+		}
+
+		Direction backwards = endState.getValue(FACING).getOpposite();
+		BlockPos previousPos = endPos.relative(backwards);
+		BlockState previousState = level.getBlockState(previousPos);
+
+		if (isPlayerStandingOn(level, previousPos)) {
+			level.setBlock(endPos, endState.setValue(COUNTING, false), 3);
+			level.scheduleTick(endPos, this, POLL_INTERVAL_TICKS);
+			return;
+		}
+
+		playBreakSound(level, endPos, endState);
+		level.removeBlock(endPos, false);
+
+		if (previousState.is(this)) {
+			level.setBlock(previousPos, previousState.setValue(SEGMENT, SegmentType.END).setValue(COUNTING, true), 3);
+			level.scheduleTick(previousPos, this, RETRACT_STEP_INTERVAL_TICKS);
+		}
+	}
+
+	private boolean isPlayerStandingOn(Level level, BlockPos pos) {
+		AABB aabb = new AABB(pos.getX(), pos.getY() + 0.4, pos.getZ(), pos.getX() + 1, pos.getY() + 1.0, pos.getZ() + 1);
+		return !level.getEntitiesOfClass(Player.class, aabb).isEmpty();
+	}
+
+	@Override
+	protected void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean movedByPiston) {
+		if (!movedByPiston && !state.is(newState.getBlock())) {
+			if (state.getValue(SEGMENT) != SegmentType.END) {
+				Direction facing = state.getValue(FACING);
+				BlockPos nextPos = pos.relative(facing);
+				BlockState nextState = level.getBlockState(nextPos);
+				if (nextState.is(this) && nextState.getValue(SIZE) == state.getValue(SIZE) + 1) {
+					level.destroyBlock(nextPos, false);
+				}
+			}
+
+			if (state.getValue(SIZE) > 0) {
+				Direction backwards = state.getValue(FACING).getOpposite();
+				BlockPos prevPos = pos.relative(backwards);
+				BlockState prevState = level.getBlockState(prevPos);
+				if (prevState.is(this) && prevState.getValue(SIZE) == state.getValue(SIZE) - 1 && prevState.getValue(SEGMENT) != SegmentType.END) {
+					level.setBlock(prevPos, prevState.setValue(SEGMENT, SegmentType.END).setValue(COUNTING, false), 3);
+					if (level instanceof ServerLevel serverLevel) {
+						serverLevel.scheduleTick(prevPos, this, POLL_INTERVAL_TICKS);
+					}
+				}
+			}
+		}
+		super.onRemove(state, level, pos, newState, movedByPiston);
 	}
 
 	@Override
@@ -54,147 +254,8 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	public void stepOn(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Entity entity) {
-		super.stepOn(level, pos, state, entity);
-		if (!level.isClientSide() && entity instanceof LivingEntity) {
-			if (state.getValue(SEGMENT) == SegmentType.END && state.getValue(SIZE) < 3)
-				growThorn(level, pos, state);
-
-			BlockPos tipPos = findTip(level, pos, state);
-			level.scheduleTick(tipPos, this, 300);
-		}
-	}
-
-	private BlockPos findTip(Level level, BlockPos pos, BlockState state) {
-		BlockPos current = pos;
-		BlockState currentState = state;
-		while (currentState.is(this) && currentState.getValue(SEGMENT) != SegmentType.END) {
-			current = current.relative(currentState.getValue(FACING));
-			currentState = level.getBlockState(current);
-		}
-		return current;
-	}
-
-	private void growThorn(Level level, BlockPos pos, BlockState state) {
-		int currentSize = state.getValue(SIZE);
-		if (currentSize >= 3) return;
-
-		int newSize = currentSize + 1;
-		level.setBlockAndUpdate(pos, state.setValue(SEGMENT, SegmentType.BASE).setValue(SIZE, newSize));
-		level.gameEvent(null, GameEvent.BLOCK_CHANGE, pos);
-		level.playSound(null, pos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
-
-		BlockPos nextPos = pos;
-		for (int i = 1; i <= 3; i++) {
-			nextPos = nextPos.relative(state.getValue(FACING));
-			if (level.getBlockState(nextPos).canBeReplaced()) {
-				SegmentType type = (i == 3) ? SegmentType.END : SegmentType.MIDDLE;
-				
-				AABB aabb = new AABB(nextPos);
-				for (Entity entity : level.getEntitiesOfClass(Entity.class, aabb)) {
-					Vec3 movement = Vec3.atLowerCornerOf(state.getValue(FACING).getNormal()).scale(0.5);
-					entity.move(MoverType.SHULKER_BOX, movement);
-				}
-
-				level.setBlockAndUpdate(nextPos, defaultBlockState()
-						.setValue(FACING, state.getValue(FACING))
-						.setValue(FLOWERING, level.getRandom().nextBoolean())
-						.setValue(SEGMENT, type)
-						.setValue(SIZE, newSize));
-				level.gameEvent(null, GameEvent.BLOCK_CHANGE, pos);
-				level.playSound(null, nextPos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
-			} else {
-				if (i > 1) {
-					BlockPos prevPos = nextPos.relative(state.getValue(FACING).getOpposite());
-					BlockState prevState = level.getBlockState(prevPos);
-					if (prevState.is(this)) {
-						level.setBlockAndUpdate(prevPos, prevState.setValue(SEGMENT, SegmentType.END));
-						level.gameEvent(null, GameEvent.BLOCK_CHANGE, pos);
-						level.playSound(null, prevPos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
-					}
-				} else {
-					level.setBlockAndUpdate(pos, state.setValue(SEGMENT, SegmentType.END).setValue(SIZE, currentSize));
-					level.gameEvent(null, GameEvent.BLOCK_CHANGE, pos);
-					level.playSound(null, pos, this.getSoundType(state).getPlaceSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
-				}
-				break;
-			}
-		}
-	}
-
-	@Override
-	protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-		super.tick(state, level, pos, random);
-
-		if (isEntityOnBlock(level, pos)) {
-			level.scheduleTick(pos, this, 20);
-			return;
-		}
-
-		if (state.getValue(SEGMENT) == SegmentType.END) {
-			retractThorn(level, pos, state);
-		}
-	}
-
-	private boolean isEntityOnBlock(Level level, BlockPos pos) {
-		AABB aabb = new AABB(pos).expandTowards(0, 0.5, 0);
-		return !level.getEntitiesOfClass(LivingEntity.class, aabb).isEmpty();
-	}
-
-	private void retractThorn(ServerLevel level, BlockPos pos, BlockState state) {
-		if (state.getValue(SEGMENT) != SegmentType.END) return;
-
-		int currentSize = state.getValue(SIZE);
-		BlockPos prevPos = pos.relative(state.getValue(FACING).getOpposite());
-		BlockState prevState = level.getBlockState(prevPos);
-
-		if (prevState.is(this) && prevState.getValue(FACING) == state.getValue(FACING) && prevState.getValue(SIZE) == currentSize) {
-			level.destroyBlock(pos, false);
-			level.gameEvent(null, GameEvent.BLOCK_CHANGE, pos);
-			level.playSound(null, pos, this.getSoundType(state).getBreakSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
-			if (prevState.getValue(SEGMENT) == SegmentType.BASE) {
-				BlockState nextState = prevState.setValue(SEGMENT, SegmentType.END).setValue(SIZE, currentSize - 1);
-				level.setBlockAndUpdate(prevPos, nextState);
-				if (nextState.getValue(SIZE) > 0 || nextState.getValue(SEGMENT) != SegmentType.END) {
-					level.scheduleTick(prevPos, this, 5);
-				}
-			} else {
-				level.setBlockAndUpdate(prevPos, prevState.setValue(SEGMENT, SegmentType.END));
-				level.scheduleTick(prevPos, this, 5);
-			}
-		} else {
-			if (currentSize > 0) {
-				level.destroyBlock(pos, false);
-				level.playSound(null, pos, this.getSoundType(state).getBreakSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
-			} else {
-				level.setBlockAndUpdate(pos, state.setValue(SEGMENT, SegmentType.END).setValue(SIZE, 0));
-			}
-		}
-	}
-
-	@Override
-	public void onRemove(BlockState state, @NotNull Level level, @NotNull BlockPos pos, BlockState newState, boolean moved) {
-		if (!state.is(newState.getBlock())) {
-
-			BlockPos nextPos = pos.relative(state.getValue(FACING));
-			BlockState nextState = level.getBlockState(nextPos);
-			if (nextState.is(this) && nextState.getValue(FACING) == state.getValue(FACING)) {
-				level.destroyBlock(nextPos, false);
-			}
-
-			BlockPos prevPos = pos.relative(state.getValue(FACING).getOpposite());
-			BlockState prevState = level.getBlockState(prevPos);
-			if (prevState.is(this) && prevState.getValue(FACING) == state.getValue(FACING)) {
-				level.setBlockAndUpdate(prevPos, prevState.setValue(SEGMENT, SegmentType.END));
-				level.scheduleTick(prevPos, this, 5);
-			}
-		}
-		super.onRemove(state, level, pos, newState, moved);
-	}
-
-	@Override
 	protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-		return Block.box(0, 8, 0, 16, 14, 16);
+		return SHAPE;
 	}
 
 	@Override
@@ -204,14 +265,13 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 
 	@Override
 	public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-		if (state.getValue(FLOWERING) && random.nextInt(10) == 0) {
+		if (state.getValue(FLOWERING) && random.nextInt(10) == 0)
 			level.addParticle(NetherDescentParticles.ARISIAN_LEAF.get(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 0, 0, 0);
-		}
 	}
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
-		super.createBlockStateDefinition(builder.add(SEGMENT, FLOWERING, SIZE, FACING));
+		super.createBlockStateDefinition(builder.add(SEGMENT, FLOWERING, SIZE, FACING, COUNTING));
 	}
 
 	public enum SegmentType implements StringRepresentable {

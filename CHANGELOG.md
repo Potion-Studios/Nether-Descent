@@ -1,5 +1,9 @@
 # 1.0.7
 - Fix WolfMixin overwriting vanilla hasArmor check
+- Add Brazilian Portuguese Translations (pt_br) 
+- Thorn Sprout Rework
+  - Extends Twice as Long
+  - Breaks Properly down line if earlier block is broken
 
 # 1.0.6
 - Pull Fabric Loot Modifier from LootTable Json

@@ -517,7 +517,7 @@ public class ModelGenerators {
 						return ConfiguredModel.builder().modelFile(middleFlowering).rotationY(rotationY).build();
 					else return ConfiguredModel.builder().modelFile(middle).rotationY(rotationY).build();
 				else return ConfiguredModel.builder().modelFile(tip).rotationY(rotationY).build();
-			}, ThornSproutBlock.SIZE);
+			}, ThornSproutBlock.SIZE, ThornSproutBlock.COUNTING);
 			simpleItemBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "thorn_sprout_end");
 
 			pottedBlock(NetherDescentBlocks.ARISIAN_BLOSSOM, NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get());
