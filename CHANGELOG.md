@@ -1,3 +1,9 @@
+# 1.0.7
+- Add Brazilian Portuguese Translations (pt_br)
+- Thorn Sprout Rework
+    - Extends Twice as Long
+    - Breaks Properly down line if earlier block is broken
+
 # 1.0.6
 - Fix Launch being stopped when using Biolith 1.0.1-beta.1
 - Pull Fabric Loot Modifier from LootTable Json
