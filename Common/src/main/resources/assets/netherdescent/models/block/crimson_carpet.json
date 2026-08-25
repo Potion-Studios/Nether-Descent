@@ -21,9 +21,7 @@
 			"to": [-0.02, 1, 16],
 			"rotation": {"angle": 0, "axis": "y", "origin": [-2, -1, 0]},
 			"faces": {
-				"west": {"uv": [0, 0, 16, 16], "texture": "#0"},
-				"up": {"uv": [0, 0, 0, 16], "texture": "#missing"},
-				"down": {"uv": [0, 0, 0, 16], "texture": "#missing"}
+				"west": {"uv": [0, 0, 16, 16], "texture": "#0"}
 			}
 		},
 		{
