@@ -1,3 +1,5 @@
+# 1.0.8
+
 # 1.0.7
 - Fix WolfMixin overwriting vanilla hasArmor check
 - Add Brazilian Portuguese Translations (pt_br) 

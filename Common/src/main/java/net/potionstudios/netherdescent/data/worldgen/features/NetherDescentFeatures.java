@@ -27,11 +27,8 @@ import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.HangingNDBushBlock;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeature;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CarpetPatchFeatureConfiguration;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CeilingHangingVinesFeatureConfiguration;
+import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.*;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.FloatingBlockFeatureConfiguration;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.HangingPlantFeatureConfiguration;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -147,8 +144,8 @@ public class NetherDescentFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_SYTHIAN_ROOTS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_sythian_roots", NetherDescentFeature.HANGING_PLANT, () -> new HangingPlantFeatureConfiguration(Blocks.NETHERRACK, NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get()));
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_STALK = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_stalk", NetherDescentFeature.SYTHIAN_STALK, NoneFeatureConfiguration::new);
-	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_STALK_DOWNWARD = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_stalk_downward", NetherDescentFeature.SYTHIAN_STALK_DOWNWARD, NoneFeatureConfiguration::new);
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_STALK = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_stalk", NetherDescentFeature.SYTHIAN_STALK, () -> new SythianStalkFeatureConfiguration(false));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_STALK_DOWNWARD = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_stalk_downward", NetherDescentFeature.SYTHIAN_STALK, () -> new SythianStalkFeatureConfiguration(true));
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_BULB_BLOSSOM = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_bulb_blossom", NetherDescentFeature.FLOATING_BLOCK_FEATURE, () -> new FloatingBlockFeatureConfiguration(BlockStateProvider.simple(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get()), UniformInt.of(1, 6)));
 

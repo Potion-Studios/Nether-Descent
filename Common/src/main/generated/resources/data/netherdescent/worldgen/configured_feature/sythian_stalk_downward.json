@@ -1,4 +1,6 @@
 {
-  "type": "netherdescent:sythian_stalk_downward",
-  "config": {}
+  "type": "netherdescent:sythian_stalk",
+  "config": {
+    "hanging": true
+  }
 }
