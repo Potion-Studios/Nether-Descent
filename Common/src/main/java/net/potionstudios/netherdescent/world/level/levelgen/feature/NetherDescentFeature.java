@@ -7,10 +7,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.NetherForestVeg
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CarpetPatchFeatureConfiguration;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CeilingHangingVinesFeatureConfiguration;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.FloatingBlockFeatureConfiguration;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.HangingPlantFeatureConfiguration;
+import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.*;
 
 import java.util.function.Supplier;
 
@@ -19,8 +16,7 @@ public class NetherDescentFeature {
 	public static final Supplier<Feature<CeilingHangingVinesFeatureConfiguration>> CEILING_HANGING_VINES = create("ceiling_hanging_vines", () -> new CeilingHangingVinesFeature(CeilingHangingVinesFeatureConfiguration.CODEC));
 	public static final Supplier<Feature<CarpetPatchFeatureConfiguration>> BLOCK_CARPET_PATCH = create("block_carpet_patch", () -> new CarpetPatchFeature(CarpetPatchFeatureConfiguration.CODEC));
 	public static final Supplier<Feature<HangingPlantFeatureConfiguration>> HANGING_PLANT = create("hanging_plant", () -> new HangingPlantFeature(HangingPlantFeatureConfiguration.CODEC));
-	public static final Supplier<Feature<NoneFeatureConfiguration>> SYTHIAN_STALK = create("sythian_stalk", () -> new SythianStalkFeature(NoneFeatureConfiguration.CODEC));
-	public static final Supplier<Feature<NoneFeatureConfiguration>> SYTHIAN_STALK_DOWNWARD = create("sythian_stalk_downward", () -> new SythianStalkDownwardFeature(NoneFeatureConfiguration.CODEC));
+	public static final Supplier<Feature<SythianStalkFeatureConfiguration>> SYTHIAN_STALK = create("sythian_stalk", () -> new SythianStalkFeature(SythianStalkFeatureConfiguration.CODEC));
     public static final Supplier<Feature<NetherForestVegetationConfig>> NETHER_FOREST_VEGETATION = create("nether_forest_vegetation", () -> new NetherForestVegetationFeature(NetherForestVegetationConfig.CODEC));
 	public static final Supplier<Feature<NetherForestVegetationConfig>> HANGING_NETHER_FOREST_VEGETATION = create("hanging_nether_forest_vegetation", () -> new HangingNetherForestVegetationFeature(NetherForestVegetationConfig.CODEC));
     public static final Supplier<Feature<FloatingBlockFeatureConfiguration>> FLOATING_BLOCK_FEATURE = create("floating_block_feature", () -> new FloatingBlockFeature(FloatingBlockFeatureConfiguration.CODEC));
