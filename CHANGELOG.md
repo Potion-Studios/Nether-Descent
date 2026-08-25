@@ -1,4 +1,6 @@
 # 1.0.8
+- Fix some Missing Lang Keys
+- Fix Hornet Being Stuck under nest glitching in and out
 
 # 1.0.7
 - Fix WolfMixin overwriting vanilla hasArmor check

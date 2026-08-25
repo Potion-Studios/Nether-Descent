@@ -154,7 +154,7 @@ public class HornetNestBlockEntity extends BlockEntity {
             if (bl && releaseStatus != HornetReleaseStatus.EMERGENCY) {
                 return false;
             } else {
-                Entity entity = occupant.createEntity(level, blockPos);
+                Entity entity = occupant.createEntity(level, pos);
                 if (entity != null) {
                     if (entity instanceof Hornet hornet) {
                         if (storedFlowerPos != null && !hornet.hasSavedFlowerPos() && level.getRandom().nextFloat() < 0.9F)
@@ -313,7 +313,6 @@ public class HornetNestBlockEntity extends BlockEntity {
 			IGNORED_HORNET_TAGS.forEach(compoundTag::remove);
 			Entity entity = EntityType.loadEntityRecursive(compoundTag, level, entityx -> entityx);
 			if (entity instanceof Hornet hornet) {
-				entity.setNoGravity(true);
 				hornet.setHivePos(pos);
 				setHornetReleaseData(this.ticksInNest, hornet);
 
