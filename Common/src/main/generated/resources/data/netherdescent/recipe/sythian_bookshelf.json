@@ -3,12 +3,8 @@
   "category": "building",
   "group": "planks",
   "key": {
-    "#": {
-      "item": "netherdescent:sythian_planks"
-    },
-    "X": {
-      "item": "minecraft:book"
-    }
+    "#": "netherdescent:sythian_planks",
+    "X": "minecraft:book"
   },
   "pattern": [
     "###",

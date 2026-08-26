@@ -3,9 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.2,
-  "ingredient": {
-    "item": "netherdescent:blue_nether_quartz_ore"
-  },
+  "ingredient": "netherdescent:blue_nether_quartz_ore",
   "result": {
     "count": 1,
     "id": "minecraft:quartz"

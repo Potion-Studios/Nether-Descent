@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "netherdescent:cut_pendorite",
+  "result": {
+    "count": 1,
+    "id": "netherdescent:cut_pendorite_stairs"
+  }
+}

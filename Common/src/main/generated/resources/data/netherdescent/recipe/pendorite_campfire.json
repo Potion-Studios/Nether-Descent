@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "netherdescent:pendorite_ingot"
-    },
-    "L": {
-      "tag": "minecraft:logs"
-    },
-    "S": {
-      "item": "minecraft:stick"
-    }
+    "#": "netherdescent:pendorite_ingot",
+    "L": "#minecraft:logs",
+    "S": "minecraft:stick"
   },
   "pattern": [
     " S ",

@@ -2,8 +2,8 @@ package net.potionstudios.netherdescent.client.renderer.entity;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.GhastRenderer;
+import net.minecraft.client.renderer.entity.state.GhastRenderState;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.monster.Ghast;
 import net.potionstudios.netherdescent.NetherDescent;
 import org.jetbrains.annotations.NotNull;
 
@@ -16,7 +16,7 @@ public class SoulGhastRenderer extends GhastRenderer {
 	}
 
 	@Override
-	public @NotNull ResourceLocation getTextureLocation(@NotNull Ghast entity) {
-		return entity.isCharging() ? SOUL_GHAST_SHOOTING_LOCATION : SOUL_GHAST_LOCATION;
+	public @NotNull ResourceLocation getTextureLocation(@NotNull GhastRenderState ghastRenderState) {
+		return ghastRenderState.isCharging ? SOUL_GHAST_SHOOTING_LOCATION : SOUL_GHAST_LOCATION;
 	}
 }

@@ -49,7 +49,7 @@ public class HangingNDBushBlock extends NetherDescentBush {
 
     @Override
     protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-        Vec3 vec3 = state.getOffset(level, pos);
+        Vec3 vec3 = state.getOffset(pos);
         VoxelShape shape = state.getValue(HANGING) ? HANGING_SHAPE : SHAPE;
         return shape.move(vec3.x, vec3.y, vec3.z);
     }

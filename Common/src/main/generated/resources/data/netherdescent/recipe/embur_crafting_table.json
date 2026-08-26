@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "planks",
   "key": {
-    "#": {
-      "item": "netherdescent:embur_planks"
-    }
+    "#": "netherdescent:embur_planks"
   },
   "pattern": [
     "##",

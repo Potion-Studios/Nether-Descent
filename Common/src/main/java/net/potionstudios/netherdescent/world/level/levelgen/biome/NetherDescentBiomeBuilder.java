@@ -24,7 +24,7 @@ import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 public class NetherDescentBiomeBuilder {
 
     private static void addDefaultNetherGeneration(BiomeGenerationSettings.Builder builder) {
-        builder.addCarver(GenerationStep.Carving.AIR, Carvers.NETHER_CAVE);
+        builder.addCarver(Carvers.NETHER_CAVE);
         vanillaNetherFeatures(builder);
     }
 

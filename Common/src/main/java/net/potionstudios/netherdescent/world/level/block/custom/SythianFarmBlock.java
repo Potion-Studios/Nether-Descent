@@ -5,7 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -42,11 +42,10 @@ public class SythianFarmBlock extends Block {
     }
 
     @Override
-    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess scheduledTickAccess, @NotNull BlockPos pos, @NotNull Direction direction, @NotNull BlockPos neighborPos, @NotNull BlockState neighborState, @NotNull RandomSource random) {
         if (direction == Direction.UP && !state.canSurvive(level, pos))
-            level.scheduleTick(pos, this, 1);
-
-        return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+            scheduledTickAccess.scheduleTick(pos, this, 1);
+        return super.updateShape(state, level, scheduledTickAccess, pos, direction, neighborPos, neighborState, random);
     }
 
     @Override
@@ -80,12 +79,12 @@ public class SythianFarmBlock extends Block {
 
     @Override
     public void fallOn(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos pos, @NotNull Entity entity, float fallDistance) {
-        if (!level.isClientSide()
+        if (level instanceof ServerLevel serverLevel
                 && level.random.nextFloat() < fallDistance - 0.5F
                 && entity instanceof LivingEntity
-                && (entity instanceof Player || level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING))
+                && (entity instanceof Player || serverLevel.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING))
                 && entity.getBbWidth() * entity.getBbWidth() * entity.getBbHeight() > 0.512F) {
-            turnToDirtBlock(entity, state, level, pos);
+            turnToDirtBlock(entity, state, serverLevel, pos);
         }
 
         entity.causeFallDamage(fallDistance, 1.0F, entity.damageSources().fall());
@@ -108,12 +107,12 @@ public class SythianFarmBlock extends Block {
     }
 
     @Override
-    protected @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
+    protected @NotNull InteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult) {
         if (!state.getValue(MOSSY) && stack.is(NetherDescentBlocks.EMBUR_CAVE_MOSS.get().asItem())) {
             level.setBlockAndUpdate(pos, state.setValue(MOSSY, true));
             if (!player.isCreative())
                 stack.shrink(1);
-            return ItemInteractionResult.sidedSuccess(level.isClientSide());
+            return InteractionResult.SUCCESS;
         }
 
         return super.useItemOn(stack, state, level, pos, player, hand, hitResult);

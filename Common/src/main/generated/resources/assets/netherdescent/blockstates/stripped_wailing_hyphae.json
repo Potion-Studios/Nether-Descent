@@ -1,7 +1,7 @@
 {
   "variants": {
     "axis=x": {
-      "model": "netherdescent:block/stripped_wailing_hyphae",
+      "model": "netherdescent:block/stripped_wailing_hyphae_horizontal",
       "x": 90,
       "y": 90
     },
@@ -9,7 +9,7 @@
       "model": "netherdescent:block/stripped_wailing_hyphae"
     },
     "axis=z": {
-      "model": "netherdescent:block/stripped_wailing_hyphae",
+      "model": "netherdescent:block/stripped_wailing_hyphae_horizontal",
       "x": 90
     }
   }

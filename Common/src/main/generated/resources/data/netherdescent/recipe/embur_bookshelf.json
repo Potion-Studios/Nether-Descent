@@ -3,12 +3,8 @@
   "category": "building",
   "group": "planks",
   "key": {
-    "#": {
-      "item": "netherdescent:embur_planks"
-    },
-    "X": {
-      "item": "minecraft:book"
-    }
+    "#": "netherdescent:embur_planks",
+    "X": "minecraft:book"
   },
   "pattern": [
     "###",

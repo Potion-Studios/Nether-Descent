@@ -37,7 +37,7 @@ public class WailingGillsBlockEntity extends BlockEntity {
 		if (serverLevel.getServer().getTickCount() % 5 == 0 && !level.getBlockState(pos.below()).isSolid()) {
 
             if (SOUL_SPEED == null)
-                SOUL_SPEED = serverLevel.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SOUL_SPEED);
+                SOUL_SPEED = serverLevel.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.SOUL_SPEED);
 
             int powered = state.getValue(WailingGillsBlock.POWER);
             AABB searchArea = blockEntity.cachedBoxes[powered];
@@ -55,7 +55,7 @@ public class WailingGillsBlockEntity extends BlockEntity {
 
             if (entities.isEmpty()) return;
 
-            int solid = level.getMinBuildHeight();
+            int solid = level.getMinY();
             for (int i = 1; i <= 15 + powered; i++)
                 if (level.getBlockState(pos.below(i)).isSolid()) {
                     solid = pos.below(i).getY();

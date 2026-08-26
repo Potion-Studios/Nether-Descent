@@ -79,6 +79,7 @@
           "state": {
             "Name": "netherdescent:thorn_sprout",
             "Properties": {
+              "counting": "false",
               "facing": "north",
               "flowering": "false",
               "segment": "end",

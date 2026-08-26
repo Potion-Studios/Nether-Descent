@@ -1,11 +1,11 @@
 package net.potionstudios.netherdescent.neoforge.datagen.generators.loot;
 
-import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.*;
@@ -16,13 +16,13 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import net.potionstudios.netherdescent.world.level.block.custom.MossyCarpetBlock;
+import net.potionstudios.netherdescent.world.level.block.plants.NDGrowingPlantBodyBlock;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -41,6 +41,7 @@ class BlockLootGenerator extends BlockLootSubProvider {
     @Override
     protected void generate() {
         NetherDescentBlocks.BLOCKS.forEach(entry -> {
+	        NetherDescent.LOGGER.info("Generating loot table for block: {}", Objects.requireNonNull(BuiltInRegistries.BLOCK.getKey(entry.get())));
             Block block = entry.get();
             if (block instanceof SlabBlock)
                 add(block, createSlabItemTable(block));
@@ -62,13 +63,19 @@ class BlockLootGenerator extends BlockLootSubProvider {
             else if (block instanceof PinkPetalsBlock)
                 add(block, createPetalsDrops(block));
             else if (block instanceof NetherSproutsBlock)
-                add(block, itemLike -> BlockLootSubProvider.createShearsOnlyDrop(block));
+                add(block, itemLike -> createShearsOnlyDrop(block));
             else if (block instanceof MultifaceBlock)
-                add(block, createMultifaceBlockDrops(block, HAS_SHEARS));
+                add(block, createMultifaceBlockDrops(block, hasShears()));
             else if (block instanceof LanternBlock)
                 add(block, this::createSingleItemTable);
-            else dropSelf(block);
+            else {
+                if (!Item.byBlock(block).getDefaultInstance().is(Items.AIR))
+                    dropSelf(block);
+                else NetherDescent.LOGGER.warn("Block {} has no loot table defined and does not have a corresponding item, skipping loot table generation.", BuiltInRegistries.BLOCK.getKey(block));
+            }
         });
+
+        NetherDescent.LOGGER.info("Generating loot tables for nylium blocks");
 
         add(NetherDescentBlocks.EMBUR_NYLIUM.get(), (arg) -> this.createSingleItemTableWithSilkTouch(arg, NetherDescentBlocks.BLUE_NETHERRACK.get()));
         add(NetherDescentBlocks.SYTHIAN_NYLIUM.get(), (arg) -> createSingleItemTableWithSilkTouch(arg, Blocks.NETHERRACK));
@@ -77,6 +84,8 @@ class BlockLootGenerator extends BlockLootSubProvider {
 
         dropSelf(NetherDescentBlocks.ARISIAN_DANDELIONS.get());
         dropSelf(NetherDescentBlocks.ARISIAN_BLOSSOM.get());
+
+
         dropOther(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), NetherDescentBlocks.SYTHIAN_SOIL.get());
         add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get(), (arg2) -> this.createSilkTouchDispatchTable(arg2, this.applyExplosionDecay(arg2, LootItem.lootTableItem(Items.GOLD_NUGGET).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE))))));
         add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get(), (arg) -> this.createOreDrop(arg, Items.QUARTZ));
@@ -96,23 +105,6 @@ class BlockLootGenerator extends BlockLootSubProvider {
         add(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), createMossyCarpetBlockDrops(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()));
         add(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), createMossyCarpetBlockDrops(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()));
         add(NetherDescentBlocks.ARISIAN_LEAVES.get(), createLeavesDrops(NetherDescentBlocks.ARISIAN_LEAVES.get(), NetherDescentBlocks.ARISIAN.growerItem().get(), NORMAL_LEAVES_SAPLING_CHANCES));
-    }
-
-    private LootTable.Builder createMossyCarpetBlockDrops(Block block) {
-        return LootTable.lootTable()
-                .withPool(
-                        LootPool.lootPool()
-                                .add(
-                                        this.applyExplosionDecay(
-                                                block,
-                                                LootItem.lootTableItem(block)
-                                                        .when(
-                                                                LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
-                                                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(MossyCarpetBlock.BASE, true))
-                                                        )
-                                        )
-                                )
-                );
     }
 
     @Override

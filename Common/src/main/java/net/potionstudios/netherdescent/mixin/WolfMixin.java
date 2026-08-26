@@ -11,17 +11,8 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(Wolf.class)
 public abstract class WolfMixin {
-
-    @WrapOperation(method = "hasArmor", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"))
-    private boolean hasArmor(ItemStack stack, Item item, Operation<Boolean> original) {
-        return original.call(stack, item) || stack.is(NetherDescentItems.PENDORITE_WOLF_ARMOR.get());
-    }
-
-    @WrapOperation(method = "actuallyHurt", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/Item;getDefaultInstance()Lnet/minecraft/world/item/ItemStack;"))
-    public ItemStack actuallyHurt(Item instance, Operation<ItemStack> original) {
-        ItemStack armor = ((Wolf)(Object)this).getBodyArmorItem();
-        if (armor.is(NetherDescentItems.PENDORITE_WOLF_ARMOR.get()))
-            return armor.getItem().getDefaultInstance();
-        return original.call(instance);
+    @WrapOperation(method = "canArmorAbsorb", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z"))
+    private boolean allowCustomArmorAbsorption(ItemStack instance, Item item, Operation<Boolean> original) {
+        return original.call(instance, item) || instance.is(NetherDescentItems.PENDORITE_WOLF_ARMOR.get());
     }
 }

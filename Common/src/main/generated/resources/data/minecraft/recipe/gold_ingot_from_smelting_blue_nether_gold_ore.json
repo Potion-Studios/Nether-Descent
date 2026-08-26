@@ -4,9 +4,7 @@
   "cookingtime": 200,
   "experience": 1.0,
   "group": "gold_ingot",
-  "ingredient": {
-    "item": "netherdescent:blue_nether_gold_ore"
-  },
+  "ingredient": "netherdescent:blue_nether_gold_ore",
   "result": {
     "count": 1,
     "id": "minecraft:gold_ingot"

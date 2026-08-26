@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.world.level.levelgen.feature;
 
+import com.google.common.base.Suppliers;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,15 +14,23 @@ import net.potionstudios.netherdescent.world.level.block.plants.SythianStalkBloc
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.SythianStalkFeatureConfiguration;
 import org.jetbrains.annotations.NotNull;
 
-public class SythianStalkFeature extends Feature<SythianStalkFeatureConfiguration> {
-	private static final BlockState STALK = NetherDescentBlocks.SYTHIAN_STALK.getBlockState()
-			.setValue(SythianStalkBlock.AGE, 1)
-			.setValue(SythianStalkBlock.LEAVES, BambooLeaves.NONE)
-			.setValue(SythianStalkBlock.STAGE, 0);
-	private static final BlockState STALK_FINAL_LARGE = STALK.setValue(SythianStalkBlock.LEAVES, BambooLeaves.LARGE).setValue(SythianStalkBlock.STAGE, 1);
-	private static final BlockState STALK_TOP_LARGE = STALK.setValue(SythianStalkBlock.LEAVES, BambooLeaves.LARGE);
-	private static final BlockState STALK_TOP_SMALL = STALK.setValue(SythianStalkBlock.LEAVES, BambooLeaves.SMALL);
+import java.util.function.Supplier;
 
+public class SythianStalkFeature extends Feature<SythianStalkFeatureConfiguration> {
+    private static final Supplier<BlockState> STALK = Suppliers.memoize(() ->
+            NetherDescentBlocks.SYTHIAN_STALK.getBlockState()
+                    .setValue(SythianStalkBlock.AGE, 1)
+                    .setValue(SythianStalkBlock.LEAVES, BambooLeaves.NONE)
+                    .setValue(SythianStalkBlock.STAGE, 0));
+
+    private static final Supplier<BlockState> STALK_FINAL_LARGE = Suppliers.memoize(() ->
+            STALK.get().setValue(SythianStalkBlock.LEAVES, BambooLeaves.LARGE).setValue(SythianStalkBlock.STAGE, 1));
+
+    private static final Supplier<BlockState> STALK_TOP_LARGE = Suppliers.memoize(() ->
+            STALK.get().setValue(SythianStalkBlock.LEAVES, BambooLeaves.LARGE));
+
+    private static final Supplier<BlockState> STALK_TOP_SMALL = Suppliers.memoize(() ->
+            STALK.get().setValue(SythianStalkBlock.LEAVES, BambooLeaves.SMALL));
 	public SythianStalkFeature(Codec<SythianStalkFeatureConfiguration> codec) {
 		super(codec);
 	}
@@ -38,7 +47,7 @@ public class SythianStalkFeature extends Feature<SythianStalkFeatureConfiguratio
 				int j = context.random().nextInt(12) + 5;
 				Direction move = hanging ? Direction.DOWN : Direction.UP;
 				for (int k = 0; k < j && worldGenLevel.isEmptyBlock(mutableBlockPos); k++) {
-					worldGenLevel.setBlock(mutableBlockPos, STALK.setValue(SythianStalkBlock.HANGING, hanging), 2);
+					worldGenLevel.setBlock(mutableBlockPos, STALK.get().setValue(SythianStalkBlock.HANGING, hanging), 2);
 					mutableBlockPos.move(move);
 				}
 
@@ -47,9 +56,9 @@ public class SythianStalkFeature extends Feature<SythianStalkFeatureConfiguratio
 				if (check >= 3) {
                     if (!worldGenLevel.isEmptyBlock(mutableBlockPos.offset(0, hanging ? -3 : 3, 0)))
                         mutableBlockPos.move(move.getOpposite(), 3);
-					worldGenLevel.setBlock(mutableBlockPos, STALK_FINAL_LARGE.setValue(SythianStalkBlock.HANGING, hanging), 2);
-					worldGenLevel.setBlock(mutableBlockPos.move(move), STALK_TOP_LARGE.setValue(SythianStalkBlock.HANGING, hanging), 2);
-					worldGenLevel.setBlock(mutableBlockPos.move(move), STALK_TOP_SMALL.setValue(SythianStalkBlock.HANGING, hanging), 2);
+					worldGenLevel.setBlock(mutableBlockPos, STALK_FINAL_LARGE.get().setValue(SythianStalkBlock.HANGING, hanging), 2);
+					worldGenLevel.setBlock(mutableBlockPos.move(move), STALK_TOP_LARGE.get().setValue(SythianStalkBlock.HANGING, hanging), 2);
+					worldGenLevel.setBlock(mutableBlockPos.move(move), STALK_TOP_SMALL.get().setValue(SythianStalkBlock.HANGING, hanging), 2);
 				}
 			}
 

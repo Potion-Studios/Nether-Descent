@@ -51,7 +51,7 @@ public class HangingFungusBlock extends HangingNDBushBlock implements Bonemealab
     }
 
     private Optional<? extends Holder<ConfiguredFeature<?, ?>>> getFeature(LevelReader level, ResourceKey<ConfiguredFeature<?, ?>> feature) {
-        return level.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).getHolder(feature);
+        return level.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(feature);
     }
 
     @Override

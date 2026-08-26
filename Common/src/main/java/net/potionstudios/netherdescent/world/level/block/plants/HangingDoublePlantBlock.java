@@ -2,6 +2,7 @@ package net.potionstudios.netherdescent.world.level.block.plants;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -9,6 +10,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
@@ -33,7 +35,7 @@ public class HangingDoublePlantBlock extends NetherDescentDoublePlantBlock {
 		if (context.getClickedFace() == Direction.DOWN) {
 			BlockPos blockPos = context.getClickedPos();
 			Level level = context.getLevel();
-			return blockPos.getY() > level.getMinBuildHeight() + 1 && level.getBlockState(blockPos.below()).canBeReplaced(context)
+			return blockPos.getY() > level.getMinY() + 1 && level.getBlockState(blockPos.below()).canBeReplaced(context)
 					? defaultBlockState().setValue(HALF, DoubleBlockHalf.LOWER).setValue(HANGING, true)
 					: null;
 		} else {
@@ -55,7 +57,7 @@ public class HangingDoublePlantBlock extends NetherDescentDoublePlantBlock {
 	}
 
 	@Override
-	protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+	protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess scheduledTickAccess, @NotNull BlockPos pos, @NotNull Direction direction, @NotNull BlockPos neighborPos, @NotNull BlockState neighborState, @NotNull RandomSource random) {
 		if (state.getValue(HANGING)) {
 			DoubleBlockHalf doubleBlockHalf = state.getValue(HALF);
 			if (direction.getAxis() != Direction.Axis.Y
@@ -63,12 +65,12 @@ public class HangingDoublePlantBlock extends NetherDescentDoublePlantBlock {
 					|| neighborState.is(this) && neighborState.getValue(HALF) != doubleBlockHalf) {
 				return doubleBlockHalf == DoubleBlockHalf.LOWER && direction == Direction.UP && !state.canSurvive(level, pos)
 						? Blocks.AIR.defaultBlockState()
-						: super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+						: super.updateShape(state, level, scheduledTickAccess, pos, direction, neighborPos, neighborState, random);
 			} else {
 				return Blocks.AIR.defaultBlockState();
 			}
 		}
-		return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+		return super.updateShape(state, level, scheduledTickAccess, pos, direction, neighborPos, neighborState, random);
 	}
 
 	@Override

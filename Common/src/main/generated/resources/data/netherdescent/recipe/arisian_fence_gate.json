@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "wooden_fence_gate",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "W": {
-      "item": "netherdescent:arisian_planks"
-    }
+    "#": "minecraft:stick",
+    "W": "netherdescent:arisian_planks"
   },
   "pattern": [
     "#W#",

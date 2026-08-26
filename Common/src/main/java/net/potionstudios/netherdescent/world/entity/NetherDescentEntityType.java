@@ -1,6 +1,8 @@
 package net.potionstudios.netherdescent.world.entity;
 
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.monster.Monster;
@@ -28,7 +30,11 @@ public class NetherDescentEntityType {
     public static final Supplier<EntityType<SoulGhast>> SOUL_GHAST = createEntity("soul_ghast", EntityType.Builder.of(SoulGhast::new, MobCategory.MONSTER).fireImmune().sized(EntityType.GHAST.getWidth(), EntityType.GHAST.getHeight()).eyeHeight(2.6F).passengerAttachments(4.0625F).ridingOffset(0.5F).clientTrackingRange(10));
 
     private static <E extends Entity> Supplier<EntityType<E>> createEntity(String id, EntityType.Builder<E> Builder) {
-        return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.ENTITY_TYPE, id, () -> Builder.build(id));
+        return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.ENTITY_TYPE, id, () -> Builder.build(createKey(id)));
+    }
+
+    private static ResourceKey<EntityType<?>> createKey(String id) {
+        return NetherDescent.key(Registries.ENTITY_TYPE, id);
     }
 
     @SuppressWarnings("unchecked")

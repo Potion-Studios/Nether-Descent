@@ -2,10 +2,8 @@ package net.potionstudios.netherdescent.client;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.particle.CherryParticle;
-import net.minecraft.client.particle.FlameParticle;
-import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.client.particle.*;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -14,6 +12,7 @@ import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -27,8 +26,12 @@ import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.core.particles.FallingParticle;
 import net.potionstudios.netherdescent.core.particles.RisingParticle;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
+import net.potionstudios.netherdescent.world.level.block.custom.EmburCaveMossBlock;
+import net.potionstudios.netherdescent.world.level.block.custom.HangingMossyCarpetBlock;
 import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -59,12 +62,12 @@ public class NetherDescentClient {
      * @see ParticleProvider
      */
     public static void registerParticles(BiConsumer<SimpleParticleType, Function<SpriteSet, ParticleProvider<SimpleParticleType>>> consumer) {
-		consumer.accept(NetherDescentParticles.SYTHIAN_LEAF.get(), arg -> (arg2, arg3, d, e, f, g, h, i) -> new CherryParticle(arg3, d, e, f, arg));
+		consumer.accept(NetherDescentParticles.SYTHIAN_LEAF.get(), FallingLeavesParticle.CherryProvider::new);
 	    consumer.accept(NetherDescentParticles.EMBUR_GEL_DRIP.get(), FallingParticle.Provider::new);
 		consumer.accept(NetherDescentParticles.GILL_LEVITATE.get(), RisingParticle.Provider::new);
 		consumer.accept(NetherDescentParticles.GILL_LEVITATE_POWERED.get(), RisingParticle.Provider::new);
         consumer.accept(NetherDescentParticles.PENDORITE_FIRE_FLAME.get(), FlameParticle.Provider::new);
-	    consumer.accept(NetherDescentParticles.ARISIAN_LEAF.get(), arg -> (arg2, arg3, d, e, f, g, h, i) -> new CherryParticle(arg3, d, e, f, arg));
+	    consumer.accept(NetherDescentParticles.ARISIAN_LEAF.get(), FallingLeavesParticle.CherryProvider::new);
     }
 
     /**
@@ -99,4 +102,39 @@ public class NetherDescentClient {
     public static void registerLayerDefinitions(BiConsumer<ModelLayerLocation, Supplier<LayerDefinition>> consumer) {
         consumer.accept(NetherDescentModelLayers.HORNET, HornetModel::createBodyLayer);
     }
+
+	/**
+	 * Registers the render types for the blocks.
+	 */
+	public static void registerBlockRenderTypes(BiConsumer<Block, RenderType> consumer) {
+		NetherDescentBlocks.BLOCKS.forEach(entry -> {
+			RenderType type = renderTypeBlock(entry.get());
+			if (type != null) consumer.accept(entry.get(), type);
+		});
+		consumer.accept(NetherDescentBlocks.EMBUR_GEL_BLOCK.get(), RenderType.translucent());
+		consumer.accept(NetherDescentBlocks.EMBUR.door(), RenderType.translucent());
+		consumer.accept(NetherDescentBlocks.EMBUR.trapdoor(), RenderType.translucent());
+		consumer.accept(NetherDescentBlocks.EMBUR_GEL_VINES.get(), RenderType.translucent());
+		consumer.accept(NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(), RenderType.translucent());
+		consumer.accept(NetherDescentBlocks.CRIMSON_CARPET.get(), RenderType.cutout());
+		consumer.accept(NetherDescentBlocks.SYTHIAN_SHOOT.get(), RenderType.cutout());
+		consumer.accept(NetherDescentBlocks.SYTHIAN_STALK.get(), RenderType.cutout());
+		consumer.accept(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), RenderType.cutout());
+		consumer.accept(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get(), RenderType.cutout());
+		consumer.accept(NetherDescentBlocks.THORN_SPROUT.get(), RenderType.cutout());
+
+	}
+
+	@Nullable
+	private static RenderType renderTypeBlock(Block block) {
+		if (block instanceof DoorBlock || block instanceof TrapDoorBlock || block instanceof BushBlock || block instanceof LanternBlock || block instanceof GlowLichenBlock
+				|| block instanceof EmburCaveMossBlock || block instanceof MossyCarpetBlock || block instanceof HangingMossyCarpetBlock || block instanceof GrowingPlantBlock || block instanceof FlowerPotBlock || block instanceof HangingMossBlock
+				|| block instanceof ScaffoldingBlock || block instanceof TransparentBlock || block instanceof RodBlock || block instanceof CampfireBlock || block instanceof BaseTorchBlock)
+			return RenderType.cutout();
+		else if (block instanceof LeavesBlock || block instanceof VineBlock || block instanceof MangroveRootsBlock || block instanceof SporeBlossomBlock || block instanceof BaseCoralPlantTypeBlock || block instanceof IronBarsBlock || block instanceof ChainBlock)
+			return  RenderType.cutoutMipped();
+		else if (block instanceof StainedGlassPaneBlock || block instanceof HalfTransparentBlock)
+			return RenderType.translucent();
+		return null;
+	}
 }

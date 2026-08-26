@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "I": {
-      "item": "netherdescent:sythian_stalk"
-    },
-    "~": {
-      "item": "minecraft:string"
-    }
+    "I": "netherdescent:sythian_stalk",
+    "~": "minecraft:string"
   },
   "pattern": [
     "I~I",

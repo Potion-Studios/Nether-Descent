@@ -4,9 +4,7 @@
   "cookingtime": 200,
   "experience": 0.7,
   "group": "pendorite_ingot",
-  "ingredient": {
-    "item": "netherdescent:raw_pendorite"
-  },
+  "ingredient": "netherdescent:raw_pendorite",
   "result": {
     "count": 1,
     "id": "netherdescent:pendorite_ingot"

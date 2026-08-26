@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "wooden_fence",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "W": {
-      "item": "netherdescent:wailing_planks"
-    }
+    "#": "minecraft:stick",
+    "W": "netherdescent:wailing_planks"
   },
   "pattern": [
     "W#W",

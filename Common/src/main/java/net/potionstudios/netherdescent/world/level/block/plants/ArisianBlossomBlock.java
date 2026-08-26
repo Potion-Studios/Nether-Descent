@@ -14,9 +14,11 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class ArisianBlossomBlock extends HangingNDBushBlock {
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
@@ -75,8 +77,8 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 	}
 
 	@Override
-	protected void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block neighborBlock, @NotNull BlockPos neighborPos, boolean movedByPiston) {
-		super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
+	protected void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block neighborBlock, @Nullable Orientation orientation, boolean movedByPiston) {
+		super.neighborChanged(state, level, pos, neighborBlock, orientation, movedByPiston);
 		if (!level.isClientSide())
 			level.scheduleTick(pos, this, 1);
 	}

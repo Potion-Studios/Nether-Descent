@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "#c:eggs",
+      "required": false
+    },
+    {
+      "id": "#forge:eggs",
+      "required": false
+    }
+  ]
+}

@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "netherdescent:pendorite_torch"
-    },
-    "X": {
-      "item": "netherdescent:pendorite_nugget"
-    }
+    "#": "netherdescent:pendorite_torch",
+    "X": "netherdescent:pendorite_nugget"
   },
   "pattern": [
     "XXX",

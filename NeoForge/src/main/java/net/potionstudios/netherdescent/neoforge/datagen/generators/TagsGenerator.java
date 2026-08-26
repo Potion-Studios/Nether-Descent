@@ -5,12 +5,12 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.tags.NetherDescentBiomeTags;
 import net.potionstudios.netherdescent.tags.NetherDescentBlockTags;
@@ -24,19 +24,18 @@ import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodS
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructures;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
 public class TagsGenerator {
 
-	public static void init(DataGenerator generator, boolean run, PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper helper) {
-		BlockTagGenerator BlockTags = generator.addProvider(run, new BlockTagGenerator(output, lookupProvider, helper));
-		generator.addProvider(run, new ItemTagGenerator(output, lookupProvider, BlockTags, helper));
-		generator.addProvider(run, new BiomeTagGenerator(output, lookupProvider, helper));
-		generator.addProvider(run, new StructureTagGenerator(output, lookupProvider, helper));
-        generator.addProvider(run, new DamageTypeTagGenerator(output, lookupProvider, helper));
-        generator.addProvider(run, new EntityTypeTagGenerator(output, lookupProvider, helper));
+	public static void init(DataGenerator generator, boolean run, PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+		BlockTagGenerator BlockTags = generator.addProvider(run, new BlockTagGenerator(output, lookupProvider));
+		generator.addProvider(run, new ItemTagGenerator(output, lookupProvider, BlockTags));
+		generator.addProvider(run, new BiomeTagGenerator(output, lookupProvider));
+		generator.addProvider(run, new StructureTagGenerator(output, lookupProvider));
+        generator.addProvider(run, new DamageTypeTagGenerator(output, lookupProvider));
+        generator.addProvider(run, new EntityTypeTagGenerator(output, lookupProvider));
 	}
 
 	/**
@@ -44,8 +43,8 @@ public class TagsGenerator {
 	 * @see BlockTagsProvider
 	 */
 	private static class BlockTagGenerator extends BlockTagsProvider {
-		private BlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
-			super(output, lookupProvider, NetherDescent.MOD_ID, existingFileHelper);
+		private BlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+			super(output, lookupProvider, NetherDescent.MOD_ID);
 		}
 
 		@Override
@@ -106,8 +105,7 @@ public class TagsGenerator {
             tag(BlockTags.DRAGON_IMMUNE).add(NetherDescentBlocks.PENDORITE_BARS.get());
 			tag(BlockTags.CAMPFIRES).add(NetherDescentBlocks.PENDORITE_CAMPFIRE.get());
 
-            tag(BlockTags.FLOWERS).add(NetherDescentBlocks.EMBUR_LILY.get(), NetherDescentBlocks.ARISIAN_BLOSSOM.get(), NetherDescentBlocks.ARISIAN_DANDELIONS.get());
-			tag(BlockTags.TALL_FLOWERS).add(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get());
+            tag(BlockTags.FLOWERS).add(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get(), NetherDescentBlocks.EMBUR_LILY.get(), NetherDescentBlocks.ARISIAN_BLOSSOM.get(), NetherDescentBlocks.ARISIAN_DANDELIONS.get());
 
             tag(NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON).addTag(BlockTags.NYLIUM).add(NetherDescentBlocks.SYTHIAN_SHOOT.get(), NetherDescentBlocks.SYTHIAN_STALK.get(), NetherDescentBlocks.SYTHIAN_FARMLAND.get());
 			tag(NetherDescentBlockTags.NETHER_MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_NETHER).addTag(BlockTags.NYLIUM);
@@ -130,7 +128,7 @@ public class TagsGenerator {
 			else if (object instanceof WallBlock) tag(BlockTags.WALLS).add(object);
 			else if (object instanceof ColoredFallingBlock) tag(BlockTags.SAND).add(object);
 				//else if (object instanceof FlowerBlock) tag(BlockTags.SMALL_FLOWERS).add(object);
-			else if (object instanceof TallFlowerBlock) tag(BlockTags.TALL_FLOWERS).add(object);
+//			else if (object instanceof TallFlowerBlock) tag(BlockTags.TALL_FLOWERS).add(object);
 			else if (object instanceof LeavesBlock) tag(BlockTags.LEAVES).add(object);
 			else if (object instanceof CampfireBlock) tag(BlockTags.CAMPFIRES).add(object);
 			else if (object instanceof FlowerPotBlock) tag(BlockTags.FLOWER_POTS).add(object);
@@ -148,8 +146,8 @@ public class TagsGenerator {
 	}
 
 	private static class ItemTagGenerator extends ItemTagsProvider {
-		private ItemTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture, BlockTagGenerator blockTagGenerator, @Nullable ExistingFileHelper existingFileHelper) {
-			super(arg, completableFuture, blockTagGenerator.contentsGetter(), NetherDescent.MOD_ID, existingFileHelper);
+		private ItemTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture, BlockTagGenerator blockTagGenerator) {
+			super(arg, completableFuture, blockTagGenerator.contentsGetter(), NetherDescent.MOD_ID);
 		}
 
 		@Override
@@ -183,8 +181,6 @@ public class TagsGenerator {
             copy(Tags.Blocks.ORES_QUARTZ, Tags.Items.ORES_QUARTZ);
             copy(Tags.Blocks.CHAINS, Tags.Items.CHAINS);
             NetherDescentWoodSet.woodsets().forEach(set -> copy(set.logBlockTag(), set.logItemTag()));
-			copy(BlockTags.FLOWERS, ItemTags.FLOWERS);
-			copy(BlockTags.TALL_FLOWERS, ItemTags.TALL_FLOWERS);
 			copy(BlockTags.WART_BLOCKS, ItemTags.WART_BLOCKS);
 
 			tag(Tags.Items.BRICKS_NETHER).add(NetherDescentItems.BLUE_NETHER_BRICK.get());
@@ -202,12 +198,13 @@ public class TagsGenerator {
 
             tag(ItemTags.CREEPER_IGNITERS).add(NetherDescentItems.SOUL_FIRE_CHARGE.get(), NetherDescentItems.PENDORITE_FIRE_CHARGE.get());
             tag(Tags.Items.RODS_BLAZE).add(NetherDescentItems.SOUL_BLAZE_ROD.get());
+			tag(NetherDescentItemTags.EGGS).addOptionalTag(Tags.Items.EGGS).addOptionalTag(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("forge", "eggs")));
 		}
 	}
 
 	private static class BiomeTagGenerator extends BiomeTagsProvider {
-		private BiomeTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
-			super(arg, completableFuture, NetherDescent.MOD_ID, existingFileHelper);
+		private BiomeTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture) {
+			super(arg, completableFuture, NetherDescent.MOD_ID);
 		}
 
 		@Override
@@ -223,8 +220,8 @@ public class TagsGenerator {
 	}
 
 	private static class StructureTagGenerator extends StructureTagsProvider {
-		private StructureTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
-			super(arg, completableFuture, NetherDescent.MOD_ID, existingFileHelper);
+		private StructureTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture) {
+			super(arg, completableFuture, NetherDescent.MOD_ID);
 		}
 
 		@Override
@@ -241,8 +238,8 @@ public class TagsGenerator {
 	}
 
     private static class DamageTypeTagGenerator extends DamageTypeTagsProvider {
-        private DamageTypeTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
-            super(arg, completableFuture, NetherDescent.MOD_ID, existingFileHelper);
+        private DamageTypeTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture) {
+            super(arg, completableFuture, NetherDescent.MOD_ID);
         }
 
         @Override
@@ -254,8 +251,8 @@ public class TagsGenerator {
     }
 
     private static class EntityTypeTagGenerator extends EntityTypeTagsProvider {
-        private EntityTypeTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper) {
-            super(arg, completableFuture, NetherDescent.MOD_ID, existingFileHelper);
+        private EntityTypeTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture) {
+            super(arg, completableFuture, NetherDescent.MOD_ID);
         }
 
         @Override

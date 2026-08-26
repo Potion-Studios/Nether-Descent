@@ -3,9 +3,7 @@
   "category": "building",
   "group": "wooden_slab",
   "key": {
-    "#": {
-      "item": "netherdescent:wailing_planks"
-    }
+    "#": "netherdescent:wailing_planks"
   },
   "pattern": [
     "###"

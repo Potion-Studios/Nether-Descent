@@ -1,12 +1,10 @@
 package net.potionstudios.netherdescent;
 
 import com.mojang.logging.LogUtils;
-import dev.worldgen.lithostitched.Lithostitched;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
-import net.potionstudios.netherdescent.compat.lithostitched.LoadPredicateType;
 import net.potionstudios.netherdescent.config.configs.DevConfig;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
@@ -15,7 +13,7 @@ import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.sounds.NetherDescentSoundEvents;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.entity.ai.village.poi.NetherDescentPoiTypes;
-import net.potionstudios.netherdescent.world.item.NetherDescentArmorMaterials;
+import net.potionstudios.netherdescent.world.item.equipment.NetherDescentArmorMaterials;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.item.alchemy.NetherDescentPotions;
@@ -62,8 +60,6 @@ public class NetherDescent {
 	    NetherDescentPoiTypes.poiTypes();
         NetherDescentCriteriaTriggers.criteriaTriggers();
         devEnvironmentSetup();
-        if (PlatformHandler.PLATFORM_HANDLER.isModLoaded(Lithostitched.MOD_ID))
-            LoadPredicateType.loadPredicateType();
     }
 
     private static void devEnvironmentSetup() {

@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "netherdescent:pendorite_block"
-    }
+    "#": "netherdescent:pendorite_block"
   },
   "pattern": [
     "##",

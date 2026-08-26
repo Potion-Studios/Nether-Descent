@@ -15,10 +15,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -85,7 +82,7 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     }
 
     @Override
-    protected @NotNull VoxelShape getOcclusionShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    protected @NotNull VoxelShape getOcclusionShape(@NotNull BlockState state) {
         return Shapes.empty();
     }
 
@@ -229,7 +226,7 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     }
 
     @Override
-    protected boolean propagatesSkylightDown(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    protected boolean propagatesSkylightDown(@NotNull BlockState state) {
         return true;
     }
 
@@ -244,7 +241,7 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     }
 
     @Override
-    protected @NotNull BlockState updateShape(BlockState state, @NotNull Direction dir, @NotNull BlockState neighbor, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess scheduledTickAccess, @NotNull BlockPos pos, @NotNull Direction direction, @NotNull BlockPos neighborPos, @NotNull BlockState neighborState, @NotNull RandomSource random) {
         if (!state.canSurvive(level, pos)) return Blocks.AIR.defaultBlockState();
         return getUpdatedState(this, state, level, pos, false);
     }

@@ -20,7 +20,7 @@ public abstract class NaturalSpawnerMixin {
     @Inject(method = "isInNetherFortressBounds", at = @At("RETURN"), cancellable = true)
     private static void isInNetherFortressBounds(BlockPos pos, ServerLevel level, MobCategory category, StructureManager structureManager, CallbackInfoReturnable<Boolean> cir) {
         if (!cir.getReturnValue() && category == MobCategory.MONSTER && level.getBlockState(pos.below()).is(NetherDescentBlocks.BLUE_NETHERRACK.get())) {
-            Structure blueFortress = structureManager.registryAccess().registryOrThrow(Registries.STRUCTURE).get(NetherDescentStructures.BLUE_FORTRESS);
+            Structure blueFortress = structureManager.registryAccess().lookupOrThrow(Registries.STRUCTURE).getValue(NetherDescentStructures.BLUE_FORTRESS);
             if (blueFortress != null && structureManager.getStructureAt(pos, blueFortress).isValid())
                 cir.setReturnValue(true);
         }

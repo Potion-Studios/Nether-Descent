@@ -3,9 +3,7 @@
   "category": "building",
   "group": "bark",
   "key": {
-    "#": {
-      "item": "netherdescent:embur_pedu"
-    }
+    "#": "netherdescent:embur_pedu"
   },
   "pattern": [
     "##",

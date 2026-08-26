@@ -1,8 +1,6 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "netherdescent:pendorite_block"
-  },
+  "ingredient": "netherdescent:pendorite_block",
   "result": {
     "count": 4,
     "id": "netherdescent:chiseled_pendorite"

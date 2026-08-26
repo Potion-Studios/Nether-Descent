@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "netherdescent:blue_nether_brick"
-    }
+    "#": "netherdescent:blue_nether_brick"
   },
   "pattern": [
     "##",

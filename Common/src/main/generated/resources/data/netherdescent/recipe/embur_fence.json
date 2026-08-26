@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "wooden_fence",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "W": {
-      "item": "netherdescent:embur_planks"
-    }
+    "#": "minecraft:stick",
+    "W": "netherdescent:embur_planks"
   },
   "pattern": [
     "W#W",

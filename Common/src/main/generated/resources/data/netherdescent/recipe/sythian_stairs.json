@@ -3,9 +3,7 @@
   "category": "building",
   "group": "wooden_stairs",
   "key": {
-    "#": {
-      "item": "netherdescent:sythian_planks"
-    }
+    "#": "netherdescent:sythian_planks"
   },
   "pattern": [
     "#  ",

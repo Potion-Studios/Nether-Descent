@@ -3,9 +3,7 @@
   "category": "building",
   "group": "planks",
   "ingredients": [
-    {
-      "tag": "netherdescent:sythian_stems"
-    }
+    "#netherdescent:sythian_stems"
   ],
   "result": {
     "count": 4,

@@ -1,7 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "netherdescent:item/pendorite_wolf_armor",
-    "layer1": "netherdescent:item/pendorite_wolf_armor_overlay"
+    "layer0": "netherdescent:item/pendorite_wolf_armor"
   }
 }

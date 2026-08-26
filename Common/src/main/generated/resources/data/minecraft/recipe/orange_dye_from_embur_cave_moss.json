@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "orange_dye",
   "ingredients": [
-    {
-      "item": "netherdescent:embur_cave_moss"
-    }
+    "netherdescent:embur_cave_moss"
   ],
   "result": {
     "count": 1,

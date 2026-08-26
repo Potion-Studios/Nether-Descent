@@ -36,6 +36,6 @@ public class NetherDescentNyliumBlock extends NyliumBlock {
 
     @Override
     public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
-	    level.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).getHolder(feature.get()).ifPresent(reference -> reference.value().place(level, level.getChunkSource().getGenerator(), random, pos.above()));
+	    level.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(feature.get()).ifPresent(reference -> reference.value().place(level, level.getChunkSource().getGenerator(), random, pos.above()));
     }
 }

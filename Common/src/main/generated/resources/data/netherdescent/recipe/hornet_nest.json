@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "tag": "minecraft:logs"
-    },
-    "X": {
-      "tag": "c:buckets/water"
-    }
+    "#": "#minecraft:logs",
+    "X": "#c:buckets/water"
   },
   "pattern": [
     " # ",

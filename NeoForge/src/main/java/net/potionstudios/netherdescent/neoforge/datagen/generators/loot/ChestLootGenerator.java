@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.neoforge.datagen.generators.loot;
 
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
@@ -16,7 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.BiConsumer;
 
 public class ChestLootGenerator implements LootTableSubProvider {
-    public ChestLootGenerator(HolderLookup.Provider provider) {
+    public ChestLootGenerator() {
     }
 
     @Override
@@ -27,5 +26,6 @@ public class ChestLootGenerator implements LootTableSubProvider {
                                 .setRolls(UniformGenerator.between(2.0f, 4.0f))
                                 .add(LootItem.lootTableItem(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()).setWeight(3))
                                 .add(EmptyLootItem.emptyItem().setWeight(70))));
+
     }
 }

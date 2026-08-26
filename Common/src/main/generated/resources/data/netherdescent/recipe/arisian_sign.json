@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "wooden_sign",
   "key": {
-    "#": {
-      "item": "netherdescent:arisian_planks"
-    },
-    "X": {
-      "item": "minecraft:stick"
-    }
+    "#": "netherdescent:arisian_planks",
+    "X": "minecraft:stick"
   },
   "pattern": [
     "###",

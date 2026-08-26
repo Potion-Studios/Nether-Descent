@@ -3,9 +3,7 @@
   "category": "building",
   "group": "planks",
   "ingredients": [
-    {
-      "tag": "netherdescent:embur_pedus"
-    }
+    "#netherdescent:embur_pedus"
   ],
   "result": {
     "count": 4,

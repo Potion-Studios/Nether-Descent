@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "X": {
-      "item": "netherdescent:soul_blaze_rod"
-    },
-    "Y": {
-      "item": "minecraft:blackstone"
-    }
+    "X": "netherdescent:soul_blaze_rod",
+    "Y": "minecraft:blackstone"
   },
   "pattern": [
     "X",

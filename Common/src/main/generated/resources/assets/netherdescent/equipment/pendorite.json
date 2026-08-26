@@ -1,0 +1,18 @@
+{
+  "layers": {
+    "horse_body": [
+      {
+        "texture": "netherdescent:pendorite"
+      }
+    ],
+    "wolf_body": [
+      {
+        "texture": "netherdescent:pendorite"
+      },
+      {
+        "dyeable": {},
+        "texture": "netherdescent:pendorite_overlay"
+      }
+    ]
+  }
+}

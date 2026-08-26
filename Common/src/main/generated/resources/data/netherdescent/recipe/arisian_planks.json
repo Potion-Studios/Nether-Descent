@@ -3,9 +3,7 @@
   "category": "building",
   "group": "planks",
   "ingredients": [
-    {
-      "tag": "netherdescent:arisian_logs"
-    }
+    "#netherdescent:arisian_logs"
   ],
   "result": {
     "count": 4,

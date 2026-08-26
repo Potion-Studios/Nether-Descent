@@ -2,24 +2,19 @@ package net.potionstudios.netherdescent.neoforge;
 
 import com.google.auto.service.AutoService;
 import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
-import net.minecraft.Util;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.util.datafix.fixes.References;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -27,7 +22,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.FMLPaths;
-import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.data.loading.DatagenModLoader;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -52,18 +46,8 @@ public final class NeoForgePlatformHandler implements PlatformHandler {
 	}
 
 	@Override
-	public <T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntity(String key, Supplier<BlockEntityType.Builder<T>> builder) {
-		return register(BuiltInRegistries.BLOCK_ENTITY_TYPE, key, () -> builder.get().build(Util.fetchChoiceType(References.BLOCK_ENTITY, key)));
-	}
-
-	@Override
-	public <T extends Mob> Supplier<SpawnEggItem> createSpawnEgg(Supplier<EntityType<T>> entity, int backgroundColor, int highlightColor) {
-		return () -> new DeferredSpawnEggItem(entity, backgroundColor, highlightColor, new Item.Properties());
-	}
-
-	@Override
-	public Supplier<FlowerPotBlock> createPottedBlock(Supplier<? extends Block> block) {
-		return () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, block, BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
+	public FlowerPotBlock createPottedBlock(Supplier<? extends Block> block, BlockBehaviour.Properties properties) {
+		return new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, block, properties);
 	}
 
 	@Override

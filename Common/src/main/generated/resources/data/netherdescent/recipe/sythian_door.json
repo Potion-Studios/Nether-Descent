@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "wooden_door",
   "key": {
-    "#": {
-      "item": "netherdescent:sythian_planks"
-    }
+    "#": "netherdescent:sythian_planks"
   },
   "pattern": [
     "##",

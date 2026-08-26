@@ -2,7 +2,6 @@
   "parent": "minecraft:block/flower_pot_cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "dirt": "netherdescent:block/arisian_moss_block",
     "plant": "netherdescent:block/arisian_sprouts"
   }
 }

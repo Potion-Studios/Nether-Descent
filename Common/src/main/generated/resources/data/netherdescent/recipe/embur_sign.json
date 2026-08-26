@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "wooden_sign",
   "key": {
-    "#": {
-      "item": "netherdescent:embur_planks"
-    },
-    "X": {
-      "item": "minecraft:stick"
-    }
+    "#": "netherdescent:embur_planks",
+    "X": "minecraft:stick"
   },
   "pattern": [
     "###",

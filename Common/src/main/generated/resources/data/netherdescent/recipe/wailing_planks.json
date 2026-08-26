@@ -3,9 +3,7 @@
   "category": "building",
   "group": "planks",
   "ingredients": [
-    {
-      "tag": "netherdescent:wailing_stems"
-    }
+    "#netherdescent:wailing_stems"
   ],
   "result": {
     "count": 4,

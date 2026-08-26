@@ -3,9 +3,7 @@
   "category": "building",
   "group": "bark",
   "key": {
-    "#": {
-      "item": "netherdescent:sythian_stem"
-    }
+    "#": "netherdescent:sythian_stem"
   },
   "pattern": [
     "##",

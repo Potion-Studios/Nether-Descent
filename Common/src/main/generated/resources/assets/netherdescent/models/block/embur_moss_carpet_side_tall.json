@@ -1,5 +1,5 @@
 {
-  "parent": "netherdescent:block/mossy_carpet_side",
+  "parent": "minecraft:block/mossy_carpet_side",
   "render_type": "minecraft:cutout",
   "textures": {
     "side": "netherdescent:block/embur_moss_carpet_side_tall"

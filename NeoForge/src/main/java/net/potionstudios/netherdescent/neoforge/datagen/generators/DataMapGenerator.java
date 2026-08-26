@@ -5,16 +5,13 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
 import net.neoforged.neoforge.registries.datamaps.builtin.FurnaceFuel;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
-import net.neoforged.neoforge.registries.datamaps.builtin.Strippable;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.BlockItemFeatures;
-import net.potionstudios.netherdescent.world.item.tools.ToolInteractions;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -39,10 +36,6 @@ public class DataMapGenerator extends DataMapProvider {
         Builder<FurnaceFuel, Item> fuelBuilder = builder(NeoForgeDataMaps.FURNACE_FUELS);
         BlockItemFeatures.registerFurnaceFuels((block, burnTime) -> fuelBuilder.add(id(block.asItem()), new FurnaceFuel(burnTime), false));
         fuelBuilder.conditions(new ModLoadedCondition(NetherDescent.MOD_ID));
-
-        Builder<Strippable, Block> strippableBuilder = builder(NeoForgeDataMaps.STRIPPABLES);
-        ToolInteractions.registerStrippableBlocks((block, stripped) -> strippableBuilder.add(block.builtInRegistryHolder(), new Strippable(stripped), false));
-        strippableBuilder.conditions(new ModLoadedCondition(NetherDescent.MOD_ID));
     }
 
     private ResourceLocation id(Item item) {

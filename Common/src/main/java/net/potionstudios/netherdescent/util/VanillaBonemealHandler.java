@@ -47,7 +47,7 @@ public class VanillaBonemealHandler {
     }
 
     private static boolean netherrackLikeHandler(Level level, BlockPos pos, BlockState state, ItemStack stack, Block nylium) {
-        if (level.getBlockState(pos.above()).propagatesSkylightDown(level, pos)) {
+        if (level.getBlockState(pos.above()).propagatesSkylightDown()) {
             for (BlockPos blockPos : BlockPos.betweenClosed(pos.offset(-1, -1, -1), pos.offset(1, 1, 1))) {
                 BlockState blockState = level.getBlockState(blockPos);
                 if (blockState.is(nylium)) {
@@ -61,7 +61,7 @@ public class VanillaBonemealHandler {
     }
 
     private static boolean netherrackHandler(Level level, BlockPos pos, BlockState state, ItemStack stack, Block nylium) {
-        if (level.getBlockState(pos.above()).propagatesSkylightDown(level, pos)) {
+        if (level.getBlockState(pos.above()).propagatesSkylightDown()) {
             boolean crimson = false;
             boolean warped = false;
             boolean n = false;
@@ -105,6 +105,6 @@ public class VanillaBonemealHandler {
     }
 
     private static Optional<? extends Holder<ConfiguredFeature<?, ?>>> getFeature(LevelReader level) {
-        return level.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).getHolder(NetherDescentTreeFeatures.CRIMSON_FUNGUS_PLANTED);
+        return level.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(NetherDescentTreeFeatures.CRIMSON_FUNGUS_PLANTED);
     }
 }

@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "netherdescent:embur_gel_ball"
-    }
+    "#": "netherdescent:embur_gel_ball"
   },
   "pattern": [
     "###",

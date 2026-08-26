@@ -2,19 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "S": {
-      "item": "netherdescent:pendorite_nugget"
-    },
+    "#": "minecraft:stick",
+    "S": "netherdescent:pendorite_nugget",
     "X": [
-      {
-        "item": "minecraft:coal"
-      },
-      {
-        "item": "minecraft:charcoal"
-      }
+      "minecraft:coal",
+      "minecraft:charcoal"
     ]
   },
   "pattern": [

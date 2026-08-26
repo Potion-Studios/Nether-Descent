@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "planks",
   "key": {
-    "#": {
-      "item": "netherdescent:sythian_planks"
-    }
+    "#": "netherdescent:sythian_planks"
   },
   "pattern": [
     "##",

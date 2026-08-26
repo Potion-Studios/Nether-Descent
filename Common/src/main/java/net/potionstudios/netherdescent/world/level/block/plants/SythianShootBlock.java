@@ -6,10 +6,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
@@ -51,7 +48,7 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
 
     @Override
     protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-        Vec3 vec3 = state.getOffset(level, pos);
+        Vec3 vec3 = state.getOffset(pos);
         VoxelShape shape = state.getValue(HANGING) ? TOP_SHAPE : BOTTOM_SHAPE;
         return shape.move(vec3.x, vec3.y, vec3.z);
     }
@@ -74,19 +71,19 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull Direction direction, @NotNull BlockState neighborState, @NotNull LevelAccessor level, @NotNull BlockPos pos, @NotNull BlockPos neighborPos) {
+    protected @NotNull BlockState updateShape(@NotNull BlockState state, @NotNull LevelReader level, @NotNull ScheduledTickAccess scheduledTickAccess, @NotNull BlockPos pos, @NotNull Direction direction, @NotNull BlockPos neighborPos, @NotNull BlockState neighborState, @NotNull RandomSource random) {
         if (!state.canSurvive(level, pos))
             return Blocks.AIR.defaultBlockState();
         else {
-            if ((direction == Direction.UP || direction == Direction.DOWN) && neighborState.is(NetherDescentBlocks.SYTHIAN_STALK.get()))
-                level.setBlock(pos, NetherDescentBlocks.SYTHIAN_STALK.getBlockState().setValue(SythianStalkBlock.HANGING, state.getValue(HANGING)), 2);
-
-            return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+            if ((direction == Direction.UP || direction == Direction.DOWN) && neighborState.is(NetherDescentBlocks.SYTHIAN_STALK.get())) {
+                return NetherDescentBlocks.SYTHIAN_STALK.getBlockState().setValue(SythianStalkBlock.HANGING, state.getValue(HANGING));
+            }
+            return super.updateShape(state, level, scheduledTickAccess, pos, direction, neighborPos, neighborState, random);
         }
     }
 
     @Override
-    public @NotNull ItemStack getCloneItemStack(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
+    protected @NotNull ItemStack getCloneItemStack(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state, boolean includeData) {
         return NetherDescentBlocks.SYTHIAN_STALK.getItem().getDefaultInstance();
     }
 

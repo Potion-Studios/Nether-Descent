@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "planks",
   "key": {
-    "#": {
-      "item": "netherdescent:wailing_planks"
-    }
+    "#": "netherdescent:wailing_planks"
   },
   "pattern": [
     "##",

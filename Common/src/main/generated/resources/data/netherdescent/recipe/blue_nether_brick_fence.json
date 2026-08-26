@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "netherdescent:blue_nether_brick"
-    },
-    "W": {
-      "item": "netherdescent:blue_nether_bricks"
-    }
+    "#": "netherdescent:blue_nether_brick",
+    "W": "netherdescent:blue_nether_bricks"
   },
   "pattern": [
     "W#W",

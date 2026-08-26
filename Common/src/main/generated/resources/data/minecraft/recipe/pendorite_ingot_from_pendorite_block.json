@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "pendorite_ingot",
   "ingredients": [
-    {
-      "item": "netherdescent:pendorite_block"
-    }
+    "netherdescent:pendorite_block"
   ],
   "result": {
     "count": 9,

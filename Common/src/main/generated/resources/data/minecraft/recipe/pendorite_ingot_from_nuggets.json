@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "pendorite_ingot",
   "key": {
-    "#": {
-      "item": "netherdescent:pendorite_nugget"
-    }
+    "#": "netherdescent:pendorite_nugget"
   },
   "pattern": [
     "###",

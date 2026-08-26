@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "netherdescent:tall_crimson_fungi"
-    }
+    "netherdescent:tall_crimson_fungi"
   ],
   "result": {
     "count": 2,

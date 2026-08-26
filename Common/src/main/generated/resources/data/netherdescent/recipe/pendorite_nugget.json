@@ -3,9 +3,7 @@
   "category": "misc",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "netherdescent:pendorite_horse_armor"
-  },
+  "ingredient": "netherdescent:pendorite_horse_armor",
   "result": {
     "count": 1,
     "id": "netherdescent:pendorite_nugget"

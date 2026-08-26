@@ -11,6 +11,9 @@ public final class NetherDescentItemTags {
     public static final TagKey<Item> NUGGETS_PENDORITE = createCommon("nuggets/pendorite");
 	public static final TagKey<Item> STORAGE_BLOCKS_PENDORITE = createCommon("storage_blocks/pendorite");
 	public static final TagKey<Item> STORAGE_BLOCKS_RAW_PENDORITE = createCommon("storage_blocks/raw_pendorite");
+	public static final TagKey<Item> REPAIRS_PENDORITE_ARMOR = create("repairs_pendorite_armor");
+	@Deprecated
+	public static final TagKey<Item> EGGS = createCommon("eggs");
 
 	private static TagKey<Item> create(String name) {
         return TagKey.create(Registries.ITEM, NetherDescent.id(name));

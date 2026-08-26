@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "netherdescent:block/sythian/stripped_stem_top",
-    "side": "netherdescent:block/sythian/stripped_stem"
-  }
-}

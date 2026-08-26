@@ -3,9 +3,7 @@
   "category": "building",
   "group": "wooden_slab",
   "key": {
-    "#": {
-      "item": "netherdescent:embur_planks"
-    }
+    "#": "netherdescent:embur_planks"
   },
   "pattern": [
     "###"

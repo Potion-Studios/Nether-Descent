@@ -38,7 +38,7 @@ public class SmallSoulFireball extends Fireball {
             int i = entity1.getRemainingFireTicks();
             entity1.igniteForSeconds(3.5F);
             DamageSource damageSource = damageSources().fireball(this, entity);
-            if (!entity1.hurt(damageSource, 7.0F))
+            if (!entity1.hurtServer(serverlevel, damageSource, 7.0F))
                 entity1.setRemainingFireTicks(i);
             else EnchantmentHelper.doPostAttackEffects(serverlevel, entity1, damageSource);
         }

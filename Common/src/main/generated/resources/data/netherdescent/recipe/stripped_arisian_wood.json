@@ -3,9 +3,7 @@
   "category": "building",
   "group": "bark",
   "key": {
-    "#": {
-      "item": "netherdescent:stripped_arisian_log"
-    }
+    "#": "netherdescent:stripped_arisian_log"
   },
   "pattern": [
     "##",

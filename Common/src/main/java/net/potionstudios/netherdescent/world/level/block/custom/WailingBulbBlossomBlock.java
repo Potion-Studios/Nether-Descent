@@ -34,7 +34,7 @@ public class WailingBulbBlossomBlock extends Block {
 		super.stepOn(level, pos, state, entity);
 		if (!level.isClientSide()) {
             if (!state.getValue(ACTIVE) && entity instanceof LivingEntity livingEntity && !livingEntity.isSpectator()) {
-                Holder<Enchantment> soulSpeed = level.registryAccess().registryOrThrow(Registries.ENCHANTMENT).getHolderOrThrow(Enchantments.SOUL_SPEED);
+                Holder<Enchantment> soulSpeed = level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.SOUL_SPEED);
                 for (ItemStack itemStack : livingEntity.getArmorSlots())
                     if (EnchantmentHelper.getItemEnchantmentLevel(soulSpeed, itemStack) == 0) {
                         level.setBlock(pos, state.setValue(ACTIVE, true), 3);

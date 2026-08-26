@@ -3,9 +3,7 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "netherdescent:blue_nether_bricks"
-  },
+  "ingredient": "netherdescent:blue_nether_bricks",
   "result": {
     "count": 1,
     "id": "netherdescent:cracked_blue_nether_bricks"

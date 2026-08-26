@@ -8,7 +8,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
@@ -57,8 +56,8 @@ public class Hornet extends Bee {
     }
 
     @Override
-    public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull MobSpawnType reason) {
-        return MobSpawnConfig.INSTANCE.hornet.value() && super.checkSpawnRules(level, reason);
+    public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull EntitySpawnReason spawnReason) {
+        return MobSpawnConfig.INSTANCE.hornet.value() && super.checkSpawnRules(level, spawnReason);
     }
 
     public void setHivePos(BlockPos pos) {
@@ -94,10 +93,10 @@ public class Hornet extends Bee {
     }
 
     @Override
-    protected void customServerAiStep() {
-        super.customServerAiStep();
+    protected void customServerAiStep(@NotNull ServerLevel level) {
+        super.customServerAiStep(level);
 
-        long now = level().getGameTime();
+        long now = level.getGameTime();
 
         if (this.nestPos == null && now >= this.nextNestSearchTick) {
             this.nextNestSearchTick = now + NEST_SEARCH_INTERVAL_TICKS;
@@ -137,16 +136,15 @@ public class Hornet extends Bee {
         return super.canAttack(target);
     }
 
-
     @Override
-    public boolean doHurtTarget(@NotNull Entity target) {
-        return target.hurt(damageSources().sting(this), (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
+    public boolean doHurtTarget(@NotNull ServerLevel level, @NotNull Entity source) {
+        return source.hurtServer(level, damageSources().sting(this), (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
     }
 
     @Override
     @Nullable
     public Hornet getBreedOffspring(@NotNull ServerLevel level, @NotNull AgeableMob otherParent) {
-        return NetherDescentEntityType.HORNET.get().create(level);
+        return NetherDescentEntityType.HORNET.get().create(level, EntitySpawnReason.BREEDING);
     }
 
     @Override
@@ -301,22 +299,18 @@ public class Hornet extends Bee {
 
     private static final class AggroNearbyPlayerGoal extends Goal {
         private final Hornet hornet;
-        private final TargetingConditions conditions;
         @Nullable private Player target;
 
         AggroNearbyPlayerGoal(Hornet hornet) {
             this.hornet = hornet;
             this.setFlags(EnumSet.of(Flag.TARGET));
-            this.conditions = TargetingConditions.forCombat()
-                    .range(PLAYER_AGGRO_RADIUS)
-                    .selector(p -> !hornet.isDocile() && !p.isSpectator());
         }
 
         @Override
         public boolean canUse() {
             if (hornet.isDocile() || hornet.getTarget() instanceof Player) return false;
 
-            this.target = hornet.level().getNearestPlayer(this.conditions, hornet);
+            this.target = hornet.level().getNearestPlayer(hornet, PLAYER_AGGRO_RADIUS);
             return this.target != null;
         }
 

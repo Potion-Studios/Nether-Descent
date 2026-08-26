@@ -14,6 +14,7 @@ import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.data.worldgen.features.NetherDescentFeatures;
 import net.potionstudios.netherdescent.world.level.block.plants.SythianStalkBlock;
 
+import java.util.Collections;
 import java.util.List;
 
 public class NetherDescentPlacements {
@@ -28,7 +29,7 @@ public class NetherDescentPlacements {
             InSquarePlacement.spread(),
             PlacementUtils.RANGE_10_10,
             EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.allOf(
-                BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), NetherDescentBlocks.EMBUR_MOSS_BLOCK.get()),
+                BlockPredicate.matchesBlocks(Direction.DOWN.getUnitVec3i(), Collections.singletonList(NetherDescentBlocks.EMBUR_MOSS_BLOCK.get())),
                 BlockPredicate.not(BlockPredicate.solid())
             ), 12),
             BiomeFilter.biome()));
@@ -46,7 +47,7 @@ public class NetherDescentPlacements {
 			InSquarePlacement.spread(),
 			PlacementUtils.RANGE_10_10,
 			EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.allOf(
-					BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()),
+					BlockPredicate.matchesBlocks(Direction.DOWN.getUnitVec3i(), Collections.singletonList(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get())),
 					BlockPredicate.not(BlockPredicate.solid())
 			), 12),
 			BiomeFilter.biome()));
@@ -56,7 +57,7 @@ public class NetherDescentPlacements {
 			InSquarePlacement.spread(),
 			PlacementUtils.RANGE_10_10,
 			EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.allOf(
-					BlockPredicate.matchesBlocks(Direction.UP.getNormal(), Blocks.BLACKSTONE),
+					BlockPredicate.matchesBlocks(Direction.UP.getUnitVec3i(), Blocks.BLACKSTONE),
 					BlockPredicate.not(BlockPredicate.solid()),
 					BlockPredicate.noFluid()
 			), 12),
@@ -66,12 +67,12 @@ public class NetherDescentPlacements {
 	public static final ResourceKey<PlacedFeature> ARISIAN_UNDERGROWTH_HANGING_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("arisian_undergrowth_hanging_vegetation", NetherDescentFeatures.ARISIAN_UNDERGROWTH_HANGING_VEGETATION, () -> List.of(CountPlacement.of(100), InSquarePlacement.spread(), PlacementUtils.RANGE_10_10, BiomeFilter.biome()));
 
     public static final ResourceKey<PlacedFeature> SYTHIAN_STALKS = PlacedFeaturesUtil.createPlacedFeature("sythian_stalks", NetherDescentFeatures.SYTHIAN_STALK, () -> List.of(NoiseBasedCountPlacement.of(160, 80.0, 0.3), InSquarePlacement.spread(), PlacementUtils.RANGE_4_4, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.allOf(
-            BlockPredicate.matchesTag(Direction.DOWN.getNormal(), NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON),
+            BlockPredicate.matchesTag(Direction.DOWN.getUnitVec3i(), NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON),
             BlockPredicate.not(BlockPredicate.solid())
     ), 12), PlacementUtils.filteredByBlockSurvival(NetherDescentBlocks.SYTHIAN_STALK.get()), BiomeFilter.biome()));
 
 	public static final ResourceKey<PlacedFeature> SYTHIAN_STALKS_DOWNWARD = PlacedFeaturesUtil.createPlacedFeature("sythian_stalks_downward", NetherDescentFeatures.SYTHIAN_STALK_DOWNWARD, () -> List.of(NoiseBasedCountPlacement.of(160, 80.0, 0.3), InSquarePlacement.spread(), PlacementUtils.RANGE_4_4, EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.allOf(
-			BlockPredicate.matchesTag(Direction.UP.getNormal(), NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON),
+			BlockPredicate.matchesTag(Direction.UP.getUnitVec3i(), NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON),
 			BlockPredicate.not(BlockPredicate.solid()),
 			BlockPredicate.noFluid()
 	), 12), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(NetherDescentBlocks.SYTHIAN_STALK.getBlockState().setValue(SythianStalkBlock.HANGING, true), BlockPos.ZERO)), BiomeFilter.biome()));
@@ -80,7 +81,7 @@ public class NetherDescentPlacements {
 
     public static final ResourceKey<PlacedFeature> WAILING_BULB_BLOSSOM = PlacedFeaturesUtil.createPlacedFeature("wailing_bulb_blossom", NetherDescentFeatures.WAILING_BULB_BLOSSOM, () -> List.of(CountPlacement.of(10), InSquarePlacement.spread(), PlacementUtils.RANGE_8_8,
             EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.allOf(
-                    BlockPredicate.matchesBlocks(Direction.UP.getNormal(), Blocks.SOUL_SOIL),
+                    BlockPredicate.matchesBlocks(Direction.UP.getUnitVec3i(), Blocks.SOUL_SOIL),
                     BlockPredicate.ONLY_IN_AIR_PREDICATE
             ), 12), BiomeFilter.biome()));
 
@@ -91,7 +92,7 @@ public class NetherDescentPlacements {
 					InSquarePlacement.spread(),
 					PlacementUtils.RANGE_10_10,
 					EnvironmentScanPlacement.scanningFor(Direction.DOWN, BlockPredicate.allOf(
-							BlockPredicate.matchesBlocks(Direction.DOWN.getNormal(), NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get())
+							BlockPredicate.matchesBlocks(Direction.DOWN.getUnitVec3i(), Collections.singletonList(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()))
 					), 12),
 					BiomeFilter.biome()
 			)

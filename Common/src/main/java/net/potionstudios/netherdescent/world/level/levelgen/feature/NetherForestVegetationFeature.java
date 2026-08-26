@@ -22,18 +22,18 @@ public class NetherForestVegetationFeature extends Feature<NetherForestVegetatio
         NetherForestVegetationConfig netherForestVegetationConfig = context.config();
         RandomSource randomSource = context.random();
         int i = blockPos.getY();
-        if (i >= worldGenLevel.getMinBuildHeight() + 1 && i + 1 < worldGenLevel.getMaxBuildHeight()) {
+        if (i >= worldGenLevel.getMinY() + 1 && i + 1 < worldGenLevel.getMaxY()) {
             int j = 0;
 
             for(int k = 0; k < netherForestVegetationConfig.spreadWidth * netherForestVegetationConfig.spreadWidth; ++k) {
                 BlockPos blockPos2 = blockPos.offset(randomSource.nextInt(netherForestVegetationConfig.spreadWidth) - randomSource.nextInt(netherForestVegetationConfig.spreadWidth), randomSource.nextInt(netherForestVegetationConfig.spreadHeight) - randomSource.nextInt(netherForestVegetationConfig.spreadHeight), randomSource.nextInt(netherForestVegetationConfig.spreadWidth) - randomSource.nextInt(netherForestVegetationConfig.spreadWidth));
                 BlockState blockState2 = netherForestVegetationConfig.stateProvider.getState(randomSource, blockPos2);
                 if (blockState2.hasProperty(BlockStateProperties.DOUBLE_BLOCK_HALF)) {
-                    if (blockPos2.getY() + 1 < worldGenLevel.getMaxBuildHeight() && worldGenLevel.isEmptyBlock(blockPos2) && worldGenLevel.isEmptyBlock(blockPos2.above()) && blockState2.canSurvive(worldGenLevel, blockPos2)) {
+                    if (blockPos2.getY() + 1 < worldGenLevel.getMaxY() && worldGenLevel.isEmptyBlock(blockPos2) && worldGenLevel.isEmptyBlock(blockPos2.above()) && blockState2.canSurvive(worldGenLevel, blockPos2)) {
                         DoublePlantBlock.placeAt(worldGenLevel, blockState2, blockPos2, 2);
                         ++j;
                     }
-                } else if (worldGenLevel.isEmptyBlock(blockPos2) && blockPos2.getY() > worldGenLevel.getMinBuildHeight() && blockState2.canSurvive(worldGenLevel, blockPos2)) {
+                } else if (worldGenLevel.isEmptyBlock(blockPos2) && blockPos2.getY() > worldGenLevel.getMinY() && blockState2.canSurvive(worldGenLevel, blockPos2)) {
                     worldGenLevel.setBlock(blockPos2, blockState2, 2);
                     ++j;
                 }

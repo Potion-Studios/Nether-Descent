@@ -1,7 +1,5 @@
 {
-  "carvers": {
-    "air": "minecraft:nether_cave"
-  },
+  "carvers": "minecraft:nether_cave",
   "downfall": 0.0,
   "effects": {
     "additions_sound": {
@@ -16,12 +14,18 @@
       "sound": "minecraft:ambient.soul_sand_valley.mood",
       "tick_delay": 6000
     },
-    "music": {
-      "max_delay": 24000,
-      "min_delay": 12000,
-      "replace_current_music": false,
-      "sound": "netherdescent:music.nether.arisian_undergrowth"
-    },
+    "music": [
+      {
+        "data": {
+          "max_delay": 24000,
+          "min_delay": 12000,
+          "replace_current_music": false,
+          "sound": "netherdescent:music.nether.arisian_undergrowth"
+        },
+        "weight": 1
+      }
+    ],
+    "music_volume": 1.0,
     "particle": {
       "options": {
         "type": "minecraft:warped_spore"

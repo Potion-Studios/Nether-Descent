@@ -3,12 +3,8 @@
   "category": "building",
   "group": "planks",
   "key": {
-    "#": {
-      "item": "netherdescent:arisian_planks"
-    },
-    "X": {
-      "item": "minecraft:book"
-    }
+    "#": "netherdescent:arisian_planks",
+    "X": "minecraft:book"
   },
   "pattern": [
     "###",

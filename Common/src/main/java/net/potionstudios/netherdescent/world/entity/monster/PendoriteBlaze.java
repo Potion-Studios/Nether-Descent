@@ -53,14 +53,14 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
         this.targetSelector
                 .addGoal(
-                        3, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, livingEntity -> livingEntity instanceof Enemy && !(livingEntity instanceof Creeper))
+                        3, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, (livingEntity, level) -> livingEntity instanceof Enemy && !(livingEntity instanceof Creeper))
                 );
         this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, false));
     }
 
 	@Override
-	public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull MobSpawnType reason) {
-		return MobSpawnConfig.INSTANCE.pendorite_blaze && super.checkSpawnRules(level, reason);
+	public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull EntitySpawnReason spawnReason) {
+		return MobSpawnConfig.INSTANCE.pendorite_blaze && super.checkSpawnRules(level, spawnReason);
 	}
 
 	@Override
@@ -204,7 +204,7 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
 
 					if (this.attackTime <= 0) {
 						this.attackTime = 20;
-						if (this.blaze.doHurtTarget(livingEntity))
+						if (this.blaze.doHurtTarget(getServerLevel(this.blaze), livingEntity))
 							livingEntity.setSharedFlagOnFire(true);
 					}
 

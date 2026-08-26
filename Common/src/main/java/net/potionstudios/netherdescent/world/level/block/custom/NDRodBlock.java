@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -43,7 +44,7 @@ public class NDRodBlock extends EndRodBlock {
     private void trySpawnBlaze(Level level, BlockPos pos) {
         BlockPattern.BlockPatternMatch blockPatternMatch = getOrCreatePendoriteBlaze().find(level, pos);
         if (blockPatternMatch != null) {
-            PendoriteBlaze pendoriteBlaze = NetherDescentEntityType.PENDORITE_BLAZE.get().create(level);
+            PendoriteBlaze pendoriteBlaze = NetherDescentEntityType.PENDORITE_BLAZE.get().create(level, EntitySpawnReason.TRIGGERED);
             if (pendoriteBlaze != null) {
                 pendoriteBlaze.setPlayerCreated(true);
                 spawnBlazeInWorld(level, blockPatternMatch, pendoriteBlaze, pos);

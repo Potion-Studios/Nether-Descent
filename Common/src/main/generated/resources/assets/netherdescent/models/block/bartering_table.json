@@ -2,7 +2,6 @@
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
     "bottom": "minecraft:block/smithing_table_bottom",
-    "particle": "netherdescent:block/bartering_table_side",
     "side": "netherdescent:block/bartering_table_side",
     "top": "netherdescent:block/bartering_table_top"
   }

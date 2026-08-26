@@ -3,9 +3,7 @@
   "category": "misc",
   "cookingtime": 400,
   "experience": 0.1,
-  "ingredient": {
-    "item": "netherdescent:sythian_stalk"
-  },
+  "ingredient": "netherdescent:sythian_stalk",
   "result": {
     "count": 1,
     "id": "minecraft:gold_nugget"

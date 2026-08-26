@@ -3,6 +3,7 @@ package net.potionstudios.netherdescent.world.level.block.custom;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
@@ -94,13 +95,13 @@ public class HornetNestBlock extends BaseEntityBlock {
 
     @Override
     public @NotNull BlockState playerWillDestroy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
-        if (!level.isClientSide() && player.isCreative()
-            && level.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)
+        if (level instanceof ServerLevel serverLevel && player.isCreative()
+            && serverLevel.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)
             && level.getBlockEntity(pos) instanceof HornetNestBlockEntity hornetNestBlockEntity)
             if (!hornetNestBlockEntity.isEmpty()) {
                 ItemStack itemStack = new ItemStack(this);
                 itemStack.applyComponents(hornetNestBlockEntity.collectComponents());
-                ItemEntity itemEntity = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), itemStack);
+                ItemEntity itemEntity = new ItemEntity(serverLevel, pos.getX(), pos.getY(), pos.getZ(), itemStack);
                 itemEntity.setDefaultPickUpDelay();
                 level.addFreshEntity(itemEntity);
             }

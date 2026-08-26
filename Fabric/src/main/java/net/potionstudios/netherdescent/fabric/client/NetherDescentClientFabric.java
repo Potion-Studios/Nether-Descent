@@ -11,9 +11,7 @@ import net.minecraft.world.level.block.*;
 import net.potionstudios.netherdescent.client.NetherDescentClient;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.custom.EmburCaveMossBlock;
-import net.potionstudios.netherdescent.world.level.block.custom.HangingMossBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.HangingMossyCarpetBlock;
-import net.potionstudios.netherdescent.world.level.block.custom.MossyCarpetBlock;
 
 /**
  * Initializes the Fabric client.
@@ -25,34 +23,10 @@ public class NetherDescentClientFabric implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		NetherDescentClient.onInitialize();
-		registerRenderTypes();
+		NetherDescentClient.registerBlockRenderTypes(BlockRenderLayerMap.INSTANCE::putBlock);
         NetherDescentClient.registerEntityRenderers(EntityRendererRegistry::register);
 		NetherDescentClient.registerBlockEntityRenderers(BlockEntityRenderers::register);
         NetherDescentClient.registerLayerDefinitions((a, b) -> EntityModelLayerRegistry.registerModelLayer(a, b::get));
         NetherDescentClient.registerParticles((type, spriteProviderFactory) -> ParticleFactoryRegistry.getInstance().register(type, spriteProviderFactory::apply));
     }
-
-	/**
-	 * Registers the render types for the blocks.
-	 * @see BlockRenderLayerMap
-	 */
-	private void registerRenderTypes() {
-		NetherDescentBlocks.BLOCKS.forEach(entry -> renderTypeBlock(entry.get()));
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.translucent(), NetherDescentBlocks.EMBUR_GEL_BLOCK.get(), NetherDescentBlocks.EMBUR.door(), NetherDescentBlocks.EMBUR.trapdoor(),
-		        NetherDescentBlocks.EMBUR_GEL_VINES.get(), NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get());
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), NetherDescentBlocks.CRIMSON_CARPET.get(), NetherDescentBlocks.SYTHIAN_SHOOT.get(), NetherDescentBlocks.SYTHIAN_STALK.get(),
-				NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get(), NetherDescentBlocks.THORN_SPROUT.get(),
-				NetherDescentBlocks.PENDORITE_WALL_TORCH.get(), NetherDescentBlocks.PENDORITE_TORCH.get());
-	}
-
-	private void renderTypeBlock(Block block) {
-		if (block instanceof DoorBlock || block instanceof TrapDoorBlock || block instanceof BushBlock || block instanceof LanternBlock || block instanceof GlowLichenBlock
-		|| block instanceof EmburCaveMossBlock || block instanceof MossyCarpetBlock || block instanceof HangingMossyCarpetBlock || block instanceof GrowingPlantBlock || block instanceof FlowerPotBlock || block instanceof HangingMossBlock
-        || block instanceof ScaffoldingBlock || block instanceof TransparentBlock || block instanceof RodBlock)
-			BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.cutout());
-		else if (block instanceof LeavesBlock || block instanceof VineBlock || block instanceof MangroveRootsBlock || block instanceof SporeBlossomBlock || block instanceof BaseCoralPlantTypeBlock || block instanceof IronBarsBlock || block instanceof ChainBlock)
-			BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.cutoutMipped());
-		else if (block instanceof StainedGlassPaneBlock || block instanceof HalfTransparentBlock)
-			BlockRenderLayerMap.INSTANCE.putBlock(block, RenderType.translucent());
-	}
 }

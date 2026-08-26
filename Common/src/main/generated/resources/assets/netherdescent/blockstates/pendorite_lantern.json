@@ -1,10 +1,10 @@
 {
   "variants": {
     "hanging=false": {
-      "model": "netherdescent:block/pendorite_lantern"
+      "model": "netherdescent:block/pendorite_lantern_hanging"
     },
     "hanging=true": {
-      "model": "netherdescent:block/pendorite_lantern_hanging"
+      "model": "netherdescent:block/pendorite_lantern"
     }
   }
 }

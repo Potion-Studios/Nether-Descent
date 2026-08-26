@@ -3,6 +3,7 @@ package net.potionstudios.netherdescent.world.level.block.plants;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
@@ -36,7 +37,7 @@ public class CrimsonBerryBushBlock extends SweetBerryBushBlock {
     }
 
     @Override
-    public @NotNull ItemStack getCloneItemStack(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
+    protected @NotNull ItemStack getCloneItemStack(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state, boolean includeData) {
         return NetherDescentItems.CRIMSON_BERRIES.get().getDefaultInstance();
     }
 
@@ -62,7 +63,7 @@ public class CrimsonBerryBushBlock extends SweetBerryBushBlock {
             BlockState blockState = state.setValue(AGE, 1);
             level.setBlock(pos, blockState, 2);
             level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, blockState));
-            return InteractionResult.sidedSuccess(level.isClientSide());
+            return InteractionResult.SUCCESS;
         } else {
             return InteractionResult.PASS;
         }
@@ -72,11 +73,11 @@ public class CrimsonBerryBushBlock extends SweetBerryBushBlock {
     protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             entity.makeStuckInBlock(state, new Vec3(0.8F, 0.75, 0.8F));
-            if (!level.isClientSide && state.getValue(AGE) > 0 && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
+            if (level instanceof ServerLevel serverLevel && state.getValue(AGE) > 0 && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
                 double d = Math.abs(entity.getX() - entity.xOld);
                 double e = Math.abs(entity.getZ() - entity.zOld);
                 if (d >= 0.003F || e >= 0.003F) {
-                    entity.hurt(new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(NetherDescentDamageTypes.CRIMSON_BERRY_BUSH)), 1.0F);
+                    entity.hurtServer(serverLevel, new DamageSource(level.registryAccess().lookupOrThrow(Registries.DAMAGE_TYPE).getOrThrow(NetherDescentDamageTypes.CRIMSON_BERRY_BUSH)), 1.0F);
                 }
             }
         }

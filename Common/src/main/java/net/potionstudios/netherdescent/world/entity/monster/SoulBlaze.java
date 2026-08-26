@@ -2,9 +2,9 @@ package net.potionstudios.netherdescent.world.entity.monster;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -42,8 +42,8 @@ public class SoulBlaze extends Blaze {
     }
 
     @Override
-    public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull MobSpawnType reason) {
-        return MobSpawnConfig.INSTANCE.soul_blaze && super.checkSpawnRules(level, reason);
+    public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull EntitySpawnReason spawnReason) {
+        return MobSpawnConfig.INSTANCE.soul_blaze && super.checkSpawnRules(level, spawnReason);
     }
 
     static class SoulBlazeAttackGoal extends Blaze.BlazeAttackGoal {
@@ -88,7 +88,7 @@ public class SoulBlaze extends Blaze {
 
                     if (this.attackTime <= 0) {
                         this.attackTime = 20;
-                        if (this.blaze.doHurtTarget(livingEntity))
+                        if (this.blaze.doHurtTarget(getServerLevel(this.blaze), livingEntity))
                             livingEntity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100));
                     }
 

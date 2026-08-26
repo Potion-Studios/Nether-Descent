@@ -2,19 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:gunpowder"
-    },
-    {
-      "item": "netherdescent:soul_blaze_powder"
-    },
+    "minecraft:gunpowder",
+    "netherdescent:soul_blaze_powder",
     [
-      {
-        "item": "minecraft:coal"
-      },
-      {
-        "item": "minecraft:charcoal"
-      }
+      "minecraft:coal",
+      "minecraft:charcoal"
     ]
   ],
   "result": {
