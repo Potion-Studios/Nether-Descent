@@ -5,6 +5,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.server.permissions.Permissions;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.item.*;
@@ -42,7 +43,7 @@ public interface PlatformHandler {
      * @return True if the player has the permission, false otherwise
      */
     default boolean hasPermission(@NotNull CommandSourceStack sourceStack, @NotNull String permission) {
-        return sourceStack.hasPermission(4);
+        return sourceStack.permissions().hasPermission(Permissions.COMMANDS_OWNER);
     }
 
 	/**

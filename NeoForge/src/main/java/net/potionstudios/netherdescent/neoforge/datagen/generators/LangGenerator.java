@@ -45,14 +45,14 @@ public class LangGenerator extends LanguageProvider {
 				addItem(item, getItemName(item));
 		});
 		NetherDescentBiomes.BIOME_FACTORIES.forEach((key, factory) -> {
-			String translationKey = "biome." + NetherDescent.MOD_ID + "." + key.location().getPath();
+			String translationKey = "biome." + NetherDescent.MOD_ID + "." + key.identifier().getPath();
 			if (!addedKeys.contains(translationKey))
 				add(translationKey, getBiomeName(key));
 		});
 	}
 
 	private void addTranslationsManual() {
-		add("itemGroup." + NetherDescentCreativeTabs.CREATIVE_TAB.location().toLanguageKey(), "Nether Descent");
+		add("itemGroup." + NetherDescentCreativeTabs.CREATIVE_TAB.identifier().toLanguageKey(), "Nether Descent");
 		add(NetherDescentEntityType.SOUL_BLAZE.get(), "Soul Blaze");
 		add(NetherDescentEntityType.SOUL_FIREBALL.get(), "Soul Fireball");
         add(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), "Small Soul Fireball");
@@ -139,7 +139,7 @@ public class LangGenerator extends LanguageProvider {
 	}
 
 	private String getBiomeName(ResourceKey<Biome> biome) {
-		return getId(biome.location().getPath());
+		return getId(biome.identifier().getPath());
 	}
 
     private static String death(String key) {

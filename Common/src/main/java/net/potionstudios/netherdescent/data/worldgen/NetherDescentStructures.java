@@ -31,7 +31,7 @@ public class NetherDescentStructures {
 			new BlueNetherFortressStructure(
 					new Structure.StructureSettings.Builder(context.lookup(Registries.BIOME).getOrThrow(NetherDescentBiomeTags.StructureHasTags.HAS_BLUE_FORTRESS))
 							.spawnOverrides(
-									Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE,  BlueNetherFortressStructure.BLUE_FORTRESS_ENEMIES))
+									Map.of(MobCategory.MONSTER, new StructureSpawnOverride(StructureSpawnOverride.BoundingBoxType.PIECE, BlueNetherFortressStructure.BLUE_FORTRESS_ENEMIES))
 							)
 							.generationStep(GenerationStep.Decoration.UNDERGROUND_DECORATION)
 							.build()

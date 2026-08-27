@@ -5,12 +5,11 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.Consumable;
-import net.minecraft.world.item.equipment.ArmorType;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
@@ -43,8 +42,8 @@ public class NetherDescentItems {
     public static final Supplier<Item> PENDORITE_INGOT = registerSimpleItem("pendorite_ingot", Item::new, new Item.Properties());
     public static final Supplier<Item> PENDORITE_NUGGET = registerSimpleItem("pendorite_nugget", Item::new, new Item.Properties());
     public static final Supplier<StandingAndWallBlockItem> PENDORITE_TORCH = registerItemNoLang("pendorite_torch", (properties) -> new StandingAndWallBlockItem(NetherDescentBlocks.PENDORITE_TORCH.get(), NetherDescentBlocks.PENDORITE_WALL_TORCH.get(), Direction.DOWN, properties), new Item.Properties().useBlockDescriptionPrefix());
-    public static final Supplier<AnimalArmorItem> PENDORITE_HORSE_ARMOR = registerSimpleItem("pendorite_horse_armor", (properties) -> new AnimalArmorItem(NetherDescentArmorMaterials.PENDORITE, AnimalArmorItem.BodyType.EQUESTRIAN, properties), new Item.Properties().stacksTo(1));
-    public static final Supplier<AnimalArmorItem> PENDORITE_WOLF_ARMOR = registerItem("pendorite_wolf_armor", (properties) -> new AnimalArmorItem(NetherDescentArmorMaterials.PENDORITE, AnimalArmorItem.BodyType.CANINE, properties), new Item.Properties().durability(ArmorType.BODY.getDurability(4)));
+    public static final Supplier<Item> PENDORITE_HORSE_ARMOR = registerSimpleItem("pendorite_horse_armor", Item::new, new Item.Properties().horseArmor(NetherDescentArmorMaterials.PENDORITE));
+    public static final Supplier<Item> PENDORITE_WOLF_ARMOR = registerItem("pendorite_wolf_armor", Item::new, new Item.Properties().wolfArmor(NetherDescentArmorMaterials.PENDORITE));
 
     public static final Supplier<Item> SOUL_BLAZE_ROD = registerSimpleItem("soul_blaze_rod", Item::new, new Item.Properties());
     public static final Supplier<Item> SOUL_BLAZE_POWDER = registerSimpleItem("soul_blaze_powder", Item::new, new Item.Properties());
@@ -80,8 +79,9 @@ public class NetherDescentItems {
         return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.ITEM, id, () -> item.apply(properties.setId(key(id))));
     }
 
-    private static <E extends Mob> Supplier<SpawnEggItem> registerSpawnEgg(String id, Supplier<EntityType<E>> entity) {
-        Supplier<SpawnEggItem> egg = PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.ITEM, id, () -> new SpawnEggItem(entity.get(), new Item.Properties().setId(key(id))));
+    private static <E extends Entity> Supplier<SpawnEggItem> registerSpawnEgg(String id, Supplier<EntityType<E>> entity) {
+        Supplier<SpawnEggItem> egg = PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.ITEM, id, () -> new SpawnEggItem(new Item.Properties().setId(key(id)).spawnEgg(entity.get())));
+        SIMPLE_ITEMS.add(egg);
         ITEMS.add(egg);
         return egg;
     }

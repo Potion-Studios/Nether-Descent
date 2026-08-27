@@ -3,6 +3,7 @@ package net.potionstudios.netherdescent.world.level.levelgen.biome;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -59,7 +60,7 @@ public class NetherDescentSurfaceRules {
 
     private static final SurfaceRules.RuleSource WAILING_GARTH = makeifTrueRule(NetherDescentBiomes.WAILING_GARTH, SurfaceRules.sequence(
             makeifTrueRule(ABOVE_31, makeifTrueRule(SurfaceRules.ON_FLOOR, SurfaceRules.sequence(
-                    NetherDescentRuleSources.weightedRuleSource(SimpleWeightedRandomList.<SurfaceRules.RuleSource>builder()
+                    NetherDescentRuleSources.weightedRuleSource(WeightedList.<SurfaceRules.RuleSource>builder()
                             .add(makeifTrueRule(SurfaceRules.ON_FLOOR, Blocks.SOUL_SOIL), 3)
                             .add(makeifTrueRule(SurfaceRules.ON_FLOOR, NetherDescentBlocks.WAILING_NYLIUM.get()))
                             .build())

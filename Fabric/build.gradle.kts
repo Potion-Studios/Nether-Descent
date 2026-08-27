@@ -32,6 +32,7 @@ dependencies {
 
     modApi("com.github.glitchfiend:TerraBlender-fabric:$minecraftVersion-${providers.gradleProperty("terrablender_version").get()}")
     modCompileOnly("com.terraformersmc:biolith-fabric:${providers.gradleProperty("biolith_version").get()}")
+    modApi("maven.modrinth:lithostitched:${providers.gradleProperty("lithostitched_version").get()}-fabric-21.11")
     modApi("dev.corgitaco:Oh-The-Trees-Youll-Grow-fabric:$minecraftVersion-${providers.gradleProperty("ohthetreesyoullgrow_version").get()}")
     modApi("me.lucko:fabric-permissions-api:0.3.1")
 

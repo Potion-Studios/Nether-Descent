@@ -40,7 +40,7 @@ public class SythianScaffoldingBlockItem extends ScaffoldingBlockItem {
             BlockPos.MutableBlockPos mutableBlockPos = blockPos.mutable().move(direction);
 
             while (i < 7) {
-                if (!level.isClientSide && !level.isInWorldBounds(mutableBlockPos)) {
+                if (!level.isClientSide() && !level.isInWorldBounds(mutableBlockPos)) {
                     Player player = context.getPlayer();
                     int j = level.getMaxY();
                     if (player instanceof ServerPlayer && mutableBlockPos.getY() >= j) {

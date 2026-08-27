@@ -11,7 +11,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.util.valueproviders.BiasedToBottomInt;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Block;
@@ -1028,12 +1028,12 @@ public class NetherDescentTreeFeatures {
                     .baseLocation(NetherDescent.id("features/cages/wailing_cage_trunk1"))
                     .canopyLocation(NetherDescent.id("features/cages/wailing_cage_canopy1"))
                     .height(BiasedToBottomInt.of(12, 12))
-                    .logProvider(new WeightedStateProvider(new SimpleWeightedRandomList.Builder<BlockState>()
+                    .logProvider(new WeightedStateProvider(new WeightedList.Builder<BlockState>()
                             .add(Blocks.POLISHED_BLACKSTONE_BRICKS.defaultBlockState())
                             .add(Blocks.POLISHED_BLACKSTONE.defaultBlockState(), 5)
                             .add(Blocks.BLACKSTONE.defaultBlockState(), 5)
                             .add(Blocks.GILDED_BLACKSTONE.defaultBlockState(), 5)))
-                    .leavesProvider(new WeightedStateProvider(new SimpleWeightedRandomList.Builder<BlockState>()
+                    .leavesProvider(new WeightedStateProvider(new WeightedList.Builder<BlockState>()
                             .add(Blocks.BONE_BLOCK.defaultBlockState())
                             .add(Blocks.CALCITE.defaultBlockState(), 3)
                             .add(Blocks.BUDDING_AMETHYST.defaultBlockState(), 3)))
@@ -1052,12 +1052,12 @@ public class NetherDescentTreeFeatures {
                     .baseLocation(NetherDescent.id("features/cages/wailing_cage_trunk2"))
                     .canopyLocation(NetherDescent.id("features/cages/wailing_cage_canopy2"))
                     .height(BiasedToBottomInt.of(48, 48))
-                    .logProvider(new WeightedStateProvider(new SimpleWeightedRandomList.Builder<BlockState>()
+                    .logProvider(new WeightedStateProvider(new WeightedList.Builder<BlockState>()
                             .add(Blocks.POLISHED_BLACKSTONE_BRICKS.defaultBlockState())
                             .add(Blocks.POLISHED_BLACKSTONE.defaultBlockState(), 5)
                             .add(Blocks.BLACKSTONE.defaultBlockState(), 5)
                             .add(Blocks.GILDED_BLACKSTONE.defaultBlockState(), 5)))
-                    .leavesProvider(new WeightedStateProvider(new SimpleWeightedRandomList.Builder<BlockState>()
+                    .leavesProvider(new WeightedStateProvider(new WeightedList.Builder<BlockState>()
                             .add(Blocks.BONE_BLOCK.defaultBlockState())
                             .add(Blocks.CALCITE.defaultBlockState(), 3)
                             .add(Blocks.BUDDING_AMETHYST.defaultBlockState(), 3)))

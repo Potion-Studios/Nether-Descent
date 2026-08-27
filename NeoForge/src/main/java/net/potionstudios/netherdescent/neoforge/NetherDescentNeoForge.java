@@ -41,7 +41,6 @@ public class NetherDescentNeoForge {
     private void onInitialize(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             NetherDescent.commonSetup();
-            VanillaCompatNeoForge.init();
             if (ModList.get().isLoaded(Biolith.MOD_ID))
                 BiolithRegister.register();
             else if (ModList.get().isLoaded(TerraBlender.MOD_ID))

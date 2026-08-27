@@ -3,9 +3,9 @@ package net.potionstudios.netherdescent.client;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.*;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -106,35 +106,35 @@ public class NetherDescentClient {
 	/**
 	 * Registers the render types for the blocks.
 	 */
-	public static void registerBlockRenderTypes(BiConsumer<Block, RenderType> consumer) {
+	public static void registerBlockRenderTypes(BiConsumer<Block, ChunkSectionLayer> consumer) {
 		NetherDescentBlocks.BLOCKS.forEach(entry -> {
-			RenderType type = renderTypeBlock(entry.get());
+			ChunkSectionLayer type = renderTypeBlock(entry.get());
 			if (type != null) consumer.accept(entry.get(), type);
 		});
-		consumer.accept(NetherDescentBlocks.EMBUR_GEL_BLOCK.get(), RenderType.translucent());
-		consumer.accept(NetherDescentBlocks.EMBUR.door(), RenderType.translucent());
-		consumer.accept(NetherDescentBlocks.EMBUR.trapdoor(), RenderType.translucent());
-		consumer.accept(NetherDescentBlocks.EMBUR_GEL_VINES.get(), RenderType.translucent());
-		consumer.accept(NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(), RenderType.translucent());
-		consumer.accept(NetherDescentBlocks.CRIMSON_CARPET.get(), RenderType.cutout());
-		consumer.accept(NetherDescentBlocks.SYTHIAN_SHOOT.get(), RenderType.cutout());
-		consumer.accept(NetherDescentBlocks.SYTHIAN_STALK.get(), RenderType.cutout());
-		consumer.accept(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), RenderType.cutout());
-		consumer.accept(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get(), RenderType.cutout());
-		consumer.accept(NetherDescentBlocks.THORN_SPROUT.get(), RenderType.cutout());
+		consumer.accept(NetherDescentBlocks.EMBUR_GEL_BLOCK.get(), ChunkSectionLayer.TRANSLUCENT);
+		consumer.accept(NetherDescentBlocks.EMBUR.door(), ChunkSectionLayer.TRANSLUCENT);
+		consumer.accept(NetherDescentBlocks.EMBUR.trapdoor(), ChunkSectionLayer.TRANSLUCENT);
+		consumer.accept(NetherDescentBlocks.EMBUR_GEL_VINES.get(), ChunkSectionLayer.TRANSLUCENT);
+		consumer.accept(NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(), ChunkSectionLayer.TRANSLUCENT);
+		consumer.accept(NetherDescentBlocks.CRIMSON_CARPET.get(), ChunkSectionLayer.CUTOUT);
+		consumer.accept(NetherDescentBlocks.SYTHIAN_SHOOT.get(), ChunkSectionLayer.CUTOUT);
+		consumer.accept(NetherDescentBlocks.SYTHIAN_STALK.get(), ChunkSectionLayer.CUTOUT);
+		consumer.accept(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), ChunkSectionLayer.CUTOUT);
+		consumer.accept(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get(), ChunkSectionLayer.CUTOUT);
+		consumer.accept(NetherDescentBlocks.THORN_SPROUT.get(), ChunkSectionLayer.CUTOUT);
 
 	}
 
 	@Nullable
-	private static RenderType renderTypeBlock(Block block) {
+	private static ChunkSectionLayer renderTypeBlock(Block block) {
 		if (block instanceof DoorBlock || block instanceof TrapDoorBlock || block instanceof BushBlock || block instanceof LanternBlock || block instanceof GlowLichenBlock
 				|| block instanceof EmburCaveMossBlock || block instanceof MossyCarpetBlock || block instanceof HangingMossyCarpetBlock || block instanceof GrowingPlantBlock || block instanceof FlowerPotBlock || block instanceof HangingMossBlock
 				|| block instanceof ScaffoldingBlock || block instanceof TransparentBlock || block instanceof RodBlock || block instanceof CampfireBlock || block instanceof BaseTorchBlock)
-			return RenderType.cutout();
+			return ChunkSectionLayer.CUTOUT;
 		else if (block instanceof LeavesBlock || block instanceof VineBlock || block instanceof MangroveRootsBlock || block instanceof SporeBlossomBlock || block instanceof BaseCoralPlantTypeBlock || block instanceof IronBarsBlock || block instanceof ChainBlock)
-			return  RenderType.cutoutMipped();
+			return ChunkSectionLayer.CUTOUT;
 		else if (block instanceof StainedGlassPaneBlock || block instanceof HalfTransparentBlock)
-			return RenderType.translucent();
+			return ChunkSectionLayer.TRANSLUCENT;
 		return null;
 	}
 }

@@ -42,12 +42,13 @@ dependencies {
 
     modApi("com.github.glitchfiend:TerraBlender-neoforge:$minecraftVersion-${providers.gradleProperty("terrablender_version").get()}")
     modCompileOnly("com.terraformersmc:biolith-neoforge:${providers.gradleProperty("biolith_version").get()}")
+    modApi("maven.modrinth:lithostitched:${providers.gradleProperty("lithostitched_version").get()}-neoforge-21.11")
     modApi("dev.corgitaco:Oh-The-Trees-Youll-Grow-neoforge:$minecraftVersion-${providers.gradleProperty("ohthetreesyoullgrow_version").get()}")
 
     modLocalRuntime("mcp.mobius.waila:wthit:neo-${providers.gradleProperty("WTHIT").get()}")
     modLocalRuntime("lol.bai:badpackets:neo-${providers.gradleProperty("badPackets").get()}")
 
-    modLocalRuntime("maven.modrinth:worldedit:7.3.11")
+    modLocalRuntime("maven.modrinth:worldedit:7.4.5")
 }
 
 tasks {

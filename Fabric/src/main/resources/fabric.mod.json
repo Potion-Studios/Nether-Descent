@@ -32,12 +32,12 @@
   ],
   "depends": {
     "fabric": "*",
-    "minecraft": ">=1.21.4",
-    "ohthetreesyoullgrow": ">=6.1.0"
+    "minecraft": ">=1.21.11",
+    "ohthetreesyoullgrow": ">=9.1.0"
   },
   "recommends": {
-    "terrablender": ">=4.3.0.2",
-    "biolith": ">=3.2.14"
+    "terrablender": ">=21.11.0.0",
+    "biolith": ">=3.5.3"
   },
   "suggests": {
     "WTHIT": "*",

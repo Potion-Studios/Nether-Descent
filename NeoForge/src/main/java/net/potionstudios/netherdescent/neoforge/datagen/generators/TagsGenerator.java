@@ -5,7 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.*;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
@@ -198,7 +198,6 @@ public class TagsGenerator {
 
             tag(ItemTags.CREEPER_IGNITERS).add(NetherDescentItems.SOUL_FIRE_CHARGE.get(), NetherDescentItems.PENDORITE_FIRE_CHARGE.get());
             tag(Tags.Items.RODS_BLAZE).add(NetherDescentItems.SOUL_BLAZE_ROD.get());
-			tag(NetherDescentItemTags.EGGS).addOptionalTag(Tags.Items.EGGS).addOptionalTag(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("forge", "eggs")));
 		}
 	}
 

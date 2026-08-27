@@ -79,13 +79,13 @@ public final class NeoForgePlatformHandler implements PlatformHandler {
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> Supplier<T> register(Registry<? super T> registry, String name, Supplier<T> value) {
-		return ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.location(), NetherDescent.MOD_ID))).register(name, value);
+		return ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.identifier(), NetherDescent.MOD_ID))).register(name, value);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> Supplier<Holder.Reference<T>> registerForHolder(Registry<T> registry, String name, Supplier<T> value) {
-		DeferredHolder<?, ?> registryObject = ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.location(), NetherDescent.MOD_ID))).register(name, value);
+		DeferredHolder<?, ?> registryObject = ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.identifier(), NetherDescent.MOD_ID))).register(name, value);
 		return () -> (Holder.Reference<T>) registryObject.getDelegate();
 	}
 
@@ -108,7 +108,7 @@ public final class NeoForgePlatformHandler implements PlatformHandler {
 
 	@Override
 	public boolean isDevEnvironment() {
-		return !FMLLoader.isProduction();
+		return !FMLLoader.getCurrent().isProduction();
 	}
 
 	@Override

@@ -1,18 +1,16 @@
 package net.potionstudios.netherdescent.forge;
 
 import com.terraformersmc.biolith.impl.Biolith;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.eventbus.api.bus.BusGroup;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.commands.NetherDescentCommands;
 import net.potionstudios.netherdescent.forge.client.NetherDescentClientForge;
@@ -28,18 +26,17 @@ import terrablender.core.TerraBlender;
 @Mod(NetherDescent.MOD_ID)
 public class NetherDescentForge {
     public NetherDescentForge(final FMLJavaModLoadingContext context) {
-        IEventBus MOD_BUS = context.getModEventBus();
-        IEventBus EVENT_BUS = MinecraftForge.EVENT_BUS;
+        BusGroup modBusGroup = context.getModBusGroup();
         NetherDescent.init();
-        ForgePlatformHandler.register(MOD_BUS);
-        MOD_BUS.addListener(this::onInitialize);
-        MOD_BUS.addListener((FMLLoadCompleteEvent event) -> event.enqueueWork(NetherDescent::postInit));
-        MOD_BUS.addListener((EntityAttributeCreationEvent event) -> NetherDescentEntityType.registerEntityAttributes(event::put));
-        MOD_BUS.addListener((SpawnPlacementRegisterEvent event) -> NetherDescentEntityType.registerSpawnPlacements((consumer) -> event.register(consumer.entityType().get(), consumer.spawnPlacementType(), consumer.heightmapType(), consumer.predicate(), SpawnPlacementRegisterEvent.Operation.OR)));
-        EVENT_BUS.addListener((RegisterCommandsEvent event) -> NetherDescentCommands.register(event.getDispatcher()::register));
-        VanillaCompatForge.registerVanillaCompatEvents(EVENT_BUS);
-        LootModifiersRegister.register(MOD_BUS);
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> NetherDescentClientForge.init(MOD_BUS));
+        ForgePlatformHandler.register(modBusGroup);
+        FMLCommonSetupEvent.getBus(modBusGroup).addListener(this::onInitialize);
+        FMLLoadCompleteEvent.getBus(modBusGroup).addListener((FMLLoadCompleteEvent event) -> event.enqueueWork(NetherDescent::postInit));
+        EntityAttributeCreationEvent.BUS.addListener((EntityAttributeCreationEvent event) -> NetherDescentEntityType.registerEntityAttributes(event::put));
+        SpawnPlacementRegisterEvent.BUS.addListener((SpawnPlacementRegisterEvent event) -> NetherDescentEntityType.registerSpawnPlacements((consumer) -> event.register(consumer.entityType().get(), consumer.spawnPlacementType(), consumer.heightmapType(), consumer.predicate(), SpawnPlacementRegisterEvent.Operation.OR)));
+        RegisterCommandsEvent.BUS.addListener((RegisterCommandsEvent event) -> NetherDescentCommands.register(event.getDispatcher()::register));
+        VanillaCompatForge.registerVanillaCompatEvents(modBusGroup);
+        LootModifiersRegister.register(modBusGroup);
+        if (FMLEnvironment.dist.isClient()) NetherDescentClientForge.init(modBusGroup);
     }
 
     /**

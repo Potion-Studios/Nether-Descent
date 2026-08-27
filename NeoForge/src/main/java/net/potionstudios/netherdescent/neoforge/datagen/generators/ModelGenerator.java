@@ -8,7 +8,7 @@ import net.minecraft.client.data.models.model.*;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -68,7 +68,7 @@ public class ModelGenerator extends ModelProvider {
 
 		NetherDescentWoodSet.woodsets().forEach(woodSet -> {
 			String folder = "block/" + woodSet.name() + "/";
-			ResourceLocation Planks = NetherDescent.id(folder + "planks");
+			Identifier Planks = NetherDescent.id(folder + "planks");
 			blockModels.createTrivialBlock(woodSet.planks(), TexturedModel.CUBE.updateTexture(textureMapping -> textureMapping.put(TextureSlot.ALL, Planks)));
 			blockItemModel(blockModels, woodSet.planks());
 
@@ -97,7 +97,7 @@ public class ModelGenerator extends ModelProvider {
 					ModelTemplates.DOOR_TOP_RIGHT_OPEN.create(woodSet.door(), door, blockModels.modelOutput)));
 
 			TextureMapping trapdoor = new TextureMapping().put(TextureSlot.TEXTURE, NetherDescent.id(folder + "trapdoor"));
-			ResourceLocation trapdoorBottom = ModelTemplates.ORIENTABLE_TRAPDOOR_BOTTOM.create(woodSet.trapdoor(), trapdoor, blockModels.modelOutput);
+			Identifier trapdoorBottom = ModelTemplates.ORIENTABLE_TRAPDOOR_BOTTOM.create(woodSet.trapdoor(), trapdoor, blockModels.modelOutput);
 			blockModels.blockStateOutput.accept(BlockModelGenerators.createOrientableTrapdoor(woodSet.trapdoor(),
 					ModelTemplates.ORIENTABLE_TRAPDOOR_TOP.create(woodSet.trapdoor(), trapdoor, blockModels.modelOutput),
 					trapdoorBottom,
@@ -110,8 +110,8 @@ public class ModelGenerator extends ModelProvider {
 					ModelTemplates.PRESSURE_PLATE_DOWN.create(woodSet.pressurePlate(), planks, blockModels.modelOutput)));
 			blockItemModel(blockModels, woodSet.pressurePlate());
 
-			ResourceLocation Log = NetherDescent.id(folder + woodSet.logStemEnum().getName());
-			ResourceLocation LogTop = NetherDescent.id(folder + woodSet.logStemEnum().getName() + "_top");
+			Identifier Log = NetherDescent.id(folder + woodSet.logStemEnum().getName());
+			Identifier LogTop = NetherDescent.id(folder + woodSet.logStemEnum().getName() + "_top");
 
 			blockModels.blockStateOutput.accept(BlockModelGenerators.createRotatedPillarWithHorizontalVariant(woodSet.logstem(),
 					ModelTemplates.CUBE_COLUMN.create(woodSet.logstem(), new TextureMapping().put(TextureSlot.END, LogTop).put(TextureSlot.SIDE, Log), blockModels.modelOutput),
@@ -123,8 +123,8 @@ public class ModelGenerator extends ModelProvider {
 					ModelTemplates.CUBE_COLUMN_HORIZONTAL.create(woodSet.wood(), new TextureMapping().put(TextureSlot.END, Log).put(TextureSlot.SIDE, Log), blockModels.modelOutput)));
 			blockItemModel(blockModels, woodSet.wood());
 
-			ResourceLocation StrippedLog = NetherDescent.id(folder + "stripped_" + woodSet.logStemEnum().getName());
-			ResourceLocation StrippedLogTop = NetherDescent.id(folder + "stripped_" + woodSet.logStemEnum().getName() + "_top");
+			Identifier StrippedLog = NetherDescent.id(folder + "stripped_" + woodSet.logStemEnum().getName());
+			Identifier StrippedLogTop = NetherDescent.id(folder + "stripped_" + woodSet.logStemEnum().getName() + "_top");
 			blockModels.blockStateOutput.accept(BlockModelGenerators.createRotatedPillarWithHorizontalVariant(woodSet.strippedLogStem(),
 					ModelTemplates.CUBE_COLUMN.create(woodSet.strippedLogStem(), new TextureMapping().put(TextureSlot.END, StrippedLogTop).put(TextureSlot.SIDE, StrippedLog), blockModels.modelOutput),
 					ModelTemplates.CUBE_COLUMN_HORIZONTAL.create(woodSet.strippedLogStem(), new TextureMapping().put(TextureSlot.END, StrippedLogTop).put(TextureSlot.SIDE, StrippedLog), blockModels.modelOutput)));
@@ -155,7 +155,7 @@ public class ModelGenerator extends ModelProvider {
 
 			if (woodSet.growerItem() != null) {
 				if (woodSet.growerItem().get() instanceof HangingFungusBlock){
-					ResourceLocation model = ModelTemplates.CROSS.extend().renderType(mcLocation("cutout")).build().create(woodSet.growerItem().get(), TextureMapping.cross(NetherDescent.id(folder + woodSet.growerItemEnum().getName())), blockModels.modelOutput);
+					Identifier model = ModelTemplates.CROSS.extend().renderType(mcLocation("cutout")).build().create(woodSet.growerItem().get(), TextureMapping.cross(NetherDescent.id(folder + woodSet.growerItemEnum().getName())), blockModels.modelOutput);
 					blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(woodSet.growerItem().get())
 							.with(PropertyDispatch.property(HangingNDBushBlock.HANGING)
 									.select(false, Variant.variant().with(VariantProperties.MODEL, model))
@@ -232,8 +232,8 @@ public class ModelGenerator extends ModelProvider {
 
 		basicItem(itemModels, NetherDescentBlocks.ARISIAN_DANDELIONS.get().asItem());
 
-		ResourceLocation arisianBlossom = ModelTemplates.CROSS.extend().renderType(mcLocation("cutout")).build().create(NetherDescentBlocks.ARISIAN_BLOSSOM.get(), TextureMapping.cross(NetherDescentBlocks.ARISIAN_BLOSSOM.get()), blockModels.modelOutput);
-		ResourceLocation arisianBlossomLit = ModelTemplates.CROSS.extend().renderType(mcLocation("cutout")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.ARISIAN_BLOSSOM.get(), "_lit"), TextureMapping.cross(TextureMapping.getBlockTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.get(), "_lit")), blockModels.modelOutput);
+		Identifier arisianBlossom = ModelTemplates.CROSS.extend().renderType(mcLocation("cutout")).build().create(NetherDescentBlocks.ARISIAN_BLOSSOM.get(), TextureMapping.cross(NetherDescentBlocks.ARISIAN_BLOSSOM.get()), blockModels.modelOutput);
+		Identifier arisianBlossomLit = ModelTemplates.CROSS.extend().renderType(mcLocation("cutout")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.ARISIAN_BLOSSOM.get(), "_lit"), TextureMapping.cross(TextureMapping.getBlockTexture(NetherDescentBlocks.ARISIAN_BLOSSOM.get(), "_lit")), blockModels.modelOutput);
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(NetherDescentBlocks.ARISIAN_BLOSSOM.get())
 				.with(PropertyDispatch.properties(ArisianBlossomBlock.LIT, ArisianBlossomBlock.HANGING)
 						.select(false, false, Variant.variant().with(VariantProperties.MODEL, arisianBlossom))
@@ -249,8 +249,8 @@ public class ModelGenerator extends ModelProvider {
 		ModelTemplates.create("netherdescent:mossy_carpet_side_hanging", TextureSlot.SIDE).extend().renderType(mcLocation("cutout")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "_side_tall_hanging"), new TextureMapping().put(TextureSlot.SIDE, TextureMapping.getBlockTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "_side_tall")), blockModels.modelOutput);
 		blockItemModel(blockModels, NetherDescentBlocks.ARISIAN_MOSS_CARPET.get());
 
-		ResourceLocation hangingDansTop = ModelTemplates.create("netherdescent:empty").create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get(), "_top"), new TextureMapping().putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.ARISIAN_DANDELIONS.get())), blockModels.modelOutput);
-		ResourceLocation hangingDansBottom = ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get());
+		Identifier hangingDansTop = ModelTemplates.create("netherdescent:empty").create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get(), "_top"), new TextureMapping().putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.ARISIAN_DANDELIONS.get())), blockModels.modelOutput);
+		Identifier hangingDansBottom = ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get());
 
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get())
 				.with(PropertyDispatch.properties(HangingDoublePlantBlock.HANGING, HangingDoublePlantBlock.HALF)
@@ -260,8 +260,8 @@ public class ModelGenerator extends ModelProvider {
 						.select(true, DoubleBlockHalf.UPPER, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R180).with(VariantProperties.MODEL, hangingDansTop))));
 		layer0(itemModels, NetherDescentBlocks.TALL_ARISIAN_DANDELIONS.get(), ModelLocationUtils.getModelLocation(NetherDescentBlocks.ARISIAN_DANDELIONS.get().asItem()));
 
-		ResourceLocation hangingSproutsTop = ModelTemplates.CROSS.extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get(), "_top"), new TextureMapping().put(TextureSlot.CROSS, TextureMapping.getBlockTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "_side_small")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "_side_small")), blockModels.modelOutput);
-		ResourceLocation hangingSproutsBottom = ModelTemplates.CROSS.extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get(), "_bottom"), new TextureMapping().put(TextureSlot.CROSS, TextureMapping.getBlockTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "_side_tall")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "_side_tall")), blockModels.modelOutput);
+		Identifier hangingSproutsTop = ModelTemplates.CROSS.extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get(), "_top"), new TextureMapping().put(TextureSlot.CROSS, TextureMapping.getBlockTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "_side_small")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "_side_small")), blockModels.modelOutput);
+		Identifier hangingSproutsBottom = ModelTemplates.CROSS.extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get(), "_bottom"), new TextureMapping().put(TextureSlot.CROSS, TextureMapping.getBlockTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "_side_tall")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), "_side_tall")), blockModels.modelOutput);
 
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(NetherDescentBlocks.TALL_ARISIAN_SPROUTS.get())
 				.with(PropertyDispatch.properties(HangingDoublePlantBlock.HANGING, HangingDoublePlantBlock.HALF)
@@ -336,8 +336,8 @@ public class ModelGenerator extends ModelProvider {
 
 		createCrossBlock(blockModels, itemModels, NetherDescentBlocks.SYTHIAN_SPROUTS.get(), "cutout");
 
-		ResourceLocation sythianRoots = ModelTemplates.CROSS.extend().renderType(mcLocation("cutout_mipped")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_ROOTS.get()), TextureMapping.cross(NetherDescentBlocks.SYTHIAN_ROOTS.get()), blockModels.modelOutput);
-		ResourceLocation sythainRootsWall = ModelTemplates.CORAL_WALL_FAN.extend().renderType(mcLocation("cutout_mipped")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "_wall"), TextureMapping.fan(NetherDescentBlocks.SYTHIAN_ROOTS.get()), blockModels.modelOutput);
+		Identifier sythianRoots = ModelTemplates.CROSS.extend().renderType(mcLocation("cutout_mipped")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_ROOTS.get()), TextureMapping.cross(NetherDescentBlocks.SYTHIAN_ROOTS.get()), blockModels.modelOutput);
+		Identifier sythainRootsWall = ModelTemplates.CORAL_WALL_FAN.extend().renderType(mcLocation("cutout_mipped")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "_wall"), TextureMapping.fan(NetherDescentBlocks.SYTHIAN_ROOTS.get()), blockModels.modelOutput);
 
 		blockModels.blockStateOutput
 				.accept(
@@ -380,7 +380,7 @@ public class ModelGenerator extends ModelProvider {
 
 		blockModels.createNonTemplateModelBlock(NetherDescentBlocks.SYTHIAN_STALK.getPottedBlock());
 
-		ResourceLocation model = ModelTemplates.TINTED_CROSS.extend().renderType(mcLocation("cutout")).build().create(NetherDescentBlocks.SYTHIAN_SHOOT.get(), TextureMapping.cross(TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "_stage0")), blockModels.modelOutput);
+		Identifier model = ModelTemplates.TINTED_CROSS.extend().renderType(mcLocation("cutout")).build().create(NetherDescentBlocks.SYTHIAN_SHOOT.get(), TextureMapping.cross(TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "_stage0")), blockModels.modelOutput);
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(NetherDescentBlocks.SYTHIAN_SHOOT.get())
 				.with(PropertyDispatch.property(SythianShootBlock.HANGING)
 						.select(false, Variant.variant().with(VariantProperties.MODEL, model))
@@ -427,7 +427,7 @@ public class ModelGenerator extends ModelProvider {
 		basicItem(itemModels, NetherDescentBlocks.PENDORITE_DOOR.get().asItem());
 
 		TextureMapping trapdoor = TextureMapping.defaultTexture(TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_TRAPDOOR.get()));
-		ResourceLocation trapdoorBottom = ModelTemplates.ORIENTABLE_TRAPDOOR_BOTTOM.extend().renderType(mcLocation("translucent")).build().create(NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), trapdoor, blockModels.modelOutput);
+		Identifier trapdoorBottom = ModelTemplates.ORIENTABLE_TRAPDOOR_BOTTOM.extend().renderType(mcLocation("translucent")).build().create(NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), trapdoor, blockModels.modelOutput);
 		blockModels.blockStateOutput.accept(BlockModelGenerators.createOrientableTrapdoor(NetherDescentBlocks.PENDORITE_TRAPDOOR.get(),
 				ModelTemplates.ORIENTABLE_TRAPDOOR_TOP.extend().renderType(mcLocation("translucent")).build().create(NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), trapdoor, blockModels.modelOutput),
 				trapdoorBottom,
@@ -439,7 +439,7 @@ public class ModelGenerator extends ModelProvider {
 						.select(false, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.HANGING_LANTERN.extend().renderType(mcLocation("cutout")).build().create(NetherDescentBlocks.PENDORITE_LANTERN.get(), new TextureMapping().put(TextureSlot.LANTERN, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_LANTERN.get())), blockModels.modelOutput)))));
 		basicItem(itemModels, NetherDescentBlocks.PENDORITE_LANTERN.get().asItem());
 
-		ResourceLocation chain = ModelTemplates.create("chain").extend().renderType(mcLocation("cutout_mipped")).build().create(NetherDescentBlocks.PENDORITE_CHAIN.get(), new TextureMapping().putForced(TextureSlot.ALL, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_CHAIN.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_CHAIN.get())), blockModels.modelOutput);
+		Identifier chain = ModelTemplates.create("chain").extend().renderType(mcLocation("cutout_mipped")).build().create(NetherDescentBlocks.PENDORITE_CHAIN.get(), new TextureMapping().putForced(TextureSlot.ALL, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_CHAIN.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_CHAIN.get())), blockModels.modelOutput);
 		blockModels.createAxisAlignedPillarBlockCustomModel(NetherDescentBlocks.PENDORITE_CHAIN.get(), chain);
 		basicItem(itemModels, NetherDescentBlocks.PENDORITE_CHAIN.get().asItem());
 
@@ -582,7 +582,7 @@ public class ModelGenerator extends ModelProvider {
 	}
 
 	private void createHangingCrossBlock(BlockModelGenerators blockModels, ItemModelGenerators itemModels, Block block) {
-		ResourceLocation model = ModelTemplates.CROSS.extend().renderType(mcLocation("cutout")).build().create(block, TextureMapping.cross(block), blockModels.modelOutput);
+		Identifier model = ModelTemplates.CROSS.extend().renderType(mcLocation("cutout")).build().create(block, TextureMapping.cross(block), blockModels.modelOutput);
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block)
 				.with(PropertyDispatch.property(HangingNDBushBlock.HANGING)
 						.select(false, Variant.variant().with(VariantProperties.MODEL, model))
@@ -596,22 +596,22 @@ public class ModelGenerator extends ModelProvider {
 	}
 
 	private void createNetherrack(BlockModelGenerators blockModels, Block block) {
-		ResourceLocation resourcelocation = TexturedModel.CUBE.create(block, blockModels.modelOutput);
-		blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, resourcelocation), Variant.variant().with(VariantProperties.MODEL, resourcelocation).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90), Variant.variant().with(VariantProperties.MODEL, resourcelocation).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, resourcelocation).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270), Variant.variant().with(VariantProperties.MODEL, resourcelocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90), Variant.variant().with(VariantProperties.MODEL, resourcelocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90), Variant.variant().with(VariantProperties.MODEL, resourcelocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, resourcelocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270), Variant.variant().with(VariantProperties.MODEL, resourcelocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, resourcelocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90), Variant.variant().with(VariantProperties.MODEL, resourcelocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, resourcelocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270), Variant.variant().with(VariantProperties.MODEL, resourcelocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270), Variant.variant().with(VariantProperties.MODEL, resourcelocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90), Variant.variant().with(VariantProperties.MODEL, resourcelocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, resourcelocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270)));
+		Identifier Identifier = TexturedModel.CUBE.create(block, blockModels.modelOutput);
+		blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(block, Variant.variant().with(VariantProperties.MODEL, Identifier), Variant.variant().with(VariantProperties.MODEL, Identifier).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90), Variant.variant().with(VariantProperties.MODEL, Identifier).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, Identifier).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270), Variant.variant().with(VariantProperties.MODEL, Identifier).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90), Variant.variant().with(VariantProperties.MODEL, Identifier).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90), Variant.variant().with(VariantProperties.MODEL, Identifier).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, Identifier).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270), Variant.variant().with(VariantProperties.MODEL, Identifier).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, Identifier).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90), Variant.variant().with(VariantProperties.MODEL, Identifier).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, Identifier).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270), Variant.variant().with(VariantProperties.MODEL, Identifier).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270), Variant.variant().with(VariantProperties.MODEL, Identifier).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270).with(VariantProperties.X_ROT, VariantProperties.Rotation.R90), Variant.variant().with(VariantProperties.MODEL, Identifier).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, Identifier).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270).with(VariantProperties.X_ROT, VariantProperties.Rotation.R270)));
 		blockItemModel(blockModels, block);
 	}
 
 	private static void createSlab(BlockModelGenerators blockModels, ItemModelGenerators itemModels, Block slab, Block baseBlock, TextureMapping baseTexture) {
-		ResourceLocation slabBottom = ModelTemplates.SLAB_BOTTOM.create(slab, baseTexture, blockModels.modelOutput);
-		ResourceLocation slabTop = ModelTemplates.SLAB_TOP.create(slab, baseTexture, blockModels.modelOutput);
+		Identifier slabBottom = ModelTemplates.SLAB_BOTTOM.create(slab, baseTexture, blockModels.modelOutput);
+		Identifier slabTop = ModelTemplates.SLAB_TOP.create(slab, baseTexture, blockModels.modelOutput);
 		blockModels.blockStateOutput.accept(BlockModelGenerators.createSlab(slab, slabBottom, slabTop, ModelLocationUtils.getModelLocation(baseBlock)));
 		itemModels.itemModelOutput.accept(slab.asItem(), ItemModelUtils.plainModel(slabBottom));
 	}
 
 	private static void createStairs(BlockModelGenerators blockModels, ItemModelGenerators itemModels, Block stairs, TextureMapping baseTexture) {
-		ResourceLocation stairsStraight = ModelTemplates.STAIRS_STRAIGHT.create(stairs, baseTexture, blockModels.modelOutput);
-		ResourceLocation stairsInner = ModelTemplates.STAIRS_INNER.create(stairs, baseTexture, blockModels.modelOutput);
-		ResourceLocation stairsOuter = ModelTemplates.STAIRS_OUTER.create(stairs, baseTexture, blockModels.modelOutput);
+		Identifier stairsStraight = ModelTemplates.STAIRS_STRAIGHT.create(stairs, baseTexture, blockModels.modelOutput);
+		Identifier stairsInner = ModelTemplates.STAIRS_INNER.create(stairs, baseTexture, blockModels.modelOutput);
+		Identifier stairsOuter = ModelTemplates.STAIRS_OUTER.create(stairs, baseTexture, blockModels.modelOutput);
 		blockModels.blockStateOutput.accept(BlockModelGenerators.createStairs(stairs, stairsInner, stairsStraight, stairsOuter));
 		itemModels.itemModelOutput.accept(stairs.asItem(), ItemModelUtils.plainModel(stairsStraight));
 	}
@@ -623,10 +623,10 @@ public class ModelGenerator extends ModelProvider {
 
 	private static void createWall(BlockModelGenerators blockModels, ItemModelGenerators itemModels, Block wall, Block baseBlock) {
 		TextureMapping base = new TextureMapping().put(TextureSlot.ALL, TextureMapping.getBlockTexture(baseBlock));
-		ResourceLocation wallPost = ModelTemplates.WALL_POST.create(wall, base, blockModels.modelOutput);
-		ResourceLocation wallSide = ModelTemplates.WALL_LOW_SIDE.create(wall, base, blockModels.modelOutput);
-		ResourceLocation wallSideTall = ModelTemplates.WALL_TALL_SIDE.create(wall, base, blockModels.modelOutput);
-		ResourceLocation wallInventory = ModelTemplates.WALL_INVENTORY.create(wall, base, blockModels.modelOutput);
+		Identifier wallPost = ModelTemplates.WALL_POST.create(wall, base, blockModels.modelOutput);
+		Identifier wallSide = ModelTemplates.WALL_LOW_SIDE.create(wall, base, blockModels.modelOutput);
+		Identifier wallSideTall = ModelTemplates.WALL_TALL_SIDE.create(wall, base, blockModels.modelOutput);
+		Identifier wallInventory = ModelTemplates.WALL_INVENTORY.create(wall, base, blockModels.modelOutput);
 		blockModels.blockStateOutput.accept(BlockModelGenerators.createWall(wall, wallPost, wallSide, wallSideTall));
 		itemModels.itemModelOutput.accept(wall.asItem(), ItemModelUtils.plainModel(wallInventory));
 	}
@@ -637,7 +637,7 @@ public class ModelGenerator extends ModelProvider {
 				.collect(Collectors.toList());
 	}
 
-	public static Variant[] createHangingRotatedVariants(ResourceLocation modelLocation) {
+	public static Variant[] createHangingRotatedVariants(Identifier modelLocation) {
 		return new Variant[]{Variant.variant().with(VariantProperties.MODEL, modelLocation), Variant.variant().with(VariantProperties.MODEL, modelLocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, modelLocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, modelLocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180)};
 	}
 
@@ -653,7 +653,7 @@ public class ModelGenerator extends ModelProvider {
 		itemModels.itemModelOutput.accept(block.asItem(), ItemModelUtils.plainModel(ModelTemplates.FLAT_ITEM.create(block.asItem(), TextureMapping.layer0(TextureMapping.getBlockTexture(block)), itemModels.modelOutput)));
 	}
 
-	private void layer0(ItemModelGenerators itemModels, Block block, ResourceLocation location) {
+	private void layer0(ItemModelGenerators itemModels, Block block, Identifier location) {
 		itemModels.itemModelOutput.accept(block.asItem(), ItemModelUtils.plainModel(ModelTemplates.FLAT_ITEM.create(block.asItem(), TextureMapping.layer0(location), itemModels.modelOutput)));
 	}
 

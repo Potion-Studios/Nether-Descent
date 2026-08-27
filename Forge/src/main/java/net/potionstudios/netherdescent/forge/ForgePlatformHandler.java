@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.data.loading.DatagenModLoader;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.bus.BusGroup;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.FMLPaths;
@@ -75,7 +75,6 @@ public final class ForgePlatformHandler implements PlatformHandler {
 					for (ArrayList<Supplier<? extends Item>> item : items)
 						item.forEach((item1) -> entries.accept(item1.get()));
 				})
-				.withSearchBar()
 				.build());
 	}
 
@@ -84,13 +83,13 @@ public final class ForgePlatformHandler implements PlatformHandler {
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> Supplier<T> register(Registry<? super T> registry, String name, Supplier<T> value) {
-		return ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.location(), NetherDescent.MOD_ID))).register(name, value);
+		return ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.identifier(), NetherDescent.MOD_ID))).register(name, value);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> Supplier<Holder.Reference<T>> registerForHolder(Registry<T> registry, String name, Supplier<T> value) {
-		RegistryObject<T> registryObject = ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.location(), NetherDescent.MOD_ID))).register(name, value);
+		RegistryObject<T> registryObject = ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.identifier(), NetherDescent.MOD_ID))).register(name, value);
 		return () -> (Holder.Reference<T>) registryObject.getHolder().orElse(null);
 	}
 
@@ -107,7 +106,7 @@ public final class ForgePlatformHandler implements PlatformHandler {
         });
     }
 
-	public static void register(final IEventBus bus) {
+	public static void register(final BusGroup bus) {
 		PARTICLES.register(bus);
 		CACHED.values().forEach(deferredRegister -> deferredRegister.register(bus));
 		BLOCK_ENTITIES.register(bus);

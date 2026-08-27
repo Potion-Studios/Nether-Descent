@@ -2,7 +2,7 @@ package net.potionstudios.netherdescent.forge.loot;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.bus.BusGroup;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -15,7 +15,7 @@ public class LootModifiersRegister {
     public static final RegistryObject<MapCodec<? extends IGlobalLootModifier>> ADD_TABLE_LOOT_MODIFIER_TYPE =
             LOOT_MODIFIER_SERIALIZERS.register("add_table", () -> AddTableLootModifier.CODEC);
 
-    public static void register(IEventBus eventBus) {
+    public static void register(BusGroup eventBus) {
         LOOT_MODIFIER_SERIALIZERS.register(eventBus);
     }
 }

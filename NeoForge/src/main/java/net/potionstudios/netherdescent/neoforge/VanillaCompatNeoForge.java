@@ -18,13 +18,6 @@ import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import java.util.HashMap;
 
 public class VanillaCompatNeoForge {
-    public static void init() {
-        ToolInteractions.registerStrippableBlocks((block, stripped) -> {
-            AxeItem.STRIPPABLES = new HashMap<>(AxeItem.STRIPPABLES);
-            AxeItem.STRIPPABLES.put(block, stripped);
-        });
-    }
-
     public static void registerVanillaCompatEvents(final IEventBus bus) {
         bus.addListener(VanillaCompatNeoForge::registerBrewingRecipes);
         bus.addListener(VanillaCompatNeoForge::registerTillables);

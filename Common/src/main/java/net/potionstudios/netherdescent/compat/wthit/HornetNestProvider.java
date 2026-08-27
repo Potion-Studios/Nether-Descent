@@ -7,7 +7,7 @@ import mcp.mobius.waila.api.IPluginConfig;
 import mcp.mobius.waila.api.ITooltip;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 public enum HornetNestProvider implements IBlockComponentProvider {
 
@@ -16,7 +16,7 @@ public enum HornetNestProvider implements IBlockComponentProvider {
     @Override
     public void appendBody(ITooltip tooltip, IBlockAccessor accessor, IPluginConfig config) {
         HornetNestDataProvider.OccupantsData occupants = accessor.getData().get(HornetNestDataProvider.OCCUPANTS);
-        if (occupants != null && config.getBoolean(ResourceLocation.withDefaultNamespace("bee.hive_occupants"))) {
+        if (occupants != null && config.getBoolean(Identifier.withDefaultNamespace("bee.hive_occupants"))) {
             var names = new Object2IntLinkedOpenHashMap<String>(occupants.occupants().size());
 
             for (var occupant : occupants.occupants()) {
@@ -41,7 +41,7 @@ public enum HornetNestProvider implements IBlockComponentProvider {
                     else component.append(Component.literal(name));
                 }
 
-                tooltip.setLine(ResourceLocation.withDefaultNamespace("bee.hive_occupants"), component);
+                tooltip.setLine(Identifier.withDefaultNamespace("bee.hive_occupants"), component);
             }
         }
     }

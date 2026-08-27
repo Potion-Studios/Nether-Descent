@@ -112,7 +112,7 @@ public class RecipeGenerator extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(itemHolderGetter, RecipeCategory.FOOD, NetherDescentItems.CRIMSON_BERRY_PIE.get())
                 .requires(NetherDescentItems.CRIMSON_BERRIES.get())
                 .requires(Items.SUGAR)
-                .requires(NetherDescentItemTags.EGGS)
+                .requires(Tags.Items.EGGS)
                 .unlockedBy(getHasName(NetherDescentItems.CRIMSON_BERRIES.get()), has(NetherDescentItems.CRIMSON_BERRIES.get()))
                 .save(output);
 

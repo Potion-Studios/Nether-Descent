@@ -3,6 +3,7 @@ package net.potionstudios.netherdescent.world.level.levelgen.surfacerules;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
@@ -11,7 +12,7 @@ import java.util.function.Supplier;
 
 public class NetherDescentRuleSources {
 
-    public static WeightedRuleSource weightedRuleSource(SimpleWeightedRandomList<SurfaceRules.RuleSource> ruleSource) {
+    public static WeightedRuleSource weightedRuleSource(WeightedList<SurfaceRules.RuleSource> ruleSource) {
         return new WeightedRuleSource(ruleSource);
     }
 

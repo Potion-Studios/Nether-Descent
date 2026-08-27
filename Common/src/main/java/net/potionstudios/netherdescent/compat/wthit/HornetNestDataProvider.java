@@ -6,7 +6,7 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EntityType;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.level.block.entity.HornetNestBlockEntity;
@@ -28,7 +28,7 @@ public enum HornetNestDataProvider implements IDataProvider<HornetNestBlockEntit
 
     @Override
     public void appendData(IDataWriter iDataWriter, IServerAccessor<HornetNestBlockEntity> iServerAccessor, IPluginConfig iPluginConfig) {
-        if (iPluginConfig.getBoolean(ResourceLocation.withDefaultNamespace("bee.hive_occupants"))) {
+        if (iPluginConfig.getBoolean(Identifier.withDefaultNamespace("bee.hive_occupants"))) {
             List<HornetNestBlockEntity.HornetData> stored = iServerAccessor.getTarget().stored;
             if (!stored.isEmpty()) {
                 var occupants = new ArrayList<OccupantsData.Occupant>(stored.size());
