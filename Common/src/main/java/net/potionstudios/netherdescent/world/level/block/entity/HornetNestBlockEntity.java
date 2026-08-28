@@ -3,40 +3,44 @@ package net.potionstudios.netherdescent.world.level.block.entity;
 import com.google.common.collect.Lists;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import io.netty.buffer.ByteBuf;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtOps;
-import net.minecraft.nbt.NbtUtils;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.ProblemReporter;
 import net.minecraft.util.VisibleForDebug;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.animal.bee.Bee;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.item.component.TypedEntityData;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.storage.TagValueOutput;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.entity.animal.Hornet;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 public class HornetNestBlockEntity extends BlockEntity {
 	static final List<String> IGNORED_HORNET_TAGS = Arrays.asList(
@@ -147,7 +151,7 @@ public class HornetNestBlockEntity extends BlockEntity {
             HornetReleaseStatus releaseStatus,
             @Nullable BlockPos storedFlowerPos
     ) {
-        if ((level.isNight() || level.isRaining()) && releaseStatus != HornetReleaseStatus.EMERGENCY) {
+        if ((level.isDarkOutside() || level.isRaining()) && releaseStatus != HornetReleaseStatus.EMERGENCY) {
             return false;
         } else {
             BlockPos blockPos = pos.below();
@@ -169,7 +173,7 @@ public class HornetNestBlockEntity extends BlockEntity {
                         double e = pos.getX() + 0.5 + d * Direction.DOWN.getStepX();
                         double g = pos.getY() - 0.5 - entity.getBbHeight() / 2.0F;
                         double h = pos.getZ() + 0.5 + d * Direction.DOWN.getStepZ();
-                        entity.moveTo(e, g, h, entity.getYRot(), entity.getXRot());
+                        entity.snapTo(e, g, h, entity.getYRot(), entity.getXRot());
                     }
 
                     level.playSound(null, pos, SoundEvents.BEEHIVE_EXIT, SoundSource.BLOCKS, 1.0F, 1.0F);
@@ -208,31 +212,25 @@ public class HornetNestBlockEntity extends BlockEntity {
 	}
 
 	@Override
-	protected void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
-		super.loadAdditional(tag, registries);
+	protected void loadAdditional(@NonNull ValueInput input) {
+		super.loadAdditional(input);
 		this.stored.clear();
-		if (tag.contains("hornets"))
-			Occupant.LIST_CODEC
-					.parse(NbtOps.INSTANCE, tag.get("hornets"))
-					.resultOrPartial(string -> NetherDescent.LOGGER.error("Failed to parse hornets: '{}'", string))
-					.ifPresent(list -> list.forEach(this::storeHornet));
-
-		this.savedFlowerPos = NbtUtils.readBlockPos(tag, "flower_pos").orElse(null);
+		(input.read("hornets", Occupant.LIST_CODEC).orElse(List.of())).forEach(this::storeHornet);
+		this.savedFlowerPos = input.read("flower_pos", BlockPos.CODEC).orElse(null);
 	}
 
 	@Override
-	protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
-		super.saveAdditional(tag, registries);
-		tag.put("hornets", Occupant.LIST_CODEC.encodeStart(NbtOps.INSTANCE, this.getHornets()).getOrThrow());
-		if (this.hasSavedFlowerPos())
-			tag.put("flower_pos", NbtUtils.writeBlockPos(this.savedFlowerPos));
+	protected void saveAdditional(@NonNull ValueOutput output) {
+		super.saveAdditional(output);
+		output.store("hornets", Occupant.LIST_CODEC, this.getHornets());
+		output.storeNullable("flower_pos", BlockPos.CODEC, this.savedFlowerPos);
 	}
 
 	@Override
-	protected void applyImplicitComponents(@NotNull DataComponentInput componentInput) {
-		super.applyImplicitComponents(componentInput);
+	protected void applyImplicitComponents(@NonNull DataComponentGetter componentGetter) {
+		super.applyImplicitComponents(componentGetter);
 		this.stored.clear();
-		List<Occupant> list = componentInput.getOrDefault(NetherDescentDataComponents.HORNETS.get(), List.of());
+		List<Occupant> list = componentGetter.getOrDefault(NetherDescentDataComponents.HORNETS.get(), List.of());
 		list.forEach(this::storeHornet);
 	}
 
@@ -243,9 +241,9 @@ public class HornetNestBlockEntity extends BlockEntity {
 	}
 
 	@Override
-	public void removeComponentsFromTag(@NotNull CompoundTag tag) {
-		super.removeComponentsFromTag(tag);
-		tag.remove("hornets");
+	public void removeComponentsFromTag(@NonNull ValueOutput output) {
+		super.removeComponentsFromTag(output);
+		output.discard("hornets");
 	}
 
 	private List<Occupant> getHornets() {
@@ -275,18 +273,18 @@ public class HornetNestBlockEntity extends BlockEntity {
         EMERGENCY
     }
 
-	public record Occupant(CustomData entityData, int ticksInNest, int minTicksInNest) {
+	public record Occupant(TypedEntityData<EntityType<?>> entityData, int ticksInNest, int minTicksInNest) {
 		public static final Codec<Occupant> CODEC = RecordCodecBuilder.create(
 				instance -> instance.group(
-								CustomData.CODEC.optionalFieldOf("entity_data", CustomData.EMPTY).forGetter(Occupant::entityData),
+								TypedEntityData.codec(EntityType.CODEC).fieldOf("entity_data").forGetter(Occupant::entityData),
 								Codec.INT.fieldOf("ticks_in_nest").forGetter(Occupant::ticksInNest),
 								Codec.INT.fieldOf("min_ticks_in_nest").forGetter(Occupant::minTicksInNest)
 						)
 						.apply(instance, Occupant::new)
 		);
 		public static final Codec<List<Occupant>> LIST_CODEC = CODEC.listOf();
-		public static final StreamCodec<ByteBuf, Occupant> STREAM_CODEC = StreamCodec.composite(
-				CustomData.STREAM_CODEC,
+		public static final StreamCodec<RegistryFriendlyByteBuf, Occupant> STREAM_CODEC = StreamCodec.composite(
+				TypedEntityData.streamCodec(EntityType.STREAM_CODEC),
 				Occupant::entityData,
 				ByteBufCodecs.VAR_INT,
 				Occupant::ticksInNest,
@@ -296,21 +294,29 @@ public class HornetNestBlockEntity extends BlockEntity {
 		);
 
 		public static Occupant of(Entity entity) {
-			CompoundTag compoundTag = new CompoundTag();
-			entity.save(compoundTag);
-			IGNORED_HORNET_TAGS.forEach(compoundTag::remove);
-			return new Occupant(CustomData.of(compoundTag), 0, 600);
+			Occupant var5;
+			try (ProblemReporter.ScopedCollector scopedCollector = new ProblemReporter.ScopedCollector(entity.problemPath(), NetherDescent.LOGGER)) {
+				TagValueOutput tagValueOutput = TagValueOutput.createWithContext(scopedCollector, entity.registryAccess());
+				entity.save(tagValueOutput);
+				Objects.requireNonNull(tagValueOutput);
+				IGNORED_HORNET_TAGS.forEach(tagValueOutput::discard);
+				CompoundTag compoundTag = tagValueOutput.buildResult();
+				boolean bl = compoundTag.getBooleanOr("HasNectar", false);
+				var5 = new Occupant(TypedEntityData.of(entity.getType(), compoundTag), 0, bl ? 2400 : 600);
+			}
+
+			return var5;
 		}
 
 		public static Occupant create(int ticksInHive) {
 			CompoundTag compoundTag = new CompoundTag();
 			compoundTag.putString("id", BuiltInRegistries.ENTITY_TYPE.getKey(NetherDescentEntityType.HORNET.get()).toString());
-			return new Occupant(CustomData.of(compoundTag), ticksInHive, 600);
+			return new Occupant(TypedEntityData.of(NetherDescentEntityType.HORNET.get(), new CompoundTag()), ticksInHive, 600);
 		}
 
 		@Nullable
 		public Entity createEntity(Level level, BlockPos pos) {
-			CompoundTag compoundTag = this.entityData.copyTag();
+			CompoundTag compoundTag = this.entityData.copyTagWithoutId();
 			IGNORED_HORNET_TAGS.forEach(compoundTag::remove);
 			Entity entity = EntityType.loadEntityRecursive(compoundTag, level, EntitySpawnReason.LOAD, entityx -> entityx);
 			if (entity instanceof Hornet hornet) {

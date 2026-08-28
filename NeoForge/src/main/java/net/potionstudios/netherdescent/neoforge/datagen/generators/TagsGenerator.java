@@ -5,11 +5,11 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.*;
-import net.minecraft.resources.Identifier;
 import net.minecraft.tags.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.BlockTagCopyingItemTagProvider;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.tags.NetherDescentBiomeTags;
@@ -145,7 +145,7 @@ public class TagsGenerator {
 		}
 	}
 
-	private static class ItemTagGenerator extends ItemTagsProvider {
+	private static class ItemTagGenerator extends BlockTagCopyingItemTagProvider {
 		private ItemTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture, BlockTagGenerator blockTagGenerator) {
 			super(arg, completableFuture, blockTagGenerator.contentsGetter(), NetherDescent.MOD_ID);
 		}

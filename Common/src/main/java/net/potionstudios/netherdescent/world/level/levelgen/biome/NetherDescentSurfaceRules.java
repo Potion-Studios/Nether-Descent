@@ -2,7 +2,6 @@ package net.potionstudios.netherdescent.world.level.levelgen.biome;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;

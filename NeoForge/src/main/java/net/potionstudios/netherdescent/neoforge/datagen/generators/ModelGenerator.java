@@ -87,79 +87,80 @@ public class ModelGenerator extends ModelProvider {
 
 			TextureMapping door = new TextureMapping().put(TextureSlot.TOP, NetherDescent.id(folder + "door_top")).put(TextureSlot.BOTTOM, NetherDescent.id(folder + "door_bottom"));
 			blockModels.blockStateOutput.accept(BlockModelGenerators.createDoor(woodSet.door(),
-					ModelTemplates.DOOR_BOTTOM_LEFT.create(woodSet.door(), door, blockModels.modelOutput),
-					ModelTemplates.DOOR_BOTTOM_LEFT_OPEN.create(woodSet.door(), door, blockModels.modelOutput),
-					ModelTemplates.DOOR_BOTTOM_RIGHT.create(woodSet.door(), door, blockModels.modelOutput),
-					ModelTemplates.DOOR_BOTTOM_RIGHT_OPEN.create(woodSet.door(), door, blockModels.modelOutput),
-					ModelTemplates.DOOR_TOP_LEFT.create(woodSet.door(), door, blockModels.modelOutput),
-					ModelTemplates.DOOR_TOP_LEFT_OPEN.create(woodSet.door(), door, blockModels.modelOutput),
-					ModelTemplates.DOOR_TOP_RIGHT.create(woodSet.door(), door, blockModels.modelOutput),
-					ModelTemplates.DOOR_TOP_RIGHT_OPEN.create(woodSet.door(), door, blockModels.modelOutput)));
+					BlockModelGenerators.plainVariant(ModelTemplates.DOOR_BOTTOM_LEFT.create(woodSet.door(), door, blockModels.modelOutput)),
+					BlockModelGenerators.plainVariant(ModelTemplates.DOOR_BOTTOM_LEFT_OPEN.create(woodSet.door(), door, blockModels.modelOutput)),
+					BlockModelGenerators.plainVariant(ModelTemplates.DOOR_BOTTOM_RIGHT.create(woodSet.door(), door, blockModels.modelOutput)),
+					BlockModelGenerators.plainVariant(ModelTemplates.DOOR_BOTTOM_RIGHT_OPEN.create(woodSet.door(), door, blockModels.modelOutput)),
+					BlockModelGenerators.plainVariant(ModelTemplates.DOOR_TOP_LEFT.create(woodSet.door(), door, blockModels.modelOutput)),
+					BlockModelGenerators.plainVariant(ModelTemplates.DOOR_TOP_LEFT_OPEN.create(woodSet.door(), door, blockModels.modelOutput)),
+					BlockModelGenerators.plainVariant(ModelTemplates.DOOR_TOP_RIGHT.create(woodSet.door(), door, blockModels.modelOutput)),
+					BlockModelGenerators.plainVariant(ModelTemplates.DOOR_TOP_RIGHT_OPEN.create(woodSet.door(), door, blockModels.modelOutput))));
+
 
 			TextureMapping trapdoor = new TextureMapping().put(TextureSlot.TEXTURE, NetherDescent.id(folder + "trapdoor"));
 			Identifier trapdoorBottom = ModelTemplates.ORIENTABLE_TRAPDOOR_BOTTOM.create(woodSet.trapdoor(), trapdoor, blockModels.modelOutput);
 			blockModels.blockStateOutput.accept(BlockModelGenerators.createOrientableTrapdoor(woodSet.trapdoor(),
-					ModelTemplates.ORIENTABLE_TRAPDOOR_TOP.create(woodSet.trapdoor(), trapdoor, blockModels.modelOutput),
-					trapdoorBottom,
-					ModelTemplates.ORIENTABLE_TRAPDOOR_OPEN.create(woodSet.trapdoor(), trapdoor, blockModels.modelOutput)));
+					BlockModelGenerators.plainVariant(ModelTemplates.ORIENTABLE_TRAPDOOR_TOP.create(woodSet.trapdoor(), trapdoor, blockModels.modelOutput)),
+					BlockModelGenerators.plainVariant(trapdoorBottom),
+					BlockModelGenerators.plainVariant(ModelTemplates.ORIENTABLE_TRAPDOOR_OPEN.create(woodSet.trapdoor(), trapdoor, blockModels.modelOutput))));
 
 			blockModels.itemModelOutput.accept(woodSet.trapdoor().asItem(), ItemModelUtils.plainModel(trapdoorBottom));
 
 			blockModels.blockStateOutput.accept(BlockModelGenerators.createPressurePlate(woodSet.pressurePlate(),
-					ModelTemplates.PRESSURE_PLATE_UP.create(woodSet.pressurePlate(), planks, blockModels.modelOutput),
-					ModelTemplates.PRESSURE_PLATE_DOWN.create(woodSet.pressurePlate(), planks, blockModels.modelOutput)));
+					BlockModelGenerators.plainVariant(ModelTemplates.PRESSURE_PLATE_UP.create(woodSet.pressurePlate(), planks, blockModels.modelOutput)),
+					BlockModelGenerators.plainVariant(ModelTemplates.PRESSURE_PLATE_DOWN.create(woodSet.pressurePlate(), planks, blockModels.modelOutput))));
 			blockItemModel(blockModels, woodSet.pressurePlate());
 
 			Identifier Log = NetherDescent.id(folder + woodSet.logStemEnum().getName());
 			Identifier LogTop = NetherDescent.id(folder + woodSet.logStemEnum().getName() + "_top");
 
 			blockModels.blockStateOutput.accept(BlockModelGenerators.createRotatedPillarWithHorizontalVariant(woodSet.logstem(),
-					ModelTemplates.CUBE_COLUMN.create(woodSet.logstem(), new TextureMapping().put(TextureSlot.END, LogTop).put(TextureSlot.SIDE, Log), blockModels.modelOutput),
-					ModelTemplates.CUBE_COLUMN_HORIZONTAL.create(woodSet.logstem(), new TextureMapping().put(TextureSlot.END, LogTop).put(TextureSlot.SIDE, Log), blockModels.modelOutput)));
+					BlockModelGenerators.plainVariant(ModelTemplates.CUBE_COLUMN.create(woodSet.logstem(), new TextureMapping().put(TextureSlot.END, LogTop).put(TextureSlot.SIDE, Log), blockModels.modelOutput)),
+					BlockModelGenerators.plainVariant(ModelTemplates.CUBE_COLUMN_HORIZONTAL.create(woodSet.logstem(), new TextureMapping().put(TextureSlot.END, LogTop).put(TextureSlot.SIDE, Log), blockModels.modelOutput))));
 			blockItemModel(blockModels, woodSet.logstem());
 
 			blockModels.blockStateOutput.accept(BlockModelGenerators.createRotatedPillarWithHorizontalVariant(woodSet.wood(),
-					ModelTemplates.CUBE_COLUMN.create(woodSet.wood(), new TextureMapping().put(TextureSlot.END, Log).put(TextureSlot.SIDE, Log), blockModels.modelOutput),
-					ModelTemplates.CUBE_COLUMN_HORIZONTAL.create(woodSet.wood(), new TextureMapping().put(TextureSlot.END, Log).put(TextureSlot.SIDE, Log), blockModels.modelOutput)));
+					BlockModelGenerators.plainVariant(ModelTemplates.CUBE_COLUMN.create(woodSet.wood(), new TextureMapping().put(TextureSlot.END, Log).put(TextureSlot.SIDE, Log), blockModels.modelOutput)),
+					BlockModelGenerators.plainVariant(ModelTemplates.CUBE_COLUMN_HORIZONTAL.create(woodSet.wood(), new TextureMapping().put(TextureSlot.END, Log).put(TextureSlot.SIDE, Log), blockModels.modelOutput))));
 			blockItemModel(blockModels, woodSet.wood());
 
 			Identifier StrippedLog = NetherDescent.id(folder + "stripped_" + woodSet.logStemEnum().getName());
 			Identifier StrippedLogTop = NetherDescent.id(folder + "stripped_" + woodSet.logStemEnum().getName() + "_top");
 			blockModels.blockStateOutput.accept(BlockModelGenerators.createRotatedPillarWithHorizontalVariant(woodSet.strippedLogStem(),
-					ModelTemplates.CUBE_COLUMN.create(woodSet.strippedLogStem(), new TextureMapping().put(TextureSlot.END, StrippedLogTop).put(TextureSlot.SIDE, StrippedLog), blockModels.modelOutput),
-					ModelTemplates.CUBE_COLUMN_HORIZONTAL.create(woodSet.strippedLogStem(), new TextureMapping().put(TextureSlot.END, StrippedLogTop).put(TextureSlot.SIDE, StrippedLog), blockModels.modelOutput)));
+					BlockModelGenerators.plainVariant(ModelTemplates.CUBE_COLUMN.create(woodSet.strippedLogStem(), new TextureMapping().put(TextureSlot.END, StrippedLogTop).put(TextureSlot.SIDE, StrippedLog), blockModels.modelOutput)),
+					BlockModelGenerators.plainVariant(ModelTemplates.CUBE_COLUMN_HORIZONTAL.create(woodSet.strippedLogStem(), new TextureMapping().put(TextureSlot.END, StrippedLogTop).put(TextureSlot.SIDE, StrippedLog), blockModels.modelOutput))));
 			blockItemModel(blockModels, woodSet.strippedLogStem());
 
 			blockModels.blockStateOutput.accept(BlockModelGenerators.createRotatedPillarWithHorizontalVariant(woodSet.strippedWood(),
-					ModelTemplates.CUBE_COLUMN.create(woodSet.strippedWood(), new TextureMapping().put(TextureSlot.END, StrippedLog).put(TextureSlot.SIDE, StrippedLog), blockModels.modelOutput),
-					ModelTemplates.CUBE_COLUMN_HORIZONTAL.create(woodSet.strippedWood(), new TextureMapping().put(TextureSlot.END, StrippedLog).put(TextureSlot.SIDE, StrippedLog), blockModels.modelOutput)));
+					BlockModelGenerators.plainVariant(ModelTemplates.CUBE_COLUMN.create(woodSet.strippedWood(), new TextureMapping().put(TextureSlot.END, StrippedLog).put(TextureSlot.SIDE, StrippedLog), blockModels.modelOutput)),
+					BlockModelGenerators.plainVariant(ModelTemplates.CUBE_COLUMN_HORIZONTAL.create(woodSet.strippedWood(), new TextureMapping().put(TextureSlot.END, StrippedLog).put(TextureSlot.SIDE, StrippedLog), blockModels.modelOutput))));
 			blockItemModel(blockModels, woodSet.strippedWood());
 
-			blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(woodSet.sign(), ModelTemplates.PARTICLE_ONLY.create(woodSet.sign(), planks, blockModels.modelOutput)));
-			blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(woodSet.wallSign(), ModelLocationUtils.getModelLocation(woodSet.sign())));
-			blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(woodSet.hangingSign(), ModelTemplates.PARTICLE_ONLY.create(woodSet.hangingSign(), TextureMapping.particle(StrippedLog), blockModels.modelOutput)));
-			blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(woodSet.wallHangingSign(), ModelLocationUtils.getModelLocation(woodSet.hangingSign())));
+			blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(woodSet.sign(), BlockModelGenerators.plainVariant(ModelTemplates.PARTICLE_ONLY.create(woodSet.sign(), planks, blockModels.modelOutput))));
+			blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(woodSet.wallSign(), BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(woodSet.sign()))));
+			blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(woodSet.hangingSign(), BlockModelGenerators.plainVariant(ModelTemplates.PARTICLE_ONLY.create(woodSet.hangingSign(), TextureMapping.particle(StrippedLog), blockModels.modelOutput))));
+			blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(woodSet.wallHangingSign(), BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(woodSet.hangingSign()))));
 
-			blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(woodSet.bookshelf(), ModelTemplates.CUBE_COLUMN.create(woodSet.bookshelf(), new TextureMapping().put(TextureSlot.END, Planks).put(TextureSlot.SIDE, NetherDescent.id("block/" + woodSet.name() + "/bookshelf")), blockModels.modelOutput)));
+			blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(woodSet.bookshelf(), BlockModelGenerators.plainVariant(ModelTemplates.CUBE_COLUMN.create(woodSet.bookshelf(), new TextureMapping().put(TextureSlot.END, Planks).put(TextureSlot.SIDE, BiomesWeveGone.id("block/" + woodSet.name() + "/bookshelf")), blockModels.modelOutput))));
 			blockItemModel(blockModels, woodSet.bookshelf());
 
-			blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(woodSet.craftingTable(), ModelTemplates.CUBE.create(woodSet.craftingTable(), new TextureMapping()
+			blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(woodSet.craftingTable(), BlockModelGenerators.plainVariant(ModelTemplates.CUBE.create(woodSet.craftingTable(), new TextureMapping()
 					.put(TextureSlot.DOWN, Planks)
 					.put(TextureSlot.UP, NetherDescent.id(folder + "crafting_table_top"))
 					.put(TextureSlot.EAST, NetherDescent.id(folder + "crafting_table_side"))
 					.put(TextureSlot.WEST, NetherDescent.id(folder + "crafting_table_front"))
 					.put(TextureSlot.NORTH, NetherDescent.id(folder + "crafting_table_front"))
 					.put(TextureSlot.SOUTH, NetherDescent.id(folder + "crafting_table_side"))
-					.put(TextureSlot.PARTICLE, NetherDescent.id(folder + "crafting_table_front")), blockModels.modelOutput)));
+					.put(TextureSlot.PARTICLE, NetherDescent.id(folder + "crafting_table_front")), blockModels.modelOutput))));
 			blockItemModel(blockModels, woodSet.craftingTable());
 
 			if (woodSet.growerItem() != null) {
 				if (woodSet.growerItem().get() instanceof HangingFungusBlock){
 					Identifier model = ModelTemplates.CROSS.extend().renderType(mcLocation("cutout")).build().create(woodSet.growerItem().get(), TextureMapping.cross(NetherDescent.id(folder + woodSet.growerItemEnum().getName())), blockModels.modelOutput);
-					blockModels.blockStateOutput.accept(MultiVariantGenerator.multiVariant(woodSet.growerItem().get())
-							.with(PropertyDispatch.property(HangingNDBushBlock.HANGING)
-									.select(false, Variant.variant().with(VariantProperties.MODEL, model))
-									.select(true, Variant.variant().with(VariantProperties.X_ROT, VariantProperties.Rotation.R180).with(VariantProperties.MODEL, model))));
+					blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(woodSet.growerItem().get())
+							.with(PropertyDispatch.initial(HangingNDBushBlock.HANGING)
+									.select(false, BlockModelGenerators.plainVariant(model))
+									.select(true, BlockModelGenerators.plainVariant(model).with(BlockModelGenerators.X_ROT_180))));
 				}
 				else blockModels.createTrivialBlock(woodSet.growerItem().get(), TexturedModel.createDefault(TextureMapping::cross, ModelTemplates.CROSS).updateTexture(textureMapping -> textureMapping.put(TextureSlot.CROSS, NetherDescent.id(folder + woodSet.growerItemEnum().getName()))).updateTemplate(template -> template.extend().renderType(mcLocation("cutout")).build()));
 				itemModels.itemModelOutput.accept(woodSet.growerItem().getItem(), ItemModelUtils.plainModel(ModelTemplates.FLAT_ITEM.create(woodSet.growerItem().getItem(), TextureMapping.layer0(NetherDescent.id(folder + woodSet.growerItemEnum().getName())), itemModels.modelOutput)));

@@ -3,7 +3,6 @@ package net.potionstudios.netherdescent.world.level.levelgen.structure.structure
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.random.WeightedList;
-import net.minecraft.util.random.WeightedRandomList;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.biome.MobSpawnSettings;
@@ -20,7 +19,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class BlueNetherFortressStructure extends Structure {
-    public static final WeightedList<MobSpawnSettings.SpawnerData> BLUE_FORTRESS_ENEMIES = WeightedRandomList.create(new MobSpawnSettings.SpawnerData(NetherDescentEntityType.SOUL_BLAZE.get(), 10, 2, 3), new MobSpawnSettings.SpawnerData(EntityType.ZOMBIFIED_PIGLIN, 5, 4, 4), new MobSpawnSettings.SpawnerData(EntityType.WITHER_SKELETON, 8, 5, 5), new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 2, 5, 5), new MobSpawnSettings.SpawnerData(EntityType.MAGMA_CUBE, 3, 4, 4));
+	public static final WeightedList<MobSpawnSettings.SpawnerData> BLUE_FORTRESS_ENEMIES = WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(NetherDescentEntityType.SOUL_BLAZE.get(), 2, 3), 10).add(new MobSpawnSettings.SpawnerData(EntityType.ZOMBIFIED_PIGLIN, 4, 4), 5).add(new MobSpawnSettings.SpawnerData(EntityType.WITHER_SKELETON, 5, 5), 8).add(new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 5, 5), 2).add(new MobSpawnSettings.SpawnerData(EntityType.MAGMA_CUBE, 4, 4), 3).build();
+
 	public static final MapCodec<BlueNetherFortressStructure> CODEC = simpleCodec(BlueNetherFortressStructure::new);
 
 	public BlueNetherFortressStructure(Structure.StructureSettings settings) {
