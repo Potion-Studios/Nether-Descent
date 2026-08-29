@@ -54,7 +54,7 @@ public class NDRodBlock extends EndRodBlock {
 
     private static void spawnBlazeInWorld(Level level, BlockPattern.BlockPatternMatch patternMatch, Entity blaze, BlockPos pos) {
         clearPatternBlocks(level, patternMatch);
-        blaze.moveTo(pos.getX() + 0.5, pos.getY() + 0.05, pos.getZ() + 0.5, 0.0F, 0.0F);
+        blaze.snapTo(pos.getX() + 0.5, pos.getY() + 0.05, pos.getZ() + 0.5, 0.0F, 0.0F);
         level.addFreshEntity(blaze);
 
         for (ServerPlayer serverPlayer : level.getEntitiesOfClass(ServerPlayer.class, blaze.getBoundingBox().inflate(5.0)))

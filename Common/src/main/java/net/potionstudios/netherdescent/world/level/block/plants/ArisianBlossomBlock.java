@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -33,8 +34,8 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 	}
 
 	@Override
-	protected void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
-		super.entityInside(state, level, pos, entity);
+	protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier, boolean intersects) {
+		super.entityInside(state, level, pos, entity, applier, intersects);
 		if (!level.isClientSide() && entity instanceof LivingEntity)
 			if (state.getValue(STRENGTH) != 7)
 				updateState(state, level, pos, 7);

@@ -179,7 +179,7 @@ public class BlueNetherFortressPieces {
 
 		public BridgeEndFiller(CompoundTag tag) {
 			super(NetherDescentStructurePieceType.NETHER_FORTRESS_BRIDGE_END_FILLER.get(), tag);
-			this.selfSeed = tag.getInt("Seed");
+			this.selfSeed = tag.getIntOr("Seed", 0);
 		}
 
 		public static BlueNetherFortressPieces.BridgeEndFiller createPiece(
@@ -594,7 +594,7 @@ public class BlueNetherFortressPieces {
 
 		public CastleSmallCorridorLeftTurnPiece(CompoundTag tag) {
 			super(NetherDescentStructurePieceType.NETHER_FORTRESS_CASTLE_SMALL_CORRIDOR_LEFT_TURN.get(), tag);
-			this.isNeedingChest = tag.getBoolean("Chest");
+			this.isNeedingChest = tag.getBooleanOr("Chest", false);
 		}
 
 		@Override
@@ -712,7 +712,7 @@ public class BlueNetherFortressPieces {
 
 		public CastleSmallCorridorRightTurnPiece(CompoundTag tag) {
 			super(NetherDescentStructurePieceType.NETHER_FORTRESS_CASTLE_SMALL_CORRIDOR_RIGHT_TURN.get(), tag);
-			this.isNeedingChest = tag.getBoolean("Chest");
+			this.isNeedingChest = tag.getBooleanOr("Chest", false);
 		}
 
 		@Override
@@ -922,7 +922,7 @@ public class BlueNetherFortressPieces {
 
 		public MonsterThrone(CompoundTag tag) {
 			super(NetherDescentStructurePieceType.NETHER_FORTRESS_MONSTER_THRONE.get(), tag);
-			this.hasPlacedSpawner = tag.getBoolean("Mob");
+			this.hasPlacedSpawner = tag.getBooleanOr("Mob", false);
 		}
 
 		@Override
