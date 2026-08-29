@@ -63,3 +63,5 @@ accessible field net/minecraft/world/item/AxeItem STRIPPABLES Ljava/util/Map;
 mutable field net/minecraft/world/item/AxeItem STRIPPABLES Ljava/util/Map;
 
 accessible method net/minecraft/world/level/block/FungusBlock getFeature (Lnet/minecraft/world/level/LevelReader;)Ljava/util/Optional;
+
+accessible method net/minecraft/data/worldgen/biome/NetherBiomes baseBiome ()Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;

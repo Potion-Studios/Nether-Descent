@@ -4,12 +4,13 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.Carvers;
+import net.minecraft.data.worldgen.biome.NetherBiomes;
 import net.minecraft.data.worldgen.placement.NetherPlacements;
 import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.sounds.Musics;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.attribute.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.GenerationStep;
@@ -20,6 +21,9 @@ import net.potionstudios.netherdescent.sounds.NetherDescentSoundEvents;
 import net.potionstudios.netherdescent.data.worldgen.placement.NetherDescentPlacements;
 import net.potionstudios.netherdescent.data.worldgen.placement.NetherDescentTreePlacements;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+
+import java.util.List;
+import java.util.Optional;
 
 public class NetherDescentBiomeBuilder {
 
@@ -55,7 +59,7 @@ public class NetherDescentBiomeBuilder {
         addSpawn(spawnSettings, EntityType.ENDERMAN, 20, 2, 4);
         addSpawn(spawnSettings, EntityType.STRIDER, 60, 1, 2);
 
-        return new Biome.BiomeBuilder().hasPrecipitation(false).temperature(2).downfall(0.0F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(2765878).skyColor(2765878).ambientParticle(new AmbientParticleSettings(ParticleTypes.WARPED_SPORE, 0.01428F)).ambientLoopSound(NetherDescentSoundEvents.AMBIENT_ARISIAN_UNDERGROWTH_LOOP.get()).ambientMoodSound(new AmbientMoodSettings(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D)).ambientAdditionsSound(new AmbientAdditionsSettings(NetherDescentSoundEvents.AMBIENT_ARISIAN_UNDERGROWTH_ADDITIONS.get(), 0.0011D)).backgroundMusic(Musics.createGameMusic(NetherDescentSoundEvents.MUSIC_BIOME_ARISIAN_UNDERGROWTH.get())).build()).mobSpawnSettings(spawnSettings.build()).generationSettings(generationSettings.build()).build();
+        return NetherBiomes.baseBiome().setAttribute(EnvironmentAttributes.FOG_COLOR, 2765878).setAttribute(EnvironmentAttributes.SKY_COLOR, 2765878).setAttribute(EnvironmentAttributes.AMBIENT_PARTICLES, AmbientParticle.of(ParticleTypes.WARPED_SPORE, 0.01428F)).setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(Optional.of(NetherDescentSoundEvents.AMBIENT_ARISIAN_UNDERGROWTH_LOOP.get()), Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D)), List.of(new AmbientAdditionsSettings(NetherDescentSoundEvents.AMBIENT_ARISIAN_UNDERGROWTH_ADDITIONS.get(), 0.0011D)))).setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(NetherDescentSoundEvents.MUSIC_BIOME_ARISIAN_UNDERGROWTH.get())).mobSpawnSettings(spawnSettings.build()).generationSettings(generationSettings.build()).build();
     }
 
     protected static Biome crimsonGardens(HolderGetter<PlacedFeature> placedFeatureHolderGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -79,7 +83,7 @@ public class NetherDescentBiomeBuilder {
 				.addMobCharge(EntityType.GHAST, 0.7, 0.15)
 				.addMobCharge(EntityType.ENDERMAN, 0.7, 0.15)
 				.addMobCharge(EntityType.STRIDER, 0.7, 0.15);
-        return new Biome.BiomeBuilder().hasPrecipitation(false).temperature(2).downfall(0.0F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(3343107).skyColor(3343107).ambientParticle(new AmbientParticleSettings(ParticleTypes.CRIMSON_SPORE, 0.01428F)).ambientLoopSound(NetherDescentSoundEvents.AMBIENT_CRIMSON_GARDENS_LOOP.get()).ambientMoodSound(new AmbientMoodSettings(SoundEvents.AMBIENT_CRIMSON_FOREST_MOOD, 6000, 8, 2.0D)).ambientAdditionsSound(new AmbientAdditionsSettings(NetherDescentSoundEvents.AMBIENT_CRIMSON_GARDENS_ADDITIONS.get(), 0.0011D)).backgroundMusic(Musics.createGameMusic(NetherDescentSoundEvents.MUSIC_BIOME_CRIMSON_GARDENS.get())).build()).mobSpawnSettings(spawnSettings.build()).generationSettings(generationSettings.build()).build();
+        return NetherBiomes.baseBiome().setAttribute(EnvironmentAttributes.FOG_COLOR, 3343107).setAttribute(EnvironmentAttributes.SKY_COLOR, 3343107).setAttribute(EnvironmentAttributes.AMBIENT_PARTICLES, AmbientParticle.of(ParticleTypes.CRIMSON_SPORE, 0.01428F)).setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(Optional.of(NetherDescentSoundEvents.AMBIENT_CRIMSON_GARDENS_LOOP.get()), Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_CRIMSON_FOREST_MOOD, 6000, 8, 2.0D)), List.of(new AmbientAdditionsSettings(NetherDescentSoundEvents.AMBIENT_CRIMSON_GARDENS_ADDITIONS.get(), 0.0011D)))).setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(NetherDescentSoundEvents.MUSIC_BIOME_CRIMSON_GARDENS.get())).mobSpawnSettings(spawnSettings.build()).generationSettings(generationSettings.build()).build();
     }
 
     protected static Biome emburBog(HolderGetter<PlacedFeature> placedFeatureHolderGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -103,7 +107,7 @@ public class NetherDescentBiomeBuilder {
         addSpawn(spawnSettings, EntityType.MAGMA_CUBE, 100, 2, 5);
         addSpawn(spawnSettings, EntityType.PIGLIN, 15, 4, 4);
         addSpawn(spawnSettings, EntityType.STRIDER, 60, 1, 2);
-        return new Biome.BiomeBuilder().hasPrecipitation(false).temperature(2).downfall(0.0F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(15110510).skyColor(15110510).ambientParticle(new AmbientParticleSettings(ParticleTypes.FLAME, 0.00228F)).ambientLoopSound(NetherDescentSoundEvents.AMBIENT_EMBUR_BOG_LOOP.get()).ambientMoodSound(new AmbientMoodSettings(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 6000, 8, 2.0D)).ambientAdditionsSound(new AmbientAdditionsSettings(NetherDescentSoundEvents.AMBIENT_EMBUR_BOG_ADDITIONS.get(), 0.0011D)).backgroundMusic(Musics.createGameMusic(NetherDescentSoundEvents.MUSIC_BIOME_EMBUR_BOG.get())).build()).mobSpawnSettings(spawnSettings.build()).generationSettings(generationSettings.build()).build();
+        return NetherBiomes.baseBiome().setAttribute(EnvironmentAttributes.FOG_COLOR, 15110510).setAttribute(EnvironmentAttributes.SKY_COLOR, 15110510).setAttribute(EnvironmentAttributes.AMBIENT_PARTICLES, AmbientParticle.of(ParticleTypes.FLAME, 0.00228F)).setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(Optional.of(NetherDescentSoundEvents.AMBIENT_EMBUR_BOG_LOOP.get()), Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_BASALT_DELTAS_MOOD, 6000, 8, 2.0D)), List.of(new AmbientAdditionsSettings(NetherDescentSoundEvents.AMBIENT_EMBUR_BOG_ADDITIONS.get(), 0.0011D)))).setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(NetherDescentSoundEvents.MUSIC_BIOME_EMBUR_BOG.get())).mobSpawnSettings(spawnSettings.build()).generationSettings(generationSettings.build()).build();
     }
 
     protected static Biome sythianTorrids(HolderGetter<PlacedFeature> placedFeatureHolderGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -124,7 +128,7 @@ public class NetherDescentBiomeBuilder {
         addSpawn(spawnSettings, EntityType.ENDERMAN, 1, 4, 4);
         addSpawn(spawnSettings, EntityType.PIGLIN, 15, 4, 4);
         addSpawn(spawnSettings, EntityType.STRIDER, 60, 1, 2);
-        return new Biome.BiomeBuilder().hasPrecipitation(false).temperature(2).downfall(0.0F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(16572546).skyColor(16572546).ambientParticle(new AmbientParticleSettings(ParticleTypes.CRIMSON_SPORE, 0.01428F)).ambientLoopSound(NetherDescentSoundEvents.AMBIENT_SYTHIAN_TORRIDS_LOOP.get()).ambientMoodSound(new AmbientMoodSettings(SoundEvents.AMBIENT_CRIMSON_FOREST_MOOD, 6000, 8, 2.0D)).ambientAdditionsSound(new AmbientAdditionsSettings(NetherDescentSoundEvents.AMBIENT_SYTHIAN_TORRIDS_ADDITIONS.get(), 0.0011D)).backgroundMusic(Musics.createGameMusic(NetherDescentSoundEvents.MUSIC_BIOME_SYTHIAN_TORRIDS.get())).build()).mobSpawnSettings(spawnSettings.build()).generationSettings(generationSettings.build()).build();
+        return NetherBiomes.baseBiome().setAttribute(EnvironmentAttributes.FOG_COLOR, 16572546).setAttribute(EnvironmentAttributes.SKY_COLOR, 16572546).setAttribute(EnvironmentAttributes.AMBIENT_PARTICLES, AmbientParticle.of(ParticleTypes.CRIMSON_SPORE, 0.01428F)).setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(Optional.of(NetherDescentSoundEvents.AMBIENT_SYTHIAN_TORRIDS_LOOP.get()), Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_CRIMSON_FOREST_MOOD, 6000, 8, 2.0D)), List.of(new AmbientAdditionsSettings(NetherDescentSoundEvents.AMBIENT_SYTHIAN_TORRIDS_ADDITIONS.get(), 0.0011D)))).setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(NetherDescentSoundEvents.MUSIC_BIOME_SYTHIAN_TORRIDS.get())).mobSpawnSettings(spawnSettings.build()).generationSettings(generationSettings.build()).build();
     }
 
     protected static Biome wailingGarth(HolderGetter<PlacedFeature> placedFeatureHolderGetter, HolderGetter<ConfiguredWorldCarver<?>> carverGetter) {
@@ -148,11 +152,11 @@ public class NetherDescentBiomeBuilder {
 			    .addMobCharge(EntityType.ENDERMAN, 0.7, 0.15)
 			    .addMobCharge(EntityType.STRIDER, 0.7, 0.15);
 
-        return new Biome.BiomeBuilder().hasPrecipitation(false).temperature(2).downfall(0.0F).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(4529794).skyColor(4529794).ambientParticle(new AmbientParticleSettings(ParticleTypes.WARPED_SPORE, 0.01428F)).ambientLoopSound(NetherDescentSoundEvents.AMBIENT_WAILING_GARTH_LOOP.get()).ambientMoodSound(new AmbientMoodSettings(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D)).ambientAdditionsSound(new AmbientAdditionsSettings(NetherDescentSoundEvents.AMBIENT_WAILING_GARTH_ADDITIONS.get(), 0.0011D)).backgroundMusic(Musics.createGameMusic(NetherDescentSoundEvents.MUSIC_BIOME_WAILING_GARTH.get())).build()).mobSpawnSettings(spawnSettings.build()).generationSettings(generationSettings.build()).build();
+        return NetherBiomes.baseBiome().setAttribute(EnvironmentAttributes.FOG_COLOR, 4529794).setAttribute(EnvironmentAttributes.SKY_COLOR, 4529794).setAttribute(EnvironmentAttributes.AMBIENT_PARTICLES, AmbientParticle.of(ParticleTypes.WARPED_SPORE, 0.01428F)).setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(Optional.of(NetherDescentSoundEvents.AMBIENT_WAILING_GARTH_LOOP.get()), Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D)), List.of(new AmbientAdditionsSettings(NetherDescentSoundEvents.AMBIENT_WAILING_GARTH_ADDITIONS.get(), 0.0011D)))).mobSpawnSettings(spawnSettings.build()).setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(NetherDescentSoundEvents.MUSIC_BIOME_WAILING_GARTH.get())).generationSettings(generationSettings.build()).build();
     }
 
     private static void addSpawn(MobSpawnSettings.Builder builder, EntityType<?> entityType, int weight, int minGroupSize, int maxGroupSize) {
-        builder.addSpawn(entityType.getCategory(), new MobSpawnSettings.SpawnerData(entityType, weight, minGroupSize, maxGroupSize));
+        builder.addSpawn(entityType.getCategory(), weight, new MobSpawnSettings.SpawnerData(entityType, minGroupSize, maxGroupSize));
     }
 
     private static void vanillaNetherFeatures(BiomeGenerationSettings.Builder generationSettings) {
