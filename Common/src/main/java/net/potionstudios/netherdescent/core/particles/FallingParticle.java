@@ -2,20 +2,17 @@ package net.potionstudios.netherdescent.core.particles;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.particles.SimpleParticleType;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.util.RandomSource;
+import org.jspecify.annotations.NonNull;
 
-public class FallingParticle extends TextureSheetParticle {
-	FallingParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-		super(level, x, y, z, xSpeed, ySpeed, zSpeed);
-        this.lifetime = (int)((double)64.0F / (Math.random() * 0.8 + 0.2));
+public class FallingParticle extends SingleQuadParticle {
+	FallingParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, TextureAtlasSprite sprite) {
+		super(level, x, y, z, xSpeed, ySpeed, zSpeed, sprite);
+		this.lifetime = (int)((double)64.0F / (Math.random() * 0.8 + 0.2));
 		this.gravity = 0.06F;
 		this.setSize(0.01F, 0.01F);
-	}
-
-	@Override
-	public @NotNull ParticleRenderType getRenderType() {
-		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
 	}
 
 	@Override
@@ -47,12 +44,15 @@ public class FallingParticle extends TextureSheetParticle {
             this.remove();
     }
 
+	@Override
+	protected @NonNull Layer getLayer() {
+		return Layer.TRANSLUCENT;
+	}
+
 	public record Provider(SpriteSet spriteSet) implements ParticleProvider<SimpleParticleType> {
 		@Override
-		public @NotNull Particle createParticle(@NotNull SimpleParticleType type, @NotNull ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
-			FallingParticle particle = new FallingParticle(level, x, y, z, xSpeed, ySpeed, zSpeed);
-			particle.setSprite(this.spriteSet.get(level.getRandom()));
-			return particle;
+		public @NonNull Particle createParticle(@NonNull SimpleParticleType particleType, @NonNull ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, @NonNull RandomSource random) {
+			return new FallingParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet.get(level.getRandom()));
 		}
 	}
 }
