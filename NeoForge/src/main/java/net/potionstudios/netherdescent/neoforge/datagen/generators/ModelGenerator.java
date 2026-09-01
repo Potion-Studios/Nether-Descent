@@ -3,6 +3,7 @@ package net.potionstudios.netherdescent.neoforge.datagen.generators;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
+import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.*;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.block.model.Variant;
@@ -10,7 +11,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
-import net.minecraft.util.ARGB;
+import net.minecraft.util.random.Weighted;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BambooLeaves;
@@ -199,14 +201,9 @@ public class ModelGenerator extends ModelProvider {
 
 		blockModels.blockStateOutput
 				.accept(
-						MultiVariantGenerator.dispatch(NetherDescentBlocks.ARISIAN_BRANCH.get(), Variant.variant().with(VariantProperties.MODEL, ModelTemplates.CORAL_WALL_FAN.extend().renderType(mcLocation("cutout_mipped")).build().create(NetherDescentBlocks.ARISIAN_BRANCH.get(), TextureMapping.fan(NetherDescentBlocks.ARISIAN_BRANCH.get()), blockModels.modelOutput)))
-								.with(
-										PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-												.select(Direction.NORTH, Variant.variant())
-												.select(Direction.WEST, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270))
-												.select(Direction.EAST, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90))
-												.select(Direction.SOUTH, Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180))
-								)
+						MultiVariantGenerator.dispatch(NetherDescentBlocks.ARISIAN_BRANCH.get(),
+								BlockModelGenerators.plainVariant(ModelTemplates.CORAL_WALL_FAN.extend().renderType(mcLocation("cutout_mipped")).build().create(NetherDescentBlocks.ARISIAN_BRANCH.get(), TextureMapping.fan(NetherDescentBlocks.ARISIAN_BRANCH.get()), blockModels.modelOutput)))
+								.with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING)
 				);
 		layer0(itemModels, NetherDescentBlocks.ARISIAN_BRANCH.get());
 
@@ -358,8 +355,8 @@ public class ModelGenerator extends ModelProvider {
 		blockModels.blockStateOutput
 				.accept(
 						MultiPartGenerator.multiPart(NetherDescentBlocks.SYTHIAN_STALK.get())
-								.with(Condition.condition().term(BlockStateProperties.AGE_1, 0), this.createSythianStalkModels(blockModels, 0))
-								.with(Condition.condition().term(BlockStateProperties.AGE_1, 1), this.createSythianStalkModels(blockModels, 1))
+								.with(BlockModelGenerators.condition().term(BlockStateProperties.AGE_1, 0), this.createSythianStalkModels(blockModels, 0))
+								.with(BlockModelGenerators.condition().term(BlockStateProperties.AGE_1, 1), this.createSythianStalkModels(blockModels, 1))
 								.with(
 										BlockModelGenerators.condition().term(BlockStateProperties.BAMBOO_LEAVES, BambooLeaves.SMALL),
 										BlockModelGenerators.plainVariant(ModelTemplates.create("bamboo_small_leaves").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_STALK.get(), "_small_leaves"), new TextureMapping().putForced(TextureSlot.TEXTURE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "_small_leaves")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "_small_leaves")), blockModels.modelOutput))
@@ -521,14 +518,14 @@ public class ModelGenerator extends ModelProvider {
 				Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(NetherDescentBlocks.CRIMSON_CARPET.get(), "2"))));
 		blockItemModel(blockModels, NetherDescentBlocks.CRIMSON_CARPET.get());
 		blockModels.createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(),
-				ModelTemplates.CROSS.extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_top"), new TextureMapping().put(TextureSlot.CROSS, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_top")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_top")), blockModels.modelOutput),
-				ModelTemplates.CROSS.extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_bottom"), new TextureMapping().put(TextureSlot.CROSS, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_bottom")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_bottom")), blockModels.modelOutput));
+				BlockModelGenerators.plainVariant(ModelTemplates.CROSS.extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_top"), new TextureMapping().put(TextureSlot.CROSS, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_top")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_top")), blockModels.modelOutput)),
+				BlockModelGenerators.plainVariant(ModelTemplates.CROSS.extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_bottom"), new TextureMapping().put(TextureSlot.CROSS, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_bottom")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_bottom")), blockModels.modelOutput)));
 
 		layer0(itemModels, NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_top"));
 
 		blockModels.createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get(),
-				ModelTemplates.CROSS.extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get(), "_top"), new TextureMapping().put(TextureSlot.CROSS, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get(), "_top")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get(), "_top")), blockModels.modelOutput),
-				ModelTemplates.CROSS.extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get(), "_bottom"), new TextureMapping().put(TextureSlot.CROSS, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get(), "_bottom")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get(), "_bottom")), blockModels.modelOutput));
+				BlockModelGenerators.plainVariant(ModelTemplates.CROSS.extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get(), "_top"), new TextureMapping().put(TextureSlot.CROSS, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get(), "_top")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get(), "_top")), blockModels.modelOutput)),
+				BlockModelGenerators.plainVariant(ModelTemplates.CROSS.extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get(), "_bottom"), new TextureMapping().put(TextureSlot.CROSS, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get(), "_bottom")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get(), "_bottom")), blockModels.modelOutput)));
 
 		layer0(itemModels, NetherDescentBlocks.TALL_CRIMSON_FUNGI.get(), TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get(), "_top"));
 
@@ -557,14 +554,14 @@ public class ModelGenerator extends ModelProvider {
 		basicItem(itemModels, NetherDescentBlocks.FUNGAL_BULBS.get().asItem());
 
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(NetherDescentBlocks.THORN_SPROUT.get())
-				.with(BlockModelGenerators.createHorizontalFacingDispatch())
-				.with(PropertyDispatch.properties(ThornSproutBlock.SEGMENT, ThornSproutBlock.FLOWERING)
-						.select(ThornSproutBlock.SegmentType.BASE, false, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("netherdescent:thorn_sprout").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.THORN_SPROUT.get(), "_base"), new TextureMapping().putForced(TextureSlot.create("1"), TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_base")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_base")), blockModels.modelOutput)))
-						.select(ThornSproutBlock.SegmentType.BASE, true, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(NetherDescentBlocks.THORN_SPROUT.get(), "_base")))
-						.select(ThornSproutBlock.SegmentType.END, false, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("netherdescent:thorn_sprout").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.THORN_SPROUT.get(), "_end"), new TextureMapping().putForced(TextureSlot.create("1"), TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_end")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_end")), blockModels.modelOutput)))
-						.select(ThornSproutBlock.SegmentType.END, true, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(NetherDescentBlocks.THORN_SPROUT.get(), "_end")))
-						.select(ThornSproutBlock.SegmentType.MIDDLE, false, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("netherdescent:thorn_sprout").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.THORN_SPROUT.get(), "_middle"), new TextureMapping().putForced(TextureSlot.create("1"), TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_middle")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_middle")), blockModels.modelOutput)))
-						.select(ThornSproutBlock.SegmentType.MIDDLE, true, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("netherdescent:thorn_sprout").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.THORN_SPROUT.get(), "_middle_flowering"), new TextureMapping().putForced(TextureSlot.create("1"), TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_middle_flowering")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_middle_flowering")), blockModels.modelOutput)))));
+				.with(PropertyDispatch.initial(ThornSproutBlock.SEGMENT, ThornSproutBlock.FLOWERING)
+						.select(ThornSproutBlock.SegmentType.BASE, false, BlockModelGenerators.plainVariant(ModelTemplates.create("netherdescent:thorn_sprout").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.THORN_SPROUT.get(), "_base"), new TextureMapping().putForced(TextureSlot.create("1"), TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_base")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_base")), blockModels.modelOutput)))
+						.select(ThornSproutBlock.SegmentType.BASE, true, BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(NetherDescentBlocks.THORN_SPROUT.get(), "_base")))
+						.select(ThornSproutBlock.SegmentType.END, false, BlockModelGenerators.plainVariant(ModelTemplates.create("netherdescent:thorn_sprout").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.THORN_SPROUT.get(), "_end"), new TextureMapping().putForced(TextureSlot.create("1"), TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_end")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_end")), blockModels.modelOutput)))
+						.select(ThornSproutBlock.SegmentType.END, true, BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(NetherDescentBlocks.THORN_SPROUT.get(), "_end")))
+						.select(ThornSproutBlock.SegmentType.MIDDLE, false, BlockModelGenerators.plainVariant(ModelTemplates.create("netherdescent:thorn_sprout").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.THORN_SPROUT.get(), "_middle"), new TextureMapping().putForced(TextureSlot.create("1"), TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_middle")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_middle")), blockModels.modelOutput)))
+						.select(ThornSproutBlock.SegmentType.MIDDLE, true, BlockModelGenerators.plainVariant(ModelTemplates.create("netherdescent:thorn_sprout").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.THORN_SPROUT.get(), "_middle_flowering"), new TextureMapping().putForced(TextureSlot.create("1"), TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_middle_flowering")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_middle_flowering")), blockModels.modelOutput))))
+				.with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING));
 		layer0(itemModels, NetherDescentBlocks.THORN_SPROUT.get(), TextureMapping.getBlockTexture(NetherDescentBlocks.THORN_SPROUT.get(), "_end"));
 	}
 
@@ -576,10 +573,10 @@ public class ModelGenerator extends ModelProvider {
 
 	private void createHangingCrossBlock(BlockModelGenerators blockModels, ItemModelGenerators itemModels, Block block) {
 		Identifier model = ModelTemplates.CROSS.extend().renderType(mcLocation("cutout")).build().create(block, TextureMapping.cross(block), blockModels.modelOutput);
-		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block)
-				.with(PropertyDispatch.initial(HangingNDBushBlock.HANGING)
-						.select(false, BlockModelGenerators.plainVariant(model))
-						.select(true, BlockModelGenerators.plainVariant(model).with(BlockModelGenerators.X_ROT_180))));
+		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).
+				with(BlockModelGenerators.createBooleanModelDispatch(HangingNDBushBlock.HANGING,
+					BlockModelGenerators.plainVariant(model),
+					BlockModelGenerators.plainVariant(model).with(BlockModelGenerators.X_ROT_180))));
 		layer0(itemModels, block);
 	}
 
@@ -625,11 +622,9 @@ public class ModelGenerator extends ModelProvider {
 		blockModels.blockStateOutput.accept(BlockModelGenerators.createWall(wall, BlockModelGenerators.plainVariant(wallPost), BlockModelGenerators.plainVariant(wallSide), BlockModelGenerators.plainVariant(wallSideTall)));
 		itemModels.itemModelOutput.accept(wall.asItem(), ItemModelUtils.plainModel(wallInventory));
 	}
-	protected List<Variant> createSythianStalkModels(BlockModelGenerators blockModels, int age) {
-		String string = "_age" + age;
-		return IntStream.range(1, 5)// ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_STALK.get(), i + string)
-				.mapToObj(i -> Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("bamboo" + i + string).extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_STALK.get(), i + string), new TextureMapping().putForced(TextureSlot.ALL, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get())), blockModels.modelOutput)))
-				.collect(Collectors.toList());
+	protected MultiVariant createSythianStalkModels(BlockModelGenerators blockModels, int age) {
+		String s = "_age" + age;
+		return new MultiVariant(WeightedList.of((List)IntStream.range(1, 5).mapToObj((i) -> new Weighted(BlockModelGenerators.plainModel(ModelTemplates.create("bamboo" + i + string).extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_STALK.get(), i + age), new TextureMapping().putForced(TextureSlot.ALL, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get())), blockModels.modelOutput)), 1)).collect(Collectors.toList())));
 	}
 
 	public static Variant[] createHangingRotatedVariants(Identifier modelLocation) {
