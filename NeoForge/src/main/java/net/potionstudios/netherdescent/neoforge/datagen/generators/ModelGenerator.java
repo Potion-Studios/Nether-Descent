@@ -314,15 +314,15 @@ public class ModelGenerator extends ModelProvider {
 		));
 
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get())
-				.with(PropertyDispatch.property(WailingBulbBlossomBlock.ACTIVE)
-						.select(true, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("netherdescent:wailing_bulb_blossom").extend().renderType(mcLocation("cutout")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "_active"),
+				.with(PropertyDispatch.initial(WailingBulbBlossomBlock.ACTIVE)
+						.select(true, BlockModelGenerators.plainVariant(ModelTemplates.create("netherdescent:wailing_bulb_blossom").extend().renderType(mcLocation("cutout")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "_active"),
 								new TextureMapping()
 										.putForced(TextureSlot.create("0"), TextureMapping.getBlockTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "_petal_active"))
 										.putForced(TextureSlot.create("1"), TextureMapping.getBlockTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "_side_active"))
 										.putForced(TextureSlot.create("2"), TextureMapping.getBlockTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "_top_active"))
 										.putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), "_side_active")),
 								blockModels.modelOutput)))
-						.select(false, Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get())))));
+						.select(false, BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get())))));
 
 		itemModels.itemModelOutput.accept(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get().asItem(), ItemModelUtils.plainModel(modLocation("item/wailing_bulb_blossom")));
 
@@ -330,9 +330,9 @@ public class ModelGenerator extends ModelProvider {
 		createHeadBlock(blockModels, itemModels, NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get());
 
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(NetherDescentBlocks.SYTHIAN_FARMLAND.get())
-				.with(PropertyDispatch.property(SythianFarmBlock.MOSSY)
-						.select(false, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.FARMLAND.create(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), new TextureMapping().put(TextureSlot.DIRT, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_SOIL.get())).put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_FARMLAND.get())), blockModels.modelOutput)))
-						.select(true, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.FARMLAND.create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), "_mossy"), new TextureMapping().put(TextureSlot.DIRT, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_SOIL.get())).put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), "_mossy")), blockModels.modelOutput)))));
+				.with(PropertyDispatch.initial(SythianFarmBlock.MOSSY)
+						.select(false, BlockModelGenerators.plainVariant(ModelTemplates.FARMLAND.create(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), new TextureMapping().put(TextureSlot.DIRT, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_SOIL.get())).put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_FARMLAND.get())), blockModels.modelOutput)))
+						.select(true, BlockModelGenerators.plainVariant(ModelTemplates.FARMLAND.create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), "_mossy"), new TextureMapping().put(TextureSlot.DIRT, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_SOIL.get())).put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), "_mossy")), blockModels.modelOutput)))));
 		blockItemModel(blockModels, NetherDescentBlocks.SYTHIAN_FARMLAND.get());
 
 		createCrossBlock(blockModels, itemModels, NetherDescentBlocks.SYTHIAN_SPROUTS.get(), "cutout");
@@ -361,12 +361,12 @@ public class ModelGenerator extends ModelProvider {
 								.with(Condition.condition().term(BlockStateProperties.AGE_1, 0), this.createSythianStalkModels(blockModels, 0))
 								.with(Condition.condition().term(BlockStateProperties.AGE_1, 1), this.createSythianStalkModels(blockModels, 1))
 								.with(
-										Condition.condition().term(BlockStateProperties.BAMBOO_LEAVES, BambooLeaves.SMALL),
-										Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("bamboo_small_leaves").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_STALK.get(), "_small_leaves"), new TextureMapping().putForced(TextureSlot.TEXTURE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "_small_leaves")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "_small_leaves")), blockModels.modelOutput))
+										BlockModelGenerators.condition().term(BlockStateProperties.BAMBOO_LEAVES, BambooLeaves.SMALL),
+										BlockModelGenerators.plainVariant(ModelTemplates.create("bamboo_small_leaves").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_STALK.get(), "_small_leaves"), new TextureMapping().putForced(TextureSlot.TEXTURE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "_small_leaves")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "_small_leaves")), blockModels.modelOutput))
 								)
 								.with(
-										Condition.condition().term(BlockStateProperties.BAMBOO_LEAVES, BambooLeaves.LARGE),
-										Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("bamboo_large_leaves").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_STALK.get(), "_large_leaves"), new TextureMapping().putForced(TextureSlot.TEXTURE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "_large_leaves")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "_large_leaves")), blockModels.modelOutput))
+										BlockModelGenerators.condition().term(BlockStateProperties.BAMBOO_LEAVES, BambooLeaves.LARGE),
+										BlockModelGenerators.plainVariant(ModelTemplates.create("bamboo_large_leaves").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_STALK.get(), "_large_leaves"), new TextureMapping().putForced(TextureSlot.TEXTURE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "_large_leaves")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get(), "_large_leaves")), blockModels.modelOutput))
 								)
 				);
 
@@ -389,13 +389,13 @@ public class ModelGenerator extends ModelProvider {
 		basicItem(itemModels, NetherDescentBlocks.SYTHIAN_STALK.getItem());
 
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get())
-				.with(PropertyDispatch.property(SythianScaffoldingBlock.BOTTOM)
-						.select(false, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("scaffolding_stable").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "_stable"), new TextureMapping()
+				.with(PropertyDispatch.initial(SythianScaffoldingBlock.BOTTOM)
+						.select(false, BlockModelGenerators.plainVariant(ModelTemplates.create("scaffolding_stable").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "_stable"), new TextureMapping()
 								.putForced(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "_bottom"))
 								.putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "_top"))
 								.putForced(TextureSlot.SIDE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "_side"))
 								.putForced(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "_top")), blockModels.modelOutput)))
-						.select(true, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("scaffolding_unstable").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "_unstable"), new TextureMapping()
+						.select(true, BlockModelGenerators.plainVariant(ModelTemplates.create("scaffolding_unstable").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "_unstable"), new TextureMapping()
 								.putForced(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "_bottom"))
 								.putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "_top"))
 								.putForced(TextureSlot.SIDE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), "_side"))
@@ -447,56 +447,56 @@ public class ModelGenerator extends ModelProvider {
 		blockModels.blockStateOutput
 				.accept(
 						MultiPartGenerator.multiPart(NetherDescentBlocks.PENDORITE_BARS.get())
-								.with(Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("iron_bars_post_ends").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_post_ends"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput)))
+								.with(BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_post_ends").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_post_ends"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput)))
 								.with(
-										Condition.condition()
+										BlockModelGenerators.condition()
 												.term(BlockStateProperties.NORTH, false)
 												.term(BlockStateProperties.EAST, false)
 												.term(BlockStateProperties.SOUTH, false)
 												.term(BlockStateProperties.WEST, false),
-										Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("iron_bars_post").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_post"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput))
+										BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_post").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_post"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput))
 								)
 								.with(
-										Condition.condition()
+										BlockModelGenerators.condition()
 												.term(BlockStateProperties.NORTH, true)
 												.term(BlockStateProperties.EAST, false)
 												.term(BlockStateProperties.SOUTH, false)
 												.term(BlockStateProperties.WEST, false),
-										Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("iron_bars_cap").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_cap"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput))
+										BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_cap").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_cap"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput))
 								)
 								.with(
-										Condition.condition()
+										BlockModelGenerators.condition()
 												.term(BlockStateProperties.NORTH, false)
 												.term(BlockStateProperties.EAST, true)
 												.term(BlockStateProperties.SOUTH, false)
 												.term(BlockStateProperties.WEST, false),
-										Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_cap")).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+										BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_cap")).with(BlockModelGenerators.Y_ROT_90)
 								)
 								.with(
-										Condition.condition()
+										BlockModelGenerators.condition()
 												.term(BlockStateProperties.NORTH, false)
 												.term(BlockStateProperties.EAST, false)
 												.term(BlockStateProperties.SOUTH, true)
 												.term(BlockStateProperties.WEST, false),
-										Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("iron_bars_cap_alt").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_cap_alt"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput))
+										BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_cap_alt").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_cap_alt"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput))
 								)
 								.with(
-										Condition.condition()
+										BlockModelGenerators.condition()
 												.term(BlockStateProperties.NORTH, false)
 												.term(BlockStateProperties.EAST, false)
 												.term(BlockStateProperties.SOUTH, false)
 												.term(BlockStateProperties.WEST, true),
-										Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_cap_alt")).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+										BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_cap_alt")).with(BlockModelGenerators.Y_ROT_90)
 								)
-								.with(Condition.condition().term(BlockStateProperties.NORTH, true), Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("iron_bars_side").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_side"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput)))
+								.with(BlockModelGenerators.condition().term(BlockStateProperties.NORTH, true), BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_side").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_side"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput)))
 								.with(
-										Condition.condition().term(BlockStateProperties.EAST, true),
-										Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_side")).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+										BlockModelGenerators.condition().term(BlockStateProperties.EAST, true),
+										BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_side")).with(BlockModelGenerators.Y_ROT_90)
 								)
-								.with(Condition.condition().term(BlockStateProperties.SOUTH, true), Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("iron_bars_side_alt").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_side_alt"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput)))
+								.with(BlockModelGenerators.condition().term(BlockStateProperties.SOUTH, true), BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_side_alt").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_side_alt"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput)))
 								.with(
-										Condition.condition().term(BlockStateProperties.WEST, true),
-										Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_side_alt")).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90)
+										BlockModelGenerators.condition().term(BlockStateProperties.WEST, true),
+										BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_side_alt")).with(BlockModelGenerators.Y_ROT_90)
 								)
 				);
 		layer0(itemModels, NetherDescentBlocks.PENDORITE_BARS.get());
@@ -508,12 +508,10 @@ public class ModelGenerator extends ModelProvider {
 //		itemModels.generateWolfArmor(NetherDescentItems.PENDORITE_WOLF_ARMOR.get());
 
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(NetherDescentBlocks.PENDORITE_CAMPFIRE.get())
-						.with(BlockModelGenerators.createHorizontalFacingDispatch())
-				.with(PropertyDispatch.property(CampfireBlock.LIT)
-						.select(true, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.CAMPFIRE.extend().renderType(mcLocation("cutout")).build()
-								.create(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), new TextureMapping().put(TextureSlot.FIRE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), "_fire")).put(TextureSlot.LIT_LOG, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), "_log_lit")), blockModels.modelOutput)))
-						.select(false, Variant.variant().with(VariantProperties.MODEL, ModelTemplates.create("campfire_off").extend().renderType(mcLocation("cutout")).build()
-								.create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), "_off"), new TextureMapping(), blockModels.modelOutput)))));
+						.with(BlockModelGenerators.createBooleanModelDispatch(BlockStateProperties.LIT,
+								BlockModelGenerators.plainVariant(ModelTemplates.CAMPFIRE.extend().renderType(mcLocation("cutout")).build().create(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), new TextureMapping().put(TextureSlot.FIRE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), "_fire")).put(TextureSlot.LIT_LOG, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), "_log_lit")), blockModels.modelOutput)),
+										BlockModelGenerators.plainVariant(ModelTemplates.create("campfire_off").extend().renderType(mcLocation("cutout")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), "_off"), new TextureMapping(), blockModels.modelOutput)))));
+		
 		basicItem(itemModels, NetherDescentBlocks.PENDORITE_CAMPFIRE.get().asItem());
 
 
