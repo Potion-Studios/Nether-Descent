@@ -9,8 +9,9 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -35,8 +36,8 @@ public class WailingBulbBlossomBlock extends Block {
 		if (!level.isClientSide()) {
             if (!state.getValue(ACTIVE) && entity instanceof LivingEntity livingEntity && !livingEntity.isSpectator()) {
                 Holder<Enchantment> soulSpeed = level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.SOUL_SPEED);
-                for (ItemStack itemStack : livingEntity.getArmorSlots())
-                    if (EnchantmentHelper.getItemEnchantmentLevel(soulSpeed, itemStack) == 0) {
+                for (EquipmentSlot equipmentSlot : EquipmentSlotGroup.ARMOR)
+                    if (EnchantmentHelper.getItemEnchantmentLevel(soulSpeed, livingEntity.getItemBySlot(equipmentSlot)) == 0) {
                         level.setBlock(pos, state.setValue(ACTIVE, true), 3);
                         livingEntity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 100, 0, false, false));
                         livingEntity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 160, 0, false, false));
