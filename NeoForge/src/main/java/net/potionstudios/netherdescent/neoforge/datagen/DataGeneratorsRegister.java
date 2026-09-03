@@ -1,15 +1,23 @@
 package net.potionstudios.netherdescent.neoforge.datagen;
 
+import com.mojang.datafixers.util.Pair;
+import dev.worldgen.lithostitched.api.registry.LithostitchedRegistries;
+import dev.worldgen.lithostitched.impl.worldgen.biomeinjector.AddPoints;
+import dev.worldgen.lithostitched.impl.worldgen.biomeinjector.region.Region;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Climate;
+import net.minecraft.world.level.dimension.LevelStem;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.potionstudios.netherdescent.compat.lithostitched.ConfigLoadPredicate;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentProcessorLists;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.*;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.loot.GlobalLootModifiersGenerator;
@@ -23,6 +31,8 @@ import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructures;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentTemplatePools;
 import net.potionstudios.netherdescent.neoforge.datagen.generators.EquipmentAssetProvider;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
@@ -49,6 +59,7 @@ class DataGeneratorsRegister {
         generator.addProvider(true, new ParticleDescriptionGenerator(output));
         generator.addProvider(true, new AdvancementGenerator(output, lookupProvider));
 		generator.addProvider(true, new EquipmentAssetProvider(output));
+	    generator.addProvider(true, new LithostitchedSurfaceRuleGenerator(output));
 	}
 
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
@@ -59,5 +70,38 @@ class DataGeneratorsRegister {
 		    .add(Registries.STRUCTURE, context -> NetherDescentStructures.STRUCTURE_FACTORIES.forEach((structureResourceKey, structureFactory) -> context.register(structureResourceKey, structureFactory.generate(context))))
 		    .add(Registries.STRUCTURE_SET, context -> NetherDescentStructureSets.STRUCTURE_SET_FACTORIES.forEach((structureSetResourceKey, structureSetFactory) -> context.register(structureSetResourceKey, structureSetFactory.generate(context.lookup(Registries.STRUCTURE)))))
 		    .add(Registries.PROCESSOR_LIST, pContext -> NetherDescentProcessorLists.STRUCTURE_PROCESSOR_LIST_FACTORIES.forEach((structureProcessorListResourceKey, processorListFactory) -> pContext.register(structureProcessorListResourceKey, processorListFactory.generate(pContext.lookup(Registries.PROCESSOR_LIST)))))
-		    .add(Registries.DAMAGE_TYPE, pContext -> NetherDescentDamageTypes.DAMAGE_TYPE_FACTORIES.forEach(((damageTypeResourceKey, damageTypeFactory) -> pContext.register(damageTypeResourceKey, damageTypeFactory.generate(pContext)))));
+		    .add(Registries.DAMAGE_TYPE, pContext -> NetherDescentDamageTypes.DAMAGE_TYPE_FACTORIES.forEach(((damageTypeResourceKey, damageTypeFactory) -> pContext.register(damageTypeResourceKey, damageTypeFactory.generate(pContext)))))
+		    .add(LithostitchedRegistries.BIOME_INJECTOR, pContext -> {
+			    HolderGetter<Biome> biomeLookup = pContext.lookup(Registries.BIOME);
+			    List<Pair<Climate.ParameterPoint, Holder<Biome>>> points = NetherDescentBiomes.BIOME_FACTORIES.entrySet().stream()
+					    .map(entry -> Pair.of(
+							    entry.getValue().parameterPoint(),
+							    (Holder<Biome>) biomeLookup.getOrThrow(entry.getKey())
+					    ))
+					    .toList();
+			    points.forEach(pair -> pContext.register(
+					    NetherDescent.key(LithostitchedRegistries.BIOME_INJECTOR, pair.getSecond().unwrapKey().get().identifier().getPath()),
+					    new AddPoints(
+							    Optional.of(new ConfigLoadPredicate(pair.getSecond().getKey())),
+							    LevelStem.NETHER,
+							    10,
+							    new Climate.ParameterList<>(List.of(pair))
+					    )
+			    ));
+		    })
+		    .add(LithostitchedRegistries.REGION, pContext -> {
+			    HolderGetter<Biome> biomeLookup = pContext.lookup(Registries.BIOME);
+			    List<Holder<Biome>> enabledBiomeHolders = NetherDescentBiomes.BIOME_FACTORIES.keySet().stream()
+					    .map(biomeLookup::getOrThrow)
+					    .map(holder -> (Holder<Biome>) holder)
+					    .toList();
+			    pContext.register(
+					    NetherDescent.key(LithostitchedRegistries.REGION, "nether_descent"),
+					    Region.create(
+							    LevelStem.NETHER,
+							    10,
+							    HolderSet.direct(enabledBiomeHolders)
+					    )
+			    );
+		    });
 }

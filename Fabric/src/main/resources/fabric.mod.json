@@ -37,7 +37,8 @@
   },
   "recommends": {
     "terrablender": ">=21.11.0.0",
-    "biolith": ">=3.5.3"
+    "biolith": ">=3.5.3",
+    "lithostitched": ">=1.7.2"
   },
   "suggests": {
     "WTHIT": "*",
