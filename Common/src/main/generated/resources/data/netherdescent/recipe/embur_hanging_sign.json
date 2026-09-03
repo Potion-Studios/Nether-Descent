@@ -4,7 +4,7 @@
   "group": "hanging_sign",
   "key": {
     "#": "netherdescent:stripped_embur_pedu",
-    "X": "minecraft:chain"
+    "X": "minecraft:iron_chain"
   },
   "pattern": [
     "X X",

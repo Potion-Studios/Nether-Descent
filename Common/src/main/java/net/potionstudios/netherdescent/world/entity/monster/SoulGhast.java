@@ -27,7 +27,7 @@ public class SoulGhast extends Ghast {
     }
 
 	public static AttributeSupplier.@NotNull Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 14.0F).add(Attributes.FOLLOW_RANGE, 100.0F);
+        return Ghast.createAttributes().add(Attributes.MAX_HEALTH, 14.0F);
     }
 
     public static boolean checkSoulGhastSpawnRules(EntityType<SoulGhast> ghast, LevelAccessor level, EntitySpawnReason spawnType, BlockPos pos, RandomSource random) {

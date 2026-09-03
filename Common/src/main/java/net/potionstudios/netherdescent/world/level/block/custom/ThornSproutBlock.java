@@ -29,6 +29,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 
@@ -222,8 +223,8 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	protected void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean movedByPiston) {
-		if (!movedByPiston && !state.is(newState.getBlock())) {
+	protected void affectNeighborsAfterRemoval(@NonNull BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, boolean movedByPiston) {
+		if (!movedByPiston && !state.is(state.getBlock())) {
 			if (state.getValue(SEGMENT) != SegmentType.END) {
 				Direction facing = state.getValue(FACING);
 				BlockPos nextPos = pos.relative(facing);
@@ -245,7 +246,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 				}
 			}
 		}
-		super.onRemove(state, level, pos, newState, movedByPiston);
+		super.affectNeighborsAfterRemoval(state, level, pos, movedByPiston);
 	}
 
 	@Override

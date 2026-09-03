@@ -114,12 +114,12 @@ public class TagsGenerator {
 			tag(BlockTags.SOUL_SPEED_BLOCKS).add(NetherDescentBlocks.WAILING_NYLIUM.get());
 			tag(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(NetherDescentBlocks.WAILING_NYLIUM.get());
 
-			IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> intrinsicTagAppender = this.tag(BlockTags.REPLACEABLE);
-			provider.lookupOrThrow(Registries.BLOCK)
-					.filterElements(block -> block.defaultBlockState().canBeReplaced())
-					.filterElements(block -> block.getDescriptionId().contains(NetherDescent.MOD_ID))
-					.listElementIds()
-					.forEach(intrinsicTagAppender::add);
+//			IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> intrinsicTagAppender = this.tag(BlockTags.REPLACEABLE);
+//			provider.lookupOrThrow(Registries.BLOCK)
+//					.filterElements(block -> block.defaultBlockState().canBeReplaced())
+//					.filterElements(block -> block.getDescriptionId().contains(NetherDescent.MOD_ID))
+//					.listElementIds()
+//					.forEach(intrinsicTagAppender::add);
 		}
 
 		private void easyBlockTags(Block object) {

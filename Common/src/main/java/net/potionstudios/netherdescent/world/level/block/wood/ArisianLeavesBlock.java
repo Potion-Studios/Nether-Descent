@@ -3,13 +3,12 @@ package net.potionstudios.netherdescent.world.level.block.wood;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.UntintedParticleLeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -21,23 +20,12 @@ import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ArisianLeavesBlock extends LeavesBlock {
+public class ArisianLeavesBlock extends UntintedParticleLeavesBlock {
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	public static final IntegerProperty STRENGTH = IntegerProperty.create("strength", 0, 5);
 	public ArisianLeavesBlock(Properties properties) {
-		super(properties);
+		super(0.01F, NetherDescentParticles.ARISIAN_LEAF.get(), properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false).setValue(STRENGTH, 0));
-	}
-
-	@Override
-	public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-		super.animateTick(state, level, pos, random);
-		if (random.nextInt(10) == 0) {
-			BlockPos blockPos = pos.below();
-			BlockState blockState = level.getBlockState(blockPos);
-			if (!isFaceFull(blockState.getCollisionShape(level, blockPos), Direction.UP))
-				ParticleUtils.spawnParticleBelow(level, pos, random, NetherDescentParticles.ARISIAN_LEAF.get());
-		}
 	}
 
 	@Override

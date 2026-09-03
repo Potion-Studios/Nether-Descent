@@ -14,12 +14,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.level.block.entity.HornetNestBlockEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 import java.util.EnumSet;
 
@@ -62,7 +65,7 @@ public class Hornet extends Bee {
 
     public void setHivePos(BlockPos pos) {
         this.nestPos = pos.immutable();
-        this.restrictTo(this.nestPos, MAX_DISTANCE_FROM_NEST);
+        this.setHomeTo(this.nestPos, MAX_DISTANCE_FROM_NEST);
     }
 
     @Nullable
@@ -76,7 +79,7 @@ public class Hornet extends Bee {
 
     public void clearHornetNest() {
         this.nestPos = null;
-        this.clearRestriction();
+        this.clearHome();
     }
 
     @Override
@@ -148,22 +151,15 @@ public class Hornet extends Bee {
     }
 
     @Override
-    public void addAdditionalSaveData(net.minecraft.nbt.@NotNull CompoundTag tag) {
-        super.addAdditionalSaveData(tag);
-        if (this.nestPos != null) {
-            tag.putLong(NBT_NEST_POS, this.nestPos.asLong());
-        }
+    protected void addAdditionalSaveData(@NonNull ValueOutput output) {
+        super.addAdditionalSaveData(output);
+        output.storeNullable(NBT_NEST_POS, BlockPos.CODEC, this.nestPos);
     }
 
     @Override
-    public void readAdditionalSaveData(net.minecraft.nbt.@NotNull CompoundTag tag) {
-        super.readAdditionalSaveData(tag);
-        if (tag.contains(NBT_NEST_POS)) {
-            this.nestPos = BlockPos.of(tag.getLong(NBT_NEST_POS));
-            if (this.nestPos != null) {
-                this.restrictTo(this.nestPos, MAX_DISTANCE_FROM_NEST);
-            }
-        }
+    protected void readAdditionalSaveData(@NonNull ValueInput input) {
+        super.readAdditionalSaveData(input);
+        this.nestPos = input.read(NBT_NEST_POS, BlockPos.CODEC).orElse(null);
     }
 
     private boolean shouldSleepNow() {
@@ -173,7 +169,7 @@ public class Hornet extends Bee {
 
     private boolean shouldDepositNectarNow() {
         if (!this.hasNectar() || this.nestPos == null) return false;
-        return this.level().isDay() || this.shouldSleepNow();
+        return this.level().isBrightOutside() || this.shouldSleepNow();
     }
 
     private boolean isTooFarFromNest() {

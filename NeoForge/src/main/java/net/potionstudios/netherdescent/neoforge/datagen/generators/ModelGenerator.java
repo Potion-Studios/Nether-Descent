@@ -33,10 +33,8 @@ import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockS
 import net.potionstudios.netherdescent.world.level.block.wood.ArisianLeavesBlock;
 import net.potionstudios.netherdescent.world.level.block.wood.HangingFungusBlock;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
-import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -195,14 +193,14 @@ public class ModelGenerator extends ModelProvider {
 		//Arisian
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(NetherDescentBlocks.ARISIAN_LEAVES.get())
 				.with(PropertyDispatch.initial(ArisianLeavesBlock.LIT)
-						.select(true, BlockModelGenerators.plainVariant(ModelTemplates.LEAVES.extend().renderType(mcLocation("cutout_mipped")).build().createWithSuffix(NetherDescentBlocks.ARISIAN_LEAVES.get(), "_lit", new TextureMapping().put(TextureSlot.ALL, NetherDescent.id("block/arisian/leaves_lit")), blockModels.modelOutput)))
-						.select(false, BlockModelGenerators.plainVariant(ModelTemplates.LEAVES.extend().renderType(mcLocation("cutout_mipped")).build().create(NetherDescentBlocks.ARISIAN_LEAVES.get(), new TextureMapping().put(TextureSlot.ALL, NetherDescent.id("block/arisian/leaves")), blockModels.modelOutput)))));
+						.select(true, BlockModelGenerators.plainVariant(ModelTemplates.LEAVES.extend().renderType(mcLocation("cutout")).build().createWithSuffix(NetherDescentBlocks.ARISIAN_LEAVES.get(), "_lit", new TextureMapping().put(TextureSlot.ALL, NetherDescent.id("block/arisian/leaves_lit")), blockModels.modelOutput)))
+						.select(false, BlockModelGenerators.plainVariant(ModelTemplates.LEAVES.extend().renderType(mcLocation("cutout")).build().create(NetherDescentBlocks.ARISIAN_LEAVES.get(), new TextureMapping().put(TextureSlot.ALL, NetherDescent.id("block/arisian/leaves")), blockModels.modelOutput)))));
 		blockItemModel(blockModels, NetherDescentBlocks.ARISIAN_LEAVES.get());
 
 		blockModels.blockStateOutput
 				.accept(
 						MultiVariantGenerator.dispatch(NetherDescentBlocks.ARISIAN_BRANCH.get(),
-								BlockModelGenerators.plainVariant(ModelTemplates.CORAL_WALL_FAN.extend().renderType(mcLocation("cutout_mipped")).build().create(NetherDescentBlocks.ARISIAN_BRANCH.get(), TextureMapping.fan(NetherDescentBlocks.ARISIAN_BRANCH.get()), blockModels.modelOutput)))
+								BlockModelGenerators.plainVariant(ModelTemplates.CORAL_WALL_FAN.extend().renderType(mcLocation("cutout")).build().create(NetherDescentBlocks.ARISIAN_BRANCH.get(), TextureMapping.fan(NetherDescentBlocks.ARISIAN_BRANCH.get()), blockModels.modelOutput)))
 								.with(BlockModelGenerators.ROTATION_HORIZONTAL_FACING)
 				);
 		layer0(itemModels, NetherDescentBlocks.ARISIAN_BRANCH.get());
@@ -212,20 +210,20 @@ public class ModelGenerator extends ModelProvider {
 		blockModels.registerSimpleItemModel(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get(), ModelTemplates.CUBE_ALL.create(TextureMapping.getBlockTexture(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get(), "_item"), new TextureMapping().put(TextureSlot.ALL, TextureMapping.getBlockTexture(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get())), blockModels.modelOutput));
 		createHeadBlock(blockModels, itemModels, NetherDescentBlocks.ARISIAN_TANGLE_ROOTS.get(), NetherDescentBlocks.ARISIAN_TANGLE_ROOTS_PLANT.get());
 
-		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(NetherDescentBlocks.ARISIAN_DANDELIONS.get())
-				.with(PropertyDispatch.property(HangingNDBushBlock.HANGING)
-						.select(false, Stream.of(
-										BlockModelGenerators.createRotatedVariants(ModelLocationUtils.getModelLocation(NetherDescentBlocks.ARISIAN_DANDELIONS.get())),
-										BlockModelGenerators.createRotatedVariants(ModelLocationUtils.getModelLocation(NetherDescentBlocks.ARISIAN_DANDELIONS.get(), "2"))
-								)
-								.flatMap(Arrays::stream)
-								.toList())
-						.select(true, Stream.of(
-										createHangingRotatedVariants(ModelLocationUtils.getModelLocation(NetherDescentBlocks.ARISIAN_DANDELIONS.get())),
-										createHangingRotatedVariants(ModelLocationUtils.getModelLocation(NetherDescentBlocks.ARISIAN_DANDELIONS.get(), "2"))
-								)
-								.flatMap(Arrays::stream)
-								.toList())));
+//		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(NetherDescentBlocks.ARISIAN_DANDELIONS.get())
+//				.with(PropertyDispatch.property(HangingNDBushBlock.HANGING)
+//						.select(false, Stream.of(
+//										BlockModelGenerators.createRotatedVariants(ModelLocationUtils.getModelLocation(NetherDescentBlocks.ARISIAN_DANDELIONS.get())),
+//										BlockModelGenerators.createRotatedVariants(ModelLocationUtils.getModelLocation(NetherDescentBlocks.ARISIAN_DANDELIONS.get(), "2"))
+//								)
+//								.flatMap(Arrays::stream)
+//								.toList())
+//						.select(true, Stream.of(
+//										createHangingRotatedVariants(ModelLocationUtils.getModelLocation(NetherDescentBlocks.ARISIAN_DANDELIONS.get())),
+//										createHangingRotatedVariants(ModelLocationUtils.getModelLocation(NetherDescentBlocks.ARISIAN_DANDELIONS.get(), "2"))
+//								)
+//								.flatMap(Arrays::stream)
+//								.toList())));
 		createHangingCrossBlock(blockModels, itemModels, NetherDescentBlocks.ARISIAN_SPROUTS.get());
 
 		basicItem(itemModels, NetherDescentBlocks.ARISIAN_DANDELIONS.get().asItem());
@@ -273,7 +271,7 @@ public class ModelGenerator extends ModelProvider {
 		//Embur
 		createHeadBlock(blockModels, itemModels, NetherDescentBlocks.EMBUR_GEL_VINES.get(), NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get());
 		createCrossBlock(blockModels, itemModels, NetherDescentBlocks.EMBUR_SPROUTS.get(), "cutout");
-		createCrossBlock(blockModels, itemModels, NetherDescentBlocks.EMBUR_ROOTS.get(), "cutout_mipped");
+		createCrossBlock(blockModels, itemModels, NetherDescentBlocks.EMBUR_ROOTS.get(), "cutout");
 
 		ModelTemplates.create("glow_lichen").extend().renderType(mcLocation("cutout")).build()
 				.create(NetherDescentBlocks.EMBUR_CAVE_MOSS.get(), new TextureMapping().putForced(TextureSlot.create("glow_lichen"), TextureMapping.getBlockTexture(NetherDescentBlocks.EMBUR_CAVE_MOSS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.EMBUR_CAVE_MOSS.get())), blockModels.modelOutput);
@@ -302,13 +300,13 @@ public class ModelGenerator extends ModelProvider {
 				BlockModelGenerators.plainVariant(ModelTemplates.CROSS.extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_EMBUR_ROOTS.get(), "_bottom"), new TextureMapping().put(TextureSlot.CROSS, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_EMBUR_ROOTS.get(), "_bottom")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_EMBUR_ROOTS.get(), "_bottom")), blockModels.modelOutput)));
 		layer0(itemModels, NetherDescentBlocks.TALL_EMBUR_ROOTS.get(), TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_EMBUR_ROOTS.get(), "_top"));
 
-		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(
-				NetherDescentBlocks.EMBUR_LILY.get(),
-				ArrayUtils.addAll(
-						BlockModelGenerators.createRotatedVariants(ModelLocationUtils.getModelLocation(NetherDescentBlocks.EMBUR_LILY.get())),
-						BlockModelGenerators.createRotatedVariants(ModelLocationUtils.getModelLocation(NetherDescentBlocks.EMBUR_LILY.get(), "2"))
-				)
-		));
+//		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(
+//				NetherDescentBlocks.EMBUR_LILY.get(),
+//				ArrayUtils.addAll(
+//						BlockModelGenerators.createRotatedVariants(ModelLocationUtils.getModelLocation(NetherDescentBlocks.EMBUR_LILY.get())),
+//						BlockModelGenerators.createRotatedVariants(ModelLocationUtils.getModelLocation(NetherDescentBlocks.EMBUR_LILY.get(), "2"))
+//				)
+//		));
 
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get())
 				.with(PropertyDispatch.initial(WailingBulbBlossomBlock.ACTIVE)
@@ -334,8 +332,8 @@ public class ModelGenerator extends ModelProvider {
 
 		createCrossBlock(blockModels, itemModels, NetherDescentBlocks.SYTHIAN_SPROUTS.get(), "cutout");
 
-		Identifier sythianRoots = ModelTemplates.CROSS.extend().renderType(mcLocation("cutout_mipped")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_ROOTS.get()), TextureMapping.cross(NetherDescentBlocks.SYTHIAN_ROOTS.get()), blockModels.modelOutput);
-		Identifier sythainRootsWall = ModelTemplates.CORAL_WALL_FAN.extend().renderType(mcLocation("cutout_mipped")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "_wall"), TextureMapping.fan(NetherDescentBlocks.SYTHIAN_ROOTS.get()), blockModels.modelOutput);
+		Identifier sythianRoots = ModelTemplates.CROSS.extend().renderType(mcLocation("cutout")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_ROOTS.get()), TextureMapping.cross(NetherDescentBlocks.SYTHIAN_ROOTS.get()), blockModels.modelOutput);
+		Identifier sythainRootsWall = ModelTemplates.CORAL_WALL_FAN.extend().renderType(mcLocation("cutout")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_ROOTS.get(), "_wall"), TextureMapping.fan(NetherDescentBlocks.SYTHIAN_ROOTS.get()), blockModels.modelOutput);
 
 		blockModels.blockStateOutput
 				.accept(
@@ -401,11 +399,11 @@ public class ModelGenerator extends ModelProvider {
 
 		//Wailing
 		createHeadBlock(blockModels, itemModels, NetherDescentBlocks.WAILING_VINES.get(), NetherDescentBlocks.WAILING_VINES_PLANT.get());
-		blockModels.blockStateOutput.accept(
-				MultiVariantGenerator.dispatch(NetherDescentBlocks.WAILING_GRASS.get(),
-						Variant.variant().with(
-								VariantProperties.MODEL, ModelTemplates.CROSS.extend().renderType(mcLocation("cutout_mipped")).build().create(NetherDescentBlocks.WAILING_GRASS.get(), TextureMapping.cross(NetherDescentBlocks.WAILING_GRASS.get()), blockModels.modelOutput)),
-						Variant.variant().with(VariantProperties.MODEL, ModelTemplates.CORAL_FAN.extend().renderType(mcLocation("cutout_mipped")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.WAILING_GRASS.get(), "1"), TextureMapping.fan(NetherDescentBlocks.WAILING_GRASS.get()), blockModels.modelOutput))));
+//		blockModels.blockStateOutput.accept(
+//				MultiVariantGenerator.dispatch(NetherDescentBlocks.WAILING_GRASS.get(),
+//						Variant.variant().with(
+//								VariantProperties.MODEL, ModelTemplates.CROSS.extend().renderType(mcLocation("cutout")).build().create(NetherDescentBlocks.WAILING_GRASS.get(), TextureMapping.cross(NetherDescentBlocks.WAILING_GRASS.get()), blockModels.modelOutput)),
+//						Variant.variant().with(VariantProperties.MODEL, ModelTemplates.CORAL_FAN.extend().renderType(mcLocation("cutout")).build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.WAILING_GRASS.get(), "1"), TextureMapping.fan(NetherDescentBlocks.WAILING_GRASS.get()), blockModels.modelOutput))));
 		layer0(itemModels, NetherDescentBlocks.WAILING_GRASS.get());
 
 		//Pendorite
@@ -437,21 +435,23 @@ public class ModelGenerator extends ModelProvider {
 						.select(false, BlockModelGenerators.plainVariant(ModelTemplates.HANGING_LANTERN.extend().renderType(mcLocation("cutout")).build().create(NetherDescentBlocks.PENDORITE_LANTERN.get(), new TextureMapping().put(TextureSlot.LANTERN, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_LANTERN.get())), blockModels.modelOutput)))));
 		basicItem(itemModels, NetherDescentBlocks.PENDORITE_LANTERN.get().asItem());
 
-		Identifier chain = ModelTemplates.create("chain").extend().renderType(mcLocation("cutout_mipped")).build().create(NetherDescentBlocks.PENDORITE_CHAIN.get(), new TextureMapping().putForced(TextureSlot.ALL, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_CHAIN.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_CHAIN.get())), blockModels.modelOutput);
-		blockModels.createAxisAlignedPillarBlockCustomModel(NetherDescentBlocks.PENDORITE_CHAIN.get(), chain);
+		Identifier chain = ModelTemplates.create("chain").extend().renderType(mcLocation("cutout")).build().create(NetherDescentBlocks.PENDORITE_CHAIN.get(), new TextureMapping().putForced(TextureSlot.ALL, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_CHAIN.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_CHAIN.get())), blockModels.modelOutput);
+		blockModels.createAxisAlignedPillarBlockCustomModel(NetherDescentBlocks.PENDORITE_CHAIN.get(), BlockModelGenerators.plainVariant(chain));
 		basicItem(itemModels, NetherDescentBlocks.PENDORITE_CHAIN.get().asItem());
+
+		itemModels.generateTwoLayerDyedItem(NetherDescentItems.PENDORITE_WOLF_ARMOR.get());
 
 		blockModels.blockStateOutput
 				.accept(
 						MultiPartGenerator.multiPart(NetherDescentBlocks.PENDORITE_BARS.get())
-								.with(BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_post_ends").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_post_ends"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput)))
+								.with(BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_post_ends").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_post_ends"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput)))
 								.with(
 										BlockModelGenerators.condition()
 												.term(BlockStateProperties.NORTH, false)
 												.term(BlockStateProperties.EAST, false)
 												.term(BlockStateProperties.SOUTH, false)
 												.term(BlockStateProperties.WEST, false),
-										BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_post").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_post"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput))
+										BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_post").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_post"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput))
 								)
 								.with(
 										BlockModelGenerators.condition()
@@ -459,7 +459,7 @@ public class ModelGenerator extends ModelProvider {
 												.term(BlockStateProperties.EAST, false)
 												.term(BlockStateProperties.SOUTH, false)
 												.term(BlockStateProperties.WEST, false),
-										BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_cap").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_cap"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput))
+										BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_cap").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_cap"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput))
 								)
 								.with(
 										BlockModelGenerators.condition()
@@ -475,7 +475,7 @@ public class ModelGenerator extends ModelProvider {
 												.term(BlockStateProperties.EAST, false)
 												.term(BlockStateProperties.SOUTH, true)
 												.term(BlockStateProperties.WEST, false),
-										BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_cap_alt").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_cap_alt"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput))
+										BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_cap_alt").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_cap_alt"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput))
 								)
 								.with(
 										BlockModelGenerators.condition()
@@ -485,12 +485,12 @@ public class ModelGenerator extends ModelProvider {
 												.term(BlockStateProperties.WEST, true),
 										BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_cap_alt")).with(BlockModelGenerators.Y_ROT_90)
 								)
-								.with(BlockModelGenerators.condition().term(BlockStateProperties.NORTH, true), BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_side").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_side"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput)))
+								.with(BlockModelGenerators.condition().term(BlockStateProperties.NORTH, true), BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_side").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_side"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput)))
 								.with(
 										BlockModelGenerators.condition().term(BlockStateProperties.EAST, true),
 										BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_side")).with(BlockModelGenerators.Y_ROT_90)
 								)
-								.with(BlockModelGenerators.condition().term(BlockStateProperties.SOUTH, true), BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_side_alt").extend().renderType("cutout_mipped").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_side_alt"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput)))
+								.with(BlockModelGenerators.condition().term(BlockStateProperties.SOUTH, true), BlockModelGenerators.plainVariant(ModelTemplates.create("iron_bars_side_alt").extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_side_alt"), new TextureMapping().putForced(TextureSlot.EDGE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())).putForced(TextureSlot.create("bars"), TextureMapping.getBlockTexture(NetherDescentBlocks.PENDORITE_BARS.get())), blockModels.modelOutput)))
 								.with(
 										BlockModelGenerators.condition().term(BlockStateProperties.WEST, true),
 										BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(NetherDescentBlocks.PENDORITE_BARS.get(), "_side_alt")).with(BlockModelGenerators.Y_ROT_90)
@@ -513,9 +513,9 @@ public class ModelGenerator extends ModelProvider {
 
 
 		//Crimson
-		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(NetherDescentBlocks.CRIMSON_CARPET.get(),
-				Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(NetherDescentBlocks.CRIMSON_CARPET.get())),
-				Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(NetherDescentBlocks.CRIMSON_CARPET.get(), "2"))));
+//		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(NetherDescentBlocks.CRIMSON_CARPET.get(),
+//				Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(NetherDescentBlocks.CRIMSON_CARPET.get())),
+//				Variant.variant().with(VariantProperties.MODEL, ModelLocationUtils.getModelLocation(NetherDescentBlocks.CRIMSON_CARPET.get(), "2"))));
 		blockItemModel(blockModels, NetherDescentBlocks.CRIMSON_CARPET.get());
 		blockModels.createDoubleBlock(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(),
 				BlockModelGenerators.plainVariant(ModelTemplates.CROSS.extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_top"), new TextureMapping().put(TextureSlot.CROSS, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_top")).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.TALL_CRIMSON_ROOTS.get(), "_top")), blockModels.modelOutput)),
@@ -575,8 +575,8 @@ public class ModelGenerator extends ModelProvider {
 		Identifier model = ModelTemplates.CROSS.extend().renderType(mcLocation("cutout")).build().create(block, TextureMapping.cross(block), blockModels.modelOutput);
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).
 				with(BlockModelGenerators.createBooleanModelDispatch(HangingNDBushBlock.HANGING,
-					BlockModelGenerators.plainVariant(model),
-					BlockModelGenerators.plainVariant(model).with(BlockModelGenerators.X_ROT_180))));
+					BlockModelGenerators.plainVariant(model).with(BlockModelGenerators.X_ROT_180),
+					BlockModelGenerators.plainVariant(model))));
 		layer0(itemModels, block);
 	}
 
@@ -624,12 +624,12 @@ public class ModelGenerator extends ModelProvider {
 	}
 	protected MultiVariant createSythianStalkModels(BlockModelGenerators blockModels, int age) {
 		String s = "_age" + age;
-		return new MultiVariant(WeightedList.of((List)IntStream.range(1, 5).mapToObj((i) -> new Weighted(BlockModelGenerators.plainModel(ModelTemplates.create("bamboo" + i + string).extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_STALK.get(), i + age), new TextureMapping().putForced(TextureSlot.ALL, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get())), blockModels.modelOutput)), 1)).collect(Collectors.toList())));
+		return new MultiVariant(WeightedList.of((List)IntStream.range(1, 5).mapToObj((i) -> new Weighted(BlockModelGenerators.plainModel(ModelTemplates.create("bamboo" + i + s).extend().renderType("cutout").build().create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_STALK.get(), i + s), new TextureMapping().putForced(TextureSlot.ALL, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get())).putForced(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_STALK.get())), blockModels.modelOutput)), 1)).collect(Collectors.toList())));
 	}
 
-	public static Variant[] createHangingRotatedVariants(Identifier modelLocation) {
-		return new Variant[]{Variant.variant().with(VariantProperties.MODEL, modelLocation), Variant.variant().with(VariantProperties.MODEL, modelLocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, modelLocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, modelLocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180)};
-	}
+//	public static Variant[] createHangingRotatedVariants(Identifier modelLocation) {
+//		return new Variant[]{Variant.variant().with(VariantProperties.MODEL, modelLocation), Variant.variant().with(VariantProperties.MODEL, modelLocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R90).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, modelLocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R180).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180), Variant.variant().with(VariantProperties.MODEL, modelLocation).with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270).with(VariantProperties.X_ROT, VariantProperties.Rotation.R180)};
+//	}
 
 	private void blockItemModel(BlockModelGenerators blockModels, Block block) {
 		blockModels.registerSimpleItemModel(block, ModelLocationUtils.getModelLocation(block));

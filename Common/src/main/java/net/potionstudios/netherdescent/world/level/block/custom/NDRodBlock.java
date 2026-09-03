@@ -76,7 +76,7 @@ public class NDRodBlock extends EndRodBlock {
         for (int i = 0; i < patternMatch.getWidth(); i++) {
             for (int j = 0; j < patternMatch.getHeight(); j++) {
                 BlockInWorld blockInWorld = patternMatch.getBlock(i, j, 0);
-                level.blockUpdated(blockInWorld.getPos(), Blocks.AIR);
+                level.updateNeighborsAt(blockInWorld.getPos(), Blocks.AIR);
             }
         }
     }

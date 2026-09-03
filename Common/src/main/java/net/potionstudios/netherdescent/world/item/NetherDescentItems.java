@@ -42,8 +42,8 @@ public class NetherDescentItems {
     public static final Supplier<Item> PENDORITE_INGOT = registerSimpleItem("pendorite_ingot", Item::new, new Item.Properties());
     public static final Supplier<Item> PENDORITE_NUGGET = registerSimpleItem("pendorite_nugget", Item::new, new Item.Properties());
     public static final Supplier<StandingAndWallBlockItem> PENDORITE_TORCH = registerItemNoLang("pendorite_torch", (properties) -> new StandingAndWallBlockItem(NetherDescentBlocks.PENDORITE_TORCH.get(), NetherDescentBlocks.PENDORITE_WALL_TORCH.get(), Direction.DOWN, properties), new Item.Properties().useBlockDescriptionPrefix());
-    public static final Supplier<Item> PENDORITE_HORSE_ARMOR = registerSimpleItem("pendorite_horse_armor", Item::new, new Item.Properties().horseArmor(NetherDescentArmorMaterials.PENDORITE));
-    public static final Supplier<Item> PENDORITE_WOLF_ARMOR = registerItem("pendorite_wolf_armor", Item::new, new Item.Properties().wolfArmor(NetherDescentArmorMaterials.PENDORITE));
+    public static final Supplier<Item> PENDORITE_HORSE_ARMOR = registerSimpleItem("pendorite_horse_armor", (properties) -> new Item(properties.horseArmor(NetherDescentArmorMaterials.PENDORITE)), new Item.Properties());
+    public static final Supplier<Item> PENDORITE_WOLF_ARMOR = registerItem("pendorite_wolf_armor", (properties) -> new Item(properties.wolfArmor(NetherDescentArmorMaterials.PENDORITE)), new Item.Properties());
 
     public static final Supplier<Item> SOUL_BLAZE_ROD = registerSimpleItem("soul_blaze_rod", Item::new, new Item.Properties());
     public static final Supplier<Item> SOUL_BLAZE_POWDER = registerSimpleItem("soul_blaze_powder", Item::new, new Item.Properties());

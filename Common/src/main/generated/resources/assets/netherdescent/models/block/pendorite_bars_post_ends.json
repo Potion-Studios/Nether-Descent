@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/iron_bars_post_ends",
-  "render_type": "minecraft:cutout_mipped",
+  "render_type": "minecraft:cutout",
   "textures": {
     "edge": "netherdescent:block/pendorite_bars",
     "particle": "netherdescent:block/pendorite_bars"

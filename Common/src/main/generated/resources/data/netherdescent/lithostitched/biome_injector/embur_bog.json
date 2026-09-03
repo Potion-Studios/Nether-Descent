@@ -1,0 +1,23 @@
+{
+  "type": "lithostitched:add_points",
+  "dimension": "minecraft:the_nether",
+  "points": [
+    {
+      "biome": "netherdescent:embur_bog",
+      "parameters": {
+        "continentalness": 0.0,
+        "depth": 0.0,
+        "erosion": 0.0,
+        "humidity": 0.0,
+        "offset": 0.0,
+        "temperature": 0.5,
+        "weirdness": 0.0
+      }
+    }
+  ],
+  "predicate": {
+    "type": "netherdescent:config",
+    "biome": "netherdescent:embur_bog"
+  },
+  "priority": 10
+}

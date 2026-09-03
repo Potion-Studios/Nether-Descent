@@ -99,7 +99,7 @@ class BlockLootGenerator extends BlockLootSubProvider {
                                     .setRolls(ConstantValue.exactly(1))
                                     .add(
                                             LootItem.lootTableItem(block)
-                                                    .apply(CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY).include(NetherDescentDataComponents.HORNETS.get()).include(NetherDescentDataComponents.HORNETS.get()))
+                                                    .apply(CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY).include(NetherDescentDataComponents.HORNETS.get()))
                                     )
                     ));
         add(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), createMossyCarpetBlockDrops(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()));

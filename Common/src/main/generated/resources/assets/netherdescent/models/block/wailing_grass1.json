@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/coral_fan",
-  "render_type": "minecraft:cutout_mipped",
-  "textures": {
-    "fan": "netherdescent:block/wailing_grass"
-  }
-}

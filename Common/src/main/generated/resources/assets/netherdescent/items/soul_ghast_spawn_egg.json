@@ -1,16 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "minecraft:item/template_spawn_egg",
-    "tints": [
-      {
-        "type": "minecraft:constant",
-        "value": -16165290
-      },
-      {
-        "type": "minecraft:constant",
-        "value": -13459039
-      }
-    ]
+    "model": "netherdescent:item/soul_ghast_spawn_egg"
   }
 }
