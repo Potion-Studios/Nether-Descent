@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "netherdescent:block/crimson_carpet"
+      },
+      {
+        "model": "netherdescent:block/crimson_carpet2"
+      }
+    ]
+  }
+}

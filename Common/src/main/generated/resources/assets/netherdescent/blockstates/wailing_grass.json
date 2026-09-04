@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "netherdescent:block/wailing_grass"
+      },
+      {
+        "model": "netherdescent:block/wailing_grass1"
+      }
+    ]
+  }
+}
