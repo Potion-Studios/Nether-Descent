@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.neoforge.datagen.generators;
 
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
@@ -114,12 +115,11 @@ public class TagsGenerator {
 			tag(BlockTags.SOUL_SPEED_BLOCKS).add(NetherDescentBlocks.WAILING_NYLIUM.get());
 			tag(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(NetherDescentBlocks.WAILING_NYLIUM.get());
 
-//			IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> intrinsicTagAppender = this.tag(BlockTags.REPLACEABLE);
-//			provider.lookupOrThrow(Registries.BLOCK)
-//					.filterElements(block -> block.defaultBlockState().canBeReplaced())
-//					.filterElements(block -> block.getDescriptionId().contains(NetherDescent.MOD_ID))
-//					.listElementIds()
-//					.forEach(intrinsicTagAppender::add);
+			tag(BlockTags.REPLACEABLE)
+					.addAll(provider.lookupOrThrow(Registries.BLOCK)
+							.listElements().map(Holder.Reference::value)
+							.filter(block -> block.defaultBlockState().canBeReplaced())
+							.filter(block -> block.getDescriptionId().contains(NetherDescent.MOD_ID)));
 		}
 
 		private void easyBlockTags(Block object) {
