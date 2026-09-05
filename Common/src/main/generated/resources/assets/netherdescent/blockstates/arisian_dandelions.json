@@ -2,46 +2,6 @@
   "variants": {
     "hanging=false": [
       {
-        "model": "netherdescent:block/arisian_dandelions",
-        "x": 180
-      },
-      {
-        "model": "netherdescent:block/arisian_dandelions",
-        "x": 180,
-        "y": 90
-      },
-      {
-        "model": "netherdescent:block/arisian_dandelions",
-        "x": 180,
-        "y": 180
-      },
-      {
-        "model": "netherdescent:block/arisian_dandelions",
-        "x": 180,
-        "y": 270
-      },
-      {
-        "model": "netherdescent:block/arisian_dandelions2",
-        "x": 180
-      },
-      {
-        "model": "netherdescent:block/arisian_dandelions2",
-        "x": 180,
-        "y": 90
-      },
-      {
-        "model": "netherdescent:block/arisian_dandelions2",
-        "x": 180,
-        "y": 180
-      },
-      {
-        "model": "netherdescent:block/arisian_dandelions2",
-        "x": 180,
-        "y": 270
-      }
-    ],
-    "hanging=true": [
-      {
         "model": "netherdescent:block/arisian_dandelions"
       },
       {
@@ -69,6 +29,46 @@
       },
       {
         "model": "netherdescent:block/arisian_dandelions2",
+        "y": 270
+      }
+    ],
+    "hanging=true": [
+      {
+        "model": "netherdescent:block/arisian_dandelions",
+        "x": 180
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelions",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelions",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelions",
+        "x": 180,
+        "y": 270
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelions2",
+        "x": 180
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelions2",
+        "x": 180,
+        "y": 90
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelions2",
+        "x": 180,
+        "y": 180
+      },
+      {
+        "model": "netherdescent:block/arisian_dandelions2",
+        "x": 180,
         "y": 270
       }
     ]
