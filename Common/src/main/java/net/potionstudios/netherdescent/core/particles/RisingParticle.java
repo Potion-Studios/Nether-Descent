@@ -2,15 +2,15 @@ package net.potionstudios.netherdescent.core.particles;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.RandomSource;
+import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
 
 public class RisingParticle extends SingleQuadParticle {
-    RisingParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, TextureAtlasSprite sprite) {
-        super(level, x, y, z, xSpeed, ySpeed, zSpeed, sprite);
+    RisingParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, SpriteSet sprites) {
+        super(level, x, y, z, xSpeed, ySpeed, zSpeed, sprites.first());
 
         this.gravity = 0;
         this.xd = 0;
@@ -19,13 +19,8 @@ public class RisingParticle extends SingleQuadParticle {
 
         this.lifetime = 40 + level.random.nextInt(20);
 
-        this.setSpriteFromAge((SpriteSet) sprite);
+        this.setSpriteFromAge(sprites);
         this.quadSize = 0.05F;
-    }
-
-    @Override
-    protected @NonNull Layer getLayer() {
-        return Layer.TRANSLUCENT;
     }
 
     @Override
@@ -36,10 +31,19 @@ public class RisingParticle extends SingleQuadParticle {
             this.remove();
     }
 
+    @Override
+    protected @NotNull SingleQuadParticle.Layer getLayer() {
+        return SingleQuadParticle.Layer.TRANSLUCENT;
+    }
+
     public record Provider(SpriteSet spriteSet) implements ParticleProvider<SimpleParticleType> {
         @Override
-        public @NonNull Particle createParticle(@NonNull SimpleParticleType particleType, @NonNull ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, @NonNull RandomSource random) {
-            return new RisingParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, spriteSet.first());
+        public @NonNull Particle createParticle(SimpleParticleType particleType, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, RandomSource random) {
+            return new RisingParticle(
+                    level, x, y, z,
+                    xSpeed, ySpeed, zSpeed,
+                    spriteSet
+            );
         }
     }
 }

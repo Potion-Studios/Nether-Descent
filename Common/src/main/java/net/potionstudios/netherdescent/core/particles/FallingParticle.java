@@ -5,18 +5,25 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.RandomSource;
+import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
 
 public class FallingParticle extends SingleQuadParticle {
-	FallingParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, TextureAtlasSprite sprite) {
-		super(level, x, y, z, xSpeed, ySpeed, zSpeed, sprite);
-		this.lifetime = (int)((double)64.0F / (Math.random() * 0.8 + 0.2));
-		this.gravity = 0.06F;
-		this.setSize(0.01F, 0.01F);
-	}
+    FallingParticle(ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, TextureAtlasSprite sprite) {
+        super(level, x, y, z, xSpeed, ySpeed, zSpeed, sprite);
+        this.lifetime = (int)((double)64.0F / (Math.random() * 0.8 + 0.2));
+        this.gravity = 0.06F;
+        this.setSize(0.01F, 0.01F);
+    }
 
-	@Override
-	public void tick() {
+
+    @Override
+    protected @NotNull SingleQuadParticle.Layer getLayer() {
+        return SingleQuadParticle.Layer.OPAQUE;
+    }
+
+    @Override
+    public void tick() {
         this.xo = this.x;
         this.yo = this.y;
         this.zo = this.z;
@@ -31,7 +38,7 @@ public class FallingParticle extends SingleQuadParticle {
                 this.zd *= 0.98F;
             }
         }
-	}
+    }
 
     protected void preMoveUpdate() {
         if (this.lifetime-- <= 0) {
@@ -44,15 +51,10 @@ public class FallingParticle extends SingleQuadParticle {
             this.remove();
     }
 
-	@Override
-	protected @NonNull Layer getLayer() {
-		return Layer.TRANSLUCENT;
-	}
-
-	public record Provider(SpriteSet spriteSet) implements ParticleProvider<SimpleParticleType> {
-		@Override
-		public @NonNull Particle createParticle(@NonNull SimpleParticleType particleType, @NonNull ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, @NonNull RandomSource random) {
-			return new FallingParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet.get(level.getRandom()));
-		}
-	}
+    public record Provider(SpriteSet spriteSet) implements ParticleProvider<SimpleParticleType> {
+        @Override
+        public @NonNull Particle createParticle(@NonNull SimpleParticleType particleType, @NonNull ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, @NonNull RandomSource random) {
+            return new FallingParticle(level, x, y, z, xSpeed, ySpeed, zSpeed, this.spriteSet.get(level.getRandom()));
+        }
+    }
 }
