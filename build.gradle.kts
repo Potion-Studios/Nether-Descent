@@ -62,7 +62,6 @@ subprojects {
             parchment("org.parchmentmc.data:parchment-$minecraftVersion:${providers.gradleProperty("parchment").get()}@zip")
         })
 
-        compileOnly("org.jetbrains:annotations:26.1.0")
         compileOnly("com.google.auto.service:auto-service:1.1.1")
         annotationProcessor("com.google.auto.service:auto-service:1.1.1")
     }

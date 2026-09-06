@@ -11,11 +11,9 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
-import org.jetbrains.annotations.ApiStatus;
 import org.jspecify.annotations.NonNull;
 
 public class AddTableLootModifier extends LootModifier {
-    @ApiStatus.Internal
     public static final MapCodec<AddTableLootModifier> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
             IGlobalLootModifier.LOOT_CONDITIONS_CODEC.fieldOf("conditions").forGetter(glm -> glm.conditions),
             ResourceKey.codec(Registries.LOOT_TABLE).fieldOf("table").forGetter(AddTableLootModifier::table)).apply(instance, AddTableLootModifier::new));
