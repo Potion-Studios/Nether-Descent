@@ -29,7 +29,6 @@ import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUti
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructureSets;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructures;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentTemplatePools;
-import net.potionstudios.netherdescent.neoforge.datagen.generators.EquipmentAssetProvider;
 
 import java.util.List;
 import java.util.Optional;

@@ -21,7 +21,7 @@ import net.potionstudios.netherdescent.world.entity.projectile.LargeSoulFireball
 import org.jetbrains.annotations.NotNull;
 
 public class SoulGhast extends Ghast {
-    public SoulGhast(EntityType<? extends Ghast> entityType, Level level) {
+    public SoulGhast(EntityType<? extends SoulGhast> entityType, Level level) {
         super(entityType, level);
         this.xpReward = 8;
     }

@@ -15,7 +15,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -45,8 +44,6 @@ public final class ForgePlatformHandler implements PlatformHandler {
 	public Path configPath() {
 		return FMLPaths.CONFIGDIR.get().resolve(NetherDescent.MOD_ID);
 	}
-
-	private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, NetherDescent.MOD_ID);
 
 	@Override
 	public FlowerPotBlock createPottedBlock(Supplier<? extends Block> block, BlockBehaviour.Properties properties) {
@@ -109,7 +106,6 @@ public final class ForgePlatformHandler implements PlatformHandler {
 	public static void register(final BusGroup bus) {
 		PARTICLES.register(bus);
 		CACHED.values().forEach(deferredRegister -> deferredRegister.register(bus));
-		BLOCK_ENTITIES.register(bus);
 	}
 
 	@Override

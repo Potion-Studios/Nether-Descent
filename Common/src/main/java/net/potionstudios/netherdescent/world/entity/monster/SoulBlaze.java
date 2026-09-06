@@ -21,7 +21,7 @@ import net.potionstudios.netherdescent.world.entity.projectile.SmallSoulFireball
 import org.jetbrains.annotations.NotNull;
 
 public class SoulBlaze extends Blaze {
-    public SoulBlaze(EntityType<? extends Blaze> entityType, Level level) {
+    public SoulBlaze(EntityType<? extends SoulBlaze> entityType, Level level) {
         super(entityType, level);
         this.xpReward = 14;
     }

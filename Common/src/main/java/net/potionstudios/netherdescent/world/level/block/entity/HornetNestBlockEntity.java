@@ -17,6 +17,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.ProblemReporter;
 import net.minecraft.util.VisibleForDebug;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityProcessor;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.bee.Bee;
@@ -318,7 +319,7 @@ public class HornetNestBlockEntity extends BlockEntity {
 		public Entity createEntity(Level level, BlockPos pos) {
 			CompoundTag compoundTag = this.entityData.copyTagWithoutId();
 			IGNORED_HORNET_TAGS.forEach(compoundTag::remove);
-			Entity entity = EntityType.loadEntityRecursive(compoundTag, level, EntitySpawnReason.LOAD, entityx -> entityx);
+			Entity entity = EntityType.loadEntityRecursive(this.entityData.type(), compoundTag, level, EntitySpawnReason.LOAD, EntityProcessor.NOP);
 			if (entity instanceof Hornet hornet) {
 				hornet.setHivePos(pos);
 				setHornetReleaseData(this.ticksInNest, hornet);

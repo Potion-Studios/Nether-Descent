@@ -36,7 +36,7 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
     private long persistentAngerEndTime;
 	private @Nullable EntityReference<LivingEntity> persistentAngerTarget;
 
-	public PendoriteBlaze(EntityType<? extends Blaze> entityType, Level level) {
+	public PendoriteBlaze(EntityType<? extends PendoriteBlaze> entityType, Level level) {
 		super(entityType, level);
 		this.xpReward = 8;
 	}
