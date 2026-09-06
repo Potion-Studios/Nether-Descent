@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.forge.client;
 
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -22,10 +21,7 @@ public class NetherDescentClientForge {
 	 * @param eventBus The event bus to register the client side of the mod to.
 	 */
 	public static void init(final BusGroup eventBus) {
-		FMLClientSetupEvent.getBus(eventBus).addListener((FMLClientSetupEvent event) -> {
-			NetherDescentClient.onInitialize();
-			NetherDescentClient.registerBlockRenderTypes(ItemBlockRenderTypes::setRenderLayer);
-		});
+		FMLClientSetupEvent.getBus(eventBus).addListener((FMLClientSetupEvent event) -> NetherDescentClient.onInitialize());
         EntityRenderersEvent.RegisterRenderers.BUS.addListener((EntityRenderersEvent.RegisterRenderers event) -> {
             NetherDescentClient.registerEntityRenderers(event::registerEntityRenderer);
             NetherDescentClient.registerBlockEntityRenderers(event::registerBlockEntityRenderer);

@@ -5,7 +5,6 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.*;
-import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
@@ -26,12 +25,8 @@ import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.core.particles.FallingParticle;
 import net.potionstudios.netherdescent.core.particles.RisingParticle;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
-import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import net.potionstudios.netherdescent.world.level.block.custom.EmburCaveMossBlock;
-import net.potionstudios.netherdescent.world.level.block.custom.HangingMossyCarpetBlock;
 import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
-import org.jspecify.annotations.Nullable;
 
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -102,38 +97,4 @@ public class NetherDescentClient {
     public static void registerLayerDefinitions(BiConsumer<ModelLayerLocation, Supplier<LayerDefinition>> consumer) {
         consumer.accept(NetherDescentModelLayers.HORNET, HornetModel::createBodyLayer);
     }
-
-	/**
-	 * Registers the render types for the blocks.
-	 */
-	public static void registerBlockRenderTypes(BiConsumer<Block, ChunkSectionLayer> consumer) {
-		NetherDescentBlocks.BLOCKS.forEach(entry -> {
-			ChunkSectionLayer type = renderTypeBlock(entry.get());
-			if (type != null) consumer.accept(entry.get(), type);
-		});
-		consumer.accept(NetherDescentBlocks.EMBUR_GEL_BLOCK.get(), ChunkSectionLayer.TRANSLUCENT);
-		consumer.accept(NetherDescentBlocks.EMBUR.door(), ChunkSectionLayer.TRANSLUCENT);
-		consumer.accept(NetherDescentBlocks.EMBUR.trapdoor(), ChunkSectionLayer.TRANSLUCENT);
-		consumer.accept(NetherDescentBlocks.EMBUR_GEL_VINES.get(), ChunkSectionLayer.TRANSLUCENT);
-		consumer.accept(NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(), ChunkSectionLayer.TRANSLUCENT);
-		consumer.accept(NetherDescentBlocks.CRIMSON_CARPET.get(), ChunkSectionLayer.CUTOUT);
-		consumer.accept(NetherDescentBlocks.SYTHIAN_SHOOT.get(), ChunkSectionLayer.CUTOUT);
-		consumer.accept(NetherDescentBlocks.SYTHIAN_STALK.get(), ChunkSectionLayer.CUTOUT);
-		consumer.accept(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), ChunkSectionLayer.CUTOUT);
-		consumer.accept(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get(), ChunkSectionLayer.CUTOUT);
-		consumer.accept(NetherDescentBlocks.THORN_SPROUT.get(), ChunkSectionLayer.CUTOUT);
-
-	}
-
-	@Nullable
-	private static ChunkSectionLayer renderTypeBlock(Block block) {
-		if (block instanceof DoorBlock || block instanceof TrapDoorBlock || block instanceof LanternBlock || block instanceof GlowLichenBlock
-                || block instanceof EmburCaveMossBlock || block instanceof MossyCarpetBlock || block instanceof HangingMossyCarpetBlock || block instanceof GrowingPlantBlock || block instanceof FlowerPotBlock || block instanceof HangingMossBlock
-                || block instanceof ScaffoldingBlock || block instanceof TransparentBlock || block instanceof RodBlock || block instanceof CampfireBlock || block instanceof BaseTorchBlock || block instanceof LeavesBlock || block instanceof VineBlock
-                || block instanceof MangroveRootsBlock || block instanceof SporeBlossomBlock || block instanceof BaseCoralPlantTypeBlock || block instanceof IronBarsBlock || block instanceof ChainBlock || block instanceof VegetationBlock)
-			return ChunkSectionLayer.CUTOUT;
-		else if (block instanceof StainedGlassPaneBlock || block instanceof HalfTransparentBlock)
-			return ChunkSectionLayer.TRANSLUCENT;
-		return null;
-	}
 }
