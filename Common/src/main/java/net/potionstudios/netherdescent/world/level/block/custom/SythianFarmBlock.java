@@ -81,7 +81,7 @@ public class SythianFarmBlock extends Block {
     @Override
     public void fallOn(@NonNull Level level, @NonNull BlockState state, @NonNull BlockPos pos, @NonNull Entity entity, double fallDistance) {
         if (level instanceof ServerLevel serverLevel
-                && level.random.nextFloat() < fallDistance - 0.5F
+                && level.getRandom().nextFloat() < fallDistance - 0.5F
                 && entity instanceof LivingEntity
                 && (entity instanceof Player || serverLevel.getGameRules().get(GameRules.MOB_GRIEFING))
                 && entity.getBbWidth() * entity.getBbWidth() * entity.getBbHeight() > 0.512F) {

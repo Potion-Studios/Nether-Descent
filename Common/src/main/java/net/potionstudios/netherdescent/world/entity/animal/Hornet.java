@@ -162,7 +162,7 @@ public class Hornet extends Bee {
     }
 
     private boolean shouldSleepNow() {
-        long dayTime = this.level().getDayTime() % 24000L;
+        long dayTime = this.level().getOverworldClockTime() % 24000L;
         return dayTime >= SLEEP_START_TIME || dayTime < WAKE_TIME;
     }
 

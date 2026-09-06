@@ -121,7 +121,7 @@ public class HornetNestBlockEntity extends BlockEntity {
 			occupant.ejectPassengers();
 			this.storeHornet(Occupant.of(occupant));
 			if (this.level != null) {
-				if (occupant instanceof Hornet hornet && hornet.hasSavedFlowerPos() && (!this.hasSavedFlowerPos() || this.level.random.nextBoolean()))
+				if (occupant instanceof Hornet hornet && hornet.hasSavedFlowerPos() && (!this.hasSavedFlowerPos() || this.level.getRandom().nextBoolean()))
 					this.savedFlowerPos = hornet.getSavedFlowerPos();
 
 				BlockPos blockPos = this.getBlockPos();

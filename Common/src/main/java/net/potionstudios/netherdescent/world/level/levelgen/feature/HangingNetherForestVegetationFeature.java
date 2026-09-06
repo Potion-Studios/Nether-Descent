@@ -28,7 +28,7 @@ public class HangingNetherForestVegetationFeature extends Feature<NetherForestVe
 
             for(int k = 0; k < netherForestVegetationConfig.spreadWidth * netherForestVegetationConfig.spreadWidth; ++k) {
                 BlockPos blockPos2 = blockPos.offset(randomSource.nextInt(netherForestVegetationConfig.spreadWidth) - randomSource.nextInt(netherForestVegetationConfig.spreadWidth), randomSource.nextInt(netherForestVegetationConfig.spreadHeight) - randomSource.nextInt(netherForestVegetationConfig.spreadHeight), randomSource.nextInt(netherForestVegetationConfig.spreadWidth) - randomSource.nextInt(netherForestVegetationConfig.spreadWidth));
-                BlockState blockState2 = netherForestVegetationConfig.stateProvider.getState(randomSource, blockPos2);
+                BlockState blockState2 = netherForestVegetationConfig.stateProvider.getState(worldGenLevel, randomSource, blockPos2);
                 if (blockState2.hasProperty(BlockStateProperties.HANGING)) {
                     blockState2 = blockState2.setValue(BlockStateProperties.HANGING, true);
                     if (blockState2.hasProperty(BlockStateProperties.DOUBLE_BLOCK_HALF)) {

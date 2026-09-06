@@ -67,7 +67,7 @@ public class HornetNestBlock extends BaseEntityBlock {
 
             for (Hornet hornet : list) {
                 if (hornet.getTarget() == null) {
-                    Player player = Util.getRandom(list2, level.random);
+                    Player player = Util.getRandom(list2, level.getRandom());
                     hornet.setTarget(player);
                 }
             }

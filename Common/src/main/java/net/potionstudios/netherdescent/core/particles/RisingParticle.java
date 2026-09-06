@@ -16,7 +16,7 @@ public class RisingParticle extends SingleQuadParticle {
         this.yd = 0.1;
         this.zd = 0;
 
-        this.lifetime = 40 + level.random.nextInt(20);
+        this.lifetime = 40 + level.getRandom().nextInt(20);
 
         this.setSpriteFromAge(sprites);
         this.quadSize = 0.05F;

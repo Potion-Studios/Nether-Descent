@@ -3,17 +3,18 @@ package net.potionstudios.netherdescent.world.level.block.wood;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FungusBlock;
+import net.minecraft.world.level.block.NetherFungusBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import org.jspecify.annotations.NonNull;
 
-public class NDFungusBlock extends FungusBlock {
-    public NDFungusBlock(ResourceKey<ConfiguredFeature<?, ?>> feature, Block requiredBlock, Properties properties) {
-        super(feature, requiredBlock, properties);
+public class NDFungusBlock extends NetherFungusBlock {
+    public NDFungusBlock(ResourceKey<ConfiguredFeature<?, ?>> feature, Block requiredBlock, TagKey<Block> supportBlocks, Properties properties) {
+        super(feature, requiredBlock, supportBlocks, properties);
     }
 
     @Override

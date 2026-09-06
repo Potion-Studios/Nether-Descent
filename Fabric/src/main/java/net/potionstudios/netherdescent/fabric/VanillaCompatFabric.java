@@ -26,11 +26,11 @@ import net.potionstudios.netherdescent.world.item.tools.ToolInteractions;
 public class VanillaCompatFabric {
 
     public static void init() {
-        BlockItemFeatures.registerCompostables(CompostingChanceRegistry.INSTANCE::add);
-        FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> NetherDescentBrewingRecipes.buildBrewingRecipes(builder::addMix));
+        BlockItemFeatures.registerCompostables(CompostableRegistry.INSTANCE::add);
+        FabricPotionBrewingBuilder.BUILD.register(builder -> NetherDescentBrewingRecipes.buildBrewingRecipes(builder::addMix));
         ToolInteractions.registerStrippableBlocks(StrippableBlockRegistry::register);
         ToolInteractions.registerTillables((block, pair) -> TillableBlockRegistry.register(block, pair.getFirst(), pair.getSecond()));
-        BlockItemFeatures.registerFurnaceFuels((item, burnTime) -> FuelRegistryEvents.BUILD.register(((builder, context) -> builder.add(item, burnTime))));
+        BlockItemFeatures.registerFurnaceFuels((item, burnTime) -> FuelValueEvents.BUILD.register(((builder, context) -> builder.add(item, burnTime))));
         UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
             ItemStack stack = player.getItemInHand(hand);
             if (stack.is(Items.BONE_MEAL) && VanillaBonemealHandler.boneMealEventHandler(world, hitResult.getBlockPos(), world.getBlockState(hitResult.getBlockPos()), stack)) {
@@ -71,7 +71,7 @@ public class VanillaCompatFabric {
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             if (key.equals(BuiltInLootTables.NETHER_BRIDGE))
                 tableBuilder.pool(
-                        LootPool.lootPool().with(
+                        LootPool.lootPool().add(
                                 NestedLootTable.lootTableReference(NetherDescent.key(Registries.LOOT_TABLE, "chests/nether_bridge"))
                                         .build())
                                 .build());

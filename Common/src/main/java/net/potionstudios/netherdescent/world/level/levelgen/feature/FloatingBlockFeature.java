@@ -23,9 +23,9 @@ public class FloatingBlockFeature extends Feature<FloatingBlockFeatureConfigurat
         int start = intProvider.sample(context.random());
         origin = origin.below(start);
 
-        for (int i = start; i >= intProvider.getMinValue(); i--)
+        for (int i = start; i >= intProvider.minInclusive(); i--)
             if (level.getBlockState(origin).canBeReplaced() && level.getBlockState(origin.above()).isAir() && level.getBlockState(origin.below()).isAir()) {
-                setBlock(level, origin, config.block().getState(context.random(), origin));
+                setBlock(level, origin, config.block().getState(level, context.random(), origin));
                 return true;
             } else origin = origin.above();
 

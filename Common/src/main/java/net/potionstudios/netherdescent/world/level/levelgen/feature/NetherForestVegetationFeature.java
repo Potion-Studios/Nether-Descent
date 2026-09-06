@@ -27,7 +27,7 @@ public class NetherForestVegetationFeature extends Feature<NetherForestVegetatio
 
             for(int k = 0; k < netherForestVegetationConfig.spreadWidth * netherForestVegetationConfig.spreadWidth; ++k) {
                 BlockPos blockPos2 = blockPos.offset(randomSource.nextInt(netherForestVegetationConfig.spreadWidth) - randomSource.nextInt(netherForestVegetationConfig.spreadWidth), randomSource.nextInt(netherForestVegetationConfig.spreadHeight) - randomSource.nextInt(netherForestVegetationConfig.spreadHeight), randomSource.nextInt(netherForestVegetationConfig.spreadWidth) - randomSource.nextInt(netherForestVegetationConfig.spreadWidth));
-                BlockState blockState2 = netherForestVegetationConfig.stateProvider.getState(randomSource, blockPos2);
+                BlockState blockState2 = netherForestVegetationConfig.stateProvider.getState(worldGenLevel, randomSource, blockPos2);
                 if (blockState2.hasProperty(BlockStateProperties.DOUBLE_BLOCK_HALF)) {
                     if (blockPos2.getY() + 1 < worldGenLevel.getMaxY() && worldGenLevel.isEmptyBlock(blockPos2) && worldGenLevel.isEmptyBlock(blockPos2.above()) && blockState2.canSurvive(worldGenLevel, blockPos2)) {
                         DoublePlantBlock.placeAt(worldGenLevel, blockState2, blockPos2, 2);

@@ -114,6 +114,6 @@ public final class ForgePlatformHandler implements PlatformHandler {
 
 	@Override
 	public boolean isModLoaded(String modId) {
-		return ModList.get().isLoaded(modId);
+		return ModList.isLoaded(modId);
 	}
 }

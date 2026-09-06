@@ -53,8 +53,8 @@ public class NetherDescentClient {
 	 * @param woodType the wood type to register
 	 */
 	private static void registerWoodTypes(WoodType woodType) {
-		Sheets.SIGN_MATERIALS.put(woodType, Sheets.createSignMaterial(woodType));
-		Sheets.HANGING_SIGN_MATERIALS.put(woodType, Sheets.createHangingSignMaterial(woodType));
+		Sheets.SIGN_SPRITES.put(woodType, Sheets.getSignSprite(woodType));
+		Sheets.HANGING_SIGN_SPRITES.put(woodType, Sheets.getHangingSignSprite(woodType));
 	}
 
     /**
@@ -90,7 +90,7 @@ public class NetherDescentClient {
 	 * @see NetherDescentBlockEntityType
 	 */
 	public static void registerBlockEntityRenderers(BiConsumer<BlockEntityType<? extends BlockEntity>, BlockEntityRendererProvider> consumer) {
-		consumer.accept(NetherDescentBlockEntityType.SIGNS.get(), SignRenderer::new);
+		consumer.accept(NetherDescentBlockEntityType.SIGNS.get(), StandingSignRenderer::new);
 		consumer.accept(NetherDescentBlockEntityType.HANGING_SIGNS.get(), HangingSignRenderer::new);
 		consumer.accept(NetherDescentBlockEntityType.CAMPFIRE.get(), CampfireRenderer::new);
 	}
