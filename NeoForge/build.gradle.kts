@@ -30,23 +30,25 @@ loom {
             "--existing", project(":Common").file("src/main/resources").absolutePath
         )
     }
+
+    neoForge.convertAccessWideners(tasks.shadowJar, "netherdescent.accessWidener")
 }
 
 dependencies {
     neoForge("net.neoforged:neoforge:${providers.gradleProperty("neoforge_version").get()}")
 
-    "common"(project(":Common", "namedElements")) { isTransitive = false }
+    "common"(project(":Common")) { isTransitive = false }
     "shadowCommon"(project(":Common", "transformProductionNeoForge"))
 
-    modLocalRuntime("me.djtheredstoner:DevAuth-neoforge:${providers.gradleProperty("devauth_version").get()}")
+    localRuntime("me.djtheredstoner:DevAuth-neoforge:${providers.gradleProperty("devauth_version").get()}")
 
-    modApi("com.github.glitchfiend:TerraBlender-neoforge:$minecraftVersion-${providers.gradleProperty("terrablender_version").get()}")
-    modCompileOnly("com.terraformersmc:biolith-neoforge:${providers.gradleProperty("biolith_version").get()}")
-    modApi("maven.modrinth:lithostitched:${providers.gradleProperty("lithostitched_version").get()}-neoforge-21.11")
-    modApi("dev.corgitaco:Oh-The-Trees-Youll-Grow-neoforge:$minecraftVersion-${providers.gradleProperty("ohthetreesyoullgrow_version").get()}")
+    api("com.github.glitchfiend:TerraBlender-neoforge:$minecraftVersion-${providers.gradleProperty("terrablender_version").get()}")
+    compileOnly("com.terraformersmc:biolith-neoforge:${providers.gradleProperty("biolith_version").get()}")
+    api("maven.modrinth:lithostitched:${providers.gradleProperty("lithostitched_version").get()}-neoforge-26.1")
+    api("dev.corgitaco.ohthetreesyoullgrow:ohthetreesyoullgrow-neoforge-$minecraftVersion:${providers.gradleProperty("ohthetreesyoullgrow_version").get()}")
 
-    modLocalRuntime("mcp.mobius.waila:wthit:neo-${providers.gradleProperty("WTHIT").get()}")
-    modLocalRuntime("lol.bai:badpackets:neo-${providers.gradleProperty("badPackets").get()}")
+    localRuntime("mcp.mobius.waila:wthit:neo-${providers.gradleProperty("WTHIT").get()}")
+    localRuntime("lol.bai:badpackets:neo-${providers.gradleProperty("badPackets").get()}")
 
 //    modLocalRuntime("maven.modrinth:worldedit:7.4.2")
 }
@@ -60,16 +62,14 @@ tasks {
         }
     }
 
+    jar.get().archiveClassifier.set("raw")
+
     shadowJar {
+        dependsOn(jar)
+        from(zipTree(jar.get().archiveFile))
         exclude("architectury.common.json", "net/potionstudios/netherdescent/neoforge/datagen/**", ".cache/**")
         configurations = listOf(project.configurations.getByName("shadowCommon"))
-        archiveClassifier.set("dev-shadow")
-    }
-
-    remapJar {
-        inputFile.set(shadowJar.get().archiveFile)
-        dependsOn(shadowJar)
-        atAccessWideners.add("netherdescent.accesswidener")
+        archiveClassifier.set(null)
     }
 }
 
