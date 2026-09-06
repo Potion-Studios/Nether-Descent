@@ -2,6 +2,9 @@
   "variants": {
     "": [
       {
+        "model": "netherdescent:block/embur_lily"
+      },
+      {
         "model": "netherdescent:block/embur_lily",
         "y": 90
       },
@@ -12,6 +15,9 @@
       {
         "model": "netherdescent:block/embur_lily",
         "y": 270
+      },
+      {
+        "model": "netherdescent:block/embur_lily2"
       },
       {
         "model": "netherdescent:block/embur_lily2",

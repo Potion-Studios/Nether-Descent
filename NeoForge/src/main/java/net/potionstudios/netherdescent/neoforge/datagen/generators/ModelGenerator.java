@@ -298,7 +298,7 @@ public class ModelGenerator extends ModelProvider {
 		Variant lily2 = BlockModelGenerators.plainModel(ModelLocationUtils.getModelLocation(NetherDescentBlocks.EMBUR_LILY.get(), "2"));
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(
 				NetherDescentBlocks.EMBUR_LILY.get(),
-					BlockModelGenerators.variants(lily.with(BlockModelGenerators.Y_ROT_90), lily.with(BlockModelGenerators.Y_ROT_180), lily.with(BlockModelGenerators.Y_ROT_270), lily2.with(BlockModelGenerators.Y_ROT_90), lily2.with(BlockModelGenerators.Y_ROT_180), lily2.with(BlockModelGenerators.Y_ROT_270))
+					BlockModelGenerators.variants(lily, lily.with(BlockModelGenerators.Y_ROT_90), lily.with(BlockModelGenerators.Y_ROT_180), lily.with(BlockModelGenerators.Y_ROT_270), lily2, lily2.with(BlockModelGenerators.Y_ROT_90), lily2.with(BlockModelGenerators.Y_ROT_180), lily2.with(BlockModelGenerators.Y_ROT_270))
 		));
 
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get())
