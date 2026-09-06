@@ -6,7 +6,7 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 import net.potionstudios.netherdescent.PlatformHandler;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 class ReloadCommand {
     static LiteralArgumentBuilder<CommandSourceStack> register() {
@@ -23,7 +23,7 @@ class ReloadCommand {
         return reload;
     }
 
-    private static @NotNull LiteralArgumentBuilder<CommandSourceStack> getCommandSourceStackLiteralArgumentBuilder() {
+    private static @NonNull LiteralArgumentBuilder<CommandSourceStack> getCommandSourceStackLiteralArgumentBuilder() {
         LiteralArgumentBuilder<CommandSourceStack> reload = LiteralArgumentBuilder.literal("reload");
         reload.requires(commandSourceStack -> PlatformHandler.PLATFORM_HANDLER.hasPermission(commandSourceStack, "biomeswevegone.commands.reload"));
         reload.executes(context -> {

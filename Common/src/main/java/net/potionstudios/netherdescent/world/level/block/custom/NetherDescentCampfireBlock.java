@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.entity.CampfireBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
 import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentCampfireBlockEntity;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class NetherDescentCampfireBlock extends CampfireBlock {
 	public NetherDescentCampfireBlock(boolean spawnParticles, int fireDamage, Properties properties) {
@@ -23,11 +23,11 @@ public class NetherDescentCampfireBlock extends CampfireBlock {
 	}
 
 	@Override
-	public @NotNull BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+	public @NonNull BlockEntity newBlockEntity(@NonNull BlockPos pos, @NonNull BlockState state) {
 		return new NetherDescentCampfireBlockEntity(pos, state);
 	}
 
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> blockEntityType) {
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NonNull Level level, @NonNull BlockState state, @NonNull BlockEntityType<T> blockEntityType) {
 		if (level instanceof ServerLevel serverLevel) {
 			if (state.getValue(LIT)) {
 				RecipeManager.CachedCheck<SingleRecipeInput, CampfireCookingRecipe> cachedCheck = RecipeManager.createCheck(RecipeType.CAMPFIRE_COOKING);

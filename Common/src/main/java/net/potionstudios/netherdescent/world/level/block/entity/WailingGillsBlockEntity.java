@@ -8,9 +8,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -67,8 +68,8 @@ public class WailingGillsBlockEntity extends BlockEntity {
                     continue;
 
 				boolean hasSoulSpeed = false;
-                for (ItemStack itemStack: entity.getArmorSlots())
-                    if (EnchantmentHelper.getItemEnchantmentLevel(SOUL_SPEED, itemStack) > 0) {
+                for (EquipmentSlot equipmentSlot : EquipmentSlotGroup.ARMOR)
+                    if (EnchantmentHelper.getItemEnchantmentLevel(SOUL_SPEED, entity.getItemBySlot(equipmentSlot)) > 0) {
 						hasSoulSpeed = true;
 						break;
                     }

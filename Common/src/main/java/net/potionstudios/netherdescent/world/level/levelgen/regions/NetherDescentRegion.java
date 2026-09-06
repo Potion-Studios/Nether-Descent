@@ -2,8 +2,8 @@ package net.potionstudios.netherdescent.world.level.levelgen.regions;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.Registry;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
@@ -14,7 +14,7 @@ import terrablender.api.RegionType;
 import java.util.function.Consumer;
 
 public class NetherDescentRegion extends Region {
-    public NetherDescentRegion(ResourceLocation name, int weight) {
+    public NetherDescentRegion(Identifier name, int weight) {
         super(name, RegionType.NETHER, weight);
     }
 

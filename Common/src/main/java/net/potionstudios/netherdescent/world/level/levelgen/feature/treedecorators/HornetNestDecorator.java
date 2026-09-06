@@ -10,7 +10,7 @@ import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.entity.HornetNestBlockEntity;
 import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,12 +26,12 @@ public class HornetNestDecorator extends TreeDecorator {
     }
 
     @Override
-    protected @NotNull TreeDecoratorType<?> type() {
+    protected @NonNull TreeDecoratorType<?> type() {
         return NetherDescentTreeDecoratorType.HORNET_NEST.get();
     }
 
     @Override
-    public void place(@NotNull Context context) {
+    public void place(@NonNull Context context) {
         if (MobSpawnConfig.INSTANCE.hornet.value()) {
             RandomSource randomSource = context.random();
             if (!(randomSource.nextFloat() >= this.probability)) {

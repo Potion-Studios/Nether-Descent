@@ -1,7 +1,7 @@
 package net.potionstudios.netherdescent.world.level.block.custom;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.Util;
+import net.minecraft.util.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.EnchantmentTags;
@@ -11,11 +11,10 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.WitherSkull;
-import net.minecraft.world.entity.vehicle.MinecartTNT;
+import net.minecraft.world.entity.projectile.hurtingprojectile.WitherSkull;
+import net.minecraft.world.entity.vehicle.minecart.MinecartTNT;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
@@ -23,14 +22,15 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
 import net.potionstudios.netherdescent.world.entity.animal.Hornet;
 import net.potionstudios.netherdescent.world.level.block.entity.HornetNestBlockEntity;
 import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
@@ -41,12 +41,12 @@ public class HornetNestBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	protected @NotNull MapCodec<? extends BaseEntityBlock> codec() {
+	protected @NonNull MapCodec<? extends BaseEntityBlock> codec() {
 		return CODEC;
 	}
 
     @Override
-    public void playerDestroy(@NotNull Level level, @NotNull Player player, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable BlockEntity blockEntity, @NotNull ItemStack tool) {
+    public void playerDestroy(@NonNull Level level, @NonNull Player player, @NonNull BlockPos pos, @NonNull BlockState state, @Nullable BlockEntity blockEntity, @NonNull ItemStack tool) {
         super.playerDestroy(level, player, pos, state, blockEntity, tool);
         if (!level.isClientSide() && blockEntity instanceof HornetNestBlockEntity hornetNestBlockEntity) {
             if (!EnchantmentHelper.hasTag(tool, EnchantmentTags.PREVENTS_BEE_SPAWNS_WHEN_MINING)) {
@@ -79,24 +79,24 @@ public class HornetNestBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	protected @NotNull RenderShape getRenderShape(@NotNull BlockState state) {
+	protected @NonNull RenderShape getRenderShape(@NonNull BlockState state) {
 		return RenderShape.MODEL;
 	}
 
 	@Override
-	public @Nullable BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+	public @Nullable BlockEntity newBlockEntity(@NonNull BlockPos pos, @NonNull BlockState state) {
 		return new HornetNestBlockEntity(pos, state);
 	}
 
     @Override
-    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> blockEntityType) {
+    public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, @NonNull BlockState state, @NonNull BlockEntityType<T> blockEntityType) {
         return level.isClientSide() ? null : createTickerHelper(blockEntityType, NetherDescentBlockEntityType.HORNET_NEST.get(), HornetNestBlockEntity::serverTick);
     }
 
     @Override
-    public @NotNull BlockState playerWillDestroy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Player player) {
+    public @NonNull BlockState playerWillDestroy(@NonNull Level level, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull Player player) {
         if (level instanceof ServerLevel serverLevel && player.isCreative()
-            && serverLevel.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)
+            && serverLevel.getGameRules().get(GameRules.MOB_DROPS)
             && level.getBlockEntity(pos) instanceof HornetNestBlockEntity hornetNestBlockEntity)
             if (!hornetNestBlockEntity.isEmpty()) {
                 ItemStack itemStack = new ItemStack(this);
@@ -110,7 +110,7 @@ public class HornetNestBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootParams.@NotNull Builder params) {
+    protected @NonNull List<ItemStack> getDrops(@NonNull BlockState state, LootParams.Builder params) {
         Entity entity = params.getOptionalParameter(LootContextParams.THIS_ENTITY);
         if (entity instanceof PrimedTnt
                 || entity instanceof Creeper

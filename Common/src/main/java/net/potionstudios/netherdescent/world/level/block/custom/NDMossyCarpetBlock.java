@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.function.BooleanSupplier;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import net.minecraft.Util;
+import net.minecraft.util.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -27,8 +27,8 @@ import net.minecraft.world.level.block.state.properties.WallSide;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 public class NDMossyCarpetBlock extends Block implements BonemealableBlock {
     public static final MapCodec<MossyCarpetBlock> CODEC = simpleCodec(MossyCarpetBlock::new);
@@ -59,7 +59,7 @@ public class NDMossyCarpetBlock extends Block implements BonemealableBlock {
     private final Map<BlockState, VoxelShape> shapesCache;
 
     @Override
-    public @NotNull MapCodec<MossyCarpetBlock> codec() {
+    public @NonNull MapCodec<MossyCarpetBlock> codec() {
         return CODEC;
     }
 
@@ -83,7 +83,7 @@ public class NDMossyCarpetBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected @NotNull VoxelShape getOcclusionShape(@NotNull BlockState state) {
+    protected @NonNull VoxelShape getOcclusionShape(@NonNull BlockState state) {
         return Shapes.empty();
     }
 
@@ -119,17 +119,17 @@ public class NDMossyCarpetBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    protected @NonNull VoxelShape getShape(@NonNull BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
         return this.shapesCache.get(state);
     }
 
     @Override
-    protected @NotNull VoxelShape getCollisionShape(BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    protected @NonNull VoxelShape getCollisionShape(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
         return state.getValue(BASE) ? DOWN_AABB : Shapes.empty();
     }
 
     @Override
-    protected boolean propagatesSkylightDown(BlockState state) {
+    protected boolean propagatesSkylightDown(@NonNull BlockState state) {
         return true;
     }
 
@@ -207,7 +207,7 @@ public class NDMossyCarpetBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public void setPlacedBy(Level level, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack stack) {
+    public void setPlacedBy(Level level, @NonNull BlockPos pos, @NonNull BlockState state, @Nullable LivingEntity placer, @NonNull ItemStack stack) {
         if (!level.isClientSide()) {
             RandomSource randomSource = level.getRandom();
             BlockState blockState = createTopperWithSideChance(this.asBlock(), level, pos, randomSource::nextBoolean);
@@ -239,7 +239,7 @@ public class NDMossyCarpetBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess scheduledTickAccess, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+    protected @NonNull BlockState updateShape(BlockState state, @NonNull LevelReader level, @NonNull ScheduledTickAccess scheduledTickAccess, @NonNull BlockPos pos, @NonNull Direction direction, @NonNull BlockPos neighborPos, @NonNull BlockState neighborState, @NonNull RandomSource random) {
         if (!state.canSurvive(level, pos)) {
             return Blocks.AIR.defaultBlockState();
         } else {
@@ -254,7 +254,7 @@ public class NDMossyCarpetBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected @NotNull BlockState rotate(@NotNull BlockState state, Rotation rotation) {
+    protected @NonNull BlockState rotate(@NonNull BlockState state, Rotation rotation) {
         return switch (rotation) {
             case Rotation.CLOCKWISE_180 -> state.setValue(NORTH, state.getValue(SOUTH))
                     .setValue(EAST, state.getValue(WEST))
@@ -273,7 +273,7 @@ public class NDMossyCarpetBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected @NotNull BlockState mirror(@NotNull BlockState state, Mirror mirror) {
+    protected @NonNull BlockState mirror(@NonNull BlockState state, Mirror mirror) {
         return switch (mirror) {
             case LEFT_RIGHT -> state.setValue(NORTH, state.getValue(SOUTH)).setValue(SOUTH, state.getValue(NORTH));
             case FRONT_BACK -> state.setValue(EAST, state.getValue(WEST)).setValue(WEST, state.getValue(EAST));
@@ -287,17 +287,17 @@ public class NDMossyCarpetBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, BlockState state) {
         return state.getValue(BASE) && !createTopperWithSideChance(this.asBlock(), level, pos, () -> true).isAir();
     }
 
     @Override
-    public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
         return true;
     }
 
     @Override
-    public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
         BlockState blockState = createTopperWithSideChance(this.asBlock(), level, pos, () -> true);
         if (!blockState.isAir()) {
             level.setBlock(pos.above(), blockState, 3);

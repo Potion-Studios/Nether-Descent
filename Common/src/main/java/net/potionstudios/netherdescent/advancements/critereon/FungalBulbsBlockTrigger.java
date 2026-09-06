@@ -3,18 +3,18 @@ package net.potionstudios.netherdescent.advancements.critereon;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.criterion.*;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 
 public class FungalBulbsBlockTrigger extends SimpleCriterionTrigger<FungalBulbsBlockTrigger.TriggerInstance> {
     @Override
-    public @NotNull Codec<FungalBulbsBlockTrigger.TriggerInstance> codec() {
+    public @NonNull Codec<FungalBulbsBlockTrigger.TriggerInstance> codec() {
         return TriggerInstance.CODEC;
     }
 
@@ -41,7 +41,7 @@ public class FungalBulbsBlockTrigger extends SimpleCriterionTrigger<FungalBulbsB
         }
 
         @Override
-        public void validate(@NotNull CriterionValidator validator) {
+        public void validate(@NonNull CriterionValidator validator) {
             SimpleCriterionTrigger.SimpleInstance.super.validate(validator);
             validator.validateEntity(this.projectile, ".projectile");
         }

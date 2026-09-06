@@ -14,7 +14,7 @@ import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.plants.NDGrowingPlantBodyBlock;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,7 +28,7 @@ public class LangGenerator extends LanguageProvider {
 	}
 
 	@Override
-	public void add(@NotNull String key, @NotNull String value) {
+	public void add(@NonNull String key, @NonNull String value) {
 		super.add(key, value);
 		addedKeys.add(key);
 	}
@@ -45,14 +45,14 @@ public class LangGenerator extends LanguageProvider {
 				addItem(item, getItemName(item));
 		});
 		NetherDescentBiomes.BIOME_FACTORIES.forEach((key, factory) -> {
-			String translationKey = "biome." + NetherDescent.MOD_ID + "." + key.location().getPath();
+			String translationKey = "biome." + NetherDescent.MOD_ID + "." + key.identifier().getPath();
 			if (!addedKeys.contains(translationKey))
 				add(translationKey, getBiomeName(key));
 		});
 	}
 
 	private void addTranslationsManual() {
-		add("itemGroup." + NetherDescentCreativeTabs.CREATIVE_TAB.location().toLanguageKey(), "Nether Descent");
+		add("itemGroup." + NetherDescentCreativeTabs.CREATIVE_TAB.identifier().toLanguageKey(), "Nether Descent");
 		add(NetherDescentEntityType.SOUL_BLAZE.get(), "Soul Blaze");
 		add(NetherDescentEntityType.SOUL_FIREBALL.get(), "Soul Fireball");
         add(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), "Small Soul Fireball");
@@ -139,16 +139,16 @@ public class LangGenerator extends LanguageProvider {
 	}
 
 	private String getBiomeName(ResourceKey<Biome> biome) {
-		return getId(biome.location().getPath());
+		return getId(biome.identifier().getPath());
 	}
 
     private static String death(String key) {
         return "death.attack." + NetherDescent.MOD_ID + "." + key;
     }
 
-	@NotNull
+	@NonNull
 	private String getId(String name) {
-		name = name.substring(name.indexOf(":") + 1);  //Removes Mod Tag from front of name
+		name = name.substring(name.indexOf(":") + 1);
 		name = name.replace('_', ' ');
 		name = name.substring(0, 1).toUpperCase() + name.substring(1);
 		for (int i = 0; i < name.length(); i++)

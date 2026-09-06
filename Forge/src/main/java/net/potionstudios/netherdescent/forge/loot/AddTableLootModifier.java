@@ -12,7 +12,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class AddTableLootModifier extends LootModifier {
     @ApiStatus.Internal
@@ -32,7 +32,7 @@ public class AddTableLootModifier extends LootModifier {
     }
 
     @Override
-    protected @NotNull ObjectArrayList<ItemStack> doApply(LootTable arg, ObjectArrayList<ItemStack> objectArrayList, LootContext context) {
+    protected @NonNull ObjectArrayList<ItemStack> doApply(LootTable arg, ObjectArrayList<ItemStack> objectArrayList, LootContext context) {
         context.getResolver().lookupOrThrow(Registries.LOOT_TABLE).get(this.table).ifPresent(extraTable ->
                 extraTable.value().getRandomItemsRaw(context, LootTable.createStackSplitter(context.getLevel(), objectArrayList::add)));
         return objectArrayList;

@@ -5,7 +5,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.HangingSignBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class NetherDescentHangingSignBlockEntity extends HangingSignBlockEntity {
     public NetherDescentHangingSignBlockEntity(BlockPos blockPos, BlockState blockState) {
@@ -13,12 +13,12 @@ public class NetherDescentHangingSignBlockEntity extends HangingSignBlockEntity 
     }
 
     @Override
-    public @NotNull BlockEntityType<?> getType() {
+    public @NonNull BlockEntityType<?> getType() {
         return NetherDescentBlockEntityType.HANGING_SIGNS.get();
     }
 
     @Override
-    public boolean isValidBlockState(@NotNull BlockState blockState) {
+    public boolean isValidBlockState(@NonNull BlockState blockState) {
         return getType().isValid(blockState);
     }
 }

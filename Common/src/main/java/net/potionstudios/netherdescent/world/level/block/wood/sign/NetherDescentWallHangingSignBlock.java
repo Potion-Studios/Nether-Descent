@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.potionstudios.netherdescent.world.level.block.entity.sign.NetherDescentHangingSignBlockEntity;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class NetherDescentWallHangingSignBlock extends WallHangingSignBlock {
     public NetherDescentWallHangingSignBlock(WoodType type, Properties properties) {
@@ -14,7 +14,7 @@ public class NetherDescentWallHangingSignBlock extends WallHangingSignBlock {
     }
 
     @Override
-    public @NotNull BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
+    public @NonNull BlockEntity newBlockEntity(@NonNull BlockPos pos, @NonNull BlockState state) {
         return new NetherDescentHangingSignBlockEntity(pos, state);
     }
 }

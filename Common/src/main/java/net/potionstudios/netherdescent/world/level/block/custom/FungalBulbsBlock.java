@@ -24,7 +24,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock implements BonemealableBlock {
 	public static final MapCodec<FungalBulbsBlock> CODEC = simpleCodec(FungalBulbsBlock::new);
@@ -38,12 +38,12 @@ public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock imp
     }
 
 	@Override
-	protected @NotNull MapCodec<? extends FaceAttachedHorizontalDirectionalBlock> codec() {
+	protected @NonNull MapCodec<? extends FaceAttachedHorizontalDirectionalBlock> codec() {
 		return CODEC;
 	}
 
 	@Override
-    protected void onProjectileHit(@NotNull Level level, @NotNull BlockState state, @NotNull BlockHitResult hit, @NotNull Projectile projectile) {
+    protected void onProjectileHit(Level level, @NonNull BlockState state, @NonNull BlockHitResult hit, @NonNull Projectile projectile) {
         if (!level.isClientSide()) {
 	        level.getEntitiesOfClass(LivingEntity.class, new AABB(-4.0, -4.0, -4.0, 4.0, 4.0, 4.0).move(hit.getBlockPos()))
 			        .forEach(entity -> {
@@ -58,7 +58,7 @@ public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock imp
     }
 
     @Override
-    protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+    protected @NonNull VoxelShape getShape(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
 	    AttachFace face = state.getValue(FACE);
 	    if (face == AttachFace.FLOOR)
 		    return SHAPE;
@@ -73,17 +73,17 @@ public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock imp
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, @NonNull BlockState state) {
         return true;
     }
 
     @Override
-    public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
         return true;
     }
 
     @Override
-    public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
         popResource(level, pos, defaultBlockState().getBlock().asItem().getDefaultInstance());
     }
 

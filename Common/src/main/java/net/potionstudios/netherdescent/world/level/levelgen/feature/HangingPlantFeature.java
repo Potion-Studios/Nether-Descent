@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.HangingPlantFeatureConfiguration;
-import org.jetbrains.annotations.NotNull;
 
 public class HangingPlantFeature extends Feature<HangingPlantFeatureConfiguration> {
 	public HangingPlantFeature(Codec<HangingPlantFeatureConfiguration> codec) {
@@ -20,7 +19,7 @@ public class HangingPlantFeature extends Feature<HangingPlantFeatureConfiguratio
 	}
 
 	@Override
-	public boolean place(@NotNull FeaturePlaceContext<HangingPlantFeatureConfiguration> context) {
+	public boolean place(FeaturePlaceContext<HangingPlantFeatureConfiguration> context) {
 		HangingPlantFeatureConfiguration config = context.config();
 		WorldGenLevel worldGenLevel = context.level();
 		BlockPos blockPos = context.origin();

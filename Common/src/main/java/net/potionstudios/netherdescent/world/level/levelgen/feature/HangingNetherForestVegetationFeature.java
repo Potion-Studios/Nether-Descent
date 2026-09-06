@@ -10,7 +10,6 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NetherForestVegetationConfig;
 import net.potionstudios.netherdescent.world.level.block.plants.HangingDoublePlantBlock;
-import org.jetbrains.annotations.NotNull;
 
 public class HangingNetherForestVegetationFeature extends Feature<NetherForestVegetationConfig> {
     public HangingNetherForestVegetationFeature(Codec<NetherForestVegetationConfig> codec) {
@@ -18,7 +17,7 @@ public class HangingNetherForestVegetationFeature extends Feature<NetherForestVe
     }
 
     @Override
-    public boolean place(@NotNull FeaturePlaceContext<NetherForestVegetationConfig> context) {
+    public boolean place(FeaturePlaceContext<NetherForestVegetationConfig> context) {
         WorldGenLevel worldGenLevel = context.level();
         BlockPos blockPos = context.origin();
         NetherForestVegetationConfig netherForestVegetationConfig = context.config();

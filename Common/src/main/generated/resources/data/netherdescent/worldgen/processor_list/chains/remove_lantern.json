@@ -13,7 +13,7 @@
             "predicate_type": "minecraft:always_true"
           },
           "output_state": {
-            "Name": "minecraft:chain",
+            "Name": "minecraft:iron_chain",
             "Properties": {
               "axis": "y",
               "waterlogged": "false"

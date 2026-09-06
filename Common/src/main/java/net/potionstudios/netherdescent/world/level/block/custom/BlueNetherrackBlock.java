@@ -6,7 +6,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.NetherrackBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class BlueNetherrackBlock extends NetherrackBlock {
     public BlueNetherrackBlock(Properties properties) {
@@ -14,7 +14,7 @@ public class BlueNetherrackBlock extends NetherrackBlock {
     }
 
     @Override
-    public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, BlockPos pos, @NonNull BlockState state) {
         for (BlockPos blockPos : BlockPos.betweenClosed(pos.offset(-1, -1, -1), pos.offset(1, 1, 1))) {
             BlockState neighborState = level.getBlockState(blockPos);
             if (neighborState.is(NetherDescentBlocks.EMBUR_NYLIUM.get()))

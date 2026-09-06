@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.equipment.EquipmentAsset;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.item.equipment.NetherDescentEquipmentAssets;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +37,7 @@ public class EquipmentAssetProvider implements DataProvider {
 	}
 
 	@Override
-	public @NotNull CompletableFuture<?> run(@NotNull CachedOutput output) {
+	public @NonNull CompletableFuture<?> run(@NonNull CachedOutput output) {
 		Map<ResourceKey<EquipmentAsset>, EquipmentClientInfo> map = new HashMap<>();
 		bootstrap((arg, arg2) -> {
 			if (map.putIfAbsent(arg, arg2) != null) {
@@ -48,7 +48,7 @@ public class EquipmentAssetProvider implements DataProvider {
 	}
 
 	@Override
-	public @NotNull String getName() {
+	public @NonNull String getName() {
 		return "Equipment Asset Definitions";
 	}
 }

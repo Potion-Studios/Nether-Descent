@@ -11,7 +11,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.custom.NDRodBlock;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public interface DispenseItemBehavior {
 
@@ -20,7 +20,7 @@ public interface DispenseItemBehavior {
         DispenserBlock.registerProjectileBehavior(NetherDescentItems.PENDORITE_FIRE_CHARGE.get());
         DispenserBlock.registerBehavior(NetherDescentBlocks.SOUL_FIRE_ROD.get(), new OptionalDispenseItemBehavior() {
             @Override
-            protected @NotNull ItemStack execute(@NotNull BlockSource blockSource, @NotNull ItemStack item) {
+            protected @NonNull ItemStack execute(@NonNull BlockSource blockSource, @NonNull ItemStack item) {
                 Level level = blockSource.level();
                 BlockPos blockPos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
                 NDRodBlock rodBlock = NetherDescentBlocks.SOUL_FIRE_ROD.get();

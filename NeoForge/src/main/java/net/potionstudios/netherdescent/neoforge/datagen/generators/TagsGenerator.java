@@ -1,21 +1,19 @@
 package net.potionstudios.netherdescent.neoforge.datagen.generators;
 
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.*;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.BlockTagCopyingItemTagProvider;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.potionstudios.netherdescent.NetherDescent;
-import net.potionstudios.netherdescent.tags.NetherDescentBiomeTags;
-import net.potionstudios.netherdescent.tags.NetherDescentBlockTags;
-import net.potionstudios.netherdescent.tags.NetherDescentItemTags;
-import net.potionstudios.netherdescent.tags.NetherDescentStructureTags;
+import net.potionstudios.netherdescent.tags.*;
 import net.potionstudios.netherdescent.world.damagesource.NetherDescentDamageTypes;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
@@ -23,7 +21,7 @@ import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructures;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -48,7 +46,7 @@ public class TagsGenerator {
 		}
 
 		@Override
-		protected void addTags(HolderLookup.@NotNull Provider provider) {
+		protected void addTags(HolderLookup.Provider provider) {
 			NetherDescentBlocks.BLOCKS.forEach(block -> easyBlockTags(block.get()));
 			NetherDescentWoodSet.woodsets().forEach(set -> {
 				tag(BlockTags.PLANKS).add(set.planks());
@@ -114,12 +112,11 @@ public class TagsGenerator {
 			tag(BlockTags.SOUL_SPEED_BLOCKS).add(NetherDescentBlocks.WAILING_NYLIUM.get());
 			tag(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(NetherDescentBlocks.WAILING_NYLIUM.get());
 
-			IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> intrinsicTagAppender = this.tag(BlockTags.REPLACEABLE);
-			provider.lookupOrThrow(Registries.BLOCK)
-					.filterElements(block -> block.defaultBlockState().canBeReplaced())
-					.filterElements(block -> block.getDescriptionId().contains(NetherDescent.MOD_ID))
-					.listElementIds()
-					.forEach(intrinsicTagAppender::add);
+			tag(BlockTags.REPLACEABLE)
+					.addAll(provider.lookupOrThrow(Registries.BLOCK)
+							.listElements().map(Holder.Reference::value)
+							.filter(block -> block.defaultBlockState().canBeReplaced())
+							.filter(block -> block.getDescriptionId().contains(NetherDescent.MOD_ID)));
 		}
 
 		private void easyBlockTags(Block object) {
@@ -145,13 +142,13 @@ public class TagsGenerator {
 		}
 	}
 
-	private static class ItemTagGenerator extends ItemTagsProvider {
+	private static class ItemTagGenerator extends BlockTagCopyingItemTagProvider {
 		private ItemTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture, BlockTagGenerator blockTagGenerator) {
 			super(arg, completableFuture, blockTagGenerator.contentsGetter(), NetherDescent.MOD_ID);
 		}
 
 		@Override
-		protected void addTags(HolderLookup.@NotNull Provider provider) {
+		protected void addTags(HolderLookup.@NonNull Provider provider) {
 			copy(BlockTags.SLABS, ItemTags.SLABS);
 			copy(BlockTags.STAIRS, ItemTags.STAIRS);
 			copy(BlockTags.WALLS, ItemTags.WALLS);
@@ -198,7 +195,6 @@ public class TagsGenerator {
 
             tag(ItemTags.CREEPER_IGNITERS).add(NetherDescentItems.SOUL_FIRE_CHARGE.get(), NetherDescentItems.PENDORITE_FIRE_CHARGE.get());
             tag(Tags.Items.RODS_BLAZE).add(NetherDescentItems.SOUL_BLAZE_ROD.get());
-			tag(NetherDescentItemTags.EGGS).addOptionalTag(Tags.Items.EGGS).addOptionalTag(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("forge", "eggs")));
 		}
 	}
 
@@ -208,7 +204,7 @@ public class TagsGenerator {
 		}
 
 		@Override
-		protected void addTags(HolderLookup.@NotNull Provider provider) {
+		protected void addTags(HolderLookup.@NonNull Provider provider) {
 			NetherDescentBiomes.BIOME_FACTORIES.keySet().stream().sorted().toList().forEach(biome -> tag(NetherDescentBiomeTags.NETHER).add(biome));
 			NetherDescentBiomes.BIOMES_BY_TAG.forEach((tag, biome) -> tag(tag).add(biome));
 
@@ -225,12 +221,10 @@ public class TagsGenerator {
 		}
 
 		@Override
-		protected void addTags(HolderLookup.@NotNull Provider provider) {
-			tag(NetherDescentStructureTags.FORTRESSES)
-					.add(NetherDescentStructures.BLUE_FORTRESS, BuiltinStructures.FORTRESS);
+		protected void addTags(HolderLookup.@NonNull Provider provider) {
+			tag(NetherDescentStructureTags.FORTRESSES).add(NetherDescentStructures.BLUE_FORTRESS).add(BuiltinStructures.FORTRESS);
 
-			tag(NetherDescentStructureTags.CHAINS)
-					.add(NetherDescentStructures.SMALL_CHAINS, NetherDescentStructures.MEDIUM_CHAINS, NetherDescentStructures.LARGE_CHAINS);
+			tag(NetherDescentStructureTags.CHAINS).add(NetherDescentStructures.SMALL_CHAINS).add(NetherDescentStructures.MEDIUM_CHAINS).add(NetherDescentStructures.LARGE_CHAINS);
 
             tag(Tags.Structures.HIDDEN_FROM_DISPLAYERS).addTag(NetherDescentStructureTags.CHAINS);
             tag(Tags.Structures.HIDDEN_FROM_LOCATOR_SELECTION).addTag(NetherDescentStructureTags.CHAINS);
@@ -243,7 +237,7 @@ public class TagsGenerator {
         }
 
         @Override
-        protected void addTags(HolderLookup.@NotNull Provider provider) {
+        protected void addTags(HolderLookup.@NonNull Provider provider) {
             tag(DamageTypeTags.NO_KNOCKBACK).add(NetherDescentDamageTypes.CRIMSON_BERRY_BUSH);
             tag(Tags.DamageTypes.IS_ENVIRONMENT).add(NetherDescentDamageTypes.CRIMSON_BERRY_BUSH);
             tag(Tags.DamageTypes.IS_PHYSICAL).add(NetherDescentDamageTypes.CRIMSON_BERRY_BUSH);
@@ -256,11 +250,12 @@ public class TagsGenerator {
         }
 
         @Override
-        protected void addTags(HolderLookup.@NotNull Provider provider) {
+        protected void addTags(HolderLookup.@NonNull Provider provider) {
             tag(EntityTypeTags.IMPACT_PROJECTILES).add(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), NetherDescentEntityType.SOUL_FIREBALL.get());
             tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(NetherDescentEntityType.PENDORITE_BLAZE.get(), NetherDescentEntityType.SOUL_BLAZE.get(), NetherDescentEntityType.HORNET.get(), NetherDescentEntityType.SOUL_GHAST.get());
             tag(EntityTypeTags.ARTHROPOD).add(NetherDescentEntityType.HORNET.get());
 			tag(EntityTypeTags.REDIRECTABLE_PROJECTILE).add(NetherDescentEntityType.SOUL_FIREBALL.get());
+			tag(NetherDescentEntityTypeTags.SOUL_FIRE_FLAME).add(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), NetherDescentEntityType.SOUL_FIREBALL.get(), NetherDescentEntityType.SOUL_BLAZE.get());
         }
     }
 }

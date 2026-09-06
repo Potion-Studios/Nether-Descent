@@ -18,10 +18,10 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.world.entity.projectile.SmallSoulFireball;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class SoulBlaze extends Blaze {
-    public SoulBlaze(EntityType<? extends Blaze> entityType, Level level) {
+    public SoulBlaze(EntityType<? extends SoulBlaze> entityType, Level level) {
         super(entityType, level);
         this.xpReward = 14;
     }
@@ -37,12 +37,12 @@ public class SoulBlaze extends Blaze {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
-    public static AttributeSupplier.@NotNull Builder createAttributes() {
+    public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 7.0F).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.FOLLOW_RANGE, 30.0F);
     }
 
     @Override
-    public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull EntitySpawnReason spawnReason) {
+    public boolean checkSpawnRules(@NonNull LevelAccessor level, @NonNull EntitySpawnReason spawnReason) {
         return MobSpawnConfig.INSTANCE.soul_blaze && super.checkSpawnRules(level, spawnReason);
     }
 

@@ -2,7 +2,7 @@ package net.potionstudios.netherdescent.neoforge.datagen.generators;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.advancements.*;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.criterion.*;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -12,7 +12,7 @@ import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.data.advancements.packs.VanillaAdventureAdvancements;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -28,7 +28,7 @@ import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,7 +42,7 @@ public class AdvancementGenerator extends AdvancementProvider {
 
     private static class NetherDescentAdvancements implements AdvancementSubProvider {
         @Override
-        public void generate(HolderLookup.@NotNull Provider registries, @NotNull Consumer<AdvancementHolder> writer) {
+        public void generate(HolderLookup.Provider registries, @NonNull Consumer<AdvancementHolder> writer) {
             HolderGetter<EntityType<?>> entityTypeHolderGetter = registries.lookupOrThrow(Registries.ENTITY_TYPE);
             HolderGetter<Item> itemHolderGetter = registries.lookupOrThrow(Registries.ITEM);
             HolderGetter<Block> blockHolderGetter = registries.lookupOrThrow(Registries.BLOCK);
@@ -228,7 +228,7 @@ public class AdvancementGenerator extends AdvancementProvider {
                                     EntityPredicate.Builder.entity()
                                             .vehicle(
                                                     EntityPredicate.Builder.entity()
-                                                            .of(entityTypeHolderGetter, TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath("c", "boats")))
+                                                            .of(entityTypeHolderGetter, TagKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath("c", "boats")))
                                                             .steppingOn(
                                                                     LocationPredicate.Builder.location()
                                                                             .setBlock(BlockPredicate.Builder.block().of(blockHolderGetter, NetherDescentBlocks.EMBUR_GEL_BLOCK.get()))

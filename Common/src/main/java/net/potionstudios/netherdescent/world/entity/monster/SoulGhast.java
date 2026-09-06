@@ -18,16 +18,16 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.world.entity.projectile.LargeSoulFireball;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class SoulGhast extends Ghast {
-    public SoulGhast(EntityType<? extends Ghast> entityType, Level level) {
+    public SoulGhast(EntityType<? extends SoulGhast> entityType, Level level) {
         super(entityType, level);
         this.xpReward = 8;
     }
 
-	public static AttributeSupplier.@NotNull Builder createAttributes() {
-        return Mob.createMobAttributes().add(Attributes.MAX_HEALTH, 14.0F).add(Attributes.FOLLOW_RANGE, 100.0F);
+	public static AttributeSupplier.Builder createAttributes() {
+        return Ghast.createAttributes().add(Attributes.MAX_HEALTH, 14.0F);
     }
 
     public static boolean checkSoulGhastSpawnRules(EntityType<SoulGhast> ghast, LevelAccessor level, EntitySpawnReason spawnType, BlockPos pos, RandomSource random) {
@@ -35,7 +35,7 @@ public class SoulGhast extends Ghast {
     }
 
 	@Override
-	public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull EntitySpawnReason spawnReason) {
+	public boolean checkSpawnRules(@NonNull LevelAccessor level, @NonNull EntitySpawnReason spawnReason) {
 		return MobSpawnConfig.INSTANCE.soul_ghast && super.checkSpawnRules(level, spawnReason);
 	}
 
@@ -52,12 +52,12 @@ public class SoulGhast extends Ghast {
 	}
 
 	@Override
-	public boolean isInvulnerableTo(@NotNull ServerLevel level, @NotNull DamageSource damageSource) {
+	public boolean isInvulnerableTo(@NonNull ServerLevel level, @NonNull DamageSource damageSource) {
 		return this.isInvulnerable() && !damageSource.is(DamageTypeTags.BYPASSES_INVULNERABILITY) || !isReflectedFireball(damageSource) && super.isInvulnerableTo(level, damageSource);
 	}
 
 	@Override
-	public boolean hurtServer(@NotNull ServerLevel level, @NotNull DamageSource damageSource, float amount) {
+	public boolean hurtServer(@NonNull ServerLevel level, @NonNull DamageSource damageSource, float amount) {
 		if (isReflectedFireball(damageSource)) {
 			super.hurtServer(level, damageSource, 1000.0F);
 			return true;

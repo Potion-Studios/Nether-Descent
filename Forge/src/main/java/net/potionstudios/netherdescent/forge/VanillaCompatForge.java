@@ -4,13 +4,13 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.util.Result;
 import net.minecraftforge.event.brewing.BrewingRecipeRegisterEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.bus.BusGroup;
 import net.potionstudios.netherdescent.event.ServerEventsHandler;
 import net.potionstudios.netherdescent.util.VanillaBonemealHandler;
 import net.potionstudios.netherdescent.world.BlockItemFeatures;
@@ -30,13 +30,13 @@ public class VanillaCompatForge {
         });
     }
 
-    public static void registerVanillaCompatEvents(final IEventBus bus) {
-        bus.addListener(VanillaCompatForge::registerBrewingRecipes);
-        bus.addListener(VanillaCompatForge::registerTillables);
-        bus.addListener(VanillaCompatForge::registerFuels);
-        bus.addListener(VanillaCompatForge::onBoneMealUse);
-        bus.addListener((PlayerEvent.PlayerLoggedInEvent event) -> ServerEventsHandler.onPlayerJoin((ServerPlayer) event.getEntity()));
-        bus.addListener(VanillaCompatForge::onBlockPlace);
+    public static void registerVanillaCompatEvents(final BusGroup bus) {
+        BrewingRecipeRegisterEvent.BUS.addListener(VanillaCompatForge::registerBrewingRecipes);
+        BlockEvent.BlockToolModificationEvent.BUS.addListener(VanillaCompatForge::registerTillables);
+        FurnaceFuelBurnTimeEvent.BUS.addListener(VanillaCompatForge::registerFuels);
+        BonemealEvent.BUS.addListener(VanillaCompatForge::onBoneMealUse);
+        PlayerEvent.PlayerLoggedInEvent.BUS.addListener((PlayerEvent.PlayerLoggedInEvent event) -> ServerEventsHandler.onPlayerJoin((ServerPlayer) event.getEntity()));
+        BlockEvent.EntityPlaceEvent.BUS.addListener(VanillaCompatForge::onBlockPlace);
     }
 
     /**
@@ -73,7 +73,7 @@ public class VanillaCompatForge {
      */
     private static void onBoneMealUse(final BonemealEvent event) {
         if (VanillaBonemealHandler.boneMealEventHandler(event.getLevel(), event.getPos(), event.getBlock(), event.getStack()))
-            event.setResult(Event.Result.ALLOW);
+            event.setResult(Result.ALLOW);
     }
 
     /**

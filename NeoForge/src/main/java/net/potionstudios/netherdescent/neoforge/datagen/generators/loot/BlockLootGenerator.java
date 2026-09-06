@@ -16,14 +16,14 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import net.potionstudios.netherdescent.world.level.block.plants.NDGrowingPlantBodyBlock;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +60,8 @@ class BlockLootGenerator extends BlockLootSubProvider {
                 dropWhenSilkTouch(block);
             else if (block instanceof FlowerPotBlock)
                 dropPottedContents(block);
-            else if (block instanceof PinkPetalsBlock)
-                add(block, createPetalsDrops(block));
+            else if (block instanceof FlowerBedBlock)
+                add(block, createSegmentedBlockDrops(block));
             else if (block instanceof NetherSproutsBlock)
                 add(block, itemLike -> createShearsOnlyDrop(block));
             else if (block instanceof MultifaceBlock)
@@ -99,7 +99,7 @@ class BlockLootGenerator extends BlockLootSubProvider {
                                     .setRolls(ConstantValue.exactly(1))
                                     .add(
                                             LootItem.lootTableItem(block)
-                                                    .apply(CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(NetherDescentDataComponents.HORNETS.get()))
+                                                    .apply(CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY).include(NetherDescentDataComponents.HORNETS.get()))
                                     )
                     ));
         add(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), createMossyCarpetBlockDrops(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()));
@@ -108,13 +108,13 @@ class BlockLootGenerator extends BlockLootSubProvider {
     }
 
     @Override
-    protected void add(@NotNull Block block, LootTable.@NotNull Builder lootTableBuilder) {
+    protected void add(@NonNull Block block, LootTable.@NonNull Builder lootTableBuilder) {
         knownBlocks.add(block);
         super.add(block, lootTableBuilder);
     }
 
     @Override
-    protected @NotNull Iterable<Block> getKnownBlocks() {
+    protected @NonNull Iterable<Block> getKnownBlocks() {
         return knownBlocks;
     }
 }

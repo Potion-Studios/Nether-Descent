@@ -3,7 +3,7 @@ package net.potionstudios.netherdescent.advancements.critereon;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.*;
+import net.minecraft.advancements.criterion.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.server.level.ServerLevel;
@@ -15,19 +15,19 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingBulbBlossomBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingGillsBlock;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 
 public class WailingTrigger extends SimpleCriterionTrigger<WailingTrigger.TriggerInstance> {
 	@Override
-	public @NotNull Codec<TriggerInstance> codec() {
+	public @NonNull Codec<TriggerInstance> codec() {
 		return TriggerInstance.CODEC;
 	}
 
-	public void trigger(@NotNull ServerPlayer player, BlockPos pos, Entity entity) {
+	public void trigger(ServerPlayer player, BlockPos pos, Entity entity) {
 		LootContext lootcontext = EntityPredicate.createContext(player, entity);
-		super.trigger(player, instance -> instance.matches(player.serverLevel(), pos, lootcontext));
+		super.trigger(player, instance -> instance.matches(player.level(), pos, lootcontext));
 	}
 
 	public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<LocationPredicate> location, Optional<MinMaxBounds.Ints> powered, Optional<ContextAwarePredicate> entity) implements SimpleCriterionTrigger.SimpleInstance {

@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.ScaffoldingBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class SythianScaffoldingBlock extends ScaffoldingBlock {
     public SythianScaffoldingBlock(Properties properties) {
@@ -22,7 +22,7 @@ public class SythianScaffoldingBlock extends ScaffoldingBlock {
     }
 
     @Override
-    public @NotNull BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
+    public @NonNull BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockPos blockPos = context.getClickedPos();
         Level level = context.getLevel();
         int i = getDistance(level, blockPos);
@@ -33,7 +33,7 @@ public class SythianScaffoldingBlock extends ScaffoldingBlock {
     }
 
     @Override
-    protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+    protected void tick(BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, @NonNull RandomSource random) {
         int i = getDistance(level, pos);
         BlockState blockState = state.setValue(DISTANCE, i).setValue(BOTTOM, this.isBottom(level, pos, i));
         if (blockState.getValue(DISTANCE) == 7) {
@@ -48,7 +48,7 @@ public class SythianScaffoldingBlock extends ScaffoldingBlock {
     }
 
     @Override
-    protected boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
+    protected boolean canSurvive(@NonNull BlockState state, @NonNull LevelReader level, @NonNull BlockPos pos) {
         return getDistance(level, pos) < 7;
     }
 

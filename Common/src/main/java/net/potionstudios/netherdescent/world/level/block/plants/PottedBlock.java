@@ -7,17 +7,17 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.potionstudios.netherdescent.PlatformHandler;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.function.Supplier;
 
 public record PottedBlock(Supplier<? extends Block> block, Supplier<? extends Block> pottedBlock) implements Supplier<Block> {
-    public PottedBlock(@NotNull Supplier<? extends Block> block, @NotNull Supplier<? extends Block> pottedBlock) {
+    public PottedBlock(@NonNull Supplier<? extends Block> block, @NonNull Supplier<? extends Block> pottedBlock) {
         this.block = block;
         this.pottedBlock = pottedBlock;
     }
 
-    public PottedBlock(String id, @NotNull Supplier<? extends Block> block) {
+    public PottedBlock(String id, @NonNull Supplier<? extends Block> block) {
         this(block, NetherDescentBlocks.registerBlock("potted_" + id, properties -> PlatformHandler.PLATFORM_HANDLER.createPottedBlock(block, properties), BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
     }
 

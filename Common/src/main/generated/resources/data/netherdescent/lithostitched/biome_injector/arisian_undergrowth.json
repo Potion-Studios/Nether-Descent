@@ -1,0 +1,23 @@
+{
+  "type": "lithostitched:add_points",
+  "dimension": "minecraft:the_nether",
+  "points": [
+    {
+      "biome": "netherdescent:arisian_undergrowth",
+      "parameters": {
+        "continentalness": 0.0,
+        "depth": 0.0,
+        "erosion": 0.0,
+        "humidity": 0.4,
+        "offset": 0.375,
+        "temperature": 0.0,
+        "weirdness": 0.0
+      }
+    }
+  ],
+  "predicate": {
+    "type": "netherdescent:config",
+    "biome": "netherdescent:arisian_undergrowth"
+  },
+  "priority": 10
+}

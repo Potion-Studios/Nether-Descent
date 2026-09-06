@@ -8,7 +8,6 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.entity.*;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -29,7 +28,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -51,7 +49,7 @@ public final class NeoForgePlatformHandler implements PlatformHandler {
 	}
 
 	@Override
-	public WoodType createWoodType(String id, @NotNull BlockSetType setType) {
+	public WoodType createWoodType(String id, BlockSetType setType) {
 		return WoodType.register(new WoodType(NetherDescent.MOD_ID + ":" + id, setType));
 	}
 
@@ -79,13 +77,13 @@ public final class NeoForgePlatformHandler implements PlatformHandler {
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> Supplier<T> register(Registry<? super T> registry, String name, Supplier<T> value) {
-		return ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.location(), NetherDescent.MOD_ID))).register(name, value);
+		return ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.identifier(), NetherDescent.MOD_ID))).register(name, value);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> Supplier<Holder.Reference<T>> registerForHolder(Registry<T> registry, String name, Supplier<T> value) {
-		DeferredHolder<?, ?> registryObject = ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.location(), NetherDescent.MOD_ID))).register(name, value);
+		DeferredHolder<?, ?> registryObject = ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.identifier(), NetherDescent.MOD_ID))).register(name, value);
 		return () -> (Holder.Reference<T>) registryObject.getDelegate();
 	}
 
@@ -108,7 +106,7 @@ public final class NeoForgePlatformHandler implements PlatformHandler {
 
 	@Override
 	public boolean isDevEnvironment() {
-		return !FMLLoader.isProduction();
+		return !FMLLoader.getCurrent().isProduction();
 	}
 
 	@Override

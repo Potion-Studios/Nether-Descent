@@ -27,8 +27,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 
@@ -56,7 +56,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
+	public @Nullable BlockState getStateForPlacement(BlockPlaceContext context) {
 		if (context.getClickedFace().getAxis().isHorizontal()) {
 			BlockPos attachPos = context.getClickedPos().relative(context.getClickedFace().getOpposite());
 			BlockState attachState = context.getLevel().getBlockState(attachPos);
@@ -70,7 +70,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	public void setPlacedBy(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable LivingEntity placer, @NotNull ItemStack stack) {
+	public void setPlacedBy(@NonNull Level level, @NonNull BlockPos pos, @NonNull BlockState state, @Nullable LivingEntity placer, @NonNull ItemStack stack) {
 		super.setPlacedBy(level, pos, state, placer, stack);
 
 		int size = state.getValue(SIZE);
@@ -91,7 +91,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	public void stepOn(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Entity entity) {
+	public void stepOn(@NonNull Level level, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull Entity entity) {
 		super.stepOn(level, pos, state, entity);
 		if (level.isClientSide() || !(level instanceof ServerLevel serverLevel)) return;
 		if (!(entity instanceof Player)) return;
@@ -166,7 +166,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+	protected void tick(BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, @NonNull RandomSource random) {
 		if (state.getValue(SEGMENT) != SegmentType.END) return;
 
 		boolean present = isPlayerStandingOn(level, pos);
@@ -222,8 +222,8 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	protected void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState newState, boolean movedByPiston) {
-		if (!movedByPiston && !state.is(newState.getBlock())) {
+	protected void affectNeighborsAfterRemoval(@NonNull BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, boolean movedByPiston) {
+		if (!movedByPiston && !state.is(state.getBlock())) {
 			if (state.getValue(SEGMENT) != SegmentType.END) {
 				Direction facing = state.getValue(FACING);
 				BlockPos nextPos = pos.relative(facing);
@@ -245,32 +245,32 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 				}
 			}
 		}
-		super.onRemove(state, level, pos, newState, movedByPiston);
+		super.affectNeighborsAfterRemoval(state, level, pos, movedByPiston);
 	}
 
 	@Override
-	protected @NotNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
+	protected @NonNull MapCodec<? extends HorizontalDirectionalBlock> codec() {
 		return simpleCodec(ThornSproutBlock::new);
 	}
 
 	@Override
-	protected @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+	protected @NonNull VoxelShape getShape(@NonNull BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull CollisionContext context) {
 		return SHAPE;
 	}
 
 	@Override
-	protected boolean isCollisionShapeFullBlock(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+	protected boolean isCollisionShapeFullBlock(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos) {
 		return state.getValue(SEGMENT) != SegmentType.END;
 	}
 
 	@Override
-	public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+	public void animateTick(BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {
 		if (state.getValue(FLOWERING) && random.nextInt(10) == 0)
 			level.addParticle(NetherDescentParticles.ARISIAN_LEAF.get(), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 0, 0, 0);
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder.add(SEGMENT, FLOWERING, SIZE, FACING, COUNTING));
 	}
 
@@ -286,7 +286,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 		}
 
 		@Override
-		public @NotNull String getSerializedName() {
+		public @NonNull String getSerializedName() {
 			return this.name;
 		}
 	}

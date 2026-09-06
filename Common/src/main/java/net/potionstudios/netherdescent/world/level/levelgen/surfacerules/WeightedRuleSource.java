@@ -2,22 +2,22 @@ package net.potionstudios.netherdescent.world.level.levelgen.surfacerules;
 
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.KeyDispatchDataCodec;
-import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.level.levelgen.PositionalRandomFactory;
 import net.minecraft.world.level.levelgen.SurfaceRules;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Objects;
 
-public record WeightedRuleSource(SimpleWeightedRandomList<SurfaceRules.RuleSource> ruleSources) implements SurfaceRules.RuleSource {
+public record WeightedRuleSource(WeightedList<SurfaceRules.RuleSource> ruleSources) implements SurfaceRules.RuleSource {
 
     public static final KeyDispatchDataCodec<WeightedRuleSource> CODEC = KeyDispatchDataCodec.of(RecordCodecBuilder.mapCodec(builder ->
             builder.group(
-                    SimpleWeightedRandomList.wrappedCodec(SurfaceRules.RuleSource.CODEC).fieldOf("provider").forGetter(WeightedRuleSource::ruleSources)
+                    WeightedList.codec(SurfaceRules.RuleSource.CODEC).fieldOf("provider").forGetter(WeightedRuleSource::ruleSources)
             ).apply(builder, WeightedRuleSource::new)));
 
     @Override
-    public @NotNull KeyDispatchDataCodec<? extends SurfaceRules.RuleSource> codec() {
+    public @NonNull KeyDispatchDataCodec<? extends SurfaceRules.RuleSource> codec() {
         return CODEC;
     }
 
@@ -28,7 +28,7 @@ public record WeightedRuleSource(SimpleWeightedRandomList<SurfaceRules.RuleSourc
 
         for (int x = 0; x < rules.length; x++)
             for (int z = 0; z < rules[x].length; z++) {
-                SurfaceRules.SurfaceRule apply = this.ruleSources.getRandomValue(random.at(x, 0, z)).get().apply(context);
+                SurfaceRules.SurfaceRule apply = this.ruleSources.getRandom(random.at(x, 0, z)).get().apply(context);
                 rules[x][z] = apply;
             }
 

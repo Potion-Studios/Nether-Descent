@@ -1,6 +1,7 @@
 package net.potionstudios.netherdescent.fabric;
 
 import com.terraformersmc.biolith.impl.Biolith;
+import dev.worldgen.lithostitched.Lithostitched;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -34,8 +35,8 @@ public class NetherDescentFabric implements ModInitializer {
         NetherDescent.commonSetup();
         if (FabricLoader.getInstance().isModLoaded(Biolith.MOD_ID))
             BiolithRegister.register();
-        else if (!FabricLoader.getInstance().isModLoaded(TerraBlender.MOD_ID))
-            NetherDescent.LOGGER.warn("TerraBlender or Biolith are not loaded, Nether Descent's biomes will not be added to the world!");
+        else if (!FabricLoader.getInstance().isModLoaded(TerraBlender.MOD_ID) && !FabricLoader.getInstance().isModLoaded(Lithostitched.MOD_ID))
+            NetherDescent.LOGGER.warn("TerraBlender, Biolith, or Lithostitched are not loaded, Nether Descent's biomes will not be added to the world!");
         NetherDescent.postInit();
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> NetherDescentCommands.register(dispatcher::register));
     }

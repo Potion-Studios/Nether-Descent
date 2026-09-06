@@ -8,7 +8,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.function.Supplier;
 
@@ -20,7 +20,7 @@ public class NDWallTorchBlock extends WallTorchBlock {
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, @NotNull RandomSource random) {
+    public void animateTick(BlockState state, Level level, BlockPos pos, @NonNull RandomSource random) {
         Direction direction = state.getValue(FACING);
         double d = (double)pos.getX() + (double)0.5F;
         double e = (double)pos.getY() + 0.7;

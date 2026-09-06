@@ -4,9 +4,10 @@ import mcp.mobius.waila.api.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.entity.animal.Hornet;
+import org.jspecify.annotations.NonNull;
 
 public enum HornetDataProvider implements IDataProvider<Hornet> {
 
@@ -18,8 +19,8 @@ public enum HornetDataProvider implements IDataProvider<Hornet> {
             NestPosData::new);
 
     @Override
-    public void appendData(IDataWriter iDataWriter, IServerAccessor<Hornet> iServerAccessor, IPluginConfig iPluginConfig) {
-        if (iPluginConfig.getBoolean(ResourceLocation.withDefaultNamespace("bee.hive_pos"))) {
+    public void appendData(@NonNull IDataWriter iDataWriter, @NonNull IServerAccessor<Hornet> iServerAccessor, IPluginConfig iPluginConfig) {
+        if (iPluginConfig.getBoolean(Identifier.withDefaultNamespace("bee.hive_pos"))) {
             BlockPos nestPos = iServerAccessor.getTarget().getHivePos();
             if (nestPos != null)
                 iDataWriter.addImmediate(new NestPosData(nestPos));
@@ -30,7 +31,7 @@ public enum HornetDataProvider implements IDataProvider<Hornet> {
     public record NestPosData(BlockPos pos) implements IData {
 
         @Override
-        public Type<? extends IData> type() {
+        public @NonNull Type<? extends IData> type() {
             return NEST_POS;
         }
     }

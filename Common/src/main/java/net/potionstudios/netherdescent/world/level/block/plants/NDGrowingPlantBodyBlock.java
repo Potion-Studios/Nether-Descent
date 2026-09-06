@@ -9,6 +9,7 @@ import net.minecraft.world.level.block.GrowingPlantBodyBlock;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.function.Supplier;
 
@@ -36,12 +37,12 @@ public class NDGrowingPlantBodyBlock extends GrowingPlantBodyBlock {
     }
 
 	@Override
-	protected @NotNull MapCodec<? extends GrowingPlantBodyBlock> codec() {
+	protected @NonNull MapCodec<? extends GrowingPlantBodyBlock> codec() {
 		return CODEC;
 	}
 
 	@Override
-    @NotNull
+
     public GrowingPlantHeadBlock getHeadBlock() {
 		return headBlock.get();
 	}

@@ -15,7 +15,7 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -33,13 +33,13 @@ class EntityLootGenerator extends EntityLootSubProvider {
     }
 
     @Override
-    protected void add(@NotNull EntityType<?> entityType, LootTable.@NotNull Builder builder) {
+    protected void add(@NonNull EntityType<?> entityType, LootTable.@NonNull Builder builder) {
         super.add(entityType, builder);
         knownEntities.add(entityType);
     }
 
     @Override
-    protected @NotNull Stream<EntityType<?>> getKnownEntityTypes() {
+    protected @NonNull Stream<EntityType<?>> getKnownEntityTypes() {
         return knownEntities.stream();
     }
 }

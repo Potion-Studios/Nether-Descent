@@ -34,7 +34,8 @@
     ],
     "hanging=true": [
       {
-        "model": "netherdescent:block/arisian_dandelions"
+        "model": "netherdescent:block/arisian_dandelions",
+        "x": 180
       },
       {
         "model": "netherdescent:block/arisian_dandelions",
@@ -52,7 +53,8 @@
         "y": 270
       },
       {
-        "model": "netherdescent:block/arisian_dandelions2"
+        "model": "netherdescent:block/arisian_dandelions2",
+        "x": 180
       },
       {
         "model": "netherdescent:block/arisian_dandelions2",

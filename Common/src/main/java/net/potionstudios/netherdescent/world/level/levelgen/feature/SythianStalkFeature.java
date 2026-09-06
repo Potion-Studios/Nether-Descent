@@ -12,7 +12,6 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.plants.SythianStalkBlock;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.SythianStalkFeatureConfiguration;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -36,7 +35,7 @@ public class SythianStalkFeature extends Feature<SythianStalkFeatureConfiguratio
 	}
 
 	@Override
-	public boolean place(@NotNull FeaturePlaceContext<SythianStalkFeatureConfiguration> context) {
+	public boolean place(FeaturePlaceContext<SythianStalkFeatureConfiguration> context) {
 		int i = 0;
 		BlockPos blockPos = context.origin();
 		WorldGenLevel worldGenLevel = context.level();

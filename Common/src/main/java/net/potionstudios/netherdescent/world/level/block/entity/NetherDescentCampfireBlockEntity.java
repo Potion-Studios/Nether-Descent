@@ -4,7 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.CampfireBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class NetherDescentCampfireBlockEntity extends CampfireBlockEntity {
 	public NetherDescentCampfireBlockEntity(BlockPos pos, BlockState blockState) {
@@ -12,12 +12,12 @@ public class NetherDescentCampfireBlockEntity extends CampfireBlockEntity {
 	}
 
 	@Override
-	public @NotNull BlockEntityType<?> getType() {
+	public @NonNull BlockEntityType<?> getType() {
 		return NetherDescentBlockEntityType.CAMPFIRE.get();
 	}
 
     @Override
-    public boolean isValidBlockState(@NotNull BlockState blockState) {
+    public boolean isValidBlockState(@NonNull BlockState blockState) {
         return getType().isValid(blockState);
     }
 }

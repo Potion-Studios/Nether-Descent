@@ -15,12 +15,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.data.loading.DatagenModLoader;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.bus.BusGroup;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.FMLPaths;
@@ -30,7 +29,6 @@ import net.minecraftforge.registries.RegistryObject;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -46,15 +44,13 @@ public final class ForgePlatformHandler implements PlatformHandler {
 		return FMLPaths.CONFIGDIR.get().resolve(NetherDescent.MOD_ID);
 	}
 
-	private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, NetherDescent.MOD_ID);
-
 	@Override
 	public FlowerPotBlock createPottedBlock(Supplier<? extends Block> block, BlockBehaviour.Properties properties) {
 		return new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, block, properties);
 	}
 
 	@Override
-	public WoodType createWoodType(String id, @NotNull BlockSetType setType) {
+	public WoodType createWoodType(String id, BlockSetType setType) {
 		return WoodType.register(new WoodType(NetherDescent.MOD_ID + ":" + id, setType));
 	}
 
@@ -75,7 +71,6 @@ public final class ForgePlatformHandler implements PlatformHandler {
 					for (ArrayList<Supplier<? extends Item>> item : items)
 						item.forEach((item1) -> entries.accept(item1.get()));
 				})
-				.withSearchBar()
 				.build());
 	}
 
@@ -84,13 +79,13 @@ public final class ForgePlatformHandler implements PlatformHandler {
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> Supplier<T> register(Registry<? super T> registry, String name, Supplier<T> value) {
-		return ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.location(), NetherDescent.MOD_ID))).register(name, value);
+		return ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.identifier(), NetherDescent.MOD_ID))).register(name, value);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public <T> Supplier<Holder.Reference<T>> registerForHolder(Registry<T> registry, String name, Supplier<T> value) {
-		RegistryObject<T> registryObject = ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.location(), NetherDescent.MOD_ID))).register(name, value);
+		RegistryObject<T> registryObject = ((DeferredRegister<T>) CACHED.computeIfAbsent(registry.key(), key -> DeferredRegister.create(key.identifier(), NetherDescent.MOD_ID))).register(name, value);
 		return () -> (Holder.Reference<T>) registryObject.getHolder().orElse(null);
 	}
 
@@ -107,10 +102,9 @@ public final class ForgePlatformHandler implements PlatformHandler {
         });
     }
 
-	public static void register(final IEventBus bus) {
+	public static void register(final BusGroup bus) {
 		PARTICLES.register(bus);
 		CACHED.values().forEach(deferredRegister -> deferredRegister.register(bus));
-		BLOCK_ENTITIES.register(bus);
 	}
 
 	@Override

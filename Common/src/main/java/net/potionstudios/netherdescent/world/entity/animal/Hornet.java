@@ -8,18 +8,20 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.animal.Bee;
+import net.minecraft.world.entity.animal.bee.Bee;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.level.block.entity.HornetNestBlockEntity;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 import java.util.EnumSet;
 
@@ -48,7 +50,7 @@ public class Hornet extends Bee {
         super(type, level);
     }
 
-    public static AttributeSupplier.@NotNull Builder createAttributes() {
+    public static AttributeSupplier.Builder createAttributes() {
         return Bee.createAttributes()
                 .add(Attributes.MAX_HEALTH, 12.0D)
                 .add(Attributes.FLYING_SPEED, 0.7D)
@@ -56,13 +58,13 @@ public class Hornet extends Bee {
     }
 
     @Override
-    public boolean checkSpawnRules(@NotNull LevelAccessor level, @NotNull EntitySpawnReason spawnReason) {
+    public boolean checkSpawnRules(@NonNull LevelAccessor level, @NonNull EntitySpawnReason spawnReason) {
         return MobSpawnConfig.INSTANCE.hornet.value() && super.checkSpawnRules(level, spawnReason);
     }
 
     public void setHivePos(BlockPos pos) {
         this.nestPos = pos.immutable();
-        this.restrictTo(this.nestPos, MAX_DISTANCE_FROM_NEST);
+        this.setHomeTo(this.nestPos, MAX_DISTANCE_FROM_NEST);
     }
 
     @Nullable
@@ -76,7 +78,7 @@ public class Hornet extends Bee {
 
     public void clearHornetNest() {
         this.nestPos = null;
-        this.clearRestriction();
+        this.clearHome();
     }
 
     @Override
@@ -93,7 +95,7 @@ public class Hornet extends Bee {
     }
 
     @Override
-    protected void customServerAiStep(@NotNull ServerLevel level) {
+    protected void customServerAiStep(@NonNull ServerLevel level) {
         super.customServerAiStep(level);
 
         long now = level.getGameTime();
@@ -130,40 +132,33 @@ public class Hornet extends Bee {
     }
 
     @Override
-    public boolean canAttack(@NotNull LivingEntity target) {
+    public boolean canAttack(@NonNull LivingEntity target) {
         if (target instanceof Hornet) return false;
         if (this.isDocile() && target instanceof Player) return false;
         return super.canAttack(target);
     }
 
     @Override
-    public boolean doHurtTarget(@NotNull ServerLevel level, @NotNull Entity source) {
+    public boolean doHurtTarget(@NonNull ServerLevel level, Entity source) {
         return source.hurtServer(level, damageSources().sting(this), (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE));
     }
 
     @Override
     @Nullable
-    public Hornet getBreedOffspring(@NotNull ServerLevel level, @NotNull AgeableMob otherParent) {
+    public Hornet getBreedOffspring(@NonNull ServerLevel level, @NonNull AgeableMob otherParent) {
         return NetherDescentEntityType.HORNET.get().create(level, EntitySpawnReason.BREEDING);
     }
 
     @Override
-    public void addAdditionalSaveData(net.minecraft.nbt.@NotNull CompoundTag tag) {
-        super.addAdditionalSaveData(tag);
-        if (this.nestPos != null) {
-            tag.putLong(NBT_NEST_POS, this.nestPos.asLong());
-        }
+    protected void addAdditionalSaveData(@NonNull ValueOutput output) {
+        super.addAdditionalSaveData(output);
+        output.storeNullable(NBT_NEST_POS, BlockPos.CODEC, this.nestPos);
     }
 
     @Override
-    public void readAdditionalSaveData(net.minecraft.nbt.@NotNull CompoundTag tag) {
-        super.readAdditionalSaveData(tag);
-        if (tag.contains(NBT_NEST_POS)) {
-            this.nestPos = BlockPos.of(tag.getLong(NBT_NEST_POS));
-            if (this.nestPos != null) {
-                this.restrictTo(this.nestPos, MAX_DISTANCE_FROM_NEST);
-            }
-        }
+    protected void readAdditionalSaveData(@NonNull ValueInput input) {
+        super.readAdditionalSaveData(input);
+        this.nestPos = input.read(NBT_NEST_POS, BlockPos.CODEC).orElse(null);
     }
 
     private boolean shouldSleepNow() {
@@ -173,7 +168,7 @@ public class Hornet extends Bee {
 
     private boolean shouldDepositNectarNow() {
         if (!this.hasNectar() || this.nestPos == null) return false;
-        return this.level().isDay() || this.shouldSleepNow();
+        return this.level().isBrightOutside() || this.shouldSleepNow();
     }
 
     private boolean isTooFarFromNest() {

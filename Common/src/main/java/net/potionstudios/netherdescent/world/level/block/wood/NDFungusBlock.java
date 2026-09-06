@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FungusBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class NDFungusBlock extends FungusBlock {
     public NDFungusBlock(ResourceKey<ConfiguredFeature<?, ?>> feature, Block requiredBlock, Properties properties) {
@@ -17,7 +17,7 @@ public class NDFungusBlock extends FungusBlock {
     }
 
     @Override
-    public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
         super.performBonemeal(level, random, pos, state);
         this.getFeature(level).ifPresent((holder) -> {
             boolean b =  holder.value().place(level, level.getChunkSource().getGenerator(), random, pos);

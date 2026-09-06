@@ -5,7 +5,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.bus.BusGroup;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.potionstudios.netherdescent.client.NetherDescentClient;
 
@@ -21,16 +21,16 @@ public class NetherDescentClientForge {
 	 * Initializes the client side of the Forge mod.
 	 * @param eventBus The event bus to register the client side of the mod to.
 	 */
-	public static void init(final IEventBus eventBus) {
-		eventBus.addListener((FMLClientSetupEvent event) -> {
+	public static void init(final BusGroup eventBus) {
+		FMLClientSetupEvent.getBus(eventBus).addListener((FMLClientSetupEvent event) -> {
 			NetherDescentClient.onInitialize();
 			NetherDescentClient.registerBlockRenderTypes(ItemBlockRenderTypes::setRenderLayer);
 		});
-        eventBus.addListener((EntityRenderersEvent.RegisterRenderers event) -> {
+        EntityRenderersEvent.RegisterRenderers.BUS.addListener((EntityRenderersEvent.RegisterRenderers event) -> {
             NetherDescentClient.registerEntityRenderers(event::registerEntityRenderer);
             NetherDescentClient.registerBlockEntityRenderers(event::registerBlockEntityRenderer);
         });
-        eventBus.addListener((EntityRenderersEvent.RegisterLayerDefinitions event) -> NetherDescentClient.registerLayerDefinitions(event::registerLayerDefinition));
-        eventBus.addListener((RegisterParticleProvidersEvent event) -> NetherDescentClient.registerParticles((type, spriteProviderFactory) -> event.registerSpriteSet(type, spriteProviderFactory::apply)));
+		EntityRenderersEvent.RegisterLayerDefinitions.BUS.addListener((EntityRenderersEvent.RegisterLayerDefinitions event) -> NetherDescentClient.registerLayerDefinitions(event::registerLayerDefinition));
+		RegisterParticleProvidersEvent.BUS.addListener((RegisterParticleProvidersEvent event) -> NetherDescentClient.registerParticles((type, spriteProviderFactory) -> event.registerSpriteSet(type, spriteProviderFactory::apply)));
 	}
 }

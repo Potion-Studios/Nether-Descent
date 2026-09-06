@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.potionstudios.netherdescent.world.level.block.plants.HangingNDBushBlock;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 
@@ -46,7 +46,7 @@ public class HangingFungusBlock extends HangingNDBushBlock implements Bonemealab
     }
 
     @Override
-    protected boolean mayPlaceOn(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos) {
         return state.is(Blocks.MYCELIUM) || super.mayPlaceOn(state, level, pos);
     }
 
@@ -55,17 +55,17 @@ public class HangingFungusBlock extends HangingNDBushBlock implements Bonemealab
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, BlockState state) {
         return state.getValue(HANGING) ? level.getBlockState(pos.above()).is(this.requiredBlock) : level.getBlockState(pos.below()).is(this.requiredBlock);
     }
 
     @Override
-    public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
         return true;
     }
 
     @Override
-    public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, BlockState state) {
         this.getFeature(level, state.getValue(HANGING) ? this.hangingFeature : this.feature).ifPresent(holder -> {
             boolean b = holder.value().place(level, level.getChunkSource().getGenerator(), random, pos);
             if (b && level.getBlockState(pos).is(this))

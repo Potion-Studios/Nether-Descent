@@ -3,13 +3,12 @@ package net.potionstudios.netherdescent.world.level.block.wood;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.UntintedParticleLeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -18,30 +17,19 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.AABB;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
-public class ArisianLeavesBlock extends LeavesBlock {
+public class ArisianLeavesBlock extends UntintedParticleLeavesBlock {
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	public static final IntegerProperty STRENGTH = IntegerProperty.create("strength", 0, 5);
 	public ArisianLeavesBlock(Properties properties) {
-		super(properties);
+		super(0.01F, NetherDescentParticles.ARISIAN_LEAF.get(), properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false).setValue(STRENGTH, 0));
 	}
 
 	@Override
-	public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-		super.animateTick(state, level, pos, random);
-		if (random.nextInt(10) == 0) {
-			BlockPos blockPos = pos.below();
-			BlockState blockState = level.getBlockState(blockPos);
-			if (!isFaceFull(blockState.getCollisionShape(level, blockPos), Direction.UP))
-				ParticleUtils.spawnParticleBelow(level, pos, random, NetherDescentParticles.ARISIAN_LEAF.get());
-		}
-	}
-
-	@Override
-	public void stepOn(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Entity entity) {
+	public void stepOn(@NonNull Level level, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull Entity entity) {
 		super.stepOn(level, pos, state, entity);
 		if (!level.isClientSide() && entity instanceof LivingEntity)
 			if (state.getValue(STRENGTH) != 5)
@@ -49,7 +37,7 @@ public class ArisianLeavesBlock extends LeavesBlock {
 	}
 
 	@Override
-	protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+	protected void tick(@NonNull BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, @NonNull RandomSource random) {
 		super.tick(state, level, pos, random);
 		int currentStrength = state.getValue(STRENGTH);
 		int targetStrength = 0;
@@ -80,13 +68,13 @@ public class ArisianLeavesBlock extends LeavesBlock {
 	}
 
 	@Override
-	protected void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block neighborBlock, @Nullable Orientation orientation, boolean movedByPiston) {
+	protected void neighborChanged(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull Block neighborBlock, @Nullable Orientation orientation, boolean movedByPiston) {
 		super.neighborChanged(state, level, pos, neighborBlock, orientation, movedByPiston);
 		if (!level.isClientSide())
 			level.scheduleTick(pos, this, 1);
 	}
 
-	private void updateState(@NotNull BlockState currentState, @NotNull Level level, @NotNull BlockPos pos, int newStrength) {
+	private void updateState(BlockState currentState, Level level, BlockPos pos, int newStrength) {
 		boolean newLit = newStrength > 0;
 
 		BlockState newState = currentState.setValue(STRENGTH, newStrength).setValue(LIT, newLit);
@@ -102,7 +90,7 @@ public class ArisianLeavesBlock extends LeavesBlock {
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder.add(LIT, STRENGTH));
 	}
 }

@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 
@@ -47,12 +47,12 @@ public class GrowingPlantVinesDecorator extends TreeDecorator {
     }
 
     @Override
-    protected @NotNull TreeDecoratorType<?> type() {
+    protected @NonNull TreeDecoratorType<?> type() {
         return NetherDescentTreeDecoratorType.GROWING_PLANT.get();
     }
 
     @Override
-    public void place(@NotNull Context context) {
+    public void place(Context context) {
         RandomSource randomSource = context.random();
         LevelReader levelReader = (LevelReader) context.level();
         ObjectArrayList<BlockPos> list = new ObjectArrayList<>();

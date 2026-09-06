@@ -1,7 +1,6 @@
 package net.potionstudios.netherdescent.neoforge;
 
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
@@ -12,19 +11,9 @@ import net.potionstudios.netherdescent.event.ServerEventsHandler;
 import net.potionstudios.netherdescent.util.VanillaBonemealHandler;
 import net.potionstudios.netherdescent.world.BlockItemFeatures;
 import net.potionstudios.netherdescent.world.item.brewing.NetherDescentBrewingRecipes;
-import net.potionstudios.netherdescent.world.item.tools.ToolInteractions;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 
-import java.util.HashMap;
-
 public class VanillaCompatNeoForge {
-    public static void init() {
-        ToolInteractions.registerStrippableBlocks((block, stripped) -> {
-            AxeItem.STRIPPABLES = new HashMap<>(AxeItem.STRIPPABLES);
-            AxeItem.STRIPPABLES.put(block, stripped);
-        });
-    }
-
     public static void registerVanillaCompatEvents(final IEventBus bus) {
         bus.addListener(VanillaCompatNeoForge::registerBrewingRecipes);
         bus.addListener(VanillaCompatNeoForge::registerTillables);
