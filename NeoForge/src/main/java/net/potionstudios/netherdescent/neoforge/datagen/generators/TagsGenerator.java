@@ -21,7 +21,7 @@ import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructures;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -46,7 +46,7 @@ public class TagsGenerator {
 		}
 
 		@Override
-		protected void addTags(HolderLookup.@NotNull Provider provider) {
+		protected void addTags(HolderLookup.Provider provider) {
 			NetherDescentBlocks.BLOCKS.forEach(block -> easyBlockTags(block.get()));
 			NetherDescentWoodSet.woodsets().forEach(set -> {
 				tag(BlockTags.PLANKS).add(set.planks());
@@ -148,7 +148,7 @@ public class TagsGenerator {
 		}
 
 		@Override
-		protected void addTags(HolderLookup.@NotNull Provider provider) {
+		protected void addTags(HolderLookup.@NonNull Provider provider) {
 			copy(BlockTags.SLABS, ItemTags.SLABS);
 			copy(BlockTags.STAIRS, ItemTags.STAIRS);
 			copy(BlockTags.WALLS, ItemTags.WALLS);
@@ -204,7 +204,7 @@ public class TagsGenerator {
 		}
 
 		@Override
-		protected void addTags(HolderLookup.@NotNull Provider provider) {
+		protected void addTags(HolderLookup.@NonNull Provider provider) {
 			NetherDescentBiomes.BIOME_FACTORIES.keySet().stream().sorted().toList().forEach(biome -> tag(NetherDescentBiomeTags.NETHER).add(biome));
 			NetherDescentBiomes.BIOMES_BY_TAG.forEach((tag, biome) -> tag(tag).add(biome));
 
@@ -221,12 +221,10 @@ public class TagsGenerator {
 		}
 
 		@Override
-		protected void addTags(HolderLookup.@NotNull Provider provider) {
-			tag(NetherDescentStructureTags.FORTRESSES)
-					.add(NetherDescentStructures.BLUE_FORTRESS, BuiltinStructures.FORTRESS);
+		protected void addTags(HolderLookup.@NonNull Provider provider) {
+			tag(NetherDescentStructureTags.FORTRESSES).add(NetherDescentStructures.BLUE_FORTRESS).add(BuiltinStructures.FORTRESS);
 
-			tag(NetherDescentStructureTags.CHAINS)
-					.add(NetherDescentStructures.SMALL_CHAINS, NetherDescentStructures.MEDIUM_CHAINS, NetherDescentStructures.LARGE_CHAINS);
+			tag(NetherDescentStructureTags.CHAINS).add(NetherDescentStructures.SMALL_CHAINS).add(NetherDescentStructures.MEDIUM_CHAINS).add(NetherDescentStructures.LARGE_CHAINS);
 
             tag(Tags.Structures.HIDDEN_FROM_DISPLAYERS).addTag(NetherDescentStructureTags.CHAINS);
             tag(Tags.Structures.HIDDEN_FROM_LOCATOR_SELECTION).addTag(NetherDescentStructureTags.CHAINS);
@@ -239,7 +237,7 @@ public class TagsGenerator {
         }
 
         @Override
-        protected void addTags(HolderLookup.@NotNull Provider provider) {
+        protected void addTags(HolderLookup.@NonNull Provider provider) {
             tag(DamageTypeTags.NO_KNOCKBACK).add(NetherDescentDamageTypes.CRIMSON_BERRY_BUSH);
             tag(Tags.DamageTypes.IS_ENVIRONMENT).add(NetherDescentDamageTypes.CRIMSON_BERRY_BUSH);
             tag(Tags.DamageTypes.IS_PHYSICAL).add(NetherDescentDamageTypes.CRIMSON_BERRY_BUSH);
@@ -252,7 +250,7 @@ public class TagsGenerator {
         }
 
         @Override
-        protected void addTags(HolderLookup.@NotNull Provider provider) {
+        protected void addTags(HolderLookup.@NonNull Provider provider) {
             tag(EntityTypeTags.IMPACT_PROJECTILES).add(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), NetherDescentEntityType.SOUL_FIREBALL.get());
             tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(NetherDescentEntityType.PENDORITE_BLAZE.get(), NetherDescentEntityType.SOUL_BLAZE.get(), NetherDescentEntityType.HORNET.get(), NetherDescentEntityType.SOUL_GHAST.get());
             tag(EntityTypeTags.ARTHROPOD).add(NetherDescentEntityType.HORNET.get());

@@ -10,7 +10,6 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.potionstudios.netherdescent.world.level.block.custom.HangingMossyCarpetBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.NDMossyCarpetBlock;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CarpetPatchFeatureConfiguration;
-import org.jetbrains.annotations.NotNull;
 
 public class CarpetPatchFeature extends Feature<CarpetPatchFeatureConfiguration> {
 	public CarpetPatchFeature(Codec<CarpetPatchFeatureConfiguration> codec) {
@@ -18,7 +17,7 @@ public class CarpetPatchFeature extends Feature<CarpetPatchFeatureConfiguration>
 	}
 
 	@Override
-	public boolean place(@NotNull FeaturePlaceContext<CarpetPatchFeatureConfiguration> context) {
+	public boolean place(FeaturePlaceContext<CarpetPatchFeatureConfiguration> context) {
 		CarpetPatchFeatureConfiguration config = context.config();
 
 		WorldGenLevel level = context.level();

@@ -12,7 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CraftingTableBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class NetherDescentCraftingTable extends CraftingTableBlock {
     private static final Component CONTAINER_TITLE = Component.translatable("container.crafting");
@@ -21,7 +21,7 @@ public class NetherDescentCraftingTable extends CraftingTableBlock {
     }
 
     @Override
-    public @NotNull MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos) {
+    public @NonNull MenuProvider getMenuProvider(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos) {
         return new SimpleMenuProvider((i, inventory, player) -> new WorkBenchContainer(i, inventory, ContainerLevelAccess.create(level, pos), this), CONTAINER_TITLE);
     }
 }
@@ -48,7 +48,7 @@ class WorkBenchContainer extends CraftingMenu {
     }
 
     @Override
-    public boolean stillValid(@NotNull Player playerIn) {
+    public boolean stillValid(@NonNull Player playerIn) {
         return isWithinUsableDistance(this.worldPos, playerIn, this.workbench);
     }
 }

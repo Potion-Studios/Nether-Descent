@@ -28,7 +28,7 @@ import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 import java.util.Optional;
@@ -42,7 +42,7 @@ public class AdvancementGenerator extends AdvancementProvider {
 
     private static class NetherDescentAdvancements implements AdvancementSubProvider {
         @Override
-        public void generate(HolderLookup.@NotNull Provider registries, @NotNull Consumer<AdvancementHolder> writer) {
+        public void generate(HolderLookup.Provider registries, @NonNull Consumer<AdvancementHolder> writer) {
             HolderGetter<EntityType<?>> entityTypeHolderGetter = registries.lookupOrThrow(Registries.ENTITY_TYPE);
             HolderGetter<Item> itemHolderGetter = registries.lookupOrThrow(Registries.ITEM);
             HolderGetter<Block> blockHolderGetter = registries.lookupOrThrow(Registries.BLOCK);

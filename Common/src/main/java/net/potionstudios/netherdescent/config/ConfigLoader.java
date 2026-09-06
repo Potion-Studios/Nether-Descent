@@ -5,7 +5,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import net.minecraft.resources.Identifier;
 import net.potionstudios.netherdescent.PlatformHandler;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.io.Reader;
 import java.nio.file.Files;
@@ -40,7 +40,7 @@ public class ConfigLoader {
 	 * @param clazz      The class of the config file.
 	 * @return The config file.
 	 */
-	public static <T> T loadConfig(@NotNull Class<T> clazz, String name) {
+	public static <T> T loadConfig(@NonNull Class<T> clazz, String name) {
 		try {
 			Path configPath = PlatformHandler.PLATFORM_HANDLER.configPath().resolve(name + ".json");
 			T defaultValue = clazz.getConstructor().newInstance();

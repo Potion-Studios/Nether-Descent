@@ -25,8 +25,8 @@ import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.pieces.NetherDescentStructurePieceType;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 public class BlueNetherFortressPieces {
 	private static final int MAX_DEPTH = 30;
@@ -110,7 +110,7 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NotNull StructurePiece piece, @NotNull StructurePieceAccessor pieces, @NotNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 8, 3, false);
 			this.generateChildLeft((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 3, 8, false);
 			this.generateChildRight((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 3, 8, false);
@@ -125,7 +125,7 @@ public class BlueNetherFortressPieces {
 
 		@Override
 		public void postProcess(
-				@NotNull WorldGenLevel level, @NotNull StructureManager structureManager, @NotNull ChunkGenerator generator, @NotNull RandomSource random, @NotNull BoundingBox box, @NotNull ChunkPos chunkPos, @NotNull BlockPos pos
+				@NonNull WorldGenLevel level, @NonNull StructureManager structureManager, @NonNull ChunkGenerator generator, @NonNull RandomSource random, @NonNull BoundingBox box, @NonNull ChunkPos chunkPos, @NonNull BlockPos pos
 		) {
 			this.generateBox(level, box, 7, 3, 0, 11, 4, 18, NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), false);
 			this.generateBox(level, box, 0, 3, 7, 18, 4, 11, NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), false);
@@ -192,14 +192,14 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		protected void addAdditionalSaveData(@NotNull StructurePieceSerializationContext context, @NotNull CompoundTag tag) {
+		protected void addAdditionalSaveData(StructurePieceSerializationContext context, CompoundTag tag) {
 			super.addAdditionalSaveData(context, tag);
 			tag.putInt("Seed", this.selfSeed);
 		}
 
 		@Override
 		public void postProcess(
-				@NotNull WorldGenLevel level, @NotNull StructureManager structureManager, @NotNull ChunkGenerator generator, @NotNull RandomSource random, @NotNull BoundingBox box, @NotNull ChunkPos chunkPos, @NotNull BlockPos pos
+				@NonNull WorldGenLevel level, @NonNull StructureManager structureManager, @NonNull ChunkGenerator generator, @NonNull RandomSource random, @NonNull BoundingBox box, @NonNull ChunkPos chunkPos, @NonNull BlockPos pos
 		) {
 			RandomSource randomSource = RandomSource.create(this.selfSeed);
 
@@ -244,7 +244,7 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NotNull StructurePiece piece, @NotNull StructurePieceAccessor pieces, @NotNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 1, 3, false);
 		}
 
@@ -259,7 +259,7 @@ public class BlueNetherFortressPieces {
 
 		@Override
 		public void postProcess(
-				@NotNull WorldGenLevel level, @NotNull StructureManager structureManager, @NotNull ChunkGenerator generator, @NotNull RandomSource random, @NotNull BoundingBox box, @NotNull ChunkPos chunkPos, @NotNull BlockPos pos
+				@NonNull WorldGenLevel level, @NonNull StructureManager structureManager, @NonNull ChunkGenerator generator, @NonNull RandomSource random, @NonNull BoundingBox box, @NonNull ChunkPos chunkPos, @NonNull BlockPos pos
 		) {
 			this.generateBox(level, box, 0, 3, 0, 4, 4, 18, NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), false);
 			this.generateBox(level, box, 1, 5, 0, 3, 7, 18, Blocks.AIR.defaultBlockState(), Blocks.AIR.defaultBlockState(), false);
@@ -306,7 +306,7 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NotNull StructurePiece piece, @NotNull StructurePieceAccessor pieces, @NotNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 1, 0, true);
 		}
 
@@ -321,7 +321,7 @@ public class BlueNetherFortressPieces {
 
 		@Override
 		public void postProcess(
-				@NotNull WorldGenLevel level, @NotNull StructureManager structureManager, @NotNull ChunkGenerator generator, @NotNull RandomSource random, @NotNull BoundingBox box, @NotNull ChunkPos chunkPos, @NotNull BlockPos pos
+				@NonNull WorldGenLevel level, @NonNull StructureManager structureManager, @NonNull ChunkGenerator generator, @NonNull RandomSource random, @NonNull BoundingBox box, @NonNull ChunkPos chunkPos, @NonNull BlockPos pos
 		) {
 			BlockState blockState = NetherDescentBlocks.BLUE_NETHER_BRICKS.getStairs().defaultBlockState().setValue(StairBlock.FACING, Direction.SOUTH);
 			BlockState blockState2 = NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get().defaultBlockState().setValue(FenceBlock.NORTH, true).setValue(FenceBlock.SOUTH, true);
@@ -368,7 +368,7 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NotNull StructurePiece piece, @NotNull StructurePieceAccessor pieces, @NotNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
 			int i = 1;
 			Direction direction = this.getOrientation();
 			if (direction == Direction.WEST || direction == Direction.NORTH) {
@@ -390,7 +390,7 @@ public class BlueNetherFortressPieces {
 
 		@Override
 		public void postProcess(
-				@NotNull WorldGenLevel level, @NotNull StructureManager structureManager, @NotNull ChunkGenerator generator, @NotNull RandomSource random, @NotNull BoundingBox box, @NotNull ChunkPos chunkPos, @NotNull BlockPos pos
+				@NonNull WorldGenLevel level, @NonNull StructureManager structureManager, @NonNull ChunkGenerator generator, @NonNull RandomSource random, @NonNull BoundingBox box, @NonNull ChunkPos chunkPos, @NonNull BlockPos pos
 		) {
 			BlockState blockState = NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get().defaultBlockState().setValue(FenceBlock.NORTH, true).setValue(FenceBlock.SOUTH, true);
 			BlockState blockState2 = NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get().defaultBlockState().setValue(FenceBlock.WEST, true).setValue(FenceBlock.EAST, true);
@@ -439,7 +439,7 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NotNull StructurePiece piece, @NotNull StructurePieceAccessor pieces, @NotNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 5, 3, true);
 		}
 
@@ -454,7 +454,7 @@ public class BlueNetherFortressPieces {
 
 		@Override
 		public void postProcess(
-				@NotNull WorldGenLevel level, @NotNull StructureManager structureManager, @NotNull ChunkGenerator generator, @NotNull RandomSource random, @NotNull BoundingBox box, @NotNull ChunkPos chunkPos, @NotNull BlockPos pos
+				@NonNull WorldGenLevel level, @NonNull StructureManager structureManager, @NonNull ChunkGenerator generator, @NonNull RandomSource random, @NonNull BoundingBox box, @NonNull ChunkPos chunkPos, @NonNull BlockPos pos
 		) {
 			this.generateBox(level, box, 0, 3, 0, 12, 4, 12, NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), false);
 			this.generateBox(level, box, 0, 5, 0, 12, 13, 12, Blocks.AIR.defaultBlockState(), Blocks.AIR.defaultBlockState(), false);
@@ -545,7 +545,7 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NotNull StructurePiece piece, @NotNull StructurePieceAccessor pieces, @NotNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 1, 0, true);
 			this.generateChildLeft((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 0, 1, true);
 			this.generateChildRight((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 0, 1, true);
@@ -562,7 +562,7 @@ public class BlueNetherFortressPieces {
 
 		@Override
 		public void postProcess(
-				@NotNull WorldGenLevel level, @NotNull StructureManager structureManager, @NotNull ChunkGenerator generator, @NotNull RandomSource random, @NotNull BoundingBox box, @NotNull ChunkPos chunkPos, @NotNull BlockPos pos
+				@NonNull WorldGenLevel level, @NonNull StructureManager structureManager, @NonNull ChunkGenerator generator, @NonNull RandomSource random, @NonNull BoundingBox box, @NonNull ChunkPos chunkPos, @NonNull BlockPos pos
 		) {
 			this.generateBox(level, box, 0, 0, 0, 4, 1, 4, NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), false);
 			this.generateBox(level, box, 0, 2, 0, 4, 5, 4, Blocks.AIR.defaultBlockState(), Blocks.AIR.defaultBlockState(), false);
@@ -598,13 +598,13 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		protected void addAdditionalSaveData(@NotNull StructurePieceSerializationContext context, @NotNull CompoundTag tag) {
+		protected void addAdditionalSaveData(StructurePieceSerializationContext context, CompoundTag tag) {
 			super.addAdditionalSaveData(context, tag);
 			tag.putBoolean("Chest", this.isNeedingChest);
 		}
 
 		@Override
-		public void addChildren(@NotNull StructurePiece piece, @NotNull StructurePieceAccessor pieces, @NotNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
 			this.generateChildLeft((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 0, 1, true);
 		}
 
@@ -619,7 +619,7 @@ public class BlueNetherFortressPieces {
 
 		@Override
 		public void postProcess(
-				@NotNull WorldGenLevel level, @NotNull StructureManager structureManager, @NotNull ChunkGenerator generator, @NotNull RandomSource random, @NotNull BoundingBox box, @NotNull ChunkPos chunkPos, @NotNull BlockPos pos
+				@NonNull WorldGenLevel level, @NonNull StructureManager structureManager, @NonNull ChunkGenerator generator, @NonNull RandomSource random, @NonNull BoundingBox box, @NonNull ChunkPos chunkPos, @NonNull BlockPos pos
 		) {
 			this.generateBox(level, box, 0, 0, 0, 4, 1, 4, NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), false);
 			this.generateBox(level, box, 0, 2, 0, 4, 5, 4, Blocks.AIR.defaultBlockState(), Blocks.AIR.defaultBlockState(), false);
@@ -662,7 +662,7 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NotNull StructurePiece piece, @NotNull StructurePieceAccessor pieces, @NotNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 1, 0, true);
 		}
 
@@ -677,7 +677,7 @@ public class BlueNetherFortressPieces {
 
 		@Override
 		public void postProcess(
-				@NotNull WorldGenLevel level, @NotNull StructureManager structureManager, @NotNull ChunkGenerator generator, @NotNull RandomSource random, @NotNull BoundingBox box, @NotNull ChunkPos chunkPos, @NotNull BlockPos pos
+				@NonNull WorldGenLevel level, @NonNull StructureManager structureManager, @NonNull ChunkGenerator generator, @NonNull RandomSource random, @NonNull BoundingBox box, @NonNull ChunkPos chunkPos, @NonNull BlockPos pos
 		) {
 			this.generateBox(level, box, 0, 0, 0, 4, 1, 4, NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), false);
 			this.generateBox(level, box, 0, 2, 0, 4, 5, 4, Blocks.AIR.defaultBlockState(), Blocks.AIR.defaultBlockState(), false);
@@ -716,13 +716,13 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		protected void addAdditionalSaveData(@NotNull StructurePieceSerializationContext context, @NotNull CompoundTag tag) {
+		protected void addAdditionalSaveData(StructurePieceSerializationContext context, CompoundTag tag) {
 			super.addAdditionalSaveData(context, tag);
 			tag.putBoolean("Chest", this.isNeedingChest);
 		}
 
 		@Override
-		public void addChildren(@NotNull StructurePiece piece, @NotNull StructurePieceAccessor pieces, @NotNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
 			this.generateChildRight((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 0, 1, true);
 		}
 
@@ -737,7 +737,7 @@ public class BlueNetherFortressPieces {
 
 		@Override
 		public void postProcess(
-				@NotNull WorldGenLevel level, @NotNull StructureManager structureManager, @NotNull ChunkGenerator generator, @NotNull RandomSource random, @NotNull BoundingBox box, @NotNull ChunkPos chunkPos, @NotNull BlockPos pos
+				@NonNull WorldGenLevel level, @NonNull StructureManager structureManager, @NonNull ChunkGenerator generator, @NonNull RandomSource random, @NonNull BoundingBox box, @NonNull ChunkPos chunkPos, @NonNull BlockPos pos
 		) {
 			this.generateBox(level, box, 0, 0, 0, 4, 1, 4, NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), false);
 			this.generateBox(level, box, 0, 2, 0, 4, 5, 4, Blocks.AIR.defaultBlockState(), Blocks.AIR.defaultBlockState(), false);
@@ -780,7 +780,7 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NotNull StructurePiece piece, @NotNull StructurePieceAccessor pieces, @NotNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 5, 3, true);
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 5, 11, true);
 		}
@@ -794,7 +794,7 @@ public class BlueNetherFortressPieces {
 
 		@Override
 		public void postProcess(
-				@NotNull WorldGenLevel level, @NotNull StructureManager structureManager, @NotNull ChunkGenerator generator, @NotNull RandomSource random, @NotNull BoundingBox box, @NotNull ChunkPos chunkPos, @NotNull BlockPos pos
+				@NonNull WorldGenLevel level, @NonNull StructureManager structureManager, @NonNull ChunkGenerator generator, @NonNull RandomSource random, @NonNull BoundingBox box, @NonNull ChunkPos chunkPos, @NonNull BlockPos pos
 		) {
 			this.generateBox(level, box, 0, 3, 0, 12, 4, 12, NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), false);
 			this.generateBox(level, box, 0, 5, 0, 12, 13, 12, Blocks.AIR.defaultBlockState(), Blocks.AIR.defaultBlockState(), false);
@@ -926,7 +926,7 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		protected void addAdditionalSaveData(@NotNull StructurePieceSerializationContext context, @NotNull CompoundTag tag) {
+		protected void addAdditionalSaveData(StructurePieceSerializationContext context, CompoundTag tag) {
 			super.addAdditionalSaveData(context, tag);
 			tag.putBoolean("Mob", this.hasPlacedSpawner);
 		}
@@ -940,7 +940,7 @@ public class BlueNetherFortressPieces {
 
 		@Override
 		public void postProcess(
-				@NotNull WorldGenLevel level, @NotNull StructureManager structureManager, @NotNull ChunkGenerator generator, @NotNull RandomSource random, @NotNull BoundingBox box, @NotNull ChunkPos chunkPos, @NotNull BlockPos pos
+				@NonNull WorldGenLevel level, @NonNull StructureManager structureManager, @NonNull ChunkGenerator generator, @NonNull RandomSource random, @NonNull BoundingBox box, @NonNull ChunkPos chunkPos, @NonNull BlockPos pos
 		) {
 			this.generateBox(level, box, 0, 2, 0, 6, 7, 7, Blocks.AIR.defaultBlockState(), Blocks.AIR.defaultBlockState(), false);
 			this.generateBox(level, box, 1, 0, 0, 5, 1, 7, NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), false);
@@ -1000,7 +1000,7 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		protected void addAdditionalSaveData(@NotNull StructurePieceSerializationContext context, @NotNull CompoundTag tag) {
+		protected void addAdditionalSaveData(@NonNull StructurePieceSerializationContext context, @NonNull CompoundTag tag) {
 		}
 
 		private int updatePieceWeight(List<BlueNetherFortressPieces.PieceWeight> weights) {
@@ -1322,7 +1322,7 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NotNull StructurePiece piece, @NotNull StructurePieceAccessor pieces, @NotNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 2, 0, false);
 			this.generateChildLeft((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 0, 2, false);
 			this.generateChildRight((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 0, 2, false);
@@ -1337,7 +1337,7 @@ public class BlueNetherFortressPieces {
 
 		@Override
 		public void postProcess(
-				@NotNull WorldGenLevel level, @NotNull StructureManager structureManager, @NotNull ChunkGenerator generator, @NotNull RandomSource random, @NotNull BoundingBox box, @NotNull ChunkPos chunkPos, @NotNull BlockPos pos
+				@NonNull WorldGenLevel level, @NonNull StructureManager structureManager, @NonNull ChunkGenerator generator, @NonNull RandomSource random, @NonNull BoundingBox box, @NonNull ChunkPos chunkPos, @NonNull BlockPos pos
 		) {
 			this.generateBox(level, box, 0, 0, 0, 6, 1, 6, NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), false);
 			this.generateBox(level, box, 0, 2, 0, 6, 7, 6, Blocks.AIR.defaultBlockState(), Blocks.AIR.defaultBlockState(), false);
@@ -1383,7 +1383,7 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NotNull StructurePiece piece, @NotNull StructurePieceAccessor pieces, @NotNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
 			this.generateChildRight((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 6, 2, false);
 		}
 
@@ -1396,7 +1396,7 @@ public class BlueNetherFortressPieces {
 
 		@Override
 		public void postProcess(
-				@NotNull WorldGenLevel level, @NotNull StructureManager structureManager, @NotNull ChunkGenerator generator, @NotNull RandomSource random, @NotNull BoundingBox box, @NotNull ChunkPos chunkPos, @NotNull BlockPos pos
+				@NonNull WorldGenLevel level, @NonNull StructureManager structureManager, @NonNull ChunkGenerator generator, @NonNull RandomSource random, @NonNull BoundingBox box, @NonNull ChunkPos chunkPos, @NonNull BlockPos pos
 		) {
 			this.generateBox(level, box, 0, 0, 0, 6, 1, 6, NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase().defaultBlockState(), false);
 			this.generateBox(level, box, 0, 2, 0, 6, 10, 6, Blocks.AIR.defaultBlockState(), Blocks.AIR.defaultBlockState(), false);

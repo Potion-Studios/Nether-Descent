@@ -5,7 +5,6 @@ import net.minecraft.client.particle.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.RandomSource;
-import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
 
 public class RisingParticle extends SingleQuadParticle {
@@ -32,13 +31,13 @@ public class RisingParticle extends SingleQuadParticle {
     }
 
     @Override
-    protected @NotNull SingleQuadParticle.Layer getLayer() {
+    protected SingleQuadParticle.@NonNull Layer getLayer() {
         return SingleQuadParticle.Layer.TRANSLUCENT;
     }
 
     public record Provider(SpriteSet spriteSet) implements ParticleProvider<SimpleParticleType> {
         @Override
-        public @NonNull Particle createParticle(SimpleParticleType particleType, ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, RandomSource random) {
+        public @NonNull Particle createParticle(@NonNull SimpleParticleType particleType, @NonNull ClientLevel level, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed, @NonNull RandomSource random) {
             return new RisingParticle(
                     level, x, y, z,
                     xSpeed, ySpeed, zSpeed,

@@ -33,7 +33,7 @@ import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockS
 import net.potionstudios.netherdescent.world.level.block.wood.ArisianLeavesBlock;
 import net.potionstudios.netherdescent.world.level.block.wood.HangingFungusBlock;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,7 +46,7 @@ public class ModelGenerator extends ModelProvider {
 	}
 
 	@Override
-	protected void registerModels(@NotNull BlockModelGenerators blockModels, @NotNull ItemModelGenerators itemModels) {
+	protected void registerModels(@NonNull BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
 		NetherDescentBlocks.cubeAllBlocks.forEach(block -> {
 			blockModels.createTrivialCube(block.get());
 			blockItemModel(blockModels, block.get());
@@ -642,12 +642,12 @@ public class ModelGenerator extends ModelProvider {
 	}
 
 	@Override
-	protected @NotNull Stream<? extends Holder<Block>> getKnownBlocks() {
+	protected @NonNull Stream<? extends Holder<Block>> getKnownBlocks() {
 		return Stream.empty();
 	}
 
 	@Override
-	protected @NotNull Stream<? extends Holder<Item>> getKnownItems() {
+	protected @NonNull Stream<? extends Holder<Item>> getKnownItems() {
 		return Stream.empty();
 	}
 }

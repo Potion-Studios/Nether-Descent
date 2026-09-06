@@ -15,17 +15,17 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingBulbBlossomBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingGillsBlock;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 
 public class WailingTrigger extends SimpleCriterionTrigger<WailingTrigger.TriggerInstance> {
 	@Override
-	public @NotNull Codec<TriggerInstance> codec() {
+	public @NonNull Codec<TriggerInstance> codec() {
 		return TriggerInstance.CODEC;
 	}
 
-	public void trigger(@NotNull ServerPlayer player, BlockPos pos, Entity entity) {
+	public void trigger(ServerPlayer player, BlockPos pos, Entity entity) {
 		LootContext lootcontext = EntityPredicate.createContext(player, entity);
 		super.trigger(player, instance -> instance.matches(player.level(), pos, lootcontext));
 	}

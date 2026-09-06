@@ -17,7 +17,6 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
-import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
 
 public class LargeSoulFireball extends Fireball {
@@ -32,7 +31,7 @@ public class LargeSoulFireball extends Fireball {
 		this.explosionPower = explosionPower;
 	}
 
-	protected void onHit(@NotNull HitResult result) {
+	protected void onHit(@NonNull HitResult result) {
 		super.onHit(result);
 		if (level() instanceof ServerLevel serverLevel) {
 			boolean bl = serverLevel.getGameRules().get(GameRules.MOB_GRIEFING);
@@ -41,7 +40,7 @@ public class LargeSoulFireball extends Fireball {
 		}
 	}
 
-	protected void onHitEntity(@NotNull EntityHitResult result) {
+	protected void onHitEntity(@NonNull EntityHitResult result) {
 		super.onHitEntity(result);
 		if (this.level() instanceof ServerLevel serverLevel) {
 			Entity var6 = result.getEntity();
@@ -65,7 +64,7 @@ public class LargeSoulFireball extends Fireball {
 	}
 
 	@Override
-	public @NotNull ItemStack getItem() {
+	public @NonNull ItemStack getItem() {
 		return NetherDescentItems.SOUL_FIRE_CHARGE.get().getDefaultInstance();
 	}
 }

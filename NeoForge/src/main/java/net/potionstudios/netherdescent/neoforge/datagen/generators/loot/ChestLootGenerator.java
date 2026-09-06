@@ -10,7 +10,6 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.function.BiConsumer;
 
@@ -19,7 +18,7 @@ public class ChestLootGenerator implements LootTableSubProvider {
     }
 
     @Override
-    public void generate(@NotNull BiConsumer<ResourceKey<LootTable>, LootTable.Builder> output) {
+    public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> output) {
         output.accept(NetherDescent.key(Registries.LOOT_TABLE, "chests/nether_bridge"),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()

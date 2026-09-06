@@ -9,7 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.world.entity.projectile.SmallSoulFireball;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class SoulFireChargeItem extends FireChargeItem {
     public SoulFireChargeItem(Properties properties) {
@@ -17,7 +17,7 @@ public class SoulFireChargeItem extends FireChargeItem {
     }
 
     @Override
-    public @NotNull Projectile asProjectile(@NotNull Level level, @NotNull Position pos, @NotNull ItemStack stack, @NotNull Direction direction) {
+    public @NonNull Projectile asProjectile(Level level, Position pos, @NonNull ItemStack stack, Direction direction) {
         RandomSource randomSource = level.getRandom();
         double d = randomSource.triangle(direction.getStepX(), 0.11485000000000001);
         double e = randomSource.triangle(direction.getStepY(), 0.11485000000000001);

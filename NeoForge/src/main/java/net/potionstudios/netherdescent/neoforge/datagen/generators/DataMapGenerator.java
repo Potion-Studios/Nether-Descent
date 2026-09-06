@@ -15,7 +15,7 @@ import net.neoforged.neoforge.registries.datamaps.builtin.Strippable;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.world.BlockItemFeatures;
 import net.potionstudios.netherdescent.world.item.tools.ToolInteractions;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -31,7 +31,7 @@ public class DataMapGenerator extends DataMapProvider {
     }
 
     @Override
-    protected void gather(HolderLookup.@NotNull Provider provider) {
+    protected void gather(HolderLookup.@NonNull Provider provider) {
         Builder<Compostable, Item> compostableItemBuilder = builder(NeoForgeDataMaps.COMPOSTABLES);
         BlockItemFeatures.registerCompostables((item, chance) -> compostableItemBuilder.add(id(item.asItem()), new Compostable(chance, false), false));
         compostableItemBuilder.conditions(new ModLoadedCondition(NetherDescent.MOD_ID));

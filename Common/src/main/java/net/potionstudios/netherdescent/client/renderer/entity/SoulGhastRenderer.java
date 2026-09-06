@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.entity.GhastRenderer;
 import net.minecraft.client.renderer.entity.state.GhastRenderState;
 import net.minecraft.resources.Identifier;
 import net.potionstudios.netherdescent.NetherDescent;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class SoulGhastRenderer extends GhastRenderer {
 	private static final Identifier SOUL_GHAST_LOCATION = NetherDescent.id("textures/entity/soul_ghast/soul_ghast.png");
@@ -16,7 +16,7 @@ public class SoulGhastRenderer extends GhastRenderer {
 	}
 
 	@Override
-	public @NotNull Identifier getTextureLocation(@NotNull GhastRenderState ghastRenderState) {
+	public @NonNull Identifier getTextureLocation(GhastRenderState ghastRenderState) {
 		return ghastRenderState.isCharging ? SOUL_GHAST_SHOOTING_LOCATION : SOUL_GHAST_LOCATION;
 	}
 }

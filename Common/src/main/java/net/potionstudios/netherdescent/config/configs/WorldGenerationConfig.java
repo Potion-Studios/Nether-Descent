@@ -6,7 +6,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.potionstudios.netherdescent.config.ConfigLoader;
 import net.potionstudios.netherdescent.config.ConfigUtils;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -31,7 +31,7 @@ public final class WorldGenerationConfig {
         return biomes.value().getOrDefault(key.identifier(), true);
     }
 
-    private static @NotNull Map<Identifier, Boolean> getDefaultBiomes() {
+    private static @NonNull Map<Identifier, Boolean> getDefaultBiomes() {
         return NetherDescentBiomes.BIOME_FACTORIES.keySet().stream()
                 .map(ResourceKey::identifier)
                 .sorted(Comparator.comparing(Identifier::toString))

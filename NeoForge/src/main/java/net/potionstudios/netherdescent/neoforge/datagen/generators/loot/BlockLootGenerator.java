@@ -23,7 +23,7 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,13 +108,13 @@ class BlockLootGenerator extends BlockLootSubProvider {
     }
 
     @Override
-    protected void add(@NotNull Block block, LootTable.@NotNull Builder lootTableBuilder) {
+    protected void add(@NonNull Block block, LootTable.@NonNull Builder lootTableBuilder) {
         knownBlocks.add(block);
         super.add(block, lootTableBuilder);
     }
 
     @Override
-    protected @NotNull Iterable<Block> getKnownBlocks() {
+    protected @NonNull Iterable<Block> getKnownBlocks() {
         return knownBlocks;
     }
 }

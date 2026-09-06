@@ -12,8 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.potionstudios.netherdescent.world.level.block.custom.SythianScaffoldingBlock;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 public class SythianScaffoldingBlockItem extends ScaffoldingBlockItem {
     public SythianScaffoldingBlockItem(Block block, Properties properties) {
@@ -21,7 +20,7 @@ public class SythianScaffoldingBlockItem extends ScaffoldingBlockItem {
     }
 
     @Override
-    public @Nullable BlockPlaceContext updatePlacementContext(@NotNull BlockPlaceContext context) {
+    public @Nullable BlockPlaceContext updatePlacementContext(BlockPlaceContext context) {
         BlockPos blockPos = context.getClickedPos();
         Level level = context.getLevel();
         BlockState blockState = level.getBlockState(blockPos);

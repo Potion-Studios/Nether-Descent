@@ -25,7 +25,7 @@ import net.potionstudios.netherdescent.world.level.block.wood.sign.NetherDescent
 import net.potionstudios.netherdescent.world.level.block.wood.sign.NetherDescentStandingSignBlock;
 import net.potionstudios.netherdescent.world.level.block.wood.sign.NetherDescentWallHangingSignBlock;
 import net.potionstudios.netherdescent.world.level.block.wood.sign.NetherDescentWallSignBlock;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.function.Supplier;

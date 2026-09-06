@@ -7,7 +7,7 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentSurfaceRules;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.nio.file.Path;
 import java.util.concurrent.CompletableFuture;
@@ -20,7 +20,7 @@ public class LithostitchedSurfaceRuleGenerator implements DataProvider {
 	}
 
 	@Override
-	public @NotNull CompletableFuture<?> run(@NotNull CachedOutput output) {
+	public @NonNull CompletableFuture<?> run(@NonNull CachedOutput output) {
 		JsonObject encodedRule = SurfaceRules.RuleSource.CODEC
 				.encodeStart(JsonOps.INSTANCE, NetherDescentSurfaceRules.makeRules())
 				.getOrThrow()
@@ -41,7 +41,7 @@ public class LithostitchedSurfaceRuleGenerator implements DataProvider {
 	}
 
 	@Override
-	public @NotNull String getName() {
+	public @NonNull String getName() {
 		return "Nether Descent Lithostitched Surface Rules";
 	}
 }

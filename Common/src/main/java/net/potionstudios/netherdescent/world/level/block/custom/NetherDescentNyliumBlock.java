@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.NyliumBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.function.Supplier;
 
@@ -29,13 +29,13 @@ public class NetherDescentNyliumBlock extends NyliumBlock {
     }
 
     @Override
-    protected void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+    protected void randomTick(@NonNull BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, @NonNull RandomSource random) {
         if (!NyliumBlock.canBeNylium(state, level, pos))
             level.setBlockAndUpdate(pos, spreadBlock.get().defaultBlockState());
     }
 
     @Override
-    public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
+    public void performBonemeal(ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
 	    level.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(feature.get()).ifPresent(reference -> reference.value().place(level, level.getChunkSource().getGenerator(), random, pos.above()));
     }
 }

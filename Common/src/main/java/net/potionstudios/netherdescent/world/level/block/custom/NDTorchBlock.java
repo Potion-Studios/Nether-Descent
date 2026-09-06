@@ -7,7 +7,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.function.Supplier;
 
@@ -19,7 +19,7 @@ public class NDTorchBlock extends TorchBlock {
     }
 
     @Override
-    public void animateTick(@NotNull BlockState state, Level level, BlockPos pos, @NotNull RandomSource random) {
+    public void animateTick(@NonNull BlockState state, Level level, BlockPos pos, @NonNull RandomSource random) {
         double d = (double)pos.getX() + (double)0.5F;
         double e = (double)pos.getY() + 0.7;
         double f = (double)pos.getZ() + (double)0.5F;

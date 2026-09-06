@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public interface PlatformHandler {
      * @param permission The permission to check
      * @return True if the player has the permission, false otherwise
      */
-    default boolean hasPermission(@NotNull CommandSourceStack sourceStack, @NotNull String permission) {
+    default boolean hasPermission(@NonNull CommandSourceStack sourceStack, String permission) {
         return sourceStack.permissions().hasPermission(Permissions.COMMANDS_OWNER);
     }
 
@@ -63,7 +63,7 @@ public interface PlatformHandler {
 	 * @param setType The block set type of the wood type
 	 * @return WoodType
 	 */
-	WoodType createWoodType(String id, @NotNull BlockSetType setType);
+	WoodType createWoodType(String id, BlockSetType setType);
 
 	/**
 	 * Registers a particle with the specified id

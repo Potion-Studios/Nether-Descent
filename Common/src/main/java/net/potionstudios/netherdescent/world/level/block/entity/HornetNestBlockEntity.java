@@ -34,8 +34,7 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.entity.animal.Hornet;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 
 import java.util.Arrays;
@@ -236,7 +235,7 @@ public class HornetNestBlockEntity extends BlockEntity {
 	}
 
 	@Override
-	protected void collectImplicitComponents(DataComponentMap.@NotNull Builder components) {
+	protected void collectImplicitComponents(DataComponentMap.@NonNull Builder components) {
 		super.collectImplicitComponents(components);
 		components.set(NetherDescentDataComponents.HORNETS.get(), getHornets());
 	}

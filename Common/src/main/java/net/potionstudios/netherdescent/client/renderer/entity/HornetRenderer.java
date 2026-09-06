@@ -9,7 +9,7 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.client.model.HornetModel;
 import net.potionstudios.netherdescent.client.model.geom.NetherDescentModelLayers;
 import net.potionstudios.netherdescent.world.entity.animal.Hornet;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class HornetRenderer extends MobRenderer<Hornet, BeeRenderState, BeeModel> {
     private static final Identifier ANGRY_HORNET_TEXTURE = NetherDescent.id("textures/entity/hornet/hornet_angry.png");
@@ -22,12 +22,12 @@ public class HornetRenderer extends MobRenderer<Hornet, BeeRenderState, BeeModel
     }
 
     @Override
-    public @NotNull BeeRenderState createRenderState() {
+    public @NonNull BeeRenderState createRenderState() {
         return new BeeRenderState();
     }
 
     @Override
-    public @NotNull Identifier getTextureLocation(@NotNull BeeRenderState renderState) {
+    public @NonNull Identifier getTextureLocation(BeeRenderState renderState) {
         if (renderState.isAngry) return renderState.hasNectar ? ANGRY_POLLEN_HORNET_TEXTURE : ANGRY_HORNET_TEXTURE;
         return renderState.hasNectar ? POLLEN_HORNET_TEXTURE : HORNET_TEXTURE;
     }

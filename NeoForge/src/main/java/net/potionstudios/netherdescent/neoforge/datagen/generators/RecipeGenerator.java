@@ -19,7 +19,7 @@ import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.set.NetherDescentBlockSet;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import javax.annotation.Nullable;
 import java.util.concurrent.CompletableFuture;
@@ -282,7 +282,7 @@ public class RecipeGenerator extends RecipeProvider {
 				.save(output, NetherDescent.key(Registries.RECIPE, packedName));
     }
 
-	protected void stonecutterResultFromBase(@NotNull RecipeCategory category, ItemLike result, ItemLike material, int resultCount) {
+	protected void stonecutterResultFromBase(@NonNull RecipeCategory category, @NonNull ItemLike result, @NonNull ItemLike material, int resultCount) {
 		SingleItemRecipeBuilder.stonecutting(Ingredient.of(material), category, result, resultCount)
 				.unlockedBy(getHasName(material), has(material))
 				.save(output, NetherDescent.key(Registries.RECIPE, getConversionRecipeName(result, material) + "_stonecutting"));
@@ -294,12 +294,12 @@ public class RecipeGenerator extends RecipeProvider {
         }
 
         @Override
-        protected @NotNull RecipeProvider createRecipeProvider(HolderLookup.@NotNull Provider registries, @NotNull RecipeOutput output) {
+        protected @NonNull RecipeProvider createRecipeProvider(HolderLookup.@NonNull Provider registries, @NonNull RecipeOutput output) {
             return new RecipeGenerator(registries, output);
         }
 
         @Override
-        public @NotNull String getName() {
+        public @NonNull String getName() {
             return NetherDescent.MOD_ID;
         }
     }

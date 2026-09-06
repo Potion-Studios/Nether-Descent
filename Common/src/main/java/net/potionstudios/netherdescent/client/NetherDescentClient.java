@@ -31,7 +31,7 @@ import net.potionstudios.netherdescent.world.level.block.custom.EmburCaveMossBlo
 import net.potionstudios.netherdescent.world.level.block.custom.HangingMossyCarpetBlock;
 import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import java.util.function.BiConsumer;
 import java.util.function.Function;

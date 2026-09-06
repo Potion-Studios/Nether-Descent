@@ -5,7 +5,7 @@ import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.level.levelgen.PositionalRandomFactory;
 import net.minecraft.world.level.levelgen.SurfaceRules;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Objects;
 
@@ -17,7 +17,7 @@ public record WeightedRuleSource(WeightedList<SurfaceRules.RuleSource> ruleSourc
             ).apply(builder, WeightedRuleSource::new)));
 
     @Override
-    public @NotNull KeyDispatchDataCodec<? extends SurfaceRules.RuleSource> codec() {
+    public @NonNull KeyDispatchDataCodec<? extends SurfaceRules.RuleSource> codec() {
         return CODEC;
     }
 

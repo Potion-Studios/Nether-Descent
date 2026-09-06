@@ -18,8 +18,8 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 public class ArisianBlossomBlock extends HangingNDBushBlock {
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
@@ -34,7 +34,7 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 	}
 
 	@Override
-	protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier applier, boolean intersects) {
+	protected void entityInside(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull Entity entity, @NonNull InsideBlockEffectApplier applier, boolean intersects) {
 		super.entityInside(state, level, pos, entity, applier, intersects);
 		if (!level.isClientSide() && entity instanceof LivingEntity)
 			if (state.getValue(STRENGTH) != 7)
@@ -42,7 +42,7 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 	}
 
 	@Override
-	protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+	protected void tick(@NonNull BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, @NonNull RandomSource random) {
 		super.tick(state, level, pos, random);
 
 		int currentStrength = state.getValue(STRENGTH);
@@ -78,13 +78,13 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 	}
 
 	@Override
-	protected void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Block neighborBlock, @Nullable Orientation orientation, boolean movedByPiston) {
+	protected void neighborChanged(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull Block neighborBlock, @Nullable Orientation orientation, boolean movedByPiston) {
 		super.neighborChanged(state, level, pos, neighborBlock, orientation, movedByPiston);
 		if (!level.isClientSide())
 			level.scheduleTick(pos, this, 1);
 	}
 
-	private void updateState(@NotNull BlockState currentState, @NotNull Level level, @NotNull BlockPos pos, int newStrength) {
+	private void updateState(BlockState currentState, Level level, BlockPos pos, int newStrength) {
 		boolean currentLit = currentState.getValue(LIT);
 		boolean currentPulse = currentState.getValue(PULSE);
 
@@ -111,17 +111,17 @@ public class ArisianBlossomBlock extends HangingNDBushBlock {
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder.add(LIT, STRENGTH, PULSE));
 	}
 
 	@Override
-	protected boolean isSignalSource(@NotNull BlockState state) {
+	protected boolean isSignalSource(BlockState state) {
 		return state.getValue(PULSE);
 	}
 
 	@Override
-	protected int getSignal(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos pos, @NotNull Direction direction) {
+	protected int getSignal(BlockState state, @NonNull BlockGetter level, @NonNull BlockPos pos, @NonNull Direction direction) {
 		return state.getValue(PULSE) ? 6 : 0;
 	}
 }

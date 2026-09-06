@@ -5,7 +5,6 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.util.RandomSource;
-import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NonNull;
 
 public class FallingParticle extends SingleQuadParticle {
@@ -18,7 +17,7 @@ public class FallingParticle extends SingleQuadParticle {
 
 
     @Override
-    protected @NotNull SingleQuadParticle.Layer getLayer() {
+    protected SingleQuadParticle.@NonNull Layer getLayer() {
         return SingleQuadParticle.Layer.OPAQUE;
     }
 

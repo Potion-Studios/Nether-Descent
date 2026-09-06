@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class WailingBulbBlossomBlock extends Block {
 	public static final BooleanProperty ACTIVE = BooleanProperty.create("active");
@@ -31,7 +31,7 @@ public class WailingBulbBlossomBlock extends Block {
 	}
 
 	@Override
-	public void stepOn(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, @NotNull Entity entity) {
+	public void stepOn(@NonNull Level level, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull Entity entity) {
 		super.stepOn(level, pos, state, entity);
 		if (!level.isClientSide()) {
             if (!state.getValue(ACTIVE) && entity instanceof LivingEntity livingEntity && !livingEntity.isSpectator()) {
@@ -50,19 +50,19 @@ public class WailingBulbBlossomBlock extends Block {
 	}
 
     @Override
-    protected void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+    protected void tick(@NonNull BlockState state, @NonNull ServerLevel level, @NonNull BlockPos pos, @NonNull RandomSource random) {
         super.tick(state, level, pos, random);
         if (state.getValue(ACTIVE))
             level.setBlock(pos, state.setValue(ACTIVE, false), 3);
     }
 
     @Override
-	protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder.add(ACTIVE));
 	}
 
 	@Override
-	public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
+	public void animateTick(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {
 		super.animateTick(state, level, pos, random);
 	}
 }

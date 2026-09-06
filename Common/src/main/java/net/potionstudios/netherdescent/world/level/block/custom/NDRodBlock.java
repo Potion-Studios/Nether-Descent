@@ -19,8 +19,8 @@ import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.entity.monster.PendoriteBlaze;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 public class NDRodBlock extends EndRodBlock {
     private @Nullable BlockPattern blazeFull;
@@ -29,10 +29,10 @@ public class NDRodBlock extends EndRodBlock {
     }
 
     @Override
-    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {}
+    public void animateTick(@NonNull BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull RandomSource random) {}
 
     @Override
-    protected void onPlace(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean movedByPiston) {
+    protected void onPlace(BlockState state, @NonNull Level level, @NonNull BlockPos pos, @NonNull BlockState oldState, boolean movedByPiston) {
         if (state.is(NetherDescentBlocks.PENDORITE_FIRE_ROD.get()) && !oldState.is(state.getBlock()))
             trySpawnBlaze(level, pos);
     }

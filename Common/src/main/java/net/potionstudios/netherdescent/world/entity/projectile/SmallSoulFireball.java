@@ -14,7 +14,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 public class SmallSoulFireball extends Fireball {
     public SmallSoulFireball(EntityType<? extends SmallSoulFireball> entityType, Level level) {
@@ -30,7 +30,7 @@ public class SmallSoulFireball extends Fireball {
     }
 
     @Override
-    protected void onHitEntity(@NotNull EntityHitResult result) {
+    protected void onHitEntity(@NonNull EntityHitResult result) {
         super.onHitEntity(result);
         if (level() instanceof ServerLevel serverlevel) {
             Entity entity1 = result.getEntity();
@@ -45,14 +45,14 @@ public class SmallSoulFireball extends Fireball {
     }
 
     @Override
-    protected void onHit(@NotNull HitResult result) {
+    protected void onHit(@NonNull HitResult result) {
         super.onHit(result);
         if (!level().isClientSide())
             discard();
     }
 
 	@Override
-	public @NotNull ItemStack getItem() {
+	public @NonNull ItemStack getItem() {
 		return NetherDescentItems.SOUL_FIRE_CHARGE.get().getDefaultInstance();
 	}
 }

@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -39,12 +39,12 @@ public final class FabricPlatformHandler implements PlatformHandler {
     private static final boolean fabricPermissionsApi = FabricLoader.getInstance().isModLoaded("fabric-permissions-api-v0");
 
     @Override
-    public boolean hasPermission(@NotNull CommandSourceStack sourceStack, @NotNull String permission) {
+    public boolean hasPermission(@NonNull CommandSourceStack sourceStack, String permission) {
         return PlatformHandler.super.hasPermission(sourceStack, permission) || (fabricPermissionsApi && Permissions.check(sourceStack, permission));
     }
 
 	@Override
-	public WoodType createWoodType(String id, @NotNull BlockSetType setType) {
+	public WoodType createWoodType(String id, @NonNull BlockSetType setType) {
 		return new WoodTypeBuilder().register(NetherDescent.id(id), setType);
 	}
 

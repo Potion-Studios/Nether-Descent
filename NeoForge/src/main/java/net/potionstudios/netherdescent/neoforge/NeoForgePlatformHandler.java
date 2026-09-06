@@ -28,7 +28,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
-import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -50,7 +49,7 @@ public final class NeoForgePlatformHandler implements PlatformHandler {
 	}
 
 	@Override
-	public WoodType createWoodType(String id, @NotNull BlockSetType setType) {
+	public WoodType createWoodType(String id, BlockSetType setType) {
 		return WoodType.register(new WoodType(NetherDescent.MOD_ID + ":" + id, setType));
 	}
 
