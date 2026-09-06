@@ -13,10 +13,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagCopyingItemTagProvider;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.potionstudios.netherdescent.NetherDescent;
-import net.potionstudios.netherdescent.tags.NetherDescentBiomeTags;
-import net.potionstudios.netherdescent.tags.NetherDescentBlockTags;
-import net.potionstudios.netherdescent.tags.NetherDescentItemTags;
-import net.potionstudios.netherdescent.tags.NetherDescentStructureTags;
+import net.potionstudios.netherdescent.tags.*;
 import net.potionstudios.netherdescent.world.damagesource.NetherDescentDamageTypes;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
@@ -260,6 +257,7 @@ public class TagsGenerator {
             tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(NetherDescentEntityType.PENDORITE_BLAZE.get(), NetherDescentEntityType.SOUL_BLAZE.get(), NetherDescentEntityType.HORNET.get(), NetherDescentEntityType.SOUL_GHAST.get());
             tag(EntityTypeTags.ARTHROPOD).add(NetherDescentEntityType.HORNET.get());
 			tag(EntityTypeTags.REDIRECTABLE_PROJECTILE).add(NetherDescentEntityType.SOUL_FIREBALL.get());
+			tag(NetherDescentEntityTypeTags.SOUL_FIRE_FLAME).add(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), NetherDescentEntityType.SOUL_FIREBALL.get(), NetherDescentEntityType.SOUL_BLAZE.get());
         }
     }
 }
