@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.world.level.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;

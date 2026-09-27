@@ -1,4 +1,8 @@
+# 1.0.9
+- Decrease Jar size by compressing audio files
+
 # 1.0.8
+- Fix some Missing Lang Keys
 
 # 1.0.7
 - Add Brazilian Portuguese Translations (pt_br)
