@@ -1,3 +1,6 @@
+# 1.0.9
+- Decrease Jar size by compressing audio files
+
 # 1.0.8
 - Fix some Missing Lang Keys
 - Fix Hornet Being Stuck under nest glitching in and out
