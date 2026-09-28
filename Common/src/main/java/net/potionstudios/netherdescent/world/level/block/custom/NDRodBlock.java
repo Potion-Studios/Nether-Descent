@@ -1,6 +1,6 @@
 package net.potionstudios.netherdescent.world.level.block.custom;
 
-import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;

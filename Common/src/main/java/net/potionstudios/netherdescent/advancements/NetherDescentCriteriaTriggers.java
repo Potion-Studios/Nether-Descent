@@ -1,6 +1,6 @@
 package net.potionstudios.netherdescent.advancements;
 
-import net.minecraft.advancements.CriterionTrigger;
+import net.minecraft.advancements.triggers.CriterionTrigger;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
