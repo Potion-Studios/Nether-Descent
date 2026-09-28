@@ -15,7 +15,7 @@ import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.tags.*;
 import net.potionstudios.netherdescent.world.damagesource.NetherDescentDamageTypes;
-import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypes;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
@@ -164,8 +164,6 @@ public class TagsGenerator {
 
 		@Override
 		protected void addTags(HolderLookup.@NonNull Provider provider) {
-			copy(BlockTags.SLABS, ItemTags.SLABS);
-			copy(BlockTags.STAIRS, ItemTags.STAIRS);
 			copy(BlockTags.WALLS, ItemTags.WALLS);
 			copy(BlockTags.PLANKS, ItemTags.PLANKS);
 			copy(BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
@@ -175,12 +173,9 @@ public class TagsGenerator {
 			copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
 			copy(BlockTags.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
 			copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
-            copy(BlockTags.FENCES, ItemTags.FENCES);
             copy(Tags.Blocks.FENCES_NETHER_BRICK, Tags.Items.FENCES_NETHER_BRICK);
 			copy(BlockTags.FENCE_GATES, ItemTags.FENCE_GATES);
 			copy(Tags.Blocks.FENCE_GATES_WOODEN, Tags.Items.FENCE_GATES_WOODEN);
-			copy(BlockTags.DOORS, ItemTags.DOORS);
-			copy(BlockTags.TRAPDOORS, ItemTags.TRAPDOORS);
 			copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
 			copy(BlockTags.CEILING_HANGING_SIGNS, ItemTags.HANGING_SIGNS);
 			copy(Tags.Blocks.BOOKSHELVES, Tags.Items.BOOKSHELVES);
@@ -301,11 +296,11 @@ public class TagsGenerator {
 
         @Override
         protected void addTags(HolderLookup.@NonNull Provider provider) {
-            tag(EntityTypeTags.IMPACT_PROJECTILES).add(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), NetherDescentEntityType.SOUL_FIREBALL.get());
-            tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(NetherDescentEntityType.PENDORITE_BLAZE.get(), NetherDescentEntityType.SOUL_BLAZE.get(), NetherDescentEntityType.HORNET.get(), NetherDescentEntityType.SOUL_GHAST.get());
-            tag(EntityTypeTags.ARTHROPOD).add(NetherDescentEntityType.HORNET.get());
-			tag(EntityTypeTags.REDIRECTABLE_PROJECTILE).add(NetherDescentEntityType.SOUL_FIREBALL.get());
-			tag(NetherDescentEntityTypeTags.SOUL_FIRE_FLAME).add(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), NetherDescentEntityType.SOUL_FIREBALL.get(), NetherDescentEntityType.SOUL_BLAZE.get());
+            tag(EntityTypeTags.IMPACT_PROJECTILES).add(NetherDescentEntityTypes.SMALL_SOUL_FIREBALL.get(), NetherDescentEntityTypes.SOUL_FIREBALL.get());
+            tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(NetherDescentEntityTypes.PENDORITE_BLAZE.get(), NetherDescentEntityTypes.SOUL_BLAZE.get(), NetherDescentEntityTypes.HORNET.get(), NetherDescentEntityTypes.SOUL_GHAST.get());
+            tag(EntityTypeTags.ARTHROPOD).add(NetherDescentEntityTypes.HORNET.get());
+			tag(EntityTypeTags.REDIRECTABLE_PROJECTILE).add(NetherDescentEntityTypes.SOUL_FIREBALL.get());
+			tag(NetherDescentEntityTypeTags.SOUL_FIRE_FLAME).add(NetherDescentEntityTypes.SMALL_SOUL_FIREBALL.get(), NetherDescentEntityTypes.SOUL_FIREBALL.get(), NetherDescentEntityTypes.SOUL_BLAZE.get());
         }
     }
 }

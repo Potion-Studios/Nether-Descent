@@ -59,10 +59,10 @@ public class RecipeGenerator extends RecipeProvider {
                     .group("planks")
                     .unlockedBy(getHasName(set.planks()), has(set.planks()))
                     .save(output);
-            hangingSign(set.hangingSignItem(), set.strippedLogStem());
+	        hangingSignBuilder(set.hangingSignItem(), Ingredient.of(set.strippedLogStem()));
         });
 
-        oneToOneConversionRecipe(Items.ORANGE_DYE, NetherDescentBlocks.EMBUR_CAVE_MOSS.get(), "orange_dye");
+        oneToOneConversionRecipe(Items.DYE.orange(), NetherDescentBlocks.EMBUR_CAVE_MOSS.get(), "orange_dye");
 
 		twoByTwoPacker(RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase(), NetherDescentItems.BLUE_NETHER_BRICK.get());
 

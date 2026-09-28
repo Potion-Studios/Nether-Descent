@@ -3,7 +3,6 @@ package net.potionstudios.netherdescent.client;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.particle.*;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.*;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -13,7 +12,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.properties.WoodType;
 import net.potionstudios.netherdescent.client.model.HornetModel;
 import net.potionstudios.netherdescent.client.model.geom.NetherDescentModelLayers;
 import net.potionstudios.netherdescent.client.renderer.entity.HornetRenderer;
@@ -23,9 +21,8 @@ import net.potionstudios.netherdescent.client.renderer.entity.SoulGhastRenderer;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.core.particles.FallingParticle;
 import net.potionstudios.netherdescent.core.particles.RisingParticle;
-import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypes;
 import net.potionstudios.netherdescent.world.level.block.entity.NetherDescentBlockEntityType;
-import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
 
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -39,16 +36,6 @@ import java.util.function.Supplier;
 public class NetherDescentClient {
 
 	public static void onInitialize() {
-		NetherDescentWoodSet.woodsets().forEach(set -> registerWoodTypes(set.woodType()));
-	}
-
-	/**
-	 * Registers the wood types for the sign materials.
-	 * @param woodType the wood type to register
-	 */
-	private static void registerWoodTypes(WoodType woodType) {
-		Sheets.SIGN_SPRITES.put(woodType, Sheets.getSignSprite(woodType));
-		Sheets.HANGING_SIGN_SPRITES.put(woodType, Sheets.getHangingSignSprite(woodType));
 	}
 
     /**
@@ -67,15 +54,15 @@ public class NetherDescentClient {
     /**
      * Registers the entity renderers.
      * @see EntityRenderers
-     * @see NetherDescentEntityType
+     * @see NetherDescentEntityTypes
      */
     public static void registerEntityRenderers(BiConsumer<EntityType<? extends Entity>, EntityRendererProvider> consumer) {
-        consumer.accept(NetherDescentEntityType.SOUL_BLAZE.get(), SoulBlazeRenderer::new);
-		consumer.accept(NetherDescentEntityType.SOUL_FIREBALL.get(), context -> new ThrownItemRenderer<>(context, 3.0F, true));
-		consumer.accept(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), context -> new ThrownItemRenderer<>(context, 0.75F, true));
-		consumer.accept(NetherDescentEntityType.PENDORITE_BLAZE.get(), PendoriteBlazeRenderer::new);
-        consumer.accept(NetherDescentEntityType.HORNET.get(), HornetRenderer::new);
-		consumer.accept(NetherDescentEntityType.SOUL_GHAST.get(), SoulGhastRenderer::new);
+        consumer.accept(NetherDescentEntityTypes.SOUL_BLAZE.get(), SoulBlazeRenderer::new);
+		consumer.accept(NetherDescentEntityTypes.SOUL_FIREBALL.get(), context -> new ThrownItemRenderer<>(context, 3.0F, true));
+		consumer.accept(NetherDescentEntityTypes.SMALL_SOUL_FIREBALL.get(), context -> new ThrownItemRenderer<>(context, 0.75F, true));
+		consumer.accept(NetherDescentEntityTypes.PENDORITE_BLAZE.get(), PendoriteBlazeRenderer::new);
+        consumer.accept(NetherDescentEntityTypes.HORNET.get(), HornetRenderer::new);
+		consumer.accept(NetherDescentEntityTypes.SOUL_GHAST.get(), SoulGhastRenderer::new);
     }
 
 	/**

@@ -12,7 +12,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.Consumable;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.PlatformHandler;
-import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypes;
 import net.potionstudios.netherdescent.world.item.custom.SoulFireChargeItem;
 import net.potionstudios.netherdescent.world.item.custom.SythianScaffoldingBlockItem;
 import net.potionstudios.netherdescent.world.item.equipment.NetherDescentArmorMaterials;
@@ -52,10 +52,10 @@ public class NetherDescentItems {
 
     public static final Supplier<Item> HORNET_NEST = registerItemNoLang("hornet_nest", (properties) -> new BlockItem(NetherDescentBlocks.HORNET_NEST.get(), properties), new Item.Properties().useBlockDescriptionPrefix());
 
-    public static final Supplier<SpawnEggItem> SOUL_BLAZE_SPAWN_EGG = registerSpawnEgg("soul_blaze_spawn_egg", NetherDescentEntityType.SOUL_BLAZE);
-	public static final Supplier<SpawnEggItem> PENDORITE_BLAZE_SPAWN_EGG = registerSpawnEgg("pendorite_blaze_spawn_egg", NetherDescentEntityType.PENDORITE_BLAZE);
-    public static final Supplier<SpawnEggItem> HORNET_SPAWN_EGG = registerSpawnEgg("hornet_spawn_egg", NetherDescentEntityType.HORNET);
-    public static final Supplier<SpawnEggItem> SOUL_GHAST_SPAWN_EGG = registerSpawnEgg("soul_ghast_spawn_egg", NetherDescentEntityType.SOUL_GHAST);
+    public static final Supplier<SpawnEggItem> SOUL_BLAZE_SPAWN_EGG = registerSpawnEgg("soul_blaze_spawn_egg", NetherDescentEntityTypes.SOUL_BLAZE);
+	public static final Supplier<SpawnEggItem> PENDORITE_BLAZE_SPAWN_EGG = registerSpawnEgg("pendorite_blaze_spawn_egg", NetherDescentEntityTypes.PENDORITE_BLAZE);
+    public static final Supplier<SpawnEggItem> HORNET_SPAWN_EGG = registerSpawnEgg("hornet_spawn_egg", NetherDescentEntityTypes.HORNET);
+    public static final Supplier<SpawnEggItem> SOUL_GHAST_SPAWN_EGG = registerSpawnEgg("soul_ghast_spawn_egg", NetherDescentEntityTypes.SOUL_GHAST);
 
     public static <I extends Item> Supplier<I> registerSimpleItem(String id, Function<Item.Properties, I> item, Item.Properties properties) {
         Supplier<I> supplier = registerItem(id, item, properties);

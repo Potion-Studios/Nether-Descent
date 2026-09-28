@@ -2,6 +2,8 @@ package net.potionstudios.netherdescent.neoforge.datagen.generators;
 
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -11,20 +13,28 @@ import org.jspecify.annotations.NonNull;
 
 import java.nio.file.Path;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 public class LithostitchedSurfaceRuleGenerator implements DataProvider {
 	private final PackOutput output;
+	private final CompletableFuture<HolderLookup.Provider> lookup;
 
-	public LithostitchedSurfaceRuleGenerator(PackOutput output) {
+	public LithostitchedSurfaceRuleGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
 		this.output = output;
+		this.lookup = lookupProvider;
 	}
 
 	@Override
 	public @NonNull CompletableFuture<?> run(@NonNull CachedOutput output) {
-		JsonObject encodedRule = SurfaceRules.RuleSource.CODEC
-				.encodeStart(JsonOps.INSTANCE, NetherDescentSurfaceRules.makeRules())
-				.getOrThrow()
-				.getAsJsonObject();
+		JsonObject encodedRule = null;
+		try {
+			encodedRule = SurfaceRules.RuleSource.CODEC
+					.encodeStart(JsonOps.INSTANCE, NetherDescentSurfaceRules.makeRules(lookup.get().lookupOrThrow(Registries.BIOME)))
+					.getOrThrow()
+					.getAsJsonObject();
+		} catch (InterruptedException | ExecutionException e) {
+			throw new RuntimeException(e);
+		}
 
 		JsonObject modifier = new JsonObject();
 		modifier.addProperty("type", "lithostitched:add_surface_rule");

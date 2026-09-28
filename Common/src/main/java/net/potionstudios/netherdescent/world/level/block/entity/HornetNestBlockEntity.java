@@ -32,7 +32,7 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
-import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypes;
 import net.potionstudios.netherdescent.world.entity.animal.Hornet;
 import org.jspecify.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
@@ -310,8 +310,8 @@ public class HornetNestBlockEntity extends BlockEntity {
 
 		public static Occupant create(int ticksInHive) {
 			CompoundTag compoundTag = new CompoundTag();
-			compoundTag.putString("id", BuiltInRegistries.ENTITY_TYPE.getKey(NetherDescentEntityType.HORNET.get()).toString());
-			return new Occupant(TypedEntityData.of(NetherDescentEntityType.HORNET.get(), new CompoundTag()), ticksInHive, 600);
+			compoundTag.putString("id", BuiltInRegistries.ENTITY_TYPE.getKey(NetherDescentEntityTypes.HORNET.get()).toString());
+			return new Occupant(TypedEntityData.of(NetherDescentEntityTypes.HORNET.get(), new CompoundTag()), ticksInHive, 600);
 		}
 
 		@Nullable

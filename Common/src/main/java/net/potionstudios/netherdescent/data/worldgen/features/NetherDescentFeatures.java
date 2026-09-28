@@ -75,7 +75,7 @@ public class NetherDescentFeatures {
 	));
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_PATCH_BONEMEAL = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_patch_bonemeal", Feature.VEGETATION_PATCH, configuredFeatureBootstrapContext -> new VegetationPatchConfiguration(
-		    NetherDescentBlockTags.NETHER_MOSS_REPLACEABLE, BlockStateProvider.simple(NetherDescentBlocks.EMBUR_MOSS_BLOCK.get()), PlacementUtils.inlinePlaced(configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(EMBUR_MOSS_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.6F, UniformInt.of(1, 2), 0.75F)
+		    configuredFeatureBootstrapContext.lookup(Registries.BLOCK).getOrThrow(NetherDescentBlockTags.NETHER_MOSS_REPLACEABLE), BlockStateProvider.simple(NetherDescentBlocks.EMBUR_MOSS_BLOCK.get()), PlacementUtils.inlinePlaced(configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(EMBUR_MOSS_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.6F, UniformInt.of(1, 2), 0.75F)
 	);
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_carpet_patch", NetherDescentFeature.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), false));
@@ -173,7 +173,7 @@ public class NetherDescentFeatures {
 	));
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_MOSS_PATCH_BONEMEAL = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_moss_patch_bonemeal", Feature.VEGETATION_PATCH, configuredFeatureBootstrapContext -> new VegetationPatchConfiguration(
-			NetherDescentBlockTags.NETHER_MOSS_REPLACEABLE, BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()), PlacementUtils.inlinePlaced(configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(ARISIAN_MOSS_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.6F, UniformInt.of(1, 2), 0.75F)
+			configuredFeatureBootstrapContext.lookup(Registries.BLOCK).getOrThrow(NetherDescentBlockTags.NETHER_MOSS_REPLACEABLE), BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()), PlacementUtils.inlinePlaced(configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(ARISIAN_MOSS_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.6F, UniformInt.of(1, 2), 0.75F)
 	);
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> BASALT_LINE = ConfiguredFeaturesUtil.createConfiguredFeature("basalt_line", NetherDescentFeature.BASALT_LINE, NoneFeatureConfiguration::new);

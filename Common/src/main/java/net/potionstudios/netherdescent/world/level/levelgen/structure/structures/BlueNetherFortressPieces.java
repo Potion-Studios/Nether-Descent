@@ -22,7 +22,7 @@ import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSeriali
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypes;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.pieces.NetherDescentStructurePieceType;
 import org.jspecify.annotations.Nullable;
@@ -977,7 +977,7 @@ public class BlueNetherFortressPieces {
 					this.hasPlacedSpawner = true;
 					level.setBlock(blockPos, Blocks.SPAWNER.defaultBlockState(), 2);
 					if (level.getBlockEntity(blockPos) instanceof SpawnerBlockEntity spawnerBlockEntity) {
-						spawnerBlockEntity.setEntityId(NetherDescentEntityType.SOUL_BLAZE.get(), random);
+						spawnerBlockEntity.setEntityId(NetherDescentEntityTypes.SOUL_BLAZE.get(), random);
 					}
 				}
 			}
