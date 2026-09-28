@@ -8,7 +8,7 @@
             "condition": "minecraft:entity_properties",
             "entity": "this",
             "predicate": {
-              "type": "netherdescent:hornet"
+              "minecraft:entity_type": "netherdescent:hornet"
             }
           }
         ]

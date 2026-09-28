@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "ingredients": [
     "netherdescent:blue_nether_bricks",
     "netherdescent:embur_cave_moss"

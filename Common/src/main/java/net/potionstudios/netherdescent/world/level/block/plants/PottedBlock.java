@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.world.level.block.plants;
 
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -15,6 +16,10 @@ public record PottedBlock(Supplier<? extends Block> block, Supplier<? extends Bl
     public PottedBlock(@NonNull Supplier<? extends Block> block, @NonNull Supplier<? extends Block> pottedBlock) {
         this.block = block;
         this.pottedBlock = pottedBlock;
+    }
+
+    public PottedBlock(ResourceKey<Block> id, ResourceKey<Block> pottedId, @NonNull Supplier<? extends Block> block) {
+        this(block, NetherDescentBlocks.registerBlock(pottedId, properties -> PlatformHandler.PLATFORM_HANDLER.createPottedBlock(block, properties), BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
     }
 
     public PottedBlock(String id, @NonNull Supplier<? extends Block> block) {

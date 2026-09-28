@@ -7,7 +7,6 @@
     "WolfMixin"
   ],
   "client": [
-    "client.FlameFeatureRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

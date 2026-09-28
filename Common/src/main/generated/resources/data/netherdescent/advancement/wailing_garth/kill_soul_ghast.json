@@ -8,7 +8,7 @@
             "condition": "minecraft:entity_properties",
             "entity": "this",
             "predicate": {
-              "type": "netherdescent:soul_ghast"
+              "minecraft:entity_type": "netherdescent:soul_ghast"
             }
           }
         ]

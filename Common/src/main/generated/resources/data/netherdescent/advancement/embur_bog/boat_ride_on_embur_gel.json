@@ -8,9 +8,9 @@
             "condition": "minecraft:entity_properties",
             "entity": "this",
             "predicate": {
-              "vehicle": {
-                "type": "#c:boats",
-                "stepping_on": {
+              "minecraft:vehicle": {
+                "minecraft:entity_type": "#c:boats",
+                "minecraft:stepping_on": {
                   "block": {
                     "blocks": "netherdescent:embur_gel_block"
                   }

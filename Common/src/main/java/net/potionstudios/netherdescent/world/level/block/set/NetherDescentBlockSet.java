@@ -2,6 +2,7 @@ package net.potionstudios.netherdescent.world.level.block.set;
 
 import net.minecraft.data.BlockFamilies;
 import net.minecraft.data.BlockFamily;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -18,6 +19,14 @@ public class NetherDescentBlockSet {
     private final Supplier<StairBlock> stairs;
     private final Supplier<SlabBlock> slab;
     private final Supplier<WallBlock> wall;
+
+    public NetherDescentBlockSet(ResourceKey<Block> base, ResourceKey<Block> stairs, ResourceKey<Block> slab, ResourceKey<Block> wall, BlockBehaviour.Properties properties) {
+        this.base = NetherDescentBlocks.registerBasicBlockWithItem(base, properties);
+        this.stairs = NetherDescentBlocks.registerBlockItem(stairs, (properties1) -> new StairBlock(this.base.get().defaultBlockState(), properties1), properties);
+        this.slab = NetherDescentBlocks.registerBlockItem(slab, SlabBlock::new, properties);
+        this.wall = NetherDescentBlocks.registerBlockItem(wall, WallBlock::new, properties);
+        blockSets.add(this);
+    }
 
     public NetherDescentBlockSet(String name, BlockBehaviour.Properties properties) {
         this.base = NetherDescentBlocks.registerBasicBlockWithItem(name, properties);

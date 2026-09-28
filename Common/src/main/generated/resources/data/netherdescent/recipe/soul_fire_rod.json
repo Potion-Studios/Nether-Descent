@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "category": "misc",
   "key": {
     "X": "netherdescent:soul_blaze_rod",
     "Y": "minecraft:blackstone"

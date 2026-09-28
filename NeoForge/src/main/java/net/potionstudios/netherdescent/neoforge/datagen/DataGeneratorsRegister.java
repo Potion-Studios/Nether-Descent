@@ -58,7 +58,7 @@ class DataGeneratorsRegister {
         generator.addProvider(true, new ParticleDescriptionGenerator(output));
         generator.addProvider(true, new AdvancementGenerator(output, lookupProvider));
 		generator.addProvider(true, new EquipmentAssetProvider(output));
-	    generator.addProvider(true, new LithostitchedSurfaceRuleGenerator(output, lookupProvider));
+	    generator.addProvider(false, new LithostitchedSurfaceRuleGenerator(output, lookupProvider));
 	}
 
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()

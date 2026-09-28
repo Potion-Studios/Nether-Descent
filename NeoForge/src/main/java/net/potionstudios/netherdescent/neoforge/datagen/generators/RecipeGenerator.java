@@ -59,7 +59,9 @@ public class RecipeGenerator extends RecipeProvider {
                     .group("planks")
                     .unlockedBy(getHasName(set.planks()), has(set.planks()))
                     .save(output);
-	        hangingSignBuilder(set.hangingSignItem(), Ingredient.of(set.strippedLogStem()));
+	        hangingSignBuilder(set.hangingSignItem(), Ingredient.of(set.strippedLogStem()))
+			        .unlockedBy(getHasName(set.strippedLogStem()), has(set.strippedLogStem()))
+			        .save(output);
         });
 
         oneToOneConversionRecipe(Items.DYE.orange(), NetherDescentBlocks.EMBUR_CAVE_MOSS.get(), "orange_dye");
