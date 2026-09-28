@@ -21,6 +21,6 @@ public class GlobalLootModifiersGenerator extends GlobalLootModifierProvider {
     protected void start() {
         add("pendorite_horse_armor", new AddTableLootModifier(new LootItemCondition[] {
                 new LootTableIdCondition.Builder(BuiltInLootTables.NETHER_BRIDGE.identifier()).build()
-        }, NetherDescent.key(Registries.LOOT_TABLE, "chests/nether_bridge")));
+        }, 1, NetherDescent.key(Registries.LOOT_TABLE, "chests/nether_bridge")));
     }
 }

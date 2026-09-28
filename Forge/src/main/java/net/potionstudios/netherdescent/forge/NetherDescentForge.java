@@ -47,9 +47,9 @@ public class NetherDescentForge {
         event.enqueueWork(() -> {
             NetherDescent.commonSetup();
             VanillaCompatForge.init();
-            if (ModList.get().isLoaded(Biolith.MOD_ID))
+            if (ModList.isLoaded(Biolith.MOD_ID))
                 BiolithRegister.register();
-            else if (ModList.get().isLoaded(TerraBlender.MOD_ID))
+            else if (ModList.isLoaded(TerraBlender.MOD_ID))
                 TerraBlenderRegister.register();
             else NetherDescent.LOGGER.warn("TerraBlender or Biolith are not loaded, Nether Descent's biomes will not be added to the world!");
             ForgePlatformHandler.registerPottedPlants();

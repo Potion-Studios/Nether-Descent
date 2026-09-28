@@ -28,7 +28,6 @@
       "translate": "advancements.netherdescent.place_stalk_on_farmland.description"
     },
     "icon": {
-      "count": 1,
       "id": "netherdescent:sythian_farmland"
     },
     "show_toast": false,

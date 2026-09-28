@@ -28,7 +28,6 @@
       "translate": "advancements.netherdescent.sprint_on_embur_gel.description"
     },
     "icon": {
-      "count": 1,
       "id": "netherdescent:embur_gel_block"
     },
     "show_toast": false,

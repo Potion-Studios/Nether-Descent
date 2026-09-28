@@ -17,42 +17,42 @@ displayURL="https://potionstudios.net/"
 [[dependencies.netherdescent]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.11,)"
+versionRange = "[26.1,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.netherdescent]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.11,)"
+versionRange = "[26.1,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.netherdescent]]
 modId = "ohthetreesyoullgrow"
 type = "required"
-versionRange = "[9.1.0,)"
+versionRange = "[10.1.2,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.netherdescent]]
 modId = "terrablender"
 type = "optional"
-versionRange = "[21.11.0.0,)"
+versionRange = "[26.1.2.0.3,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.netherdescent]]
 modId = "biolith"
 type = "optional"
-versionRange = "[3.5.3,)"
+versionRange = "[3.6.0,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.netherdescent]]
 modId = "lithostitched"
 type = "optional"
-versionRange = "[1.7.2,)"
+versionRange = "[1.8.0,)"
 ordering = "AFTER"
 side = "BOTH"
 

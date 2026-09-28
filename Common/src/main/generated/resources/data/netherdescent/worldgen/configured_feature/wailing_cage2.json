@@ -1,5 +1,5 @@
 {
-  "type": "ohthetreesyoullgrow:tree_from_nbt_v1",
+  "type": "ohthetreesyoullgrow:tree_from_nbt_v2",
   "config": {
     "base_location": "netherdescent:features/cages/wailing_cage_trunk2",
     "can_grow_on_filter": {
@@ -21,32 +21,34 @@
       "max_inclusive": 48,
       "min_inclusive": 48
     },
-    "leaves_provider": {
-      "type": "minecraft:weighted_state_provider",
-      "entries": [
-        {
-          "data": {
-            "Name": "minecraft:bone_block",
-            "Properties": {
-              "axis": "y"
-            }
+    "leaves_provider": [
+      {
+        "type": "minecraft:weighted_state_provider",
+        "entries": [
+          {
+            "data": {
+              "Name": "minecraft:bone_block",
+              "Properties": {
+                "axis": "y"
+              }
+            },
+            "weight": 1
           },
-          "weight": 1
-        },
-        {
-          "data": {
-            "Name": "minecraft:calcite"
+          {
+            "data": {
+              "Name": "minecraft:calcite"
+            },
+            "weight": 3
           },
-          "weight": 3
-        },
-        {
-          "data": {
-            "Name": "minecraft:budding_amethyst"
-          },
-          "weight": 3
-        }
-      ]
-    },
+          {
+            "data": {
+              "Name": "minecraft:budding_amethyst"
+            },
+            "weight": 3
+          }
+        ]
+      }
+    ],
     "leaves_target": [
       "minecraft:bone_block"
     ],
@@ -84,7 +86,7 @@
     ],
     "max_log_depth": 4,
     "orientation": "UPSIDE_DOWN",
-    "place_from_nbt": [],
+    "replace_from_nbt": {},
     "tree_filter_behavior": "PASSTHROUGH"
   }
 }

@@ -13,7 +13,6 @@
       "translate": "advancements.netherdescent.smelted_sythian_stalk.description"
     },
     "icon": {
-      "count": 1,
       "id": "netherdescent:sythian_stalk"
     },
     "show_toast": false,

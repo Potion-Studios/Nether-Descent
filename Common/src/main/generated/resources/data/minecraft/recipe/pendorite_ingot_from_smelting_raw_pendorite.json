@@ -6,7 +6,6 @@
   "group": "pendorite_ingot",
   "ingredient": "netherdescent:raw_pendorite",
   "result": {
-    "count": 1,
     "id": "netherdescent:pendorite_ingot"
   }
 }

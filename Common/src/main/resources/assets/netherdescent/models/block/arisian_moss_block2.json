@@ -1,5 +1,4 @@
 {
-  "render_type": "minecraft:cutout",
 	"textures": {
 		"0": "netherdescent:block/arisian_moss_block",
 		"1": "netherdescent:block/arisian_moss_side2",

@@ -17,7 +17,6 @@
       "translate": "advancements.netherdescent.obtain_soul_blaze_rod.description"
     },
     "icon": {
-      "count": 1,
       "id": "netherdescent:soul_blaze_rod"
     },
     "show_toast": false,

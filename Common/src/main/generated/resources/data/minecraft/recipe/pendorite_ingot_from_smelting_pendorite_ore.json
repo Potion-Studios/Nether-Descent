@@ -6,7 +6,6 @@
   "group": "pendorite_ingot",
   "ingredient": "netherdescent:pendorite_ore",
   "result": {
-    "count": 1,
     "id": "netherdescent:pendorite_ingot"
   }
 }

@@ -21,7 +21,6 @@
       "translate": "advancements.netherdescent.summon_pendorite_blaze.description"
     },
     "icon": {
-      "count": 1,
       "id": "netherdescent:pendorite_fire_charge"
     },
     "show_toast": false,

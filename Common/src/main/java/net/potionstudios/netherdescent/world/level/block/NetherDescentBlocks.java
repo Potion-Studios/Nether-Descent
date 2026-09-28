@@ -4,6 +4,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.NetherFeatures;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -48,7 +49,7 @@ public class NetherDescentBlocks {
     public static final Supplier<NetherDescentNyliumBlock> WAILING_NYLIUM = registerBlockItem("wailing_nylium", (properties) -> new NetherDescentNyliumBlock(properties, Blocks.SOUL_SOIL, () -> NetherDescentFeatures.WAILING_GARTH_VEGETATION), BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_NYLIUM).mapColor(MapColor.COLOR_PURPLE));
     public static final Supplier<NDGrowingPlantHeadBlock> WAILING_VINES = registerBlockItem("wailing_vines", (properties) -> new NDGrowingPlantHeadBlock(properties, () -> NetherDescentBlocks.WAILING_VINES_PLANT.get()), BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES).lightLevel((state) -> 10));
     public static final Supplier<NDGrowingPlantBodyBlock> WAILING_VINES_PLANT = registerBlock("wailing_vines_plant", (properties) -> new NDGrowingPlantBodyBlock(properties, NetherDescentBlocks.WAILING_VINES), BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES_PLANT).lightLevel((state) -> 10));
-    public static final Supplier<Block> WAILING_GRASS = registerBlockItem("wailing_grass", RootsBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS));
+    public static final Supplier<Block> WAILING_GRASS = registerBlockItem("wailing_grass", (properties) -> new NetherRootsBlock(BlockTags.NYLIUM, properties), BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS));
 	public static final Supplier<WailingGillsBlock> WAILING_GILLS = registerCubeAllBlockItem("wailing_gills", WailingGillsBlock::new, BlockBehaviour.Properties.of().sound(SoundType.SCULK).lightLevel((blockState) -> 14).isRedstoneConductor((blockState, blockGetter, blockPos) -> true));
 	public static final Supplier<WailingBulbBlossomBlock> WAILING_BULB_BLOSSOM = registerBlockItem("wailing_bulb_blossom", WailingBulbBlossomBlock::new, BlockBehaviour.Properties.of().sound(SoundType.SCULK).noOcclusion().lightLevel((state) -> state.getValue(WailingBulbBlossomBlock.ACTIVE) ? 14 : 8));
     public static final Supplier<Block> WAILING_WART_BLOCK = registerBasicBlockWithItem("wailing_wart_block", BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_WART_BLOCK).mapColor(MapColor.COLOR_PURPLE));
@@ -60,7 +61,7 @@ public class NetherDescentBlocks {
     public static final Supplier<NDGrowingPlantBodyBlock> EMBUR_GEL_VINES_PLANT = registerBlock("embur_gel_vines_plant", (properties) -> new NDGrowingPlantBodyBlock(properties, NetherDescentBlocks.EMBUR_GEL_VINES), BlockBehaviour.Properties.ofFullCopy(Blocks.TWISTING_VINES_PLANT).mapColor(MapColor.COLOR_ORANGE).noCollision().speedFactor(1.2F).strength(0.2F).dynamicShape());
     public static final Supplier<NetherSproutsBlock> EMBUR_SPROUTS = registerBlockItem("embur_sprouts", NetherSproutsBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_SPROUTS).mapColor(MapColor.COLOR_ORANGE));
     public static final Supplier<EmburLilyBlock> EMBUR_LILY = registerBlock("embur_lily", EmburLilyBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD).mapColor(MapColor.COLOR_ORANGE));
-    public static final PottedBlock EMBUR_ROOTS = new PottedBlock("embur_roots", registerBlockItem("embur_roots", EmburRootsBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS).mapColor(MapColor.COLOR_ORANGE)));
+    public static final PottedBlock EMBUR_ROOTS = new PottedBlock("embur_roots", registerBlockItem("embur_roots", properties -> new EmburRootsBlock(properties, BlockTags.NYLIUM), BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS).mapColor(MapColor.COLOR_ORANGE)));
     public static final Supplier<NetherDescentDoublePlantBlock> TALL_EMBUR_ROOTS = registerBlockItem("tall_embur_roots", NetherDescentDoublePlantBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_ROOTS).mapColor(MapColor.COLOR_ORANGE));
     public static final Supplier<EmburCaveMossBlock> EMBUR_CAVE_MOSS = registerBlockItem("embur_cave_moss", EmburCaveMossBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.GLOW_LICHEN).lightLevel(EmburCaveMossBlock.emission(6)).mapColor(MapColor.COLOR_ORANGE));
     public static final Supplier<BonemealableFeaturePlacerBlock> EMBUR_MOSS_BLOCK = registerCubeAllBlockItem("embur_moss_block", (properties) -> new BonemealableFeaturePlacerBlock(NetherDescentFeatures.EMBUR_MOSS_PATCH_BONEMEAL, properties), BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_BLOCK).mapColor(MapColor.COLOR_ORANGE));

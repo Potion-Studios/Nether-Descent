@@ -29,7 +29,6 @@
     },
     "frame": "challenge",
     "icon": {
-      "count": 1,
       "id": "minecraft:cherry_boat"
     },
     "show_toast": false,

@@ -5,7 +5,6 @@
   "experience": 0.1,
   "ingredient": "netherdescent:blue_netherrack",
   "result": {
-    "count": 1,
     "id": "netherdescent:blue_nether_brick"
   }
 }

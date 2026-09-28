@@ -23,7 +23,6 @@
       "translate": "advancements.netherdescent.embur_bog.description"
     },
     "icon": {
-      "count": 1,
       "id": "netherdescent:embur_nylium"
     },
     "show_toast": false,

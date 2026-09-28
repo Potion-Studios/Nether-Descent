@@ -91,11 +91,7 @@ public class ConfiguredFeaturesUtil {
     }
 
     protected static ResourceKey<ConfiguredFeature<?, ?>> createPatchConfiguredFeatureWithState(String id, Supplier<BlockState> state, int tries) {
-        return createConfiguredFeature(id, Feature.RANDOM_PATCH, (configuredFeatureBootstrapContext) -> FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(state.get())), List.of(), tries));
-    }
-
-    protected static <FC extends FeatureConfiguration, F extends Feature<FC>> Holder<ConfiguredFeature<?, ?>> createPatchConfiguredFeatureWithState(Block block, int tries) {
-        return Holder.direct(new ConfiguredFeature<>(Feature.RANDOM_PATCH, FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(block)), List.of(), tries)));
+        return createConfiguredFeature(id, Feature.SIMPLE_BLOCK, (configuredFeatureBootstrapContext) -> new SimpleBlockConfiguration(BlockStateProvider.simple(state.get())));
     }
 
     protected static ResourceKey<ConfiguredFeature<?, ?>> createSimpleBlockConfiguredFeatureWithBlock(String id, Supplier<? extends Block> block) {

@@ -5,7 +5,6 @@
   "experience": 0.1,
   "ingredient": "netherdescent:pendorite_horse_armor",
   "result": {
-    "count": 1,
     "id": "netherdescent:pendorite_nugget"
   }
 }

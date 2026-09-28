@@ -4,7 +4,6 @@
 		"1": "netherdescent:block/arisian_dandelions",
 		"particle": "netherdescent:block/arisian_sprouts"
 	},
-	"render_type": "minecraft:cutout",
 	"elements": [
 		{
 			"from": [0, 0, 8],

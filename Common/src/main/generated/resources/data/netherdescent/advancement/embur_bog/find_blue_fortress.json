@@ -23,7 +23,6 @@
       "translate": "advancements.netherdescent.find_blue_fortress.description"
     },
     "icon": {
-      "count": 1,
       "id": "netherdescent:blue_nether_bricks"
     },
     "show_toast": false,

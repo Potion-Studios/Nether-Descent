@@ -43,7 +43,6 @@
       "translate": "advancements.netherdescent.step_on_arisian_leaves_blossom.description"
     },
     "icon": {
-      "count": 1,
       "id": "netherdescent:arisian_leaves"
     },
     "show_toast": false,

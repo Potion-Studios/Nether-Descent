@@ -10,6 +10,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
@@ -65,7 +66,7 @@ public class RecipeGenerator extends RecipeProvider {
 
 		twoByTwoPacker(RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase(), NetherDescentItems.BLUE_NETHER_BRICK.get());
 
-	    SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.BLUE_NETHERRACK.get()), RecipeCategory.MISC, NetherDescentItems.BLUE_NETHER_BRICK.get(), 0.1F, 200)
+	    SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.BLUE_NETHERRACK.get()), RecipeCategory.MISC, CookingBookCategory.MISC, NetherDescentItems.BLUE_NETHER_BRICK.get(), 0.1F, 200)
 			    .unlockedBy(getHasName(NetherDescentBlocks.BLUE_NETHERRACK.get()), has(NetherDescentBlocks.BLUE_NETHERRACK.get()))
 			    .save(output);
 
@@ -92,7 +93,7 @@ public class RecipeGenerator extends RecipeProvider {
 
 		stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CHISELED_BLUE_NETHER_BRICKS.get(), NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase(), 1);
 
-		SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()), RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CRACKED_BLUE_NETHER_BRICKS.get().asItem(), 0.1F, 200)
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()), RecipeCategory.BUILDING_BLOCKS, CookingBookCategory.BLOCKS, NetherDescentBlocks.CRACKED_BLUE_NETHER_BRICKS.get().asItem(), 0.1F, 200)
 						.unlockedBy(getHasName(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()), has(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase()))
 						.save(output);
 
@@ -126,20 +127,20 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy(getHasName(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get()), has(NetherDescentBlocks.TALL_CRIMSON_FUNGI.get()))
                 .save(output);
 
-        oreSmelting(ImmutableList.of(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get()), RecipeCategory.MISC, Items.GOLD_INGOT, 1.0F, 200, "gold_ingot");
-        oreBlasting(ImmutableList.of(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get()), RecipeCategory.MISC, Items.GOLD_INGOT, 1.0F, 100, "gold_ingot");
+        oreSmelting(ImmutableList.of(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get()), RecipeCategory.MISC, CookingBookCategory.MISC, Items.GOLD_INGOT, 1.0F, 200, "gold_ingot");
+        oreBlasting(ImmutableList.of(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get()), RecipeCategory.MISC, CookingBookCategory.MISC, Items.GOLD_INGOT, 1.0F, 100, "gold_ingot");
 
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()), RecipeCategory.MISC, Items.QUARTZ, 0.2F, 200)
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()), RecipeCategory.MISC, CookingBookCategory.MISC, Items.QUARTZ, 0.2F, 200)
                 .unlockedBy(getHasName(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()), has(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()))
                 .save(output);
-        SimpleCookingRecipeBuilder.blasting(Ingredient.of(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()), RecipeCategory.MISC, Items.QUARTZ, 0.2F, 100)
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()), RecipeCategory.MISC, CookingBookCategory.MISC, Items.QUARTZ, 0.2F, 100)
                 .unlockedBy(getHasName(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()), has(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get()))
                 .save(output, getBlastingRecipeName(Items.QUARTZ));
 
 	    nineBlockStorageRecipesWithCustomPacking(RecipeCategory.MISC, NetherDescentItems.PENDORITE_NUGGET.get(), RecipeCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), "pendorite_ingot_from_nuggets", "pendorite_ingot");
 		nineBlockStorageRecipesRecipesWithCustomUnpacking(RecipeCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.PENDORITE_BLOCK.get(), "pendorite_ingot_from_pendorite_block", "pendorite_ingot");
-        oreSmelting(PENDORITE_SMELTABLES, RecipeCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), 0.7F, 200, "pendorite_ingot");
-        oreBlasting(PENDORITE_SMELTABLES, RecipeCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), 0.7F, 100, "pendorite_ingot");
+        oreSmelting(PENDORITE_SMELTABLES, RecipeCategory.MISC, CookingBookCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), 0.7F, 200, "pendorite_ingot");
+        oreBlasting(PENDORITE_SMELTABLES, RecipeCategory.MISC, CookingBookCategory.MISC, NetherDescentItems.PENDORITE_INGOT.get(), 0.7F, 100, "pendorite_ingot");
 
 	    stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CUT_PENDORITE.get(), NetherDescentBlocks.PENDORITE_BLOCK.get(), 4);
         stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.CHISELED_PENDORITE.get(), NetherDescentBlocks.PENDORITE_BLOCK.get(), 4);
@@ -150,11 +151,11 @@ public class RecipeGenerator extends RecipeProvider {
 	    doorBuilder(NetherDescentBlocks.PENDORITE_DOOR.get(), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get())).unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get())).save(output);
 	    trapdoorBuilder(NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get())).unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get())).save(output);
 
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.getItem()), RecipeCategory.MISC, Items.GOLD_NUGGET, 0.1F, 400)
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.getItem()), RecipeCategory.MISC, CookingBookCategory.MISC, Items.GOLD_NUGGET, 0.1F, 400)
                 .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.getItem()), has(NetherDescentBlocks.SYTHIAN_STALK.getItem()))
                 .save(output, NetherDescent.key(Registries.RECIPE, "gold_nugget_from_smelting"));
 
-        SimpleCookingRecipeBuilder.blasting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.getItem()), RecipeCategory.MISC, Items.GOLD_NUGGET, 0.1F, 200)
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.getItem()), RecipeCategory.MISC, CookingBookCategory.MISC, Items.GOLD_NUGGET, 0.1F, 200)
                 .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.getItem()), has(NetherDescentBlocks.SYTHIAN_STALK.getItem()))
                 .save(output, NetherDescent.key(Registries.RECIPE, "gold_nugget_from_blasting"));
 
@@ -190,7 +191,7 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy("has_pendorite_ingot", has(NetherDescentItemTags.INGOTS_PENDORITE))
                 .save(output);
 
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()), RecipeCategory.MISC, NetherDescentItems.PENDORITE_NUGGET.get(), 0.1F, 200).unlockedBy(getHasName(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()), has(NetherDescentItems.PENDORITE_HORSE_ARMOR.get())).save(output);
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()), RecipeCategory.MISC, CookingBookCategory.MISC, NetherDescentItems.PENDORITE_NUGGET.get(), 0.1F, 200).unlockedBy(getHasName(NetherDescentItems.PENDORITE_HORSE_ARMOR.get()), has(NetherDescentItems.PENDORITE_HORSE_ARMOR.get())).save(output);
 
         ShapedRecipeBuilder.shaped(itemHolderGetter, RecipeCategory.DECORATIONS, NetherDescentBlocks.PENDORITE_TORCH.get(), 4)
                 .define('X', Ingredient.of(Items.COAL, Items.CHARCOAL))

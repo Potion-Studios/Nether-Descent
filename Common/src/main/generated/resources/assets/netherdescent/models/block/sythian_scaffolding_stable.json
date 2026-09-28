@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/scaffolding_stable",
-  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "netherdescent:block/sythian_scaffolding_bottom",
     "particle": "netherdescent:block/sythian_scaffolding_top",

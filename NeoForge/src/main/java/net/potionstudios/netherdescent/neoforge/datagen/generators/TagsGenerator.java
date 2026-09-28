@@ -184,6 +184,9 @@ public class TagsGenerator {
             tag(Tags.Items.FOODS_BERRY).add(NetherDescentItems.CRIMSON_BERRIES.get());
             tag(Tags.Items.FOODS_PIE).add(NetherDescentItems.CRIMSON_BERRY_PIE.get());
 
+			tag(Tags.Items.ARMORS_HORSE).add(NetherDescentItems.PENDORITE_HORSE_ARMOR.get());
+			tag(Tags.Items.ARMORS_WOLF).add(NetherDescentItems.PENDORITE_WOLF_ARMOR.get());
+
 			tag(NetherDescentItemTags.INGOTS_PENDORITE).add(NetherDescentItems.PENDORITE_INGOT.get());
             tag(Tags.Items.INGOTS).addTag(NetherDescentItemTags.INGOTS_PENDORITE);
             tag(NetherDescentItemTags.NUGGETS_PENDORITE).add(NetherDescentItems.PENDORITE_NUGGET.get());

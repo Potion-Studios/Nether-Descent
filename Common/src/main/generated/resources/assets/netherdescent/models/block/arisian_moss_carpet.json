@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/carpet",
-  "render_type": "minecraft:cutout",
   "textures": {
     "wool": "netherdescent:block/arisian_moss_carpet"
   }

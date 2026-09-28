@@ -1,5 +1,5 @@
 {
-  "type": "ohthetreesyoullgrow:tree_from_nbt_v1",
+  "type": "ohthetreesyoullgrow:tree_from_nbt_v2",
   "config": {
     "base_location": "netherdescent:features/trees/sythian/sythian_fungi_trunk1",
     "can_grow_on_filter": {
@@ -49,12 +49,14 @@
       "max_inclusive": 12,
       "min_inclusive": 9
     },
-    "leaves_provider": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "netherdescent:sythian_wart_block"
+    "leaves_provider": [
+      {
+        "type": "minecraft:simple_state_provider",
+        "state": {
+          "Name": "netherdescent:sythian_wart_block"
+        }
       }
-    },
+    ],
     "leaves_target": [
       "minecraft:oak_leaves"
     ],
@@ -70,7 +72,7 @@
     "log_target": [
       "minecraft:oak_log"
     ],
-    "place_from_nbt": [],
+    "replace_from_nbt": {},
     "tree_filter_behavior": "PASSTHROUGH"
   }
 }

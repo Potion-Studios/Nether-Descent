@@ -7,6 +7,8 @@ import net.minecraft.advancements.criterion.*;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.Validatable;
+import net.minecraft.world.level.storage.loot.ValidationContextSource;
 import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
 import org.jspecify.annotations.NonNull;
 
@@ -41,9 +43,9 @@ public class FungalBulbsBlockTrigger extends SimpleCriterionTrigger<FungalBulbsB
         }
 
         @Override
-        public void validate(@NonNull CriterionValidator validator) {
-            SimpleCriterionTrigger.SimpleInstance.super.validate(validator);
-            validator.validateEntity(this.projectile, ".projectile");
+        public void validate(@NonNull ValidationContextSource validator) {
+            SimpleInstance.super.validate(validator);
+            Validatable.validate(validator.entityContext(), ".projectile", this.projectile);
         }
     }
 }

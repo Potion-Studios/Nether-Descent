@@ -17,7 +17,6 @@
       "translate": "advancements.netherdescent.raw_pendorite.description"
     },
     "icon": {
-      "count": 1,
       "id": "netherdescent:raw_pendorite"
     },
     "show_toast": false,

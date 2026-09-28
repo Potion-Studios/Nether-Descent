@@ -10,7 +10,6 @@
       "translate": "advancements.netherdescent.fungal_bulbs.description"
     },
     "icon": {
-      "count": 1,
       "id": "netherdescent:fungal_bulbs"
     },
     "show_toast": false,

@@ -24,7 +24,6 @@
       "translate": "advancements.netherdescent.description.root"
     },
     "icon": {
-      "count": 1,
       "id": "netherdescent:embur_lily"
     },
     "show_toast": false,

@@ -23,7 +23,6 @@
       "translate": "advancements.netherdescent.wailing_garth.description"
     },
     "icon": {
-      "count": 1,
       "id": "netherdescent:wailing_nylium"
     },
     "show_toast": false,

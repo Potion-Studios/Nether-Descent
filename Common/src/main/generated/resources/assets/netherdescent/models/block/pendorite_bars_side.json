@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/iron_bars_side",
-  "render_type": "minecraft:cutout",
   "textures": {
     "bars": "netherdescent:block/pendorite_bars",
     "edge": "netherdescent:block/pendorite_bars",

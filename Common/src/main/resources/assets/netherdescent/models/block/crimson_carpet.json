@@ -1,5 +1,4 @@
 {
-	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "netherdescent:block/crimson_carpet_side",
 		"2": "netherdescent:block/crimson_carpet",

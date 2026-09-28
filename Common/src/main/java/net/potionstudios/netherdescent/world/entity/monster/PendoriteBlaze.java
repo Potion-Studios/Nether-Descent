@@ -140,14 +140,13 @@ public class PendoriteBlaze extends Blaze implements NeutralMob {
         return false;
     }
 
-    @Override
-    public boolean canAttackType(@NonNull EntityType<?> entityType) {
-        if (this.isPlayerCreated() && entityType == EntityType.PLAYER) {
-            return false;
-        } else {
-            return entityType != EntityType.CREEPER && super.canAttackType(entityType);
-        }
-    }
+
+	@Override
+	public boolean canAttack(@NonNull LivingEntity target) {
+		if (this.isPlayerCreated() && target.is(EntityType.PLAYER)) {
+			return false;
+		} else return !target.is(EntityType.CREEPER) && super.canAttack(target);
+	}
 
 	@Override
 	public boolean canBeLeashed() {

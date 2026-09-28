@@ -17,7 +17,6 @@
       "translate": "advancements.netherdescent.pendorite_wolf_armor.description"
     },
     "icon": {
-      "count": 1,
       "id": "netherdescent:pendorite_wolf_armor"
     },
     "show_toast": false,

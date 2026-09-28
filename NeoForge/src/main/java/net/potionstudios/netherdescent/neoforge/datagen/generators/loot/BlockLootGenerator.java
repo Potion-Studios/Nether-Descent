@@ -69,7 +69,7 @@ class BlockLootGenerator extends BlockLootSubProvider {
             else if (block instanceof LanternBlock)
                 add(block, this::createSingleItemTable);
             else {
-                if (!Item.byBlock(block).getDefaultInstance().is(Items.AIR))
+                if (!(Item.byBlock(block) == Items.AIR))
                     dropSelf(block);
                 else NetherDescent.LOGGER.warn("Block {} has no loot table defined and does not have a corresponding item, skipping loot table generation.", BuiltInRegistries.BLOCK.getKey(block));
             }

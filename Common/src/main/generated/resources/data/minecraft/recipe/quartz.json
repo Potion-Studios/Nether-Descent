@@ -5,7 +5,6 @@
   "experience": 0.2,
   "ingredient": "netherdescent:blue_nether_quartz_ore",
   "result": {
-    "count": 1,
     "id": "minecraft:quartz"
   }
 }

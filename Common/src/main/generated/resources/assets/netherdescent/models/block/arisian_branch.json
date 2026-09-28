@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/coral_wall_fan",
-  "render_type": "minecraft:cutout",
   "textures": {
     "fan": "netherdescent:block/arisian_branch"
   }

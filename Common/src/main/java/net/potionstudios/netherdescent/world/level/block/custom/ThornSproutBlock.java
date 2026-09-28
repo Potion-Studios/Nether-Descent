@@ -80,7 +80,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 			BlockState previousState = level.getBlockState(previousPos);
 			if (previousState.is(this) && previousState.getValue(SEGMENT) == SegmentType.END) {
 				SegmentType convertedType = (size - 1 == 0) ? SegmentType.BASE : SegmentType.MIDDLE;
-				boolean flowering = convertedType == SegmentType.MIDDLE && level.random.nextBoolean();
+				boolean flowering = convertedType == SegmentType.MIDDLE && level.getRandom().nextBoolean();
 				level.setBlock(previousPos, previousState.setValue(SEGMENT, convertedType).setValue(FLOWERING, flowering).setValue(COUNTING, false), 3);
 			}
 		}
@@ -117,7 +117,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 		if (canPlace == 0) return;
 
 		SegmentType convertedType = currentSize == 0 ? SegmentType.BASE : SegmentType.MIDDLE;
-		boolean convertedFlowering = convertedType == SegmentType.MIDDLE && level.random.nextBoolean();
+		boolean convertedFlowering = convertedType == SegmentType.MIDDLE && level.getRandom().nextBoolean();
 		level.setBlock(endPos, endState.setValue(SEGMENT, convertedType).setValue(FLOWERING, convertedFlowering).setValue(COUNTING, false), 3);
 
 		BlockPos cursor = endPos;
@@ -129,7 +129,7 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 			pushEntitiesOutOfWay(level, cursor, facing);
 
 			SegmentType type = isNewEnd ? SegmentType.END : SegmentType.MIDDLE;
-			boolean flowering = type == SegmentType.MIDDLE && level.random.nextBoolean();
+			boolean flowering = type == SegmentType.MIDDLE && level.getRandom().nextBoolean();
 
 			BlockState newState = endState
 					.setValue(SEGMENT, type)

@@ -17,7 +17,6 @@
       "translate": "advancements.netherdescent.obtain_soul_fire_rod.description"
     },
     "icon": {
-      "count": 1,
       "id": "netherdescent:soul_fire_rod"
     },
     "show_toast": false,

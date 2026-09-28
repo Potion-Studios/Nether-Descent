@@ -1,9 +1,8 @@
 package net.potionstudios.netherdescent.fabric.client;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.potionstudios.netherdescent.client.NetherDescentClient;
@@ -18,10 +17,9 @@ public class NetherDescentClientFabric implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		NetherDescentClient.onInitialize();
-		NetherDescentClient.registerBlockRenderTypes(BlockRenderLayerMap::putBlock);
         NetherDescentClient.registerEntityRenderers(EntityRenderers::register);
 		NetherDescentClient.registerBlockEntityRenderers(BlockEntityRenderers::register);
-        NetherDescentClient.registerLayerDefinitions((a, b) -> EntityModelLayerRegistry.registerModelLayer(a, b::get));
-        NetherDescentClient.registerParticles((type, spriteProviderFactory) -> ParticleFactoryRegistry.getInstance().register(type, spriteProviderFactory::apply));
+        NetherDescentClient.registerLayerDefinitions((a, b) -> ModelLayerRegistry.registerModelLayer(a, b::get));
+        NetherDescentClient.registerParticles((type, spriteProviderFactory) -> ParticleProviderRegistry.getInstance().register(type, spriteProviderFactory::apply));
     }
 }

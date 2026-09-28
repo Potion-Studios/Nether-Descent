@@ -1,5 +1,4 @@
 {
-	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "netherdescent:block/embur_lily",
 		"1": "netherdescent:block/sythian_roots",

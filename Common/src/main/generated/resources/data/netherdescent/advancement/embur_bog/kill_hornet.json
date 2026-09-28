@@ -21,7 +21,6 @@
       "translate": "advancements.netherdescent.kill_hornet.description"
     },
     "icon": {
-      "count": 1,
       "id": "netherdescent:hornet_nest"
     },
     "show_toast": false,

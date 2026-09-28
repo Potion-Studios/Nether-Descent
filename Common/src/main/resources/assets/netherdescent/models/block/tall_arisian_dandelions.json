@@ -1,5 +1,4 @@
 {
-	"render_type": "minecraft:cutout",
 	"textures": {
 		"2": "netherdescent:block/arisian_dandelions",
 		"3": "netherdescent:block/arisian_sprouts",
