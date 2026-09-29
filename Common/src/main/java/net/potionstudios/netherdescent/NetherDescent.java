@@ -7,7 +7,6 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
 import net.potionstudios.netherdescent.compat.lithostitched.LoadPredicateType;
-import net.potionstudios.netherdescent.config.configs.DevConfig;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
 import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
 import net.potionstudios.netherdescent.core.dispenser.DispenseItemBehavior;
@@ -61,15 +60,8 @@ public class NetherDescent {
         NetherDescentArmorMaterials.armorMaterials();
 	    NetherDescentPoiTypes.poiTypes();
         NetherDescentCriteriaTriggers.criteriaTriggers();
-        devEnvironmentSetup();
         if (PlatformHandler.PLATFORM_HANDLER.isModLoaded(Lithostitched.MOD_ID))
             LoadPredicateType.loadPredicateType();
-    }
-
-    private static void devEnvironmentSetup() {
-        if (PlatformHandler.PLATFORM_HANDLER.isDevEnvironment()) {
-            DevConfig.getInstance(false);
-        }
     }
 
     /**
