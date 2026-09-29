@@ -16,7 +16,7 @@ import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.tags.*;
 import net.potionstudios.netherdescent.world.damagesource.NetherDescentDamageTypes;
-import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypes;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypeIds;
 import net.potionstudios.netherdescent.world.item.NetherDescentBlockItemIds;
 import net.potionstudios.netherdescent.world.item.NetherDescentItemIds;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
@@ -29,6 +29,7 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.concurrent.CompletableFuture;
 
+@SuppressWarnings("unchecked")
 public class TagsGenerator {
 
 	public static void init(DataGenerator generator, boolean run, PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
@@ -206,7 +207,7 @@ public class TagsGenerator {
 		}
 	}
 
-	private static class ItemTagGenerator extends BlockTagCopyingItemTagProvider {
+    private static class ItemTagGenerator extends BlockTagCopyingItemTagProvider {
 		private ItemTagGenerator(PackOutput arg, CompletableFuture<HolderLookup.Provider> completableFuture, BlockTagGenerator blockTagGenerator) {
 			super(arg, completableFuture, blockTagGenerator.contentsGetter(), NetherDescent.MOD_ID);
 		}
@@ -351,11 +352,11 @@ public class TagsGenerator {
 
 		@Override
 		protected void addTags(HolderLookup.@NonNull Provider provider) {
-			tag(EntityTypeTags.IMPACT_PROJECTILES).add(NetherDescentEntityTypes.SMALL_SOUL_FIREBALL.get().builtInRegistryHolder().key(), NetherDescentEntityTypes.SOUL_FIREBALL.get().builtInRegistryHolder().key());
-			tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(NetherDescentEntityTypes.PENDORITE_BLAZE.get().builtInRegistryHolder().key(), NetherDescentEntityTypes.SOUL_BLAZE.get().builtInRegistryHolder().key(), NetherDescentEntityTypes.HORNET.get().builtInRegistryHolder().key(), NetherDescentEntityTypes.SOUL_GHAST.get().builtInRegistryHolder().key());
-			tag(EntityTypeTags.ARTHROPOD).add(NetherDescentEntityTypes.HORNET.get().builtInRegistryHolder().key());
-			tag(EntityTypeTags.REDIRECTABLE_PROJECTILE).add(NetherDescentEntityTypes.SOUL_FIREBALL.get().builtInRegistryHolder().key());
-			tag(NetherDescentEntityTypeTags.SOUL_FIRE_FLAME).add(NetherDescentEntityTypes.SMALL_SOUL_FIREBALL.get().builtInRegistryHolder().key(), NetherDescentEntityTypes.SOUL_FIREBALL.get().builtInRegistryHolder().key(), NetherDescentEntityTypes.SOUL_BLAZE.get().builtInRegistryHolder().key());
+			tag(EntityTypeTags.IMPACT_PROJECTILES).add(NetherDescentEntityTypeIds.SMALL_SOUL_FIREBALL, NetherDescentEntityTypeIds.SOUL_FIREBALL);
+			tag(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(NetherDescentEntityTypeIds.PENDORITE_BLAZE, NetherDescentEntityTypeIds.SOUL_BLAZE, NetherDescentEntityTypeIds.HORNET, NetherDescentEntityTypeIds.SOUL_GHAST);
+			tag(EntityTypeTags.ARTHROPOD).add(NetherDescentEntityTypeIds.HORNET);
+			tag(EntityTypeTags.REDIRECTABLE_PROJECTILE).add(NetherDescentEntityTypeIds.SOUL_FIREBALL);
+			tag(NetherDescentEntityTypeTags.SOUL_FIRE_FLAME).add(NetherDescentEntityTypeIds.SMALL_SOUL_FIREBALL, NetherDescentEntityTypeIds.SOUL_FIREBALL, NetherDescentEntityTypeIds.SOUL_BLAZE);
 		}
 	}
 }
