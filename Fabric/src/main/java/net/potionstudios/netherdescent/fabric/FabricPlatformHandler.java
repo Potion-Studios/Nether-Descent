@@ -99,12 +99,7 @@ public final class FabricPlatformHandler implements PlatformHandler {
 		return () -> reference;
 	}
 
-	@Override
-	public boolean isDevEnvironment() {
-		return FabricLoader.getInstance().isDevelopmentEnvironment();
-	}
-
-	@Override
+    @Override
 	public boolean isModLoaded(String modId) {
 		return FabricLoader.getInstance().isModLoaded(modId);
 	}

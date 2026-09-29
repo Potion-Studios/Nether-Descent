@@ -5,11 +5,10 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
-import net.potionstudios.netherdescent.config.configs.DevConfig;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
+import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
 import net.potionstudios.netherdescent.core.dispenser.DispenseItemBehavior;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
-import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
 import net.potionstudios.netherdescent.sounds.NetherDescentSoundEvents;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
 import net.potionstudios.netherdescent.world.entity.ai.village.poi.NetherDescentPoiTypes;
@@ -56,13 +55,6 @@ public class NetherDescent {
 	    NetherDescentPotions.potions();
 	    NetherDescentPoiTypes.poiTypes();
         NetherDescentCriteriaTriggers.criteriaTriggers();
-        devEnvironmentSetup();
-    }
-
-    private static void devEnvironmentSetup() {
-        if (PlatformHandler.PLATFORM_HANDLER.isDevEnvironment()) {
-            DevConfig.getInstance(false);
-        }
     }
 
     /**
