@@ -58,7 +58,7 @@ tasks {
     shadowJar {
         dependsOn(jar)
         from(zipTree(jar.get().archiveFile))
-        exclude("architectury.common.json", ".cache/**", "data/neoforge/**")
+        exclude("architectury.common.json", ".cache/**", "data/neoforge/**", "data/netherdescent/lithostitched/**")
         configurations = listOf(project.configurations.getByName("shadowCommon"))
         archiveClassifier.set(null)
     }

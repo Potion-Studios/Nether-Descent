@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.WeightedList;
@@ -30,7 +29,6 @@ import net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescen
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.*;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 public class NetherDescentFeatures {
