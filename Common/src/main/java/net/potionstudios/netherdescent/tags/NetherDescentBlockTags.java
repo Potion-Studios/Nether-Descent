@@ -13,6 +13,8 @@ public final class NetherDescentBlockTags {
     public static final TagKey<Block> SYTHIAN_STALK_PLANTABLE_ON = create("sythian_stalk_plantable_on");
 	public static final TagKey<Block> NETHER_MOSS_REPLACEABLE = create("nether_moss_replaceable");
 	public static final TagKey<Block> ORES_PENDORITE = createCommon("ores/pendorite");
+	public static final TagKey<Block> SUPPORTS_EMBUR_ROOTS = create("supports_embur_roots");
+	public static final TagKey<Block> SUPPORTS_WAILING_GRASS = create("supports_wailing_grass");
 
     private static TagKey<Block> create(String name) {
         return TagKey.create(Registries.BLOCK, NetherDescent.id(name));

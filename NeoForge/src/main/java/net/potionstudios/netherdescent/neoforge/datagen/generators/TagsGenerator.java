@@ -82,6 +82,7 @@ public class TagsGenerator {
 			tag(BlockTags.BASE_STONE_NETHER).add(NetherDescentBlocks.BLUE_NETHERRACK.get());
 			tag(BlockTags.CLIMBABLE).add(NetherDescentBlocks.WAILING_VINES.get(), NetherDescentBlocks.WAILING_VINES_PLANT.get(), NetherDescentBlocks.EMBUR_GEL_VINES.get(), NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(), NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), NetherDescentBlocks.EMBUR_HANGING_MOSS.get(),
                     NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get(), NetherDescentBlocks.ARISIAN_TANGLE_ROOTS.get(), NetherDescentBlocks.ARISIAN_TANGLE_ROOTS_PLANT.get());
+			tag(BlockTags.INFINIBURN_OVERWORLD).add(NetherDescentBlocks.BLUE_NETHERRACK.get());
 			tag(Tags.Blocks.NETHERRACKS).add(NetherDescentBlocks.BLUE_NETHERRACK.get());
 			tag(Tags.Blocks.ORE_BEARING_GROUND_NETHERRACK).add(NetherDescentBlocks.BLUE_NETHERRACK.get());
 			tag(BlockTags.ENDERMAN_HOLDABLE).add(NetherDescentBlocks.EMBUR_NYLIUM.get(), NetherDescentBlocks.SYTHIAN_NYLIUM.get(), NetherDescentBlocks.WAILING_NYLIUM.get());
@@ -92,11 +93,15 @@ public class TagsGenerator {
             tag(BlockTags.NYLIUM).add(NetherDescentBlocks.SYTHIAN_SOIL.get(), NetherDescentBlocks.EMBUR_MOSS_BLOCK.get(), NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get());
             tag(BlockTags.GOLD_ORES).add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get());
 			tag(BlockTags.BEE_GROWABLES).add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get());
+			tag(BlockTags.FALL_DAMAGE_RESETTING).add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get());
             tag(Tags.Blocks.ORES_QUARTZ).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get());
             tag(Tags.Blocks.ORE_RATES_SPARSE).add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get());
             tag(Tags.Blocks.ORE_RATES_SINGULAR).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get(), NetherDescentBlocks.PENDORITE_ORE.get());
-            tag(Tags.Blocks.CHAINS).add(NetherDescentBlocks.PENDORITE_CHAIN.get());
+            tag(BlockTags.CHAINS).add(NetherDescentBlocks.PENDORITE_CHAIN.get());
+			tag(Tags.Blocks.CHAINS).add(NetherDescentBlocks.PENDORITE_CHAIN.get());
 			tag(BlockTags.WART_BLOCKS).add(NetherDescentBlocks.SYTHIAN_WART_BLOCK.get(), NetherDescentBlocks.WAILING_WART_BLOCK.get());
+			tag(NetherDescentBlockTags.SUPPORTS_EMBUR_ROOTS).addTag(BlockTags.SUPPORTS_WARPED_ROOTS);
+			tag(NetherDescentBlockTags.SUPPORTS_WAILING_GRASS).addTag(BlockTags.SUPPORTS_WARPED_ROOTS);
 
 			tag(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE).add(NetherDescentBlocks.PENDORITE_BLOCK.get());
 			tag(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE).add(NetherDescentBlocks.RAW_PENDORITE_BLOCK.get());
@@ -115,6 +120,8 @@ public class TagsGenerator {
             tag(BlockTags.WALL_POST_OVERRIDE).add(NetherDescentBlocks.PENDORITE_TORCH.get());
 			tag(BlockTags.SOUL_SPEED_BLOCKS).add(NetherDescentBlocks.WAILING_NYLIUM.get());
 			tag(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(NetherDescentBlocks.WAILING_NYLIUM.get());
+
+			tag(BlockTags.LANTERNS).add(NetherDescentBlocks.PENDORITE_LANTERN.get());
 
 			tag(BlockTags.REPLACEABLE)
 					.addAll(provider.lookupOrThrow(Registries.BLOCK)
@@ -183,6 +190,7 @@ public class TagsGenerator {
             copy(Tags.Blocks.ORES_QUARTZ, Tags.Items.ORES_QUARTZ);
 			copy(NetherDescentBlockTags.ORES_PENDORITE, NetherDescentItemTags.ORES_PENDORITE);
 			copy(Tags.Blocks.ORE_RATES_SINGULAR, Tags.Items.ORE_RATES_SINGULAR);
+			copy(BlockTags.CHAINS, ItemTags.CHAINS);
             copy(Tags.Blocks.CHAINS, Tags.Items.CHAINS);
 			copy(Tags.Blocks.ORE_BEARING_GROUND_NETHERRACK, Tags.Items.ORE_BEARING_GROUND_NETHERRACK);
             NetherDescentWoodSet.woodsets().forEach(set -> copy(set.logBlockTag(), set.logItemTag()));
@@ -206,6 +214,8 @@ public class TagsGenerator {
 
             tag(ItemTags.CREEPER_IGNITERS).add(NetherDescentItems.SOUL_FIRE_CHARGE.get(), NetherDescentItems.PENDORITE_FIRE_CHARGE.get());
             tag(Tags.Items.RODS_BLAZE).add(NetherDescentItems.SOUL_BLAZE_ROD.get());
+
+			copy(BlockTags.LANTERNS, ItemTags.LANTERNS);
 		}
 	}
 
