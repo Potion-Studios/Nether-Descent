@@ -69,8 +69,11 @@ public class TagsGenerator {
 				tag(BlockTags.LOGS).addOptionalTag(set.logBlockTag());
 				tag(Tags.Blocks.STRIPPED_LOGS).add(set.strippedLogStem());
 				tag(Tags.Blocks.STRIPPED_WOODS).add(set.strippedWood());
+				tag(Tags.Blocks.NETHER_NATURAL_LOGS).add(set.logstem());
 				tag(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES).add(set.craftingTable());
 			});
+			tag(NetherDescentBlockTags.ORES_PENDORITE).add(NetherDescentBlocks.PENDORITE_ORE.get());
+			tag(Tags.Blocks.ORES).addTag(NetherDescentBlockTags.ORES_PENDORITE);
 			tag(BlockTags.NEEDS_IRON_TOOL).add(NetherDescentBlocks.PENDORITE_BLOCK.get(), NetherDescentBlocks.PENDORITE_ORE.get(), NetherDescentBlocks.RAW_PENDORITE_BLOCK.get(), NetherDescentBlocks.CUT_PENDORITE.get(), NetherDescentBlocks.CUT_PENDORITE_SLAB.get(),
 					NetherDescentBlocks.CUT_PENDORITE_STAIRS.get(), NetherDescentBlocks.CHISELED_PENDORITE.get(), NetherDescentBlocks.PENDORITE_GRATE.get(), NetherDescentBlocks.PENDORITE_DOOR.get(), NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), NetherDescentBlocks.PENDORITE_CHAIN.get(),
 					NetherDescentBlocks.PENDORITE_BARS.get(), NetherDescentBlocks.PENDORITE_LANTERN.get(), NetherDescentBlocks.PENDORITE_FIRE_ROD.get());
@@ -80,6 +83,7 @@ public class TagsGenerator {
 			tag(BlockTags.CLIMBABLE).add(NetherDescentBlocks.WAILING_VINES.get(), NetherDescentBlocks.WAILING_VINES_PLANT.get(), NetherDescentBlocks.EMBUR_GEL_VINES.get(), NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(), NetherDescentBlocks.SYTHIAN_SCAFFOLDING.get(), NetherDescentBlocks.EMBUR_HANGING_MOSS.get(),
                     NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get(), NetherDescentBlocks.ARISIAN_TANGLE_ROOTS.get(), NetherDescentBlocks.ARISIAN_TANGLE_ROOTS_PLANT.get());
 			tag(Tags.Blocks.NETHERRACKS).add(NetherDescentBlocks.BLUE_NETHERRACK.get());
+			tag(Tags.Blocks.ORE_BEARING_GROUND_NETHERRACK).add(NetherDescentBlocks.BLUE_NETHERRACK.get());
 			tag(BlockTags.ENDERMAN_HOLDABLE).add(NetherDescentBlocks.EMBUR_NYLIUM.get(), NetherDescentBlocks.SYTHIAN_NYLIUM.get(), NetherDescentBlocks.WAILING_NYLIUM.get());
 			tag(BlockTags.SWORD_EFFICIENT).add(NetherDescentBlocks.EMBUR_SPROUTS.get(), NetherDescentBlocks.EMBUR_CAVE_MOSS.get(), NetherDescentBlocks.SYTHIAN_SPROUTS.get(), NetherDescentBlocks.ARISIAN_SPROUTS.get());
 			tag(BlockTags.REPLACEABLE_BY_TREES).add(NetherDescentBlocks.EMBUR_SPROUTS.get(), NetherDescentBlocks.SYTHIAN_SPROUTS.get(), NetherDescentBlocks.ARISIAN_SPROUTS.get());
@@ -90,7 +94,7 @@ public class TagsGenerator {
 			tag(BlockTags.BEE_GROWABLES).add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get());
             tag(Tags.Blocks.ORES_QUARTZ).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get());
             tag(Tags.Blocks.ORE_RATES_SPARSE).add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get());
-            tag(Tags.Blocks.ORE_RATES_SINGULAR).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get());
+            tag(Tags.Blocks.ORE_RATES_SINGULAR).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get(), NetherDescentBlocks.PENDORITE_ORE.get());
             tag(Tags.Blocks.CHAINS).add(NetherDescentBlocks.PENDORITE_CHAIN.get());
 			tag(BlockTags.WART_BLOCKS).add(NetherDescentBlocks.SYTHIAN_WART_BLOCK.get(), NetherDescentBlocks.WAILING_WART_BLOCK.get());
 
@@ -172,11 +176,15 @@ public class TagsGenerator {
 			copy(BlockTags.LOGS, ItemTags.LOGS);
 			copy(Tags.Blocks.STRIPPED_LOGS, Tags.Items.STRIPPED_LOGS);
 			copy(Tags.Blocks.STRIPPED_WOODS, Tags.Items.STRIPPED_WOODS);
+			copy(Tags.Blocks.NETHER_NATURAL_LOGS, Tags.Items.NETHER_NATURAL_LOGS);
 			copy(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES, Tags.Items.PLAYER_WORKSTATIONS_CRAFTING_TABLES);
 			copy(Tags.Blocks.NETHERRACKS, Tags.Items.NETHERRACKS);
             copy(BlockTags.GOLD_ORES, ItemTags.GOLD_ORES);
             copy(Tags.Blocks.ORES_QUARTZ, Tags.Items.ORES_QUARTZ);
+			copy(NetherDescentBlockTags.ORES_PENDORITE, NetherDescentItemTags.ORES_PENDORITE);
+			copy(Tags.Blocks.ORE_RATES_SINGULAR, Tags.Items.ORE_RATES_SINGULAR);
             copy(Tags.Blocks.CHAINS, Tags.Items.CHAINS);
+			copy(Tags.Blocks.ORE_BEARING_GROUND_NETHERRACK, Tags.Items.ORE_BEARING_GROUND_NETHERRACK);
             NetherDescentWoodSet.woodsets().forEach(set -> copy(set.logBlockTag(), set.logItemTag()));
 			copy(BlockTags.WART_BLOCKS, ItemTags.WART_BLOCKS);
 
