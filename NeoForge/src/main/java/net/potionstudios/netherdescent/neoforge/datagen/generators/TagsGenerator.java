@@ -66,6 +66,7 @@ public class TagsGenerator {
 				tag(Tags.Blocks.BOOKSHELVES).add(set.bookshelf());
 				tag(BlockTags.ENCHANTMENT_POWER_PROVIDER).add(set.bookshelf());
 				tag(set.logBlockTag()).add(set.logstem(), set.wood(), set.strippedLogStem(), set.strippedWood());
+				tag(Tags.Blocks.NATURAL_WOODS).add(set.wood());
 				tag(BlockTags.LOGS).addOptionalTag(set.logBlockTag());
 				tag(Tags.Blocks.STRIPPED_LOGS).add(set.strippedLogStem());
 				tag(Tags.Blocks.STRIPPED_WOODS).add(set.strippedWood());
@@ -74,6 +75,8 @@ public class TagsGenerator {
 			});
 			tag(NetherDescentBlockTags.ORES_PENDORITE).add(NetherDescentBlocks.PENDORITE_ORE.get());
 			tag(Tags.Blocks.ORES).addTag(NetherDescentBlockTags.ORES_PENDORITE);
+			tag(Tags.Blocks.ORES_IN_GROUND_NETHERRACK).add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get(), NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get());
+			tag(BlockTags.BARS).add(NetherDescentBlocks.PENDORITE_BARS.get());
 			tag(BlockTags.NEEDS_IRON_TOOL).add(NetherDescentBlocks.PENDORITE_BLOCK.get(), NetherDescentBlocks.PENDORITE_ORE.get(), NetherDescentBlocks.RAW_PENDORITE_BLOCK.get(), NetherDescentBlocks.CUT_PENDORITE.get(), NetherDescentBlocks.CUT_PENDORITE_SLAB.get(),
 					NetherDescentBlocks.CUT_PENDORITE_STAIRS.get(), NetherDescentBlocks.CHISELED_PENDORITE.get(), NetherDescentBlocks.PENDORITE_GRATE.get(), NetherDescentBlocks.PENDORITE_DOOR.get(), NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), NetherDescentBlocks.PENDORITE_CHAIN.get(),
 					NetherDescentBlocks.PENDORITE_BARS.get(), NetherDescentBlocks.PENDORITE_LANTERN.get(), NetherDescentBlocks.PENDORITE_FIRE_ROD.get());
@@ -94,6 +97,9 @@ public class TagsGenerator {
             tag(BlockTags.GOLD_ORES).add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get());
 			tag(BlockTags.BEE_GROWABLES).add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get());
 			tag(BlockTags.FALL_DAMAGE_RESETTING).add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get());
+			tag(BlockTags.HAPPY_GHAST_AVOIDS).add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get());
+			tag(BlockTags.CAN_GLIDE_THROUGH).add(NetherDescentBlocks.EMBUR_GEL_VINES.get(), NetherDescentBlocks.EMBUR_GEL_VINES_PLANT.get(), NetherDescentBlocks.WAILING_VINES.get(), NetherDescentBlocks.WAILING_VINES_PLANT.get(),
+					NetherDescentBlocks.ARISIAN_TANGLE_ROOTS.get(), NetherDescentBlocks.ARISIAN_TANGLE_ROOTS_PLANT.get(), NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get());
             tag(Tags.Blocks.ORES_QUARTZ).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get());
             tag(Tags.Blocks.ORE_RATES_SPARSE).add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get());
             tag(Tags.Blocks.ORE_RATES_SINGULAR).add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get(), NetherDescentBlocks.PENDORITE_ORE.get());
@@ -135,8 +141,6 @@ public class TagsGenerator {
 			else if (object instanceof StairBlock) tag(BlockTags.STAIRS).add(object);
 			else if (object instanceof WallBlock) tag(BlockTags.WALLS).add(object);
 			else if (object instanceof ColoredFallingBlock) tag(BlockTags.SAND).add(object);
-				//else if (object instanceof FlowerBlock) tag(BlockTags.SMALL_FLOWERS).add(object);
-//			else if (object instanceof TallFlowerBlock) tag(BlockTags.TALL_FLOWERS).add(object);
 			else if (object instanceof LeavesBlock) tag(BlockTags.LEAVES).add(object);
 			else if (object instanceof CampfireBlock) tag(BlockTags.CAMPFIRES).add(object);
 			else if (object instanceof FlowerPotBlock) tag(BlockTags.FLOWER_POTS).add(object);
@@ -196,6 +200,22 @@ public class TagsGenerator {
             NetherDescentWoodSet.woodsets().forEach(set -> copy(set.logBlockTag(), set.logItemTag()));
 			copy(BlockTags.WART_BLOCKS, ItemTags.WART_BLOCKS);
 
+			NetherDescentWoodSet.woodsets().forEach(set -> tag(ItemTags.NON_FLAMMABLE_WOOD).addTag(set.logItemTag()).add(
+					set.planks().asItem(),
+					set.slab().asItem(),
+					set.stairs().asItem(),
+					set.button().asItem(),
+					set.pressurePlate().asItem(),
+					set.trapdoor().asItem(),
+					set.door().asItem(),
+					set.fence().asItem(),
+					set.fenceGate().asItem(),
+					set.signItem(),
+					set.hangingSignItem(),
+					set.bookshelf().asItem(),
+					set.craftingTable().asItem()
+			));
+
 			tag(Tags.Items.BRICKS_NETHER).add(NetherDescentItems.BLUE_NETHER_BRICK.get());
             tag(Tags.Items.FOODS_BERRY).add(NetherDescentItems.CRIMSON_BERRIES.get());
             tag(Tags.Items.FOODS_PIE).add(NetherDescentItems.CRIMSON_BERRY_PIE.get());
@@ -207,6 +227,8 @@ public class TagsGenerator {
             tag(Tags.Items.INGOTS).addTag(NetherDescentItemTags.INGOTS_PENDORITE);
             tag(NetherDescentItemTags.NUGGETS_PENDORITE).add(NetherDescentItems.PENDORITE_NUGGET.get());
             tag(Tags.Items.NUGGETS).addTag(NetherDescentItemTags.NUGGETS_PENDORITE);
+			tag(NetherDescentItemTags.RAW_MATERIALS_PENDORITE).add(NetherDescentItems.RAW_PENDORITE.get());
+			tag(Tags.Items.RAW_MATERIALS).addTag(NetherDescentItemTags.RAW_MATERIALS_PENDORITE);
 
 			copy(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE, NetherDescentItemTags.STORAGE_BLOCKS_PENDORITE);
 			copy(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE, NetherDescentItemTags.STORAGE_BLOCKS_RAW_PENDORITE);
@@ -216,6 +238,13 @@ public class TagsGenerator {
             tag(Tags.Items.RODS_BLAZE).add(NetherDescentItems.SOUL_BLAZE_ROD.get());
 
 			copy(BlockTags.LANTERNS, ItemTags.LANTERNS);
+			copy(Tags.Blocks.NATURAL_WOODS, Tags.Items.NATURAL_WOODS);
+			copy(Tags.Blocks.ORES, Tags.Items.ORES);
+			copy(Tags.Blocks.ORE_RATES_SPARSE, Tags.Items.ORE_RATES_SPARSE);
+			copy(Tags.Blocks.ORES_IN_GROUND_NETHERRACK, Tags.Items.ORES_IN_GROUND_NETHERRACK);
+			copy(BlockTags.LEAVES, ItemTags.LEAVES);
+			copy(BlockTags.FLOWERS, ItemTags.FLOWERS);
+			copy(BlockTags.BARS, ItemTags.BARS);
 		}
 	}
 

@@ -10,6 +10,7 @@ public final class NetherDescentItemTags {
 
 	public static final TagKey<Item> INGOTS_PENDORITE = createCommon("ingots/pendorite");
     public static final TagKey<Item> NUGGETS_PENDORITE = createCommon("nuggets/pendorite");
+	public static final TagKey<Item> RAW_MATERIALS_PENDORITE = createCommon("raw_materials/pendorite");
 	public static final TagKey<Item> STORAGE_BLOCKS_PENDORITE = createCommon("storage_blocks/pendorite");
 	public static final TagKey<Item> STORAGE_BLOCKS_RAW_PENDORITE = createCommon("storage_blocks/raw_pendorite");
 	public static final TagKey<Item> ORES_PENDORITE = createCommon("ores/pendorite");

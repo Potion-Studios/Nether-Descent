@@ -1,3 +1,8 @@
+# 1.0.10
+- Allow players to glide through all vines
+- Make Happy Ghasts avoid Crimson Berry Bushes
+- Add a bunch of missing/new Block and Item Tags
+
 # 1.0.9
 - Decrease Jar size by compressing audio files
 
