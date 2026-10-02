@@ -17,9 +17,7 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.tags.*;
 import net.potionstudios.netherdescent.world.damagesource.NetherDescentDamageTypes;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypeIds;
-import net.potionstudios.netherdescent.world.item.NetherDescentBlockItemIds;
 import net.potionstudios.netherdescent.world.item.NetherDescentItemIds;
-import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlockIds;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodSet;
@@ -71,82 +69,48 @@ public class TagsGenerator {
 				tag(Tags.Blocks.BOOKSHELVES).add(set.bookshelf().builtInRegistryHolder().key());
 				tag(BlockTags.ENCHANTMENT_POWER_PROVIDER).add(set.bookshelf().builtInRegistryHolder().key());
 				tag(set.logBlockTag()).add(set.logstem().builtInRegistryHolder().key(), set.wood().builtInRegistryHolder().key(), set.strippedLogStem().builtInRegistryHolder().key(), set.strippedWood().builtInRegistryHolder().key());
-                tag(Tags.Blocks.NATURAL_WOODS).add(set.wood().builtInRegistryHolder().key());
-                tag(BlockTags.LOGS).addOptionalTag(set.logBlockTag());
+				tag(Tags.Blocks.NATURAL_WOODS).add(set.wood().builtInRegistryHolder().key());
+				tag(BlockTags.LOGS).addOptionalTag(set.logBlockTag());
 				tag(Tags.Blocks.STRIPPED_LOGS).add(set.strippedLogStem().builtInRegistryHolder().key());
 				tag(Tags.Blocks.STRIPPED_WOODS).add(set.strippedWood().builtInRegistryHolder().key());
-                tag(Tags.Blocks.NETHER_NATURAL_LOGS).add(set.logstem().builtInRegistryHolder().key());
+				tag(Tags.Blocks.NETHER_NATURAL_LOGS).add(set.logstem().builtInRegistryHolder().key());
 				tag(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES).add(set.craftingTable().builtInRegistryHolder().key());
 			});
-			tag(BlockTags.NEEDS_IRON_TOOL).add(
-					NetherDescentBlockIds.PENDORITE_BLOCK,
-					NetherDescentBlockIds.PENDORITE_ORE,
-					NetherDescentBlockIds.RAW_PENDORITE_BLOCK,
-					NetherDescentBlockIds.CUT_PENDORITE,
-					NetherDescentBlockIds.CUT_PENDORITE_SLAB,
-					NetherDescentBlockIds.CUT_PENDORITE_STAIRS,
-					NetherDescentBlockIds.CHISELED_PENDORITE,
-					NetherDescentBlockIds.PENDORITE_GRATE,
-					NetherDescentBlockIds.PENDORITE_DOOR,
-					NetherDescentBlockIds.PENDORITE_TRAPDOOR,
-					NetherDescentBlockIds.PENDORITE_CHAIN,
-					NetherDescentBlockIds.PENDORITE_BARS,
-					NetherDescentBlockIds.PENDORITE_LANTERN,
-					NetherDescentBlockIds.PENDORITE_FIRE_ROD
-			);
+			tag(NetherDescentBlockTags.ORES_PENDORITE).add(NetherDescentBlockIds.PENDORITE_ORE);
+			tag(Tags.Blocks.ORES).addTag(NetherDescentBlockTags.ORES_PENDORITE);
+			tag(Tags.Blocks.ORES_IN_GROUND_NETHERRACK).add(NetherDescentBlockIds.BLUE_NETHER_GOLD_ORE, NetherDescentBlockIds.BLUE_NETHER_QUARTZ_ORE);
+			tag(BlockTags.BARS).add(NetherDescentBlockIds.PENDORITE_BARS);
+			tag(BlockTags.NEEDS_IRON_TOOL).add(NetherDescentBlockIds.PENDORITE_BLOCK, NetherDescentBlockIds.PENDORITE_ORE, NetherDescentBlockIds.RAW_PENDORITE_BLOCK, NetherDescentBlockIds.CUT_PENDORITE, NetherDescentBlockIds.CUT_PENDORITE_SLAB,
+					NetherDescentBlockIds.CUT_PENDORITE_STAIRS, NetherDescentBlockIds.CHISELED_PENDORITE, NetherDescentBlockIds.PENDORITE_GRATE, NetherDescentBlockIds.PENDORITE_DOOR, NetherDescentBlockIds.PENDORITE_TRAPDOOR, NetherDescentBlockIds.PENDORITE_CHAIN,
+					NetherDescentBlockIds.PENDORITE_BARS, NetherDescentBlockIds.PENDORITE_LANTERN, NetherDescentBlockIds.PENDORITE_FIRE_ROD);
 			tag(BlockTags.FENCES).add(NetherDescentBlockIds.BLUE_NETHER_BRICK_FENCE);
 			tag(Tags.Blocks.FENCES_NETHER_BRICK).add(NetherDescentBlockIds.BLUE_NETHER_BRICK_FENCE);
 			tag(BlockTags.BASE_STONE_NETHER).add(NetherDescentBlockIds.BLUE_NETHERRACK);
-			tag(BlockTags.CLIMBABLE).add(
-					NetherDescentBlockIds.WAILING_VINES,
-					NetherDescentBlockIds.WAILING_VINES_PLANT,
-					NetherDescentBlockIds.EMBUR_GEL_VINES,
-					NetherDescentBlockIds.EMBUR_GEL_VINES_PLANT,
-					NetherDescentBlockIds.SYTHIAN_SCAFFOLDING,
-					NetherDescentBlockIds.EMBUR_HANGING_MOSS,
-					NetherDescentBlockIds.HANGING_SYTHIAN_ROOTS,
-					NetherDescentBlockIds.HANGING_SYTHIAN_ROOTS_PLANT,
-					NetherDescentBlockIds.ARISIAN_TANGLE_ROOTS,
-					NetherDescentBlockIds.ARISIAN_TANGLE_ROOTS_PLANT
-			);
+			tag(BlockTags.CLIMBABLE).add(NetherDescentBlockIds.WAILING_VINES, NetherDescentBlockIds.WAILING_VINES_PLANT, NetherDescentBlockIds.EMBUR_GEL_VINES, NetherDescentBlockIds.EMBUR_GEL_VINES_PLANT, NetherDescentBlockIds.SYTHIAN_SCAFFOLDING, NetherDescentBlockIds.EMBUR_HANGING_MOSS,
+					NetherDescentBlockIds.HANGING_SYTHIAN_ROOTS, NetherDescentBlockIds.HANGING_SYTHIAN_ROOTS_PLANT, NetherDescentBlockIds.ARISIAN_TANGLE_ROOTS, NetherDescentBlockIds.ARISIAN_TANGLE_ROOTS_PLANT);
+			tag(BlockTags.INFINIBURN_OVERWORLD).add(NetherDescentBlockIds.BLUE_NETHERRACK);
 			tag(Tags.Blocks.NETHERRACKS).add(NetherDescentBlockIds.BLUE_NETHERRACK);
-			tag(BlockTags.ENDERMAN_HOLDABLE).add(
-					NetherDescentBlockIds.EMBUR_NYLIUM,
-					NetherDescentBlockIds.SYTHIAN_NYLIUM,
-					NetherDescentBlockIds.WAILING_NYLIUM
-			);
-			tag(BlockTags.SWORD_EFFICIENT).add(
-					NetherDescentBlockIds.EMBUR_SPROUTS,
-					NetherDescentBlockIds.EMBUR_CAVE_MOSS,
-					NetherDescentBlockIds.SYTHIAN_SPROUTS,
-					NetherDescentBlockIds.ARISIAN_SPROUTS
-			);
-			tag(BlockTags.REPLACEABLE_BY_TREES).add(
-					NetherDescentBlockIds.EMBUR_SPROUTS,
-					NetherDescentBlockIds.SYTHIAN_SPROUTS,
-					NetherDescentBlockIds.ARISIAN_SPROUTS
-			);
-			tag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).add(
-					NetherDescentBlockIds.EMBUR_SPROUTS,
-					NetherDescentBlockIds.SYTHIAN_SPROUTS,
-					NetherDescentBlockIds.ARISIAN_SPROUTS
-			);
+			tag(Tags.Blocks.ORE_BEARING_GROUND_NETHERRACK).add(NetherDescentBlockIds.BLUE_NETHERRACK);
+			tag(BlockTags.ENDERMAN_HOLDABLE).add(NetherDescentBlockIds.EMBUR_NYLIUM, NetherDescentBlockIds.SYTHIAN_NYLIUM, NetherDescentBlockIds.WAILING_NYLIUM);
+			tag(BlockTags.SWORD_EFFICIENT).add(NetherDescentBlockIds.EMBUR_SPROUTS, NetherDescentBlockIds.EMBUR_CAVE_MOSS, NetherDescentBlockIds.SYTHIAN_SPROUTS, NetherDescentBlockIds.ARISIAN_SPROUTS);
+			tag(BlockTags.REPLACEABLE_BY_TREES).add(NetherDescentBlockIds.EMBUR_SPROUTS, NetherDescentBlockIds.SYTHIAN_SPROUTS, NetherDescentBlockIds.ARISIAN_SPROUTS);
+			tag(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).add(NetherDescentBlockIds.EMBUR_SPROUTS, NetherDescentBlockIds.SYTHIAN_SPROUTS, NetherDescentBlockIds.ARISIAN_SPROUTS);
 			tag(BlockTags.INSIDE_STEP_SOUND_BLOCKS).add(NetherDescentBlockIds.EMBUR_CAVE_MOSS);
-			tag(BlockTags.NYLIUM).add(
-					NetherDescentBlockIds.SYTHIAN_SOIL,
-					NetherDescentBlockIds.EMBUR_MOSS_BLOCK,
-					NetherDescentBlockIds.ARISIAN_MOSS_BLOCK
-			);
+			tag(BlockTags.NYLIUM).add(NetherDescentBlockIds.SYTHIAN_SOIL, NetherDescentBlockIds.EMBUR_MOSS_BLOCK, NetherDescentBlockIds.ARISIAN_MOSS_BLOCK);
 			tag(BlockTags.GOLD_ORES).add(NetherDescentBlockIds.BLUE_NETHER_GOLD_ORE);
 			tag(BlockTags.BEE_GROWABLES).add(NetherDescentBlockIds.CRIMSON_BERRY_BUSH);
+			tag(BlockTags.FALL_DAMAGE_RESETTING).add(NetherDescentBlockIds.CRIMSON_BERRY_BUSH);
+			tag(BlockTags.HAPPY_GHAST_AVOIDS).add(NetherDescentBlockIds.CRIMSON_BERRY_BUSH);
+			tag(BlockTags.CAN_GLIDE_THROUGH).add(NetherDescentBlockIds.EMBUR_GEL_VINES, NetherDescentBlockIds.EMBUR_GEL_VINES_PLANT, NetherDescentBlockIds.WAILING_VINES, NetherDescentBlockIds.WAILING_VINES_PLANT,
+					NetherDescentBlockIds.ARISIAN_TANGLE_ROOTS, NetherDescentBlockIds.ARISIAN_TANGLE_ROOTS_PLANT, NetherDescentBlockIds.HANGING_SYTHIAN_ROOTS, NetherDescentBlockIds.HANGING_SYTHIAN_ROOTS_PLANT);
 			tag(Tags.Blocks.ORES_QUARTZ).add(NetherDescentBlockIds.BLUE_NETHER_QUARTZ_ORE);
 			tag(Tags.Blocks.ORE_RATES_SPARSE).add(NetherDescentBlockIds.BLUE_NETHER_GOLD_ORE);
-			tag(Tags.Blocks.ORE_RATES_SINGULAR).add(NetherDescentBlockIds.BLUE_NETHER_QUARTZ_ORE);
+			tag(Tags.Blocks.ORE_RATES_SINGULAR).add(NetherDescentBlockIds.BLUE_NETHER_QUARTZ_ORE, NetherDescentBlockIds.PENDORITE_ORE);
+			tag(BlockTags.CHAINS).add(NetherDescentBlockIds.PENDORITE_CHAIN);
 			tag(Tags.Blocks.CHAINS).add(NetherDescentBlockIds.PENDORITE_CHAIN);
-			tag(BlockTags.WART_BLOCKS).add(
-					NetherDescentBlockIds.SYTHIAN_WART_BLOCK,
-					NetherDescentBlockIds.WAILING_WART_BLOCK
-			);
+			tag(BlockTags.WART_BLOCKS).add(NetherDescentBlockIds.SYTHIAN_WART_BLOCK, NetherDescentBlockIds.WAILING_WART_BLOCK);
+			tag(NetherDescentBlockTags.SUPPORTS_EMBUR_ROOTS).addTag(BlockTags.SUPPORTS_WARPED_ROOTS);
+			tag(NetherDescentBlockTags.SUPPORTS_WAILING_GRASS).addTag(BlockTags.SUPPORTS_WARPED_ROOTS);
 
 			tag(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE).add(NetherDescentBlockIds.PENDORITE_BLOCK);
 			tag(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE).add(NetherDescentBlockIds.RAW_PENDORITE_BLOCK);
@@ -157,18 +121,9 @@ public class TagsGenerator {
 			tag(BlockTags.DRAGON_IMMUNE).add(NetherDescentBlockIds.PENDORITE_BARS);
 			tag(BlockTags.CAMPFIRES).add(NetherDescentBlockIds.PENDORITE_CAMPFIRE);
 
-			tag(BlockTags.FLOWERS).add(
-					NetherDescentBlockIds.TALL_ARISIAN_DANDELIONS,
-					NetherDescentBlockIds.EMBUR_LILY,
-					NetherDescentBlockIds.ARISIAN_BLOSSOM,
-					NetherDescentBlockIds.ARISIAN_DANDELIONS
-			);
+			tag(BlockTags.FLOWERS).add(NetherDescentBlockIds.TALL_ARISIAN_DANDELIONS, NetherDescentBlockIds.EMBUR_LILY, NetherDescentBlockIds.ARISIAN_BLOSSOM, NetherDescentBlockIds.ARISIAN_DANDELIONS);
 
-			tag(NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON).addTag(BlockTags.NYLIUM).add(
-					NetherDescentBlockIds.SYTHIAN_SHOOT,
-					NetherDescentBlockIds.SYTHIAN_STALK,
-					NetherDescentBlockIds.SYTHIAN_FARMLAND
-			);
+			tag(NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON).addTag(BlockTags.NYLIUM).add(NetherDescentBlockIds.SYTHIAN_SHOOT, NetherDescentBlockIds.SYTHIAN_STALK, NetherDescentBlockIds.SYTHIAN_FARMLAND);
 			tag(NetherDescentBlockTags.NETHER_MOSS_REPLACEABLE).addTag(BlockTags.BASE_STONE_NETHER).addTag(BlockTags.NYLIUM);
 
 			tag(BlockTags.WALL_POST_OVERRIDE).add(NetherDescentBlockIds.PENDORITE_TORCH);
@@ -237,8 +192,6 @@ public class TagsGenerator {
 			copy(Tags.Blocks.NETHERRACKS, Tags.Items.NETHERRACKS);
 			copy(BlockTags.GOLD_ORES, ItemTags.GOLD_ORES);
 			copy(Tags.Blocks.ORES_QUARTZ, Tags.Items.ORES_QUARTZ);
-			copy(Tags.Blocks.CHAINS, Tags.Items.CHAINS);
-			NetherDescentWoodSet.woodsets().forEach(set -> copy(set.logBlockTag(), set.logItemTag()));
 			copy(NetherDescentBlockTags.ORES_PENDORITE, NetherDescentItemTags.ORES_PENDORITE);
 			copy(Tags.Blocks.ORE_RATES_SINGULAR, Tags.Items.ORE_RATES_SINGULAR);
             copy(Tags.Blocks.CHAINS, Tags.Items.CHAINS);
@@ -246,9 +199,6 @@ public class TagsGenerator {
             NetherDescentWoodSet.woodsets().forEach(set -> copy(set.logBlockTag(), set.logItemTag()));
 			copy(BlockTags.WART_BLOCKS, ItemTags.WART_BLOCKS);
 
-			tag(Tags.Items.BRICKS_NETHER).add(NetherDescentItemIds.BLUE_NETHER_BRICK);
-			tag(Tags.Items.FOODS_BERRY).add(NetherDescentBlockItemIds.CRIMSON_BERRIES);
-			tag(Tags.Items.FOODS_PIE).add(NetherDescentItemIds.CRIMSON_BERRY_PIE);
 			NetherDescentWoodSet.woodsets().forEach(set -> tag(ItemTags.NON_FLAMMABLE_WOOD).addTag(set.logItemTag()).add(
 					set.planks().asItem().builtInRegistryHolder().key(),
 					set.slab().asItem().builtInRegistryHolder().key(),
@@ -265,9 +215,9 @@ public class TagsGenerator {
 					set.craftingTable().asItem().builtInRegistryHolder().key()
 			));
 
-			tag(Tags.Items.BRICKS_NETHER).add(NetherDescentItems.BLUE_NETHER_BRICK.get());
-            tag(Tags.Items.FOODS_BERRY).add(NetherDescentItems.CRIMSON_BERRIES.get());
-            tag(Tags.Items.FOODS_PIE).add(NetherDescentItems.CRIMSON_BERRY_PIE.get());
+			tag(Tags.Items.BRICKS_NETHER).add(NetherDescentItemIds.BLUE_NETHER_BRICK);
+            tag(Tags.Items.FOODS_BERRY).add(NetherDescentBlocks.CRIMSON_BERRY_BUSH.get().asItem().builtInRegistryHolder().key());
+            tag(Tags.Items.FOODS_PIE).add(NetherDescentItemIds.CRIMSON_BERRY_PIE);
 
 			tag(Tags.Items.ARMORS_HORSE).add(NetherDescentItemIds.PENDORITE_HORSE_ARMOR);
 			tag(Tags.Items.ARMORS_WOLF).add(NetherDescentItemIds.PENDORITE_WOLF_ARMOR);
@@ -285,17 +235,12 @@ public class TagsGenerator {
 
 			tag(ItemTags.CREEPER_IGNITERS).add(NetherDescentItemIds.SOUL_FIRE_CHARGE, NetherDescentItemIds.PENDORITE_FIRE_CHARGE);
 			tag(Tags.Items.RODS_BLAZE).add(NetherDescentItemIds.SOUL_BLAZE_ROD);
-            tag(ItemTags.CREEPER_IGNITERS).add(NetherDescentItemIds.SOUL_FIRE_CHARGE, NetherDescentItemIds.PENDORITE_FIRE_CHARGE);
-            tag(Tags.Items.RODS_BLAZE).add(NetherDescentItemIds.SOUL_BLAZE_ROD);
 
-			copy(BlockTags.LANTERNS, ItemTags.LANTERNS);
 			copy(Tags.Blocks.NATURAL_WOODS, Tags.Items.NATURAL_WOODS);
 			copy(Tags.Blocks.ORES, Tags.Items.ORES);
 			copy(Tags.Blocks.ORE_RATES_SPARSE, Tags.Items.ORE_RATES_SPARSE);
 			copy(Tags.Blocks.ORES_IN_GROUND_NETHERRACK, Tags.Items.ORES_IN_GROUND_NETHERRACK);
 			copy(BlockTags.LEAVES, ItemTags.LEAVES);
-			copy(BlockTags.FLOWERS, ItemTags.FLOWERS);
-			copy(BlockTags.BARS, ItemTags.BARS);
 		}
 	}
 
