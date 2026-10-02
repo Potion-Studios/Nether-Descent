@@ -35,7 +35,7 @@ dependencies {
 
     api("com.github.glitchfiend:TerraBlender-fabric:$minecraftVersion-${providers.gradleProperty("terrablender_version").get()}")
     compileOnly("com.terraformersmc:biolith-fabric:${providers.gradleProperty("biolith_version").get()}")
-    compileOnly("maven.modrinth:lithostitched:${providers.gradleProperty("lithostitched_version").get()}-fabric-26.1")
+    compileOnly("maven.modrinth:lithostitched:${providers.gradleProperty("lithostitched_version").get()}-fabric-$minecraftVersion")
     api("dev.corgitaco.ohthetreesyoullgrow:ohthetreesyoullgrow-fabric-$minecraftVersion:${providers.gradleProperty("ohthetreesyoullgrow_version").get()}")
     api("me.lucko:fabric-permissions-api:0.7.0")
 

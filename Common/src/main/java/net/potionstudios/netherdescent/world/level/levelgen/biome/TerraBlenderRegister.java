@@ -13,6 +13,6 @@ public class TerraBlenderRegister {
                 NetherDescent.id("nether_descent"),
                 WorldGenerationConfig.get().regionWeight.value()
         ));
-        SurfaceRuleManager.addSurfaceRules(terrablender.api.SurfaceRuleManager.RuleCategory.NETHER, NetherDescent.MOD_ID, NetherDescentSurfaceRules.makeRules());
+        SurfaceRuleManager.addSurfaceRules(terrablender.api.SurfaceRuleManager.RuleCategory.NETHER, NetherDescent.MOD_ID, NetherDescentSurfaceRules::makeRules);
     }
 }

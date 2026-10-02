@@ -18,7 +18,7 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import net.potionstudios.netherdescent.config.configs.MobSpawnConfig;
-import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypes;
 import net.potionstudios.netherdescent.world.level.block.entity.HornetNestBlockEntity;
 import org.jspecify.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
@@ -146,7 +146,7 @@ public class Hornet extends Bee {
     @Override
     @Nullable
     public Hornet getBreedOffspring(@NonNull ServerLevel level, @NonNull AgeableMob otherParent) {
-        return NetherDescentEntityType.HORNET.get().create(level, EntitySpawnReason.BREEDING);
+        return NetherDescentEntityTypes.HORNET.get().create(level, EntitySpawnReason.BREEDING);
     }
 
     @Override

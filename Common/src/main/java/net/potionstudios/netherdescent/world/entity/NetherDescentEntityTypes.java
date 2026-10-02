@@ -1,7 +1,6 @@
 package net.potionstudios.netherdescent.world.entity;
 
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -20,21 +19,17 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class NetherDescentEntityType {
+public class NetherDescentEntityTypes {
 
-    public static final Supplier<EntityType<SoulBlaze>> SOUL_BLAZE = createEntity("soul_blaze", EntityType.Builder.of(SoulBlaze::new, MobCategory.MONSTER).fireImmune().sized(EntityType.BLAZE.getWidth(), EntityType.BLAZE.getHeight()).clientTrackingRange(8));
-    public static final Supplier<EntityType<LargeSoulFireball>> SOUL_FIREBALL = createEntity("soul_fireball", EntityType.Builder.<LargeSoulFireball>of(LargeSoulFireball::new, MobCategory.MISC).sized(EntityType.FIREBALL.getWidth(), EntityType.FIREBALL.getHeight()).clientTrackingRange(4).updateInterval(10));
-	public static final Supplier<EntityType<SmallSoulFireball>> SMALL_SOUL_FIREBALL = createEntity("small_soul_fireball", EntityType.Builder.<SmallSoulFireball>of(SmallSoulFireball::new, MobCategory.MISC).sized(EntityType.SMALL_FIREBALL.getWidth(), EntityType.SMALL_FIREBALL.getHeight()).clientTrackingRange(4).updateInterval(10));
-	public static final Supplier<EntityType<PendoriteBlaze>> PENDORITE_BLAZE = createEntity("pendorite_blaze", EntityType.Builder.of(PendoriteBlaze::new, MobCategory.CREATURE).fireImmune().sized(EntityType.BLAZE.getWidth(), EntityType.BLAZE.getHeight()).clientTrackingRange(8));
-    public static final Supplier<EntityType<Hornet>> HORNET = createEntity("hornet", EntityType.Builder.of(Hornet::new, MobCategory.CREATURE).sized(0.7F, 0.6F).eyeHeight(0.3F).clientTrackingRange(8).fireImmune());
-    public static final Supplier<EntityType<SoulGhast>> SOUL_GHAST = createEntity("soul_ghast", EntityType.Builder.of(SoulGhast::new, MobCategory.MONSTER).fireImmune().sized(EntityType.GHAST.getWidth(), EntityType.GHAST.getHeight()).eyeHeight(2.6F).passengerAttachments(4.0625F).ridingOffset(0.5F).clientTrackingRange(10));
+    public static final Supplier<EntityType<SoulBlaze>> SOUL_BLAZE = createEntity("soul_blaze", EntityType.Builder.of(SoulBlaze::new, MobCategory.MONSTER).fireImmune().sized(EntityTypes.BLAZE.getWidth(), EntityTypes.BLAZE.getHeight()).clientTrackingRange(8), NetherDescentEntityTypeIds.SOUL_BLAZE);
+    public static final Supplier<EntityType<LargeSoulFireball>> SOUL_FIREBALL = createEntity("soul_fireball", EntityType.Builder.<LargeSoulFireball>of(LargeSoulFireball::new, MobCategory.MISC).sized(EntityTypes.FIREBALL.getWidth(), EntityTypes.FIREBALL.getHeight()).clientTrackingRange(4).updateInterval(10), NetherDescentEntityTypeIds.SOUL_FIREBALL);
+	public static final Supplier<EntityType<SmallSoulFireball>> SMALL_SOUL_FIREBALL = createEntity("small_soul_fireball", EntityType.Builder.<SmallSoulFireball>of(SmallSoulFireball::new, MobCategory.MISC).sized(EntityTypes.SMALL_FIREBALL.getWidth(), EntityTypes.SMALL_FIREBALL.getHeight()).clientTrackingRange(4).updateInterval(10), NetherDescentEntityTypeIds.SMALL_SOUL_FIREBALL);
+	public static final Supplier<EntityType<PendoriteBlaze>> PENDORITE_BLAZE = createEntity("pendorite_blaze", EntityType.Builder.of(PendoriteBlaze::new, MobCategory.CREATURE).fireImmune().sized(EntityTypes.BLAZE.getWidth(), EntityTypes.BLAZE.getHeight()).clientTrackingRange(8), NetherDescentEntityTypeIds.PENDORITE_BLAZE);
+    public static final Supplier<EntityType<Hornet>> HORNET = createEntity("hornet", EntityType.Builder.of(Hornet::new, MobCategory.CREATURE).sized(0.7F, 0.6F).eyeHeight(0.3F).clientTrackingRange(8).fireImmune(), NetherDescentEntityTypeIds.HORNET);
+    public static final Supplier<EntityType<SoulGhast>> SOUL_GHAST = createEntity("soul_ghast", EntityType.Builder.of(SoulGhast::new, MobCategory.MONSTER).fireImmune().sized(EntityTypes.GHAST.getWidth(), EntityTypes.GHAST.getHeight()).eyeHeight(2.6F).passengerAttachments(4.0625F).ridingOffset(0.5F).clientTrackingRange(10), NetherDescentEntityTypeIds.SOUL_GHAST);
 
-    private static <E extends Entity> Supplier<EntityType<E>> createEntity(String id, EntityType.Builder<E> Builder) {
-        return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.ENTITY_TYPE, id, () -> Builder.build(createKey(id)));
-    }
-
-    private static ResourceKey<EntityType<?>> createKey(String id) {
-        return NetherDescent.key(Registries.ENTITY_TYPE, id);
+    private static <E extends Entity> Supplier<EntityType<E>> createEntity(String id, EntityType.Builder<E> Builder, ResourceKey<EntityType<?>> key) {
+        return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.ENTITY_TYPE, id, () -> Builder.build(key));
     }
 
     @SuppressWarnings("unchecked")

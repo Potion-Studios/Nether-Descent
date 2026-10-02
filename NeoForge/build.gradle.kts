@@ -44,7 +44,7 @@ dependencies {
 
     api("com.github.glitchfiend:TerraBlender-neoforge:$minecraftVersion-${providers.gradleProperty("terrablender_version").get()}")
     compileOnly("com.terraformersmc:biolith-neoforge:${providers.gradleProperty("biolith_version").get()}")
-    api("maven.modrinth:lithostitched:${providers.gradleProperty("lithostitched_version").get()}-neoforge-26.1")
+    api("maven.modrinth:lithostitched:${providers.gradleProperty("lithostitched_version").get()}-neoforge-$minecraftVersion")
     api("dev.corgitaco.ohthetreesyoullgrow:ohthetreesyoullgrow-neoforge-$minecraftVersion:${providers.gradleProperty("ohthetreesyoullgrow_version").get()}")
 
     localRuntime("mcp.mobius.waila:wthit:neo-${providers.gradleProperty("WTHIT").get()}")

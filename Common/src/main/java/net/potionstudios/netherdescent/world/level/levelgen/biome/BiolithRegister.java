@@ -12,6 +12,6 @@ public class BiolithRegister {
             if (WorldGenerationConfig.get().isEnabled(biomeKey))
                 BiomePlacement.addNether(biomeKey, biomeDefinition.parameterPoint());
         });
-        SurfaceGeneration.addNetherSurfaceRules(NetherDescent.id("rules/nether"), NetherDescentSurfaceRules.makeRules());
+        SurfaceGeneration.addNetherSurfaceRules(NetherDescent.id("rules/nether"), NetherDescentSurfaceRules::makeRules);
     }
 }

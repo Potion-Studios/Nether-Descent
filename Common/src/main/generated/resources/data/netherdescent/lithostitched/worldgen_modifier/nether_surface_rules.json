@@ -57,9 +57,7 @@
         "type": "minecraft:condition",
         "if_true": {
           "type": "minecraft:biome",
-          "biome_is": [
-            "netherdescent:crimson_gardens"
-          ]
+          "biome_is": "netherdescent:crimson_gardens"
         },
         "then_run": {
           "type": "minecraft:sequence",
@@ -104,9 +102,7 @@
         "type": "minecraft:condition",
         "if_true": {
           "type": "minecraft:biome",
-          "biome_is": [
-            "netherdescent:embur_bog"
-          ]
+          "biome_is": "netherdescent:embur_bog"
         },
         "then_run": {
           "type": "minecraft:sequence",
@@ -137,6 +133,7 @@
                       "type": "minecraft:condition",
                       "if_true": {
                         "type": "minecraft:noise_threshold",
+                        "is_3d": true,
                         "max_threshold": 1.7976931348623157E308,
                         "min_threshold": 0.3,
                         "noise": "minecraft:patch"
@@ -171,9 +168,7 @@
         "type": "minecraft:condition",
         "if_true": {
           "type": "minecraft:biome",
-          "biome_is": [
-            "netherdescent:sythian_torrids"
-          ]
+          "biome_is": "netherdescent:sythian_torrids"
         },
         "then_run": {
           "type": "minecraft:sequence",
@@ -204,6 +199,7 @@
                       "type": "minecraft:condition",
                       "if_true": {
                         "type": "minecraft:noise_threshold",
+                        "is_3d": true,
                         "max_threshold": 1.7976931348623157E308,
                         "min_threshold": 0.3,
                         "noise": "minecraft:patch"
@@ -238,6 +234,7 @@
                 "type": "minecraft:condition",
                 "if_true": {
                   "type": "minecraft:noise_threshold",
+                  "is_3d": true,
                   "max_threshold": 1.7976931348623157E308,
                   "min_threshold": 0.3,
                   "noise": "minecraft:patch"
@@ -257,9 +254,7 @@
         "type": "minecraft:condition",
         "if_true": {
           "type": "minecraft:biome",
-          "biome_is": [
-            "netherdescent:wailing_garth"
-          ]
+          "biome_is": "netherdescent:wailing_garth"
         },
         "then_run": {
           "type": "minecraft:sequence",
@@ -372,9 +367,7 @@
         "type": "minecraft:condition",
         "if_true": {
           "type": "minecraft:biome",
-          "biome_is": [
-            "netherdescent:arisian_undergrowth"
-          ]
+          "biome_is": "netherdescent:arisian_undergrowth"
         },
         "then_run": {
           "type": "minecraft:sequence",
@@ -419,6 +412,7 @@
                 "type": "minecraft:condition",
                 "if_true": {
                   "type": "minecraft:noise_threshold",
+                  "is_3d": true,
                   "max_threshold": 1.7976931348623157E308,
                   "min_threshold": 0.3,
                   "noise": "minecraft:patch"

@@ -1,6 +1,6 @@
 package net.potionstudios.netherdescent.world.level.block.custom;
 
-import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.pattern.BlockInWorld;
 import net.minecraft.world.level.block.state.pattern.BlockPattern;
 import net.minecraft.world.level.block.state.pattern.BlockPatternBuilder;
 import net.minecraft.world.level.block.state.predicate.BlockStatePredicate;
-import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypes;
 import net.potionstudios.netherdescent.world.entity.monster.PendoriteBlaze;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import org.jspecify.annotations.NonNull;
@@ -44,7 +44,7 @@ public class NDRodBlock extends EndRodBlock {
     private void trySpawnBlaze(Level level, BlockPos pos) {
         BlockPattern.BlockPatternMatch blockPatternMatch = getOrCreatePendoriteBlaze().find(level, pos);
         if (blockPatternMatch != null) {
-            PendoriteBlaze pendoriteBlaze = NetherDescentEntityType.PENDORITE_BLAZE.get().create(level, EntitySpawnReason.TRIGGERED);
+            PendoriteBlaze pendoriteBlaze = NetherDescentEntityTypes.PENDORITE_BLAZE.get().create(level, EntitySpawnReason.TRIGGERED);
             if (pendoriteBlaze != null) {
                 pendoriteBlaze.setPlayerCreated(true);
                 spawnBlazeInWorld(level, blockPatternMatch, pendoriteBlaze, pos);

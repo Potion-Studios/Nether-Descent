@@ -13,7 +13,7 @@ import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.commands.NetherDescentCommands;
-import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypes;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.BiolithRegister;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.TerraBlenderRegister;
 import terrablender.core.TerraBlender;
@@ -29,8 +29,8 @@ public class NetherDescentNeoForge {
         NeoForgePlatformHandler.register(eventBus);
         eventBus.addListener(this::onInitialize);
         eventBus.addListener((FMLLoadCompleteEvent event) -> event.enqueueWork(NetherDescent::postInit));
-        eventBus.addListener((EntityAttributeCreationEvent event) -> NetherDescentEntityType.registerEntityAttributes(event::put));
-        eventBus.addListener((RegisterSpawnPlacementsEvent event) -> NetherDescentEntityType.registerSpawnPlacements((consumer) -> event.register(consumer.entityType().get(), consumer.spawnPlacementType(), consumer.heightmapType(), consumer.predicate(), RegisterSpawnPlacementsEvent.Operation.OR)));
+        eventBus.addListener((EntityAttributeCreationEvent event) -> NetherDescentEntityTypes.registerEntityAttributes(event::put));
+        eventBus.addListener((RegisterSpawnPlacementsEvent event) -> NetherDescentEntityTypes.registerSpawnPlacements((consumer) -> event.register(consumer.entityType().get(), consumer.spawnPlacementType(), consumer.heightmapType(), consumer.predicate(), RegisterSpawnPlacementsEvent.Operation.OR)));
         EVENT_BUS.addListener((RegisterCommandsEvent event) -> NetherDescentCommands.register(event.getDispatcher()::register));
         VanillaCompatNeoForge.registerVanillaCompatEvents(EVENT_BUS);
     }
@@ -48,7 +48,6 @@ public class NetherDescentNeoForge {
                 TerraBlenderRegister.register();
             else if (!ModList.get().isLoaded(Lithostitched.MOD_ID))
                 NetherDescent.LOGGER.warn("TerraBlender, Biolith, or Lithostitched are not loaded, Nether Descent's biomes will not be added to the world!");
-            NeoForgePlatformHandler.registerPottedPlants();
         });
     }
 }

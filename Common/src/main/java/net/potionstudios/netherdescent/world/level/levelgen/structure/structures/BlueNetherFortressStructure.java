@@ -3,7 +3,7 @@ package net.potionstudios.netherdescent.world.level.levelgen.structure.structure
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.random.WeightedList;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.structure.Structure;
@@ -11,7 +11,7 @@ import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
-import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypes;
 import net.potionstudios.netherdescent.world.level.levelgen.structure.NetherDescentStructureType;
 import org.jspecify.annotations.NonNull;
 
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class BlueNetherFortressStructure extends Structure {
-	public static final WeightedList<MobSpawnSettings.SpawnerData> BLUE_FORTRESS_ENEMIES = WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(NetherDescentEntityType.SOUL_BLAZE.get(), 2, 3), 10).add(new MobSpawnSettings.SpawnerData(EntityType.ZOMBIFIED_PIGLIN, 4, 4), 5).add(new MobSpawnSettings.SpawnerData(EntityType.WITHER_SKELETON, 5, 5), 8).add(new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 5, 5), 2).add(new MobSpawnSettings.SpawnerData(EntityType.MAGMA_CUBE, 4, 4), 3).build();
+	public static final WeightedList<MobSpawnSettings.SpawnerData> BLUE_FORTRESS_ENEMIES = WeightedList.<MobSpawnSettings.SpawnerData>builder().add(new MobSpawnSettings.SpawnerData(NetherDescentEntityTypes.SOUL_BLAZE.get(), 2, 3), 10).add(new MobSpawnSettings.SpawnerData(EntityTypes.ZOMBIFIED_PIGLIN, 4, 4), 5).add(new MobSpawnSettings.SpawnerData(EntityTypes.WITHER_SKELETON, 5, 5), 8).add(new MobSpawnSettings.SpawnerData(EntityTypes.SKELETON, 5, 5), 2).add(new MobSpawnSettings.SpawnerData(EntityTypes.MAGMA_CUBE, 4, 4), 3).build();
 
 	public static final MapCodec<BlueNetherFortressStructure> CODEC = simpleCodec(BlueNetherFortressStructure::new);
 

@@ -12,7 +12,7 @@ import net.potionstudios.netherdescent.core.component.NetherDescentDataComponent
 import net.potionstudios.netherdescent.core.dispenser.DispenseItemBehavior;
 import net.potionstudios.netherdescent.core.particles.NetherDescentParticles;
 import net.potionstudios.netherdescent.sounds.NetherDescentSoundEvents;
-import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypes;
 import net.potionstudios.netherdescent.world.entity.ai.village.poi.NetherDescentPoiTypes;
 import net.potionstudios.netherdescent.world.item.equipment.NetherDescentArmorMaterials;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
@@ -45,7 +45,7 @@ public class NetherDescent {
         NetherDescentItems.items();
         NetherDescentBlocks.blocks();
         NetherDescentBlockEntityType.blockEntities();
-	    NetherDescentEntityType.entityTypes();
+	    NetherDescentEntityTypes.entityTypes();
 	    NetherDescentCreativeTabs.tabs();
 	    NetherDescentSoundEvents.sounds();
         NetherDescentRuleSources.ruleSources();

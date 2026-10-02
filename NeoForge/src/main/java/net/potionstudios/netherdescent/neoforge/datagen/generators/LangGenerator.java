@@ -8,7 +8,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.potionstudios.netherdescent.NetherDescent;
-import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypes;
 import net.potionstudios.netherdescent.world.item.NetherDescentCreativeTabs;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
@@ -53,12 +53,12 @@ public class LangGenerator extends LanguageProvider {
 
 	private void addTranslationsManual() {
 		add("itemGroup." + NetherDescentCreativeTabs.CREATIVE_TAB.identifier().toLanguageKey(), "Nether Descent");
-		add(NetherDescentEntityType.SOUL_BLAZE.get(), "Soul Blaze");
-		add(NetherDescentEntityType.SOUL_FIREBALL.get(), "Soul Fireball");
-        add(NetherDescentEntityType.SMALL_SOUL_FIREBALL.get(), "Small Soul Fireball");
-		add(NetherDescentEntityType.PENDORITE_BLAZE.get(), "Pendorite Blaze");
-        add(NetherDescentEntityType.HORNET.get(), "Hornet");
-        add(NetherDescentEntityType.SOUL_GHAST.get(),  "Soul Ghast");
+		add(NetherDescentEntityTypes.SOUL_BLAZE.get(), "Soul Blaze");
+		add(NetherDescentEntityTypes.SOUL_FIREBALL.get(), "Soul Fireball");
+        add(NetherDescentEntityTypes.SMALL_SOUL_FIREBALL.get(), "Small Soul Fireball");
+		add(NetherDescentEntityTypes.PENDORITE_BLAZE.get(), "Pendorite Blaze");
+        add(NetherDescentEntityTypes.HORNET.get(), "Hornet");
+        add(NetherDescentEntityTypes.SOUL_GHAST.get(),  "Soul Ghast");
         add(death("crimsonBerryBush"), "%1$s was poked to death by a crimson berry bush");
         add(death("crimsonBerryBush.player"), "%1$s was poked to death by a crimson berry bush while trying to escape %2$s");
         add(advancement("title.root"), "Nether Descent");

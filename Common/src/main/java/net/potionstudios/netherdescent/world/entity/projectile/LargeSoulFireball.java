@@ -15,7 +15,7 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
-import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypes;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import org.jspecify.annotations.NonNull;
 
@@ -27,7 +27,7 @@ public class LargeSoulFireball extends Fireball {
 	}
 
 	public LargeSoulFireball(Level level, LivingEntity owner, Vec3 movement, int explosionPower) {
-		super(NetherDescentEntityType.SOUL_FIREBALL.get(), owner, movement, level);
+		super(NetherDescentEntityTypes.SOUL_FIREBALL.get(), owner, movement, level);
 		this.explosionPower = explosionPower;
 	}
 

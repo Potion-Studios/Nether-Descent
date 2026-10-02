@@ -383,8 +383,9 @@ public class NetherDescentTreeFeatures {
                     new StraightTrunkPlacer(1, 0, 0),
                     BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_LEAVES.get()),
                     new BushFoliagePlacer(ConstantInt.of(2), ConstantInt.of(1), 2),
-                    new TwoLayersFeatureSize(0, 0, 0)
-            ).belowTrunkProvider(BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get())).build()
+                    new TwoLayersFeatureSize(0, 0, 0),
+                    BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get())
+            ).build()
     );
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_LARGE_BUSH = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_large_bush",

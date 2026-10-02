@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.world.level.levelgen.surfacerules;
 
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.util.random.WeightedList;
@@ -17,8 +18,8 @@ public record WeightedRuleSource(WeightedList<SurfaceRules.RuleSource> ruleSourc
             ).apply(builder, WeightedRuleSource::new)));
 
     @Override
-    public @NonNull KeyDispatchDataCodec<? extends SurfaceRules.RuleSource> codec() {
-        return CODEC;
+    public @NonNull MapCodec<? extends SurfaceRules.RuleSource> codec() {
+        return CODEC.codec();
     }
 
     @Override

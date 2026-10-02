@@ -8,10 +8,10 @@
             "condition": "minecraft:entity_properties",
             "entity": "this",
             "predicate": {
-              "flags": {
+              "minecraft:flags": {
                 "is_sprinting": true
               },
-              "stepping_on": {
+              "minecraft:stepping_on": {
                 "block": {
                   "blocks": "netherdescent:embur_gel_block"
                 }

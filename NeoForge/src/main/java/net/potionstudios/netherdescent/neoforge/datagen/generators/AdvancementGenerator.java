@@ -2,7 +2,14 @@ package net.potionstudios.netherdescent.neoforge.datagen.generators;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.advancements.*;
-import net.minecraft.advancements.criterion.*;
+import net.minecraft.advancements.predicates.BlockPredicate;
+import net.minecraft.advancements.predicates.ItemPredicate;
+import net.minecraft.advancements.predicates.LocationPredicate;
+import net.minecraft.advancements.predicates.MinMaxBounds;
+import net.minecraft.advancements.predicates.entity.EntityFlagsPredicate;
+import net.minecraft.advancements.predicates.entity.EntityPredicate;
+import net.minecraft.advancements.predicates.entity.EntityTypePredicate;
+import net.minecraft.advancements.triggers.*;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -15,6 +22,7 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -24,7 +32,7 @@ import net.potionstudios.netherdescent.advancements.critereon.FungalBulbsBlockTr
 import net.potionstudios.netherdescent.advancements.critereon.PlaceFlowerNearHornetTrigger;
 import net.potionstudios.netherdescent.advancements.critereon.WailingTrigger;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructures;
-import net.potionstudios.netherdescent.world.entity.NetherDescentEntityType;
+import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypes;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentBiomes;
@@ -164,7 +172,7 @@ public class AdvancementGenerator extends AdvancementProvider {
                     .save(writer, NetherDescent.id("crimson_gardens/pendorite_fire_rod"));
 
             Advancement.Builder.advancement()
-                    .addCriterion("summon_pendorite_blaze", SummonedEntityTrigger.TriggerInstance.summonedEntity(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityTypeHolderGetter, NetherDescentEntityType.PENDORITE_BLAZE.get()))))
+                    .addCriterion("summon_pendorite_blaze", SummonedEntityTrigger.TriggerInstance.summonedEntity(EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityTypeHolderGetter, NetherDescentEntityTypes.PENDORITE_BLAZE.get()))))
                     .parent(pendorite_fire_rod)
                     .display(
                             NetherDescentItems.PENDORITE_FIRE_CHARGE.get(),
@@ -186,7 +194,7 @@ public class AdvancementGenerator extends AdvancementProvider {
                     ).save(writer, NetherDescent.id("embur_bog/root"));
 
             AdvancementHolder killHornet = Advancement.Builder.advancement()
-                    .addCriterion("kill_hornet", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(entityTypeHolderGetter, NetherDescentEntityType.HORNET.get())))
+                    .addCriterion("kill_hornet", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(entityTypeHolderGetter, NetherDescentEntityTypes.HORNET.get())))
                     .parent(embur_bog)
                     .display(
                             NetherDescentBlocks.HORNET_NEST.get(),
@@ -360,7 +368,7 @@ public class AdvancementGenerator extends AdvancementProvider {
 
             Advancement.Builder.advancement()
                     .parent(elevator)
-                    .addCriterion("float_cow_from_wailing_gills", WailingTrigger.TriggerInstance.interactedWithPoweredBlockAndEntity(blockHolderGetter, NetherDescentBlocks.WAILING_GILLS.get(), MinMaxBounds.Ints.atLeast(1), EntityPredicate.Builder.entity().of(entityTypeHolderGetter, EntityType.COW)))
+                    .addCriterion("float_cow_from_wailing_gills", WailingTrigger.TriggerInstance.interactedWithPoweredBlockAndEntity(blockHolderGetter, NetherDescentBlocks.WAILING_GILLS.get(), MinMaxBounds.Ints.atLeast(1), EntityPredicate.Builder.entity().of(entityTypeHolderGetter, EntityTypes.COW)))
                     .display(
                             Items.LEAD,
                             translateAble("float_cow_from_wailing_gills.title"),
@@ -370,7 +378,7 @@ public class AdvancementGenerator extends AdvancementProvider {
                     ).save(writer, NetherDescent.id("wailing_garth/float_cow_from_wailing_gills"));
 
             Advancement.Builder.advancement()
-                    .addCriterion("kill_soul_ghast", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(entityTypeHolderGetter, NetherDescentEntityType.SOUL_GHAST.get())))
+                    .addCriterion("kill_soul_ghast", KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(entityTypeHolderGetter, NetherDescentEntityTypes.SOUL_GHAST.get())))
                     .parent(wailing_garth)
                     .display(
                             NetherDescentItems.SOUL_FIRE_CHARGE.get(),
