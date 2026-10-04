@@ -32,11 +32,11 @@
   ],
   "depends": {
     "fabric-api": "*",
-    "minecraft": ">=26.1",
-    "ohthetreesyoullgrow": ">=10.1.2"
+    "minecraft": ">=26.2",
+    "ohthetreesyoullgrow": ">=11.0.2"
   },
   "recommends": {
-    "terrablender": ">=26.1.2.0.3",
+    "terrablender": ">=26.2.0.0.2",
     "biolith": ">=3.6.0",
     "lithostitched": ">=1.8.0"
   },

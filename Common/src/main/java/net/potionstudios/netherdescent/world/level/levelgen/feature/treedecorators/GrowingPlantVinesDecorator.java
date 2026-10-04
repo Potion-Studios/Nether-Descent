@@ -54,7 +54,7 @@ public class GrowingPlantVinesDecorator extends TreeDecorator {
     @Override
     public void place(Context context) {
         RandomSource randomSource = context.random();
-        LevelReader levelReader = (LevelReader) context.level();
+        LevelReader levelReader = context.level();
         ObjectArrayList<BlockPos> list = new ObjectArrayList<>();
         list.addAll(context.leaves());
         list.addAll(context.logs());

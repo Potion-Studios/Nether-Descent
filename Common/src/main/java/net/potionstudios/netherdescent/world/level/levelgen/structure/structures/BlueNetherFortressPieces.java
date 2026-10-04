@@ -1432,7 +1432,7 @@ public class BlueNetherFortressPieces {
 		public BlueNetherFortressPieces.PieceWeight previousPiece;
 		public List<BlueNetherFortressPieces.PieceWeight> availableBridgePieces;
 		public List<BlueNetherFortressPieces.PieceWeight> availableCastlePieces;
-		public final List<StructurePiece> pendingChildren = Lists.<StructurePiece>newArrayList();
+		public final List<StructurePiece> pendingChildren = Lists.newArrayList();
 
 		public StartPiece(RandomSource random, int x, int z) {
 			super(x, z, getRandomHorizontalDirection(random));

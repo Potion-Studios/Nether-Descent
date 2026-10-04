@@ -18,28 +18,28 @@ displayURL="https://potionstudios.net/"
 [[dependencies.netherdescent]]
 modId = "neoforge"
 type = "required"
-versionRange = "[26.1,)"
+versionRange = "[26.2,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.netherdescent]]
 modId = "minecraft"
 type = "required"
-versionRange = "[26.1,)"
+versionRange = "[26.2,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.netherdescent]]
 modId = "ohthetreesyoullgrow"
 type = "required"
-versionRange = "[10.1.2,)"
+versionRange = "[11.0.2,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.netherdescent]]
 modId = "terrablender"
 type = "optional"
-versionRange = "[26.1.2.0.3,)"
+versionRange = "[26.2.0.0.2,)"
 ordering = "AFTER"
 side = "BOTH"
 

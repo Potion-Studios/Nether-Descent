@@ -31,14 +31,14 @@ side = "BOTH"
 [[dependencies.netherdescent]]
 modId = "ohthetreesyoullgrow"
 mandatory = true
-versionRange = "[10.1.2,)"
+versionRange = "[11.0.2,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.netherdescent]]
 modId = "terrablender"
 mandatory = false
-versionRange = "[26.1.2.0.3,)"
+versionRange = "[26.2.0.0.2,)"
 ordering = "AFTER"
 side = "BOTH"
 
