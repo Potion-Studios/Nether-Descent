@@ -31,7 +31,6 @@ import org.jspecify.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 
 public class HangingMossyCarpetBlock extends Block implements BonemealableBlock {
-    public static final MapCodec<MossyCarpetBlock> CODEC = simpleCodec(MossyCarpetBlock::new);
     public static final BooleanProperty BASE = BlockStateProperties.BOTTOM;
     public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
     private static final EnumProperty<WallSide> NORTH = BlockStateProperties.NORTH_WALL;
@@ -203,11 +202,6 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
 
             return false;
         }
-    }
-
-    @Override
-    public @NonNull MapCodec<MossyCarpetBlock> codec() {
-        return CODEC;
     }
 
     @Override

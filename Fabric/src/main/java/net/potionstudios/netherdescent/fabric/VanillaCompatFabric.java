@@ -20,17 +20,10 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.event.ServerEventsHandler;
 import net.potionstudios.netherdescent.util.VanillaBonemealHandler;
 import net.potionstudios.netherdescent.world.BlockItemFeatures;
-import net.potionstudios.netherdescent.world.item.brewing.NetherDescentBrewingRecipes;
-import net.potionstudios.netherdescent.world.item.tools.ToolInteractions;
 
 public class VanillaCompatFabric {
 
     public static void init() {
-        BlockItemFeatures.registerCompostables(CompostableRegistry.INSTANCE::add);
-        FabricPotionBrewingBuilder.BUILD.register(builder -> NetherDescentBrewingRecipes.buildBrewingRecipes(builder::addMix));
-        ToolInteractions.registerStrippableBlocks(StrippableBlockRegistry::register);
-        ToolInteractions.registerTillables((block, pair) -> TillableBlockRegistry.register(block, pair.getFirst(), pair.getSecond()));
-        BlockItemFeatures.registerFurnaceFuels((item, burnTime) -> FuelValueEvents.BUILD.register(((builder, context) -> builder.add(item, burnTime))));
         UseBlockCallback.EVENT.register((player, world, hand, hitResult) -> {
             ItemStack stack = player.getItemInHand(hand);
             if (stack.is(Items.BONE_MEAL) && VanillaBonemealHandler.boneMealEventHandler(world, hitResult.getBlockPos(), world.getBlockState(hitResult.getBlockPos()), stack)) {
@@ -63,7 +56,7 @@ public class VanillaCompatFabric {
 
             return InteractionResult.PASS;
         });
-        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> ServerEventsHandler.onPlayerJoin(handler.player));
+        ServerPlayConnectionEvents.JOIN.register((handler, _, _) -> ServerEventsHandler.onPlayerJoin(handler.player));
         registerLootModifiers();
     }
 
@@ -72,7 +65,7 @@ public class VanillaCompatFabric {
             if (key.equals(BuiltInLootTables.NETHER_BRIDGE))
                 tableBuilder.pool(
                         LootPool.lootPool().add(
-                                NestedLootTable.lootTableReference(NetherDescent.key(Registries.LOOT_TABLE, "chests/nether_bridge"))
+                                NestedLootTable.lootTableReference(registries.getOrThrow(NetherDescent.key(Registries.LOOT_TABLE, "chests/nether_bridge")))
                                         .build())
                                 .build());
         });
