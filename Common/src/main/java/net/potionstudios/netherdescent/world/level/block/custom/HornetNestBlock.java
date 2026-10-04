@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.world.level.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.util.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -35,14 +34,8 @@ import org.jspecify.annotations.Nullable;
 import java.util.List;
 
 public class HornetNestBlock extends BaseEntityBlock {
-	public static final MapCodec<HornetNestBlock> CODEC = simpleCodec(HornetNestBlock::new);
 	public HornetNestBlock(Properties properties) {
 		super(properties);
-	}
-
-	@Override
-	protected @NonNull MapCodec<? extends BaseEntityBlock> codec() {
-		return CODEC;
 	}
 
     @Override

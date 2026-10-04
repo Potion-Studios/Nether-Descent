@@ -1,7 +1,7 @@
 package net.potionstudios.netherdescent.event;
 
 import com.terraformersmc.biolith.impl.Biolith;
-import dev.worldgen.lithostitched.Lithostitched;
+import dev.worldgen.lithostitched.impl.Lithostitched;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.permissions.Permissions;

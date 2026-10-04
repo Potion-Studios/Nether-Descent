@@ -1,7 +1,7 @@
 package net.potionstudios.netherdescent.neoforge;
 
 import com.terraformersmc.biolith.impl.Biolith;
-import dev.worldgen.lithostitched.Lithostitched;
+import dev.worldgen.lithostitched.impl.Lithostitched;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;

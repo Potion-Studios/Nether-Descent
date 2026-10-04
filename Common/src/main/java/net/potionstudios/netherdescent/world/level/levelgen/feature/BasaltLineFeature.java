@@ -1,25 +1,20 @@
 package net.potionstudios.netherdescent.world.level.levelgen.feature;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import org.jspecify.annotations.NonNull;
 
-public class BasaltLineFeature extends Feature<NoneFeatureConfiguration> {
-	public BasaltLineFeature(Codec<NoneFeatureConfiguration> codec) {
-		super(codec);
-	}
+public record BasaltLineFeature() implements Feature {
+	public static final MapCodec<BasaltLineFeature> CODEC = MapCodec.unit(BasaltLineFeature::new);
 
 	@Override
-	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
-		WorldGenLevel level = context.level();
-		BlockPos origin = context.origin();
-		RandomSource random = context.random();
+	public boolean place(@NonNull WorldGenLevel level, @NonNull ChunkGenerator chunkGenerator, @NonNull RandomSource random, @NonNull BlockPos origin) {
 		BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos(origin.getX(), origin.getY(), origin.getZ());
 		int length = random.nextInt(10) + 5;
 		Direction dir = Direction.Plane.HORIZONTAL.getRandomDirection(random);
@@ -49,5 +44,10 @@ public class BasaltLineFeature extends Feature<NoneFeatureConfiguration> {
 			setBlock(level, mutable.above(j), Blocks.BASALT.defaultBlockState());
 		}
 		mutable.move(dir);
+	}
+
+	@Override
+	public @NonNull MapCodec<? extends Feature> codec() {
+		return CODEC;
 	}
 }

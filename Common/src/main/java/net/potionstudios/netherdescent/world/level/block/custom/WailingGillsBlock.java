@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.world.level.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
@@ -22,16 +21,10 @@ import org.jspecify.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 
 public class WailingGillsBlock extends BaseEntityBlock {
-	private static final MapCodec<WailingGillsBlock> CODEC = simpleCodec(WailingGillsBlock::new);
     public static final IntegerProperty POWER = BlockStateProperties.POWER;
 	public WailingGillsBlock(Properties properties) {
 		super(properties);
         this.registerDefaultState(stateDefinition.any().setValue(POWER, 0));
-	}
-
-	@Override
-	protected @NonNull MapCodec<? extends BaseEntityBlock> codec() {
-		return CODEC;
 	}
 
     @Override
