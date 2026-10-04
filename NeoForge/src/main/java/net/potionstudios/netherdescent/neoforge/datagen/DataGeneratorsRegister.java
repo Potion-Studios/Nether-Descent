@@ -53,7 +53,7 @@ class DataGeneratorsRegister {
         generator.addProvider(true, new LootGenerator(output, lookupProvider));
 		generator.addProvider(true, new GlobalLootModifiersGenerator(output, lookupProvider));
 		TagsGenerator.init(generator, true, output, lookupProvider);
-        generator.addProvider(true, new DataMapGenerator(output, lookupProvider));
+//        generator.addProvider(true, new DataMapGenerator(output, lookupProvider));
 	    generator.addProvider(true, new SoundDefinitionsGenerator(output));
         generator.addProvider(true, new ParticleDescriptionGenerator(output));
         generator.addProvider(true, new AdvancementGenerator(output, lookupProvider));

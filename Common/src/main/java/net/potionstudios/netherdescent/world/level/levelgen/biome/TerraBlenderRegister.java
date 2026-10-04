@@ -4,7 +4,6 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.config.configs.WorldGenerationConfig;
 import net.potionstudios.netherdescent.world.level.levelgen.regions.NetherDescentRegion;
 import terrablender.api.Regions;
-import terrablender.api.SurfaceRuleManager;
 
 public class TerraBlenderRegister {
 

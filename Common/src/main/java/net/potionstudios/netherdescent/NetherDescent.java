@@ -1,7 +1,7 @@
 package net.potionstudios.netherdescent;
 
 import com.mojang.logging.LogUtils;
-import dev.worldgen.lithostitched.Lithostitched;
+import dev.worldgen.lithostitched.impl.Lithostitched;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;

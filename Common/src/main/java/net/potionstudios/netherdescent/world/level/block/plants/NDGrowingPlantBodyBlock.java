@@ -1,9 +1,6 @@
 package net.potionstudios.netherdescent.world.level.block.plants;
 
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.GrowingPlantBodyBlock;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
@@ -13,12 +10,6 @@ import org.jspecify.annotations.NonNull;
 import java.util.function.Supplier;
 
 public class NDGrowingPlantBodyBlock extends GrowingPlantBodyBlock {
-	public static final MapCodec<NDGrowingPlantBodyBlock> CODEC = RecordCodecBuilder.mapCodec(
-            instance -> instance.group(
-                    propertiesCodec(),
-                    BuiltInRegistries.BLOCK.byNameCodec().fieldOf("head_block").forGetter(NDGrowingPlantBodyBlock::getHeadBlock)
-            ).apply(instance, NDGrowingPlantBodyBlock::new)
-    );
 	private static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
     private final Supplier<? extends GrowingPlantHeadBlock> headBlock;
 	public NDGrowingPlantBodyBlock(Properties properties, Supplier<? extends GrowingPlantHeadBlock> headBlock) {
@@ -36,13 +27,8 @@ public class NDGrowingPlantBodyBlock extends GrowingPlantBodyBlock {
     }
 
 	@Override
-	protected @NonNull MapCodec<? extends GrowingPlantBodyBlock> codec() {
-		return CODEC;
-	}
 
-	@Override
-
-    public GrowingPlantHeadBlock getHeadBlock() {
+    public @NonNull GrowingPlantHeadBlock getHeadBlock() {
 		return headBlock.get();
 	}
 }

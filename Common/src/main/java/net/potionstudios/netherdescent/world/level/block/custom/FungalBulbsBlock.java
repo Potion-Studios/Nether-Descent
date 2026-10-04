@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.world.level.block.custom;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -14,6 +13,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.FaceAttachedHorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -27,7 +27,6 @@ import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTrigger
 import org.jspecify.annotations.NonNull;
 
 public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock implements BonemealableBlock {
-	public static final MapCodec<FungalBulbsBlock> CODEC = simpleCodec(FungalBulbsBlock::new);
     private static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 4.0D, 15.0D);
     private static final VoxelShape SHAPE_SOUTH = Block.box(1.0D, 1.0D, 0.0D, 15.0D, 15.0D, 4.0D);
     private static final VoxelShape SHAPE_EAST = Block.box(0.0D, 1.0D, 1.0D, 4.0D, 15.0D, 15.0D);
@@ -36,11 +35,6 @@ public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock imp
         super(properties);
 	    this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(FACE, AttachFace.WALL));
     }
-
-	@Override
-	protected @NonNull MapCodec<? extends FaceAttachedHorizontalDirectionalBlock> codec() {
-		return CODEC;
-	}
 
 	@Override
     protected void onProjectileHit(Level level, @NonNull BlockState state, @NonNull BlockHitResult hit, @NonNull Projectile projectile) {
@@ -72,20 +66,20 @@ public class FungalBulbsBlock extends FaceAttachedHorizontalDirectionalBlock imp
 		    };
     }
 
-    @Override
-    public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, @NonNull BlockState state) {
-        return true;
-    }
+	@Override
+	public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull BonemealSource source) {
+		return true;
+	}
 
-    @Override
-    public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
-        return true;
-    }
+	@Override
+	public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull BonemealSource source) {
+		return true;
+	}
 
-    @Override
-    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
-        popResource(level, pos, defaultBlockState().getBlock().asItem().getDefaultInstance());
-    }
+	@Override
+	public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull BonemealSource source) {
+		popResource(level, pos, this.asItem().getDefaultInstance());
+	}
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
