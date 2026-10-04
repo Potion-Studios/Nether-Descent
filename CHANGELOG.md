@@ -1,3 +1,6 @@
+# 1.0.11
+- Add Culling to Arisian Moss Block
+
 # 1.0.10
 - Allow players to glide through all vines
 - Make Happy Ghasts avoid Crimson Berry Bushes
