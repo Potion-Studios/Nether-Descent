@@ -2,7 +2,7 @@ package net.potionstudios.netherdescent.world.level.block.custom;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.mojang.serialization.MapCodec;
+
 import java.util.Map;
 import java.util.function.BooleanSupplier;
 import java.util.function.Function;
@@ -146,15 +146,6 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     }
 
     @Override
-    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, BlockState state) {
-        BlockState topper = createTopperWithSideChance(this, level, pos, () -> true, state.getValue(HANGING));
-        if (!topper.isAir()) {
-            Direction growthDir = state.getValue(HANGING) ? Direction.DOWN : Direction.UP;
-            level.setBlock(pos.relative(growthDir), topper.setValue(HANGING, state.getValue(HANGING)), 3);
-        }
-    }
-
-    @Override
     public void setPlacedBy(Level level, @NonNull BlockPos pos, @NonNull BlockState state, @Nullable LivingEntity placer, @NonNull ItemStack stack) {
         if (!level.isClientSide()) {
             BlockPos growthPos = pos.relative(state.getValue(HANGING) ? Direction.DOWN : Direction.UP);
@@ -225,16 +216,6 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, BlockState state) {
-        return state.getValue(BASE);
-    }
-
-    @Override
-    public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
-        return true;
-    }
-
-    @Override
     protected @NonNull BlockState updateShape(BlockState state, @NonNull LevelReader level, @NonNull ScheduledTickAccess scheduledTickAccess, @NonNull BlockPos pos, @NonNull Direction direction, @NonNull BlockPos neighborPos, @NonNull BlockState neighborState, @NonNull RandomSource random) {
         if (!state.canSurvive(level, pos)) return Blocks.AIR.defaultBlockState();
         return getUpdatedState(this, state, level, pos, false);
@@ -246,6 +227,25 @@ public class HangingMossyCarpetBlock extends Block implements BonemealableBlock 
         BlockState blockState3 = createTopperWithSideChance(blockState.getBlock(), level, pos, random::nextBoolean, blockState.getValue(HANGING));
         if (!blockState3.isAir()) {
             level.setBlock(blockState.getValue(HANGING) ? pos.below() : pos.above(), blockState3, flags);
+        }
+    }
+
+    @Override
+    public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull BonemealSource source) {
+        return state.getValue(BASE);
+    }
+
+    @Override
+    public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull BonemealSource source) {
+        return true;
+    }
+
+    @Override
+    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull BonemealSource source) {
+        BlockState topper = createTopperWithSideChance(this, level, pos, () -> true, state.getValue(HANGING));
+        if (!topper.isAir()) {
+            Direction growthDir = state.getValue(HANGING) ? Direction.DOWN : Direction.UP;
+            level.setBlock(pos.relative(growthDir), topper.setValue(HANGING, state.getValue(HANGING)), 3);
         }
     }
 }
