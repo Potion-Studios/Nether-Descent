@@ -10,6 +10,7 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
+import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.tags.NetherDescentBiomeTags;
@@ -68,6 +69,6 @@ public class NetherDescentBiomes {
 
 	@FunctionalInterface
 	public interface BiomeFactory {
-		Biome generate(HolderGetter<PlacedFeature> placedFeatureHolderGetter, HolderGetter<ConfiguredWorldCarver<?>> worldCarverHolderGetter);
+		Biome generate(HolderGetter<PlacedFeature> placedFeatureHolderGetter, HolderGetter<WorldCarver> worldCarverHolderGetter);
 	}
 }
