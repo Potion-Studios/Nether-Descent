@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.world.level.block.custom;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -39,10 +40,10 @@ public class HornetNestBlock extends BaseEntityBlock {
 	}
 
     @Override
-    public void playerDestroy(@NonNull Level level, @NonNull Player player, @NonNull BlockPos pos, @NonNull BlockState state, @Nullable BlockEntity blockEntity, @NonNull ItemStack tool) {
-        super.playerDestroy(level, player, pos, state, blockEntity, tool);
+    public void playerDestroy(@NonNull ServerLevel level, @NonNull ServerPlayer player, @NonNull BlockPos pos, @NonNull BlockState state, @Nullable BlockEntity blockEntity, @NonNull ItemStack destroyedWith) {
+        super.playerDestroy(level, player, pos, state, blockEntity, destroyedWith);
         if (!level.isClientSide() && blockEntity instanceof HornetNestBlockEntity hornetNestBlockEntity) {
-            if (!EnchantmentHelper.hasTag(tool, EnchantmentTags.PREVENTS_BEE_SPAWNS_WHEN_MINING)) {
+            if (!EnchantmentHelper.hasTag(destroyedWith, EnchantmentTags.PREVENTS_BEE_SPAWNS_WHEN_MINING)) {
                 hornetNestBlockEntity.emptyAllLivingFromHive(player, state, HornetNestBlockEntity.HornetReleaseStatus.EMERGENCY);
                 this.angerNearbyHornets(level, pos);
             }

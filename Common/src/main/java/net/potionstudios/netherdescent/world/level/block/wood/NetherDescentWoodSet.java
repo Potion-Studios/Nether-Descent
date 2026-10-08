@@ -7,7 +7,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -61,7 +60,6 @@ public class NetherDescentWoodSet {
     private final Supplier<CraftingTableBlock> craftingTable;
     private final Supplier<StandingSignBlock> sign;
     private final Supplier<WallSignBlock> wallSign;
-    private final Supplier<SignItem> signItem;
     private final Supplier<CeilingHangingSignBlock> hangingSign;
     private final Supplier<WallHangingSignBlock> wallHangingSign;
     private final Supplier<HangingSignItem> hangingSignItem;
@@ -105,8 +103,6 @@ public class NetherDescentWoodSet {
         this.craftingTable = NetherDescentBlocks.registerBlockItem(name + "_crafting_table", NetherDescentCraftingTable::new, BlockBehaviour.Properties.of().mapColor(mapColor).instrument(NoteBlockInstrument.BASS).strength(2.5F).sound(SoundType.NETHER_WOOD));
         this.sign = NetherDescentBlocks.register(name + "_sign", (properties) ->  new NetherDescentStandingSignBlock(woodType, properties), BlockBehaviour.Properties.of().mapColor(mapColor).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollision().strength(1.0F));
         this.wallSign = NetherDescentBlocks.register(name + "_wall_sign", () -> new NetherDescentWallSignBlock(woodType, Blocks.wallVariant(sign.get(), true).mapColor(mapColor).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollision().strength(1.0F).setId(NetherDescent.key(Registries.BLOCK, name + "_wall_sign"))));
-        this.signItem = NetherDescentItems.register(name + "_sign", (properties) -> new SignItem(sign.get(), wallSign.get(), properties), new Item.Properties().stacksTo(16));
-        NetherDescentItems.ITEMS.add(signItem);
         this.hangingSign = NetherDescentBlocks.register(name + "_hanging_sign", (properties) -> new NetherDescentCeilingHangingSignBlock(woodType, properties), BlockBehaviour.Properties.of().mapColor(mapColor).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollision().strength(1.0F));
         this.wallHangingSign = NetherDescentBlocks.register(name + "_wall_hanging_sign", () -> new NetherDescentWallHangingSignBlock(woodType, Blocks.wallVariant(hangingSign.get(), true).mapColor(mapColor).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollision().strength(1.0F).setId(NetherDescent.key(Registries.BLOCK, name + "_wall_hanging_sign"))));
         this.hangingSignItem = NetherDescentItems.register(name + "_hanging_sign", (properties) -> new HangingSignItem(hangingSign.get(), wallHangingSign.get(), properties), new Item.Properties().stacksTo(16));
@@ -210,9 +206,6 @@ public class NetherDescentWoodSet {
 
     public WallSignBlock wallSign() {
         return wallSign.get();
-    }
-    public SignItem signItem() {
-        return signItem.get();
     }
 
     public CeilingHangingSignBlock hangingSign() {

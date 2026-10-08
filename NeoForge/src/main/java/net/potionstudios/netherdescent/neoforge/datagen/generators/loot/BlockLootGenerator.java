@@ -1,9 +1,8 @@
 package net.potionstudios.netherdescent.neoforge.datagen.generators.loot;
 
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -17,8 +16,7 @@ import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.core.component.NetherDescentDataComponents;
 import net.potionstudios.netherdescent.world.item.NetherDescentItems;
@@ -34,7 +32,7 @@ class BlockLootGenerator extends BlockLootSubProvider {
 
     private final List<Block> knownBlocks = new ArrayList<>();
 
-    protected BlockLootGenerator(HolderLookup.Provider registries) {
+    protected BlockLootGenerator(LootTableSubProvider.Context registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 
@@ -53,7 +51,7 @@ class BlockLootGenerator extends BlockLootSubProvider {
             else if (block instanceof DoublePlantBlock)
                 add(block, createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
             else if (block instanceof CampfireBlock)
-                add(block, arg -> createSilkTouchDispatchTable(arg, this.applyExplosionCondition(arg, LootItem.lootTableItem(Items.CHARCOAL).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))));
+                add(block, arg -> createSilkTouchDispatchTable(arg, this.applyExplosionCondition(arg, LootItem.lootTableItem(Items.CHARCOAL).apply(SetItemCountFunction.setCount(ContextIntProviders.exactly(2))))));
             else if (block instanceof VineBlock)
                 add(block, createShearsDispatchTable(block, LootItem.lootTableItem(block)));
             else if (block instanceof TransparentBlock || block instanceof StainedGlassPaneBlock)
@@ -63,7 +61,7 @@ class BlockLootGenerator extends BlockLootSubProvider {
             else if (block instanceof FlowerBedBlock)
                 add(block, createSegmentedBlockDrops(block));
             else if (block instanceof NetherSproutsBlock)
-                add(block, itemLike -> createShearsOnlyDrop(block));
+                add(block, _ -> createShearsOnlyDrop(block));
             else if (block instanceof MultifaceBlock)
                 add(block, createMultifaceBlockDrops(block, hasShears()));
             else if (block instanceof LanternBlock)
@@ -87,16 +85,16 @@ class BlockLootGenerator extends BlockLootSubProvider {
 
 
         dropOther(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), NetherDescentBlocks.SYTHIAN_SOIL.get());
-        add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get(), (arg2) -> this.createSilkTouchDispatchTable(arg2, this.applyExplosionDecay(arg2, LootItem.lootTableItem(Items.GOLD_NUGGET).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE))))));
+        add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get(), (arg2) -> this.createSilkTouchDispatchTable(arg2, this.applyExplosionDecay(arg2, LootItem.lootTableItem(Items.GOLD_NUGGET).apply(SetItemCountFunction.setCount(ContextIntProviders.between(2, 6))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
         add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get(), (arg) -> this.createOreDrop(arg, Items.QUARTZ));
-        add(NetherDescentBlocks.PENDORITE_ORE.get(), createSilkTouchDispatchTable(NetherDescentBlocks.PENDORITE_ORE.get(), this.applyExplosionDecay(NetherDescentBlocks.PENDORITE_ORE.get(), LootItem.lootTableItem(NetherDescentItems.RAW_PENDORITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 5.0F))).apply(ApplyBonusCount.addOreBonusCount(registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE))))));
-	    add(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), (block) -> this.createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(Items.CHARCOAL).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))));
+        add(NetherDescentBlocks.PENDORITE_ORE.get(), createSilkTouchDispatchTable(NetherDescentBlocks.PENDORITE_ORE.get(), this.applyExplosionDecay(NetherDescentBlocks.PENDORITE_ORE.get(), LootItem.lootTableItem(NetherDescentItems.RAW_PENDORITE.get()).apply(SetItemCountFunction.setCount(ContextIntProviders.between(2, 5))).apply(ApplyBonusCount.addOreBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE))))));
+	    add(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), (block) -> this.createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(Items.CHARCOAL).apply(SetItemCountFunction.setCount(ContextIntProviders.exactly(2))))));
         add(NetherDescentBlocks.HORNET_NEST.get(), (block) ->
                 LootTable.lootTable()
                     .withPool(
                             LootPool.lootPool()
                                     .when(this.hasSilkTouch())
-                                    .setRolls(ConstantValue.exactly(1))
+                                    .setRolls(ContextIntProviders.exactly(1))
                                     .add(
                                             LootItem.lootTableItem(block)
                                                     .apply(CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY).include(NetherDescentDataComponents.HORNETS.get()))

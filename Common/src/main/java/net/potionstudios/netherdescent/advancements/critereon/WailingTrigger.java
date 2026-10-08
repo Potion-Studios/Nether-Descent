@@ -3,13 +3,13 @@ package net.potionstudios.netherdescent.advancements.critereon;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.advancements.predicates.BlockPredicate;
-import net.minecraft.advancements.predicates.ContextAwarePredicate;
 import net.minecraft.advancements.predicates.LocationPredicate;
 import net.minecraft.advancements.predicates.MinMaxBounds;
 import net.minecraft.advancements.predicates.entity.EntityPredicate;
 import net.minecraft.advancements.triggers.Criterion;
 import net.minecraft.advancements.triggers.SimpleCriterionTrigger;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -17,6 +17,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.potionstudios.netherdescent.advancements.NetherDescentCriteriaTriggers;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingBulbBlossomBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.WailingGillsBlock;
@@ -35,20 +36,20 @@ public class WailingTrigger extends SimpleCriterionTrigger<WailingTrigger.Trigge
 		super.trigger(player, instance -> instance.matches(player.level(), pos, lootcontext));
 	}
 
-	public record TriggerInstance(Optional<ContextAwarePredicate> player, Optional<LocationPredicate> location, Optional<MinMaxBounds.Ints> powered, Optional<ContextAwarePredicate> entity) implements SimpleCriterionTrigger.SimpleInstance {
+	public record TriggerInstance(Optional<Holder<LootItemCondition>> player, Optional<LocationPredicate> location, Optional<MinMaxBounds.Ints> powered, Optional<Holder<LootItemCondition>> entity) implements SimpleCriterionTrigger.SimpleInstance {
 		public static final Codec<TriggerInstance> CODEC = RecordCodecBuilder.create(instance ->
 				instance.group(
-						EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("player").forGetter(TriggerInstance::player),
+						LootItemCondition.CODEC.optionalFieldOf("player").forGetter(TriggerInstance::player),
 						LocationPredicate.CODEC.optionalFieldOf("location").forGetter(TriggerInstance::location),
 						MinMaxBounds.Ints.CODEC.optionalFieldOf("powered").forGetter(TriggerInstance::powered),
-						EntityPredicate.ADVANCEMENT_CODEC.optionalFieldOf("entity").forGetter(TriggerInstance::entity)
+						LootItemCondition.CODEC.optionalFieldOf("entity").forGetter(TriggerInstance::entity)
 				).apply(instance, TriggerInstance::new)
 		);
 
 		public boolean matches(ServerLevel level, BlockPos pos, LootContext entityContext) {
 			if (location.isPresent() && !location.get().matches(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5))
 				return false;
-			if (entity.isPresent() && !entity.get().matches(entityContext))
+			if (entity.isPresent() && !((LootItemCondition)((Holder<?>)this.entity.get()).value()).test(entityContext))
 				return false;
 			if (powered.isPresent()) {
 				BlockState state = level.getBlockState(pos);
