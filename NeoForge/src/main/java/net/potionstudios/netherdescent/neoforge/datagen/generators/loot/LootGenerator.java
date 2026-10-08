@@ -1,20 +1,17 @@
 package net.potionstudios.netherdescent.neoforge.datagen.generators.loot;
 
 import com.google.common.collect.ImmutableList;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 
-import java.util.Collections;
-import java.util.concurrent.CompletableFuture;
+import java.util.Set;
 
 public class LootGenerator extends LootTableProvider {
-    public LootGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, Collections.emptySet(), ImmutableList.of(
+    public LootGenerator() {
+        super(Set.of(), ImmutableList.of(
                 new SubProviderEntry(BlockLootGenerator::new, LootContextParamSets.BLOCK),
                 new SubProviderEntry(EntityLootGenerator::new, LootContextParamSets.ENTITY),
-                new SubProviderEntry(provider -> new ChestLootGenerator(), LootContextParamSets.CHEST)
-        ), registries);
+                new SubProviderEntry(ChestLootGenerator::new, LootContextParamSets.CHEST)
+        ));
     }
 }

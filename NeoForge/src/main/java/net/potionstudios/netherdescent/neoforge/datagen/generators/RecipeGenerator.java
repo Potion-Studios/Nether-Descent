@@ -1,17 +1,21 @@
 package net.potionstudios.netherdescent.neoforge.datagen.generators;
 
 import com.google.common.collect.ImmutableList;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.core.HolderGetter;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.MultiRegistryBootstrap;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 import net.potionstudios.netherdescent.NetherDescent;
@@ -23,18 +27,34 @@ import net.potionstudios.netherdescent.world.level.block.wood.NetherDescentWoodS
 import org.jspecify.annotations.NonNull;
 
 import javax.annotation.Nullable;
-import java.util.concurrent.CompletableFuture;
+import java.util.Set;
 
 public class RecipeGenerator extends RecipeProvider {
-    public RecipeGenerator(HolderLookup.Provider registries, RecipeOutput output) {
-        super(registries, output);
+
+    public static MultiRegistryBootstrap create() {
+        return new MultiRegistryBootstrap() {
+            @Override
+            public @NonNull Set<ResourceKey<? extends Registry<?>>> requestedRegistries() {
+                return Set.of(Registries.RECIPE, Registries.ADVANCEMENT);
+            }
+
+            @Override
+            public void run(MultiRegistryBootstrap.@NonNull BootstrapGetter registries) {
+                new RecipeGenerator(registries.get(Registries.RECIPE), registries.get(Registries.ADVANCEMENT)).buildRecipes();
+            }
+        };
     }
+
 
     private static final ImmutableList<ItemLike> PENDORITE_SMELTABLES = ImmutableList.of(NetherDescentBlocks.PENDORITE_ORE.get(), NetherDescentItems.RAW_PENDORITE.get());
 
+    private RecipeGenerator(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
+        super(recipeOutput, advancementOutput);
+    }
+
     @Override
     protected void buildRecipes() {
-        HolderGetter<Item> itemHolderGetter = registries.lookupOrThrow(Registries.ITEM);
+        HolderGetter<Item> itemHolderGetter = output.lookup(Registries.ITEM);
         NetherDescentBlockSet.getBlockSets().forEach(blockSet -> generateRecipes(blockSet.getBlockFamily(), FeatureFlags.VANILLA_SET));
         NetherDescentWoodSet.woodsets().forEach(set -> {
             planksFromLog(set.planks(), set.logItemTag(), 4);
@@ -290,20 +310,4 @@ public class RecipeGenerator extends RecipeProvider {
 				.unlockedBy(getHasName(material), has(material))
 				.save(output, NetherDescent.key(Registries.RECIPE, getConversionRecipeName(result, material) + "_stonecutting"));
 	}
-
-    public static class RecipeGeneratorRunner extends RecipeProvider.Runner {
-        public RecipeGeneratorRunner(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
-            super(packOutput, registries);
-        }
-
-        @Override
-        protected @NonNull RecipeProvider createRecipeProvider(HolderLookup.@NonNull Provider registries, @NonNull RecipeOutput output) {
-            return new RecipeGenerator(registries, output);
-        }
-
-        @Override
-        public @NonNull String getName() {
-            return NetherDescent.MOD_ID;
-        }
-    }
 }

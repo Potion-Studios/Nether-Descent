@@ -79,11 +79,11 @@ public class NetherDescentBiomeBuilder {
             .addSpawn(EntityTypes.SKELETON, 20, 5, 5)
             .addSpawn(EntityTypes.GHAST, 50, 4, 4)
             .addSpawn(EntityTypes.ENDERMAN, 1, 4, 4)
-            .addSpawn(EntityTypes.STRIDER, 60, 1, 2);
-		spawnSettings.addMobSpawnCost(EntityTypes.SKELETON, 0.7, 0.15)
-				.addMobSpawnCost(EntityTypes.GHAST, 0.7, 0.15)
-				.addMobSpawnCost(EntityTypes.ENDERMAN, 0.7, 0.15)
-				.addMobSpawnCost(EntityTypes.STRIDER, 0.7, 0.15);
+            .addSpawn(EntityTypes.STRIDER, 60, 1, 2)
+		    .addMobSpawnCost(EntityTypes.SKELETON, 0.7, 0.15)
+            .addMobSpawnCost(EntityTypes.GHAST, 0.7, 0.15)
+            .addMobSpawnCost(EntityTypes.ENDERMAN, 0.7, 0.15)
+            .addMobSpawnCost(EntityTypes.STRIDER, 0.7, 0.15);
         return NetherBiomes.baseBiome().setAttribute(EnvironmentAttributes.FOG_COLOR, ARGB.vector3fFromRGB24(3343107)).setAttribute(EnvironmentAttributes.AMBIENT_PARTICLES, AmbientParticle.of(ParticleTypes.CRIMSON_SPORE, 0.01428F)).setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(Optional.of(NetherDescentSoundEvents.AMBIENT_CRIMSON_GARDENS_LOOP.get()), Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_CRIMSON_FOREST_MOOD, 6000, 8, 2.0D)), List.of(new AmbientAdditionsSettings(NetherDescentSoundEvents.AMBIENT_CRIMSON_GARDENS_ADDITIONS.get(), 0.0011D)))).setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(NetherDescentSoundEvents.MUSIC_BIOME_CRIMSON_GARDENS.get())).mobSpawnSettings(spawnSettings.build()).generationSettings(generationSettings.build()).build();
     }
 
@@ -147,11 +147,11 @@ public class NetherDescentBiomeBuilder {
             .addSpawn(EntityTypes.SKELETON, 20, 5, 5)
             .addSpawn(NetherDescentEntityTypes.SOUL_GHAST.get(), 50, 4, 4)
             .addSpawn(EntityTypes.ENDERMAN, 1, 4, 4)
-            .addSpawn(EntityTypes.STRIDER, 60, 1, 2);
-	    spawnSettings.addMobSpawnCost(EntityTypes.SKELETON, 0.7, 0.15)
-			    .addMobSpawnCost(NetherDescentEntityTypes.SOUL_GHAST.get(), 0.7, 0.15)
-			    .addMobSpawnCost(EntityTypes.ENDERMAN, 0.7, 0.15)
-			    .addMobSpawnCost(EntityTypes.STRIDER, 0.7, 0.15);
+            .addSpawn(EntityTypes.STRIDER, 60, 1, 2)
+            .addMobSpawnCost(EntityTypes.SKELETON, 0.7, 0.15)
+            .addMobSpawnCost(NetherDescentEntityTypes.SOUL_GHAST.get(), 0.7, 0.15)
+            .addMobSpawnCost(EntityTypes.ENDERMAN, 0.7, 0.15)
+            .addMobSpawnCost(EntityTypes.STRIDER, 0.7, 0.15);
 
         return NetherBiomes.baseBiome().setAttribute(EnvironmentAttributes.FOG_COLOR, ARGB.vector3fFromRGB24(4529794)).setAttribute(EnvironmentAttributes.AMBIENT_PARTICLES, AmbientParticle.of(ParticleTypes.WARPED_SPORE, 0.01428F)).setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(Optional.of(NetherDescentSoundEvents.AMBIENT_WAILING_GARTH_LOOP.get()), Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD, 6000, 8, 2.0D)), List.of(new AmbientAdditionsSettings(NetherDescentSoundEvents.AMBIENT_WAILING_GARTH_ADDITIONS.get(), 0.0011D)))).mobSpawnSettings(spawnSettings.build()).setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(NetherDescentSoundEvents.MUSIC_BIOME_WAILING_GARTH.get())).generationSettings(generationSettings.build()).build();
     }

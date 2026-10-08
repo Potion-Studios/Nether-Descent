@@ -9,6 +9,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -86,22 +87,22 @@ public class SythianShootBlock extends Block implements BonemealableBlock {
         return NetherDescentBlocks.SYTHIAN_STALK.getItem().getDefaultInstance();
     }
 
+    protected void growStalk(Level level, BlockPos pos, BlockState state) {
+        level.setBlock(state.getValue(HANGING) ? pos.below() : pos.above(), NetherDescentBlocks.SYTHIAN_STALK.getBlockState().setValue(SythianStalkBlock.LEAVES, BambooLeaves.SMALL).setValue(SythianStalkBlock.HANGING, state.getValue(HANGING)), 3);
+    }
+
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, @NonNull BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source) {
         return level.isEmptyBlock(state.getValue(HANGING) ? pos.below() : pos.above());
     }
 
     @Override
-    public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
+    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         return true;
     }
 
     @Override
-    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         growStalk(level, pos, state);
-    }
-
-    protected void growStalk(Level level, BlockPos pos, BlockState state) {
-        level.setBlock(state.getValue(HANGING) ? pos.below() : pos.above(), NetherDescentBlocks.SYTHIAN_STALK.getBlockState().setValue(SythianStalkBlock.LEAVES, BambooLeaves.SMALL).setValue(SythianStalkBlock.HANGING, state.getValue(HANGING)), 3);
     }
 }
