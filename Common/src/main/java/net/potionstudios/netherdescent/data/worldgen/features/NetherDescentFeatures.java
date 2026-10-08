@@ -25,7 +25,7 @@ import net.potionstudios.netherdescent.tags.NetherDescentBlockTags;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
 import net.potionstudios.netherdescent.world.level.block.plants.HangingNDBushBlock;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeature;
+import net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeatureTypes;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.*;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
 
@@ -35,7 +35,7 @@ public class NetherDescentFeatures {
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_SPROUT = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("embur_sprout", NetherDescentBlocks.EMBUR_SPROUTS, 15);
     public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_LILY = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("embur_lily", NetherDescentBlocks.EMBUR_LILY, 15);
-    public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_BOG_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("embur_bog_vegetation", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
+    public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_BOG_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("embur_bog_vegetation", NetherDescentFeatureTypes.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
             new WeightedStateProvider(
                     WeightedList.<BlockState>builder()
                             .add(NetherDescentBlocks.EMBUR_SPROUTS.get().defaultBlockState(), 2)
@@ -45,7 +45,7 @@ public class NetherDescentFeatures {
             ), 8, 6)
     );
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_BOG_VEGETATION_BONEMEAL = ConfiguredFeaturesUtil.createConfiguredFeature("embur_bog_vegetation_bonemeal", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
+    public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_BOG_VEGETATION_BONEMEAL = ConfiguredFeaturesUtil.createConfiguredFeature("embur_bog_vegetation_bonemeal", NetherDescentFeatureTypes.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
             new WeightedStateProvider(
 		            WeightedList.<BlockState>builder()
                             .add(NetherDescentBlocks.EMBUR_SPROUTS.get().defaultBlockState(), 2)
@@ -78,7 +78,7 @@ public class NetherDescentFeatures {
 		    configuredFeatureBootstrapContext.lookup(Registries.BLOCK).getOrThrow(NetherDescentBlockTags.NETHER_MOSS_REPLACEABLE), BlockStateProvider.simple(NetherDescentBlocks.EMBUR_MOSS_BLOCK.get()), PlacementUtils.inlinePlaced(configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(EMBUR_MOSS_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.6F, UniformInt.of(1, 2), 0.75F)
 	);
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_carpet_patch", NetherDescentFeature.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), false));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_carpet_patch", NetherDescentFeatureTypes.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), false));
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_TORRIDS_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_torrids_vegetation", Feature.NETHER_FOREST_VEGETATION,  (configuredFeatureBootstrapContext) -> new NetherForestVegetationConfig(
 			new WeightedStateProvider(
@@ -99,7 +99,7 @@ public class NetherDescentFeatures {
 
 	//public static final ResourceKey<ConfiguredFeature<?, ?>> TALL_CRIMSON_FUNGI = ConfiguredFeaturesUtil.createPatchConfiguredFeatureWithBlock("tall_crimson_fungi", NetherDescentBlocks.TALL_CRIMSON_FUNGI, 15);
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_GARDEN_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_garden_vegetation", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
+	public static final ResourceKey<ConfiguredFeature<?, ?>> CRIMSON_GARDEN_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("crimson_garden_vegetation", NetherDescentFeatureTypes.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
                 new WeightedStateProvider(
 		                WeightedList.<BlockState>builder()
                                 .add(Blocks.CRIMSON_ROOTS.defaultBlockState(), 5)
@@ -123,19 +123,19 @@ public class NetherDescentFeatures {
 				}
 	);
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_moss_carpet_patch", NetherDescentFeature.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), false));
-	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_moss_carpet_patch", NetherDescentFeature.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), true));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_moss_carpet_patch", NetherDescentFeatureTypes.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), false));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_MOSS_CARPET_PATCH = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_moss_carpet_patch", NetherDescentFeatureTypes.BLOCK_CARPET_PATCH, () -> new CarpetPatchFeatureConfiguration(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), true));
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_TANGLE_ROOTS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_tangle_roots", NetherDescentFeature.HANGING_PLANT, () -> new HangingPlantFeatureConfiguration(Blocks.BLACKSTONE, NetherDescentBlocks.ARISIAN_TANGLE_ROOTS.get(), NetherDescentBlocks.ARISIAN_TANGLE_ROOTS_PLANT.get()));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_TANGLE_ROOTS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_arisian_tangle_roots", NetherDescentFeatureTypes.HANGING_PLANT, () -> new HangingPlantFeatureConfiguration(Blocks.BLACKSTONE, NetherDescentBlocks.ARISIAN_TANGLE_ROOTS.get(), NetherDescentBlocks.ARISIAN_TANGLE_ROOTS_PLANT.get()));
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_SYTHIAN_ROOTS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_sythian_roots", NetherDescentFeature.HANGING_PLANT, () -> new HangingPlantFeatureConfiguration(Blocks.NETHERRACK, NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get()));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_SYTHIAN_ROOTS = ConfiguredFeaturesUtil.createConfiguredFeature("hanging_sythian_roots", NetherDescentFeatureTypes.HANGING_PLANT, () -> new HangingPlantFeatureConfiguration(Blocks.NETHERRACK, NetherDescentBlocks.HANGING_SYTHIAN_ROOTS.get(), NetherDescentBlocks.HANGING_SYTHIAN_ROOTS_PLANT.get()));
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_STALK = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_stalk", NetherDescentFeature.SYTHIAN_STALK, () -> new SythianStalkFeatureConfiguration(false));
-	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_STALK_DOWNWARD = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_stalk_downward", NetherDescentFeature.SYTHIAN_STALK, () -> new SythianStalkFeatureConfiguration(true));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_STALK = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_stalk", NetherDescentFeatureTypes.SYTHIAN_STALK, () -> new SythianStalkFeatureConfiguration(false));
+	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_STALK_DOWNWARD = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_stalk_downward", NetherDescentFeatureTypes.SYTHIAN_STALK, () -> new SythianStalkFeatureConfiguration(true));
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_BULB_BLOSSOM = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_bulb_blossom", NetherDescentFeature.FLOATING_BLOCK_FEATURE, () -> new FloatingBlockFeatureConfiguration(BlockStateProvider.simple(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get()), UniformInt.of(1, 6)));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_BULB_BLOSSOM = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_bulb_blossom", NetherDescentFeatureTypes.FLOATING_BLOCK_FEATURE, () -> new FloatingBlockFeatureConfiguration(BlockStateProvider.simple(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get()), UniformInt.of(1, 6)));
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_UNDERGROWTH_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_undergrowth_vegetation", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_UNDERGROWTH_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_undergrowth_vegetation", NetherDescentFeatureTypes.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
 			new WeightedStateProvider(
 					WeightedList.<BlockState>builder()
 							.add(NetherDescentBlocks.ARISIAN_SPROUTS.getBlockState(), 3)
@@ -146,7 +146,7 @@ public class NetherDescentFeatures {
 			), 8, 4)
 	);
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_UNDERGROWTH_HANGING_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_undergrowth_hanging_vegetation", NetherDescentFeature.HANGING_NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
+	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_UNDERGROWTH_HANGING_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_undergrowth_hanging_vegetation", NetherDescentFeatureTypes.HANGING_NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
 			new WeightedStateProvider(
 					WeightedList.<BlockState>builder()
 							.add(NetherDescentBlocks.ARISIAN_SPROUTS.getBlockState().setValue(BlockStateProperties.HANGING, true), 3)
@@ -176,7 +176,7 @@ public class NetherDescentFeatures {
 			configuredFeatureBootstrapContext.lookup(Registries.BLOCK).getOrThrow(NetherDescentBlockTags.NETHER_MOSS_REPLACEABLE), BlockStateProvider.simple(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get()), PlacementUtils.inlinePlaced(configuredFeatureBootstrapContext.lookup(Registries.CONFIGURED_FEATURE).getOrThrow(ARISIAN_MOSS_VEGETATION)), CaveSurface.FLOOR, ConstantInt.of(1), 0.0F, 5, 0.6F, UniformInt.of(1, 2), 0.75F)
 	);
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> BASALT_LINE = ConfiguredFeaturesUtil.createConfiguredFeature("basalt_line", NetherDescentFeature.BASALT_LINE, NoneFeatureConfiguration::new);
+	public static final ResourceKey<ConfiguredFeature<?, ?>> BASALT_LINE = ConfiguredFeaturesUtil.createConfiguredFeature("basalt_line", NetherDescentFeatureTypes.BASALT_LINE, NoneFeatureConfiguration::new);
 
 	private static ResourceKey<ConfiguredFeature<?, ?>> createPatchConfiguredFeatureState(String id, Supplier<? extends BlockState> state, int tries) {
 		return ConfiguredFeaturesUtil.createConfiguredFeature(id, Feature.SIMPLE_BLOCK, () -> new SimpleBlockConfiguration(BlockStateProvider.simple(state.get())));

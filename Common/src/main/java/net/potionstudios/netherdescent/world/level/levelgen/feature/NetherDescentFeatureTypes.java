@@ -1,5 +1,6 @@
 package net.potionstudios.netherdescent.world.level.levelgen.feature;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
@@ -11,7 +12,7 @@ import net.potionstudios.netherdescent.world.level.levelgen.feature.configuratio
 
 import java.util.function.Supplier;
 
-public class NetherDescentFeature {
+public class NetherDescentFeatureTypes {
 
 	public static final Supplier<Feature<CeilingHangingVinesFeatureConfiguration>> CEILING_HANGING_VINES = create("ceiling_hanging_vines", () -> new CeilingHangingVinesFeature(CeilingHangingVinesFeatureConfiguration.CODEC));
 	public static final Supplier<Feature<CarpetPatchFeatureConfiguration>> BLOCK_CARPET_PATCH = create("block_carpet_patch", () -> new CarpetPatchFeature(CarpetPatchFeatureConfiguration.CODEC));
@@ -19,11 +20,11 @@ public class NetherDescentFeature {
 	public static final Supplier<Feature<SythianStalkFeatureConfiguration>> SYTHIAN_STALK = create("sythian_stalk", () -> new SythianStalkFeature(SythianStalkFeatureConfiguration.CODEC));
     public static final Supplier<Feature<NetherForestVegetationConfig>> NETHER_FOREST_VEGETATION = create("nether_forest_vegetation", () -> new NetherForestVegetationFeature(NetherForestVegetationConfig.CODEC));
 	public static final Supplier<Feature<NetherForestVegetationConfig>> HANGING_NETHER_FOREST_VEGETATION = create("hanging_nether_forest_vegetation", () -> new HangingNetherForestVegetationFeature(NetherForestVegetationConfig.CODEC));
-    public static final Supplier<Feature<FloatingBlockFeatureConfiguration>> FLOATING_BLOCK_FEATURE = create("floating_block_feature", () -> new FloatingBlockFeature(FloatingBlockFeatureConfiguration.CODEC));
-	public static final Supplier<Feature> BASALT_LINE = create("basalt_line", BasaltLineFeature::new);
+    public static final Supplier<MapCodec<FloatingBlockFeature>> FLOATING_BLOCK_FEATURE = create("floating_block_feature", () -> FloatingBlockFeature.CODEC);
+	public static final Supplier<MapCodec<BasaltLineFeature>> BASALT_LINE = create("basalt_line", () -> BasaltLineFeature.CODEC);
 
-	private static <C extends FeatureConfiguration, F extends Feature<C>> Supplier<F> create(String id, Supplier<F> supplier) {
-		return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.FEATURE, id, supplier);
+	private static Supplier<MapCodec<? extends Feature>> create(String id, Supplier<MapCodec<? extends Feature>> supplier) {
+		return PlatformHandler.PLATFORM_HANDLER.register(BuiltInRegistries.FEATURE_TYPE, id, supplier);
 	}
 
 	public static void features() {
