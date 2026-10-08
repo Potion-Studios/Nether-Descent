@@ -147,7 +147,7 @@ public class NetherDescentFeatures {
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_STALK = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_stalk", NetherDescentFeature.SYTHIAN_STALK, () -> new SythianStalkFeatureConfiguration(false));
 	public static final ResourceKey<ConfiguredFeature<?, ?>> SYTHIAN_STALK_DOWNWARD = ConfiguredFeaturesUtil.createConfiguredFeature("sythian_stalk_downward", NetherDescentFeature.SYTHIAN_STALK, () -> new SythianStalkFeatureConfiguration(true));
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_BULB_BLOSSOM = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_bulb_blossom", NetherDescentFeature.FLOATING_BLOCK_FEATURE, () -> new FloatingBlockFeatureConfiguration(BlockStateProvider.simple(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get()), UniformInt.of(1, 6)));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> WAILING_BULB_BLOSSOM = ConfiguredFeaturesUtil.createConfiguredFeature("wailing_bulb_blossom", Feature.SIMPLE_BLOCK, () -> new SimpleBlockConfiguration(BlockStateProvider.simple(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get().defaultBlockState())));
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_UNDERGROWTH_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_undergrowth_vegetation", NetherDescentFeature.NETHER_FOREST_VEGETATION, () -> new NetherForestVegetationConfig(
 			new WeightedStateProvider(

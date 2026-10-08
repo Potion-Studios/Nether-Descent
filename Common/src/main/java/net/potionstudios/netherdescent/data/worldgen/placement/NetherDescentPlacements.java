@@ -2,8 +2,10 @@ package net.potionstudios.netherdescent.data.worldgen.placement;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
@@ -78,11 +80,22 @@ public class NetherDescentPlacements {
 
     public static final ResourceKey<PlacedFeature> WAILING_GARTH_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("wailing_garth_vegetation", NetherDescentFeatures.WAILING_GARTH_VEGETATION, () -> List.of(CountOnEveryLayerPlacement.of(6), BiomeFilter.biome()));
 
-    public static final ResourceKey<PlacedFeature> WAILING_BULB_BLOSSOM = PlacedFeaturesUtil.createPlacedFeature("wailing_bulb_blossom", NetherDescentFeatures.WAILING_BULB_BLOSSOM, () -> List.of(CountPlacement.of(10), InSquarePlacement.spread(), PlacementUtils.RANGE_8_8,
-            EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.allOf(
-                    BlockPredicate.matchesBlocks(Direction.UP.getNormal(), Blocks.SOUL_SOIL),
-                    BlockPredicate.ONLY_IN_AIR_PREDICATE
-            ), 12), BiomeFilter.biome()));
+	public static final ResourceKey<PlacedFeature> WAILING_BULB_BLOSSOM = PlacedFeaturesUtil.createPlacedFeature("wailing_bulb_blossom", NetherDescentFeatures.WAILING_BULB_BLOSSOM, () -> List.of(
+			CountPlacement.of(10), InSquarePlacement.spread(), PlacementUtils.RANGE_8_8,
+			EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.allOf(
+					BlockPredicate.matchesBlocks(Direction.UP.getNormal(), Blocks.SOUL_SOIL),
+					BlockPredicate.ONLY_IN_AIR_PREDICATE
+			), 12),
+			RandomOffsetPlacement.vertical(UniformInt.of(-6, -1)),
+			EnvironmentScanPlacement.scanningFor(Direction.UP,
+					BlockPredicate.allOf(
+							BlockPredicate.replaceable(),
+							BlockPredicate.matchesTag(new Vec3i(0, 1, 0), BlockTags.AIR),
+							BlockPredicate.matchesTag(new Vec3i(0, -1, 0), BlockTags.AIR)
+					),
+					BlockPredicate.not(BlockPredicate.matchesBlocks(Blocks.SOUL_SOIL)),
+					5),
+			BiomeFilter.biome()));
 
 	public static final ResourceKey<PlacedFeature> BASALT_LINE = PlacedFeaturesUtil.createPlacedFeature("basalt_line",
 			NetherDescentFeatures.BASALT_LINE,
