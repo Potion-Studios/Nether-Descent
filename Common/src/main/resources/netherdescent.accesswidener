@@ -57,9 +57,6 @@ accessible class net/minecraft/world/entity/monster/Ghast$RandomFloatAroundGoal
 accessible class net/minecraft/world/entity/monster/Ghast$GhastLookGoal
 accessible class net/minecraft/world/entity/monster/Ghast$GhastShootFireballGoal
 
-accessible field net/minecraft/world/item/AxeItem STRIPPABLES Ljava/util/Map;
-mutable field net/minecraft/world/item/AxeItem STRIPPABLES Ljava/util/Map;
-
 accessible method net/minecraft/world/level/block/NetherFungusBlock getFeature (Lnet/minecraft/world/level/LevelReader;)Ljava/util/Optional;
 accessible method net/minecraft/world/level/levelgen/feature/treedecorators/TreeDecoratorType <init> (Lcom/mojang/serialization/MapCodec;)V
 
