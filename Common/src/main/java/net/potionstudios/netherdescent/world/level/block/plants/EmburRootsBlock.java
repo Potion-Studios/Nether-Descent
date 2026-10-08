@@ -17,17 +17,17 @@ public class EmburRootsBlock extends NetherRootsBlock implements BonemealableBlo
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, @NonNull BlockState state) {
+    public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull BonemealSource source) {
         return true;
     }
 
     @Override
-    public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
+    public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull BonemealSource source) {
         return true;
     }
 
     @Override
-    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
+    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull BonemealSource source) {
         BlockState doubleplantblock = NetherDescentBlocks.TALL_EMBUR_ROOTS.get().defaultBlockState();
         if (doubleplantblock.canSurvive(level, pos))
             DoublePlantBlock.placeAt(level,doubleplantblock, pos, Block.UPDATE_CLIENTS);

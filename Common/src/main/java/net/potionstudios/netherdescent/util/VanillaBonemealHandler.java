@@ -9,18 +9,19 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.potionstudios.netherdescent.data.worldgen.features.NetherDescentTreeFeatures;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 
 import java.util.Optional;
 
 public class VanillaBonemealHandler {
-    public static boolean boneMealEventHandler(Level level, BlockPos blockPos, BlockState state, ItemStack stack) {
+    public static boolean boneMealEventHandler(Level level, BlockPos blockPos, BlockState state, ItemStack stack, BonemealSource source) {
         if (state.is(Blocks.CRIMSON_FUNGUS))
-            return crimsonFungusHandler(level, blockPos, state, stack);
+            return crimsonFungusHandler(level, blockPos, state, stack, source);
         else if (state.is(Blocks.SOUL_SOIL))
             return netherrackLikeHandler(level, blockPos, state, stack, NetherDescentBlocks.WAILING_NYLIUM.get());
         else if (state.is(Blocks.BLACKSTONE))
@@ -31,10 +32,10 @@ public class VanillaBonemealHandler {
         return false;
     }
 
-    private static boolean crimsonFungusHandler(Level level, BlockPos blockPos, BlockState state, ItemStack stack) {
+    private static boolean crimsonFungusHandler(Level level, BlockPos blockPos, BlockState state, ItemStack stack, BonemealSource source) {
         if (level.getBlockState(blockPos.below()).is(NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get())) {
             if (state.getBlock() instanceof BonemealableBlock bonemealableBlock) {
-                if (bonemealableBlock.isBonemealSuccess(level, level.getRandom(), blockPos, state)) {
+                if (bonemealableBlock.isBonemealSuccess(level, level.getRandom(), blockPos, state, source)) {
                     if (level instanceof ServerLevel serverLevel) {
                         getFeature(serverLevel).ifPresent(holder -> holder.value().place(serverLevel, serverLevel.getChunkSource().getGenerator(), serverLevel.getRandom(), blockPos));
                         stack.shrink(1);
@@ -104,7 +105,7 @@ public class VanillaBonemealHandler {
         return false;
     }
 
-    private static Optional<? extends Holder<ConfiguredFeature<?, ?>>> getFeature(LevelReader level) {
-        return level.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(NetherDescentTreeFeatures.CRIMSON_FUNGUS_PLANTED);
+    private static Optional<? extends Holder<Feature>> getFeature(LevelReader level) {
+        return level.registryAccess().lookupOrThrow(Registries.FEATURE).get(NetherDescentTreeFeatures.CRIMSON_FUNGUS_PLANTED);
     }
 }

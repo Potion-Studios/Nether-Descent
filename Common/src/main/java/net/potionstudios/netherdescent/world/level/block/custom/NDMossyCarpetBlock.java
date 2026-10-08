@@ -2,7 +2,7 @@ package net.potionstudios.netherdescent.world.level.block.custom;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.mojang.serialization.MapCodec;
+
 import java.util.Map;
 import java.util.function.BooleanSupplier;
 import java.util.function.Function;
@@ -31,7 +31,6 @@ import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 public class NDMossyCarpetBlock extends Block implements BonemealableBlock {
-    public static final MapCodec<MossyCarpetBlock> CODEC = simpleCodec(MossyCarpetBlock::new);
     public static final BooleanProperty BASE = BlockStateProperties.BOTTOM;
     private static final EnumProperty<WallSide> NORTH = BlockStateProperties.NORTH_WALL;
     private static final EnumProperty<WallSide> EAST = BlockStateProperties.EAST_WALL;
@@ -57,11 +56,6 @@ public class NDMossyCarpetBlock extends Block implements BonemealableBlock {
     private static final VoxelShape NORTH_SHORT_AABB = Block.box(0.0, 0.0, 0.0, 16.0, 10.0, 1.0);
     private static final VoxelShape SOUTH_SHORT_AABB = Block.box(0.0, 0.0, 15.0, 16.0, 10.0, 16.0);
     private final Map<BlockState, VoxelShape> shapesCache;
-
-    @Override
-    public @NonNull MapCodec<MossyCarpetBlock> codec() {
-        return CODEC;
-    }
 
     public NDMossyCarpetBlock(BlockBehaviour.Properties properties) {
         super(properties);
@@ -287,20 +281,19 @@ public class NDMossyCarpetBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull BonemealSource source) {
         return state.getValue(BASE) && !createTopperWithSideChance(this.asBlock(), level, pos, () -> true).isAir();
     }
 
     @Override
-    public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
+    public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull BonemealSource source) {
         return true;
     }
 
     @Override
-    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
+    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull BonemealSource source) {
         BlockState blockState = createTopperWithSideChance(this.asBlock(), level, pos, () -> true);
-        if (!blockState.isAir()) {
+        if (!blockState.isAir())
             level.setBlock(pos.above(), blockState, 3);
-        }
     }
 }

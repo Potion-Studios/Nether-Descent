@@ -61,7 +61,7 @@ public class ModelGenerator extends ModelProvider {
 
 		createNetherrack(blockModels, NetherDescentBlocks.BLUE_NETHERRACK.get());
 
-		blockModels.createTrivialBlock(NetherDescentBlocks.BARTERING_TABLE.get(), TexturedModel.CUBE_TOP_BOTTOM.updateTexture(template -> template
+		blockModels.createTrivialBlock(NetherDescentBlocks.BARTERING_TABLE.get(), TexturedModel.CUBE_BOTTOM_TOP.updateTexture(template -> template
 				.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(Blocks.SMITHING_TABLE, "_bottom"))
 				.put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(NetherDescentBlocks.BARTERING_TABLE.get(), "_side"))
 				.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(NetherDescentBlocks.BARTERING_TABLE.get(), "_side"))
@@ -168,7 +168,7 @@ public class ModelGenerator extends ModelProvider {
 				blockModels.createTrivialBlock(woodSet.growerItem().getPottedBlock(), TexturedModel.createDefault(TextureMapping::cross, ModelTemplates.FLOWER_POT_CROSS.extend().build()).updateTexture(textureMapping -> textureMapping.put(TextureSlot.PLANT, new Material(NetherDescent.id(folder + woodSet.growerItemEnum().getName())))));
 			}
 
-			itemModels.itemModelOutput.accept(woodSet.signItem(), ItemModelUtils.plainModel(ModelTemplates.FLAT_ITEM.create(woodSet.signItem(), TextureMapping.layer0(new Material(NetherDescent.id("item/" + woodSet.name() + "/sign"))), itemModels.modelOutput)));
+			itemModels.itemModelOutput.accept(woodSet.sign().asItem(), ItemModelUtils.plainModel(ModelTemplates.FLAT_ITEM.create(woodSet.sign().asItem(), TextureMapping.layer0(new Material(NetherDescent.id("item/" + woodSet.name() + "/sign"))), itemModels.modelOutput)));
 			itemModels.itemModelOutput.accept(woodSet.hangingSignItem(), ItemModelUtils.plainModel(ModelTemplates.FLAT_ITEM.create(woodSet.hangingSignItem(), TextureMapping.layer0(new Material(NetherDescent.id("item/" + woodSet.name() + "/hanging_sign"))), itemModels.modelOutput)));
 			itemModels.itemModelOutput.accept(woodSet.door().asItem(), ItemModelUtils.plainModel(ModelTemplates.FLAT_ITEM.create(woodSet.door(), TextureMapping.layer0(new Material(NetherDescent.id("item/" + woodSet.name() + "/door"))), itemModels.modelOutput)));
 		});
@@ -178,13 +178,13 @@ public class ModelGenerator extends ModelProvider {
 				blockModels.createTrivialBlock(flowerPotBlock, TexturedModel.createDefault(TextureMapping::cross, ModelTemplates.FLOWER_POT_CROSS.extend().build()).updateTexture(textureMapping -> textureMapping.put(TextureSlot.PLANT, new Material(ModelLocationUtils.getModelLocation(flowerPotBlock.getPotted())))));
 		});
 
-		blockModels.createTrivialBlock(NetherDescentBlocks.WAILING_NYLIUM.get(), TexturedModel.CUBE_TOP_BOTTOM.updateTexture(textureMapping -> textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.WAILING_NYLIUM.get())).put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(Blocks.SOUL_SAND))));
+		blockModels.createTrivialBlock(NetherDescentBlocks.WAILING_NYLIUM.get(), TexturedModel.CUBE_BOTTOM_TOP.updateTexture(textureMapping -> textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.WAILING_NYLIUM.get())).put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(Blocks.SOUL_SAND))));
 		blockItemModel(blockModels, NetherDescentBlocks.WAILING_NYLIUM.get());
-		blockModels.createTrivialBlock(NetherDescentBlocks.EMBUR_NYLIUM.get(), TexturedModel.CUBE_TOP_BOTTOM.updateTexture(textureMapping -> textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.EMBUR_NYLIUM.get())).put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(NetherDescentBlocks.BLUE_NETHERRACK.get()))));
+		blockModels.createTrivialBlock(NetherDescentBlocks.EMBUR_NYLIUM.get(), TexturedModel.CUBE_BOTTOM_TOP.updateTexture(textureMapping -> textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.EMBUR_NYLIUM.get())).put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(NetherDescentBlocks.BLUE_NETHERRACK.get()))));
 		blockItemModel(blockModels, NetherDescentBlocks.EMBUR_NYLIUM.get());
-		blockModels.createTrivialBlock(NetherDescentBlocks.SYTHIAN_NYLIUM.get(), TexturedModel.CUBE_TOP_BOTTOM.updateTexture(textureMapping -> textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_NYLIUM.get())).put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(Blocks.NETHERRACK))));
+		blockModels.createTrivialBlock(NetherDescentBlocks.SYTHIAN_NYLIUM.get(), TexturedModel.CUBE_BOTTOM_TOP.updateTexture(textureMapping -> textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_NYLIUM.get())).put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(Blocks.NETHERRACK))));
 		blockItemModel(blockModels, NetherDescentBlocks.SYTHIAN_NYLIUM.get());
-		blockModels.createTrivialBlock(NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get(), TexturedModel.CUBE_TOP_BOTTOM.updateTexture(textureMapping -> textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(Blocks.CRIMSON_NYLIUM)).put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(Blocks.BLACKSTONE, "_top"))));
+		blockModels.createTrivialBlock(NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get(), TexturedModel.CUBE_BOTTOM_TOP.updateTexture(textureMapping -> textureMapping.put(TextureSlot.TOP, TextureMapping.getBlockTexture(Blocks.CRIMSON_NYLIUM)).put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(Blocks.BLACKSTONE, "_top"))));
 		blockItemModel(blockModels, NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get());
 
 		blockModels.blockStateOutput.accept(BlockModelGenerators.createFence(NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get(), BlockModelGenerators.plainVariant(ModelTemplates.FENCE_POST.create(NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get(), new TextureMapping().put(TextureSlot.ALL, TextureMapping.getBlockTexture(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase())), blockModels.modelOutput)), BlockModelGenerators.plainVariant(ModelTemplates.FENCE_SIDE.create(NetherDescentBlocks.BLUE_NETHER_BRICK_FENCE.get(), new TextureMapping().put(TextureSlot.ALL, TextureMapping.getBlockTexture(NetherDescentBlocks.BLUE_NETHER_BRICKS.getBase())), blockModels.modelOutput))));
@@ -286,7 +286,7 @@ public class ModelGenerator extends ModelProvider {
 		blockModels.createTrivialBlock(NetherDescentBlocks.EMBUR_GEL_BLOCK.get(), TexturedModel.CUBE.updateTemplate(template -> template.extend().build()));
 		blockItemModel(blockModels, NetherDescentBlocks.EMBUR_GEL_BLOCK.get());
 
-		blockModels.createTrivialBlock(NetherDescentBlocks.HORNET_NEST.get(), TexturedModel.CUBE_TOP_BOTTOM.updateTexture(textureMapping -> textureMapping.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(NetherDescentBlocks.HORNET_NEST.get(), "_bottom")).put(TextureSlot.SIDE, TextureMapping.getBlockTexture(NetherDescentBlocks.HORNET_NEST.get(), "_side")).put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.HORNET_NEST.get(), "_top"))));
+		blockModels.createTrivialBlock(NetherDescentBlocks.HORNET_NEST.get(), TexturedModel.CUBE_BOTTOM_TOP.updateTexture(textureMapping -> textureMapping.put(TextureSlot.BOTTOM, TextureMapping.getBlockTexture(NetherDescentBlocks.HORNET_NEST.get(), "_bottom")).put(TextureSlot.SIDE, TextureMapping.getBlockTexture(NetherDescentBlocks.HORNET_NEST.get(), "_side")).put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.HORNET_NEST.get(), "_top"))));
 		blockItemModel(blockModels, NetherDescentBlocks.HORNET_NEST.get());
 
 		blockModels.createDoubleBlock(NetherDescentBlocks.TALL_EMBUR_ROOTS.get(),
@@ -320,8 +320,8 @@ public class ModelGenerator extends ModelProvider {
 
 		blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(NetherDescentBlocks.SYTHIAN_FARMLAND.get())
 				.with(PropertyDispatch.initial(SythianFarmBlock.MOSSY)
-						.select(false, BlockModelGenerators.plainVariant(ModelTemplates.FARMLAND.create(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), new TextureMapping().put(TextureSlot.DIRT, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_SOIL.get())).put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_FARMLAND.get())), blockModels.modelOutput)))
-						.select(true, BlockModelGenerators.plainVariant(ModelTemplates.FARMLAND.create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), "_mossy"), new TextureMapping().put(TextureSlot.DIRT, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_SOIL.get())).put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), "_mossy")), blockModels.modelOutput)))));
+						.select(false, BlockModelGenerators.plainVariant(ModelTemplates.CUBE_BOTTOM_TOP_INDENTED.create(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), new TextureMapping().put(TextureSlot.DIRT, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_SOIL.get())).put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_FARMLAND.get())), blockModels.modelOutput)))
+						.select(true, BlockModelGenerators.plainVariant(ModelTemplates.CUBE_BOTTOM_TOP_INDENTED.create(ModelLocationUtils.getModelLocation(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), "_mossy"), new TextureMapping().put(TextureSlot.DIRT, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_SOIL.get())).put(TextureSlot.TOP, TextureMapping.getBlockTexture(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), "_mossy")), blockModels.modelOutput)))));
 		blockItemModel(blockModels, NetherDescentBlocks.SYTHIAN_FARMLAND.get());
 
 		createCrossBlock(blockModels, itemModels, NetherDescentBlocks.SYTHIAN_SPROUTS.get());
