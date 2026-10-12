@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BambooLeaves;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -26,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
 public class SythianShootBlock extends Block implements BonemealableBlock {
     private static final VoxelShape BOTTOM_SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D);
     private static final VoxelShape TOP_SHAPE = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-    public static final BooleanProperty HANGING = BooleanProperty.create("hanging");
+    public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
 
     public SythianShootBlock(Properties properties) {
         super(properties);

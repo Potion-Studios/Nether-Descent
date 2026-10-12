@@ -30,7 +30,7 @@ public class SythianStalkBlock extends Block implements BonemealableBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_1;
     public static final EnumProperty<BambooLeaves> LEAVES = BlockStateProperties.BAMBOO_LEAVES;
     public static final IntegerProperty STAGE = BlockStateProperties.STAGE;
-    public static final BooleanProperty HANGING = BooleanProperty.create("hanging");
+    public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
 
     public SythianStalkBlock(Properties properties) {
         super(properties);
