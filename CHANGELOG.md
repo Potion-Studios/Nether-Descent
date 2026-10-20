@@ -1,5 +1,6 @@
 # 1.0.11
 - Add Culling to Arisian Moss Block
+- Replace Custom Floating Block Feature with Vanilla Simple Block
 
 # 1.0.10
 - Allow players to glide through all vines
