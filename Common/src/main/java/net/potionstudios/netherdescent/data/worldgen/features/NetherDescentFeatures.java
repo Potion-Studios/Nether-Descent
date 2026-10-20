@@ -25,7 +25,6 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.tags.NetherDescentBlockTags;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
-import net.potionstudios.netherdescent.world.level.block.plants.HangingNDBushBlock;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeature;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.*;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
@@ -61,20 +60,8 @@ public class NetherDescentFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_EMBUR_MOSS = ConfiguredFeaturesUtil.createConfiguredFeature(
 			"hanging_embur_moss",
-			Feature.RANDOM_PATCH,
-			() -> new RandomPatchConfiguration(
-					96, 10, 10,
-					PlacementUtils.filtered(
-							NetherDescentFeature.CEILING_HANGING_VINES.get(),
-							new CeilingHangingVinesFeatureConfiguration(
-									NetherDescentBlocks.BLUE_NETHERRACK.get(),
-									NetherDescentBlocks.EMBUR_MOSS_BLOCK.get().defaultBlockState(),
-									NetherDescentBlocks.EMBUR_HANGING_MOSS.get().defaultBlockState(),
-									UniformInt.of(0, 20)
-							),
-							ConfiguredFeaturesUtil.simplePatchPredicate(List.of())
-					)
-			)
+			Feature.SIMPLE_BLOCK,
+			() -> new SimpleBlockConfiguration(BlockStateProvider.simple(NetherDescentBlocks.EMBUR_HANGING_MOSS.get().defaultBlockState()))
 	);
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_vegetation", Feature.SIMPLE_BLOCK, () -> new SimpleBlockConfiguration(
@@ -171,10 +158,6 @@ public class NetherDescentFeatures {
 			), 8, 4)
 	);
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_BLOSSOM = createPatchConfiguredFeatureState("hanging_arisian_blossom", () -> NetherDescentBlocks.ARISIAN_BLOSSOM.getBlockState().setValue(HangingNDBushBlock.HANGING, true), 32);
-	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_DANDELIONS = createPatchConfiguredFeatureState("hanging_arisian_dandelions", () -> NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState().setValue(HangingNDBushBlock.HANGING, true), 32);
-	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_HANGING_ARISIAN_SPROUTS = createPatchConfiguredFeatureState("hanging_arisian_sprouts_patch", () -> NetherDescentBlocks.ARISIAN_SPROUTS.getBlockState().setValue(HangingNDBushBlock.HANGING, true), 32);
-
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_MOSS_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_moss_vegetation", Feature.SIMPLE_BLOCK, () -> new SimpleBlockConfiguration(
 			new WeightedStateProvider(
 					SimpleWeightedRandomList.<BlockState>builder()
@@ -192,11 +175,7 @@ public class NetherDescentFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> BASALT_LINE = ConfiguredFeaturesUtil.createConfiguredFeature("basalt_line", NetherDescentFeature.BASALT_LINE, NoneFeatureConfiguration::new);
 
-	private static ResourceKey<ConfiguredFeature<?, ?>> createPatchConfiguredFeatureState(String id, Supplier<? extends BlockState> state, int tries) {
-		return ConfiguredFeaturesUtil.createConfiguredFeature(id, Feature.RANDOM_PATCH, () -> FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(state.get())), List.of(), tries));
-	}
-
-    public static void features() {
+	public static void features() {
         NetherDescent.LOGGER.info("Registering Nether Descent Features");
         NetherDescentTreeFeatures.treeFeatures();
         NetherDescentOreFeatures.oreFeatures();

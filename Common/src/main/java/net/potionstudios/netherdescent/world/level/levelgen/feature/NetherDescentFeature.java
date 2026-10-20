@@ -13,7 +13,6 @@ import java.util.function.Supplier;
 
 public class NetherDescentFeature {
 
-	public static final Supplier<Feature<CeilingHangingVinesFeatureConfiguration>> CEILING_HANGING_VINES = create("ceiling_hanging_vines", () -> new CeilingHangingVinesFeature(CeilingHangingVinesFeatureConfiguration.CODEC));
 	public static final Supplier<Feature<CarpetPatchFeatureConfiguration>> BLOCK_CARPET_PATCH = create("block_carpet_patch", () -> new CarpetPatchFeature(CarpetPatchFeatureConfiguration.CODEC));
 	public static final Supplier<Feature<HangingPlantFeatureConfiguration>> HANGING_PLANT = create("hanging_plant", () -> new HangingPlantFeature(HangingPlantFeatureConfiguration.CODEC));
 	public static final Supplier<Feature<SythianStalkFeatureConfiguration>> SYTHIAN_STALK = create("sythian_stalk", () -> new SythianStalkFeature(SythianStalkFeatureConfiguration.CODEC));
