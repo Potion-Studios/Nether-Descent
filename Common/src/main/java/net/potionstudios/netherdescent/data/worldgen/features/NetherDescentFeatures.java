@@ -24,12 +24,9 @@ import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.tags.NetherDescentBlockTags;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.plants.CrimsonBerryBushBlock;
-import net.potionstudios.netherdescent.world.level.block.plants.HangingNDBushBlock;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.NetherDescentFeature;
 import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.*;
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
-
-import java.util.function.Supplier;
 
 public class NetherDescentFeatures {
 
@@ -157,10 +154,6 @@ public class NetherDescentFeatures {
 			), 8, 4)
 	);
 
-	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_BLOSSOM = createPatchConfiguredFeatureState("hanging_arisian_blossom", () -> NetherDescentBlocks.ARISIAN_BLOSSOM.getBlockState().setValue(HangingNDBushBlock.HANGING, true), 32);
-	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_ARISIAN_DANDELIONS = createPatchConfiguredFeatureState("hanging_arisian_dandelions", () -> NetherDescentBlocks.ARISIAN_DANDELIONS.get().defaultBlockState().setValue(HangingNDBushBlock.HANGING, true), 32);
-	public static final ResourceKey<ConfiguredFeature<?, ?>> PATCH_HANGING_ARISIAN_SPROUTS = createPatchConfiguredFeatureState("hanging_arisian_sprouts_patch", () -> NetherDescentBlocks.ARISIAN_SPROUTS.getBlockState().setValue(HangingNDBushBlock.HANGING, true), 32);
-
 	public static final ResourceKey<ConfiguredFeature<?, ?>> ARISIAN_MOSS_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("arisian_moss_vegetation", Feature.SIMPLE_BLOCK, () -> new SimpleBlockConfiguration(
 			new WeightedStateProvider(
 					WeightedList.<BlockState>builder()
@@ -178,11 +171,7 @@ public class NetherDescentFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> BASALT_LINE = ConfiguredFeaturesUtil.createConfiguredFeature("basalt_line", NetherDescentFeature.BASALT_LINE, NoneFeatureConfiguration::new);
 
-	private static ResourceKey<ConfiguredFeature<?, ?>> createPatchConfiguredFeatureState(String id, Supplier<? extends BlockState> state, int tries) {
-		return ConfiguredFeaturesUtil.createConfiguredFeature(id, Feature.SIMPLE_BLOCK, () -> new SimpleBlockConfiguration(BlockStateProvider.simple(state.get())));
-	}
-
-    public static void features() {
+	public static void features() {
         NetherDescent.LOGGER.info("Registering Nether Descent Features");
         NetherDescentTreeFeatures.treeFeatures();
         NetherDescentOreFeatures.oreFeatures();
