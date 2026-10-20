@@ -1,9 +1,9 @@
 {
   "type": "lithostitched:add_surface_rule",
+  "injection_type": "prepend",
   "levels": [
     "minecraft:the_nether"
   ],
-  "priority": 1000,
   "surface_rule": {
     "type": "minecraft:sequence",
     "sequence": [

@@ -3,6 +3,8 @@ package net.potionstudios.netherdescent.neoforge.datagen;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import dev.worldgen.lithostitched.api.registry.LithostitchedRegistries;
+import dev.worldgen.lithostitched.api.util.InjectionType;
+import dev.worldgen.lithostitched.api.worldgen.modifier.WorldgenModifier;
 import dev.worldgen.lithostitched.impl.worldgen.biomeinjector.AddPoints;
 import dev.worldgen.lithostitched.impl.worldgen.biomeinjector.region.Region;
 import net.minecraft.core.*;
@@ -10,10 +12,12 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
+import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.potionstudios.netherdescent.NetherDescent;
@@ -33,6 +37,7 @@ import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUti
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructureSets;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructures;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentTemplatePools;
+import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentSurfaceRules;
 
 import java.util.List;
 import java.util.Optional;
@@ -63,7 +68,6 @@ class DataGeneratorsRegister {
 	    generator.addProvider(event.includeClient(), new SoundDefinitionsGenerator(output, existingFileHelper));
         generator.addProvider(event.includeClient(), new ParticleDescriptionGenerator(output, existingFileHelper));
         generator.addProvider(event.includeServer(), new AdvancementProvider(output, lookupProvider, existingFileHelper, ImmutableList.of(new AdvancementGenerator())));
-        generator.addProvider(event.includeServer(), new LithostitchedSurfaceRuleGenerator(output));
 	}
 
     private static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
@@ -107,5 +111,12 @@ class DataGeneratorsRegister {
 							    HolderSet.direct(enabledBiomeHolders)
 					    )
 			    );
-		    });
+		    })
+			.add(LithostitchedRegistries.WORLDGEN_MODIFIER, pContext -> {
+				SurfaceRules.RuleSource source = NetherDescentSurfaceRules.makeRules();
+				pContext.register(
+						NetherDescent.key(LithostitchedRegistries.WORLDGEN_MODIFIER, "surface_rule/nether"),
+						WorldgenModifier.builder().addSurfaceRule(Level.NETHER, InjectionType.PREPEND, source
+					));
+			});
 }
