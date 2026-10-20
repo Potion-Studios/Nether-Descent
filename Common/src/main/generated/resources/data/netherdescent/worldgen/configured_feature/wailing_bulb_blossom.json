@@ -1,7 +1,7 @@
 {
-  "type": "netherdescent:floating_block_feature",
+  "type": "minecraft:simple_block",
   "config": {
-    "block": {
+    "to_place": {
       "type": "minecraft:simple_state_provider",
       "state": {
         "Name": "netherdescent:wailing_bulb_blossom",
@@ -9,11 +9,6 @@
           "active": "false"
         }
       }
-    },
-    "distance": {
-      "type": "minecraft:uniform",
-      "max_inclusive": 6,
-      "min_inclusive": 1
     }
   }
 }
