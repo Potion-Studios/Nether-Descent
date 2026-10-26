@@ -64,3 +64,5 @@ accessible method net/minecraft/world/level/block/NetherFungusBlock getFeature (
 accessible method net/minecraft/world/level/levelgen/feature/treedecorators/TreeDecoratorType <init> (Lcom/mojang/serialization/MapCodec;)V
 
 accessible method net/minecraft/data/worldgen/biome/NetherBiomes baseBiome ()Lnet/minecraft/world/level/biome/Biome$BiomeBuilder;
+
+accessible method net/minecraft/world/item/equipment/ArmorMaterials makeDefense (IIIII)Ljava/util/Map;
