@@ -1,7 +1,7 @@
 # 1.0.11
 - Add Culling to Arisian Moss Block
 - Replace Custom Floating Block Feature with Vanilla Simple Block
-- Increase Pendorite Horse Armor to +20 armor
+- Increase Pendorite Horse and Wolf Armor to +20 armor
 
 # 1.0.10
 - Allow players to glide through all vines
