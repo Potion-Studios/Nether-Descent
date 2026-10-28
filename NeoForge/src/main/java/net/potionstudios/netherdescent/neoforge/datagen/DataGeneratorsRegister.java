@@ -108,7 +108,7 @@ class DataGeneratorsRegister {
 			    );
 		    })
 			.add(LithostitchedRegistries.WORLDGEN_MODIFIER, pContext -> {
-				SurfaceRules.RuleSource source = NetherDescentSurfaceRules.makeRules(pContext.lookup(Registries.BIOME));
+				SurfaceRules.RuleSource source = NetherDescentSurfaceRules.makeRules();
 				pContext.register(
 						NetherDescent.key(LithostitchedRegistries.WORLDGEN_MODIFIER, "surface_rule/nether"),
 						WorldgenModifier.builder().addSurfaceRule(Level.NETHER, InjectionType.PREPEND, source
