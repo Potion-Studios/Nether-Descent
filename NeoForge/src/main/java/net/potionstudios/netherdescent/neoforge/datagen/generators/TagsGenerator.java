@@ -106,8 +106,6 @@ public class TagsGenerator {
             tag(BlockTags.CHAINS).add(NetherDescentBlocks.PENDORITE_CHAIN.get());
 			tag(Tags.Blocks.CHAINS).add(NetherDescentBlocks.PENDORITE_CHAIN.get());
 			tag(BlockTags.WART_BLOCKS).add(NetherDescentBlocks.SYTHIAN_WART_BLOCK.get(), NetherDescentBlocks.WAILING_WART_BLOCK.get());
-			tag(NetherDescentBlockTags.SUPPORTS_EMBUR_ROOTS).addTag(BlockTags.SUPPORTS_WARPED_ROOTS);
-			tag(NetherDescentBlockTags.SUPPORTS_WAILING_GRASS).addTag(BlockTags.SUPPORTS_WARPED_ROOTS);
 
 			tag(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE).add(NetherDescentBlocks.PENDORITE_BLOCK.get());
 			tag(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE).add(NetherDescentBlocks.RAW_PENDORITE_BLOCK.get());
