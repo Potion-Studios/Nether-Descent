@@ -56,7 +56,7 @@ tasks {
     }
 
     shadowJar {
-        exclude("architectury.common.json", ".cache/**", "data/neoforge/**")
+        exclude("architectury.common.json", ".cache/**", "data/neoforge/**", "data/netherdescent/lithostitched/**")
         configurations = listOf(project.configurations.getByName("shadowCommon"))
         archiveClassifier.set("dev-shadow")
     }
