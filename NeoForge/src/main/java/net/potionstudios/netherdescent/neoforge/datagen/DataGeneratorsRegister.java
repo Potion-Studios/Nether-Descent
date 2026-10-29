@@ -11,7 +11,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.dimension.LevelStem;
@@ -108,10 +107,9 @@ class DataGeneratorsRegister {
 			    );
 		    })
 			.add(LithostitchedRegistries.WORLDGEN_MODIFIER, pContext -> {
-				SurfaceRules.RuleSource source = NetherDescentSurfaceRules.makeRules(pContext.lookup(Registries.BIOME));
+				SurfaceRules.RuleSource source = NetherDescentSurfaceRules.makeRules();
 				pContext.register(
 						NetherDescent.key(LithostitchedRegistries.WORLDGEN_MODIFIER, "surface_rule/nether"),
-						WorldgenModifier.builder().addSurfaceRule(Level.NETHER, InjectionType.PREPEND, source
-					));
+						WorldgenModifier.builder().addSurfaceRule(LevelStem.NETHER, InjectionType.PREPEND, source));
 			});
 }
