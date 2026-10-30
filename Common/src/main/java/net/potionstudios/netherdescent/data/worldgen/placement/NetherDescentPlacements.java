@@ -6,6 +6,7 @@ import net.minecraft.core.Vec3i;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
@@ -25,7 +26,22 @@ public class NetherDescentPlacements {
     public static final ResourceKey<PlacedFeature> EMBUR_LILY = PlacedFeaturesUtil.createPlacedFeature("embur_lily", NetherDescentFeatures.EMBUR_LILY, () -> List.of(CountOnEveryLayerPlacement.of(4), BiomeFilter.biome()));
     public static final ResourceKey<PlacedFeature> EMBUR_BOG_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("embur_bog_vegetation", NetherDescentFeatures.EMBUR_BOG_VEGETATION, () -> List.of(CountOnEveryLayerPlacement.of(8), BiomeFilter.biome()));
     public static final ResourceKey<PlacedFeature> EMBUR_CAVE_MOSS = PlacedFeaturesUtil.createPlacedFeature("embur_cave_moss", NetherDescentFeatures.EMBUR_CAVE_MOSS, () -> List.of(CountPlacement.of(256), PlacementUtils.RANGE_BOTTOM_TO_MAX_TERRAIN_HEIGHT, InSquarePlacement.spread(), BiomeFilter.biome()));
-	public static final ResourceKey<PlacedFeature> HANGING_EMBUR_MOSS = PlacedFeaturesUtil.createPlacedFeature("hanging_embur_moss", NetherDescentFeatures.HANGING_EMBUR_MOSS, () -> List.of(CountPlacement.of(25), InSquarePlacement.spread(), PlacementUtils.FULL_RANGE, BiomeFilter.biome()));
+	public static final ResourceKey<PlacedFeature> HANGING_EMBUR_MOSS = PlacedFeaturesUtil.createPlacedFeature(
+			"hanging_embur_moss",
+			NetherDescentFeatures.HANGING_EMBUR_MOSS,
+			() -> List.of(
+					CountPlacement.of(25),
+					InSquarePlacement.spread(),
+					PlacementUtils.FULL_RANGE,
+					BiomeFilter.biome(),
+					CountPlacement.of(12),
+					RandomOffsetPlacement.of(UniformInt.of(-10, 10), UniformInt.of(-10, 10)),
+					EnvironmentScanPlacement.scanningFor(Direction.UP,
+							BlockPredicate.matchesBlocks(NetherDescentBlocks.BLUE_NETHERRACK.get()),
+							BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
+					RandomOffsetPlacement.vertical(ConstantInt.of(-1))
+			)
+	);
 	public static final ResourceKey<PlacedFeature> EMBUR_MOSS_CARPET_PATCH = PlacedFeaturesUtil.createPlacedFeature("embur_moss_carpet_patch", NetherDescentFeatures.EMBUR_MOSS_CARPET_PATCH, () -> List.of(
             CountPlacement.of(256),
             InSquarePlacement.spread(),
