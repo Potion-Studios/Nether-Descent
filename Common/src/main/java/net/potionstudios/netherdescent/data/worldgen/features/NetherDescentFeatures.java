@@ -1,19 +1,22 @@
 package net.potionstudios.netherdescent.data.worldgen.features;
 
 import com.google.common.collect.ImmutableList;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.valueproviders.BiasedToBottomInt;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.HangingMossBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
@@ -30,7 +33,6 @@ import net.potionstudios.netherdescent.world.level.levelgen.feature.configuratio
 import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUtil;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 public class NetherDescentFeatures {
 
@@ -60,8 +62,23 @@ public class NetherDescentFeatures {
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> HANGING_EMBUR_MOSS = ConfiguredFeaturesUtil.createConfiguredFeature(
 			"hanging_embur_moss",
-			Feature.SIMPLE_BLOCK,
-			() -> new SimpleBlockConfiguration(BlockStateProvider.simple(NetherDescentBlocks.EMBUR_HANGING_MOSS.get().defaultBlockState()))
+			Feature.BLOCK_COLUMN,
+			() -> {
+				BlockState vine = NetherDescentBlocks.EMBUR_HANGING_MOSS.get().defaultBlockState();
+				return new BlockColumnConfiguration(
+						List.of(
+								BlockColumnConfiguration.layer(ConstantInt.of(1),
+										BlockStateProvider.simple(NetherDescentBlocks.EMBUR_MOSS_BLOCK.get())),
+								BlockColumnConfiguration.layer(BiasedToBottomInt.of(0, 20),
+										BlockStateProvider.simple(vine.setValue(HangingMossBlock.TIP, false))),
+								BlockColumnConfiguration.layer(ConstantInt.of(1),
+										BlockStateProvider.simple(vine.setValue(HangingMossBlock.TIP, true)))
+						),
+						Direction.DOWN,
+						BlockPredicate.ONLY_IN_AIR_PREDICATE,
+						true
+				);
+			}
 	);
 
 	public static final ResourceKey<ConfiguredFeature<?, ?>> EMBUR_MOSS_VEGETATION = ConfiguredFeaturesUtil.createConfiguredFeature("embur_moss_vegetation", Feature.SIMPLE_BLOCK, () -> new SimpleBlockConfiguration(

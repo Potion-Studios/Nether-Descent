@@ -1,3 +1,6 @@
+# 1.0.12
+- Fix Hanging Embur Moss not Generating, Change to Block Column
+
 # 1.0.11
 - Add Culling to Arisian Moss Block
 - Replace Custom Floating Block Feature with Vanilla Simple Block
