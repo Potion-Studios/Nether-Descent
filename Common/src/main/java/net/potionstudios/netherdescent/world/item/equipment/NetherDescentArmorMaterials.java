@@ -15,7 +15,7 @@ public interface NetherDescentArmorMaterials {
         enumMap.put(ArmorType.LEGGINGS, 5);
         enumMap.put(ArmorType.CHESTPLATE, 6);
         enumMap.put(ArmorType.HELMET, 2);
-        enumMap.put(ArmorType.BODY, 12);
+        enumMap.put(ArmorType.BODY, 20);
     }), 9, SoundEvents.ARMOR_EQUIP_IRON, 1.5F, 0.0F, NetherDescentItemTags.REPAIRS_PENDORITE_ARMOR, NetherDescentEquipmentAssets.PENDORITE);
 
     static void armorMaterials() {
