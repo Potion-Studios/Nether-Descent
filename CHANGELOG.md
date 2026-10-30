@@ -1,5 +1,6 @@
-# 1.0.12
+# 1.0.12 – Last Version for 1.21.4 (Barring any major issues or bugs)
 - Fix Hanging Embur Moss not Generating, Change to Block Column
+- ReEnable Soul fire overlay on Entities (1.21.4)
 
 # 1.0.11
 - Add Culling to Arisian Moss Block
