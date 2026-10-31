@@ -36,7 +36,7 @@ public class NetherDescentItems {
     public static final Supplier<Item> PENDORITE_INGOT = registerSimpleItem("pendorite_ingot", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> PENDORITE_NUGGET = registerSimpleItem("pendorite_nugget", () -> new Item(new Item.Properties()));
     public static final Supplier<StandingAndWallBlockItem> PENDORITE_TORCH = registerItemNoLang("pendorite_torch", () -> new StandingAndWallBlockItem(NetherDescentBlocks.PENDORITE_TORCH.get(), NetherDescentBlocks.PENDORITE_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
-    public static final Supplier<HorseArmorItem> PENDORITE_HORSE_ARMOR = registerSimpleItem("pendorite_horse_armor", () -> new HorseArmorItem(1, "pendorite", new Item.Properties().stacksTo(1)));
+    public static final Supplier<HorseArmorItem> PENDORITE_HORSE_ARMOR = registerSimpleItem("pendorite_horse_armor", () -> new HorseArmorItem(20, "pendorite", new Item.Properties().stacksTo(1)));
 
     public static final Supplier<Item> SOUL_BLAZE_ROD = registerItem("soul_blaze_rod", () -> new Item(new Item.Properties()));
     public static final Supplier<Item> SOUL_BLAZE_POWDER = registerSimpleItem("soul_blaze_powder", () -> new Item(new Item.Properties()));

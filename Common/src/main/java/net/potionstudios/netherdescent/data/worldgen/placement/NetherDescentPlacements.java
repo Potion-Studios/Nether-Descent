@@ -5,7 +5,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
@@ -90,8 +89,8 @@ public class NetherDescentPlacements {
 			EnvironmentScanPlacement.scanningFor(Direction.UP,
 					BlockPredicate.allOf(
 							BlockPredicate.replaceable(),
-							BlockPredicate.matchesTag(new Vec3i(0, 1, 0), BlockTags.AIR),
-							BlockPredicate.matchesTag(new Vec3i(0, -1, 0), BlockTags.AIR)
+							BlockPredicate.matchesBlocks(new Vec3i(0, 1, 0), Blocks.AIR, Blocks.CAVE_AIR, Blocks.VOID_AIR),
+							BlockPredicate.matchesBlocks(new Vec3i(0, -1, 0), Blocks.AIR, Blocks.CAVE_AIR, Blocks.VOID_AIR)
 					),
 					BlockPredicate.not(BlockPredicate.matchesBlocks(Blocks.SOUL_SOIL)),
 					5),
