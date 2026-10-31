@@ -1,3 +1,6 @@
+# 1.0.10
+- Add a bunch of missing/new Block and Item Tags
+
 # 1.0.9
 - Decrease Jar size by compressing audio files
 
