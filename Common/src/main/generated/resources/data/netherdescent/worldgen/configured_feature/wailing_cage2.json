@@ -16,11 +16,13 @@
       "type": "minecraft:replaceable"
     },
     "canopy_location": "netherdescent:features/cages/wailing_cage_canopy2",
+    "decorators": [],
     "height": {
       "type": "minecraft:biased_to_bottom",
       "max_inclusive": 48,
       "min_inclusive": 48
     },
+    "height_limit_behavior": "DEFAULT",
     "leaves_provider": {
       "type": "minecraft:weighted_state_provider",
       "entries": [
@@ -85,6 +87,7 @@
     "max_log_depth": 4,
     "orientation": "UPSIDE_DOWN",
     "place_from_nbt": [],
+    "random_rotation": true,
     "tree_filter_behavior": "PASSTHROUGH"
   }
 }

@@ -32,6 +32,7 @@
       "max_inclusive": 12,
       "min_inclusive": 8
     },
+    "height_limit_behavior": "DEFAULT",
     "leaves_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
@@ -54,7 +55,9 @@
       "minecraft:crimson_stem"
     ],
     "max_log_depth": 4,
+    "orientation": "STANDARD",
     "place_from_nbt": [],
+    "random_rotation": true,
     "tree_filter_behavior": "PASSTHROUGH"
   }
 }

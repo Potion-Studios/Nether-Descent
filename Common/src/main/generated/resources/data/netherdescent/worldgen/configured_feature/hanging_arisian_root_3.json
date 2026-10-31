@@ -56,6 +56,7 @@
           "state": {
             "Name": "netherdescent:thorn_sprout",
             "Properties": {
+              "counting": "false",
               "facing": "north",
               "flowering": "false",
               "segment": "end",
@@ -80,6 +81,7 @@
       "max_inclusive": 45,
       "min_inclusive": 2
     },
+    "height_limit_behavior": "DEFAULT",
     "leaves_provider": [
       {
         "type": "minecraft:simple_state_provider",
@@ -119,6 +121,7 @@
     ],
     "max_log_depth": 4,
     "orientation": "UPSIDE_DOWN",
+    "random_rotation": true,
     "replace_from_nbt": {},
     "tree_filter_behavior": "PASSTHROUGH"
   }
