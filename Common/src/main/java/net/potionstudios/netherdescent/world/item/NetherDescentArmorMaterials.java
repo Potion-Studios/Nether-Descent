@@ -22,7 +22,7 @@ public class NetherDescentArmorMaterials {
         enumMap.put(ArmorItem.Type.LEGGINGS, 5);
         enumMap.put(ArmorItem.Type.CHESTPLATE, 6);
         enumMap.put(ArmorItem.Type.HELMET, 2);
-        enumMap.put(ArmorItem.Type.BODY, 12);
+        enumMap.put(ArmorItem.Type.BODY, 20);
     }), 9, SoundEvents.ARMOR_EQUIP_IRON, 1.5F, 0.0F, () -> Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get()));
 
     private static Supplier<Holder.Reference<ArmorMaterial>> register(String name, EnumMap<ArmorItem.Type, Integer> defense, int enchantmentValue, Holder<SoundEvent> equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngridient) {
