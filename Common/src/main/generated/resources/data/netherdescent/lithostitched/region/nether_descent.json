@@ -1,8 +1,8 @@
 {
   "biomes": [
-    "netherdescent:wailing_garth",
-    "netherdescent:sythian_torrids",
     "netherdescent:embur_bog",
+    "netherdescent:sythian_torrids",
+    "netherdescent:wailing_garth",
     "netherdescent:arisian_undergrowth",
     "netherdescent:crimson_gardens"
   ],

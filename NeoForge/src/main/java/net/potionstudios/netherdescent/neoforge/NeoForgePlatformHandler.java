@@ -25,7 +25,6 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
-import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.FMLPaths;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.data.loading.DatagenModLoader;
@@ -120,11 +119,6 @@ public final class NeoForgePlatformHandler implements PlatformHandler {
 
 	public static void register(final IEventBus bus) {
 		CACHED.values().forEach(deferredRegister -> deferredRegister.register(bus));
-	}
-
-	@Override
-	public boolean isDevEnvironment() {
-		return !FMLLoader.isProduction();
 	}
 
 	@Override
