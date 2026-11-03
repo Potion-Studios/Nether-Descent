@@ -1,35 +1,41 @@
 package net.potionstudios.netherdescent.world.level.levelgen.feature;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.MossyCarpetBlock;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.potionstudios.netherdescent.world.level.block.custom.HangingMossyCarpetBlock;
 import net.potionstudios.netherdescent.world.level.block.custom.NDMossyCarpetBlock;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.CarpetPatchFeatureConfiguration;
+import org.jspecify.annotations.NonNull;
 
-public class CarpetPatchFeature extends Feature<CarpetPatchFeatureConfiguration> {
-	public CarpetPatchFeature(Codec<CarpetPatchFeatureConfiguration> codec) {
-		super(codec);
+public record CarpetPatchFeature(Block carpet, boolean hanging) implements Feature {
+	public static final MapCodec<CarpetPatchFeature> CODEC = RecordCodecBuilder.mapCodec(
+			instance -> instance.group(
+					BuiltInRegistries.BLOCK.byNameCodec().fieldOf("carpet").forGetter(CarpetPatchFeature::carpet),
+					Codec.BOOL.fieldOf("hanging").orElse(false).forGetter(CarpetPatchFeature::hanging)
+			).apply(instance, CarpetPatchFeature::new)
+	);
+
+	@Override
+	public boolean place(@NonNull WorldGenLevel level, @NonNull ChunkGenerator chunkGenerator, @NonNull RandomSource random, @NonNull BlockPos origin) {
+		if (carpet instanceof MossyCarpetBlock)
+			NDMossyCarpetBlock.placeAt(carpet.defaultBlockState(), level, origin, random, 2);
+		else if (carpet instanceof HangingMossyCarpetBlock)
+			HangingMossyCarpetBlock.placeAt(carpet.defaultBlockState().setValue(HangingMossyCarpetBlock.HANGING, hanging), level, origin, random, 2);
+		else setBlock(level, origin, carpet.defaultBlockState());
+
+		return true;
 	}
 
 	@Override
-	public boolean place(FeaturePlaceContext<CarpetPatchFeatureConfiguration> context) {
-		CarpetPatchFeatureConfiguration config = context.config();
-
-		WorldGenLevel level = context.level();
-		BlockPos origin = context.origin();
-		Block carpet = config.carpet();
-
-        if (carpet instanceof MossyCarpetBlock)
-            NDMossyCarpetBlock.placeAt(carpet.defaultBlockState(), level, origin, context.random(), 2);
-        else if (carpet instanceof HangingMossyCarpetBlock)
-	        HangingMossyCarpetBlock.placeAt(carpet.defaultBlockState().setValue(HangingMossyCarpetBlock.HANGING, config.hanging()), level, origin, context.random(), 2);
-        else setBlock(level, origin, carpet.defaultBlockState());
-
-        return true;
+	public @NonNull MapCodec<? extends Feature> codec() {
+		return CODEC;
 	}
 }
