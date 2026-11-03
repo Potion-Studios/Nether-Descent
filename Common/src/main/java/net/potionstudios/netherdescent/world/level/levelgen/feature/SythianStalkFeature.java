@@ -2,20 +2,29 @@ package net.potionstudios.netherdescent.world.level.levelgen.feature;
 
 import com.google.common.base.Suppliers;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BambooLeaves;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.potionstudios.netherdescent.world.level.block.NetherDescentBlocks;
 import net.potionstudios.netherdescent.world.level.block.plants.SythianStalkBlock;
-import net.potionstudios.netherdescent.world.level.levelgen.feature.configurations.SythianStalkFeatureConfiguration;
+import org.jspecify.annotations.NonNull;
 
 import java.util.function.Supplier;
 
-public class SythianStalkFeature extends Feature<SythianStalkFeatureConfiguration> {
+public record SythianStalkFeature(boolean hanging) implements Feature {
+	public static final MapCodec<SythianStalkFeature> CODEC = RecordCodecBuilder.mapCodec(
+			instance -> instance.group(
+					Codec.BOOL.fieldOf("hanging").forGetter(SythianStalkFeature::hanging)
+			).apply(instance, SythianStalkFeature::new)
+	);
+	
     private static final Supplier<BlockState> STALK = Suppliers.memoize(() ->
             NetherDescentBlocks.SYTHIAN_STALK.getBlockState()
                     .setValue(SythianStalkBlock.AGE, 1)
@@ -30,39 +39,38 @@ public class SythianStalkFeature extends Feature<SythianStalkFeatureConfiguratio
 
     private static final Supplier<BlockState> STALK_TOP_SMALL = Suppliers.memoize(() ->
             STALK.get().setValue(SythianStalkBlock.LEAVES, BambooLeaves.SMALL));
-	public SythianStalkFeature(Codec<SythianStalkFeatureConfiguration> codec) {
-		super(codec);
-	}
 
 	@Override
-	public boolean place(FeaturePlaceContext<SythianStalkFeatureConfiguration> context) {
+	public boolean place(@NonNull WorldGenLevel level, @NonNull ChunkGenerator chunkGenerator, @NonNull RandomSource random, @NonNull BlockPos origin) {
 		int i = 0;
-		BlockPos blockPos = context.origin();
-		WorldGenLevel worldGenLevel = context.level();
-		BlockPos.MutableBlockPos mutableBlockPos = blockPos.mutable();
-		if (worldGenLevel.isEmptyBlock(blockPos)) {
-			boolean hanging = context.config().hanging();
-			if (NetherDescentBlocks.SYTHIAN_STALK.getBlockState().setValue(SythianStalkBlock.HANGING, hanging).canSurvive(worldGenLevel, mutableBlockPos)) {
-				int j = context.random().nextInt(12) + 5;
+		BlockPos.MutableBlockPos mutableBlockPos = origin.mutable();
+		if (level.isEmptyBlock(origin)) {
+			if (NetherDescentBlocks.SYTHIAN_STALK.getBlockState().setValue(SythianStalkBlock.HANGING, hanging).canSurvive(level, mutableBlockPos)) {
+				int j = random.nextInt(12) + 5;
 				Direction move = hanging ? Direction.DOWN : Direction.UP;
-				for (int k = 0; k < j && worldGenLevel.isEmptyBlock(mutableBlockPos); k++) {
-					worldGenLevel.setBlock(mutableBlockPos, STALK.get().setValue(SythianStalkBlock.HANGING, hanging), 2);
+				for (int k = 0; k < j && level.isEmptyBlock(mutableBlockPos); k++) {
+					level.setBlock(mutableBlockPos, STALK.get().setValue(SythianStalkBlock.HANGING, hanging), 2);
 					mutableBlockPos.move(move);
 				}
 
-				int check = hanging ? blockPos.getY() - mutableBlockPos.getY() : mutableBlockPos.getY() - blockPos.getY();
+				int check = hanging ? origin.getY() - mutableBlockPos.getY() : mutableBlockPos.getY() - origin.getY();
 
 				if (check >= 3) {
-                    if (!worldGenLevel.isEmptyBlock(mutableBlockPos.offset(0, hanging ? -3 : 3, 0)))
-                        mutableBlockPos.move(move.getOpposite(), 3);
-					worldGenLevel.setBlock(mutableBlockPos, STALK_FINAL_LARGE.get().setValue(SythianStalkBlock.HANGING, hanging), 2);
-					worldGenLevel.setBlock(mutableBlockPos.move(move), STALK_TOP_LARGE.get().setValue(SythianStalkBlock.HANGING, hanging), 2);
-					worldGenLevel.setBlock(mutableBlockPos.move(move), STALK_TOP_SMALL.get().setValue(SythianStalkBlock.HANGING, hanging), 2);
+					if (!level.isEmptyBlock(mutableBlockPos.offset(0, hanging ? -3 : 3, 0)))
+						mutableBlockPos.move(move.getOpposite(), 3);
+					level.setBlock(mutableBlockPos, STALK_FINAL_LARGE.get().setValue(SythianStalkBlock.HANGING, hanging), 2);
+					level.setBlock(mutableBlockPos.move(move), STALK_TOP_LARGE.get().setValue(SythianStalkBlock.HANGING, hanging), 2);
+					level.setBlock(mutableBlockPos.move(move), STALK_TOP_SMALL.get().setValue(SythianStalkBlock.HANGING, hanging), 2);
 				}
 			}
 
 			i++;
 		}
 		return i > 0;
+	}
+
+	@Override
+	public @NonNull MapCodec<? extends Feature> codec() {
+		return CODEC;
 	}
 }

@@ -1,6 +1,5 @@
 package net.potionstudios.netherdescent.data.worldgen.placement;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -10,6 +9,7 @@ import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
+import net.minecraft.world.level.levelgen.blockpredicates.WouldSurvivePredicate;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.potionstudios.netherdescent.tags.NetherDescentBlockTags;
@@ -35,11 +35,11 @@ public class NetherDescentPlacements {
 					PlacementUtils.FULL_RANGE,
 					BiomeFilter.biome(),
 					CountPlacement.of(12),
-					RandomOffsetPlacement.of(UniformInt.of(-10, 10), UniformInt.of(-10, 10)),
+					OffsetPlacement.of(UniformInt.of(-10, 10), UniformInt.of(-10, 10)),
 					EnvironmentScanPlacement.scanningFor(Direction.UP,
 							BlockPredicate.matchesBlocks(NetherDescentBlocks.BLUE_NETHERRACK.get()),
 							BlockPredicate.ONLY_IN_AIR_PREDICATE, 12),
-					RandomOffsetPlacement.vertical(ConstantInt.of(-1))
+					OffsetPlacement.vertical(ConstantInt.of(-1))
 			)
 	);
 	public static final ResourceKey<PlacedFeature> EMBUR_MOSS_CARPET_PATCH = PlacedFeaturesUtil.createPlacedFeature("embur_moss_carpet_patch", NetherDescentFeatures.EMBUR_MOSS_CARPET_PATCH, () -> List.of(
@@ -75,7 +75,7 @@ public class NetherDescentPlacements {
 			InSquarePlacement.spread(),
 			PlacementUtils.RANGE_10_10,
 			EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.allOf(
-					BlockPredicate.matchesBlocks(Direction.UP.getUnitVec3i(), Blocks.BLACKSTONE),
+					BlockPredicate.matchesBlocks(Direction.UP.getUnitVec3i(), Collections.singletonList(Blocks.BLACKSTONE)),
 					BlockPredicate.not(BlockPredicate.solid()),
 					BlockPredicate.noFluid()
 			), 12),
@@ -93,17 +93,17 @@ public class NetherDescentPlacements {
 			BlockPredicate.matchesTag(Direction.UP.getUnitVec3i(), NetherDescentBlockTags.SYTHIAN_STALK_PLANTABLE_ON),
 			BlockPredicate.not(BlockPredicate.solid()),
 			BlockPredicate.noFluid()
-	), 12), BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(NetherDescentBlocks.SYTHIAN_STALK.getBlockState().setValue(SythianStalkBlock.HANGING, true), BlockPos.ZERO)), BiomeFilter.biome()));
+	), 12), BlockPredicateFilter.forPredicate(new WouldSurvivePredicate(Vec3i.ZERO, NetherDescentBlocks.SYTHIAN_STALK.getBlockState().setValue(SythianStalkBlock.HANGING, true))), BiomeFilter.biome()));
 
     public static final ResourceKey<PlacedFeature> WAILING_GARTH_VEGETATION = PlacedFeaturesUtil.createPlacedFeature("wailing_garth_vegetation", NetherDescentFeatures.WAILING_GARTH_VEGETATION, () -> List.of(CountOnEveryLayerPlacement.of(6), BiomeFilter.biome()));
 
 	public static final ResourceKey<PlacedFeature> WAILING_BULB_BLOSSOM = PlacedFeaturesUtil.createPlacedFeature("wailing_bulb_blossom", NetherDescentFeatures.WAILING_BULB_BLOSSOM, () -> List.of(
 			CountPlacement.of(10), InSquarePlacement.spread(), PlacementUtils.RANGE_8_8,
 			EnvironmentScanPlacement.scanningFor(Direction.UP, BlockPredicate.allOf(
-					BlockPredicate.matchesBlocks(Direction.UP.getUnitVec3i(), Blocks.SOUL_SOIL),
+					BlockPredicate.matchesBlocks(Direction.UP.getUnitVec3i(), Collections.singletonList(Blocks.SOUL_SOIL)),
 					BlockPredicate.ONLY_IN_AIR_PREDICATE
 			), 12),
-			RandomOffsetPlacement.vertical(UniformInt.of(-6, -1)),
+			OffsetPlacement.vertical(UniformInt.of(-6, -1)),
 			EnvironmentScanPlacement.scanningFor(Direction.UP,
 					BlockPredicate.allOf(
 							BlockPredicate.replaceable(),
