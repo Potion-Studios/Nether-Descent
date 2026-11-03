@@ -22,15 +22,9 @@ accessible method net/minecraft/world/level/block/ButtonBlock <init> (Lnet/minec
 transitive-accessible method net/minecraft/world/level/block/entity/BlockEntityType <init> (Lnet/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier;Ljava/util/Set;)V
 transitive-accessible class net/minecraft/world/level/block/entity/BlockEntityType$BlockEntitySupplier
 
-accessible class net/minecraft/world/level/levelgen/SurfaceRules$SurfaceRule
-accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context context Lnet/minecraft/world/level/levelgen/WorldGenerationContext;
-accessible field net/minecraft/world/level/levelgen/SurfaceRules$Context system Lnet/minecraft/world/level/levelgen/SurfaceSystem;
-accessible field net/minecraft/world/level/levelgen/SurfaceSystem noiseRandom Lnet/minecraft/world/level/levelgen/PositionalRandomFactory;
-
 accessible method net/minecraft/world/level/block/NyliumBlock canBeNylium (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/LevelReader;Lnet/minecraft/core/BlockPos;)Z
 
 accessible field net/minecraft/data/worldgen/ProcessorLists EMPTY Lnet/minecraft/resources/ResourceKey;
-accessible method net/minecraft/data/advancements/packs/VanillaAdventureAdvancements addBiomes (Lnet/minecraft/advancements/Advancement$Builder;Lnet/minecraft/core/HolderLookup$Provider;Ljava/util/List;)Lnet/minecraft/advancements/Advancement$Builder;
 
 accessible method net/minecraft/world/entity/monster/Blaze setCharged (Z)V
 accessible class net/minecraft/world/entity/monster/Blaze$BlazeAttackGoal

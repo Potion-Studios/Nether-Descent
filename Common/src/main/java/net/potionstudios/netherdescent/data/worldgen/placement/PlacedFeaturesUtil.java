@@ -6,8 +6,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.potionstudios.netherdescent.NetherDescent;
 
@@ -25,17 +24,17 @@ public class PlacedFeaturesUtil {
         return () -> placementModifiers;
     }
 
-    public static <FC extends FeatureConfiguration> Holder<PlacedFeature> createPlacedFeatureDirect(Holder<ConfiguredFeature<?, ?>> feature, PlacementModifier... placementModifiers) {
+    public static Holder<PlacedFeature> createPlacedFeatureDirect(Holder<Feature> feature, PlacementModifier... placementModifiers) {
         return createPlacedFeatureDirect(feature, List.of(placementModifiers));
     }
 
-    protected static <FC extends FeatureConfiguration> Holder<PlacedFeature> createPlacedFeatureDirect(Holder<ConfiguredFeature<?, ?>> feature, List<PlacementModifier> placementModifiers) {
+    protected static Holder<PlacedFeature> createPlacedFeatureDirect(Holder<Feature> feature, List<PlacementModifier> placementModifiers) {
         return Holder.direct(new PlacedFeature(feature, placementModifiers));
     }
 
-    protected static <FC extends FeatureConfiguration> ResourceKey<PlacedFeature> createPlacedFeature(String id, ResourceKey<ConfiguredFeature<?, ?>> feature, Supplier<List<PlacementModifier>> placementModifiers) {
+    protected static ResourceKey<PlacedFeature> createPlacedFeature(String id, ResourceKey<Feature> feature, Supplier<List<PlacementModifier>> placementModifiers) {
         ResourceKey<PlacedFeature> placedFeatureKey = registerKey(id);
-        PLACED_FEATURE_FACTORIES.put(placedFeatureKey, configuredFeatureHolderGetter -> new PlacedFeature(configuredFeatureHolderGetter.getOrThrow(feature), placementModifiers.get()));
+        PLACED_FEATURE_FACTORIES.put(placedFeatureKey, featureHolderGetter -> new PlacedFeature(featureHolderGetter.getOrThrow(feature), placementModifiers.get()));
         return placedFeatureKey;
     }
 
@@ -45,6 +44,6 @@ public class PlacedFeaturesUtil {
 
     @FunctionalInterface
     public interface PlacedFeatureFactory {
-        PlacedFeature generate(HolderGetter<ConfiguredFeature<?, ?>> configuredFeatureHolderGetter);
+        PlacedFeature generate(HolderGetter<Feature> configuredFeatureHolderGetter);
     }
 }
