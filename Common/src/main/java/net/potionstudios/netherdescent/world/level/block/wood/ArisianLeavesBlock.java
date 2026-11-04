@@ -9,6 +9,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.UntintedParticleLeavesBlock;
+import net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -24,7 +25,7 @@ public class ArisianLeavesBlock extends UntintedParticleLeavesBlock {
 	public static final BooleanProperty LIT = BlockStateProperties.LIT;
 	public static final IntegerProperty STRENGTH = IntegerProperty.create("strength", 0, 5);
 	public ArisianLeavesBlock(Properties properties) {
-		super(0.01F, NetherDescentParticles.ARISIAN_LEAF.get(), properties);
+		super(0.01F, NetherDescentParticles.ARISIAN_LEAF.get(), AmbientLeavesBlockSoundPlayer.noAmbientSound(), properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(LIT, false).setValue(STRENGTH, 0));
 	}
 

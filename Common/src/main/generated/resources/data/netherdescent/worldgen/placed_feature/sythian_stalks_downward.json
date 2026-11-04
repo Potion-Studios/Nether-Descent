@@ -56,8 +56,8 @@
       "predicate": {
         "type": "minecraft:would_survive",
         "state": {
-          "Name": "netherdescent:sythian_stalk",
-          "Properties": {
+          "id": "netherdescent:sythian_stalk",
+          "properties": {
             "age": "0",
             "hanging": "true",
             "leaves": "none",

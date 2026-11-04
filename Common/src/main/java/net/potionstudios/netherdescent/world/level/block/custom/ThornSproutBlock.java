@@ -160,7 +160,6 @@ public class ThornSproutBlock extends HorizontalDirectionalBlock {
 		Vec3 push = new Vec3(-facing.getStepX(), 0.15, -facing.getStepZ()).scale(PUSHBACK_STRENGTH);
 		for (Entity entity : entities) {
 			entity.setDeltaMovement(entity.getDeltaMovement().add(push));
-			entity.hurtMarked = true;
 		}
 	}
 

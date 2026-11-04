@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.potionstudios.netherdescent.NetherDescent;
@@ -77,7 +77,7 @@ public class NetherDescentWoodSet {
      * @param mapColor     The map color
      * @param requiredBlock
      */
-    public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor, LogStem logstem, GrowerItem growerItem, Supplier<? extends Block> requiredBlock, ResourceKey<ConfiguredFeature<?, ?>> feature, @Nullable ResourceKey<ConfiguredFeature<?, ?>> hangingFeature, boolean hanging) {
+    public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor, LogStem logstem, GrowerItem growerItem, Supplier<? extends Block> requiredBlock, ResourceKey<Feature> feature, @Nullable ResourceKey<Feature> hangingFeature, boolean hanging) {
         this.growerRequiredBlock = requiredBlock;
         this.woodType = PlatformHandler.PLATFORM_HANDLER.createWoodType(blockSetType.name(), blockSetType);
         this.name = blockSetType.name().replace(NetherDescent.MOD_ID + ":", "");
@@ -92,9 +92,9 @@ public class NetherDescentWoodSet {
         this.slab = NetherDescentBlocks.registerBlockItem(name + "_slab", SlabBlock::new, BlockBehaviour.Properties.of().mapColor(mapColor).instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD));
         this.fence = NetherDescentBlocks.registerBlockItem(name + "_fence", FenceBlock::new, BlockBehaviour.Properties.of().mapColor(mapColor).instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.NETHER_WOOD));
         this.fenceGate = NetherDescentBlocks.registerBlockItem(name + "_fence_gate", (properties) -> new FenceGateBlock(woodType, properties), BlockBehaviour.Properties.of().mapColor(mapColor).forceSolidOn().instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F));
-        this.door = NetherDescentBlocks.registerBlockItem(name + "_door", (properties) -> new DoorBlock(woodType.setType(), properties), BlockBehaviour.Properties.of().mapColor(mapColor).instrument(NoteBlockInstrument.BASS).strength(3.0F).noOcclusion().pushReaction(PushReaction.DESTROY));
+        this.door = NetherDescentBlocks.registerBlockItem(name + "_door", (properties) -> new DoorBlock(woodType.setType(), properties), BlockBehaviour.Properties.of().mapColor(mapColor).instrument(NoteBlockInstrument.BASS).strength(3.0F).noOcclusion().pushReaction(PushReaction.IMMOVEABLE));
         this.trapdoor = NetherDescentBlocks.registerBlockItem(name + "_trapdoor", (properties) -> new TrapDoorBlock(woodType.setType(), properties), BlockBehaviour.Properties.of().mapColor(mapColor).instrument(NoteBlockInstrument.BASS).strength(3.0F).noOcclusion().isValidSpawn(Blocks::never));
-        this.pressurePlate = NetherDescentBlocks.registerBlockItem(name + "_pressure_plate", (properties) -> new PressurePlateBlock(woodType.setType(), properties), BlockBehaviour.Properties.of().mapColor(mapColor).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollision().strength(0.5F).pushReaction(PushReaction.DESTROY));
+        this.pressurePlate = NetherDescentBlocks.registerBlockItem(name + "_pressure_plate", (properties) -> new PressurePlateBlock(woodType.setType(), properties), BlockBehaviour.Properties.of().mapColor(mapColor).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollision().strength(0.5F).pushReaction(PushReaction.IMMOVEABLE));
         this.button = NetherDescentBlocks.registerBlockItem(name + "_button", (properties) -> new ButtonBlock(blockSetType, 30, properties), Blocks.buttonProperties().mapColor(mapColor));
         Supplier<? extends Block> fungus = NetherDescentBlocks.registerBlockItem(name + "_" + growerItem.getName(), hanging ? (properties) -> new HangingFungusBlock(feature, hangingFeature, requiredBlock.get(), properties): (properties) -> new NDFungusBlock(feature, requiredBlock.get(), properties), BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_FUNGUS).mapColor(mapColor));
         this.growerItem = new PottedBlock(fungus, NetherDescentBlocks.register("potted_" + name + "_" + growerItem.getName(), properties -> PlatformHandler.PLATFORM_HANDLER.createPottedBlock(fungus, properties), BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)));
@@ -112,19 +112,19 @@ public class NetherDescentWoodSet {
         woodSets.add(this);
     }
 
-    public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor, Supplier<? extends Block> requiredBlock, ResourceKey<ConfiguredFeature<?, ?>> feature) {
+    public NetherDescentWoodSet(BlockSetType blockSetType, MapColor mapColor, Supplier<? extends Block> requiredBlock, ResourceKey<Feature> feature) {
         this(blockSetType, mapColor, LogStem.STEM, GrowerItem.FUNGUS, requiredBlock, feature, null, false);
     }
 
-    public NetherDescentWoodSet(String name, MapColor mapColor, Supplier<? extends Block> requiredBlock, ResourceKey<ConfiguredFeature<?, ?>> feature) {
+    public NetherDescentWoodSet(String name, MapColor mapColor, Supplier<? extends Block> requiredBlock, ResourceKey<Feature> feature) {
         this(BlockSetType.register(new BlockSetType(name)), mapColor, requiredBlock, feature);
     }
 
-    public NetherDescentWoodSet(String name, MapColor mapColor, LogStem logStem, GrowerItem growerItem, Supplier<? extends Block> requiredBlock, ResourceKey<ConfiguredFeature<?, ?>> feature) {
+    public NetherDescentWoodSet(String name, MapColor mapColor, LogStem logStem, GrowerItem growerItem, Supplier<? extends Block> requiredBlock, ResourceKey<Feature> feature) {
         this(BlockSetType.register(new BlockSetType(name)), mapColor, logStem, growerItem, requiredBlock, feature, null, false);
     }
 
-    public NetherDescentWoodSet(String name, MapColor mapColor, LogStem logStem, GrowerItem growerItem, Supplier<? extends Block> requiredBlock, ResourceKey<ConfiguredFeature<?, ?>> feature, ResourceKey<ConfiguredFeature<?, ?>> hangingFeature, boolean hanging) {
+    public NetherDescentWoodSet(String name, MapColor mapColor, LogStem logStem, GrowerItem growerItem, Supplier<? extends Block> requiredBlock, ResourceKey<Feature> feature, ResourceKey<Feature> hangingFeature, boolean hanging) {
         this(BlockSetType.register(new BlockSetType(name)), mapColor, logStem, growerItem, requiredBlock, feature, hangingFeature, hanging);
     }
 

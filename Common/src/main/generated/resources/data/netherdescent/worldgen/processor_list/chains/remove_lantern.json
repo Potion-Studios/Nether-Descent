@@ -12,13 +12,7 @@
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
           },
-          "output_state": {
-            "Name": "minecraft:iron_chain",
-            "Properties": {
-              "axis": "y",
-              "waterlogged": "false"
-            }
-          }
+          "output_state": "minecraft:iron_chain"
         },
         {
           "input_predicate": {
@@ -29,9 +23,7 @@
           "location_predicate": {
             "predicate_type": "minecraft:always_true"
           },
-          "output_state": {
-            "Name": "minecraft:structure_void"
-          }
+          "output_state": "minecraft:structure_void"
         }
       ]
     }

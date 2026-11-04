@@ -2,7 +2,6 @@ package net.potionstudios.netherdescent.neoforge.datagen;
 
 import com.mojang.datafixers.util.Pair;
 import dev.worldgen.lithostitched.api.registry.LithostitchedRegistries;
-import dev.worldgen.lithostitched.api.util.InjectionType;
 import dev.worldgen.lithostitched.api.worldgen.modifier.WorldgenModifier;
 import dev.worldgen.lithostitched.impl.worldgen.biomeinjector.AddPoints;
 import dev.worldgen.lithostitched.impl.worldgen.biomeinjector.region.Region;
@@ -10,11 +9,11 @@ import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.level.Level;
+import net.minecraft.data.worldgen.material.NetherMaterialRules;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.dimension.LevelStem;
-import net.minecraft.world.level.levelgen.SurfaceRules;
+import net.minecraft.world.level.levelgen.material.rule.MaterialRule;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.potionstudios.netherdescent.NetherDescent;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -32,7 +31,7 @@ import net.potionstudios.netherdescent.data.worldgen.placement.PlacedFeaturesUti
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructureSets;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructures;
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentTemplatePools;
-import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentSurfaceRules;
+import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentMaterialRules;
 
 import java.util.List;
 import java.util.Optional;
@@ -68,7 +67,7 @@ class DataGeneratorsRegister {
 			.add(Registries.FEATURE, configuredFeatureHolderGetter -> FeaturesUtil.FEATURES_FACTORIES.forEach(((biomeResourceKey, biomeFactory) -> configuredFeatureHolderGetter.register(biomeResourceKey, biomeFactory.generate(configuredFeatureHolderGetter)))))
 			.add(Registries.PLACED_FEATURE, pContext -> PlacedFeaturesUtil.PLACED_FEATURE_FACTORIES.forEach((resourceKey, factory) -> pContext.register(resourceKey, factory.generate(pContext.lookup(Registries.FEATURE)))))
 			.add(Registries.BIOME, biomeBootstapContext -> NetherDescentBiomes.BIOME_FACTORIES.forEach(((biomeResourceKey, biomeFactory) -> biomeBootstapContext.register(biomeResourceKey, biomeFactory.factory().generate(biomeBootstapContext.lookup(Registries.PLACED_FEATURE), biomeBootstapContext.lookup(Registries.CARVER))))))
-			.add(Registries.MATERIAL_RULE, materialRuleBootstrapContext -> NetherDescentSurfaceRules.MATERIAL_RULES_FACTORIES.forEach((materialRuleResourceKey, materialRuleFactory) -> materialRuleBootstrapContext.register(materialRuleResourceKey, materialRuleFactory.generate(materialRuleBootstrapContext))))
+			.add(Registries.MATERIAL_RULE, materialRuleBootstrapContext -> NetherDescentMaterialRules.MATERIAL_RULES_FACTORIES.forEach((materialRuleResourceKey, materialRuleFactory) -> materialRuleBootstrapContext.register(materialRuleResourceKey, materialRuleFactory.generate(materialRuleBootstrapContext))))
 			.add(Registries.TEMPLATE_POOL, context -> NetherDescentTemplatePools.TEMPLATE_POOL_FACTORIES.forEach((templatePoolResourceKey, templatePoolFactory) -> context.register(templatePoolResourceKey, templatePoolFactory.generate(context))))
 			.add(Registries.STRUCTURE, context -> NetherDescentStructures.STRUCTURE_FACTORIES.forEach((structureResourceKey, structureFactory) -> context.register(structureResourceKey, structureFactory.generate(context))))
 			.add(Registries.STRUCTURE_SET, context -> NetherDescentStructureSets.STRUCTURE_SET_FACTORIES.forEach((structureSetResourceKey, structureSetFactory) -> context.register(structureSetResourceKey, structureSetFactory.generate(context.lookup(Registries.STRUCTURE)))))
@@ -108,11 +107,10 @@ class DataGeneratorsRegister {
 				);
 			})
 			.add(LithostitchedRegistries.WORLDGEN_MODIFIER, pContext -> {
-				SurfaceRules.RuleSource source = NetherDescentSurfaceRules.makeRules(pContext.lookup(Registries.BIOME));
+				HolderGetter<MaterialRule> materialRuleLookup = pContext.lookup(Registries.MATERIAL_RULE);
 				pContext.register(
 						NetherDescent.key(LithostitchedRegistries.WORLDGEN_MODIFIER, "surface_rule/nether"),
-						WorldgenModifier.builder().addSurfaceRule(Level.NETHER, InjectionType.PREPEND, source
-						));
+						WorldgenModifier.builder().setMaterialRule(materialRuleLookup.getOrThrow(NetherMaterialRules.NETHER), materialRuleLookup.getOrThrow(NetherDescentMaterialRules.NETHER)));
 			});
 
 	private static final RegistrySetBuilder RELOADABLE_BUILDER = new RegistrySetBuilder()
