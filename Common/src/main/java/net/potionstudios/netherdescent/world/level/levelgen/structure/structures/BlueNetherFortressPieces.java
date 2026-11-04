@@ -17,9 +17,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
-import net.minecraft.world.level.levelgen.structure.StructurePieceAccessor;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.potionstudios.netherdescent.world.entity.NetherDescentEntityTypes;
@@ -51,7 +51,7 @@ public class BlueNetherFortressPieces {
 	};
 
 	static BlueNetherFortressPieces.NetherBridgePiece findAndCreateBridgePieceFactory(
-			BlueNetherFortressPieces.PieceWeight weight, StructurePieceAccessor pieces, RandomSource random, int x, int y, int z, Direction orientation, int genDepth
+			BlueNetherFortressPieces.PieceWeight weight, StructurePiecesBuilder pieces, RandomSource random, int x, int y, int z, Direction orientation, int genDepth
 	) {
 		Class<? extends BlueNetherFortressPieces.NetherBridgePiece> class_ = weight.pieceClass;
 		BlueNetherFortressPieces.NetherBridgePiece netherBridgePiece = null;
@@ -110,13 +110,13 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePiecesBuilder pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 8, 3, false);
 			this.generateChildLeft((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 3, 8, false);
 			this.generateChildRight((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 3, 8, false);
 		}
 
-		public static BlueNetherFortressPieces.BridgeCrossing createPiece(StructurePieceAccessor pieces, int x, int y, int z, Direction orientation, int genDepth) {
+		public static BlueNetherFortressPieces.BridgeCrossing createPiece(StructurePiecesBuilder pieces, int x, int y, int z, Direction orientation, int genDepth) {
 			BoundingBox boundingBox = BoundingBox.orientBox(x, y, z, -8, -3, 0, 19, 10, 19, orientation);
 			return isOkBox(boundingBox) && pieces.findCollisionPiece(boundingBox) == null
 					? new BlueNetherFortressPieces.BridgeCrossing(genDepth, boundingBox, orientation)
@@ -183,7 +183,7 @@ public class BlueNetherFortressPieces {
 		}
 
 		public static BlueNetherFortressPieces.BridgeEndFiller createPiece(
-				StructurePieceAccessor pieces, RandomSource random, int x, int y, int z, Direction orientation, int genDepth
+				StructurePiecesBuilder pieces, RandomSource random, int x, int y, int z, Direction orientation, int genDepth
 		) {
 			BoundingBox boundingBox = BoundingBox.orientBox(x, y, z, -1, -3, 0, 5, 10, 8, orientation);
 			return isOkBox(boundingBox) && pieces.findCollisionPiece(boundingBox) == null
@@ -244,12 +244,12 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePiecesBuilder pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 1, 3, false);
 		}
 
 		public static BlueNetherFortressPieces.BridgeStraight createPiece(
-				StructurePieceAccessor pieces, RandomSource random, int x, int y, int z, Direction orientation, int genDepth
+				StructurePiecesBuilder pieces, RandomSource random, int x, int y, int z, Direction orientation, int genDepth
 		) {
 			BoundingBox boundingBox = BoundingBox.orientBox(x, y, z, -1, -3, 0, 5, 10, 19, orientation);
 			return isOkBox(boundingBox) && pieces.findCollisionPiece(boundingBox) == null
@@ -306,12 +306,12 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePiecesBuilder pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 1, 0, true);
 		}
 
 		public static BlueNetherFortressPieces.CastleCorridorStairsPiece createPiece(
-				StructurePieceAccessor pieces, int x, int y, int z, Direction orientation, int genDepth
+				StructurePiecesBuilder pieces, int x, int y, int z, Direction orientation, int genDepth
 		) {
 			BoundingBox boundingBox = BoundingBox.orientBox(x, y, z, -1, -7, 0, 5, 14, 10, orientation);
 			return isOkBox(boundingBox) && pieces.findCollisionPiece(boundingBox) == null
@@ -368,7 +368,7 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePiecesBuilder pieces, @NonNull RandomSource random) {
 			int i = 1;
 			Direction direction = this.getOrientation();
 			if (direction == Direction.WEST || direction == Direction.NORTH) {
@@ -380,7 +380,7 @@ public class BlueNetherFortressPieces {
 		}
 
 		public static BlueNetherFortressPieces.CastleCorridorTBalconyPiece createPiece(
-				StructurePieceAccessor pieces, int x, int y, int z, Direction orientation, int genDepth
+				StructurePiecesBuilder pieces, int x, int y, int z, Direction orientation, int genDepth
 		) {
 			BoundingBox boundingBox = BoundingBox.orientBox(x, y, z, -3, 0, 0, 9, 7, 9, orientation);
 			return isOkBox(boundingBox) && pieces.findCollisionPiece(boundingBox) == null
@@ -439,12 +439,12 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePiecesBuilder pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 5, 3, true);
 		}
 
 		public static BlueNetherFortressPieces.CastleEntrance createPiece(
-				StructurePieceAccessor pieces, RandomSource random, int x, int y, int z, Direction orientation, int genDepth
+				StructurePiecesBuilder pieces, RandomSource random, int x, int y, int z, Direction orientation, int genDepth
 		) {
 			BoundingBox boundingBox = BoundingBox.orientBox(x, y, z, -5, -3, 0, 13, 14, 13, orientation);
 			return isOkBox(boundingBox) && pieces.findCollisionPiece(boundingBox) == null
@@ -545,14 +545,14 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePiecesBuilder pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 1, 0, true);
 			this.generateChildLeft((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 0, 1, true);
 			this.generateChildRight((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 0, 1, true);
 		}
 
 		public static BlueNetherFortressPieces.CastleSmallCorridorCrossingPiece createPiece(
-				StructurePieceAccessor pieces, int x, int y, int z, Direction orientation, int genDepth
+				StructurePiecesBuilder pieces, int x, int y, int z, Direction orientation, int genDepth
 		) {
 			BoundingBox boundingBox = BoundingBox.orientBox(x, y, z, -1, 0, 0, 5, 7, 5, orientation);
 			return isOkBox(boundingBox) && pieces.findCollisionPiece(boundingBox) == null
@@ -604,12 +604,12 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePiecesBuilder pieces, @NonNull RandomSource random) {
 			this.generateChildLeft((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 0, 1, true);
 		}
 
 		public static BlueNetherFortressPieces.CastleSmallCorridorLeftTurnPiece createPiece(
-				StructurePieceAccessor pieces, RandomSource random, int x, int y, int z, Direction orientation, int genDepth
+				StructurePiecesBuilder pieces, RandomSource random, int x, int y, int z, Direction orientation, int genDepth
 		) {
 			BoundingBox boundingBox = BoundingBox.orientBox(x, y, z, -1, 0, 0, 5, 7, 5, orientation);
 			return isOkBox(boundingBox) && pieces.findCollisionPiece(boundingBox) == null
@@ -662,12 +662,12 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePiecesBuilder pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 1, 0, true);
 		}
 
 		public static BlueNetherFortressPieces.CastleSmallCorridorPiece createPiece(
-				StructurePieceAccessor pieces, int x, int y, int z, Direction orientation, int genDepth
+				StructurePiecesBuilder pieces, int x, int y, int z, Direction orientation, int genDepth
 		) {
 			BoundingBox boundingBox = BoundingBox.orientBox(x, y, z, -1, 0, 0, 5, 7, 5, orientation);
 			return isOkBox(boundingBox) && pieces.findCollisionPiece(boundingBox) == null
@@ -722,12 +722,12 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePiecesBuilder pieces, @NonNull RandomSource random) {
 			this.generateChildRight((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 0, 1, true);
 		}
 
 		public static BlueNetherFortressPieces.CastleSmallCorridorRightTurnPiece createPiece(
-				StructurePieceAccessor pieces, RandomSource random, int x, int y, int z, Direction orientation, int genDepth
+				StructurePiecesBuilder pieces, RandomSource random, int x, int y, int z, Direction orientation, int genDepth
 		) {
 			BoundingBox boundingBox = BoundingBox.orientBox(x, y, z, -1, 0, 0, 5, 7, 5, orientation);
 			return isOkBox(boundingBox) && pieces.findCollisionPiece(boundingBox) == null
@@ -780,12 +780,12 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePiecesBuilder pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 5, 3, true);
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 5, 11, true);
 		}
 
-		public static BlueNetherFortressPieces.CastleStalkRoom createPiece(StructurePieceAccessor pieces, int x, int y, int z, Direction orientation, int genDepth) {
+		public static BlueNetherFortressPieces.CastleStalkRoom createPiece(StructurePiecesBuilder pieces, int x, int y, int z, Direction orientation, int genDepth) {
 			BoundingBox boundingBox = BoundingBox.orientBox(x, y, z, -5, -3, 0, 13, 14, 13, orientation);
 			return isOkBox(boundingBox) && pieces.findCollisionPiece(boundingBox) == null
 					? new BlueNetherFortressPieces.CastleStalkRoom(genDepth, boundingBox, orientation)
@@ -931,7 +931,7 @@ public class BlueNetherFortressPieces {
 			tag.putBoolean("Mob", this.hasPlacedSpawner);
 		}
 
-		public static BlueNetherFortressPieces.MonsterThrone createPiece(StructurePieceAccessor pieces, int x, int y, int z, int genDepth, Direction orientation) {
+		public static BlueNetherFortressPieces.MonsterThrone createPiece(StructurePiecesBuilder pieces, int x, int y, int z, int genDepth, Direction orientation) {
 			BoundingBox boundingBox = BoundingBox.orientBox(x, y, z, -2, 0, 0, 7, 8, 9, orientation);
 			return isOkBox(boundingBox) && pieces.findCollisionPiece(boundingBox) == null
 					? new BlueNetherFortressPieces.MonsterThrone(genDepth, boundingBox, orientation)
@@ -1021,7 +1021,7 @@ public class BlueNetherFortressPieces {
 		private BlueNetherFortressPieces.NetherBridgePiece generatePiece(
 				BlueNetherFortressPieces.StartPiece startPiece,
 				List<BlueNetherFortressPieces.PieceWeight> weights,
-				StructurePieceAccessor pieces,
+				StructurePiecesBuilder pieces,
 				RandomSource random,
 				int x,
 				int y,
@@ -1065,7 +1065,7 @@ public class BlueNetherFortressPieces {
 
 		private StructurePiece generateAndAddPiece(
 				BlueNetherFortressPieces.StartPiece startPiece,
-				StructurePieceAccessor pieces,
+				StructurePiecesBuilder pieces,
 				RandomSource random,
 				int x,
 				int y,
@@ -1094,7 +1094,7 @@ public class BlueNetherFortressPieces {
 
 		@Nullable
 		protected StructurePiece generateChildForward(
-				BlueNetherFortressPieces.StartPiece startPiece, StructurePieceAccessor pieces, RandomSource random, int offsetX, int offsetY, boolean castlePiece
+				BlueNetherFortressPieces.StartPiece startPiece, StructurePiecesBuilder pieces, RandomSource random, int offsetX, int offsetY, boolean castlePiece
 		) {
 			Direction direction = this.getOrientation();
 			if (direction != null) {
@@ -1155,7 +1155,7 @@ public class BlueNetherFortressPieces {
 
 		@Nullable
 		protected StructurePiece generateChildLeft(
-				BlueNetherFortressPieces.StartPiece startPiece, StructurePieceAccessor pieces, RandomSource random, int offsetY, int offsetX, boolean castlePiece
+				BlueNetherFortressPieces.StartPiece startPiece, StructurePiecesBuilder pieces, RandomSource random, int offsetY, int offsetX, boolean castlePiece
 		) {
 			Direction direction = this.getOrientation();
 			if (direction != null) {
@@ -1216,7 +1216,7 @@ public class BlueNetherFortressPieces {
 
 		@Nullable
 		protected StructurePiece generateChildRight(
-				BlueNetherFortressPieces.StartPiece startPiece, StructurePieceAccessor pieces, RandomSource random, int offsetY, int offsetX, boolean castlePiece
+				BlueNetherFortressPieces.StartPiece startPiece, StructurePiecesBuilder pieces, RandomSource random, int offsetY, int offsetX, boolean castlePiece
 		) {
 			Direction direction = this.getOrientation();
 			if (direction != null) {
@@ -1322,13 +1322,13 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePiecesBuilder pieces, @NonNull RandomSource random) {
 			this.generateChildForward((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 2, 0, false);
 			this.generateChildLeft((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 0, 2, false);
 			this.generateChildRight((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 0, 2, false);
 		}
 
-		public static BlueNetherFortressPieces.RoomCrossing createPiece(StructurePieceAccessor pieces, int x, int y, int z, Direction orientation, int genDepth) {
+		public static BlueNetherFortressPieces.RoomCrossing createPiece(StructurePiecesBuilder pieces, int x, int y, int z, Direction orientation, int genDepth) {
 			BoundingBox boundingBox = BoundingBox.orientBox(x, y, z, -2, 0, 0, 7, 9, 7, orientation);
 			return isOkBox(boundingBox) && pieces.findCollisionPiece(boundingBox) == null
 					? new BlueNetherFortressPieces.RoomCrossing(genDepth, boundingBox, orientation)
@@ -1383,11 +1383,11 @@ public class BlueNetherFortressPieces {
 		}
 
 		@Override
-		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePieceAccessor pieces, @NonNull RandomSource random) {
+		public void addChildren(@NonNull StructurePiece piece, @NonNull StructurePiecesBuilder pieces, @NonNull RandomSource random) {
 			this.generateChildRight((BlueNetherFortressPieces.StartPiece)piece, pieces, random, 6, 2, false);
 		}
 
-		public static BlueNetherFortressPieces.StairsRoom createPiece(StructurePieceAccessor pieces, int x, int y, int z, int genDepth, Direction orientation) {
+		public static BlueNetherFortressPieces.StairsRoom createPiece(StructurePiecesBuilder pieces, int x, int y, int z, int genDepth, Direction orientation) {
 			BoundingBox boundingBox = BoundingBox.orientBox(x, y, z, -2, 0, 0, 7, 11, 7, orientation);
 			return isOkBox(boundingBox) && pieces.findCollisionPiece(boundingBox) == null
 					? new BlueNetherFortressPieces.StairsRoom(genDepth, boundingBox, orientation)
