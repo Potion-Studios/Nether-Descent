@@ -6,9 +6,10 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.NyliumBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import org.jspecify.annotations.NonNull;
 
 import java.util.function.Supplier;
@@ -16,15 +17,15 @@ import java.util.function.Supplier;
 public class NetherDescentNyliumBlock extends NyliumBlock {
 
     private final Supplier<Block> spreadBlock;
-    private final Supplier<ResourceKey<ConfiguredFeature<?, ?>>> feature;
+    private final Supplier<ResourceKey<Feature>> feature;
 
-    public NetherDescentNyliumBlock(Properties properties, Supplier<Block> spreadBlock, Supplier<ResourceKey<ConfiguredFeature<?, ?>>> feature) {
+    public NetherDescentNyliumBlock(Properties properties, Supplier<Block> spreadBlock, Supplier<ResourceKey<Feature>> feature) {
         super(properties);
         this.spreadBlock = spreadBlock;
         this.feature = feature;
     }
 
-    public NetherDescentNyliumBlock(Properties properties, Block spreadBlock, Supplier<ResourceKey<ConfiguredFeature<?, ?>>> feature) {
+    public NetherDescentNyliumBlock(Properties properties, Block spreadBlock, Supplier<ResourceKey<Feature>> feature) {
         this(properties, () -> spreadBlock, feature);
     }
 
@@ -35,7 +36,7 @@ public class NetherDescentNyliumBlock extends NyliumBlock {
     }
 
     @Override
-    public void performBonemeal(ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
-	    level.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE).get(feature.get()).ifPresent(reference -> reference.value().place(level, level.getChunkSource().getGenerator(), random, pos.above()));
+    public void performBonemeal(ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull BonemealSource source) {
+        level.registryAccess().lookupOrThrow(Registries.FEATURE).get(feature.get()).ifPresent(reference -> reference.value().place(level, level.getChunkSource().getGenerator(), random, pos.above()));
     }
 }

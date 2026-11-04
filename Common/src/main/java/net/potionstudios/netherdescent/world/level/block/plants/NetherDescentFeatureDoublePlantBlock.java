@@ -5,35 +5,34 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import org.jspecify.annotations.NonNull;
+import net.minecraft.world.level.levelgen.feature.Feature;
 
 import java.util.function.Supplier;
 
 public class NetherDescentFeatureDoublePlantBlock extends NetherDescentDoublePlantBlock implements BonemealableBlock {
 
-    private final Supplier<ConfiguredFeature<?, ?>> feature;
+    private final Supplier<Feature> feature;
 
-    public NetherDescentFeatureDoublePlantBlock(Properties properties, Supplier<ConfiguredFeature<?, ?>> feature) {
+    public NetherDescentFeatureDoublePlantBlock(Properties properties, Supplier<Feature> feature) {
         super(properties);
         this.feature = feature;
     }
 
+    @Override
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source) {
+        return false;
+    }
 
     @Override
-    public boolean isValidBonemealTarget(@NonNull LevelReader level, @NonNull BlockPos pos, @NonNull BlockState state) {
+    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         return true;
     }
 
     @Override
-    public boolean isBonemealSuccess(@NonNull Level level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
-        return true;
-    }
-
-    @Override
-    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         feature.get().place(level, level.getChunkSource().getGenerator(), random, pos);
     }
 }

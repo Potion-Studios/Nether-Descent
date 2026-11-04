@@ -8,23 +8,24 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.NetherFungusBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import org.jspecify.annotations.NonNull;
 
 public class NDFungusBlock extends NetherFungusBlock {
-    public NDFungusBlock(ResourceKey<ConfiguredFeature<?, ?>> feature, Block requiredBlock, Properties properties) {
+    public NDFungusBlock(ResourceKey<Feature> feature, Block requiredBlock, Properties properties) {
         this(feature, requiredBlock, BlockTags.NYLIUM, properties);
     }
 
-    public NDFungusBlock(ResourceKey<ConfiguredFeature<?, ?>> feature, Block requiredBlock, TagKey<Block> supportBlocks, Properties properties) {
+    public NDFungusBlock(ResourceKey<Feature> feature, Block requiredBlock, TagKey<Block> supportBlocks, Properties properties) {
         super(feature, requiredBlock, supportBlocks, properties);
     }
 
     @Override
-    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state) {
-        super.performBonemeal(level, random, pos, state);
+    public void performBonemeal(@NonNull ServerLevel level, @NonNull RandomSource random, @NonNull BlockPos pos, @NonNull BlockState state, @NonNull BonemealSource source) {
+        super.performBonemeal(level, random, pos, state, source);
         this.getFeature(level).ifPresent((holder) -> {
             boolean b =  holder.value().place(level, level.getChunkSource().getGenerator(), random, pos);
             if (b && level.getBlockState(pos).is(this))

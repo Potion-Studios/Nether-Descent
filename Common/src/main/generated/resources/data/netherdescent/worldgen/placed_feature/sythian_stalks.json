@@ -51,15 +51,7 @@
       "type": "minecraft:block_predicate_filter",
       "predicate": {
         "type": "minecraft:would_survive",
-        "state": {
-          "Name": "netherdescent:sythian_stalk",
-          "Properties": {
-            "age": "0",
-            "hanging": "false",
-            "leaves": "none",
-            "stage": "0"
-          }
-        }
+        "state": "netherdescent:sythian_stalk"
       }
     },
     {
