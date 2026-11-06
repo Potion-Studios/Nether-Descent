@@ -61,36 +61,36 @@ public class TagsGenerator {
 				tag(BlockTags.WOODEN_DOORS).add(set.door().builtInRegistryHolder().key());
 				tag(BlockTags.WOODEN_FENCES).add(set.fence().builtInRegistryHolder().key());
 				tag(BlockTags.FENCE_GATES).add(set.fenceGate().builtInRegistryHolder().key());
-				tag(Tags.Blocks.FENCE_GATES_WOODEN).add(set.fenceGate().builtInRegistryHolder().key());
+				tag(Tags.BlockItems.FENCE_GATES_WOODEN.block()).add(set.fenceGate().builtInRegistryHolder().key());
 				tag(BlockTags.STANDING_SIGNS).add(set.sign().builtInRegistryHolder().key());
 				tag(BlockTags.WALL_SIGNS).add(set.wallSign().builtInRegistryHolder().key());
 				tag(BlockTags.CEILING_HANGING_SIGNS).add(set.hangingSign().builtInRegistryHolder().key());
 				tag(BlockTags.WALL_HANGING_SIGNS).add(set.wallHangingSign().builtInRegistryHolder().key());
-				tag(Tags.Blocks.BOOKSHELVES).add(set.bookshelf().builtInRegistryHolder().key());
+				tag(Tags.BlockItems.BOOKSHELVES.block()).add(set.bookshelf().builtInRegistryHolder().key());
 				tag(BlockTags.ENCHANTMENT_POWER_PROVIDER).add(set.bookshelf().builtInRegistryHolder().key());
 				tag(set.logBlockTag()).add(set.logstem().builtInRegistryHolder().key(), set.wood().builtInRegistryHolder().key(), set.strippedLogStem().builtInRegistryHolder().key(), set.strippedWood().builtInRegistryHolder().key());
-				tag(Tags.Blocks.NATURAL_WOODS).add(set.wood().builtInRegistryHolder().key());
+				tag(Tags.BlockItems.NATURAL_WOODS.block()).add(set.wood().builtInRegistryHolder().key());
 				tag(BlockTags.LOGS).addOptionalTag(set.logBlockTag());
-				tag(Tags.Blocks.STRIPPED_LOGS).add(set.strippedLogStem().builtInRegistryHolder().key());
-				tag(Tags.Blocks.STRIPPED_WOODS).add(set.strippedWood().builtInRegistryHolder().key());
-				tag(Tags.Blocks.NETHER_NATURAL_LOGS).add(set.logstem().builtInRegistryHolder().key());
-				tag(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES).add(set.craftingTable().builtInRegistryHolder().key());
+				tag(Tags.BlockItems.STRIPPED_LOGS.block()).add(set.strippedLogStem().builtInRegistryHolder().key());
+				tag(Tags.BlockItems.STRIPPED_WOODS.block()).add(set.strippedWood().builtInRegistryHolder().key());
+				tag(Tags.BlockItems.NETHER_NATURAL_LOGS.block()).add(set.logstem().builtInRegistryHolder().key());
+				tag(Tags.BlockItems.PLAYER_WORKSTATIONS_CRAFTING_TABLES.block()).add(set.craftingTable().builtInRegistryHolder().key());
 			});
 			tag(NetherDescentBlockTags.ORES_PENDORITE).add(NetherDescentBlockIds.PENDORITE_ORE);
-			tag(Tags.Blocks.ORES).addTag(NetherDescentBlockTags.ORES_PENDORITE);
-			tag(Tags.Blocks.ORES_IN_GROUND_NETHERRACK).add(NetherDescentBlockIds.BLUE_NETHER_GOLD_ORE, NetherDescentBlockIds.BLUE_NETHER_QUARTZ_ORE);
+			tag(Tags.BlockItems.ORES.block()).addTag(NetherDescentBlockTags.ORES_PENDORITE);
+			tag(Tags.BlockItems.ORES_IN_GROUND_NETHERRACK.block()).add(NetherDescentBlockIds.BLUE_NETHER_GOLD_ORE, NetherDescentBlockIds.BLUE_NETHER_QUARTZ_ORE);
 			tag(BlockTags.BARS).add(NetherDescentBlockIds.PENDORITE_BARS);
 			tag(BlockTags.NEEDS_IRON_TOOL).add(NetherDescentBlockIds.PENDORITE_BLOCK, NetherDescentBlockIds.PENDORITE_ORE, NetherDescentBlockIds.RAW_PENDORITE_BLOCK, NetherDescentBlockIds.CUT_PENDORITE, NetherDescentBlockIds.CUT_PENDORITE_SLAB,
 					NetherDescentBlockIds.CUT_PENDORITE_STAIRS, NetherDescentBlockIds.CHISELED_PENDORITE, NetherDescentBlockIds.PENDORITE_GRATE, NetherDescentBlockIds.PENDORITE_DOOR, NetherDescentBlockIds.PENDORITE_TRAPDOOR, NetherDescentBlockIds.PENDORITE_CHAIN,
 					NetherDescentBlockIds.PENDORITE_BARS, NetherDescentBlockIds.PENDORITE_LANTERN, NetherDescentBlockIds.PENDORITE_FIRE_ROD);
 			tag(BlockTags.FENCES).add(NetherDescentBlockIds.BLUE_NETHER_BRICK_FENCE);
-			tag(Tags.Blocks.FENCES_NETHER_BRICK).add(NetherDescentBlockIds.BLUE_NETHER_BRICK_FENCE);
+			tag(Tags.BlockItems.FENCES_NETHER_BRICK.block()).add(NetherDescentBlockIds.BLUE_NETHER_BRICK_FENCE);
 			tag(BlockTags.BASE_STONE_NETHER).add(NetherDescentBlockIds.BLUE_NETHERRACK);
 			tag(BlockTags.CLIMBABLE).add(NetherDescentBlockIds.WAILING_VINES, NetherDescentBlockIds.WAILING_VINES_PLANT, NetherDescentBlockIds.EMBUR_GEL_VINES, NetherDescentBlockIds.EMBUR_GEL_VINES_PLANT, NetherDescentBlockIds.SYTHIAN_SCAFFOLDING, NetherDescentBlockIds.EMBUR_HANGING_MOSS,
 					NetherDescentBlockIds.HANGING_SYTHIAN_ROOTS, NetherDescentBlockIds.HANGING_SYTHIAN_ROOTS_PLANT, NetherDescentBlockIds.ARISIAN_TANGLE_ROOTS, NetherDescentBlockIds.ARISIAN_TANGLE_ROOTS_PLANT);
 			tag(BlockTags.INFINIBURN_OVERWORLD).add(NetherDescentBlockIds.BLUE_NETHERRACK);
-			tag(Tags.Blocks.NETHERRACKS).add(NetherDescentBlockIds.BLUE_NETHERRACK);
-			tag(Tags.Blocks.ORE_BEARING_GROUND_NETHERRACK).add(NetherDescentBlockIds.BLUE_NETHERRACK);
+			tag(Tags.BlockItems.NETHERRACKS.block()).add(NetherDescentBlockIds.BLUE_NETHERRACK);
+			tag(Tags.BlockItems.ORE_BEARING_GROUND_NETHERRACK.block()).add(NetherDescentBlockIds.BLUE_NETHERRACK);
 			tag(BlockTags.ENDERMAN_HOLDABLE).add(NetherDescentBlockIds.EMBUR_NYLIUM, NetherDescentBlockIds.SYTHIAN_NYLIUM, NetherDescentBlockIds.WAILING_NYLIUM);
 			tag(BlockTags.SWORD_EFFICIENT).add(NetherDescentBlockIds.EMBUR_SPROUTS, NetherDescentBlockIds.EMBUR_CAVE_MOSS, NetherDescentBlockIds.SYTHIAN_SPROUTS, NetherDescentBlockIds.ARISIAN_SPROUTS);
 			tag(BlockTags.REPLACEABLE_BY_TREES).add(NetherDescentBlockIds.EMBUR_SPROUTS, NetherDescentBlockIds.SYTHIAN_SPROUTS, NetherDescentBlockIds.ARISIAN_SPROUTS);
@@ -103,18 +103,18 @@ public class TagsGenerator {
 			tag(BlockTags.HAPPY_GHAST_AVOIDS).add(NetherDescentBlockIds.CRIMSON_BERRY_BUSH);
 			tag(BlockTags.CAN_GLIDE_THROUGH).add(NetherDescentBlockIds.EMBUR_GEL_VINES, NetherDescentBlockIds.EMBUR_GEL_VINES_PLANT, NetherDescentBlockIds.WAILING_VINES, NetherDescentBlockIds.WAILING_VINES_PLANT,
 					NetherDescentBlockIds.ARISIAN_TANGLE_ROOTS, NetherDescentBlockIds.ARISIAN_TANGLE_ROOTS_PLANT, NetherDescentBlockIds.HANGING_SYTHIAN_ROOTS, NetherDescentBlockIds.HANGING_SYTHIAN_ROOTS_PLANT);
-			tag(Tags.Blocks.ORES_QUARTZ).add(NetherDescentBlockIds.BLUE_NETHER_QUARTZ_ORE);
-			tag(Tags.Blocks.ORE_RATES_SPARSE).add(NetherDescentBlockIds.BLUE_NETHER_GOLD_ORE);
-			tag(Tags.Blocks.ORE_RATES_SINGULAR).add(NetherDescentBlockIds.BLUE_NETHER_QUARTZ_ORE, NetherDescentBlockIds.PENDORITE_ORE);
+			tag(Tags.BlockItems.ORES_QUARTZ.block()).add(NetherDescentBlockIds.BLUE_NETHER_QUARTZ_ORE);
+			tag(Tags.BlockItems.ORE_RATES_SPARSE.block()).add(NetherDescentBlockIds.BLUE_NETHER_GOLD_ORE);
+			tag(Tags.BlockItems.ORE_RATES_SINGULAR.block()).add(NetherDescentBlockIds.BLUE_NETHER_QUARTZ_ORE, NetherDescentBlockIds.PENDORITE_ORE);
 			tag(BlockTags.CHAINS).add(NetherDescentBlockIds.PENDORITE_CHAIN);
-			tag(Tags.Blocks.CHAINS).add(NetherDescentBlockIds.PENDORITE_CHAIN);
+			tag(Tags.BlockItems.CHAINS.block()).add(NetherDescentBlockIds.PENDORITE_CHAIN);
 			tag(BlockTags.WART_BLOCKS).add(NetherDescentBlockIds.SYTHIAN_WART_BLOCK, NetherDescentBlockIds.WAILING_WART_BLOCK);
 			tag(NetherDescentBlockTags.SUPPORTS_EMBUR_ROOTS).addTag(BlockTags.SUPPORTS_WARPED_ROOTS);
 			tag(NetherDescentBlockTags.SUPPORTS_WAILING_GRASS).addTag(BlockTags.SUPPORTS_WARPED_ROOTS);
 
 			tag(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE).add(NetherDescentBlockIds.PENDORITE_BLOCK);
 			tag(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE).add(NetherDescentBlockIds.RAW_PENDORITE_BLOCK);
-			tag(Tags.Blocks.STORAGE_BLOCKS).addTag(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE).addTag(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE);
+			tag(Tags.BlockItems.STORAGE_BLOCKS.block()).addTag(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE).addTag(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE);
 
 			tag(BlockTags.DOORS).add(NetherDescentBlockIds.PENDORITE_DOOR);
 			tag(BlockTags.TRAPDOORS).add(NetherDescentBlockIds.PENDORITE_TRAPDOOR);
@@ -178,24 +178,24 @@ public class TagsGenerator {
 			copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
 			copy(BlockTags.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
 			copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
-			copy(Tags.Blocks.FENCES_NETHER_BRICK, Tags.Items.FENCES_NETHER_BRICK);
+			copy(Tags.BlockItems.FENCES_NETHER_BRICK.block(), Tags.BlockItems.FENCES_NETHER_BRICK.item());
 			copy(BlockTags.FENCE_GATES, ItemTags.FENCE_GATES);
-			copy(Tags.Blocks.FENCE_GATES_WOODEN, Tags.Items.FENCE_GATES_WOODEN);
+			copy(Tags.BlockItems.FENCE_GATES_WOODEN.block(), Tags.BlockItems.FENCE_GATES_WOODEN.item());
 			copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
 			copy(BlockTags.CEILING_HANGING_SIGNS, ItemTags.HANGING_SIGNS);
-			copy(Tags.Blocks.BOOKSHELVES, Tags.Items.BOOKSHELVES);
+			copy(Tags.BlockItems.BOOKSHELVES.block(), Tags.BlockItems.BOOKSHELVES.item());
 			copy(BlockTags.LOGS, ItemTags.LOGS);
-			copy(Tags.Blocks.STRIPPED_LOGS, Tags.Items.STRIPPED_LOGS);
-			copy(Tags.Blocks.STRIPPED_WOODS, Tags.Items.STRIPPED_WOODS);
-			copy(Tags.Blocks.NETHER_NATURAL_LOGS, Tags.Items.NETHER_NATURAL_LOGS);
-			copy(Tags.Blocks.PLAYER_WORKSTATIONS_CRAFTING_TABLES, Tags.Items.PLAYER_WORKSTATIONS_CRAFTING_TABLES);
-			copy(Tags.Blocks.NETHERRACKS, Tags.Items.NETHERRACKS);
+			copy(Tags.BlockItems.STRIPPED_LOGS.block(), Tags.BlockItems.STRIPPED_LOGS.item());
+			copy(Tags.BlockItems.STRIPPED_WOODS.block(), Tags.BlockItems.STRIPPED_WOODS.item());
+			copy(Tags.BlockItems.NETHER_NATURAL_LOGS.block(), Tags.BlockItems.NETHER_NATURAL_LOGS.item());
+			copy(Tags.BlockItems.PLAYER_WORKSTATIONS_CRAFTING_TABLES.block(), Tags.BlockItems.PLAYER_WORKSTATIONS_CRAFTING_TABLES.item());
+			copy(Tags.BlockItems.NETHERRACKS.block(), Tags.BlockItems.NETHERRACKS.item());
 			copy(BlockTags.GOLD_ORES, ItemTags.GOLD_ORES);
-			copy(Tags.Blocks.ORES_QUARTZ, Tags.Items.ORES_QUARTZ);
+			copy(Tags.BlockItems.ORES_QUARTZ.block(), Tags.BlockItems.ORES_QUARTZ.item());
 			copy(NetherDescentBlockTags.ORES_PENDORITE, NetherDescentItemTags.ORES_PENDORITE);
-			copy(Tags.Blocks.ORE_RATES_SINGULAR, Tags.Items.ORE_RATES_SINGULAR);
-            copy(Tags.Blocks.CHAINS, Tags.Items.CHAINS);
-			copy(Tags.Blocks.ORE_BEARING_GROUND_NETHERRACK, Tags.Items.ORE_BEARING_GROUND_NETHERRACK);
+			copy(Tags.BlockItems.ORE_RATES_SINGULAR.block(), Tags.BlockItems.ORE_RATES_SINGULAR.item());
+            copy(Tags.BlockItems.CHAINS.block(), Tags.BlockItems.CHAINS.item());
+			copy(Tags.BlockItems.ORE_BEARING_GROUND_NETHERRACK.block(), Tags.BlockItems.ORE_BEARING_GROUND_NETHERRACK.item());
             NetherDescentWoodSet.woodsets().forEach(set -> copy(set.logBlockTag(), set.logItemTag()));
 			copy(BlockTags.WART_BLOCKS, ItemTags.WART_BLOCKS);
 
@@ -209,7 +209,7 @@ public class TagsGenerator {
 					set.door().asItem().builtInRegistryHolder().key(),
 					set.fence().asItem().builtInRegistryHolder().key(),
 					set.fenceGate().asItem().builtInRegistryHolder().key(),
-					set.signItem().builtInRegistryHolder().key(),
+					//set.signItem().builtInRegistryHolder().key(),
 					set.hangingSignItem().builtInRegistryHolder().key(),
 					set.bookshelf().asItem().builtInRegistryHolder().key(),
 					set.craftingTable().asItem().builtInRegistryHolder().key()
@@ -231,15 +231,15 @@ public class TagsGenerator {
 
 			copy(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE, NetherDescentItemTags.STORAGE_BLOCKS_PENDORITE);
 			copy(NetherDescentBlockTags.STORAGE_BLOCKS_RAW_PENDORITE, NetherDescentItemTags.STORAGE_BLOCKS_RAW_PENDORITE);
-			copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
+			copy(Tags.BlockItems.STORAGE_BLOCKS.block(), Tags.BlockItems.STORAGE_BLOCKS.item());
 
 			tag(ItemTags.CREEPER_IGNITERS).add(NetherDescentItemIds.SOUL_FIRE_CHARGE, NetherDescentItemIds.PENDORITE_FIRE_CHARGE);
 			tag(Tags.Items.RODS_BLAZE).add(NetherDescentItemIds.SOUL_BLAZE_ROD);
 
-			copy(Tags.Blocks.NATURAL_WOODS, Tags.Items.NATURAL_WOODS);
-			copy(Tags.Blocks.ORES, Tags.Items.ORES);
-			copy(Tags.Blocks.ORE_RATES_SPARSE, Tags.Items.ORE_RATES_SPARSE);
-			copy(Tags.Blocks.ORES_IN_GROUND_NETHERRACK, Tags.Items.ORES_IN_GROUND_NETHERRACK);
+			copy(Tags.BlockItems.NATURAL_WOODS.block(), Tags.BlockItems.NATURAL_WOODS.item());
+			copy(Tags.BlockItems.ORES.block(), Tags.BlockItems.ORES.item());
+			copy(Tags.BlockItems.ORE_RATES_SPARSE.block(), Tags.BlockItems.ORE_RATES_SPARSE.item());
+			copy(Tags.BlockItems.ORES_IN_GROUND_NETHERRACK.block(), Tags.BlockItems.ORES_IN_GROUND_NETHERRACK.item());
 			copy(BlockTags.LEAVES, ItemTags.LEAVES);
 		}
 	}
