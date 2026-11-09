@@ -23,7 +23,7 @@ loom {
     accessWidenerPath.set(project(":Common").loom.accessWidenerPath)
 
     forge {
-        convertAccessWideners(tasks.shadowJar, "netherdescent.accesswidener")
+        convertAccessWideners(tasks.shadowJar, "netherdescent.classtweaker")
         mixinConfig("netherdescent-common.mixins.json")
     }
 }

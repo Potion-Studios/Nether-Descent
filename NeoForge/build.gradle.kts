@@ -31,7 +31,7 @@ loom {
         )
     }
 
-    neoForge.convertAccessWideners(tasks.shadowJar, "netherdescent.accesswidener")
+    neoForge.convertAccessWideners(tasks.shadowJar, "netherdescent.classtweaker")
 }
 
 dependencies {
