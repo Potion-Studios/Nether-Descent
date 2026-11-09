@@ -5,7 +5,7 @@ architectury {
 
 val minecraftVersion = providers.gradleProperty("minecraft_version").get()
 
-loom.accessWidenerPath.set(file("src/main/resources/netherdescent.accesswidener"))
+loom.accessWidenerPath.set(file("src/main/resources/netherdescent.classtweaker"))
 
 sourceSets.main.get().resources.srcDir("src/main/generated/resources")
 
