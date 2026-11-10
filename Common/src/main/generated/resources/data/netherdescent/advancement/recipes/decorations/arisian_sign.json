@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:arisian_sign"
+        "recipes": "netherdescent:arisian_sign"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

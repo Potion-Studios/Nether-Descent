@@ -46,14 +46,14 @@ public class RecipeGenerator extends RecipeProvider {
     }
 
 
-    private static final ImmutableList<ItemLike> PENDORITE_SMELTABLES = ImmutableList.of(NetherDescentBlocks.PENDORITE_ORE.get(), NetherDescentItems.RAW_PENDORITE.get());
-
     private RecipeGenerator(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
         super(recipeOutput, advancementOutput);
     }
 
     @Override
     protected void buildRecipes() {
+        final ImmutableList<ItemLike> PENDORITE_SMELTABLES = ImmutableList.of(NetherDescentBlocks.PENDORITE_ORE.get(), NetherDescentItems.RAW_PENDORITE.get());
+
         HolderGetter<Item> itemHolderGetter = output.lookup(Registries.ITEM);
         NetherDescentBlockSet.getBlockSets().forEach(blockSet -> generateRecipes(blockSet.getBlockFamily(), FeatureFlags.VANILLA_SET));
         NetherDescentWoodSet.woodsets().forEach(set -> {

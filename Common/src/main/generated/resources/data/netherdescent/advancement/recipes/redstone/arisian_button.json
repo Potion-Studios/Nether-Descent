@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:arisian_button"
+        "recipes": "netherdescent:arisian_button"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

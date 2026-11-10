@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:tall_crimson_fungi"
+        "recipes": "netherdescent:tall_crimson_fungi"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

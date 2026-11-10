@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:sythian_hyphae"
+        "recipes": "netherdescent:sythian_hyphae"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

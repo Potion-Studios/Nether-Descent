@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:embur_gel_block"
+        "recipes": "netherdescent:embur_gel_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -1,0 +1,68 @@
+{
+  "type": "ohthetreesyoullgrow:tree_from_nbt_v2",
+  "base_location": "netherdescent:features/trees/wailing/wailing_fungi_trunk1",
+  "can_grow_on_filter": {
+    "type": "minecraft:matching_blocks",
+    "blocks": [
+      "netherdescent:wailing_nylium",
+      "minecraft:soul_soil"
+    ]
+  },
+  "can_leaves_place_filter": {
+    "type": "minecraft:replaceable"
+  },
+  "can_logs_place_filter": {
+    "type": "minecraft:not",
+    "predicate": {
+      "type": "minecraft:matching_blocks",
+      "blocks": [
+        "minecraft:bedrock",
+        "minecraft:water"
+      ]
+    }
+  },
+  "canopy_location": "netherdescent:features/trees/wailing/wailing_fungi_canopy1",
+  "decorators": [
+    {
+      "type": "netherdescent:growing_plant",
+      "attachable": "netherdescent:wailing_wart_block",
+      "body": "netherdescent:wailing_vines_plant",
+      "head": "netherdescent:wailing_vines"
+    }
+  ],
+  "height": {
+    "type": "minecraft:biased_to_bottom",
+    "max_inclusive": 10,
+    "min_inclusive": 4
+  },
+  "height_limit_behavior": "DEFAULT",
+  "leaves_provider": [
+    {
+      "id": "netherdescent:wailing_wart_block"
+    },
+    {
+      "id": "netherdescent:wailing_gills",
+      "properties": {
+        "power": "0"
+      }
+    }
+  ],
+  "leaves_target": [
+    "minecraft:warped_wart_block",
+    "minecraft:shroomlight"
+  ],
+  "log_provider": {
+    "id": "netherdescent:wailing_stem",
+    "properties": {
+      "axis": "y"
+    }
+  },
+  "log_target": [
+    "minecraft:oak_log"
+  ],
+  "max_log_depth": 4,
+  "orientation": "STANDARD",
+  "random_rotation": true,
+  "replace_from_nbt": {},
+  "tree_filter_behavior": "PASSTHROUGH"
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "type": "minecraft:weighted",
+    "entries": [
+      {
+        "data": "netherdescent:embur_sprouts",
+        "weight": 2
+      },
+      {
+        "data": "netherdescent:embur_roots",
+        "weight": 2
+      },
+      {
+        "data": "netherdescent:tall_embur_roots",
+        "weight": 1
+      },
+      {
+        "data": "netherdescent:embur_wart",
+        "weight": 1
+      }
+    ]
+  }
+}

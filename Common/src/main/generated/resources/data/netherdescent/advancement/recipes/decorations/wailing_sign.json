@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:wailing_sign"
+        "recipes": "netherdescent:wailing_sign"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

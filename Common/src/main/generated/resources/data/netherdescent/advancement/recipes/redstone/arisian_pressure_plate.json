@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:arisian_pressure_plate"
+        "recipes": "netherdescent:arisian_pressure_plate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

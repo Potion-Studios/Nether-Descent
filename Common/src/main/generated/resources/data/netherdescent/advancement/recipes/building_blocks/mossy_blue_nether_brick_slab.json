@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:mossy_blue_nether_brick_slab"
+        "recipes": "netherdescent:mossy_blue_nether_brick_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

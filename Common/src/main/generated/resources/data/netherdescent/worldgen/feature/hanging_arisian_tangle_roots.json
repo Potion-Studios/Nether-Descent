@@ -1,0 +1,6 @@
+{
+  "type": "netherdescent:hanging_plant",
+  "base": "minecraft:blackstone",
+  "body": "netherdescent:arisian_tangle_roots_plant",
+  "head": "netherdescent:arisian_tangle_roots"
+}

@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "type": "minecraft:weighted",
+    "entries": [
+      {
+        "data": "netherdescent:arisian_sprouts",
+        "weight": 3
+      },
+      {
+        "data": "netherdescent:tall_arisian_sprouts",
+        "weight": 3
+      },
+      {
+        "data": "netherdescent:arisian_dandelions",
+        "weight": 1
+      },
+      {
+        "data": "netherdescent:tall_arisian_dandelions",
+        "weight": 1
+      },
+      {
+        "data": "netherdescent:arisian_blossom",
+        "weight": 1
+      }
+    ]
+  }
+}

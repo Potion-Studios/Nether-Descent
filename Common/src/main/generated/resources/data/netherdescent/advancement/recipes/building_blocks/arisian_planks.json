@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:arisian_planks"
+        "recipes": "netherdescent:arisian_planks"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

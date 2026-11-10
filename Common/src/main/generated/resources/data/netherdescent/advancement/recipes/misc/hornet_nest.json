@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:hornet_nest"
+        "recipes": "netherdescent:hornet_nest"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

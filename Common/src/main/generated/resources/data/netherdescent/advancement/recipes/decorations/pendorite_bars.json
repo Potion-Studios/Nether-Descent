@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:pendorite_bars"
+        "recipes": "netherdescent:pendorite_bars"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

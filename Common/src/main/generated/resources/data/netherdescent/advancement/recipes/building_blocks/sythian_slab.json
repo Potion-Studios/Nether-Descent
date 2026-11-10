@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:sythian_slab"
+        "recipes": "netherdescent:sythian_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:wailing_fence"
+        "recipes": "netherdescent:wailing_fence"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

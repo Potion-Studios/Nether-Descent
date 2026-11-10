@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:wailing_bookshelf"
+        "recipes": "netherdescent:wailing_bookshelf"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

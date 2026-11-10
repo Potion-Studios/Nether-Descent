@@ -1,0 +1,51 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "type": "minecraft:weighted",
+    "entries": [
+      {
+        "data": "minecraft:crimson_roots",
+        "weight": 5
+      },
+      {
+        "data": "netherdescent:tall_crimson_roots",
+        "weight": 3
+      },
+      {
+        "data": "netherdescent:tall_crimson_fungi",
+        "weight": 3
+      },
+      {
+        "data": "netherdescent:crimson_berry_bush",
+        "weight": 1
+      },
+      {
+        "data": {
+          "id": "netherdescent:crimson_berry_bush",
+          "properties": {
+            "age": "1"
+          }
+        },
+        "weight": 1
+      },
+      {
+        "data": {
+          "id": "netherdescent:crimson_berry_bush",
+          "properties": {
+            "age": "2"
+          }
+        },
+        "weight": 1
+      },
+      {
+        "data": {
+          "id": "netherdescent:crimson_berry_bush",
+          "properties": {
+            "age": "3"
+          }
+        },
+        "weight": 1
+      }
+    ]
+  }
+}

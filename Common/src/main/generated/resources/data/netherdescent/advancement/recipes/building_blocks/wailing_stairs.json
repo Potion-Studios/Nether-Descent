@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:wailing_stairs"
+        "recipes": "netherdescent:wailing_stairs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

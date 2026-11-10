@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:pendorite_trapdoor"
+        "recipes": "netherdescent:pendorite_trapdoor"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

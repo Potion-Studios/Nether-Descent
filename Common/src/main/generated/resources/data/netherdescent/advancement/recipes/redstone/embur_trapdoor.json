@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:embur_trapdoor"
+        "recipes": "netherdescent:embur_trapdoor"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

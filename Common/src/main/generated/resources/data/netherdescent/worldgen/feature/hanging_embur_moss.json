@@ -1,0 +1,39 @@
+{
+  "type": "minecraft:block_column",
+  "allowed_placement": {
+    "type": "minecraft:matching_block_tag",
+    "tag": "minecraft:air"
+  },
+  "direction": "down",
+  "layers": [
+    {
+      "height": 1,
+      "provider": {
+        "id": "netherdescent:embur_moss_block"
+      }
+    },
+    {
+      "height": {
+        "type": "minecraft:biased_to_bottom",
+        "max_inclusive": 20,
+        "min_inclusive": 0
+      },
+      "provider": {
+        "id": "netherdescent:embur_hanging_moss",
+        "properties": {
+          "tip": "false"
+        }
+      }
+    },
+    {
+      "height": 1,
+      "provider": {
+        "id": "netherdescent:embur_hanging_moss",
+        "properties": {
+          "tip": "true"
+        }
+      }
+    }
+  ],
+  "prioritize_tip": true
+}

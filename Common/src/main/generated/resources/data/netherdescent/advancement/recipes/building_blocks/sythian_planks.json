@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:sythian_planks"
+        "recipes": "netherdescent:sythian_planks"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

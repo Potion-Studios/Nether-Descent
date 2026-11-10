@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:blue_nether_brick"
+        "recipes": "netherdescent:blue_nether_brick"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

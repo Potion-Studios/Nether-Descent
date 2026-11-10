@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:sythian_button"
+        "recipes": "netherdescent:sythian_button"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

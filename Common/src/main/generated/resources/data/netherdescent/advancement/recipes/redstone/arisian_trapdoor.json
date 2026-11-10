@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:arisian_trapdoor"
+        "recipes": "netherdescent:arisian_trapdoor"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

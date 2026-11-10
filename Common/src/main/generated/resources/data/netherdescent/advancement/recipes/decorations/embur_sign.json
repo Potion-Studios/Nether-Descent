@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:embur_sign"
+        "recipes": "netherdescent:embur_sign"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

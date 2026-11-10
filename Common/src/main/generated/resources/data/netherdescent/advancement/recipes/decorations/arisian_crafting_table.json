@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:arisian_crafting_table"
+        "recipes": "netherdescent:arisian_crafting_table"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

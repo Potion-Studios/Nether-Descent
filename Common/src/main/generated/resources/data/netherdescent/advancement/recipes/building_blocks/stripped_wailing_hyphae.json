@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:stripped_wailing_hyphae"
+        "recipes": "netherdescent:stripped_wailing_hyphae"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

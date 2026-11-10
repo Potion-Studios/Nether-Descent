@@ -1,0 +1,58 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "type": "minecraft:weighted",
+    "entries": [
+      {
+        "data": {
+          "id": "netherdescent:arisian_sprouts",
+          "properties": {
+            "hanging": "true"
+          }
+        },
+        "weight": 3
+      },
+      {
+        "data": {
+          "id": "netherdescent:tall_arisian_sprouts",
+          "properties": {
+            "half": "lower",
+            "hanging": "true"
+          }
+        },
+        "weight": 3
+      },
+      {
+        "data": {
+          "id": "netherdescent:arisian_dandelions",
+          "properties": {
+            "hanging": "true"
+          }
+        },
+        "weight": 1
+      },
+      {
+        "data": {
+          "id": "netherdescent:tall_arisian_dandelions",
+          "properties": {
+            "half": "lower",
+            "hanging": "true"
+          }
+        },
+        "weight": 1
+      },
+      {
+        "data": {
+          "id": "netherdescent:arisian_blossom",
+          "properties": {
+            "hanging": "true",
+            "lit": "false",
+            "pulse": "false",
+            "strength": "0"
+          }
+        },
+        "weight": 1
+      }
+    ]
+  }
+}

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:pendorite_wolf_armor"
+        "recipes": "netherdescent:pendorite_wolf_armor"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

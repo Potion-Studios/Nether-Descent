@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:embur_fence"
+        "recipes": "netherdescent:embur_fence"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

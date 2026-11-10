@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:wailing_slab"
+        "recipes": "netherdescent:wailing_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

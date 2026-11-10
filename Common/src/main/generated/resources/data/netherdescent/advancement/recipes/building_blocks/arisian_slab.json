@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:arisian_slab"
+        "recipes": "netherdescent:arisian_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:cut_pendorite_stairs"
+        "recipes": "netherdescent:cut_pendorite_stairs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

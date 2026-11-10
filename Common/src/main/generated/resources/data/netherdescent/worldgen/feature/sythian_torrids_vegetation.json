@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "type": "minecraft:weighted",
+    "entries": [
+      {
+        "data": "netherdescent:sythian_roots",
+        "weight": 2
+      },
+      {
+        "data": "netherdescent:sythian_shoot",
+        "weight": 1
+      },
+      {
+        "data": "netherdescent:sythian_sprouts",
+        "weight": 2
+      },
+      {
+        "data": "netherdescent:sythian_fungus",
+        "weight": 1
+      }
+    ]
+  }
+}

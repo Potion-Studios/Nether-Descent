@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:arisian_door"
+        "recipes": "netherdescent:arisian_door"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

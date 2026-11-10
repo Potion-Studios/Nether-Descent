@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:pendorite_campfire"
+        "recipes": "netherdescent:pendorite_campfire"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

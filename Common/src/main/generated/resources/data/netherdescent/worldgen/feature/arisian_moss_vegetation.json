@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "type": "minecraft:weighted",
+    "entries": [
+      {
+        "data": "netherdescent:arisian_moss_carpet",
+        "weight": 25
+      },
+      {
+        "data": "netherdescent:arisian_sprouts",
+        "weight": 25
+      },
+      {
+        "data": "netherdescent:tall_arisian_sprouts",
+        "weight": 10
+      },
+      {
+        "data": "netherdescent:arisian_blossom",
+        "weight": 10
+      }
+    ]
+  }
+}

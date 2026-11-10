@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:weighted_random_selector",
+  "features": [
+    {
+      "data": {
+        "feature": "netherdescent:hanging_arisian_root_1",
+        "placement": []
+      },
+      "weight": 1
+    },
+    {
+      "data": {
+        "feature": "netherdescent:hanging_arisian_root_2",
+        "placement": []
+      },
+      "weight": 1
+    },
+    {
+      "data": {
+        "feature": "netherdescent:hanging_arisian_root_3",
+        "placement": []
+      },
+      "weight": 1
+    }
+  ]
+}

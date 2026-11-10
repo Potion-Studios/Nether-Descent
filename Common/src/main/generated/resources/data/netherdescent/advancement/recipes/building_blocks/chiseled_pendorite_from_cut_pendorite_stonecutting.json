@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:chiseled_pendorite_from_cut_pendorite_stonecutting"
+        "recipes": "netherdescent:chiseled_pendorite_from_cut_pendorite_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

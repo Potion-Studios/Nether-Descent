@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:sythian_door"
+        "recipes": "netherdescent:sythian_door"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

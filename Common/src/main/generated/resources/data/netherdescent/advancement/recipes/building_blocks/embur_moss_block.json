@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:embur_moss_block"
+        "recipes": "netherdescent:embur_moss_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

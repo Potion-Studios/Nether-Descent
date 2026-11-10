@@ -23,7 +23,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:pendorite_lantern"
+        "recipes": "netherdescent:pendorite_lantern"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

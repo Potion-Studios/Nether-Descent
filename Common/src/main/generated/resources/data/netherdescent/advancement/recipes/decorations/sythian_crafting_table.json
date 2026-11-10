@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:sythian_crafting_table"
+        "recipes": "netherdescent:sythian_crafting_table"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

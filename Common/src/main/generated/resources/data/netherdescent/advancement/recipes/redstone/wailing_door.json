@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:wailing_door"
+        "recipes": "netherdescent:wailing_door"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

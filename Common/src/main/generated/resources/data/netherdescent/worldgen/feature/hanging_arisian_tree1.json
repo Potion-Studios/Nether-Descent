@@ -1,0 +1,127 @@
+{
+  "type": "ohthetreesyoullgrow:tree_from_nbt_v2",
+  "base_location": "netherdescent:features/trees/arisian/arisian_trunk1",
+  "can_grow_on_filter": {
+    "type": "minecraft:any_of",
+    "predicates": [
+      {
+        "type": "minecraft:matching_block_tag",
+        "tag": "minecraft:base_stone_nether"
+      },
+      {
+        "type": "minecraft:matching_blocks",
+        "blocks": "netherdescent:arisian_moss_block"
+      }
+    ]
+  },
+  "can_leaves_place_filter": {
+    "type": "minecraft:replaceable"
+  },
+  "can_logs_place_filter": {
+    "type": "minecraft:not",
+    "predicate": {
+      "type": "minecraft:any_of",
+      "predicates": [
+        {
+          "type": "minecraft:matching_blocks",
+          "blocks": "minecraft:bedrock"
+        },
+        {
+          "type": "minecraft:matching_block_tag",
+          "tag": "minecraft:base_stone_nether"
+        }
+      ]
+    }
+  },
+  "canopy_location": "netherdescent:features/trees/arisian/arisian_canopy1",
+  "decorators": [
+    {
+      "type": "netherdescent:growing_plant",
+      "attachable": "netherdescent:arisian_log",
+      "body": "netherdescent:arisian_tangle_roots_plant",
+      "head": "netherdescent:arisian_tangle_roots"
+    },
+    {
+      "type": "ohthetreesyoullgrow:attached_to_logs",
+      "block_provider": {
+        "id": "netherdescent:arisian_branch",
+        "properties": {
+          "facing": "north",
+          "waterlogged": "false"
+        }
+      },
+      "directions": [
+        "west",
+        "north",
+        "south",
+        "east"
+      ],
+      "exclusion_radius_xz": 0,
+      "exclusion_radius_y": 1,
+      "probability": 0.2,
+      "required_empty_blocks": 2
+    },
+    {
+      "type": "ohthetreesyoullgrow:attached_to_logs",
+      "block_provider": {
+        "id": "netherdescent:thorn_sprout",
+        "properties": {
+          "counting": "false",
+          "facing": "north",
+          "flowering": "false",
+          "segment": "end",
+          "size": "0"
+        }
+      },
+      "directions": [
+        "west",
+        "east",
+        "north",
+        "south"
+      ],
+      "exclusion_radius_xz": 0,
+      "exclusion_radius_y": 1,
+      "probability": 0.1,
+      "required_empty_blocks": 2
+    }
+  ],
+  "height": {
+    "type": "minecraft:biased_to_bottom",
+    "max_inclusive": 4,
+    "min_inclusive": 2
+  },
+  "height_limit_behavior": "DEFAULT",
+  "leaves_provider": [
+    {
+      "id": "netherdescent:arisian_leaves",
+      "properties": {
+        "distance": "1",
+        "lit": "false",
+        "persistent": "true",
+        "strength": "0",
+        "waterlogged": "true"
+      }
+    },
+    {
+      "id": "minecraft:shroomlight"
+    }
+  ],
+  "leaves_target": [
+    "minecraft:cherry_leaves",
+    "minecraft:shroomlight"
+  ],
+  "log_provider": {
+    "id": "netherdescent:arisian_log",
+    "properties": {
+      "axis": "y"
+    }
+  },
+  "log_target": [
+    "minecraft:warped_stem"
+  ],
+  "max_log_depth": 4,
+  "orientation": "UPSIDE_DOWN",
+  "random_rotation": true,
+  "replace_from_nbt": {},
+  "tree_filter_behavior": "PASSTHROUGH"
+}

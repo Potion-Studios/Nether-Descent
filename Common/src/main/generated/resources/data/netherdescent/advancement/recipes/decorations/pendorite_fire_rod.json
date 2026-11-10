@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:pendorite_fire_rod"
+        "recipes": "netherdescent:pendorite_fire_rod"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

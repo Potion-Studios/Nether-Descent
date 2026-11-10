@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "netherdescent:sythian_scaffolding"
+        "recipes": "netherdescent:sythian_scaffolding"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

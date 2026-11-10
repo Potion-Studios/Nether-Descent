@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "id": "netherdescent:wailing_bulb_blossom",
+    "properties": {
+      "active": "false"
+    }
+  }
+}
