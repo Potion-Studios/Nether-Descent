@@ -1,3 +1,6 @@
+# 1.0.13
+- Fix Pendorite Horse Armor not Rendering
+
 # 1.0.12
 - Fix Hanging Embur Moss not Generating, Change to Block Column
 
