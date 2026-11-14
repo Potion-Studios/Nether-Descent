@@ -1,5 +1,6 @@
 # 1.0.13
 - Move from AccessWidener to ClassTweaker and Require Fabric Loader 0.19.0 or newer
+- Fix Missing Texture in Nether Descent Advancement Screen
 
 # 1.0.12
 - Fix Hanging Embur Moss not Generating, Change to Block Column

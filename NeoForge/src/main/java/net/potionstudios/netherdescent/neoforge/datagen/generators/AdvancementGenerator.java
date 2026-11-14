@@ -60,7 +60,7 @@ public class AdvancementGenerator extends AdvancementProvider {
                             NetherDescentBlocks.EMBUR_LILY.get(),
                             translateAble("title.root"),
                             translateAble("description.root"),
-                            NetherDescent.id("textures/block/blue_netherrack.png"),
+                            NetherDescent.id("block/blue_netherrack"),
                             AdvancementType.TASK,
                             false,
                             false,

@@ -19,7 +19,7 @@
   },
   "display": {
     "announce_to_chat": false,
-    "background": "netherdescent:textures/block/blue_netherrack.png",
+    "background": "netherdescent:block/blue_netherrack",
     "description": {
       "translate": "advancements.netherdescent.description.root"
     },
