@@ -1,3 +1,7 @@
+# 1.0.13
+- Fix Missing Texture in Nether Descent Advancement Screen
+- Add missing Recipes for Pendorite Chain, Grate, Embur and Arisian Moss Carpets
+
 # 1.0.12
 - Fix Hanging Embur Moss not Generating, Change to Block Column
 
