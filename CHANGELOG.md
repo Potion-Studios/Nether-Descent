@@ -1,4 +1,4 @@
-# 1.0.13
+# 1.0.14
 - Move from AccessWidener to ClassTweaker and Require Fabric Loader 0.19.0 or newer
 - Fix Missing Texture in Nether Descent Advancement Screen
 - Add missing Recipes for Pendorite Chain, Grate, Embur and Arisian Moss Carpets
