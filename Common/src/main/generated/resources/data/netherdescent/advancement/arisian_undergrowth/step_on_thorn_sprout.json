@@ -3,19 +3,17 @@
   "criteria": {
     "step_on_thorn_sprout": {
       "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "minecraft:location": {
-                "block": {
-                  "blocks": "netherdescent:thorn_sprout"
-                }
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:location": {
+              "block": {
+                "blocks": "netherdescent:thorn_sprout"
               }
             }
           }
-        ]
+        }
       },
       "trigger": "minecraft:location"
     }

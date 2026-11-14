@@ -3,17 +3,15 @@
   "criteria": {
     "blue_fortress": {
       "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "minecraft:location": {
-                "structures": "netherdescent:blue_fortress"
-              }
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:location": {
+              "structures": "netherdescent:blue_fortress"
             }
           }
-        ]
+        }
       },
       "trigger": "minecraft:location"
     }

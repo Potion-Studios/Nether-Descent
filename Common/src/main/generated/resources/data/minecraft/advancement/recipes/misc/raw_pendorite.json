@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:raw_pendorite"
+        "recipes": "minecraft:raw_pendorite"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -3,15 +3,13 @@
   "criteria": {
     "kill_soul_ghast": {
       "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "minecraft:entity_type": "netherdescent:soul_ghast"
-            }
+        "entity": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "netherdescent:soul_ghast"
           }
-        ]
+        }
       },
       "trigger": "minecraft:player_killed_entity"
     }

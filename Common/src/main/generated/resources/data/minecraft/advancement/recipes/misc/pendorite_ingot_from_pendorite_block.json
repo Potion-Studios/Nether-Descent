@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:pendorite_ingot_from_pendorite_block"
+        "recipes": "minecraft:pendorite_ingot_from_pendorite_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

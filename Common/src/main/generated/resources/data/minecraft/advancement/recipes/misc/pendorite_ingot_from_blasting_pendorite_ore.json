@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:pendorite_ingot_from_blasting_pendorite_ore"
+        "recipes": "minecraft:pendorite_ingot_from_blasting_pendorite_ore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

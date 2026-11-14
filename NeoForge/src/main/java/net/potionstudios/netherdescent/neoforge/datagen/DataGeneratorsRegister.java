@@ -10,6 +10,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.material.NetherMaterialRules;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.dimension.LevelStem;
@@ -45,14 +46,14 @@ class DataGeneratorsRegister {
     protected static void onGatherData(final GatherDataEvent.Client event) {
         DataGenerator generator = event.getGenerator();
         PackOutput output = generator.getPackOutput();
-		CompletableFuture<HolderLookup.Provider> lookupProvider = event.getWorldLookupProvider();
-
 		DatapackBuiltinEntriesProvider worldProvider = generator.addProvider(true, DatapackBuiltinEntriesProvider.forWorldLayer(
-				output, "Nether Descent World Registries", event.getWorldLookupProvider(), WORLD_BUILDER, Set.of(NetherDescent.MOD_ID)));
+				output, "Nether Descent World Registries", event.getWorldLookupProvider(), WORLD_BUILDER, Set.of(NetherDescent.MOD_ID, Identifier.DEFAULT_NAMESPACE)));
+
+	    CompletableFuture<HolderLookup.Provider> lookupProvider = worldProvider.getRegistryProvider();
 
 		generator.addProvider(true, DatapackBuiltinEntriesProvider.forReloadableLayer(
 				output, "Nether Descent Reloadable Registries", worldProvider.getRegistryProvider(), event.getReloadableLookupProvider(),
-				RELOADABLE_BUILDER, Set.of(NetherDescent.MOD_ID)));
+				RELOADABLE_BUILDER, Set.of(NetherDescent.MOD_ID, Identifier.DEFAULT_NAMESPACE)));
 
         generator.addProvider(true, new ModelGenerator(output));
         generator.addProvider(true, new LangGenerator(output, "en_us"));
@@ -115,6 +116,6 @@ class DataGeneratorsRegister {
 
 	private static final RegistrySetBuilder RELOADABLE_BUILDER = new RegistrySetBuilder()
 		.add(RecipeGenerator.create())
-		.add(Registries.LOOT_TABLE, _ -> new LootGenerator())
-		.add(Registries.ADVANCEMENT, _ -> new AdvancementGenerator());
+		.add(Registries.LOOT_TABLE, new LootGenerator())
+		.add(Registries.ADVANCEMENT, new AdvancementGenerator());
 }

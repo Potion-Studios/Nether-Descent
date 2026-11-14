@@ -2,17 +2,15 @@
   "criteria": {
     "tick": {
       "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "minecraft:location": {
-                "dimension": "minecraft:the_nether"
-              }
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:location": {
+              "dimension": "minecraft:the_nether"
             }
           }
-        ]
+        }
       },
       "trigger": "minecraft:location"
     }

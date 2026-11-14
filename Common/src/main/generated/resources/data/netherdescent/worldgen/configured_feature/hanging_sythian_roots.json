@@ -1,8 +1,0 @@
-{
-  "type": "netherdescent:hanging_plant",
-  "config": {
-    "base": "minecraft:netherrack",
-    "body": "netherdescent:hanging_sythian_roots_plant",
-    "head": "netherdescent:hanging_sythian_roots"
-  }
-}

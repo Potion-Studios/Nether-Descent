@@ -2,27 +2,23 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
+      "condition": {
+        "type": "minecraft:survives_explosion"
+      },
       "entries": [
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "block": "netherdescent:tall_crimson_fungi",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "half": "lower"
-              }
+          "condition": {
+            "type": "minecraft:match_block",
+            "blocks": "netherdescent:tall_crimson_fungi",
+            "state": {
+              "half": "lower"
             }
-          ],
+          },
           "name": "netherdescent:tall_crimson_fungi"
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ],
   "random_sequence": "netherdescent:blocks/tall_crimson_fungi"

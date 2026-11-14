@@ -3,17 +3,15 @@
   "criteria": {
     "netherdescent:wailing_garth": {
       "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "minecraft:location": {
-                "biomes": "netherdescent:wailing_garth"
-              }
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:location": {
+              "biomes": "netherdescent:wailing_garth"
             }
           }
-        ]
+        }
       },
       "trigger": "minecraft:location"
     }

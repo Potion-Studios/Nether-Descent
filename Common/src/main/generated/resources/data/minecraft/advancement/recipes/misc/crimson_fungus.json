@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:crimson_fungus"
+        "recipes": "minecraft:crimson_fungus"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

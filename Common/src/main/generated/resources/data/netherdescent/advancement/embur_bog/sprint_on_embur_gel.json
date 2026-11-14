@@ -3,22 +3,20 @@
   "criteria": {
     "sprint_on_embur_gel": {
       "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "minecraft:flags": {
-                "is_sprinting": true
-              },
-              "minecraft:stepping_on": {
-                "block": {
-                  "blocks": "netherdescent:embur_gel_block"
-                }
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:flags": {
+              "is_sprinting": true
+            },
+            "minecraft:stepping_on": {
+              "block": {
+                "blocks": "netherdescent:embur_gel_block"
               }
             }
           }
-        ]
+        }
       },
       "trigger": "minecraft:location"
     }

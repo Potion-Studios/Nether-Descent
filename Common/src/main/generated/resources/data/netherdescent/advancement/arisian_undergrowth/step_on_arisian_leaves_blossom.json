@@ -3,37 +3,33 @@
   "criteria": {
     "step_on_arisian_blossom": {
       "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "minecraft:stepping_on": {
-                "block": {
-                  "blocks": "netherdescent:arisian_leaves"
-                }
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:stepping_on": {
+              "block": {
+                "blocks": "netherdescent:arisian_leaves"
               }
             }
           }
-        ]
+        }
       },
       "trigger": "minecraft:location"
     },
     "step_on_arisian_leaves": {
       "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "minecraft:location": {
-                "block": {
-                  "blocks": "netherdescent:arisian_blossom"
-                }
+        "player": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:location": {
+              "block": {
+                "blocks": "netherdescent:arisian_blossom"
               }
             }
           }
-        ]
+        }
       },
       "trigger": "minecraft:location"
     }

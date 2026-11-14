@@ -3,15 +3,13 @@
   "criteria": {
     "kill_hornet": {
       "conditions": {
-        "entity": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "minecraft:entity_type": "netherdescent:hornet"
-            }
+        "entity": {
+          "type": "minecraft:entity_properties",
+          "entity": "this",
+          "predicate": {
+            "minecraft:entity_type": "netherdescent:hornet"
           }
-        ]
+        }
       },
       "trigger": "minecraft:player_killed_entity"
     }

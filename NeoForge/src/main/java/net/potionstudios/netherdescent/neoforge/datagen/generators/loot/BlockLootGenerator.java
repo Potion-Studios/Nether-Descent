@@ -39,7 +39,6 @@ class BlockLootGenerator extends BlockLootSubProvider {
     @Override
     protected void generate() {
         NetherDescentBlocks.BLOCKS.forEach(entry -> {
-	        NetherDescent.LOGGER.info("Generating loot table for block: {}", Objects.requireNonNull(BuiltInRegistries.BLOCK.getKey(entry.get())));
             Block block = entry.get();
             if (block instanceof SlabBlock)
                 add(block, createSlabItemTable(block));
