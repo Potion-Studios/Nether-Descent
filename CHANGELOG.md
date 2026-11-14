@@ -1,5 +1,6 @@
 # 1.0.14
 - Add missing Recipes for Pendorite Chain, Grate, Embur and Arisian Moss Carpets
+- Place Arisian Moss Carpet before Arisian UnderGrowth Vegetation to prevent it from being overwritten by the UnderGrowth Vegetation
 
 # 1.0.12
 - Fix Hanging Embur Moss not Generating, Change to Block Column
