@@ -49,8 +49,6 @@ dependencies {
 
     localRuntime("mcp.mobius.waila:wthit:neo-${providers.gradleProperty("WTHIT").get()}")
     localRuntime("lol.bai:badpackets:neo-${providers.gradleProperty("badPackets").get()}")
-
-//    modLocalRuntime("maven.modrinth:worldedit:7.4.2")
 }
 
 tasks {

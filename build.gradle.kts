@@ -1,6 +1,5 @@
 import com.hypherionmc.modpublisher.properties.CurseEnvironment
 import com.hypherionmc.modpublisher.properties.ReleaseType
-import net.fabricmc.loom.api.LoomGradleExtensionAPI
 import org.gradle.api.tasks.bundling.AbstractArchiveTask
 
 plugins {
@@ -31,9 +30,6 @@ subprojects {
     tasks.withType<AbstractArchiveTask>().configureEach {
         archiveVersion.set("${project.version}-mc$minecraftVersion")
     }
-
-    val loom = project.extensions.getByName<LoomGradleExtensionAPI>("loom")
-    loom.silentMojangMappingsLicense()
 
     repositories {
         mavenCentral()
