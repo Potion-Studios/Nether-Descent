@@ -142,14 +142,17 @@ public class TagsGenerator {
 
 		private void easyBlockTags(Block object) {
 			ResourceKey<Block> key = object.builtInRegistryHolder().key();
-			if (object instanceof SlabBlock) tag(BlockTags.SLABS).add(key);
-			else if (object instanceof StairBlock) tag(BlockTags.STAIRS).add(key);
-			else if (object instanceof WallBlock) tag(BlockTags.WALLS).add(key);
-			else if (object instanceof ColoredFallingBlock) tag(BlockTags.SAND).add(key);
-			else if (object instanceof LeavesBlock) tag(BlockTags.LEAVES).add(key);
-			else if (object instanceof CampfireBlock) tag(BlockTags.CAMPFIRES).add(key);
-			else if (object instanceof FlowerPotBlock) tag(BlockTags.FLOWER_POTS).add(key);
-			else if (object instanceof NyliumBlock) tag(BlockTags.NYLIUM).add(key);
+            switch (object) {
+                case SlabBlock ignored -> tag(BlockTags.SLABS).add(key);
+                case StairBlock ignored -> tag(BlockTags.STAIRS).add(key);
+                case WallBlock ignored -> tag(BlockTags.WALLS).add(key);
+                case ColoredFallingBlock ignored -> tag(BlockTags.SAND).add(key);
+                case LeavesBlock ignored -> tag(BlockTags.LEAVES).add(key);
+                case CampfireBlock ignored -> tag(BlockTags.CAMPFIRES).add(key);
+                case FlowerPotBlock ignored -> tag(BlockTags.FLOWER_POTS).add(key);
+                case NyliumBlock ignored -> tag(BlockTags.NYLIUM).add(key);
+                default -> {}
+            }
 			SoundType type = object.defaultBlockState().getSoundType();
 			if (type == SoundType.STONE || type == SoundType.DEEPSLATE || type == SoundType.NETHER_BRICKS || type == SoundType.NYLIUM || object instanceof DropExperienceBlock || type == SoundType.COPPER || type == SoundType.COPPER_GRATE || type == SoundType.CHAIN || type == SoundType.LANTERN || type == SoundType.METAL || type == SoundType.NETHERRACK)
 				tag(BlockTags.MINEABLE_WITH_PICKAXE).add(key);

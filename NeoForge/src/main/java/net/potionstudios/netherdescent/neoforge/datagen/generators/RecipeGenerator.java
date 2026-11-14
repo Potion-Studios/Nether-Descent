@@ -111,6 +111,9 @@ public class RecipeGenerator extends RecipeProvider {
                 .save(output);
 
         twoByTwoPacker(RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.EMBUR_MOSS_BLOCK.get(), NetherDescentBlocks.EMBUR_CAVE_MOSS.get());
+        carpet(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), NetherDescentBlocks.EMBUR_MOSS_BLOCK.get());
+
+        carpet(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get());
 
         ShapelessRecipeBuilder.shapeless(itemHolderGetter, RecipeCategory.FOOD, NetherDescentItems.CRIMSON_BERRY_PIE.get())
                 .requires(NetherDescentItems.CRIMSON_BERRIES.get())
@@ -152,6 +155,19 @@ public class RecipeGenerator extends RecipeProvider {
 
 	    doorBuilder(NetherDescentBlocks.PENDORITE_DOOR.get(), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get())).unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get())).save(output);
 	    trapdoorBuilder(NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get())).unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get())).save(output);
+
+        shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.PENDORITE_CHAIN.get())
+                .define('I', NetherDescentItems.PENDORITE_INGOT.get())
+                .define('N', NetherDescentItems.PENDORITE_NUGGET.get())
+                .pattern("N")
+                .pattern("I")
+                .pattern("N")
+                .unlockedBy(getHasName(NetherDescentItems.PENDORITE_NUGGET.get()), has(NetherDescentItems.PENDORITE_NUGGET.get()))
+                .unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get()))
+                .save(output);
+
+        grate(NetherDescentBlocks.PENDORITE_GRATE.get(), NetherDescentBlocks.PENDORITE_BLOCK.get());
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.PENDORITE_GRATE.get(), NetherDescentBlocks.PENDORITE_BLOCK.get(), 4);
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.getItem()), RecipeCategory.MISC, CookingBookCategory.MISC, Items.GOLD_NUGGET, 0.1F, 400)
                 .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.getItem()), has(NetherDescentBlocks.SYTHIAN_STALK.getItem()))

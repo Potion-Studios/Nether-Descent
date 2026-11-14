@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "netherdescent:pendorite_block",
+  "result": {
+    "count": 4,
+    "id": "netherdescent:pendorite_grate"
+  }
+}
