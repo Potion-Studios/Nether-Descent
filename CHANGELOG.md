@@ -1,6 +1,7 @@
 # 1.0.14
 - Fix Crash when generating a world with version 1.0.12
 - Fix Occasional Render Crash on Forge
+- Add missing Recipes for Pendorite Chain, Grate, Embur and Arisian Moss Carpets
 
 # 1.0.12 – Last Version for 1.21.4 (Barring any major issues or bugs)
 - Fix Hanging Embur Moss not Generating, Change to Block Column
