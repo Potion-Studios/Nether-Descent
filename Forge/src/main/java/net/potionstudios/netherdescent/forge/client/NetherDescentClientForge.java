@@ -24,7 +24,7 @@ public class NetherDescentClientForge {
 	public static void init(final IEventBus eventBus) {
 		eventBus.addListener((FMLClientSetupEvent event) -> {
 			NetherDescentClient.onInitialize();
-			NetherDescentClient.registerBlockRenderTypes(ItemBlockRenderTypes::setRenderLayer);
+			event.enqueueWork(() -> NetherDescentClient.registerBlockRenderTypes(ItemBlockRenderTypes::setRenderLayer));
 		});
         eventBus.addListener((EntityRenderersEvent.RegisterRenderers event) -> {
             NetherDescentClient.registerEntityRenderers(event::registerEntityRenderer);
