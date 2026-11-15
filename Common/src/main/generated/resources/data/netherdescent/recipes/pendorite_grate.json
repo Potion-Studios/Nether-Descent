@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "pendorite_grate",
+  "key": {
+    "M": {
+      "item": "netherdescent:pendorite_block"
+    }
+  },
+  "pattern": [
+    " M ",
+    "M M",
+    " M "
+  ],
+  "result": {
+    "count": 4,
+    "item": "netherdescent:pendorite_grate"
+  },
+  "show_notification": true
+}

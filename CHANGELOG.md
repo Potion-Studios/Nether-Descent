@@ -1,3 +1,6 @@
+# 1.0.14
+- Add missing Recipes for Pendorite Chain, Grate, Embur and Arisian Moss Carpets
+
 # 1.0.13
 - Fix Pendorite Horse Armor not Rendering
 

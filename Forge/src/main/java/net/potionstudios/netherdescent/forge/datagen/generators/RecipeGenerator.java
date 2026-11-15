@@ -102,6 +102,10 @@ public class RecipeGenerator extends RecipeProvider {
                 .save(writer);
 
         twoByTwoPacker(writer, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.EMBUR_MOSS_BLOCK.get(), NetherDescentBlocks.EMBUR_CAVE_MOSS.get());
+        carpet(writer, NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), NetherDescentBlocks.EMBUR_MOSS_BLOCK.get());
+
+        carpet(writer, NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get());
+
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, NetherDescentItems.CRIMSON_BERRY_PIE.get())
                 .requires(NetherDescentItems.CRIMSON_BERRIES.get())
@@ -158,6 +162,27 @@ public class RecipeGenerator extends RecipeProvider {
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.getItem()), RecipeCategory.MISC, Items.GOLD_NUGGET, 0.1F, 200)
                 .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.getItem()), has(NetherDescentBlocks.SYTHIAN_STALK.getItem()))
                 .save(writer, NetherDescent.id("gold_nugget_from_blasting"));
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.PENDORITE_CHAIN.get())
+                .define('I', NetherDescentItems.PENDORITE_INGOT.get())
+                .define('N', NetherDescentItems.PENDORITE_NUGGET.get())
+                .pattern("N")
+                .pattern("I")
+                .pattern("N")
+                .unlockedBy(getHasName(NetherDescentItems.PENDORITE_NUGGET.get()), has(NetherDescentItems.PENDORITE_NUGGET.get()))
+                .unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get()))
+                .save(writer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.PENDORITE_GRATE.get(), 4)
+                .define('M', NetherDescentBlocks.PENDORITE_BLOCK.get())
+                .pattern(" M ")
+                .pattern("M M")
+                .pattern(" M ")
+                .group(getItemName(NetherDescentBlocks.PENDORITE_GRATE.get()))
+                .unlockedBy(getHasName(NetherDescentBlocks.PENDORITE_BLOCK.get()), has(NetherDescentBlocks.PENDORITE_BLOCK.get()))
+                .save(writer);
+
+        stonecutterResultFromBase(writer, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.PENDORITE_GRATE.get(), NetherDescentBlocks.PENDORITE_BLOCK.get(), 4);
 
         stairBuilder(NetherDescentBlocks.CUT_PENDORITE_STAIRS.get(), Ingredient.of(NetherDescentBlocks.CUT_PENDORITE.get()))
                 .unlockedBy(getHasName(NetherDescentBlocks.CUT_PENDORITE.get()), has(NetherDescentBlocks.CUT_PENDORITE.get()))
