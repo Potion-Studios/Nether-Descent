@@ -214,6 +214,7 @@ public class TagsGenerator {
             tag(Tags.Items.INGOTS).addTag(NetherDescentItemTags.INGOTS_PENDORITE);
             tag(NetherDescentItemTags.NUGGETS_PENDORITE).add(NetherDescentItems.PENDORITE_NUGGET.get());
             tag(Tags.Items.NUGGETS).addTag(NetherDescentItemTags.NUGGETS_PENDORITE);
+			tag(NetherDescentItemTags.RAW_MATERIALS_PENDORITE).add(NetherDescentItems.RAW_PENDORITE.get());
 			tag(Tags.Items.RAW_MATERIALS).addTag(NetherDescentItemTags.RAW_MATERIALS_PENDORITE);
 
 			copy(NetherDescentBlockTags.STORAGE_BLOCKS_PENDORITE, NetherDescentItemTags.STORAGE_BLOCKS_PENDORITE);
@@ -222,7 +223,7 @@ public class TagsGenerator {
 
             tag(ItemTags.CREEPER_IGNITERS).add(NetherDescentItems.SOUL_FIRE_CHARGE.get(), NetherDescentItems.PENDORITE_FIRE_CHARGE.get());
             tag(Tags.Items.RODS_BLAZE).add(NetherDescentItems.SOUL_BLAZE_ROD.get());
-			tag(NetherDescentItemTags.EGGS).addOptionalTag(Tags.Items.EGGS).addOptionalTag(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("forge", "eggs")));
+			tag(NetherDescentItemTags.EGGS).addOptionalTag(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("forge", "eggs")));
 
 			copy(Tags.Blocks.ORES, Tags.Items.ORES);
 			copy(Tags.Blocks.ORE_RATES_SPARSE, Tags.Items.ORE_RATES_SPARSE);
