@@ -153,7 +153,7 @@ public class RecipeGenerator extends RecipeProvider {
 	    doorBuilder(NetherDescentBlocks.PENDORITE_DOOR.get(), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get())).unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get())).save(output);
 	    trapdoorBuilder(NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get())).unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get())).save(output);
 
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.getItem()), RecipeCategory.MISC, Items.GOLD_NUGGET, 0.1F, 400)
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.getItem()), RecipeCategory.MISC, Items.GOLD_NUGGET, 0.1F, 400);
         shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.PENDORITE_CHAIN.get())
                 .define('I', NetherDescentItems.PENDORITE_INGOT.get())
                 .define('N', NetherDescentItems.PENDORITE_NUGGET.get())
@@ -167,7 +167,7 @@ public class RecipeGenerator extends RecipeProvider {
         grate(NetherDescentBlocks.PENDORITE_GRATE.get(), NetherDescentBlocks.PENDORITE_BLOCK.get());
         stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.PENDORITE_GRATE.get(), NetherDescentBlocks.PENDORITE_BLOCK.get(), 4);
 
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.getItem()), RecipeCategory.MISC, CookingBookCategory.MISC, Items.GOLD_NUGGET, 0.1F, 400)
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.getItem()), RecipeCategory.MISC, Items.GOLD_NUGGET, 0.1F, 400)
                 .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.getItem()), has(NetherDescentBlocks.SYTHIAN_STALK.getItem()))
                 .save(output, NetherDescent.key(Registries.RECIPE, "gold_nugget_from_smelting"));
 

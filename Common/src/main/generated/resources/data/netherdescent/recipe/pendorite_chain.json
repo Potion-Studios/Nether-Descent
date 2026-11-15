@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "I": "netherdescent:pendorite_ingot",
     "N": "netherdescent:pendorite_nugget"
@@ -10,6 +11,7 @@
     "N"
   ],
   "result": {
+    "count": 1,
     "id": "netherdescent:pendorite_chain"
   }
 }
