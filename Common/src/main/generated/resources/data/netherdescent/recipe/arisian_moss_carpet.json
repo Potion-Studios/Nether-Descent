@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "carpet",
   "key": {
     "#": "netherdescent:arisian_moss_block"
