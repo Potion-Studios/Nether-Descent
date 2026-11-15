@@ -122,7 +122,6 @@ public class NetherDescentClient {
 		consumer.accept(NetherDescentBlocks.WAILING_BULB_BLOSSOM.get(), ChunkSectionLayer.CUTOUT);
 		consumer.accept(NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get(), ChunkSectionLayer.CUTOUT);
 		consumer.accept(NetherDescentBlocks.THORN_SPROUT.get(), ChunkSectionLayer.CUTOUT);
-
 	}
 
 	@Nullable

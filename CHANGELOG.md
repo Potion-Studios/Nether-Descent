@@ -1,3 +1,6 @@
+# 1.0.15
+- Fix Occasional Crash on Forge Client Startup from Registering Block Render Types
+
 # 1.0.14
 - Fix Missing Texture in Nether Descent Advancement Screen
 - Add missing Recipes for Pendorite Chain, Grate, Embur and Arisian Moss Carpets

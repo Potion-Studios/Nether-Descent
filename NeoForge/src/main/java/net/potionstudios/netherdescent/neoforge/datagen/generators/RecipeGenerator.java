@@ -153,7 +153,6 @@ public class RecipeGenerator extends RecipeProvider {
 	    doorBuilder(NetherDescentBlocks.PENDORITE_DOOR.get(), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get())).unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get())).save(output);
 	    trapdoorBuilder(NetherDescentBlocks.PENDORITE_TRAPDOOR.get(), Ingredient.of(NetherDescentItems.PENDORITE_INGOT.get())).unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get())).save(output);
 
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.getItem()), RecipeCategory.MISC, Items.GOLD_NUGGET, 0.1F, 400);
         shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.PENDORITE_CHAIN.get())
                 .define('I', NetherDescentItems.PENDORITE_INGOT.get())
                 .define('N', NetherDescentItems.PENDORITE_NUGGET.get())
