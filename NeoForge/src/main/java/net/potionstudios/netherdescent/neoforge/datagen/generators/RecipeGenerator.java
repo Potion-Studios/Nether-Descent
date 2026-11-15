@@ -104,6 +104,9 @@ public class RecipeGenerator extends RecipeProvider {
                 .save(recipeOutput);
 
         twoByTwoPacker(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.EMBUR_MOSS_BLOCK.get(), NetherDescentBlocks.EMBUR_CAVE_MOSS.get());
+	    carpet(recipeOutput, NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), NetherDescentBlocks.EMBUR_MOSS_BLOCK.get());
+
+	    carpet(recipeOutput, NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), NetherDescentBlocks.ARISIAN_MOSS_BLOCK.get());
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, NetherDescentItems.CRIMSON_BERRY_PIE.get())
                 .requires(NetherDescentItems.CRIMSON_BERRIES.get())
@@ -153,6 +156,19 @@ public class RecipeGenerator extends RecipeProvider {
         SimpleCookingRecipeBuilder.blasting(Ingredient.of(NetherDescentBlocks.SYTHIAN_STALK.getItem()), RecipeCategory.MISC, Items.GOLD_NUGGET, 0.1F, 200)
                 .unlockedBy(getHasName(NetherDescentBlocks.SYTHIAN_STALK.getItem()), has(NetherDescentBlocks.SYTHIAN_STALK.getItem()))
                 .save(recipeOutput, NetherDescent.id("gold_nugget_from_blasting"));
+
+	    ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, NetherDescentBlocks.PENDORITE_CHAIN.get())
+			    .define('I', NetherDescentItems.PENDORITE_INGOT.get())
+			    .define('N', NetherDescentItems.PENDORITE_NUGGET.get())
+			    .pattern("N")
+			    .pattern("I")
+			    .pattern("N")
+			    .unlockedBy(getHasName(NetherDescentItems.PENDORITE_NUGGET.get()), has(NetherDescentItems.PENDORITE_NUGGET.get()))
+			    .unlockedBy(getHasName(NetherDescentItems.PENDORITE_INGOT.get()), has(NetherDescentItems.PENDORITE_INGOT.get()))
+			    .save(recipeOutput);
+
+	    grate(recipeOutput, NetherDescentBlocks.PENDORITE_GRATE.get(), NetherDescentBlocks.PENDORITE_BLOCK.get());
+	    stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, NetherDescentBlocks.PENDORITE_GRATE.get(), NetherDescentBlocks.PENDORITE_BLOCK.get(), 4);
 
         stairBuilder(NetherDescentBlocks.CUT_PENDORITE_STAIRS.get(), Ingredient.of(NetherDescentBlocks.CUT_PENDORITE.get()))
                 .unlockedBy(getHasName(NetherDescentBlocks.CUT_PENDORITE.get()), has(NetherDescentBlocks.CUT_PENDORITE.get()))
