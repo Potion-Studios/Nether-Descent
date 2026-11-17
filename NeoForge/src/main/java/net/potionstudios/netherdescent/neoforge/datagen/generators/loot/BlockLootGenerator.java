@@ -63,11 +63,13 @@ class BlockLootGenerator extends BlockLootSubProvider {
             else if (block instanceof FlowerBedBlock)
                 add(block, createSegmentedBlockDrops(block));
             else if (block instanceof NetherSproutsBlock)
-                add(block, itemLike -> createShearsOnlyDrop(block));
+                add(block, _ -> createShearsOnlyDrop(block));
             else if (block instanceof MultifaceBlock)
                 add(block, createMultifaceBlockDrops(block, hasShears()));
             else if (block instanceof LanternBlock)
                 add(block, this::createSingleItemTable);
+            else if (block instanceof DoorBlock)
+                add(block, this::createDoorTable);
             else {
                 if (!(Item.byBlock(block) == Items.AIR))
                     dropSelf(block);
