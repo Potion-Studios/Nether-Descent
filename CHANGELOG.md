@@ -1,3 +1,6 @@
+# 1.0.15
+- Fix Door LootTables
+
 # 1.0.14
 - Move from AccessWidener to ClassTweaker and Require Fabric Loader 0.19.0 or newer
 - Fix Missing Texture in Nether Descent Advancement Screen
