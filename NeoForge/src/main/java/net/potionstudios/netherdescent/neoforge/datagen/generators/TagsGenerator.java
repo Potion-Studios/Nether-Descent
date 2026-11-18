@@ -25,6 +25,8 @@ import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentB
 import net.potionstudios.netherdescent.data.worldgen.NetherDescentStructures;
 import org.jspecify.annotations.NonNull;
 
+import java.util.Comparator;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("unchecked")
@@ -255,7 +257,14 @@ public class TagsGenerator {
 		@Override
 		protected void addTags(HolderLookup.@NonNull Provider provider) {
 			NetherDescentBiomes.BIOME_FACTORIES.keySet().stream().sorted().toList().forEach(biome -> tag(NetherDescentBiomeTags.NETHER).add(biome));
-			NetherDescentBiomes.BIOMES_BY_TAG.forEach((tag, biome) -> tag(tag).add(biome));
+			NetherDescentBiomes.BIOMES_BY_TAG.asMap().entrySet().stream()
+					.sorted(Map.Entry.comparingByKey(Comparator.comparing(TagKey::location)))
+					.forEach(entry -> {
+						var tagBuilder = tag(entry.getKey());
+						entry.getValue().stream()
+								.sorted(Comparator.comparing(ResourceKey::identifier))
+								.forEach(tagBuilder::add);
+					});
 
 			tag(BiomeTags.IS_NETHER).addTag(NetherDescentBiomeTags.NETHER);
 			tag(Tags.Biomes.IS_HOT_NETHER).addTag(NetherDescentBiomeTags.HOT);

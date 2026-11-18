@@ -41,29 +41,26 @@ class BlockLootGenerator extends BlockLootSubProvider {
     @Override
     protected void generate() {
         NetherDescentBlocks.BLOCKS.forEach(entry -> {
-	        NetherDescent.LOGGER.info("Generating loot table for block: {}", Objects.requireNonNull(BuiltInRegistries.BLOCK.getKey(entry.get())));
             Block block = entry.get();
             if (block instanceof SlabBlock)
-                add(block, createSlabItemTable(block));
-            else if (block.defaultBlockState().getSoundType() == SoundType.GLASS)
+                add(block, this::createSlabItemTable);
+            else if (block.defaultBlockState().getSoundType() == SoundType.GLASS || block instanceof TransparentBlock || block instanceof StainedGlassPaneBlock)
                 dropWhenSilkTouch(block);
             else if (Objects.requireNonNull(BuiltInRegistries.BLOCK.getKey(block)).getPath().contains("_grass"))
                 if (block instanceof DoublePlantBlock) add(block, createDoublePlantWithSeedDrops(block, block));
-                else add(block, createGrassDrops(block));
+                else add(block, this::createGrassDrops);
             else if (block instanceof DoublePlantBlock)
                 add(block, createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
             else if (block instanceof CampfireBlock)
-                add(block, arg -> createSilkTouchDispatchTable(arg, this.applyExplosionCondition(arg, LootItem.lootTableItem(Items.CHARCOAL).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))));
+                add(block, arg -> createSilkTouchDispatchTable(arg, applyExplosionCondition(arg, LootItem.lootTableItem(Items.CHARCOAL).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))));
             else if (block instanceof VineBlock)
                 add(block, createShearsDispatchTable(block, LootItem.lootTableItem(block)));
-            else if (block instanceof TransparentBlock || block instanceof StainedGlassPaneBlock)
-                dropWhenSilkTouch(block);
             else if (block instanceof FlowerPotBlock)
                 dropPottedContents(block);
             else if (block instanceof FlowerBedBlock)
-                add(block, createSegmentedBlockDrops(block));
+                add(block, this::createSegmentedBlockDrops);
             else if (block instanceof NetherSproutsBlock)
-                add(block, _ -> createShearsOnlyDrop(block));
+                add(block, this::createShearsOnlyDrop);
             else if (block instanceof MultifaceBlock)
                 add(block, createMultifaceBlockDrops(block, hasShears()));
             else if (block instanceof LanternBlock)
@@ -77,9 +74,12 @@ class BlockLootGenerator extends BlockLootSubProvider {
             }
         });
 
-        NetherDescent.LOGGER.info("Generating loot tables for nylium blocks");
+        add(NetherDescentBlocks.ARISIAN.bookshelf(), arg -> createSingleItemTableWithSilkTouch(arg, Items.BOOK, ConstantValue.exactly(3.0F)));
+        add(NetherDescentBlocks.EMBUR.bookshelf(), arg -> createSingleItemTableWithSilkTouch(arg, Items.BOOK, ConstantValue.exactly(3.0F)));
+        add(NetherDescentBlocks.SYTHIAN.bookshelf(), arg -> createSingleItemTableWithSilkTouch(arg, Items.BOOK, ConstantValue.exactly(3.0F)));
+        add(NetherDescentBlocks.WAILING.bookshelf(), arg -> createSingleItemTableWithSilkTouch(arg, Items.BOOK, ConstantValue.exactly(3.0F)));
 
-        add(NetherDescentBlocks.EMBUR_NYLIUM.get(), (arg) -> this.createSingleItemTableWithSilkTouch(arg, NetherDescentBlocks.BLUE_NETHERRACK.get()));
+        add(NetherDescentBlocks.EMBUR_NYLIUM.get(), (arg) -> createSingleItemTableWithSilkTouch(arg, NetherDescentBlocks.BLUE_NETHERRACK.get()));
         add(NetherDescentBlocks.SYTHIAN_NYLIUM.get(), (arg) -> createSingleItemTableWithSilkTouch(arg, Blocks.NETHERRACK));
         add(NetherDescentBlocks.WAILING_NYLIUM.get(), (arg) -> createSingleItemTableWithSilkTouch(arg, Blocks.SOUL_SOIL));
         add(NetherDescentBlocks.CRIMSON_BLACKSTONE_NYLIUM.get(), (arg) -> createSingleItemTableWithSilkTouch(arg, Blocks.BLACKSTONE));
@@ -87,25 +87,24 @@ class BlockLootGenerator extends BlockLootSubProvider {
         dropSelf(NetherDescentBlocks.ARISIAN_DANDELIONS.get());
         dropSelf(NetherDescentBlocks.ARISIAN_BLOSSOM.get());
 
-
         dropOther(NetherDescentBlocks.SYTHIAN_FARMLAND.get(), NetherDescentBlocks.SYTHIAN_SOIL.get());
-        add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get(), (arg2) -> this.createSilkTouchDispatchTable(arg2, this.applyExplosionDecay(arg2, LootItem.lootTableItem(Items.GOLD_NUGGET).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE))))));
-        add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get(), (arg) -> this.createOreDrop(arg, Items.QUARTZ));
-        add(NetherDescentBlocks.PENDORITE_ORE.get(), createSilkTouchDispatchTable(NetherDescentBlocks.PENDORITE_ORE.get(), this.applyExplosionDecay(NetherDescentBlocks.PENDORITE_ORE.get(), LootItem.lootTableItem(NetherDescentItems.RAW_PENDORITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 5.0F))).apply(ApplyBonusCount.addOreBonusCount(registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE))))));
-	    add(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), (block) -> this.createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(Items.CHARCOAL).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))));
+        add(NetherDescentBlocks.BLUE_NETHER_GOLD_ORE.get(), (arg2) -> createSilkTouchDispatchTable(arg2, applyExplosionDecay(arg2, LootItem.lootTableItem(Items.GOLD_NUGGET).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 6.0F))).apply(ApplyBonusCount.addOreBonusCount(registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE))))));
+        add(NetherDescentBlocks.BLUE_NETHER_QUARTZ_ORE.get(), (arg) -> createOreDrop(arg, Items.QUARTZ));
+        add(NetherDescentBlocks.PENDORITE_ORE.get(), createSilkTouchDispatchTable(NetherDescentBlocks.PENDORITE_ORE.get(), applyExplosionDecay(NetherDescentBlocks.PENDORITE_ORE.get(), LootItem.lootTableItem(NetherDescentItems.RAW_PENDORITE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 5.0F))).apply(ApplyBonusCount.addOreBonusCount(registries.lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.FORTUNE))))));
+	    add(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionCondition(block, LootItem.lootTableItem(Items.CHARCOAL).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))));
         add(NetherDescentBlocks.HORNET_NEST.get(), (block) ->
                 LootTable.lootTable()
                     .withPool(
                             LootPool.lootPool()
-                                    .when(this.hasSilkTouch())
+                                    .when(hasSilkTouch())
                                     .setRolls(ConstantValue.exactly(1))
                                     .add(
                                             LootItem.lootTableItem(block)
                                                     .apply(CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY).include(NetherDescentDataComponents.HORNETS.get()))
                                     )
                     ));
-        add(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), createMossyCarpetBlockDrops(NetherDescentBlocks.EMBUR_MOSS_CARPET.get()));
-        add(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), createMossyCarpetBlockDrops(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get()));
+        add(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), this::createMossyCarpetBlockDrops);
+        add(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), this::createMossyCarpetBlockDrops);
         add(NetherDescentBlocks.ARISIAN_LEAVES.get(), createLeavesDrops(NetherDescentBlocks.ARISIAN_LEAVES.get(), NetherDescentBlocks.ARISIAN.growerItem().get(), NORMAL_LEAVES_SAPLING_CHANCES));
     }
 

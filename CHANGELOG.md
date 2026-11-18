@@ -1,5 +1,5 @@
 # 1.0.15
-- Fix Door LootTables
+- Fix Door and Bookshelve LootTables
 
 # 1.0.14
 - Move from AccessWidener to ClassTweaker and Require Fabric Loader 0.19.0 or newer
