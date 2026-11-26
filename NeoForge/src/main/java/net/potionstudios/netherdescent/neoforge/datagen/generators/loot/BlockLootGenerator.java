@@ -67,11 +67,10 @@ class BlockLootGenerator extends BlockLootSubProvider {
                 add(block, this::createSingleItemTable);
             else if (block instanceof DoorBlock)
                 add(block, this::createDoorTable);
-            else {
+            else
                 if (!(Item.byBlock(block) == Items.AIR))
                     dropSelf(block);
                 else NetherDescent.LOGGER.warn("Block {} has no loot table defined and does not have a corresponding item, skipping loot table generation.", BuiltInRegistries.BLOCK.getKey(block));
-            }
         });
 
         add(NetherDescentBlocks.ARISIAN.bookshelf(), arg -> createSingleItemTableWithSilkTouch(arg, Items.BOOK, ConstantValue.exactly(3.0F)));
@@ -106,6 +105,8 @@ class BlockLootGenerator extends BlockLootSubProvider {
         add(NetherDescentBlocks.EMBUR_MOSS_CARPET.get(), this::createMossyCarpetBlockDrops);
         add(NetherDescentBlocks.ARISIAN_MOSS_CARPET.get(), this::createMossyCarpetBlockDrops);
         add(NetherDescentBlocks.ARISIAN_LEAVES.get(), createLeavesDrops(NetherDescentBlocks.ARISIAN_LEAVES.get(), NetherDescentBlocks.ARISIAN.growerItem().get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+        add(NetherDescentBlocks.PENDORITE_CAMPFIRE.get(), (block) -> this.createSilkTouchDispatchTable(block, this.applyExplosionCondition(block, LootItem.lootTableItem(NetherDescentItems.PENDORITE_INGOT.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F))))));
     }
 
     @Override

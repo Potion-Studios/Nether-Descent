@@ -44,7 +44,7 @@ public class LangGenerator extends LanguageProvider {
 			if (!addedKeys.contains(item.get().asItem().getDescriptionId()))
 				addItem(item, getItemName(item));
 		});
-		NetherDescentBiomes.BIOME_FACTORIES.forEach((key, factory) -> {
+		NetherDescentBiomes.BIOME_FACTORIES.keySet().forEach((key) -> {
 			String translationKey = "biome." + NetherDescent.MOD_ID + "." + key.identifier().getPath();
 			if (!addedKeys.contains(translationKey))
 				add(translationKey, getBiomeName(key));
