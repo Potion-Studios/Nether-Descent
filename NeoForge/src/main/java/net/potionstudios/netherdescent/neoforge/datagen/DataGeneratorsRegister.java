@@ -36,6 +36,7 @@ import net.potionstudios.netherdescent.data.worldgen.NetherDescentTemplatePools;
 import net.potionstudios.netherdescent.world.level.levelgen.biome.NetherDescentSurfaceRules;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -76,7 +77,7 @@ class DataGeneratorsRegister {
 		    .add(Registries.DAMAGE_TYPE, pContext -> NetherDescentDamageTypes.DAMAGE_TYPE_FACTORIES.forEach(((damageTypeResourceKey, damageTypeFactory) -> pContext.register(damageTypeResourceKey, damageTypeFactory.generate(pContext)))))
 		    .add(LithostitchedRegistries.BIOME_INJECTOR, pContext -> {
 			    HolderGetter<Biome> biomeLookup = pContext.lookup(Registries.BIOME);
-			    List<Pair<Climate.ParameterPoint, Holder<Biome>>> points = NetherDescentBiomes.BIOME_FACTORIES.entrySet().stream()
+			    List<Pair<Climate.ParameterPoint, Holder<Biome>>> points = NetherDescentBiomes.BIOME_FACTORIES.entrySet().stream().sorted(Map.Entry.comparingByKey())
 					    .map(entry -> Pair.of(
 							    entry.getValue().parameterPoint(),
 							    (Holder<Biome>) biomeLookup.getOrThrow(entry.getKey())
@@ -94,7 +95,7 @@ class DataGeneratorsRegister {
 		    })
 		    .add(LithostitchedRegistries.REGION, pContext -> {
 			    HolderGetter<Biome> biomeLookup = pContext.lookup(Registries.BIOME);
-			    List<Holder<Biome>> enabledBiomeHolders = NetherDescentBiomes.BIOME_FACTORIES.keySet().stream()
+			    List<Holder<Biome>> enabledBiomeHolders = NetherDescentBiomes.BIOME_FACTORIES.keySet().stream().sorted()
 					    .map(biomeLookup::getOrThrow)
 					    .map(holder -> (Holder<Biome>) holder)
 					    .toList();

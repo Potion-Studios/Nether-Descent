@@ -1,5 +1,6 @@
 # 1.0.15
-- Fix Door and Bookshelve LootTables
+- Fix Door, Bookshelves, and Pendorite Campfire LootTables
+- Make Wailing Grass and Embur Cave Moss Compostable
 
 # 1.0.14
 - Move from AccessWidener to ClassTweaker and Require Fabric Loader 0.19.0 or newer

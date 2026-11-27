@@ -13,10 +13,7 @@ import net.potionstudios.netherdescent.world.item.NetherDescentItems;
 
 import java.util.function.BiConsumer;
 
-public class ChestLootGenerator implements LootTableSubProvider {
-    public ChestLootGenerator() {
-    }
-
+public record ChestLootGenerator() implements LootTableSubProvider {
     @Override
     public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> output) {
         output.accept(NetherDescent.key(Registries.LOOT_TABLE, "chests/nether_bridge"),
